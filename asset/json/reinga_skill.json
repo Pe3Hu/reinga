@@ -1,0 +1,74 @@
+[
+ {
+  "title": "rune of lightning",
+  "specialization": "runologist",
+  "type": "attack",
+  "description": "single damage",
+  "combination": "very fast",
+  "base": "0",
+  "bonus": "8"
+ },
+ {
+  "title": "rune of fire",
+  "specialization": "runologist",
+  "type": "attack",
+  "description": "single damage",
+  "combination": "fast",
+  "base": "3",
+  "bonus": "6"
+ },
+ {
+  "title": "water rune",
+  "specialization": "runologist",
+  "type": "defense",
+  "description": "shield replenishment",
+  "combination": "fast",
+  "base": "4",
+  "bonus": "4"
+ },
+ {
+  "title": "earth rune",
+  "specialization": "runologist",
+  "type": "reinforcement",
+  "description": "increase max shield",
+  "combination": "slow",
+  "base": "7",
+  "bonus": "6"
+ },
+ {
+  "title": "axe blow",
+  "specialization": "berserk",
+  "type": "attack",
+  "description": "single damage",
+  "combination": "fast",
+  "base": "0",
+  "bonus": "12"
+ },
+ {
+  "title": "blood blade",
+  "specialization": "berserk",
+  "type": "attack",
+  "description": "single damage",
+  "combination": "slow",
+  "base": "10",
+  "bonus": "10"
+ },
+ {
+  "title": "ancestral blood",
+  "specialization": "berserk",
+  "type": "reinforcement",
+  "description": "max hp boost",
+  "combination": "very slow",
+  "base": "10",
+  "bonus": "12"
+ },
+ {
+  "title": "swiftness",
+  "specialization": "berserk",
+  "type": "reinforcement",
+  "description": "out of turn throw",
+  "combination": "fast",
+  "base": "0",
+  "bonus": "12"
+ }
+]

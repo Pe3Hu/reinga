@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccmg6rwvfvhki"]
+
+[ext_resource type="Script" path="res://scene/2/dicespot.gd" id="1_ehg6r"]
+[ext_resource type="FontFile" uid="uid://beh7inkt4rf38" path="res://asset/font/rimouski sb.otf" id="2_ds0vy"]
+
+[node name="Dicespot" type="MarginContainer"]
+custom_minimum_size = Vector2(15, 15)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ehg6r")
+
+[node name="BG" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(0.427451, 0.427451, 0.427451, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ds0vy")
+theme_override_font_sizes/font_size = 10
+horizontal_alignment = 1
+vertical_alignment = 1

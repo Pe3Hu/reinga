@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1moassc5kdls"]
+
+[ext_resource type="Script" path="res://scene/0/hell.gd" id="1_h12hm"]
+
+[node name="Hell" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h12hm")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.407843, 0.690196, 0.419608, 0.309804)
+
+[node name="Teams" type="Control" parent="."]
+layout_mode = 2
+
+[node name="Queue" type="Control" parent="Teams"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Arenas" type="Control" parent="."]
+layout_mode = 2

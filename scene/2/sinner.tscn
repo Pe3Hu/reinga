@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjhx75ocrtk1"]
+
+[ext_resource type="Script" path="res://scene/2/sinner.gd" id="1_kv8vh"]
+
+[node name="Sinner" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kv8vh")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.890196, 0.890196, 0.890196, 1)
+
+[node name="Worktops" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1

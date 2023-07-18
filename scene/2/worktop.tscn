@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxiaoijvcl2ok"]
+
+[ext_resource type="Script" path="res://scene/2/worktop.gd" id="1_x7x4e"]
+
+[node name="Worktop" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_x7x4e")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.701961, 0.701961, 0.701961, 1)
+
+[node name="Dicespots" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 3
