@@ -21,7 +21,7 @@ script = ExtResource("1_ehg6r")
 [node name="BG" type="ColorRect" parent="."]
 visible = false
 layout_mode = 2
-color = Color(0.427451, 0.427451, 0.427451, 1)
+color = Color(0.988235, 0, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
