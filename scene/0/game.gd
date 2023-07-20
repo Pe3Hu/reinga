@@ -2,9 +2,8 @@ extends Node
 
 
 func _ready() -> void:
-	#Global.obj.insel = Classes_0.Insel.new()
 	#datas.sort_custom(func(a, b): return a.value < b.value)
-	#012
+	#012 description
 	Global.node.hell = Global.scene.hell.instantiate()
 	$Layer0.add_child(Global.node.hell)
 	pass

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxjhx75ocrtk1"]
+[gd_scene load_steps=3 format=3 uid="uid://bxjhx75ocrtk1"]
 
 [ext_resource type="Script" path="res://scene/2/sinner.gd" id="1_kv8vh"]
+[ext_resource type="PackedScene" uid="uid://cj31171eyrvxu" path="res://scene/3/indicators.tscn" id="2_6w04x"]
 
 [node name="Sinner" type="MarginContainer"]
 offset_right = 40.0
@@ -11,6 +12,13 @@ script = ExtResource("1_kv8vh")
 layout_mode = 2
 color = Color(0.890196, 0.890196, 0.890196, 1)
 
-[node name="Worktops" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Indicators" parent="HBox" instance=ExtResource("2_6w04x")]
+layout_mode = 2
+
+[node name="Worktops" type="HBoxContainer" parent="HBox"]
 layout_mode = 2
 alignment = 1

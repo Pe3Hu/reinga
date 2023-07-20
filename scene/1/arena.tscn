@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfd6kh8vck468"]
+[gd_scene load_steps=3 format=3 uid="uid://cfd6kh8vck468"]
 
 [ext_resource type="Script" path="res://scene/1/arena.gd" id="1_r5puu"]
+[ext_resource type="Script" path="res://scene/1/dices.gd" id="2_rgjjv"]
 
 [node name="Arena" type="MarginContainer"]
 custom_minimum_size = Vector2(150, 100)
@@ -20,7 +21,12 @@ script = ExtResource("1_r5puu")
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 2
 
-[node name="Teams" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
+
+[node name="Dices" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+alignment = 1
+script = ExtResource("2_rgjjv")

@@ -10,7 +10,7 @@ var node = {}
 var flag = {}
 var vec = {}
 var scene = {}
-var stats = {}
+var color = {}
 
 
 func _ready() -> void:
@@ -20,6 +20,7 @@ func _ready() -> void:
 	init_node()
 	init_scene()
 	init_vec()
+	init_color()
 
 
 func init_num() -> void:
@@ -73,7 +74,60 @@ func init_dict() -> void:
 	
 	dict.specialization = {}
 	dict.specialization.skill = {}
+	
+	
+	init_multiplication()
 	init_skill()
+
+
+func init_multiplication() -> void:
+	dict.multiplication = {}
+	dict.multiplication.tempo = {}
+	dict.multiplication.tempo["fast"] = {}
+	dict.multiplication.tempo["normal"] = {}
+	dict.multiplication.tempo["slow"] = {}
+	
+	dict.multiplication.tempo["fast"].balance = 1
+	dict.multiplication.tempo["normal"].balance = 0
+	dict.multiplication.tempo["slow"].balance = -1
+	
+	dict.multiplication.tempo["fast"].min = 24
+	dict.multiplication.tempo["normal"].min = 12
+	dict.multiplication.tempo["slow"].min = 1
+	
+	dict.multiplication.tempo["fast"].max = 36
+	dict.multiplication.tempo["normal"].max = 20
+	dict.multiplication.tempo["slow"].max = 10
+	
+	dict.multiplication.all = {}
+	
+	for _i in range(1, 7, 1):
+		for _j in range(1, 7, 1):
+			var multiplication = _i * _j
+			
+			if !dict.multiplication.all.has(multiplication):
+				dict.multiplication.all[multiplication] = []
+			
+			var values = [_i, _j]
+			
+			if !dict.multiplication.all[multiplication].has(values):
+				dict.multiplication.all[multiplication].append(values)
+	
+	for tempo in dict.multiplication.tempo:
+		dict.multiplication.tempo[tempo].values = []
+		dict.multiplication.tempo[tempo].multiplications = []
+		
+		for multiplication in range(dict.multiplication.tempo[tempo].min, dict.multiplication.tempo[tempo].max + 1, 1):
+			if dict.multiplication.all.has(multiplication):
+				dict.multiplication.tempo[tempo].multiplications.append(multiplication)
+				for values in dict.multiplication.all[multiplication]:
+					for value in values:
+						if !dict.multiplication.tempo[tempo].values.has(value):
+							dict.multiplication.tempo[tempo].values.append(value)
+		
+		#for multiplication in dict.multiplication.tempo[tempo].multiplications:
+		#	print(tempo, dict.multiplication.all[multiplication])
+		#print(tempo, dict.multiplication.tempo[tempo].values)
 
 
 func init_skill() -> void:
@@ -84,18 +138,17 @@ func init_skill() -> void:
 	
 	for data in array:
 		dict.skill.title[data.title] = data
+		dict.skill.title[data.title].balance = dict.multiplication.tempo[data.tempo].balance
 		
 		if !dict.specialization.skill.has(data.specialization):
 			dict.specialization.skill[data.specialization] = []
 		
 		dict.specialization.skill[data.specialization].append(data.title)
 		dict.skill.title[data.title].erase("title")
-	
-	print(dict.specialization.skill)
 
 
 func init_arr() -> void:
-	pass
+	arr.edge = [1, 2, 3, 4, 5, 6]
 
 
 func init_node() -> void:
@@ -109,7 +162,7 @@ func init_scene() -> void:
 	scene.sinner = load("res://scene/2/sinner.tscn")
 	scene.worktop = load("res://scene/2/worktop.tscn")
 	scene.dicespot = load("res://scene/2/dicespot.tscn")
-	
+	scene.dice = load("res://scene/4/dice.tscn")
 
 
 func init_vec():
@@ -122,6 +175,16 @@ func init_window_size():
 	vec.size.window.width = ProjectSettings.get_setting("display/window/size/viewport_width")
 	vec.size.window.height = ProjectSettings.get_setting("display/window/size/viewport_height")
 	vec.size.window.center = Vector2(vec.size.window.width/2, vec.size.window.height/2)
+
+
+func init_color():
+	color.indicator = {}
+	color.indicator.health = {}
+	color.indicator.health.fill = Color.from_hsv(0, 1, 0.9)
+	color.indicator.health.background = Color.from_hsv(0, 0.25, 0.9)
+	color.indicator.endurance = {}
+	color.indicator.endurance.fill = Color.from_hsv(0.33, 1, 0.9)
+	color.indicator.endurance.background = Color.from_hsv(0.33, 0.25, 0.9)
 
 
 func save(path_: String, data_: String):

@@ -19,7 +19,7 @@ func init_teams() -> void:
 		
 		var specialization = Global.dict.specialization.skill.keys()[_i]
 		var sinner = Global.scene.sinner.instantiate()
-		sinner.set_specialization(specialization)
+		sinner.specialization = specialization
 		sinner.team = team
 		team.sinners.add_child(sinner)
 
