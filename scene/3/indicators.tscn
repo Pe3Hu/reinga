@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj31171eyrvxu"]
+[gd_scene load_steps=5 format=3 uid="uid://cj31171eyrvxu"]
 
 [ext_resource type="PackedScene" uid="uid://clk3sq60ajanr" path="res://scene/3/indicator.tscn" id="1_3xbtx"]
 [ext_resource type="Script" path="res://scene/3/indicators.gd" id="1_roa8u"]
 [ext_resource type="FontFile" uid="uid://beh7inkt4rf38" path="res://asset/font/rimouski sb.otf" id="2_kwueq"]
+[ext_resource type="PackedScene" uid="uid://dhtnc7aol46sc" path="res://scene/3/ultimate.tscn" id="4_2h06b"]
 
 [node name="Indicators" type="MarginContainer"]
 offset_right = 40.0
@@ -37,4 +38,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Endurance" parent="VBox/Bars" instance=ExtResource("1_3xbtx")]
+layout_mode = 2
+
+[node name="Ultimate" parent="VBox" instance=ExtResource("4_2h06b")]
 layout_mode = 2

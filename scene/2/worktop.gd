@@ -81,7 +81,7 @@ func init_dicespots() -> void:
 						dicespot.label.text = option
 			else:
 				if grid != Vector2.ZERO:
-					dicespot.value = 0
+					dicespot.permutation = 0
 	
 	correct = balance.x == balance.y
 
@@ -91,8 +91,8 @@ func fill_dicespots() -> void:
 	correct = true
 	
 	for dicespot in dicespots.get_children():
-		if dicespot.value != null:
-			var values = {}
+		if dicespot.permutation != null:
+			var permutations = {}
 			
 			for axis in skills:
 				var grid = Vector2()
@@ -100,41 +100,36 @@ func fill_dicespots() -> void:
 				
 				for skill in skills[axis]:
 					if grid == skills[axis][skill].grid:
-						dicespot.skill[axis] = skill
+						dicespot.skills[axis] = skill
 						skills[axis][skill].dicespots.append(dicespot)
 						break
 			
-			values.intersection = []
+			permutations.intersection = []
 			
-			for axis in dicespot.skill:
-				var skill = dicespot.skill[axis]
+			for axis in dicespot.skills:
+				var skill = dicespot.skills[axis]
 				var tempo = Global.dict.skill.title[skill].tempo
-				values[axis] = []
-				values[axis].append_array(Global.dict.multiplication.tempo[tempo].values)
+				permutations[axis] = []
+				permutations[axis].append_array(Global.dict.multiplication.tempo[tempo].permutations)
 
-			for value in values.x:
-				if values.y.has(value):
-					values.intersection.append(value)
+			for permutation in permutations.x:
+				if permutations.y.has(permutation):
+					permutations.intersection.append(permutation)
 
-			if values.intersection.is_empty():
-				values.intersection.append_array(Global.arr.edge)
+			if permutations.intersection.is_empty():
+				permutations.intersection.append_array(Global.arr.edge)
 			
-			var value = values.intersection.pick_random()
-			dicespot.set_value(value)
+			var permutation = permutations.intersection.pick_random()
+			dicespot.set_permutation(permutation)
 	
-	adjust_dicespot_values()
-	
-	for axis in skills:
-		for skill in skills[axis]:
-			if !skills[axis][skill].correct:
-				var node = get_node_by_grid(skills[axis][skill].grid)
-				node.bg.visible = true
+	adjust_dicespot_permutations()
+	set_dicespots_sums()
 
 
 func clean_dicespots() -> void:
 	for dicespot in dicespots.get_children():
-		if dicespot.value != null:
-			dicespot.value = 0
+		if dicespot.permutation != null:
+			dicespot.permutation = 0
 	
 	for axis in skills:
 		for skill in skills[axis]:
@@ -151,7 +146,7 @@ func get_node_by_grid(grid_: Vector2) -> MarginContainer:
 	return dicespots.get_child(index)
 
 
-func adjust_dicespot_values() -> void:
+func adjust_dicespot_permutations() -> void:
 	correct = false
 	
 	while !correct:
@@ -175,7 +170,61 @@ func adjust_skill(axis_: String, skill_: String) -> void:
 	elif Global.dict.multiplication.tempo[tempo].max < skills[axis_][skill_].multiplication:
 		shift = -1
 	
-	var dicespot = skills[axis_][skill_].dicespots.pick_random()
-	var value = dicespot.value + shift
-	dicespot.set_value(value)
-	multiplication_check(axis_, skill_)
+	if shift != null:
+		var options = []
+		
+		for dicespot in skills[axis_][skill_].dicespots:
+			var permutation = dicespot.permutation + shift
+			
+			if Global.dict.permutation.sum.has(permutation):
+				options.append(dicespot)
+		
+		var dicespot = options.pick_random()
+		var permutation = dicespot.permutation + shift
+		dicespot.set_permutation(permutation)
+		multiplication_check(axis_, skill_)
+
+
+func set_dicespots_sums() -> void:
+	for dicespot in dicespots.get_children():
+		if dicespot.permutation != null:
+			dicespot.set_sum()
+
+
+func update_uncorrect_skills() -> void:
+	for axis in skills:
+		for skill in skills[axis]:
+			if !skills[axis][skill].correct:
+				var node = get_node_by_grid(skills[axis][skill].grid)
+				node.bg.visible = true
+
+
+func get_readymade_skills() -> Array:
+	var readymades = []
+	
+		
+	for axis in skills:
+		for skill in skills[axis]:
+			if readiness_check(axis, skill):
+				var data = {}
+				data.worktop = self
+				data.axis = axis
+				data.skill = skill
+				readymades.append(data)
+	
+	return readymades
+
+
+func readiness_check(axis_: String, skill_: String) -> bool:
+	for dicespot in skills[axis_][skill_].dicespots:
+		if !dicespot.active:
+			return false
+	
+	return true
+
+
+func activate_skill(axis_: String, skill_: String) -> void:
+	print(skill_ + " activated")
+	
+	for dicespot in skills[axis_][skill_].dicespots:
+		dicespot.deenergize()

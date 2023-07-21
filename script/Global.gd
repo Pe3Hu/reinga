@@ -2,25 +2,28 @@ extends Node
 
 
 var rng = RandomNumberGenerator.new()
-var num = {}
-var dict = {}
 var arr = {}
-var obj = {}
-var node = {}
-var flag = {}
+var num = {}
 var vec = {}
-var scene = {}
 var color = {}
+var dict = {}
+var flag = {}
+var node = {}
+var scene = {}
 
 
 func _ready() -> void:
-	init_num()
-	init_dict()
 	init_arr()
-	init_node()
-	init_scene()
+	init_num()
 	init_vec()
 	init_color()
+	init_dict()
+	init_node()
+	init_scene()
+
+
+func init_arr() -> void:
+	arr.edge = [1, 2, 3, 4, 5, 6]
 
 
 func init_num() -> void:
@@ -76,11 +79,12 @@ func init_dict() -> void:
 	dict.specialization.skill = {}
 	
 	
-	init_multiplication()
-	init_skill()
+	init_multiplications()
+	init_skills()
+	init_permutations()
 
 
-func init_multiplication() -> void:
+func init_multiplications() -> void:
 	dict.multiplication = {}
 	dict.multiplication.tempo = {}
 	dict.multiplication.tempo["fast"] = {}
@@ -108,29 +112,29 @@ func init_multiplication() -> void:
 			if !dict.multiplication.all.has(multiplication):
 				dict.multiplication.all[multiplication] = []
 			
-			var values = [_i, _j]
+			var permutations = [_i, _j]
 			
-			if !dict.multiplication.all[multiplication].has(values):
-				dict.multiplication.all[multiplication].append(values)
+			if !dict.multiplication.all[multiplication].has(permutations):
+				dict.multiplication.all[multiplication].append(permutations)
 	
 	for tempo in dict.multiplication.tempo:
-		dict.multiplication.tempo[tempo].values = []
+		dict.multiplication.tempo[tempo].permutations = []
 		dict.multiplication.tempo[tempo].multiplications = []
 		
 		for multiplication in range(dict.multiplication.tempo[tempo].min, dict.multiplication.tempo[tempo].max + 1, 1):
 			if dict.multiplication.all.has(multiplication):
 				dict.multiplication.tempo[tempo].multiplications.append(multiplication)
-				for values in dict.multiplication.all[multiplication]:
-					for value in values:
-						if !dict.multiplication.tempo[tempo].values.has(value):
-							dict.multiplication.tempo[tempo].values.append(value)
+				for permutations in dict.multiplication.all[multiplication]:
+					for permutation in permutations:
+						if !dict.multiplication.tempo[tempo].permutations.has(permutation):
+							dict.multiplication.tempo[tempo].permutations.append(permutation)
 		
 		#for multiplication in dict.multiplication.tempo[tempo].multiplications:
 		#	print(tempo, dict.multiplication.all[multiplication])
-		#print(tempo, dict.multiplication.tempo[tempo].values)
+		#print(tempo, dict.multiplication.tempo[tempo].permutations)
 
 
-func init_skill() -> void:
+func init_skills() -> void:
 	dict.skill = {}
 	dict.skill.title = {}
 	var path = "res://asset/json/reinga_skill.json"
@@ -147,8 +151,28 @@ func init_skill() -> void:
 		dict.skill.title[data.title].erase("title")
 
 
-func init_arr() -> void:
-	arr.edge = [1, 2, 3, 4, 5, 6]
+func init_permutations() -> void:
+	dict.sum = {}
+	dict.sum.permutation = {}
+	dict.permutation = {}
+	dict.permutation.sum = {}
+	
+	for _i in arr.edge:
+		for _j in arr.edge:
+			var sum = _i + _j
+			
+			if !dict.sum.permutation.has(sum):
+				dict.sum.permutation[sum] = 0
+			
+			dict.sum.permutation[sum] += 1
+	
+	for sum in dict.sum.permutation:
+		var permutation = dict.sum.permutation[sum]
+		
+		if !dict.permutation.sum.has(permutation):
+			dict.permutation.sum[permutation] = []
+		
+		dict.permutation.sum[permutation].append(sum)
 
 
 func init_node() -> void:
@@ -162,6 +186,7 @@ func init_scene() -> void:
 	scene.sinner = load("res://scene/2/sinner.tscn")
 	scene.worktop = load("res://scene/2/worktop.tscn")
 	scene.dicespot = load("res://scene/2/dicespot.tscn")
+	scene.cell = load("res://scene/3/cell.tscn")
 	scene.dice = load("res://scene/4/dice.tscn")
 
 

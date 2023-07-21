@@ -6,7 +6,9 @@ func _ready() -> void:
 	#012 description
 	Global.node.hell = Global.scene.hell.instantiate()
 	$Layer0.add_child(Global.node.hell)
-	pass
+	
+	Global.node.arena = Global.node.hell.arenas.get_child(0)
+	Global.node.arena.make_round()
 
 
 func _input(event) -> void:
@@ -14,7 +16,7 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				if event.is_pressed() && !event.is_echo():
-					pass
+					Global.node.arena.make_round()
 
 
 func _process(delta_) -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfd6kh8vck468"]
+[gd_scene load_steps=4 format=3 uid="uid://cfd6kh8vck468"]
 
 [ext_resource type="Script" path="res://scene/1/arena.gd" id="1_r5puu"]
 [ext_resource type="Script" path="res://scene/1/dices.gd" id="2_rgjjv"]
+[ext_resource type="PackedScene" uid="uid://dipsjrlq57mqt" path="res://scene/4/dice.tscn" id="3_4nxyo"]
 
 [node name="Arena" type="MarginContainer"]
 custom_minimum_size = Vector2(150, 100)
@@ -26,7 +27,13 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Dices" type="VBoxContainer" parent="HBox"]
+[node name="VBox" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+
+[node name="Dices" type="VBoxContainer" parent="HBox/VBox"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("2_rgjjv")
+
+[node name="Sum" parent="HBox/VBox" instance=ExtResource("3_4nxyo")]
+layout_mode = 2

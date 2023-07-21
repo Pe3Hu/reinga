@@ -1,7 +1,7 @@
+MarginContainer
 VBoxContainer
 Label
 ColorRect
-MarginContainer
 HBoxContainer
 TextureProgressBar
 ProgressBar

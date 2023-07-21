@@ -3,6 +3,7 @@ extends MarginContainer
 
 @onready var bars = $VBox/Bars
 @onready var label = $VBox/Label
+@onready var ultimate = $VBox/Ultimate
 
 var sinner = null
 
