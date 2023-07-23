@@ -15,7 +15,7 @@ func update_color() -> void:
 		"endurance":
 			bar.value = 0
 		"barrier":
-			bar.value = 0
+			bar.value = bar.max_value
 	
 	for key in keys:
 		var style_box = StyleBoxFlat.new()
