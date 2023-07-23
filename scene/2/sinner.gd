@@ -5,8 +5,9 @@ extends MarginContainer
 @onready var indicators = $HBox/Indicators
 
 var team = null
-var skills = []
 var specialization = null
+var foes = []
+var skills = []
 var initiative = 1
 
 
@@ -14,6 +15,7 @@ func _ready() -> void:
 	init_wortops()
 	indicators.label.text = specialization
 	indicators.sinner = self
+	indicators.set_bars()
 
 
 func init_wortops() -> void:
@@ -57,3 +59,24 @@ func fill_ultimate() -> void:
 func choose_skill(readymades_: Array) -> void:
 	var data = readymades_.pick_random()
 	data.worktop.activate_skill(data.axis, data.skill)
+
+
+func check_active_barrier() -> bool:
+	var indicator = indicators.get_indicator_based_on_name("barrier")
+	
+	if indicator != null:
+		if indicator.bar.value > 0:
+			return true
+	
+	return false
+
+
+func knockout() -> void:
+	visible = false
+	team.arena.initiatives.erase(self)
+	
+	for foe in foes:
+		foe.foes.erase(self)
+	
+	if !team.check_presence():
+		team.arena.close()

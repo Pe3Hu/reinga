@@ -28,6 +28,11 @@ func add_team(side_: String) -> void:
 
 
 func arena_preparation() -> void:
+	set_initiatives()
+	set_foes()
+
+
+func set_initiatives() -> void:
 	var datas = {}
 	
 	for team in teams:
@@ -42,6 +47,14 @@ func arena_preparation() -> void:
 		
 		for sinner in datas[initiative]:
 			initiatives.append(sinner)
+
+
+func set_foes() -> void:
+	for team in teams:
+		for sinner in team.sinners.get_children():
+			for foe in initiatives:
+				if foe.team != sinner.team:
+					sinner.foes.append(foe)
 
 
 func round_preparation() -> void:
@@ -60,3 +73,10 @@ func fills_dicespots_one_by_one() -> void:
 		iniative_counter += 1
 	
 	iniative_counter = 0
+
+
+func close() -> void:
+	var winner = initiatives.front().team
+	
+	for sinner in winner.sinners.get_children():
+		print(sinner.specialization, " is winner")

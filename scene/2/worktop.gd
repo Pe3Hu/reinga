@@ -202,7 +202,6 @@ func update_uncorrect_skills() -> void:
 func get_readymade_skills() -> Array:
 	var readymades = []
 	
-		
 	for axis in skills:
 		for skill in skills[axis]:
 			if readiness_check(axis, skill):
@@ -225,6 +224,52 @@ func readiness_check(axis_: String, skill_: String) -> bool:
 
 func activate_skill(axis_: String, skill_: String) -> void:
 	print(skill_ + " activated")
+	var description = Global.dict.skill.title[skill_]
+	
+	var target = get_target(description)
+	apply_effect(target, description)
 	
 	for dicespot in skills[axis_][skill_].dicespots:
 		dicespot.deenergize()
+
+
+func get_target(description_: Dictionary) -> Variant:
+	var target = null
+	var targets = []
+	
+	match description_.target:
+		"random":
+			targets = sinner.foes
+		"owner":
+			targets.append(sinner)
+	
+	target = targets.pick_random()
+	
+	return target
+
+
+func apply_effect(target_: MarginContainer, description_: Dictionary) -> void:
+	var subtarget = null
+	var charge = roll_charge(description_)
+	
+	var sign = Global.dict.sign.variation[description_.variation]
+	var shift = sign * charge
+	
+	if Global.color.indicator.has(description_.subtarget):
+		subtarget = target_.indicators.get_indicator_based_on_name(description_.subtarget)
+		
+		if health_damage_check(description_) and target_.check_active_barrier():
+			subtarget = target_.indicators.get_indicator_based_on_name("barrier")
+		
+		subtarget.update_value(description_.value, shift)
+
+
+func roll_charge(description_: Dictionary) -> int:
+	var charge = description_.base
+	Global.rng.randomize()
+	charge += Global.rng.randi_range(0, description_.bonus)
+	return charge
+
+
+func health_damage_check(description_: Dictionary) -> bool:
+	return Global.dict.sign.variation[description_.variation] == -1 and description_.subtarget == "health" and description_.value == "current" 

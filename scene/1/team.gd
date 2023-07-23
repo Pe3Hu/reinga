@@ -15,3 +15,11 @@ func set_side(side_: String) -> void:
 			$BG.color = Color.SKY_BLUE
 		"Right":
 			$BG.color = Color.INDIAN_RED
+
+
+func check_presence() -> bool:
+	for sinner in sinners.get_children():
+		if sinner.visible:
+			return true
+	
+	return false

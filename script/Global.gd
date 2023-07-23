@@ -75,13 +75,18 @@ func init_dict() -> void:
 		]
 	]
 	
-	dict.specialization = {}
-	dict.specialization.skill = {}
 	
-	
+	init_indicators()
 	init_multiplications()
+	init_specializations()
 	init_skills()
 	init_permutations()
+	init_signs()
+
+
+func init_indicators() -> void:
+	dict.indicator = {}
+	dict.indicator["barrier"] = ["runologist"]
 
 
 func init_multiplications() -> void:
@@ -134,6 +139,20 @@ func init_multiplications() -> void:
 		#print(tempo, dict.multiplication.tempo[tempo].permutations)
 
 
+func init_specializations() -> void:
+	dict.specialization = {}
+	dict.specialization.title = {}
+	dict.specialization.skill = {}
+	var path = "res://asset/json/specialization_data.json"
+	var array = load_data(path)
+	
+	for data in array:
+		dict.specialization.title[data.title] = data
+		dict.specialization.title[data.title].erase("title")
+	
+	#print(dict.specialization.title)
+
+
 func init_skills() -> void:
 	dict.skill = {}
 	dict.skill.title = {}
@@ -175,6 +194,13 @@ func init_permutations() -> void:
 		dict.permutation.sum[permutation].append(sum)
 
 
+func init_signs() -> void:
+	dict.sign = {}
+	dict.sign.variation = {}
+	dict.sign.variation["loss"] = -1
+	dict.sign.variation["gain"] = 1
+
+
 func init_node() -> void:
 	node.game = get_node("/root/Game")
 
@@ -187,6 +213,7 @@ func init_scene() -> void:
 	scene.worktop = load("res://scene/2/worktop.tscn")
 	scene.dicespot = load("res://scene/2/dicespot.tscn")
 	scene.cell = load("res://scene/3/cell.tscn")
+	scene.indicator = load("res://scene/3/indicator.tscn")
 	scene.dice = load("res://scene/4/dice.tscn")
 
 
@@ -210,6 +237,9 @@ func init_color():
 	color.indicator.endurance = {}
 	color.indicator.endurance.fill = Color.from_hsv(0.33, 1, 0.9)
 	color.indicator.endurance.background = Color.from_hsv(0.33, 0.25, 0.9)
+	color.indicator.barrier = {}
+	color.indicator.barrier.fill = Color.from_hsv(0.5, 1, 0.9)
+	color.indicator.barrier.background = Color.from_hsv(0.5, 0.25, 0.9)
 
 
 func save(path_: String, data_: String):

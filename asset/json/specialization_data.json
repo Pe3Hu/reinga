@@ -1,0 +1,14 @@
+[
+ {
+  "title": "runologist",
+  "health": 50,
+  "barrier": 16,
+  "endurance": 75
+ },
+ {
+  "title": "berserk",
+  "health": 100,
+  "barrier": 0,
+  "endurance": 125
+ }
+]

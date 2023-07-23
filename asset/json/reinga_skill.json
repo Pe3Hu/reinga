@@ -6,7 +6,13 @@
   "description": "single damage",
   "tempo": "fast",
   "base": 0,
-  "bonus": 8
+  "bonus": 8,
+  "quantity": 1,
+  "target": "random",
+  "subtarget": "health",
+  "variation": "loss",
+  "value": "current",
+  "additional effect": "absent"
  },
  {
   "title": "fire rune",
@@ -15,25 +21,43 @@
   "description": "single damage",
   "tempo": "normal",
   "base": 2,
-  "bonus": 8
+  "bonus": 8,
+  "quantity": 1,
+  "target": "random",
+  "subtarget": "health",
+  "variation": "loss",
+  "value": "current",
+  "additional effect": "absent"
  },
  {
   "title": "water rune",
   "specialization": "runologist",
-  "type": "defense",
+  "type": "support",
   "description": "shield replenishment",
   "tempo": "fast",
   "base": 1,
-  "bonus": 6
+  "bonus": 6,
+  "quantity": 1,
+  "target": "owner",
+  "subtarget": "barrier",
+  "variation": "gain",
+  "value": "current",
+  "additional effect": "absent"
  },
  {
   "title": "earth rune",
   "specialization": "runologist",
-  "type": "reinforcement",
+  "type": "talent",
   "description": "increase max shield",
   "tempo": "normal",
   "base": 3,
-  "bonus": 6
+  "bonus": 6,
+  "quantity": 1,
+  "target": "owner",
+  "subtarget": "barrier",
+  "variation": "gain",
+  "value": "maximum",
+  "additional effect": "absent"
  },
  {
   "title": "axe blow",
@@ -42,7 +66,13 @@
   "description": "single damage",
   "tempo": "fast",
   "base": 2,
-  "bonus": 4
+  "bonus": 4,
+  "quantity": 1,
+  "target": "random",
+  "subtarget": "health",
+  "variation": "loss",
+  "value": "current",
+  "additional effect": "absent"
  },
  {
   "title": "blood blade",
@@ -51,24 +81,42 @@
   "description": "single damage",
   "tempo": "normal",
   "base": 4,
-  "bonus": 4
+  "bonus": 4,
+  "quantity": 1,
+  "target": "random",
+  "subtarget": "health",
+  "variation": "loss",
+  "value": "current",
+  "additional effect": "burn the blood"
  },
  {
   "title": "ancestral blood",
   "specialization": "berserk",
-  "type": "reinforcement",
+  "type": "talent",
   "description": "max hp boost",
   "tempo": "slow",
   "base": 6,
-  "bonus": 6
+  "bonus": 6,
+  "quantity": 1,
+  "target": "owner",
+  "subtarget": "health",
+  "variation": "gain",
+  "value": "maximum",
+  "additional effect": "absent"
  },
  {
   "title": "swiftness",
   "specialization": "berserk",
-  "type": "reinforcement",
+  "type": "support",
   "description": "out of turn throw",
   "tempo": "normal",
   "base": 0,
-  "bonus": 18
+  "bonus": 18,
+  "quantity": 1,
+  "target": "owner",
+  "subtarget": "turn of events",
+  "variation": "gain",
+  "value": "extra turn",
+  "additional effect": "absent"
  }
 ]

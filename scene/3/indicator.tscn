@@ -41,6 +41,6 @@ theme_override_fonts/font = ExtResource("1_ikiw4")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/background = SubResource("StyleBoxFlat_q3sqh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_neula")
+max_value = 0.0
 step = 1.0
-value = 20.0
 show_percentage = false
