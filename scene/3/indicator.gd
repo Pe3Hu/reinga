@@ -1,7 +1,8 @@
 extends MarginContainer
 
+
 @onready var bar = $ProgressBar
-@onready var indicators = $".."
+@onready var indicators = $"../../.."
 
 var type = null
 
@@ -40,3 +41,11 @@ func update_value(value_: String, shift_: int) -> void:
 				bar.value = bar.min_value
 		"maximum":
 			bar.max_value += shift_
+	
+	if indicators.sinner.team.arena != null:
+		if type == "health" and bar.value == 0:
+			indicators.sinner.knockout()
+
+
+func get_percentage() -> int:
+	return floor(bar.value * 100 / bar.max_value)

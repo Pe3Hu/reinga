@@ -26,7 +26,7 @@ func _ready() -> void:
 func init_dicespots() -> void:
 	correct = false
 	var options = []
-	options.append_array(Global.dict.specialization.skill[sinner.specialization])
+	options.append_array(sinner.skills.studied)
 	options.shuffle()
 	var balance = Vector2()
 	skills.x = {}
@@ -46,39 +46,41 @@ func init_dicespots() -> void:
 			
 			if grid != Vector2.ZERO and (grid.x == 0 || grid.y == 0) and !skills.has(grid):
 				for axis in skills:
-					var option = null
+					var skill = null
 					
 					if grid[reverse[axis]] == 0:
 						if skills[axis].keys().is_empty():
-							option = options.pick_random()
-							balance[axis] += Global.dict.skill.title[option].balance
+							skill = options.pick_random()
+							balance[axis] += Global.dict.skill.title[skill].balance
 							#print([optionaxis, Global.dict.skill.title[option].balance])
 						else:
 							var d = {}
 							d.current = balance[reverse[axis]] - balance[axis]
 							var compliants = []
 							
-							for option_ in options:
-								d.new = d.current - Global.dict.skill.title[option_].balance
+							for option in options:
+								d.new = d.current - Global.dict.skill.title[option].balance
 								
 								if abs(d.new) <= 1:
-									compliants.append(option_)
+									compliants.append(option)
 							
 							if compliants.is_empty():
 								return
 							
-							option = compliants.pick_random()
-							balance[axis] += Global.dict.skill.title[option].balance
+							skill = compliants.pick_random()
+							balance[axis] += Global.dict.skill.title[skill].balance
 						
-						skills[axis][option] = {}
-						skills[axis][option].grid = grid
-						skills[axis][option].dicespots = []
-						skills[axis][option].correct = null
-						skills[axis][option].multiplication = 1
+						skills[axis][skill] = {}
+						skills[axis][skill].grid = grid
+						skills[axis][skill].dicespots = []
+						skills[axis][skill].correct = null
+						skills[axis][skill].multiplication = 1
 					
-					if option != null:
-						options.erase(option)
-						dicespot.label.text = option
+					if skill != null:
+						options.erase(skill)
+						dicespot.label.text = skill
+						if !sinner.skills.used.has(skill):
+							sinner.skills.used.append(skill)
 			else:
 				if grid != Vector2.ZERO:
 					dicespot.permutation = 0
@@ -199,17 +201,30 @@ func update_uncorrect_skills() -> void:
 				node.bg.visible = true
 
 
-func get_readymade_skills() -> Array:
+func get_readymade_skills(style_: String) -> Array:
 	var readymades = []
 	
 	for axis in skills:
 		for skill in skills[axis]:
-			if readiness_check(axis, skill):
-				var data = {}
-				data.worktop = self
-				data.axis = axis
-				data.skill = skill
-				readymades.append(data)
+			var data = {}
+			data.worktop = self
+			data.axis = axis
+			data.skill = skill
+			readymades.append(data)
+	
+	match style_:
+		"only charged":
+			for _i in range(readymades.size()-1, -1, -1):
+				var data = readymades[_i]
+				
+				if !readiness_check(data.axis, data.skill):
+					readymades.pop_at(_i)
+		"not charged":
+			for _i in range(readymades.size()-1, -1, -1):
+				var data = readymades[_i]
+				
+				if readiness_check(data.axis, data.skill):
+					readymades.pop_at(_i)
 	
 	return readymades
 
@@ -227,10 +242,14 @@ func activate_skill(axis_: String, skill_: String) -> void:
 	var description = Global.dict.skill.title[skill_]
 	
 	var target = get_target(description)
-	apply_effect(target, description)
 	
-	for dicespot in skills[axis_][skill_].dicespots:
-		dicespot.deenergize()
+	if target != null:
+		apply_effect(target, description)
+		
+		for dicespot in skills[axis_][skill_].dicespots:
+			dicespot.deenergize()
+		
+		sinner.update_chronicle(skill_)
 
 
 func get_target(description_: Dictionary) -> Variant:
@@ -244,7 +263,6 @@ func get_target(description_: Dictionary) -> Variant:
 			targets.append(sinner)
 	
 	target = targets.pick_random()
-	
 	return target
 
 
@@ -262,12 +280,30 @@ func apply_effect(target_: MarginContainer, description_: Dictionary) -> void:
 			subtarget = target_.indicators.get_indicator_based_on_name("barrier")
 		
 		subtarget.update_value(description_.value, shift)
+	else:
+		match description_.subtarget:
+			"turn of events":
+				var extra_rounds = floor(charge / 6) + 1
+				
+				for _i in extra_rounds:
+					sinner.team.arena.extra_round.append(sinner)
 
 
 func roll_charge(description_: Dictionary) -> int:
-	var charge = description_.base
+	var base = description_.base
+	var bonus = description_.bonus
+	
+	if sinner.indicators.ultimate.kit.value > 0:
+		var impact = sinner.indicators.ultimate.get_impact()
+		
+		match sinner.specialization:
+			"runologist":
+				bonus *= impact
+			"berserk":
+				base += impact
+	
 	Global.rng.randomize()
-	charge += Global.rng.randi_range(0, description_.bonus)
+	var charge = base + Global.rng.randi_range(0, bonus)
 	return charge
 
 

@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+
 @onready var sum_dice =  $"../Sum"
 
 var dice_count = 2
@@ -9,8 +10,6 @@ var values = []
 func _ready() -> void:
 	for _i in dice_count:
 		add_dice()
-	
-	#roll_dices()
 
 
 func add_dice() -> void:

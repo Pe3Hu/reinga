@@ -8,6 +8,8 @@ extends MarginContainer
 var teams = []
 var initiatives = []
 var iniative_counter = 0
+var extra_round = []
+var end = false
 
 
 func _ready() -> void:
@@ -16,7 +18,9 @@ func _ready() -> void:
 	hbox.move_child(vbox, 1)
 	
 	arena_preparation()
-	#dices.roll_dices()
+	
+	while !end:
+		make_round()
 
 
 func add_team(side_: String) -> void:
@@ -30,6 +34,8 @@ func add_team(side_: String) -> void:
 func arena_preparation() -> void:
 	set_initiatives()
 	set_foes()
+	
+	#teams.front().sinners.get_children().front().knockout()
 
 
 func set_initiatives() -> void:
@@ -63,7 +69,13 @@ func round_preparation() -> void:
 
 func make_round() -> void:
 	round_preparation()
-	fills_dicespots_one_by_one()
+	
+	if extra_round.is_empty():
+		fills_dicespots_one_by_one()
+	else:
+		var sinner = extra_round.pop_front()
+		sinner.fills_dicespots()
+		print("extra round " + sinner.specialization)
 
 
 func fills_dicespots_one_by_one() -> void:

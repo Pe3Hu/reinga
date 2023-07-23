@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhtnc7aol46sc"]
+[gd_scene load_steps=3 format=3 uid="uid://dhtnc7aol46sc"]
 
 [ext_resource type="Script" path="res://scene/3/ultimate.gd" id="1_1jin6"]
+[ext_resource type="PackedScene" uid="uid://eb4mc1porkfq" path="res://scene/3/cell.tscn" id="2_qvyxq"]
 
 [node name="Ultimate" type="MarginContainer"]
 anchors_preset = 8
@@ -19,7 +20,13 @@ script = ExtResource("1_1jin6")
 [node name="BG" type="ColorRect" parent="."]
 layout_mode = 2
 
-[node name="Cells" type="HBoxContainer" parent="."]
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Cells" type="HBoxContainer" parent="HBox"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
+
+[node name="Kit" parent="HBox" instance=ExtResource("2_qvyxq")]
+layout_mode = 2
