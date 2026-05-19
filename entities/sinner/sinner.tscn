@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://rulm0xbbiyn5"]
+
+[ext_resource type="Texture2D" uid="uid://bwmplpfuye44y" path="res://entities/jail/cage/images/cage_border.png" id="1_1om1q"]
+[ext_resource type="Script" uid="uid://u5lfbg4t4o01" path="res://entities/sinner/sinner.gd" id="1_05m67"]
+[ext_resource type="PackedScene" uid="uid://cdpj6amwhbdjm" path="res://entities/token/faction/faction.tscn" id="2_5d7qc"]
+[ext_resource type="PackedScene" uid="uid://c7pdwsba8i3ln" path="res://entities/trait/trait.tscn" id="3_17dq6"]
+[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="4_85ygj"]
+[ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/token/posture/posture.tscn" id="5_rgnv3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d7qc"]
+
+[node name="SinnerCard" type="Control" unique_id=1474778463 node_paths=PackedStringArray("type_label", "faction", "fear", "horror", "guilt", "repose")]
+custom_minimum_size = Vector2(172, 192)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_05m67")
+fate = 14
+type_label = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel/TypeLabel")
+faction = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainer/TokenFaction")
+fear = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainer/TraitFear")
+horror = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainer/TraitHorror")
+guilt = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainer/TraitGuilt")
+repose = NodePath("Panel/MarginContainer/VBoxContainer/MarginContainer/TraitRepose")
+
+[node name="Panel" type="Panel" parent="." unique_id=1466864148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1474715060]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=192744357]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=195387727]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TokenFaction" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1672584037 instance=ExtResource("2_5d7qc")]
+unique_name_in_owner = true
+layout_mode = 2
+type = 1
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1699418279]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5d7qc")
+
+[node name="TypeLabel" type="RichTextLabel" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer/Panel" unique_id=872327250]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Huckster"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1946966215]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TraitFear" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=801101660 instance=ExtResource("3_17dq6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+sin_scene = ExtResource("4_85ygj")
+posture_scene = ExtResource("5_rgnv3")
+
+[node name="TraitHorror" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1158869502 instance=ExtResource("3_17dq6")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+columns = 1
+type = 1
+sin_scene = ExtResource("4_85ygj")
+posture_scene = ExtResource("5_rgnv3")
+
+[node name="TraitGuilt" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=563801335 instance=ExtResource("3_17dq6")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+type = 2
+sin_scene = ExtResource("4_85ygj")
+posture_scene = ExtResource("5_rgnv3")
+
+[node name="TraitRepose" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=371001667 instance=ExtResource("3_17dq6")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 1
+type = 3
+sin_scene = ExtResource("4_85ygj")
+posture_scene = ExtResource("5_rgnv3")
+
+[node name="Highlight" type="TextureRect" parent="Panel" unique_id=1129215499]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1om1q")

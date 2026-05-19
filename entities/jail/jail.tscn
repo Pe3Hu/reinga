@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cca13j77q3a26"]
+
+[ext_resource type="Script" uid="uid://bjsx67lmdxjh2" path="res://entities/jail/jail.gd" id="1_ge72r"]
+[ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/jail/cage/cage.tscn" id="2_ge72r"]
+[ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/jail/catena/catena.tscn" id="3_o0tu8"]
+
+[node name="Jail" type="Node2D" unique_id=247800843 node_paths=PackedStringArray("cages", "catenas")]
+script = ExtResource("1_ge72r")
+cage_scene = ExtResource("2_ge72r")
+catena_scene = ExtResource("3_o0tu8")
+cages = NodePath("Cages")
+catenas = NodePath("Catenas")
+
+[node name="Cages" type="Node2D" parent="." unique_id=821750897]
+unique_name_in_owner = true
+
+[node name="Catenas" type="Node2D" parent="." unique_id=279266896]
+unique_name_in_owner = true

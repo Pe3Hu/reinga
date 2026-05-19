@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c7pdwsba8i3ln"]
+
+[ext_resource type="Script" uid="uid://del3f1urt64p" path="res://entities/trait/trait.gd" id="1_qj1t3"]
+
+[node name="Trait" type="GridContainer" unique_id=801101660]
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 2
+columns = 3
+script = ExtResource("1_qj1t3")

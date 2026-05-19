@@ -1,7 +1,7 @@
-res://scene/3
-res://scene/4
-res://scene/1
-res://scene/0
-res://asset/tileset
-res://script
-res://asset/font
+res://global/
+res://entities/token/sin/
+res://entities/token/
+res://entities/sinner/
+D:/godot/templates/blank template/assets/fonts/
+res://assets/fonts/
+res://entities/world/
