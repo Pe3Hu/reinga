@@ -2,5 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q0gvl464nwgp" path="res://entities/jail/catena/catena.gd" id="1_bmifh"]
 
-[node name="Magistral" type="Node2D" unique_id=750951510]
+[node name="Magistral" type="Control" unique_id=276861075]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_bmifh")

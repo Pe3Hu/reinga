@@ -1,12 +1,12 @@
-extends Node2D
+extends PanelContainer
 class_name Jail
 
 
 @export var cage_scene: PackedScene
 @export var catena_scene: PackedScene
 
-@export var cages: Node2D
-@export var catenas: Node2D
+@export var cages: GridContainer
+@export var catenas: Control
 
 var vector_to_cage: Dictionary
 var vector_to_catena: Dictionary

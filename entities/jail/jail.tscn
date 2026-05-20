@@ -4,15 +4,23 @@
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/jail/cage/cage.tscn" id="2_ge72r"]
 [ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/jail/catena/catena.tscn" id="3_o0tu8"]
 
-[node name="Jail" type="Node2D" unique_id=247800843 node_paths=PackedStringArray("cages", "catenas")]
+[node name="Jail" type="PanelContainer" unique_id=282794866 node_paths=PackedStringArray("cages", "catenas")]
+mouse_filter = 1
 script = ExtResource("1_ge72r")
 cage_scene = ExtResource("2_ge72r")
 catena_scene = ExtResource("3_o0tu8")
 cages = NodePath("Cages")
 catenas = NodePath("Catenas")
 
-[node name="Cages" type="Node2D" parent="." unique_id=821750897]
+[node name="Cages" type="GridContainer" parent="." unique_id=1458026598]
 unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
 
-[node name="Catenas" type="Node2D" parent="." unique_id=279266896]
+[node name="Catenas" type="Control" parent="." unique_id=2014414528]
 unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 1

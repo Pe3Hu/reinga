@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name Sinner
 
 
 @export var fate: Bozo.Fate:

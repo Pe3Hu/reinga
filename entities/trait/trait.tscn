@@ -1,9 +1,38 @@
 [gd_scene format=3 uid="uid://c7pdwsba8i3ln"]
 
-[ext_resource type="Script" uid="uid://del3f1urt64p" path="res://entities/trait/trait.gd" id="1_qj1t3"]
+[ext_resource type="Shader" uid="uid://658xgv40dxen" path="res://entities/trait/blur.gdshader" id="4_27ekl"]
 
-[node name="Trait" type="GridContainer" unique_id=801101660]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj1t3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27ekl"]
+shader = ExtResource("4_27ekl")
+shader_parameter/blur_amount = 1.5
+
+[node name="Trait" type="PanelContainer" unique_id=1493565861]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qj1t3")
+
+[node name="Tokens" type="GridContainer" parent="." unique_id=801101660]
+unique_name_in_owner = true
+layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 3
-script = ExtResource("1_qj1t3")
+
+[node name="Blur" type="Control" parent="." unique_id=663232985]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Blur" unique_id=1968706119]
+unique_name_in_owner = true
+rect = Rect2(0, 0, 200, 200)
+
+[node name="ColorRect" type="ColorRect" parent="Blur" unique_id=1814168011]
+material = SubResource("ShaderMaterial_27ekl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

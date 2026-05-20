@@ -16,7 +16,7 @@ func _init(sinner_: SinnerData, type_: Bozo.Triat, rank_: int) -> void:
 	rank = rank_
 	
 	init_tokens()
-	
+
 func init_tokens() -> void:
 	var amount_options = Catalog.rank_to_trait_to_amount[rank][type]
 	var amounts = amount_options.pick_random()
@@ -37,7 +37,6 @@ func init_tokens() -> void:
 	if type == Bozo.Triat.HORROR:
 		var amount = 1
 		add_posture(Bozo.Posture.MADNESS, amount)
-
 
 func add_sin(type_: Bozo.Sin, value_: int) -> void:
 	var _sin = SinData.new(type_, value_)

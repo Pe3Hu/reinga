@@ -12,3 +12,4 @@ extends Token
 	set(value_):
 		value = value_
 		label.text = str(value)
+		visible = value > 0

@@ -1,6 +1,6 @@
 @tool
 class_name Trait
-extends GridContainer
+extends PanelContainer
 
 
 @export var data: TraitData:
@@ -13,12 +13,15 @@ extends GridContainer
 		type = value_
 		update_columns()
 
+
 @export var tokens: Array[Token]
+
+@export var token_grid: GridContainer
+@export var blur: Control
+@export var bbc: BackBufferCopy
 
 @export var sin_scene: PackedScene
 @export var posture_scene: PackedScene
-
-
 
 
 func _ready() -> void:
@@ -37,21 +40,34 @@ func add_sin(data_: SinData) -> void:
 	var token = sin_scene.instantiate()
 	token.type = data_.type
 	token.value = data_.value
-	add_child(token)
+	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
-
 
 func add_posture(data_: PostureData) -> void:
 	var token = posture_scene.instantiate()
 	token.type = data_.type
 	token.value = data_.value
-	add_child(token)
+	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
 	
 func update_columns():
+	#move_child(blur, tokens.size())
+	blur.size = size
+	#blur.position = -size
+	bbc.rect = Rect2(0, 0, size.x, size.y)
+	
 	if  tokens.is_empty(): return
-	columns = 1
+	token_grid.columns = 1
 	if type == Bozo.Triat.FEAR or type == Bozo.Triat.GUILT:
-		columns = tokens.size()
+		token_grid.columns = tokens.size()
+
+func test_max_token_count() -> void:
+	if !data.sins.is_empty():
+		while tokens.size() < 3:
+			add_sin(data.sins.front())
+	
+	if !data.postures.is_empty():
+		while tokens.size() < 3:
+			add_posture(data.postures.front())

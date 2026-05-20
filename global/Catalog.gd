@@ -3,14 +3,23 @@ extends Node
 
 #region cage
 const JAIL_CAGE_SIZE = Vector2i(3, 3)
-const CAGE_SPRITE_SIZE = Vector2(128, 128)
-const SINNER_PANEL_SIZE = Vector2(172, 192)
+const CAGE_SPRITE_SIZE = Vector2(188, 212)
+const SINNER_PANEL_SIZE = Vector2(172, 196)
 
 const cage_to_color = {
 	Bozo.Cage.NONE: Color.WHITE,
-	Bozo.Cage.MIDDLE: Color.BLUE,
-	Bozo.Cage.LEFT: Color.ORANGE,
-	Bozo.Cage.RIGHT: Color.GREEN,
+	Bozo.Cage.MIDDLE: Color.WHITE,
+	Bozo.Cage.LEFT: Color.SLATE_GRAY,
+	Bozo.Cage.RIGHT: Color.DEEP_PINK,
+	Bozo.Cage.CENTER: Color.WHITE,
+}
+
+const cage_to_string = {
+	Bozo.Cage.NONE: "none",
+	Bozo.Cage.MIDDLE: "top",
+	Bozo.Cage.LEFT: "left",
+	Bozo.Cage.RIGHT: "right",
+	Bozo.Cage.CENTER: "bot",
 }
 #endregion
 
@@ -250,11 +259,17 @@ const rank_to_trait_to_amount = {
 	},
 }
 
-var rank_to_weight = {
-	[0, 0, 0, 1]: 5,
-	[-1, 0, 1, 1]: 3,
-	[-1, 0, 0, 2]: 2,
+const combination_to_weight = {
+	0: 5,
+	1: 3,
+	2: 2,
 }
+
+var rank_combinations = [
+	[0, 0, 0, 1],
+	[-1, 0, 1, 1],
+	[-1, 0, 0, 2]
+]
 #endregion
 
 #region posture

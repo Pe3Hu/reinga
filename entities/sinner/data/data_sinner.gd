@@ -24,7 +24,9 @@ func init_traits() -> void:
 	trait_options.append_array(Catalog.traits)
 	trait_options.shuffle()
 	
-	var rank_options = Helper.get_random_key(Catalog.rank_to_weight)
+	var combination_index = Helper.get_random_key(Catalog.combination_to_weight)
+	var rank_options = Catalog.rank_combinations[combination_index]
+	
 	rank_options.shuffle()
 	
 	for _i in rank_options.size():
