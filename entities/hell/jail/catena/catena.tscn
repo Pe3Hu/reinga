@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bgiycfwaus1np"]
+
+[ext_resource type="Script" uid="uid://q0gvl464nwgp" path="res://entities/hell/jail/catena/catena.gd" id="1_bmifh"]
+
+[node name="Magistral" type="Control" unique_id=276861075]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bmifh")

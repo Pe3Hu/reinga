@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bhblfmmey6iuk"]
+
+[ext_resource type="Script" uid="uid://b6dbd0gm5n8fi" path="res://entities/hell/treasury/treasury.gd" id="1_utu1h"]
+[ext_resource type="PackedScene" uid="uid://cvy22kttxafa4" path="res://entities/hell/treasury/tribute/tribute.tscn" id="2_3045x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3045x"]
+
+[node name="Treasury" type="PanelContainer" unique_id=2005910419]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3045x")
+script = ExtResource("1_utu1h")
+tribute_scene = ExtResource("2_3045x")
+
+[node name="Tributes" type="VBoxContainer" parent="." unique_id=1313006680]
+unique_name_in_owner = true
+layout_mode = 2

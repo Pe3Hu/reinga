@@ -1,12 +1,16 @@
 extends Control
-class_name Planet
+class_name Hell
 
 
-@onready var jail = %Jail
-#@onready var horde = %Horde
+@export var jail: Jail
+@export var treasury: Treasury
+
+var tribunal = TribunalData.new()
 
 
 func _ready():
 	var viewport_size = get_viewport_rect().size
 	position = viewport_size / 2
-	jail.position = -Vector2(Catalog.JAIL_CAGE_SIZE) * Catalog.CAGE_SPRITE_SIZE / 2
+	%HBox.position = -Vector2(Catalog.JAIL_CAGE_SIZE) * Catalog.CAGE_SPRITE_SIZE / 2
+	
+	jail.next_turn()

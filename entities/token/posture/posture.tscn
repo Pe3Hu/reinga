@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bux8dfbycomad" path="res://entities/token/images/madness.png" id="3_ij0l7"]
 
 [node name="TokenPosture" unique_id=1672584037 instance=ExtResource("1_ownh6")]
+visible = false
 script = ExtResource("2_khut6")
-type = 1
+type = 0
 value = 0
 
 [node name="TextureRect" parent="." index="0" unique_id=2027400341]

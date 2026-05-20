@@ -1,14 +1,32 @@
 [gd_scene format=3 uid="uid://cwjeyn62awup2"]
 
 [ext_resource type="Script" uid="uid://mnq8nmw8al0s" path="res://entities/hell/hell.gd" id="1_al7up"]
-[ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/jail/jail.tscn" id="2_kksrj"]
+[ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/hell/jail/jail.tscn" id="2_kksrj"]
+[ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
 
-[node name="Hell" type="Control" unique_id=1588501557]
+[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("jail", "treasury")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_al7up")
+jail = NodePath("HBox/Jail")
+treasury = NodePath("HBox/Treasury")
 
-[node name="Jail" parent="." unique_id=247800843 instance=ExtResource("2_kksrj")]
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1457327838]
 unique_name_in_owner = true
 layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Jail" parent="HBox" unique_id=247800843 node_paths=PackedStringArray("hell") instance=ExtResource("2_kksrj")]
+layout_mode = 2
+hell = NodePath("../..")
+
+[node name="Treasury" parent="HBox" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+hell = NodePath("../..")

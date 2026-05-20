@@ -21,10 +21,32 @@ const cage_to_string = {
 	Bozo.Cage.RIGHT: "right",
 	Bozo.Cage.CENTER: "bot",
 }
+
+const trait_to_string = {
+	Bozo.Triat.FEAR: "fear",
+	Bozo.Triat.HORROR: "horror",
+	Bozo.Triat.GUILT: "guilt",
+	Bozo.Triat.REPOSE: "repose"
+}
+
+const trait_to_cage = {
+	null: Bozo.Cage.NONE,
+	Bozo.Triat.FEAR: Bozo.Cage.MIDDLE,
+	Bozo.Triat.HORROR: Bozo.Cage.RIGHT,
+	Bozo.Triat.GUILT: Bozo.Cage.CENTER,
+	Bozo.Triat.REPOSE: Bozo.Cage.LEFT
+}
+
+const cage_to_traits = {
+	Bozo.Cage.NONE: [Bozo.Triat.FEAR, Bozo.Triat.HORROR, Bozo.Triat.GUILT, Bozo.Triat.REPOSE],
+	Bozo.Cage.MIDDLE: [Bozo.Triat.FEAR],
+	Bozo.Cage.RIGHT: [Bozo.Triat.HORROR],
+	Bozo.Cage.CENTER: [Bozo.Triat.GUILT, Bozo.Triat.FEAR],
+	Bozo.Cage.LEFT: [Bozo.Triat.REPOSE]
+}
 #endregion
 
-
-#region token
+#region sin
 const sin_to_color = {
 	Bozo.Sin.PRIDE: Color.REBECCA_PURPLE,
 	Bozo.Sin.ENVY: Color.DARK_ORANGE,
@@ -34,20 +56,16 @@ const sin_to_color = {
 	Bozo.Sin.GLUTTONY: Color.SEA_GREEN,
 }
 
-const nightmare_to_color = {
-	Bozo.Nightmare.THEATER: Color.MEDIUM_PURPLE,
-	Bozo.Nightmare.BATTLE: Color.INDIAN_RED,
-	Bozo.Nightmare.AUCTION: Color.KHAKI,
-	Bozo.Nightmare.FEAST: Color.PALE_GREEN,
-	Bozo.Nightmare.MASQUERADE: Color.SKY_BLUE,
-}
-
-const faction_to_color = {
-	Bozo.Faction.NOBILITY: Color.DARK_SLATE_BLUE,
-	Bozo.Faction.ARTISAN: Color.SADDLE_BROWN,
-	Bozo.Faction.RIFFRAFF: Color.WEB_PURPLE,
+const sin_to_string = {
+	Bozo.Sin.PRIDE: "pride",
+	Bozo.Sin.ENVY: "envy",
+	Bozo.Sin.ANGER: "anger",
+	Bozo.Sin.LUST: "lust",
+	Bozo.Sin.GREED: "greed",
+	Bozo.Sin.GLUTTONY: "gluttony",
 }
 #endregion
+
 
 #region fate
 const GYRE_HEREAFTER_SINNER_SIZE: int = 18
@@ -131,7 +149,6 @@ const fate_to_string = {
 	Bozo.Fate.COURTESAN: "courtesan",
 }
 
-
 const fate_to_sin = {
 	Bozo.Fate.HEIR: [Bozo.Sin.PRIDE, Bozo.Sin.ENVY],
 	Bozo.Fate.COLLECTOR: [Bozo.Sin.PRIDE, Bozo.Sin.GREED],
@@ -149,9 +166,24 @@ const fate_to_sin = {
 	Bozo.Fate.DRUNKARD: [Bozo.Sin.ANGER, Bozo.Sin.GLUTTONY],
 	Bozo.Fate.COURTESAN: [Bozo.Sin.LUST, Bozo.Sin.GREED],
 }
+
+const faction_to_color = {
+	Bozo.Faction.NOBILITY: Color.DARK_SLATE_BLUE,
+	Bozo.Faction.ARTISAN: Color.SADDLE_BROWN,
+	Bozo.Faction.RIFFRAFF: Color.WEB_PURPLE,
+}
+
 #endregion
 
 #region nightmare
+const nightmare_to_color = {
+	Bozo.Nightmare.THEATER: Color.MEDIUM_PURPLE,
+	Bozo.Nightmare.BATTLE: Color.INDIAN_RED,
+	Bozo.Nightmare.AUCTION: Color.KHAKI,
+	Bozo.Nightmare.FEAST: Color.PALE_GREEN,
+	Bozo.Nightmare.MASQUERADE: Color.SKY_BLUE,
+}
+
 const nightmare_to_sin = {
 	Bozo.Nightmare.THEATER: {
 		Bozo.Sin.PRIDE: 2,
@@ -283,3 +315,28 @@ const posture_to_color = {
 	Bozo.Posture.MADNESS: Color.DEEP_PINK
 }
 #endregion
+
+
+var tribute_windroses = [
+	Bozo.Windrose.NW,
+	Bozo.Windrose.N,
+	Bozo.Windrose.NE,
+	Bozo.Windrose.W,
+	Bozo.Windrose.ESWN,
+	Bozo.Windrose.E,
+	Bozo.Windrose.SW,
+	Bozo.Windrose.S,
+	Bozo.Windrose.SE,
+]
+
+var windrose_to_indexs = {
+	Bozo.Windrose.NW: [0, 1, 2, 3, 6],
+	Bozo.Windrose.N: [0, 1, 2, 4, 7],
+	Bozo.Windrose.NE: [0, 1, 2, 5, 8],
+	Bozo.Windrose.W: [0, 3, 4, 5, 6],
+	Bozo.Windrose.ESWN: [1, 3, 4, 5, 7],
+	Bozo.Windrose.E: [2, 3, 4, 5, 8],
+	Bozo.Windrose.SW: [0, 3, 6, 6, 7, 8],
+	Bozo.Windrose.S: [1, 4, 6, 7, 8],
+	Bozo.Windrose.SE: [2, 5, 6, 7, 8],
+}
