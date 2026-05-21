@@ -43,9 +43,6 @@ func _ready() -> void:
 		guilt,
 		repose
 	]
-	#var _fate = Catalog.fates.pick_random()
-	#data = SinnerData.new(_fate)
-	pass
 
 func connect_datas() -> void:
 	fear.data = data.fear
@@ -70,11 +67,7 @@ func unblur() -> void:
 	for _trait in traits:
 		_trait.is_selected = true
 
-func get_selected_trait_datas() -> Array[TraitData]:
-	var trait_datas: Array[TraitData]
-	
-	for _trait in traits:
-		if _trait.is_selected == true:
-			trait_datas.append(_trait.data)
-		
-	return trait_datas
+func get_trait_data(trait_: Bozo.Triat) -> TraitData:
+	var trait_str = Catalog.trait_to_string[trait_]
+	var trait_data: Trait = get(trait_str)
+	return trait_data.data

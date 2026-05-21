@@ -18,10 +18,14 @@ func init_tributes() -> void:
 
 func add_tribute(windrose_: Bozo.Windrose) -> void:
 	var tribute = tribute_scene.instantiate()
+	var index = Catalog.windroses.find(windrose_)
+	var cage = hell.jail.cages.get_child(index)
 	%Tributes.add_child(tribute)
 	tributes.append(tribute)
 	tribute.treasury = self
 	tribute.candle.windrose = windrose_
+	tribute.cage = cage
+	cage.tribute = tribute
 
 func get_tribute(windrose_: Bozo.Windrose) -> Tribute:
 	var index = Catalog.tribute_windroses.find(windrose_)

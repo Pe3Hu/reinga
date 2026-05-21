@@ -24,5 +24,5 @@ func apply_windrose():
 	else:
 		rect.material.shader = load("uid://cpdpc4c7cty0b")
 	
-	var angle_deg := float(windrose % 9) * 45.0
+	var angle_deg := float(windrose % 8) * 45.0
 	rect.rotation_degrees = angle_deg

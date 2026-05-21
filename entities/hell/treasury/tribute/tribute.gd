@@ -1,12 +1,13 @@
 @tool
 class_name Tribute
-extends PanelContainer
+extends MarginContainer
 
 
 var data: TributeData = TributeData.new()
 
 @export var treasury: Treasury
 @export var candle: Candle
+@export var border: ColorRect
 
 @export var pride: TokenSin
 @export var envy: TokenSin
@@ -16,9 +17,10 @@ var data: TributeData = TributeData.new()
 @export var gluttony: TokenSin
 @export var madness: TokenPosture
 @export var oblivion: TokenPosture
-
+@export var rank: TokenRank
 
 var tokens: Array[Token]
+var cage: Cage
 
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _ready() -> void:
 func reset_tokens() -> void:
 	for token in tokens:
 		token.reset()
+	
+	rank.value = 0
 
 func get_token(type_: Variant) -> Token:
 	var str_type: String
@@ -57,14 +61,16 @@ func change_token_value(type_: Variant, value_) -> void:
 func update_tokens() -> void:
 	reset_tokens()
 	
-	var indexs = Catalog.windrose_to_indexs[candle.windrose]
-	
-	for index in indexs:
-		var cage = treasury.hell.jail.cages.get_child(index)
-		var trait_datas = cage.sinner.get_selected_trait_datas()
-		data.traits.append_array(trait_datas)
+	for _trait in Catalog.traits:
+		var indexs = Catalog.windrose_to_trait_to_indexs[_trait][candle.windrose]
+		
+		for index in indexs:
+			var _cage = treasury.hell.jail.cages.get_child(index)
+			var trait_data = _cage.sinner.get_trait_data(_trait)
+			data.traits.append(trait_data)
 	
 	data.recalc()
+	rank.value = data.rank_sum
 	
 	for token_data in data.tokens:
 		change_token_value(token_data.type, token_data.value)

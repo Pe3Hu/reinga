@@ -14,6 +14,8 @@ var gluttony: SinData = SinData.new(Bozo.Sin.GLUTTONY)
 var madness: PostureData = PostureData.new(Bozo.Posture.MADNESS)
 var oblivion: PostureData = PostureData.new(Bozo.Posture.OBLIVION)
 
+var rank_sum: int = 0
+
 
 func _init() -> void:
 	tokens = [
@@ -31,10 +33,13 @@ func reset() -> void:
 	for token in tokens:
 		token.reset()
 	
+	rank_sum = 0
 	traits.clear()
 
 func recalc() -> void:
 	for _trait in traits:
+		rank_sum += _trait.rank
+		
 		for _sin in _trait.sins:
 			change_token(_sin.type, _sin.value)
 		for posture in _trait.postures:

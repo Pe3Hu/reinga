@@ -32,6 +32,16 @@ Helper="*uid://lxf7v5iki76s"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[file_customization]
+
+folder_colors={
+"res://entities/hell/jail/": "green",
+"res://entities/hell/treasury/": "yellow",
+"res://entities/sinner/": "red",
+"res://entities/token/": "blue",
+"res://entities/tribunal/": "pink"
+}
+
 [gui]
 
 theme/custom_font="uid://djaflot4rx25i"

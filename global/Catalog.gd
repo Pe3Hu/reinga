@@ -66,7 +66,6 @@ const sin_to_string = {
 }
 #endregion
 
-
 #region fate
 const GYRE_HEREAFTER_SINNER_SIZE: int = 18
 const GYRE_ACTUAL_SINNER_SIZE: int = 9
@@ -316,8 +315,8 @@ const posture_to_color = {
 }
 #endregion
 
-
-var tribute_windroses = [
+#region windrose
+var windroses = [
 	Bozo.Windrose.NW,
 	Bozo.Windrose.N,
 	Bozo.Windrose.NE,
@@ -329,14 +328,62 @@ var tribute_windroses = [
 	Bozo.Windrose.SE,
 ]
 
-var windrose_to_indexs = {
-	Bozo.Windrose.NW: [0, 1, 2, 3, 6],
-	Bozo.Windrose.N: [0, 1, 2, 4, 7],
-	Bozo.Windrose.NE: [0, 1, 2, 5, 8],
-	Bozo.Windrose.W: [0, 3, 4, 5, 6],
-	Bozo.Windrose.ESWN: [1, 3, 4, 5, 7],
-	Bozo.Windrose.E: [2, 3, 4, 5, 8],
-	Bozo.Windrose.SW: [0, 3, 6, 6, 7, 8],
-	Bozo.Windrose.S: [1, 4, 6, 7, 8],
-	Bozo.Windrose.SE: [2, 5, 6, 7, 8],
+var tribute_windroses = [
+	Bozo.Windrose.NW,
+	Bozo.Windrose.W,
+	Bozo.Windrose.SW,
+	Bozo.Windrose.N,
+	Bozo.Windrose.ESWN,
+	Bozo.Windrose.S,
+	Bozo.Windrose.NE,
+	Bozo.Windrose.E,
+	Bozo.Windrose.SE,
+]
+
+var windrose_to_trait_to_indexs = {
+	Bozo.Triat.FEAR: {
+		Bozo.Windrose.NW: [0, 1, 2, 3, 6],
+		Bozo.Windrose.N: [0, 1, 2, 4, 7],
+		Bozo.Windrose.NE: [0, 1, 2, 5, 8],
+		Bozo.Windrose.W: [0, 3, 4, 5, 6],
+		Bozo.Windrose.ESWN: [1, 3, 4, 5, 7],
+		Bozo.Windrose.E: [2, 3, 4, 5, 8],
+		Bozo.Windrose.SW: [0, 3, 6, 6, 7, 8],
+		Bozo.Windrose.S: [1, 4, 6, 7, 8],
+		Bozo.Windrose.SE: [2, 5, 6, 7, 8],
+	},
+	Bozo.Triat.HORROR: {
+		Bozo.Windrose.NW: [4, 5, 7, 8],
+		Bozo.Windrose.W: [1, 2, 7, 8],
+		Bozo.Windrose.SW: [1, 2, 4, 5],
+		Bozo.Windrose.N: [5, 8],
+		Bozo.Windrose.ESWN: [2, 8],
+		Bozo.Windrose.S: [2, 5],
+		Bozo.Windrose.NE: [],
+		Bozo.Windrose.E: [],
+		Bozo.Windrose.SE: [],
+	},
+	Bozo.Triat.REPOSE:{
+		Bozo.Windrose.NW: [],
+		Bozo.Windrose.W: [],
+		Bozo.Windrose.SW: [],
+		Bozo.Windrose.N: [3, 6],
+		Bozo.Windrose.ESWN: [0, 6],
+		Bozo.Windrose.S: [0, 3],
+		Bozo.Windrose.NE: [3, 4, 6, 7],
+		Bozo.Windrose.E: [0, 1, 6, 7],
+		Bozo.Windrose.SE: [0, 1, 3, 4],
+	},
+	Bozo.Triat.GUILT: {
+		Bozo.Windrose.NW: [0],
+		Bozo.Windrose.W: [3],
+		Bozo.Windrose.SW: [6],
+		Bozo.Windrose.N: [1],
+		Bozo.Windrose.ESWN: [4],
+		Bozo.Windrose.S: [7],
+		Bozo.Windrose.NE: [2],
+		Bozo.Windrose.E: [5],
+		Bozo.Windrose.SE: [8],
+	}
 }
+#endregion

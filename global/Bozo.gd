@@ -82,15 +82,20 @@ enum Catena {
 	DIAGONAL = 57
 }
 
+enum Rank {
+	NONE = 0,
+	SIN = 60
+}
+
 enum Windrose {
 	NONE = 0,
-	E = 81, 
-	SE = 82, 
-	S = 83, 
-	SW = 84, 
-	W = 85, 
-	NW = 86, 
-	N = 87, 
-	NE = 88, 
-	ESWN = 89,
+	E = 80, 
+	SE = 81, 
+	S = 82, 
+	SW = 83, 
+	W = 84, 
+	NW = 85, 
+	N = 86, 
+	NE = 87, 
+	ESWN = 88,
 }

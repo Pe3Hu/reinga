@@ -12,7 +12,15 @@ class_name Jail
 var vector_to_cage: Dictionary
 var vector_to_catena: Dictionary
 
-var active_cage: Cage
+var active_cage: Cage:
+	set(value_):
+		if active_cage != null:
+			active_cage.tribute.border.visible = false
+		
+		active_cage = value_
+		
+		if active_cage != null:
+			active_cage.tribute.border.visible = true
 
 
 func _ready():

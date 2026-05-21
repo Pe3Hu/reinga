@@ -18,6 +18,7 @@ var status: Bozo.Cage = Bozo.Cage.NONE:
 
 var col: Catena
 var row: Catena
+var tribute: Tribute
 
 
 func setup(jail_: Jail, coord_: Vector2i):

@@ -9,16 +9,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_27ekl"]
 shader = ExtResource("4_27ekl")
-shader_parameter/blur_amount = 0.800000038
+shader_parameter/blur_amount = 0.8
 shader_parameter/radius = 0.25
 shader_parameter/softness = 0.5
 
-[node name="Trait" type="PanelContainer" unique_id=1493565861 node_paths=PackedStringArray("token_grid", "blur", "bbc")]
+[node name="Trait" type="PanelContainer" unique_id=1493565861 node_paths=PackedStringArray("token_grid")]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qj1t3")
 script = ExtResource("1_l0bnk")
 token_grid = NodePath("Tokens")
-blur = NodePath("Control/Blur")
-bbc = NodePath("Control/BackBufferCopy")
 sin_scene = ExtResource("2_27ekl")
 posture_scene = ExtResource("3_mjuel")
 

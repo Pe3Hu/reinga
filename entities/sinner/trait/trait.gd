@@ -17,8 +17,6 @@ extends PanelContainer
 @export var tokens: Array[Token]
 
 @export var token_grid: GridContainer
-@export var blur: ColorRect
-@export var bbc: BackBufferCopy
 
 @export var sin_scene: PackedScene
 @export var posture_scene: PackedScene
@@ -26,7 +24,7 @@ extends PanelContainer
 var is_selected: bool = true:
 	set(value_):
 		is_selected = value_
-		blur.visible = !is_selected
+		%Blur.visible = !is_selected
 
 
 func _ready() -> void:
@@ -58,10 +56,7 @@ func add_posture(data_: PostureData) -> void:
 	update_columns()
 	
 func update_columns():
-	#move_child(blur, tokens.size())
-	#blur.size = size 
-	#blur.position = -size * 0.5
-	bbc.rect = Rect2(blur.position, blur.size)
+	%BackBufferCopy.rect = Rect2(%Blur.position, %Blur.size)
 	
 	if  tokens.is_empty(): return
 	token_grid.columns = 1
