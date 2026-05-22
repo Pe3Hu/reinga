@@ -17,38 +17,39 @@ shader_parameter/radius = 1.0
 shader_parameter/line_thickness = 0.03
 
 [node name="Tribute" type="MarginContainer" unique_id=1743495520 node_paths=PackedStringArray("candle", "border", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
-offset_right = 352.0
-offset_bottom = 64.0
+custom_minimum_size = Vector2(0, 376)
+offset_right = 56.0
+offset_bottom = 376.0
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
 script = ExtResource("1_8dslb")
-candle = NodePath("HBoxContainer/Candle")
-border = NodePath("HBoxContainer/Candle/SelectBorder")
-pride = NodePath("HBoxContainer/Pride")
-envy = NodePath("HBoxContainer/Envy")
-anger = NodePath("HBoxContainer/Anger")
-lust = NodePath("HBoxContainer/Lust")
-greed = NodePath("HBoxContainer/Greed")
-gluttony = NodePath("HBoxContainer/Gluttony")
-madness = NodePath("HBoxContainer/Madness")
-oblivion = NodePath("HBoxContainer/Oblivion")
-rank = NodePath("HBoxContainer/Rank")
+candle = NodePath("Box/Candle")
+border = NodePath("Box/Candle/SelectBorder")
+pride = NodePath("Box/Pride")
+envy = NodePath("Box/Envy")
+anger = NodePath("Box/Anger")
+lust = NodePath("Box/Lust")
+greed = NodePath("Box/Greed")
+gluttony = NodePath("Box/Gluttony")
+madness = NodePath("Box/Madness")
+oblivion = NodePath("Box/Oblivion")
+rank = NodePath("Box/Rank")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1867807056]
+[node name="Box" type="VBoxContainer" parent="." unique_id=1103355469]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Rank" parent="HBoxContainer" unique_id=1672584037 node_paths=PackedStringArray("tribute") instance=ExtResource("2_abunu")]
+[node name="Rank" parent="Box" unique_id=1672584037 node_paths=PackedStringArray("tribute") instance=ExtResource("2_abunu")]
 layout_mode = 2
 tribute = NodePath("../..")
 
-[node name="Candle" parent="HBoxContainer" unique_id=634893612 node_paths=PackedStringArray("tribute") instance=ExtResource("2_cicqm")]
+[node name="Candle" parent="Box" unique_id=634893612 node_paths=PackedStringArray("tribute") instance=ExtResource("2_cicqm")]
 layout_mode = 2
 tribute = NodePath("../..")
 
-[node name="SelectBorder" type="ColorRect" parent="HBoxContainer/Candle" unique_id=1408912230]
+[node name="SelectBorder" type="ColorRect" parent="Box/Candle" unique_id=1408912230]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_abunu")
@@ -59,57 +60,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Anger" parent="HBoxContainer" unique_id=1974550261 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Anger" parent="Box" unique_id=1974550261 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 3
 tribute = NodePath("../..")
 
-[node name="Envy" parent="HBoxContainer" unique_id=826058108 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Envy" parent="Box" unique_id=826058108 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 2
 tribute = NodePath("../..")
 
-[node name="Greed" parent="HBoxContainer" unique_id=39581473 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Greed" parent="Box" unique_id=39581473 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 5
 tribute = NodePath("../..")
 
-[node name="Gluttony" parent="HBoxContainer" unique_id=1307276266 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Gluttony" parent="Box" unique_id=1307276266 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 6
 tribute = NodePath("../..")
 
-[node name="Lust" parent="HBoxContainer" unique_id=1882563100 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Lust" parent="Box" unique_id=1882563100 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 4
 tribute = NodePath("../..")
 
-[node name="Pride" parent="HBoxContainer" unique_id=1494368103 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
-visible = true
+[node name="Pride" parent="Box" unique_id=1494368103 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 1
 tribute = NodePath("../..")
 
-[node name="Madness" parent="HBoxContainer" unique_id=1814065818 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
+[node name="Madness" parent="Box" unique_id=1814065818 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 8
 tribute = NodePath("../..")
 
-[node name="Oblivion" parent="HBoxContainer" unique_id=710263459 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
+[node name="Oblivion" parent="Box" unique_id=710263459 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

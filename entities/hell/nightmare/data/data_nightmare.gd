@@ -42,8 +42,9 @@ func check_sin_spread() -> void:
 		donor_sins.append_array(keys)
 		problem_sins.append_array(Catalog.sins)
 		problem_sins = problem_sins.filter(
-			func (a): !donor_sins.has(a)
+			func (a): return !donor_sins.has(a)
 		)
+		
 		problem_sins.append(problem_sins.back())
 		
 		implement_missing_sin(sin_to_amount, sin_to_weight, problem_sins, donor_sins)
@@ -61,15 +62,14 @@ func check_sin_spread() -> void:
 			implement_missing_sin(sin_to_amount, sin_to_weight, problem_sins, donor_sins)
 			
 	
-	keys.sort_custom(func(a, b):
-		return sin_to_weight[a] > sin_to_weight[b]
-	)
-	
-	for key in keys:
-		print([Catalog.sin_to_string[key], sin_to_amount[key], sin_to_weight[key]])
+	#keys.sort_custom(func(a, b):
+		#return sin_to_weight[a] > sin_to_weight[b]
+	#)
+	#
+	#for key in keys:
+		#print([Catalog.sin_to_string[key], sin_to_amount[key], sin_to_weight[key]])
 
 func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionary, problem_sins_: Array[Bozo.Sin], donor_sins_: Array[Bozo.Sin]) -> void:
-	
 	while !problem_sins_.is_empty():
 		var problem_sin = problem_sins_.pop_back()
 		donor_sins_.sort_custom(func(a, b):
@@ -116,7 +116,6 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 			if Catalog.TRIAL_MIN_SIN_AMOUNT - sin_to_amount_[donor_type] >= 0:
 				donor_sins_.erase(donor_type)
 			
-			print([Catalog.trial_to_string[trial_type], Catalog.sin_to_string[donor_type], Catalog.sin_to_string[problem_sin]])
+			#rint([Catalog.trial_to_string[trial_type], Catalog.sin_to_string[donor_type], Catalog.sin_to_string[problem_sin]])
 		else:
 			print("fail swap_sin_type")
-	

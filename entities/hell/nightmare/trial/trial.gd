@@ -13,9 +13,11 @@ var data: TrialData:
 		type = value_
 		
 		%HeaderColorRect.color = Catalog.trial_to_color[type]
-		%HeaderLabel.text = Catalog.trial_to_string[type]
+		%HeaderLabel.text = Catalog.trial_to_string[type].capitalize()
 
 @export var sins: Array[TokenSin]
+
+var sin_to_token: Dictionary
 
 
 func init_sin_tokens() -> void:
@@ -23,6 +25,7 @@ func init_sin_tokens() -> void:
 		var token = sins[_i]
 		token.value = data.sins[_i].value
 		token.type = data.sins[_i].type
+		sin_to_token[token.type] = token
 
 func update_sins() -> void:
 	pass

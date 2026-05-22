@@ -5,6 +5,7 @@ extends PanelContainer
 @export var tribute_scene: PackedScene
 
 @export var hell: Hell
+@export var sort_icon: TextureRect
 
 var tributes: Array[Tribute]
 
@@ -45,21 +46,22 @@ func resort(token_: Token) -> void:
 	
 	reorder_tribute()
 	hell.jail.reset_active_cage()
+	sort_icon_shift(token_)
 
 func resort_sin(type_: Bozo.Sin) -> void:
 	tributes.sort_custom(func(a, b):
-		return a.get_token(type_).value > b.get_token(type_).value
+		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
 func resort_posture(type_: Bozo.Posture) -> void:
 	if type_ == Bozo.Posture.MADNESS: return
 	tributes.sort_custom(func(a, b):
-		return a.get_token(type_).value > b.get_token(type_).value
+		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
 func resort_judgment(type_: Bozo.Judgment) -> void:
 	tributes.sort_custom(func(a, b):
-		return a.get_token(type_).value > b.get_token(type_).value
+		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
 func reorder_tribute() -> void:
@@ -68,7 +70,23 @@ func reorder_tribute() -> void:
 
 func undo_resort() -> void:
 	tributes.sort_custom(func(a, b):
-		return Catalog.tribute_windroses.find(a.candle.windrose) < Catalog.tribute_windroses.find(b.candle.windrose)
+		return Catalog.tribute_windroses.find(a.candle.windrose) > Catalog.tribute_windroses.find(b.candle.windrose)
 	)
 	reorder_tribute()
 	hell.jail.reset_active_cage()
+
+func sort_icon_shift(token_: Token) -> void:
+	if token_.type == Bozo.Posture.MADNESS: return
+	var best_tribute = tributes.back()
+	var best_token = best_tribute.get_token(token_.type)
+	sort_icon.global_position.y = best_token.global_position.y - 4
+	sort_icon.visible = true
+
+func hide_not_selected_tributes() -> void:
+	for tribute in tributes:
+		tribute.visible = tribute.cage == hell.jail.active_cage
+	
+func show_all_tributes() -> void:
+	for tribute in tributes:
+		tribute.visible = true
+		

@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="2_rsvmq"]
 
 [node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins")]
+custom_minimum_size = Vector2(128, 84)
 offset_right = 128.0
-offset_bottom = 76.0
+offset_bottom = 84.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_sh5ag")

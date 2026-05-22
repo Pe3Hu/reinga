@@ -434,3 +434,7 @@ var windrose_to_trait_to_indexs = {
 	}
 }
 #endregion
+
+
+const DEFAULT_ERUPTION_COUNT: int = 50
+const ERUPTION_OFFSET_L: float = 4

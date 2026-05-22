@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dkdcibsiow4i8"]
+
+[ext_resource type="Script" uid="uid://crkr8w1fgllde" path="res://entities/hell/volcano/volcano.gd" id="1_5xma6"]
+[ext_resource type="PackedScene" uid="uid://66bn558g5j6n" path="res://entities/hell/volcano/eruption/eruption.tscn" id="2_si47u"]
+
+[node name="Volcano" type="Node2D" unique_id=516806711]
+script = ExtResource("1_5xma6")
+eruption_scene = ExtResource("2_si47u")
+start_points = Array[Vector2]([Vector2(50, 50)])
+end_points = Array[Vector2]([Vector2(1000, 1000)])

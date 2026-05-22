@@ -18,6 +18,9 @@ func get_random_key(dict_: Dictionary):
 	for key in keys:
 		total += dict_[key]
 	
+	if total <= 0:
+		return null
+	
 	var r := rng.randf() * total
 	var cumulative := 0.0
 	

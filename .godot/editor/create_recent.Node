@@ -1,8 +1,12 @@
-ColorRect
+HBoxContainer
+VBoxContainer
+Sprite2D
+Node2D
+Button
+TextureRect
 Control
+ColorRect
 GridContainer
 MarginContainer
 PanelContainer
-VBoxContainer
-HBoxContainer
 RichTextLabel
