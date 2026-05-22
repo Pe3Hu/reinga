@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dml6ro6ukmvo3"]
+
+[ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/token/token.tscn" id="1_i6yii"]
+[ext_resource type="Script" uid="uid://0vguipsab80m" path="res://entities/token/judgment/judgment.gd" id="2_1wefd"]
+[ext_resource type="Texture2D" uid="uid://c0vy511tpig0y" path="res://entities/hell/treasury/tribute/images/rank.png" id="3_dnd4t"]
+
+[node name="TokenJudgment" unique_id=1672584037 instance=ExtResource("1_i6yii")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_1wefd")
+type = 60
+
+[node name="TextureRect" parent="." index="0" unique_id=2027400341]
+modulate = Color(0.40069774, 0.40069774, 0.40069768, 1)
+texture = ExtResource("3_dnd4t")
+
+[node name="ValueLabel" parent="." index="1" unique_id=1083729365]
+text = "0"

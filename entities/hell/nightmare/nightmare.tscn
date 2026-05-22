@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://sku4ussmdh7x"]
+
+[ext_resource type="Script" uid="uid://cqtuvmogeve5v" path="res://entities/hell/nightmare/nightmare.gd" id="1_khbtt"]
+[ext_resource type="PackedScene" uid="uid://1p5dvi6npkvy" path="res://entities/hell/nightmare/trial/trial.tscn" id="2_jqqfa"]
+
+[node name="Nightmare" type="PanelContainer" unique_id=1765068744 node_paths=PackedStringArray("trials")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_khbtt")
+trials = [NodePath("Trials/Battle"), NodePath("Trials/Auction"), NodePath("Trials/Feast"), NodePath("Trials/Masquerade"), NodePath("Trials/Theater")]
+
+[node name="Trials" type="VBoxContainer" parent="." unique_id=1378426793]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Battle" parent="Trials" unique_id=1782749570 instance=ExtResource("2_jqqfa")]
+layout_mode = 2
+type = 9
+
+[node name="Auction" parent="Trials" unique_id=606438970 instance=ExtResource("2_jqqfa")]
+layout_mode = 2
+type = 10
+
+[node name="Feast" parent="Trials" unique_id=1556820494 instance=ExtResource("2_jqqfa")]
+layout_mode = 2
+type = 11
+
+[node name="Masquerade" parent="Trials" unique_id=135629683 instance=ExtResource("2_jqqfa")]
+layout_mode = 2
+type = 12
+
+[node name="Theater" parent="Trials" unique_id=743850076 instance=ExtResource("2_jqqfa")]
+layout_mode = 2
+type = 13

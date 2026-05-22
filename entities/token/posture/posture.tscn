@@ -8,7 +8,6 @@
 visible = false
 script = ExtResource("2_khut6")
 type = 0
-value = 0
 
 [node name="TextureRect" parent="." index="0" unique_id=2027400341]
 modulate = Color(1, 0.078431375, 0.5764706, 1)

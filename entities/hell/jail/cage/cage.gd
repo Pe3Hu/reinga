@@ -4,6 +4,7 @@ class_name Cage
 
 var jail: Jail
 @export var sinner: Sinner
+
 var coord: Vector2i
 
 var status: Bozo.Cage = Bozo.Cage.NONE:
@@ -24,7 +25,7 @@ var tribute: Tribute
 func setup(jail_: Jail, coord_: Vector2i):
 	jail = jail_
 	coord = coord_ 
-	position = Vector2(coord) * Catalog.CAGE_SPRITE_SIZE
+	position = Vector2(coord) * Catalog.CAGE_SIZE
 
 func highligh() -> void:
 	jail.reset_cages()

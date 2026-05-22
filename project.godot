@@ -36,6 +36,7 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://entities/hell/jail/": "green",
+"res://entities/hell/nightmare/": "purple",
 "res://entities/hell/treasury/": "yellow",
 "res://entities/sinner/": "red",
 "res://entities/token/": "blue",

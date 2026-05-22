@@ -34,3 +34,41 @@ func get_tribute(windrose_: Bozo.Windrose) -> Tribute:
 func update_tributes() -> void:
 	for tribute in tributes:
 		tribute.update_tokens()
+
+func resort(token_: Token) -> void:
+	if token_ is TokenSin:
+		resort_sin(token_.type)
+	if token_ is TokenPosture:
+		resort_posture(token_.type)
+	if token_ is TokenJudgment:
+		resort_judgment(token_.type)
+	
+	reorder_tribute()
+	hell.jail.reset_active_cage()
+
+func resort_sin(type_: Bozo.Sin) -> void:
+	tributes.sort_custom(func(a, b):
+		return a.get_token(type_).value > b.get_token(type_).value
+	)
+
+func resort_posture(type_: Bozo.Posture) -> void:
+	if type_ == Bozo.Posture.MADNESS: return
+	tributes.sort_custom(func(a, b):
+		return a.get_token(type_).value > b.get_token(type_).value
+	)
+
+func resort_judgment(type_: Bozo.Judgment) -> void:
+	tributes.sort_custom(func(a, b):
+		return a.get_token(type_).value > b.get_token(type_).value
+	)
+
+func reorder_tribute() -> void:
+	for _i in range(tributes.size()):
+		%Tributes.move_child(tributes[_i], _i)
+
+func undo_resort() -> void:
+	tributes.sort_custom(func(a, b):
+		return Catalog.tribute_windroses.find(a.candle.windrose) < Catalog.tribute_windroses.find(b.candle.windrose)
+	)
+	reorder_tribute()
+	hell.jail.reset_active_cage()

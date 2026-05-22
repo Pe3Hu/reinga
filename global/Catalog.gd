@@ -2,9 +2,11 @@ extends Node
 
 
 #region cage
-const JAIL_CAGE_SIZE = Vector2i(3, 3)
-const CAGE_SPRITE_SIZE = Vector2(188, 212)
+const JAIL_CAGE_GRID = Vector2i(3, 3)
+const CAGE_SIZE = Vector2(188, 212)
 const SINNER_PANEL_SIZE = Vector2(172, 196)
+
+const JAIL_SIZE = Vector2(548, 632)
 
 const cage_to_color = {
 	Bozo.Cage.NONE: Color.WHITE,
@@ -47,6 +49,15 @@ const cage_to_traits = {
 #endregion
 
 #region sin
+const sins = [
+	Bozo.Sin.ANGER,
+	Bozo.Sin.ENVY,
+	Bozo.Sin.GREED,
+	Bozo.Sin.GLUTTONY,
+	Bozo.Sin.LUST,
+	Bozo.Sin.PRIDE,
+]
+
 const sin_to_color = {
 	Bozo.Sin.PRIDE: Color.REBECCA_PURPLE,
 	Bozo.Sin.ENVY: Color.DARK_ORANGE,
@@ -167,95 +178,131 @@ const fate_to_sin = {
 }
 
 const faction_to_color = {
-	Bozo.Faction.NOBILITY: Color.DARK_SLATE_BLUE,
-	Bozo.Faction.ARTISAN: Color.SADDLE_BROWN,
+	Bozo.Faction.NOBILITY: Color.AQUA,
+	Bozo.Faction.ARTISAN: Color.OLIVE,
 	Bozo.Faction.RIFFRAFF: Color.WEB_PURPLE,
 }
 
 #endregion
 
-#region nightmare
-const nightmare_to_color = {
-	Bozo.Nightmare.THEATER: Color.MEDIUM_PURPLE,
-	Bozo.Nightmare.BATTLE: Color.INDIAN_RED,
-	Bozo.Nightmare.AUCTION: Color.KHAKI,
-	Bozo.Nightmare.FEAST: Color.PALE_GREEN,
-	Bozo.Nightmare.MASQUERADE: Color.SKY_BLUE,
+#region trial
+const trials = [
+	Bozo.Trial.BATTLE,
+	Bozo.Trial.AUCTION,
+	Bozo.Trial.FEAST,
+	Bozo.Trial.MASQUERADE,
+	Bozo.Trial.THEATER,
+]
+
+const trial_to_string = {
+	Bozo.Trial.BATTLE: "battle",
+	Bozo.Trial.AUCTION: "auction",
+	Bozo.Trial.FEAST: "feast",
+	Bozo.Trial.MASQUERADE: "masquerade",
+	Bozo.Trial.THEATER: "theater",
 }
 
-const nightmare_to_sin = {
-	Bozo.Nightmare.THEATER: {
-		Bozo.Sin.PRIDE: 2,
-		Bozo.Sin.ENVY: 2,
-		Bozo.Sin.LUST: 2,
-	},
-	Bozo.Nightmare.BATTLE: {
-		Bozo.Sin.PRIDE: 1,
-		Bozo.Sin.ENVY: 1,
+const trial_to_color = {
+	Bozo.Trial.BATTLE: Color.INDIAN_RED,
+	Bozo.Trial.AUCTION: Color.KHAKI,
+	Bozo.Trial.FEAST: Color.PALE_GREEN,
+	Bozo.Trial.MASQUERADE: Color.SKY_BLUE,
+	Bozo.Trial.THEATER: Color.MEDIUM_PURPLE,
+}
+
+const trial_to_sin = {
+	Bozo.Trial.BATTLE: {
 		Bozo.Sin.ANGER: 3,
+		Bozo.Sin.ENVY: 1,
 		Bozo.Sin.LUST: 1,
-	},
-	Bozo.Nightmare.AUCTION: {
 		Bozo.Sin.PRIDE: 1,
+	},
+	Bozo.Trial.AUCTION: {
 		Bozo.Sin.ENVY: 1,
 		Bozo.Sin.GREED: 3,
 		Bozo.Sin.GLUTTONY: 1,
-	},
-	Bozo.Nightmare.FEAST: {
 		Bozo.Sin.PRIDE: 1,
+	},
+	Bozo.Trial.FEAST: {
+		Bozo.Sin.ANGER: 1,
 		Bozo.Sin.ENVY: 1,
-		Bozo.Sin.ANGER: 1,
 		Bozo.Sin.GLUTTONY: 3,
+		Bozo.Sin.PRIDE: 1,
 	},
-	Bozo.Nightmare.MASQUERADE: {
-		Bozo.Sin.ANGER: 1,
-		Bozo.Sin.LUST: 2,
-		Bozo.Sin.GREED: 2,
+	Bozo.Trial.MASQUERADE: {
+		Bozo.Sin.ENVY: 1,
+		Bozo.Sin.GREED: 1,
 		Bozo.Sin.GLUTTONY: 1,
+		Bozo.Sin.LUST: 3,
+	},
+	Bozo.Trial.THEATER: {
+		Bozo.Sin.ANGER: 1,
+		Bozo.Sin.ENVY: 1,
+		Bozo.Sin.GREED: 1,
+		Bozo.Sin.LUST: 1,
+		Bozo.Sin.PRIDE: 2,
 	},
 }
 
-const fate_to_nightmare = {
-	Bozo.Fate.HEIR: Bozo.Nightmare.THEATER,
-	Bozo.Fate.COLLECTOR: Bozo.Nightmare.AUCTION,
-	Bozo.Fate.GOURMET: Bozo.Nightmare.FEAST,
-	Bozo.Fate.DUELIST: Bozo.Nightmare.BATTLE,
-	Bozo.Fate.MASHER: Bozo.Nightmare.MASQUERADE,
-	Bozo.Fate.ACTOR: Bozo.Nightmare.THEATER,
-	Bozo.Fate.BLACKSMITH: Bozo.Nightmare.BATTLE,
-	Bozo.Fate.TAILOR: Bozo.Nightmare.THEATER,
-	Bozo.Fate.COOK: Bozo.Nightmare.FEAST,
-	Bozo.Fate.HUCKSTER: Bozo.Nightmare.AUCTION,
-	Bozo.Fate.EXECUTIONER: Bozo.Nightmare.BATTLE,
-	Bozo.Fate.THIEF: Bozo.Nightmare.AUCTION,
-	Bozo.Fate.SHARPIE: Bozo.Nightmare.MASQUERADE,
-	Bozo.Fate.DRUNKARD: Bozo.Nightmare.FEAST,
-	Bozo.Fate.COURTESAN: Bozo.Nightmare.MASQUERADE,
+const fate_to_trial = {
+	Bozo.Fate.HEIR: Bozo.Trial.THEATER,
+	Bozo.Fate.COLLECTOR: Bozo.Trial.AUCTION,
+	Bozo.Fate.GOURMET: Bozo.Trial.FEAST,
+	Bozo.Fate.DUELIST: Bozo.Trial.BATTLE,
+	Bozo.Fate.MASHER: Bozo.Trial.MASQUERADE,
+	Bozo.Fate.ACTOR: Bozo.Trial.THEATER,
+	Bozo.Fate.BLACKSMITH: Bozo.Trial.BATTLE,
+	Bozo.Fate.TAILOR: Bozo.Trial.THEATER,
+	Bozo.Fate.COOK: Bozo.Trial.FEAST,
+	Bozo.Fate.HUCKSTER: Bozo.Trial.AUCTION,
+	Bozo.Fate.EXECUTIONER: Bozo.Trial.BATTLE,
+	Bozo.Fate.THIEF: Bozo.Trial.AUCTION,
+	Bozo.Fate.SHARPIE: Bozo.Trial.MASQUERADE,
+	Bozo.Fate.DRUNKARD: Bozo.Trial.FEAST,
+	Bozo.Fate.COURTESAN: Bozo.Trial.MASQUERADE,
 }
 
-const faction_to_nightmare = {
+const faction_to_trial = {
 	Bozo.Faction.NOBILITY: {
-		Bozo.Nightmare.THEATER: 1,
-		Bozo.Nightmare.FEAST: 1,
-		Bozo.Nightmare.AUCTION: 3,
-		Bozo.Nightmare.MASQUERADE: 2,
+		Bozo.Trial.THEATER: 1,
+		Bozo.Trial.FEAST: 1,
+		Bozo.Trial.AUCTION: 3,
+		Bozo.Trial.MASQUERADE: 2,
 	},
 	Bozo.Faction.ARTISAN: {
-		Bozo.Nightmare.BATTLE: 3,
-		Bozo.Nightmare.FEAST: 2,
-		Bozo.Nightmare.MASQUERADE: 1,
+		Bozo.Trial.BATTLE: 3,
+		Bozo.Trial.FEAST: 2,
+		Bozo.Trial.MASQUERADE: 1,
 	},
 	Bozo.Faction.RIFFRAFF: {
-		Bozo.Nightmare.THEATER: 3,
-		Bozo.Nightmare.BATTLE: 1,
-		Bozo.Nightmare.FEAST: 2,
-		Bozo.Nightmare.AUCTION: 1,
-		Bozo.Nightmare.MASQUERADE: 1,
+		Bozo.Trial.THEATER: 3,
+		Bozo.Trial.BATTLE: 1,
+		Bozo.Trial.FEAST: 2,
+		Bozo.Trial.AUCTION: 1,
+		Bozo.Trial.MASQUERADE: 1,
 	},
 }
+
+const sin_to_trial = {
+	Bozo.Sin.ANGER: [Bozo.Trial.BATTLE, Bozo.Trial.FEAST, Bozo.Trial.THEATER],
+	Bozo.Sin.ENVY: [Bozo.Trial.BATTLE, Bozo.Trial.AUCTION, Bozo.Trial.FEAST, Bozo.Trial.MASQUERADE, Bozo.Trial.THEATER],
+	Bozo.Sin.GREED: [Bozo.Trial.AUCTION, Bozo.Trial.FEAST, Bozo.Trial.THEATER],
+	Bozo.Sin.GLUTTONY: [Bozo.Trial.AUCTION, Bozo.Trial.FEAST, Bozo.Trial.MASQUERADE],
+	Bozo.Sin.LUST: [Bozo.Trial.BATTLE, Bozo.Trial.MASQUERADE, Bozo.Trial.THEATER],
+	Bozo.Sin.PRIDE: [Bozo.Trial.BATTLE, Bozo.Trial.AUCTION, Bozo.Trial.FEAST, Bozo.Trial.THEATER]
+}
+
+var trial_sin_requirements: Array[int] = [2, 3, 5]
+var trial_sin_amounts: Array[int] = [1, 1, 1, 2, 2, 3]
+
+const TRIAL_MIN_SIN_AMOUNT: int = 2
 #endregion
 
 #region rank
+const judgment_to_string = {
+	Bozo.Judgment.RANK: "rank"
+}
+
 const traits = [
 	Bozo.Triat.FEAR,
 	Bozo.Triat.HORROR,

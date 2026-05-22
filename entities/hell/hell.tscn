@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwjeyn62awup2"]
 
 [ext_resource type="Script" uid="uid://mnq8nmw8al0s" path="res://entities/hell/hell.gd" id="1_al7up"]
+[ext_resource type="PackedScene" uid="uid://sku4ussmdh7x" path="res://entities/hell/nightmare/nightmare.tscn" id="2_hymf2"]
 [ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/hell/jail/jail.tscn" id="2_kksrj"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
 
@@ -20,6 +21,9 @@ offset_bottom = 40.0
 theme_override_constants/separation = 8
 alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Nightmare" parent="HBox" unique_id=1765068744 instance=ExtResource("2_hymf2")]
+layout_mode = 2
 
 [node name="Jail" parent="HBox" unique_id=247800843 node_paths=PackedStringArray("hell") instance=ExtResource("2_kksrj")]
 layout_mode = 2

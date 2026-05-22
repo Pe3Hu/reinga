@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvy22kttxafa4"]
 
 [ext_resource type="Script" uid="uid://dq6a3w48ddhq2" path="res://entities/hell/treasury/tribute/tribute.gd" id="1_8dslb"]
-[ext_resource type="PackedScene" uid="uid://dml6ro6ukmvo3" path="res://entities/token/rank/rank.tscn" id="2_abunu"]
+[ext_resource type="PackedScene" uid="uid://dml6ro6ukmvo3" path="res://entities/token/judgment/judgment.tscn" id="2_abunu"]
 [ext_resource type="PackedScene" uid="uid://0kmvjsv7skyh" path="res://entities/hell/treasury/tribute/candle/candle.tscn" id="2_cicqm"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="3_10cs7"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/token/posture/posture.tscn" id="4_cicqm"]
@@ -40,12 +40,13 @@ rank = NodePath("HBoxContainer/Rank")
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Rank" parent="HBoxContainer" unique_id=1672584037 instance=ExtResource("2_abunu")]
+[node name="Rank" parent="HBoxContainer" unique_id=1672584037 node_paths=PackedStringArray("tribute") instance=ExtResource("2_abunu")]
 layout_mode = 2
-type = 60
+tribute = NodePath("../..")
 
-[node name="Candle" parent="HBoxContainer" unique_id=634893612 instance=ExtResource("2_cicqm")]
+[node name="Candle" parent="HBoxContainer" unique_id=634893612 node_paths=PackedStringArray("tribute") instance=ExtResource("2_cicqm")]
 layout_mode = 2
+tribute = NodePath("../..")
 
 [node name="SelectBorder" type="ColorRect" parent="HBoxContainer/Candle" unique_id=1408912230]
 unique_name_in_owner = true
@@ -58,50 +59,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Anger" parent="HBoxContainer" unique_id=1974550261 instance=ExtResource("3_10cs7")]
+[node name="Anger" parent="HBoxContainer" unique_id=1974550261 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 3
+tribute = NodePath("../..")
 
-[node name="Envy" parent="HBoxContainer" unique_id=826058108 instance=ExtResource("3_10cs7")]
+[node name="Envy" parent="HBoxContainer" unique_id=826058108 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 2
+tribute = NodePath("../..")
 
-[node name="Greed" parent="HBoxContainer" unique_id=39581473 instance=ExtResource("3_10cs7")]
+[node name="Greed" parent="HBoxContainer" unique_id=39581473 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 5
+tribute = NodePath("../..")
 
-[node name="Gluttony" parent="HBoxContainer" unique_id=1307276266 instance=ExtResource("3_10cs7")]
+[node name="Gluttony" parent="HBoxContainer" unique_id=1307276266 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 6
+tribute = NodePath("../..")
 
-[node name="Lust" parent="HBoxContainer" unique_id=1882563100 instance=ExtResource("3_10cs7")]
+[node name="Lust" parent="HBoxContainer" unique_id=1882563100 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 4
+tribute = NodePath("../..")
 
-[node name="Pride" parent="HBoxContainer" unique_id=1494368103 instance=ExtResource("3_10cs7")]
+[node name="Pride" parent="HBoxContainer" unique_id=1494368103 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+visible = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 1
+tribute = NodePath("../..")
 
-[node name="Madness" parent="HBoxContainer" unique_id=1814065818 instance=ExtResource("4_cicqm")]
+[node name="Madness" parent="HBoxContainer" unique_id=1814065818 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 8
+tribute = NodePath("../..")
 
-[node name="Oblivion" parent="HBoxContainer" unique_id=710263459 instance=ExtResource("4_cicqm")]
+[node name="Oblivion" parent="HBoxContainer" unique_id=710263459 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 7
+tribute = NodePath("../..")

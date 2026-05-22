@@ -9,7 +9,8 @@ class_name Sinner
 		if fate == 0: return
 		
 		if type_label:
-			type_label.text = Catalog.fate_to_string[fate].capitalize()
+			unfocus()
+			faction.visible = true
 			faction.type = Catalog.fate_to_faction[fate]
 
 @export var type_label: RichTextLabel
@@ -71,3 +72,9 @@ func get_trait_data(trait_: Bozo.Triat) -> TraitData:
 	var trait_str = Catalog.trait_to_string[trait_]
 	var trait_data: Trait = get(trait_str)
 	return trait_data.data
+
+func focus() -> void:
+	type_label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % Catalog.fate_to_string[fate].capitalize()
+
+func unfocus() -> void:
+	type_label.text = Catalog.fate_to_string[fate].capitalize()

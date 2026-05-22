@@ -3,6 +3,7 @@ class_name Candle
 extends Control
 
 
+@export var tribute: Tribute
 
 @export var windrose: Bozo.Windrose =  Bozo.Windrose.NONE:
 	set(value_):
@@ -26,3 +27,8 @@ func apply_windrose():
 	
 	var angle_deg := float(windrose % 8) * 45.0
 	rect.rotation_degrees = angle_deg
+
+func _on_color_rect_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			tribute.treasury.undo_resort()

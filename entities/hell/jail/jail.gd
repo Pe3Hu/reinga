@@ -16,11 +16,17 @@ var active_cage: Cage:
 	set(value_):
 		if active_cage != null:
 			active_cage.tribute.border.visible = false
+			active_cage.sinner.unfocus()
+			active_cage.col.visible = false
+			active_cage.row.visible = false
 		
 		active_cage = value_
 		
 		if active_cage != null:
 			active_cage.tribute.border.visible = true
+			active_cage.sinner.focus()
+			active_cage.col.visible = true
+			active_cage.row.visible = true
 
 
 func _ready():
@@ -30,17 +36,17 @@ func _ready():
 func init_cages() -> void:
 	init_catenas()
 	
-	for _y in Catalog.JAIL_CAGE_SIZE.y:
-		for _x in Catalog.JAIL_CAGE_SIZE.x:
+	for _y in Catalog.JAIL_CAGE_GRID.y:
+		for _x in Catalog.JAIL_CAGE_GRID.x:
 			var coord = Vector2i(_x, _y)
 			add_cage(coord)
 
 func init_catenas() -> void:
-	for _y in Catalog.JAIL_CAGE_SIZE.y:
+	for _y in Catalog.JAIL_CAGE_GRID.y:
 		var coord = Vector2i(0, _y + 1)
 		add_catena(coord, Bozo.Catena.ROW)
 	
-	for _x in Catalog.JAIL_CAGE_SIZE.x:
+	for _x in Catalog.JAIL_CAGE_GRID.x:
 		var coord = Vector2i(_x + 1, 0)
 		add_catena(coord, Bozo.Catena.COL)
 
@@ -93,3 +99,7 @@ func next_turn() -> void:
 		cage.sinner.data = sinner_data
 	
 	hell.treasury.update_tributes()
+
+func reset_active_cage() -> void:
+	active_cage = null
+	reset_cages()

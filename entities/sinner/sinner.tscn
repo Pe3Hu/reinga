@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cdpj6amwhbdjm" path="res://entities/token/faction/faction.tscn" id="2_5d7qc"]
 [ext_resource type="PackedScene" uid="uid://c7pdwsba8i3ln" path="res://entities/sinner/trait/trait.tscn" id="3_17dq6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_17dq6"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d7qc"]
 
 [node name="Sinner" type="Control" unique_id=1474778463 node_paths=PackedStringArray("type_label", "faction", "fear", "horror", "guilt", "repose")]
@@ -30,7 +28,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_17dq6")
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1474715060]
 layout_mode = 1
@@ -51,7 +48,6 @@ alignment = 1
 
 [node name="Header" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=195387727]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
@@ -75,6 +71,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+bbcode_enabled = true
 text = "Heir"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -87,25 +84,30 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1742138265]
+layout_mode = 2
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
 [node name="TraitFear" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=801101660 instance=ExtResource("3_17dq6")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+type = 20
 
 [node name="TraitHorror" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=1158869502 instance=ExtResource("3_17dq6")]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-type = 1
+type = 21
 
 [node name="TraitGuilt" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=563801335 instance=ExtResource("3_17dq6")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-type = 2
+type = 22
 
 [node name="TraitRepose" parent="Panel/MarginContainer/VBoxContainer/MarginContainer" unique_id=371001667 instance=ExtResource("3_17dq6")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-type = 3
+type = 23

@@ -17,7 +17,7 @@ var data: TributeData = TributeData.new()
 @export var gluttony: TokenSin
 @export var madness: TokenPosture
 @export var oblivion: TokenPosture
-@export var rank: TokenRank
+@export var rank: TokenJudgment
 
 var tokens: Array[Token]
 var cage: Cage
@@ -50,6 +50,8 @@ func get_token(type_: Variant) -> Token:
 		str_type = Catalog.sin_to_string[type_]
 	if Catalog.posture_to_string.has(type_):
 		str_type = Catalog.posture_to_string[type_]
+	if Catalog.judgment_to_string.has(type_):
+		str_type = Catalog.judgment_to_string[type_]
 	
 	var token = get(str_type)
 	return token

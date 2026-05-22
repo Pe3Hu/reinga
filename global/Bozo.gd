@@ -17,13 +17,13 @@ enum Posture {
 	MADNESS = 8
 }
 
-enum Nightmare {
+enum Trial {
 	NONE = 0,
-	THEATER = 9,
-	BATTLE = 10,
-	AUCTION = 11,
-	FEAST = 12,
-	MASQUERADE = 13, 
+	BATTLE = 9,
+	AUCTION = 10,
+	FEAST = 11,
+	MASQUERADE = 12, 
+	THEATER = 13,
 }
 
 enum Faction {
@@ -82,9 +82,9 @@ enum Catena {
 	DIAGONAL = 57
 }
 
-enum Rank {
+enum Judgment {
 	NONE = 0,
-	SIN = 60
+	RANK = 60
 }
 
 enum Windrose {
