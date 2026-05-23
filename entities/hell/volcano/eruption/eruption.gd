@@ -11,7 +11,7 @@ var end: Vector2
 var control: Vector2
 
 var t := 0.0
-var duration := 0.8
+var duration := 0.5#0.8
 
 var active := false
 

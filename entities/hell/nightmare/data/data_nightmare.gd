@@ -110,6 +110,11 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 			trial_data.swap_sin_type(donor_type, problem_sin)
 			sin_to_amount_[donor_type] -= 1
 			sin_to_weight_[donor_type] -= trial_data.type_to_sin[problem_sin].value
+			
+			if !sin_to_amount_.has(problem_sin):
+				sin_to_amount_[problem_sin] = 0
+				sin_to_weight_[problem_sin] = 0
+			
 			sin_to_amount_[problem_sin] += 1
 			sin_to_weight_[problem_sin] += trial_data.type_to_sin[problem_sin].value
 			

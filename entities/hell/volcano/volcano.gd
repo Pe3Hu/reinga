@@ -9,9 +9,12 @@ extends Node
 @export var tokens: Array[TokenSin]
 
 @export var total_eruptions: int
-@export var spawn_duration: float = 1.5
+@export var spawn_duration: float = 0.5#1.5
 
 var pool: Array[Eruption]
+
+@export var camera_2d: Camera2D
+var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
@@ -46,6 +49,7 @@ func burst():
 	fill_trials()
 	total_eruptions = min(tokens.size(), trials.size())
 	var step := spawn_duration / float(total_eruptions)
+	apply_shake_effect()
 
 	for _i in range(total_eruptions):
 		await get_tree().create_timer(step).timeout
@@ -114,3 +118,13 @@ func spawn_eruption(index_: int):
 	var trial = trials[index_]
 	var token = tokens[index_]
 	eruption.reset(token, trial)
+
+
+func apply_shake_effect():
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(start_camera_shake, 5.0, 1.0, spawn_duration * 2)
+
+func start_camera_shake(intensity: float):
+	var camera_offset = camera_shake_noise.get_noise_2d(randf_range(0.0, 100.0), Time.get_ticks_msec() * 0.001) * intensity
+	camera_2d.offset.x = camera_offset
+	camera_2d.offset.y = camera_offset

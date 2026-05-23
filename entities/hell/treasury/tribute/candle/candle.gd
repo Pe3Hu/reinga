@@ -12,12 +12,19 @@ extends Control
 
 @onready var rect: ColorRect = %ColorRect
 
+var is_simple: bool = true
+
 
 func _ready():
 	rect.pivot_offset = rect.size / 2.0
 	rect.material = ShaderMaterial.new()
 
 func apply_windrose():
+	if is_simple:
+		%TextureRect.texture = load("res://entities/hell/treasury/tribute/candle/images/%d.png" % windrose)
+		return
+	
+	
 	if windrose == Bozo.Windrose.ESWN:
 		rect.rotation_degrees = 0.0
 		rect.material.shader = load("uid://b0h2a2506yvi1")

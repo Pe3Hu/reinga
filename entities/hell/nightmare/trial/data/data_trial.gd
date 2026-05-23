@@ -4,15 +4,16 @@ extends Resource
 
 var nightmare: NightmareData
 var type: Bozo.Trial
+
 var sins: Array[SinData]
 var type_to_sin: Dictionary
+var sit_to_weight: Dictionary
 
 
 func _init(nightmare_: NightmareData, type_: Bozo.Trial) -> void:
 	nightmare = nightmare_
 	type = type_
 	init_sins()
-
 
 func init_sins() -> void:
 	var requirements: Array[int]
@@ -42,9 +43,10 @@ func init_sins() -> void:
 			examination(sin_amounts, requirements, sin_weights)
 
 func add_sin(sin_: Bozo.Sin, value_: int) -> void:
-	var _sin = SinData.new(sin_, value_)
-	sins.append(_sin)
-	type_to_sin[sin_] = _sin
+	var sin_data = SinData.new(sin_, value_)
+	sins.append(sin_data)
+	type_to_sin[sin_] = sin_data
+	sit_to_weight[sin_] = value_
 
 func examination(amounts_: Dictionary, requirements_: Array, sin_weights_: Dictionary) -> void:
 	if requirements_.is_empty(): return
@@ -71,6 +73,8 @@ func examination(amounts_: Dictionary, requirements_: Array, sin_weights_: Dicti
 func swap_sin_type(old_type_: Bozo.Sin, new_type_: Bozo.Sin) -> void:
 	var sin_data = type_to_sin[old_type_]
 	sin_data.type = new_type_
+	
 	type_to_sin[new_type_] = sin_data
 	type_to_sin.erase(old_type_)
-	
+	sit_to_weight[new_type_] = sin_data.value
+	sit_to_weight.erase(old_type_)

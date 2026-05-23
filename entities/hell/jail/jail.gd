@@ -32,7 +32,12 @@ var active_cage: Cage:
 			hell.nightmare.lock_button.visible = true
 
 
-var is_locked: bool = false
+var is_locked: bool = false:
+	set(value_):
+		is_locked = value_
+		
+		if is_locked:
+			hell.treasury.sort_icon.visible = false
 
 
 func _ready():
@@ -105,6 +110,8 @@ func next_turn() -> void:
 		cage.sinner.data = sinner_data
 	
 	hell.treasury.update_tributes()
+	hell.treasury.resort_judgment(Bozo.Judgment.RANK)
+	hell.treasury.reorder_tribute()
 
 func reset_active_cage() -> void:
 	active_cage = null

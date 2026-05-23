@@ -15,6 +15,7 @@ sins = [NodePath("VBox/SinContainer/Sins/Sin1"), NodePath("VBox/SinContainer/Sin
 [node name="VBox" type="VBoxContainer" parent="." unique_id=980774418]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 4
 alignment = 1
 
@@ -63,12 +64,13 @@ alignment = 1
 visible = true
 layout_mode = 2
 type = 3
-value = 1
+value = 2
 
 [node name="Sin2" parent="VBox/SinContainer/Sins" unique_id=851171515 instance=ExtResource("2_rsvmq")]
 visible = true
 layout_mode = 2
 type = 2
+value = 1
 
 [node name="Sin3" parent="VBox/SinContainer/Sins" unique_id=1634598779 instance=ExtResource("2_rsvmq")]
 visible = true
