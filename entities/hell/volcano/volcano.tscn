@@ -8,5 +8,11 @@ script = ExtResource("1_5xma6")
 eruption_scene = ExtResource("2_si47u")
 camera_2d = NodePath("Camera2D")
 
+[node name="Trails" type="Node2D" parent="." unique_id=1371704615]
+unique_name_in_owner = true
+
+[node name="Eruptions" type="Node2D" parent="." unique_id=1475023907]
+unique_name_in_owner = true
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2132386810]
 unique_name_in_owner = true

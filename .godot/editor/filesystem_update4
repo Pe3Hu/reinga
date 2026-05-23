@@ -1,9 +1,10 @@
-res://entities/hell/inferno/inferno.tscn
-res://entities/hell/treasury/tribute/candle/shaders/candle.gdshader
+res://entities/hell/treasury/tribute/tribute.tscn
 res://entities/hell/jail/catena/catena.gdshader
 res://entities/hell/inferno/inferno.gdshader
-res://entities/hell/inferno/inferno.gd
-res://entities/hell/hell.tscn
-res://entities/hell/hell.gd
-res://entities/hell/inferno/border.gdshader
-res://entities/hell/nightmare/data/data_nightmare.gd
+res://entities/hell/treasury/tribute/candle/shaders/candle.gdshader
+res://entities/token/judgment/judgment.tscn
+res://entities/hell/nightmare/attitude/attitude.tscn
+res://global/Bozo.gd
+res://entities/hell/nightmare/activity/activity.tscn
+res://entities/hell/nightmare/activity/activity.gd
+res://entities/hell/nightmare/trial/trial.tscn

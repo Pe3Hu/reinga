@@ -82,9 +82,17 @@ enum Catena {
 	DIAGONAL = 57
 }
 
+enum Half {
+	NONE = 0,
+	LESS = 58,
+	MORE = 59,
+	DOUBLE = 60
+}
+
 enum Judgment {
 	NONE = 0,
-	RANK = 60
+	RANK = 61,
+	ACTIVITY = 62
 }
 
 enum Windrose {
@@ -98,4 +106,25 @@ enum Windrose {
 	N = 86, 
 	NE = 87, 
 	ESWN = 88,
+}
+
+enum Blob {
+	NONE = 0,
+	PLUS = 90,
+	MINUS = 91
+}
+
+enum Side {
+	NONE = 0,
+	LEFT = 92,
+	RIGHT = 93
+}
+
+enum Attitude {
+	NONE = 0,
+	RAPTURE = 94,
+	FAVOR = 95,
+	INDIFFERENCE = 96,
+	DISFAVOR = 97,
+	SCORN = 98,
 }

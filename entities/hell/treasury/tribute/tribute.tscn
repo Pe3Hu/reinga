@@ -42,6 +42,7 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="Rank" parent="Box" unique_id=1672584037 node_paths=PackedStringArray("tribute") instance=ExtResource("2_abunu")]
+visible = true
 layout_mode = 2
 tribute = NodePath("../..")
 

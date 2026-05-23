@@ -9,16 +9,19 @@ extends Node
 @export var tokens: Array[TokenSin]
 
 @export var total_eruptions: int
-@export var spawn_duration: float = 0.5#1.5
+#@export var spawn_duration: float = 0.5#1.5
 
 var pool: Array[Eruption]
+var trail_pool: Array[Sprite2D]
 
 @export var camera_2d: Camera2D
+
 var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
 	prewarm(Catalog.DEFAULT_ERUPTION_COUNT)
+	setup_trail_pool(Catalog.DEFAULT_ERUPTION_COUNT * 10)
 
 func prewarm(count_: int):
 	for _i in count_:
@@ -27,6 +30,16 @@ func prewarm(count_: int):
 		eruption.set_process(false)
 		eruption.volcano = self
 		pool.append(eruption)
+
+
+func setup_trail_pool(count_: int) -> void:
+	for i in count_:
+		var newSprite: Sprite2D = Sprite2D.new()
+		newSprite.texture = load("uid://dugn64otk6dcd")
+		newSprite.z_index = 0
+		newSprite.modulate.a = 0.0
+		%Trails.add_child.call_deferred(newSprite)
+		trail_pool.append(newSprite)
 
 func get_eruption() -> Eruption:
 	var eruption: Eruption
@@ -48,7 +61,7 @@ func return_eruption(eruption_: Eruption):
 func burst():
 	fill_trials()
 	total_eruptions = min(tokens.size(), trials.size())
-	var step := spawn_duration / float(total_eruptions)
+	var step = Catalog.VOLCANO_BURST_DURATION / float(total_eruptions)
 	apply_shake_effect()
 
 	for _i in range(total_eruptions):
@@ -113,16 +126,16 @@ func spawn_eruption(index_: int):
 	var eruption := get_eruption()
 	
 	if eruption.get_parent() == null:
-		add_child(eruption)
+		%Eruptions.add_child(eruption)
 
 	var trial = trials[index_]
 	var token = tokens[index_]
 	eruption.reset(token, trial)
 
-
 func apply_shake_effect():
 	var camera_tween = get_tree().create_tween()
-	camera_tween.tween_method(start_camera_shake, 5.0, 1.0, spawn_duration * 2)
+	var time = Catalog.VOLCANO_BURST_DURATION + Catalog.ERUPTION_DURATION
+	camera_tween.tween_method(start_camera_shake, 5.0, 1.0, time)
 
 func start_camera_shake(intensity: float):
 	var camera_offset = camera_shake_noise.get_noise_2d(randf_range(0.0, 100.0), Time.get_ticks_msec() * 0.001) * intensity

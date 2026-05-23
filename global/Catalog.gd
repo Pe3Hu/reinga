@@ -435,6 +435,28 @@ var windrose_to_trait_to_indexs = {
 }
 #endregion
 
-
+#region volcano
 const DEFAULT_ERUPTION_COUNT: int = 50
 const ERUPTION_OFFSET_L: float = 4
+
+const ERUPTION_DURATION: float = 1.2
+const TRAIL_DURATION: float = 0.4
+const VOLCANO_BURST_DURATION: float = 1.2
+#endregion
+
+#region blob
+const blob_to_string = {
+	Bozo.Blob.PLUS: "plus",
+	Bozo.Blob.MINUS: "minus"
+}
+
+const blob_default_color = Color.LIGHT_SLATE_GRAY
+#endregion
+
+const attitude_to_string = {
+	Bozo.Attitude.RAPTURE: "rapture",
+	Bozo.Attitude.FAVOR: "favor",
+	Bozo.Attitude.INDIFFERENCE: "indifference",
+	Bozo.Attitude.DISFAVOR: "disfavor",
+	Bozo.Attitude.SCORN: "scorn",
+}

@@ -10,10 +10,10 @@ var start: Vector2
 var end: Vector2
 var control: Vector2
 
-var t := 0.0
-var duration := 0.5#0.8
+var t: float = 0.0
 
-var active := false
+var active: bool = false
+var trails: Array[Sprite2D]
 
 
 func reset(token_: TokenSin, trial_: Trial):
@@ -48,10 +48,29 @@ func _process(delta_):
 	if !active:
 		return
 
-	t += delta_ / duration
+	t += delta_ / Catalog.ERUPTION_DURATION
 	var time = clamp(t, 0, 1)
 
 	global_position = bezier(start, control, end, time)
+	
+	if get_tree().get_frame() % 6 == 0:
+		if not volcano.trail_pool.is_empty():
+			var sprite = volcano.trail_pool.pop_front()
+			sprite.global_position = global_position + sprite.texture.get_size() / 2
+			sprite.modulate = modulate
+			trails.append(sprite)
+			sprite.visible = true
+			
+			var fading_tween = get_tree().create_tween()
+			fading_tween.tween_method(
+				func(value: float) -> void: sprite.modulate.a = value,
+				0.6,
+				0.0,
+				Catalog.TRAIL_DURATION
+			)
+			
+			await get_tree().create_timer(Catalog.TRAIL_DURATION).timeout
+			volcano.trail_pool.append(sprite)
 
 	if time >= 1.0:
 		deactivate()
@@ -65,6 +84,9 @@ func deactivate():
 	if trial:
 		var trial_token = trial.sin_to_token[token.type]
 		trial_token.value -= 1
+	
+	for trail in trails:
+		trail.visible = false
 
 func activate():
 	visible = true

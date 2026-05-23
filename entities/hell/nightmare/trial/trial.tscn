@@ -2,37 +2,49 @@
 
 [ext_resource type="Script" uid="uid://7rki777unic4" path="res://entities/hell/nightmare/trial/trial.gd" id="1_sh5ag"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="2_rsvmq"]
+[ext_resource type="PackedScene" uid="uid://c1c5xaejc7vke" path="res://entities/hell/nightmare/attitude/attitude.tscn" id="2_w5v66"]
+[ext_resource type="PackedScene" uid="uid://d34qbt65thfel" path="res://entities/hell/nightmare/activity/activity.tscn" id="4_m7eak"]
 
-[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins")]
+[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins", "attitude")]
 custom_minimum_size = Vector2(128, 84)
 offset_right = 128.0
 offset_bottom = 84.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_sh5ag")
-sins = [NodePath("VBox/SinContainer/Sins/Sin1"), NodePath("VBox/SinContainer/Sins/Sin2"), NodePath("VBox/SinContainer/Sins/Sin3")]
+sins = [NodePath("HBox/VBox/SinContainer/Sins/Sin1"), NodePath("HBox/VBox/SinContainer/Sins/Sin2"), NodePath("HBox/VBox/SinContainer/Sins/Sin3")]
+attitude = NodePath("HBox/Attitude")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=980774418]
-custom_minimum_size = Vector2(0, 32)
+[node name="HBox" type="HBoxContainer" parent="." unique_id=938682493]
 layout_mode = 2
-size_flags_vertical = 0
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="HeaderContainer" type="MarginContainer" parent="VBox" unique_id=1323181639]
+[node name="Activity" parent="HBox" unique_id=281809045 instance=ExtResource("4_m7eak")]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="HBox" unique_id=980774418]
 custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="HeaderContainer" type="MarginContainer" parent="HBox/VBox" unique_id=1323181639]
+custom_minimum_size = Vector2(128, 32)
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 0
 
-[node name="HeaderColorRect" type="ColorRect" parent="VBox/HeaderContainer" unique_id=1206119297]
+[node name="HeaderColorRect" type="ColorRect" parent="HBox/VBox/HeaderContainer" unique_id=1206119297]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.63375676, 0.6337568, 0.63375676, 1)
+color = Color(0.59607846, 0.9843137, 0.59607846, 1)
 
-[node name="HeaderLabel" type="RichTextLabel" parent="VBox/HeaderContainer/HeaderColorRect" unique_id=1239696281]
+[node name="HeaderLabel" type="RichTextLabel" parent="HBox/VBox/HeaderContainer/HeaderColorRect" unique_id=1239696281]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -43,36 +55,41 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 bbcode_enabled = true
-text = "nightmare"
+text = "Feast"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SinContainer" type="MarginContainer" parent="VBox" unique_id=1977348404]
+[node name="SinContainer" type="MarginContainer" parent="HBox/VBox" unique_id=1977348404]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Sins" type="HBoxContainer" parent="VBox/SinContainer" unique_id=1112698762]
+[node name="Sins" type="HBoxContainer" parent="HBox/VBox/SinContainer" unique_id=1112698762]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Sin1" parent="VBox/SinContainer/Sins" unique_id=1672584037 instance=ExtResource("2_rsvmq")]
+[node name="Sin1" parent="HBox/VBox/SinContainer/Sins" unique_id=1672584037 instance=ExtResource("2_rsvmq")]
 visible = true
 layout_mode = 2
 type = 3
 value = 2
 
-[node name="Sin2" parent="VBox/SinContainer/Sins" unique_id=851171515 instance=ExtResource("2_rsvmq")]
+[node name="Sin2" parent="HBox/VBox/SinContainer/Sins" unique_id=851171515 instance=ExtResource("2_rsvmq")]
 visible = true
 layout_mode = 2
 type = 2
 value = 1
 
-[node name="Sin3" parent="VBox/SinContainer/Sins" unique_id=1634598779 instance=ExtResource("2_rsvmq")]
+[node name="Sin3" parent="HBox/VBox/SinContainer/Sins" unique_id=1634598779 instance=ExtResource("2_rsvmq")]
 visible = true
 layout_mode = 2
 type = 5
+
+[node name="Attitude" parent="HBox" unique_id=925080586 node_paths=PackedStringArray("trial") instance=ExtResource("2_w5v66")]
+layout_mode = 2
+trial = NodePath("../..")

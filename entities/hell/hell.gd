@@ -18,4 +18,4 @@ func _ready():
 	inferno.resize_rect(viewport_size)
 	jail.next_turn()
 	jail.active_cage = treasury.tributes.back().cage
-	#nightmare._on_lock_button_pressed()
+	nightmare._on_lock_button_pressed()
