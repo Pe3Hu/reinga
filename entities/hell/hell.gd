@@ -18,4 +18,6 @@ func _ready():
 	inferno.resize_rect(viewport_size)
 	jail.next_turn()
 	jail.active_cage = treasury.tributes.back().cage
-	#nightmare._on_lock_button_pressed()
+	
+	await get_tree().create_timer(Catalog.DESIRE_DISSOLVE_DURATION).timeout
+	nightmare._on_lock_button_pressed()

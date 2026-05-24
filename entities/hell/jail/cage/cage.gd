@@ -36,5 +36,9 @@ func highligh() -> void:
 	jail.update_cages()
 	status = Bozo.Cage.CENTER
 
+func switch_side() -> void:
+	sinner.visible = !sinner.visible
+	cloak.visible = !cloak.visible
+
 func _on_texture_button_pressed() -> void:
 	EventBus.cage_selected.emit(self)

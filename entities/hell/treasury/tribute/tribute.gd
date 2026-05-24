@@ -67,7 +67,7 @@ func update_tokens() -> void:
 		var indexs = Catalog.windrose_to_trait_to_indexs[_trait][candle.windrose]
 		
 		for index in indexs:
-			var _cage = treasury.hell.jail.cages.get_child(index)
+			var _cage = treasury.hell.jail.cages[index]
 			var trait_data = _cage.sinner.get_trait_data(_trait)
 			data.traits.append(trait_data)
 	

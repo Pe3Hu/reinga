@@ -3,15 +3,17 @@ extends Node
 
 
 @export var eruption_scene: PackedScene
+@export var splash_scene: PackedScene
+
 
 @export var hell: Hell
 @export var trials: Array[Trial]
 @export var tokens: Array[TokenSin]
 
 @export var total_eruptions: int
-#@export var spawn_duration: float = 0.5#1.5
 
-var pool: Array[Eruption]
+var eruption_pool: Array[Eruption]
+var splash_pool: Array[Splash]
 var trail_pool: Array[Sprite2D]
 
 @export var camera_2d: Camera2D
@@ -20,17 +22,20 @@ var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
-	prewarm(Catalog.DEFAULT_ERUPTION_COUNT)
+	prewarm_eruption(Catalog.DEFAULT_ERUPTION_COUNT)
+	prewarm_splash(Catalog.DEFAULT_SPLASH_COUNT)
 	setup_trail_pool(Catalog.DEFAULT_ERUPTION_COUNT * 10)
 
-func prewarm(count_: int):
+func prewarm_eruption(count_: int):
 	for _i in count_:
-		var eruption = eruption_scene.instantiate() as Eruption
-		eruption.visible = false
-		eruption.set_process(false)
-		eruption.volcano = self
-		pool.append(eruption)
+		add_eruption()
 
+func add_eruption() -> Eruption:
+	var eruption = eruption_scene.instantiate() as Eruption
+	eruption.visible = false
+	eruption.volcano = self
+	eruption_pool.append(eruption)
+	return eruption
 
 func setup_trail_pool(count_: int) -> void:
 	for i in count_:
@@ -43,22 +48,23 @@ func setup_trail_pool(count_: int) -> void:
 
 func get_eruption() -> Eruption:
 	var eruption: Eruption
-	
-	if pool.size() > 0:
-		eruption = pool.pop_back()
+
+	if eruption_pool.size() > 0:
+		eruption = eruption_pool.pop_back()
 	else:
 		eruption = eruption_scene.instantiate() as Eruption
 		eruption.volcano = self
+	
+	if eruption.get_parent() == null:
+		%Eruptions.add_child(eruption)
 
-	eruption.activate()
 	return eruption
 
 func return_eruption(eruption_: Eruption):
 	eruption_.visible = false
-	eruption_.set_process(false)
-	pool.append(eruption_)
+	eruption_pool.append(eruption_)
 
-func burst():
+func burst_eruption():
 	fill_trials()
 	total_eruptions = min(tokens.size(), trials.size())
 	var step = Catalog.VOLCANO_BURST_DURATION / float(total_eruptions)
@@ -67,6 +73,9 @@ func burst():
 	for _i in range(total_eruptions):
 		await get_tree().create_timer(step).timeout
 		spawn_eruption(_i)
+	
+	#tokens.clear()
+	#trials.clear()
 
 func fill_trials() -> void:
 	var tribute = hell.jail.active_cage.tribute
@@ -123,21 +132,58 @@ func spawn_eruption(index_: int):
 		push_error("Start or End points are not assigned!")
 		return
 
-	var eruption := get_eruption()
-	
-	if eruption.get_parent() == null:
-		%Eruptions.add_child(eruption)
+	var eruption = get_eruption()
 
 	var trial = trials[index_]
 	var token = tokens[index_]
+
 	eruption.reset(token, trial)
+	eruption.call_deferred("activate")
 
 func apply_shake_effect():
 	var camera_tween = get_tree().create_tween()
 	var time = Catalog.VOLCANO_BURST_DURATION + Catalog.ERUPTION_DURATION
 	camera_tween.tween_method(start_camera_shake, 5.0, 1.0, time)
 
-func start_camera_shake(intensity: float):
-	var camera_offset = camera_shake_noise.get_noise_2d(randf_range(0.0, 100.0), Time.get_ticks_msec() * 0.001) * intensity
+func start_camera_shake(intensity_: float):
+	var camera_offset = camera_shake_noise.get_noise_2d(randf_range(0.0, 100.0), Time.get_ticks_msec() * 0.001) * intensity_
 	camera_2d.offset.x = camera_offset
 	camera_2d.offset.y = camera_offset
+
+
+#region splash
+func prewarm_splash(count_: int):
+	for i in count_:
+		add_splash()
+
+func get_splash() -> Splash:
+	if splash_pool.is_empty():
+		var splash = add_splash()
+		return splash
+	
+	return splash_pool.pop_back()
+
+func add_splash() -> Splash:
+	var splash := splash_scene.instantiate() as Splash
+	splash.visible = false
+	splash.volcano = self
+	%Splashs.add_child(splash)
+	splash_pool.append(splash)
+	return splash
+
+func return_splash(splash_: Splash):
+	splash_pool.append(splash_)
+
+func burst_splash(progression_: Progression, count_: int) -> void:
+	if count_ == 1:
+		var splash = get_splash()
+		splash.reset(progression_)
+		return
+	
+	var step = (Catalog.DESIRE_DISSOLVE_DURATION - Catalog.SPASH_DURATION) / float(count_)
+
+	for _i in range(count_):
+		await get_tree().create_timer(step).timeout
+		var splash = get_splash()
+		splash.reset(progression_)
+#endregion

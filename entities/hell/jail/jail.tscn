@@ -4,13 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_ge72r"]
 [ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/hell/jail/catena/catena.tscn" id="3_o0tu8"]
 
-[node name="Jail" type="PanelContainer" unique_id=282794866 node_paths=PackedStringArray("cages", "catenas")]
+[node name="Jail" type="PanelContainer" unique_id=282794866]
 mouse_filter = 1
 script = ExtResource("1_ge72r")
 cage_scene = ExtResource("2_ge72r")
 catena_scene = ExtResource("3_o0tu8")
-cages = NodePath("Cages")
-catenas = NodePath("Catenas")
 
 [node name="Catenas" type="Control" parent="." unique_id=2048673265]
 unique_name_in_owner = true

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cdpj6amwhbdjm"]
+
+[ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_vtx6c"]
+[ext_resource type="Script" uid="uid://nlsoxg7tbh4m" path="res://entities/ui/token/faction/faction.gd" id="2_1a6a2"]
+[ext_resource type="Texture2D" uid="uid://dtvqygwcdwk8d" path="res://entities/ui/token/images/faction.png" id="3_n557j"]
+
+[node name="TokenFaction" unique_id=1672584037 instance=ExtResource("1_vtx6c")]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_1a6a2")
+type = 0
+
+[node name="TextureRect" parent="." index="0" unique_id=2027400341]
+modulate = Color(0.28235295, 0.23921569, 0.54509807, 1)
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_n557j")
+
+[node name="ValueLabel" parent="." index="1" unique_id=1083729365]
+visible = false
+text = "0"

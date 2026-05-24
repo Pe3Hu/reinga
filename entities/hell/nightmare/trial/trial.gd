@@ -3,6 +3,8 @@ class_name Trial
 extends PanelContainer
 
 
+@export var nightmare: Nightmare
+
 var data: TrialData:
 	set(value_):
 		data = value_
@@ -15,9 +17,13 @@ var data: TrialData:
 		%HeaderColorRect.color = Catalog.trial_to_color[type]
 		%HeaderLabel.text = Catalog.trial_to_string[type].capitalize()
 		attitude.update_trial()
+		activity.icon.modulate = Catalog.trial_to_color[type]
+		flame.icon.modulate = Catalog.trial_to_color[type]
 
 @export var sins: Array[TokenSin]
 @export var attitude: Attitude
+@export var activity : Activity
+@export var flame: Flame
 
 var sin_to_token: Dictionary
 

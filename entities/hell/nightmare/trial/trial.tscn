@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://1p5dvi6npkvy"]
 
 [ext_resource type="Script" uid="uid://7rki777unic4" path="res://entities/hell/nightmare/trial/trial.gd" id="1_sh5ag"]
-[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/hell/npr_border.tscn" id="2_16bw8"]
-[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="2_rsvmq"]
+[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/npr_border.tscn" id="2_16bw8"]
+[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="2_rsvmq"]
 [ext_resource type="PackedScene" uid="uid://c1c5xaejc7vke" path="res://entities/hell/nightmare/attitude/attitude.tscn" id="2_w5v66"]
 [ext_resource type="PackedScene" uid="uid://d34qbt65thfel" path="res://entities/hell/nightmare/activity/activity.tscn" id="4_m7eak"]
+[ext_resource type="PackedScene" uid="uid://bfseoli4hdx47" path="res://entities/hell/nightmare/flame/flame.tscn" id="6_no32l"]
 
-[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins", "attitude")]
-custom_minimum_size = Vector2(316, 100)
+[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins", "attitude", "activity", "flame")]
+custom_minimum_size = Vector2(358, 100)
 offset_right = 128.0
 offset_bottom = 84.0
 size_flags_horizontal = 4
@@ -15,6 +16,8 @@ size_flags_vertical = 4
 script = ExtResource("1_sh5ag")
 sins = [NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin1"), NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin2"), NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin3")]
 attitude = NodePath("NinePatchRect/HBox/Attitude")
+activity = NodePath("NinePatchRect/HBox/Activity")
+flame = NodePath("NinePatchRect/HBox/Flame")
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_16bw8")]
 layout_mode = 2
@@ -35,10 +38,11 @@ grow_vertical = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Activity" parent="NinePatchRect/HBox" unique_id=281809045 instance=ExtResource("4_m7eak")]
+[node name="Activity" parent="NinePatchRect/HBox" unique_id=281809045 node_paths=PackedStringArray("trial") instance=ExtResource("4_m7eak")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+trial = NodePath("../../..")
 
 [node name="VBox" type="VBoxContainer" parent="NinePatchRect/HBox" unique_id=980774418]
 custom_minimum_size = Vector2(0, 32)
@@ -59,7 +63,7 @@ theme_override_constants/margin_bottom = 0
 [node name="HeaderColorRect" type="ColorRect" parent="NinePatchRect/HBox/VBox/HeaderContainer" unique_id=1206119297]
 unique_name_in_owner = true
 layout_mode = 2
-color = Color(0.59607846, 0.9843137, 0.59607846, 1)
+color = Color(0.9411765, 0.9019608, 0.54901963, 1)
 
 [node name="HeaderLabel" type="RichTextLabel" parent="NinePatchRect/HBox/VBox/HeaderContainer/HeaderColorRect" unique_id=1239696281]
 unique_name_in_owner = true
@@ -72,7 +76,7 @@ grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 bbcode_enabled = true
-text = "Feast"
+text = "Auction"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -109,4 +113,10 @@ type = 5
 
 [node name="Attitude" parent="NinePatchRect/HBox" unique_id=925080586 node_paths=PackedStringArray("trial") instance=ExtResource("2_w5v66")]
 layout_mode = 2
+trial = NodePath("../../..")
+
+[node name="Flame" parent="NinePatchRect/HBox" unique_id=1805768816 node_paths=PackedStringArray("trial") instance=ExtResource("6_no32l")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 trial = NodePath("../../..")

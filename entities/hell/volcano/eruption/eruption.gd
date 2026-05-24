@@ -11,8 +11,8 @@ var end: Vector2
 var control: Vector2
 
 var t: float = 0.0
-
 var active: bool = false
+
 var trails: Array[Sprite2D]
 
 
@@ -20,16 +20,8 @@ func reset(token_: TokenSin, trial_: Trial):
 	token = token_
 	trial = trial_
 	
-	update_vectors()
-	global_position = start
 	t = 0.0
-	active = true
-
-	var mid = (start + end) * 0.5
-	var dir = (end - start).normalized()
-	var perp = Vector2(-dir.y, dir.x)
-
-	control = mid + perp * randf_range(-180, 180)
+	visible = true
 	
 	if token:
 		modulate = Catalog.sin_to_color[token.type]
@@ -42,12 +34,18 @@ func update_vectors() -> void:
 	
 	var shift = Vector2.from_angle(randf() * PI * 2) * Catalog.ERUPTION_OFFSET_L
 	start += shift
+	global_position = start
+	
+	var mid = (start + end) * 0.5
+	var dir = (end - start).normalized()
+	var perp = Vector2(-dir.y, dir.x)
+
+	control = mid + perp * randf_range(-180, 180)
 	#end -= shift
 
 func _process(delta_):
 	if !active:
 		return
-
 	t += delta_ / Catalog.ERUPTION_DURATION
 	var time = clamp(t, 0, 1)
 
@@ -75,22 +73,37 @@ func _process(delta_):
 	if time >= 1.0:
 		deactivate()
 
-func deactivate():
+func deactivate() -> void:
 	active = false
 	visible = false
-	set_process(false)
+
 	volcano.return_eruption(self)
 	
 	if trial:
 		var trial_token = trial.sin_to_token[token.type]
 		trial_token.value -= 1
+		volcano.burst_splash(trial.activity.progression, 1)
 	
 	for trail in trails:
 		trail.visible = false
 
-func activate():
+func activate() -> void:
+	active = true
 	visible = true
-	set_process(true)
+
+	update_vectors()
+
+	global_position = start
+
+	var mid = (start + end) * 0.5
+	var dir = (end - start).normalized()
+	var perp = Vector2(-dir.y, dir.x)
+
+	control = mid + perp * randf_range(-180, 180)
+
+	if token:
+		modulate = Catalog.sin_to_color[token.type]
+		token.value -= 1
 
 func bezier(a_: Vector2, b_: Vector2, c_: Vector2, t_: float):
 	var ab = a_.lerp(b_, t_)

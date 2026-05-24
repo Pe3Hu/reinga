@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bjlm6t5oqacjy"]
 
 [ext_resource type="Script" uid="uid://bp2rppn86ih0m" path="res://entities/hell/jail/cage/cage.gd" id="1_2m11p"]
-[ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/sinner/sinner.tscn" id="2_bynt2"]
-[ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloack.tscn" id="3_r5l2a"]
+[ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/hell/jail/sinner/sinner.tscn" id="2_bynt2"]
+[ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
 
 [node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("sinner", "cloak")]
 custom_minimum_size = Vector2(172, 200)

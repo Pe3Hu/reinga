@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bokvfaxgoa8xr"]
+
+[ext_resource type="Script" uid="uid://bu2i7naqrarj" path="res://entities/hell/nightmare/progression/progression.gd" id="1_e6gxy"]
+
+[node name="Progression" type="HBoxContainer" unique_id=1874653142 node_paths=PackedStringArray("current_label", "limit_label")]
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_e6gxy")
+current_label = NodePath("Current")
+limit_label = NodePath("Limit")
+
+[node name="Current" type="Label" parent="." unique_id=996024803]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Slash" type="Label" parent="." unique_id=533663479]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "/"
+
+[node name="Limit" type="Label" parent="." unique_id=633387741]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

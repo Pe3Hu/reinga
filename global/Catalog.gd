@@ -437,11 +437,12 @@ var windrose_to_trait_to_indexs = {
 
 #region volcano
 const DEFAULT_ERUPTION_COUNT: int = 50
+const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
 
-const ERUPTION_DURATION: float = 1.2
+const ERUPTION_DURATION: float = 0.8
 const TRAIL_DURATION: float = 0.4
-const VOLCANO_BURST_DURATION: float = 1.2
+const VOLCANO_BURST_DURATION: float = 0.8
 #endregion
 
 #region blob
@@ -461,10 +462,17 @@ const attitude_to_string = {
 	Bozo.Attitude.SCORN: "scorn",
 }
 
+const half_to_string = {
+	Bozo.Half.LESS: "less",
+	Bozo.Half.MORE: "more",
+	Bozo.Half.DOUBLE: "double",
+}
+
 #region desire
 const PRIMARY_DESIRE_COUNT: int = 2
 const SECONDARY_DESIRE_COUNT: int = 1
 const DESIRE_DISSOLVE_DURATION: float = 1.2
+const SPASH_DURATION: float = 0.5
 
 const desires = [
 	Bozo.Desire.SWORD,
@@ -482,7 +490,7 @@ const desire_to_string = {
 	Bozo.Desire.SCROLL: "scroll",
 }
 
-const disere_to_trial = {
+const desire_to_trial = {
 	Bozo.Desire.SWORD: Bozo.Trial.BATTLE,
 	Bozo.Desire.COIN: Bozo.Trial.AUCTION,
 	Bozo.Desire.WINE: Bozo.Trial.FEAST,
@@ -490,7 +498,7 @@ const disere_to_trial = {
 	Bozo.Desire.SCROLL: Bozo.Trial.THEATER,
 }
 
-const trial_to_disere = {
+const trial_to_desire = {
 	Bozo.Trial.BATTLE: Bozo.Desire.SWORD,
 	Bozo.Trial.AUCTION: Bozo.Desire.COIN,
 	Bozo.Trial.FEAST: Bozo.Desire.WINE,
@@ -498,7 +506,7 @@ const trial_to_disere = {
 	Bozo.Trial.THEATER: Bozo.Desire.SCROLL,
 }
 
-const disere_to_angle = {
+const desire_to_angle = {
 	Bozo.Desire.SWORD: -45.0,
 	Bozo.Desire.COIN: 45,
 	Bozo.Desire.WINE: 90,

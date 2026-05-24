@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bltmo2pppbjre"]
+
+[ext_resource type="StyleBox" uid="uid://db2oee8k2qoba" path="res://entities/ui/button/normal_style_box_texture.tres" id="1_6bgj0"]
+[ext_resource type="Script" uid="uid://nprq0dip3rer" path="res://entities/ui/button/button.gd" id="1_be2hb"]
+[ext_resource type="StyleBox" uid="uid://dbixwf4p180qp" path="res://entities/ui/button/hover_style_box_texture.tres" id="2_tdykk"]
+
+[node name="Button" type="Button" unique_id=250034607]
+custom_minimum_size = Vector2(48, 24)
+theme_override_styles/normal = ExtResource("1_6bgj0")
+theme_override_styles/hover = ExtResource("2_tdykk")
+text = "Lock"
+script = ExtResource("1_be2hb")

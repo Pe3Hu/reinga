@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cqtuvmogeve5v" path="res://entities/hell/nightmare/nightmare.gd" id="1_khbtt"]
 [ext_resource type="PackedScene" uid="uid://1p5dvi6npkvy" path="res://entities/hell/nightmare/trial/trial.tscn" id="2_jqqfa"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/button/button.tscn" id="3_grd2t"]
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="3_grd2t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grd2t"]
 
 [node name="Nightmare" type="PanelContainer" unique_id=1765068744 node_paths=PackedStringArray("trials", "lock_button")]
-custom_minimum_size = Vector2(0, 492)
+custom_minimum_size = Vector2(0, 572)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_grd2t")
@@ -24,27 +24,33 @@ alignment = 1
 [node name="Trials" type="VBoxContainer" parent="VBox" unique_id=1378426793]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Battle" parent="VBox/Trials" unique_id=1782749570 instance=ExtResource("2_jqqfa")]
+[node name="Battle" parent="VBox/Trials" unique_id=1782749570 node_paths=PackedStringArray("nightmare") instance=ExtResource("2_jqqfa")]
 layout_mode = 2
+nightmare = NodePath("../../..")
 type = 9
 
-[node name="Auction" parent="VBox/Trials" unique_id=606438970 instance=ExtResource("2_jqqfa")]
+[node name="Auction" parent="VBox/Trials" unique_id=606438970 node_paths=PackedStringArray("nightmare") instance=ExtResource("2_jqqfa")]
 layout_mode = 2
+nightmare = NodePath("../../..")
 type = 10
 
-[node name="Feast" parent="VBox/Trials" unique_id=1556820494 instance=ExtResource("2_jqqfa")]
+[node name="Feast" parent="VBox/Trials" unique_id=1556820494 node_paths=PackedStringArray("nightmare") instance=ExtResource("2_jqqfa")]
 layout_mode = 2
+nightmare = NodePath("../../..")
 type = 11
 
-[node name="Masquerade" parent="VBox/Trials" unique_id=135629683 instance=ExtResource("2_jqqfa")]
+[node name="Masquerade" parent="VBox/Trials" unique_id=135629683 node_paths=PackedStringArray("nightmare") instance=ExtResource("2_jqqfa")]
 layout_mode = 2
+nightmare = NodePath("../../..")
 type = 12
 
-[node name="Theater" parent="VBox/Trials" unique_id=743850076 instance=ExtResource("2_jqqfa")]
+[node name="Theater" parent="VBox/Trials" unique_id=743850076 node_paths=PackedStringArray("nightmare") instance=ExtResource("2_jqqfa")]
 layout_mode = 2
+nightmare = NodePath("../../..")
 type = 13
 
 [node name="LockButton" parent="VBox" unique_id=250034607 instance=ExtResource("3_grd2t")]

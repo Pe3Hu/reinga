@@ -6,8 +6,9 @@ class_name Jail
 @export var catena_scene: PackedScene
 
 @export var hell: Hell
-@export var cages: GridContainer
-@export var catenas: Control
+
+var cages: Array[Cage]
+var catenas: Array[Catena]
 
 var vector_to_cage: Dictionary
 var vector_to_catena: Dictionary
@@ -64,13 +65,15 @@ func init_catenas() -> void:
 func add_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 	var catena = catena_scene.instantiate()
 	catena.setup(self, coord_, type_)
-	catenas.add_child(catena)
+	%Catenas.add_child(catena)
+	catenas.append(catena)
 	vector_to_catena[coord_] = catena
 
 func add_cage(coord_: Vector2i) -> void:
 	var cage = cage_scene.instantiate()
 	cage.setup(self, coord_)
-	cages.add_child(cage)
+	%Cages.add_child(cage)
+	cages.append(cage)
 	
 	var row_coord = Vector2i(0, coord_.y + 1)
 	var row_catena = vector_to_catena[row_coord]
@@ -87,13 +90,13 @@ func _on_cage_selected(cage_: Cage):
 	active_cage.highligh()
 
 func reset_cages() -> void:
-	for cage in cages.get_children():
+	for cage in cages:
 		cage.status = Bozo.Cage.NONE
 
 func update_cages() -> void:
 	var col_index = active_cage.coord.x
 	
-	for cage in cages.get_children():
+	for cage in cages:
 		if cage.status != Bozo.Cage.MIDDLE:
 			if cage.coord.x < col_index:
 				cage.status = Bozo.Cage.LEFT
@@ -105,6 +108,7 @@ func next_turn() -> void:
 	hell.tribunal.refill_actual()
 	
 	update_sinner_datas()
+	hell.nightmare.awaken_dreams()
 	
 	hell.treasury.update_tributes()
 	hell.treasury.resort_judgment(Bozo.Judgment.RANK)
@@ -113,7 +117,7 @@ func next_turn() -> void:
 func update_sinner_datas() -> void:
 	for _i in hell.tribunal.actual.sinners.size():
 		var sinner_data = hell.tribunal.actual.sinners[_i]
-		var cage = cages.get_child(_i)
+		var cage = cages[_i]
 		cage.sinner.data = sinner_data
 
 func reset_active_cage() -> void:

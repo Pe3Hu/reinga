@@ -138,6 +138,12 @@ enum Desire {
 	SCROLL = 104
 }
 
+enum Progression {
+	NONE = 0,
+	ACTIVITY = 105,
+	FLAME = 106
+}
+
 enum Phase {
 	NONE = 0,
 }

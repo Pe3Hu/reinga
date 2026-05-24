@@ -7,7 +7,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3045x"]
 
 [node name="Treasury" type="PanelContainer" unique_id=2005910419 node_paths=PackedStringArray("sort_icon")]
-custom_minimum_size = Vector2(536, 0)
+custom_minimum_size = Vector2(560, 0)
+offset_right = 560.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3045x")
@@ -18,7 +19,7 @@ sort_icon = NodePath("VBox/Control/SortIcon")
 [node name="VBox" type="HBoxContainer" parent="." unique_id=1853029829]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Tributes" type="HBoxContainer" parent="VBox" unique_id=589616495]
@@ -28,6 +29,7 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Control" type="Control" parent="VBox" unique_id=992826484]
+custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
 [node name="SortIcon" type="TextureRect" parent="VBox/Control" unique_id=1126196699]

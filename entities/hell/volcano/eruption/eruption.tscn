@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://66bn558g5j6n"]
 
 [ext_resource type="Script" uid="uid://crtilunxuvlrb" path="res://entities/hell/volcano/eruption/eruption.gd" id="1_nrr16"]
-[ext_resource type="Texture2D" uid="uid://dugn64otk6dcd" path="res://entities/token/images/sin.png" id="2_irf0u"]
+[ext_resource type="Texture2D" uid="uid://dugn64otk6dcd" path="res://entities/ui/token/images/sin.png" id="2_irf0u"]
 
 [node name="Eruption" type="Node2D" unique_id=409762527]
 script = ExtResource("1_nrr16")

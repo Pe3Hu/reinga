@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bfseoli4hdx47"]
+
+[ext_resource type="Script" uid="uid://mxbywv5k4eim" path="res://entities/hell/nightmare/flame/flame.gd" id="1_t3h10"]
+[ext_resource type="Texture2D" uid="uid://da7uahwoxkfvw" path="res://entities/hell/nightmare/flame/images/1.png" id="2_o7m6w"]
+[ext_resource type="PackedScene" uid="uid://bokvfaxgoa8xr" path="res://entities/hell/nightmare/progression/progression.tscn" id="3_ryxda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryxda"]
+
+[node name="Flame" type="PanelContainer" unique_id=1805768816 node_paths=PackedStringArray("icon", "progression")]
+offset_right = 64.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ryxda")
+script = ExtResource("1_t3h10")
+icon = NodePath("VBoxContainer/MarginContainer/Icon")
+progression = NodePath("VBoxContainer/Progression")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1692225691]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1571274576]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/MarginContainer" unique_id=1598165635]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_o7m6w")
+
+[node name="Progression" parent="VBoxContainer" unique_id=1874653142 instance=ExtResource("3_ryxda")]
+layout_mode = 2
+size_flags_horizontal = 4
+type = 106

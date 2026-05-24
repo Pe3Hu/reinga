@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://do7x0nsb3iqqq"]
+
+[ext_resource type="Script" uid="uid://uosjpj87l5oh" path="res://entities/ui/bowl/bowl.gd" id="1_rn7qa"]
+[ext_resource type="PackedScene" uid="uid://cylltbvbxra5m" path="res://entities/ui/bowl/blob/blob.tscn" id="2_y4wk2"]
+
+[node name="Bowl" type="Control" unique_id=2091172175 node_paths=PackedStringArray("blobs")]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 96.0
+offset_bottom = 96.0
+script = ExtResource("1_rn7qa")
+type = 90
+trial = 11
+side = 92
+blobs = [NodePath("Blobs/CenterBlobs/Blob1"), NodePath("Blobs/SideBlobs/Blob2"), NodePath("Blobs/SideBlobs/Blob3"), NodePath("Blobs/SideBlobs/Blob4"), NodePath("Blobs/SideBlobs/Blob5"), NodePath("Blobs/CenterBlobs/Blob6")]
+value = 2
+
+[node name="Blobs" type="HBoxContainer" parent="." unique_id=359836434]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 96.0
+theme_override_constants/separation = 0
+
+[node name="SideBlobs" type="VBoxContainer" parent="Blobs" unique_id=809720904]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Blob5" parent="Blobs/SideBlobs" unique_id=508533074 instance=ExtResource("2_y4wk2")]
+layout_mode = 2
+trial = 11
+
+[node name="Blob4" parent="Blobs/SideBlobs" unique_id=728023438 instance=ExtResource("2_y4wk2")]
+layout_mode = 2
+trial = 11
+
+[node name="Blob3" parent="Blobs/SideBlobs" unique_id=1036017042 instance=ExtResource("2_y4wk2")]
+layout_mode = 2
+trial = 11
+
+[node name="Blob2" parent="Blobs/SideBlobs" unique_id=1284606459 instance=ExtResource("2_y4wk2")]
+modulate = Color(0.59607846, 0.9843137, 0.59607846, 1)
+layout_mode = 2
+trial = 11
+is_active = true
+
+[node name="CenterBlobs" type="VBoxContainer" parent="Blobs" unique_id=281839020]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Blob6" parent="Blobs/CenterBlobs" unique_id=498260207 instance=ExtResource("2_y4wk2")]
+layout_mode = 2
+size_flags_vertical = 8
+trial = 11
+
+[node name="Blob1" parent="Blobs/CenterBlobs" unique_id=1968183792 instance=ExtResource("2_y4wk2")]
+modulate = Color(0.59607846, 0.9843137, 0.59607846, 1)
+layout_mode = 2
+size_flags_vertical = 0
+trial = 11
+is_active = true

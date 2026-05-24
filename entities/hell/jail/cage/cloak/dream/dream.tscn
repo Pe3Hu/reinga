@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://brr6hbxdbyiqr"]
 
 [ext_resource type="Script" uid="uid://sa1cgjuyng7g" path="res://entities/hell/jail/cage/cloak/dream/dream.gd" id="1_wsku3"]
-[ext_resource type="PackedScene" uid="uid://c5uuyg6561qv3" path="res://entities/token/desire/desire.tscn" id="2_e5v2l"]
+[ext_resource type="PackedScene" uid="uid://c5uuyg6561qv3" path="res://entities/ui/token/desire/desire.tscn" id="2_e5v2l"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0gus"]
 
@@ -31,4 +31,3 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 102

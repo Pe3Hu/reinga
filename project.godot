@@ -38,9 +38,10 @@ folder_colors={
 "res://entities/hell/jail/": "green",
 "res://entities/hell/nightmare/": "purple",
 "res://entities/hell/treasury/": "yellow",
+"res://entities/hell/volcano/": "red",
 "res://entities/sinner/": "red",
-"res://entities/token/": "blue",
-"res://entities/tribunal/": "pink"
+"res://entities/tribunal/": "pink",
+"res://entities/ui/token/": "blue"
 }
 
 [gui]

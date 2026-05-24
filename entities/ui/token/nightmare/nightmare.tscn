@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b6yxqa0i8rkvy"]
+
+[ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_20cih"]
+[ext_resource type="Script" uid="uid://bhqpeg4sysaro" path="res://entities/ui/token/nightmare/nightmare.gd" id="2_fnl51"]
+[ext_resource type="Texture2D" uid="uid://sqqr87ep0wga" path="res://entities/ui/token/images/nightmare.png" id="3_0353p"]
+
+[node name="TokenNightmare" unique_id=1672584037 instance=ExtResource("1_20cih")]
+script = ExtResource("2_fnl51")
+type = 0
+value = 0
+
+[node name="TextureRect" parent="." index="0" unique_id=2027400341]
+modulate = Color(0.5764706, 0.4392157, 0.85882354, 1)
+texture = ExtResource("3_0353p")
+
+[node name="ValueLabel" parent="." index="1" unique_id=1083729365]
+text = "0"

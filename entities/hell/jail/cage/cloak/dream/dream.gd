@@ -8,6 +8,7 @@ var data: DreamData:
 		
 		update_tokens()
 
+@export var cloak: Cloak
 @export var primary_tokens: Array[TokenDesire]
 @export var secondary_token: TokenDesire
 
@@ -18,3 +19,11 @@ func update_tokens() -> void:
 		token.type = data.primary_desire
 	
 	secondary_token.type = data.secondary_desire
+
+func dissolve_tokens() -> void:
+	for token in primary_tokens:
+		token.dissolve()
+	
+	secondary_token.dissolve()
+	await get_tree().create_timer(Catalog.DESIRE_DISSOLVE_DURATION).timeout
+	cloak.cage.switch_side()
