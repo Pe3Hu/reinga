@@ -27,7 +27,6 @@ func init_fates() -> void:
 	while hereafter.sinners.size() < Catalog.GYRE_HEREAFTER_SINNER_SIZE and !fates.is_empty():
 		var fate = fates.pop_back()
 		add_sinner(fate)
-	pass
 
 func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)

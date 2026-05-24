@@ -11,6 +11,7 @@ extends Resource
 @export var guilt: TraitData
 
 var gyre: GyreData
+var dream: DreamData
 
 
 func _init(fate_: Bozo.Fate) -> void:
@@ -18,6 +19,7 @@ func _init(fate_: Bozo.Fate) -> void:
 	faction = Catalog.fate_to_faction[fate]
 	
 	init_traits()
+	dream = DreamData.new(self)
 
 func init_traits() -> void:
 	var trait_options = []

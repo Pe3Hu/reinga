@@ -4,7 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://do7x0nsb3iqqq" path="res://entities/bowl/bowl.tscn" id="2_20sca"]
 [ext_resource type="Texture2D" uid="uid://c7clt6v7ftlp" path="res://entities/hell/nightmare/attitude/images/indifference.png" id="3_rah6n"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rah6n"]
+
 [node name="Attitude" type="PanelContainer" unique_id=925080586 node_paths=PackedStringArray("icon", "bowls")]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rah6n")
 script = ExtResource("1_wh6ds")
 icon = NodePath("Icon")
 type = 96

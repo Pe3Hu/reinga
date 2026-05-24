@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c5uuyg6561qv3"]
+
+[ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/token/token.tscn" id="1_3jg0l"]
+[ext_resource type="Script" uid="uid://bnm04msub2bku" path="res://entities/token/desire/desire.gd" id="1_toi2p"]
+[ext_resource type="Shader" uid="uid://c2fs5w3yu3jk3" path="res://entities/token/desire/desire gradient.gdshader" id="3_u7pk5"]
+[ext_resource type="Texture2D" uid="uid://cikvkssiemrwa" path="res://entities/token/desire/images/wine.png" id="4_u7pk5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_u7pk5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yj8d4"]
+shader = ExtResource("3_u7pk5")
+shader_parameter/effect_filling = 0.999999977648
+shader_parameter/angle = 0.0
+shader_parameter/keep_saturation = 0.0
+shader_parameter/keep_luminance = 0.0
+shader_parameter/color_start = Color(0.59607846, 0.9843137, 0.59607846, 1)
+shader_parameter/start_pos = 0.0
+shader_parameter/color_mid = Color(1, 1, 1, 1)
+shader_parameter/mid_pos = 0.5
+shader_parameter/color_end = Color(0.145, 0.871, 0.145, 1)
+shader_parameter/end_pos = 1.0
+shader_parameter/midpos_enabled = false
+shader_parameter/range_start = 0.0
+shader_parameter/range_end = 1.0
+shader_parameter/range_softedge = 0.1
+shader_parameter/progress = -1.5
+shader_parameter/noiseForce = 0.2
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_u7pk5")
+shader_parameter/burnColor = Color(1, 1, 1, 1)
+shader_parameter/borderWidth = 0.05
+shader_parameter/direction = 180.0
+
+[node name="TokenDesire" unique_id=1672584037 instance=ExtResource("1_3jg0l")]
+script = ExtResource("1_toi2p")
+type = 102
+
+[node name="TextureRect" parent="." index="0" unique_id=2027400341]
+modulate = Color(0.8039216, 0.36078432, 0.36078432, 1)
+material = SubResource("ShaderMaterial_yj8d4")
+texture = ExtResource("4_u7pk5")
+
+[node name="ValueLabel" parent="." index="1" unique_id=1083729365]
+visible = false
+text = "1
+"

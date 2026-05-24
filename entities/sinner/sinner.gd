@@ -3,6 +3,7 @@ extends Control
 class_name Sinner
 
 
+@export var cage: Cage
 @export var fate: Bozo.Fate:
 	set(value_):
 		fate = value_
@@ -33,6 +34,7 @@ var data: SinnerData:
 			%Header.visible = true
 			fate = data.fate
 			connect_datas()
+			cage.cloak.dream.data = data.dream
 		else:
 			%Header.visible = false
 

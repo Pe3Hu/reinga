@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqtuvmogeve5v" path="res://entities/hell/nightmare/nightmare.gd" id="1_khbtt"]
 [ext_resource type="PackedScene" uid="uid://1p5dvi6npkvy" path="res://entities/hell/nightmare/trial/trial.tscn" id="2_jqqfa"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/hell/nightmare/button.tscn" id="3_grd2t"]
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/button/button.tscn" id="3_grd2t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grd2t"]
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dq6a3w48ddhq2" path="res://entities/hell/treasury/tribute/tribute.gd" id="1_8dslb"]
 [ext_resource type="PackedScene" uid="uid://dml6ro6ukmvo3" path="res://entities/token/judgment/judgment.tscn" id="2_abunu"]
 [ext_resource type="PackedScene" uid="uid://0kmvjsv7skyh" path="res://entities/hell/treasury/tribute/candle/candle.tscn" id="2_cicqm"]
+[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/hell/npr_border.tscn" id="2_v3u6x"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/token/sin/sin.tscn" id="3_10cs7"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/token/posture/posture.tscn" id="4_cicqm"]
 [ext_resource type="Shader" uid="uid://dvh5x2623erk2" path="res://entities/hell/treasury/tribute/candle/shaders/tribute border.gdshader" id="5_nutaa"]
@@ -16,41 +17,54 @@ shader_parameter/speed = 3.0
 shader_parameter/radius = 1.0
 shader_parameter/line_thickness = 0.03
 
-[node name="Tribute" type="MarginContainer" unique_id=1743495520 node_paths=PackedStringArray("candle", "border", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
-custom_minimum_size = Vector2(0, 376)
-offset_right = 56.0
-offset_bottom = 376.0
+[node name="Tribute" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "border", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
+custom_minimum_size = Vector2(58, 378)
+offset_right = 4.0
+offset_bottom = 5.0
+mouse_filter = 1
+script = ExtResource("1_8dslb")
+candle = NodePath("NinePatchRect/Margin/Box/Candle")
+border = NodePath("NinePatchRect/Margin/Box/Candle/SelectBorder")
+pride = NodePath("NinePatchRect/Margin/Box/Pride")
+envy = NodePath("NinePatchRect/Margin/Box/Envy")
+anger = NodePath("NinePatchRect/Margin/Box/Anger")
+lust = NodePath("NinePatchRect/Margin/Box/Lust")
+greed = NodePath("NinePatchRect/Margin/Box/Greed")
+gluttony = NodePath("NinePatchRect/Margin/Box/Gluttony")
+madness = NodePath("NinePatchRect/Margin/Box/Madness")
+oblivion = NodePath("NinePatchRect/Margin/Box/Oblivion")
+rank = NodePath("NinePatchRect/Margin/Box/Rank")
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_v3u6x")]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="NinePatchRect" unique_id=1743495520]
+custom_minimum_size = Vector2(56, 376)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 2
-script = ExtResource("1_8dslb")
-candle = NodePath("Box/Candle")
-border = NodePath("Box/Candle/SelectBorder")
-pride = NodePath("Box/Pride")
-envy = NodePath("Box/Envy")
-anger = NodePath("Box/Anger")
-lust = NodePath("Box/Lust")
-greed = NodePath("Box/Greed")
-gluttony = NodePath("Box/Gluttony")
-madness = NodePath("Box/Madness")
-oblivion = NodePath("Box/Oblivion")
-rank = NodePath("Box/Rank")
 
-[node name="Box" type="VBoxContainer" parent="." unique_id=1103355469]
+[node name="Box" type="VBoxContainer" parent="NinePatchRect/Margin" unique_id=1103355469]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Rank" parent="Box" unique_id=1672584037 node_paths=PackedStringArray("tribute") instance=ExtResource("2_abunu")]
+[node name="Rank" parent="NinePatchRect/Margin/Box" unique_id=1672584037 instance=ExtResource("2_abunu")]
 visible = true
 layout_mode = 2
-tribute = NodePath("../..")
 
-[node name="Candle" parent="Box" unique_id=634893612 node_paths=PackedStringArray("tribute") instance=ExtResource("2_cicqm")]
+[node name="Candle" parent="NinePatchRect/Margin/Box" unique_id=634893612 instance=ExtResource("2_cicqm")]
 layout_mode = 2
-tribute = NodePath("../..")
 
-[node name="SelectBorder" type="ColorRect" parent="Box/Candle" unique_id=1408912230]
+[node name="SelectBorder" type="ColorRect" parent="NinePatchRect/Margin/Box/Candle" unique_id=1408912230]
 unique_name_in_owner = true
 visible = false
 material = SubResource("ShaderMaterial_abunu")
@@ -61,58 +75,50 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Anger" parent="Box" unique_id=1974550261 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Anger" parent="NinePatchRect/Margin/Box" unique_id=1974550261 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 3
-tribute = NodePath("../..")
 
-[node name="Envy" parent="Box" unique_id=826058108 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Envy" parent="NinePatchRect/Margin/Box" unique_id=826058108 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 2
-tribute = NodePath("../..")
 
-[node name="Greed" parent="Box" unique_id=39581473 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Greed" parent="NinePatchRect/Margin/Box" unique_id=39581473 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 5
-tribute = NodePath("../..")
 
-[node name="Gluttony" parent="Box" unique_id=1307276266 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Gluttony" parent="NinePatchRect/Margin/Box" unique_id=1307276266 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 6
-tribute = NodePath("../..")
 
-[node name="Lust" parent="Box" unique_id=1882563100 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Lust" parent="NinePatchRect/Margin/Box" unique_id=1882563100 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 4
-tribute = NodePath("../..")
 
-[node name="Pride" parent="Box" unique_id=1494368103 node_paths=PackedStringArray("tribute") instance=ExtResource("3_10cs7")]
+[node name="Pride" parent="NinePatchRect/Margin/Box" unique_id=1494368103 instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 1
-tribute = NodePath("../..")
 
-[node name="Madness" parent="Box" unique_id=1814065818 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
+[node name="Madness" parent="NinePatchRect/Margin/Box" unique_id=1814065818 instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 8
-tribute = NodePath("../..")
 
-[node name="Oblivion" parent="Box" unique_id=710263459 node_paths=PackedStringArray("tribute") instance=ExtResource("4_cicqm")]
+[node name="Oblivion" parent="NinePatchRect/Margin/Box" unique_id=710263459 instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 type = 7
-tribute = NodePath("../..")

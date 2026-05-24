@@ -85,8 +85,7 @@ func sort_icon_shift(token_: Token) -> void:
 func hide_not_selected_tributes() -> void:
 	for tribute in tributes:
 		tribute.visible = tribute.cage == hell.jail.active_cage
-	
+
 func show_all_tributes() -> void:
 	for tribute in tributes:
 		tribute.visible = true
-		

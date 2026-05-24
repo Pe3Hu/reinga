@@ -104,14 +104,17 @@ func update_cages() -> void:
 func next_turn() -> void:
 	hell.tribunal.refill_actual()
 	
-	for _i in hell.tribunal.actual.sinners.size():
-		var sinner_data = hell.tribunal.actual.sinners[_i]
-		var cage = cages.get_child(_i)
-		cage.sinner.data = sinner_data
+	update_sinner_datas()
 	
 	hell.treasury.update_tributes()
 	hell.treasury.resort_judgment(Bozo.Judgment.RANK)
 	hell.treasury.reorder_tribute()
+
+func update_sinner_datas() -> void:
+	for _i in hell.tribunal.actual.sinners.size():
+		var sinner_data = hell.tribunal.actual.sinners[_i]
+		var cage = cages.get_child(_i)
+		cage.sinner.data = sinner_data
 
 func reset_active_cage() -> void:
 	active_cage = null

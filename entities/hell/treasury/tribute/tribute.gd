@@ -1,6 +1,6 @@
 @tool
 class_name Tribute
-extends MarginContainer
+extends PanelContainer
 
 
 var data: TributeData = TributeData.new()

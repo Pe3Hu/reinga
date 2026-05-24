@@ -460,3 +460,57 @@ const attitude_to_string = {
 	Bozo.Attitude.DISFAVOR: "disfavor",
 	Bozo.Attitude.SCORN: "scorn",
 }
+
+#region desire
+const PRIMARY_DESIRE_COUNT: int = 2
+const SECONDARY_DESIRE_COUNT: int = 1
+const DESIRE_DISSOLVE_DURATION: float = 1.2
+
+const desires = [
+	Bozo.Desire.SWORD,
+	Bozo.Desire.COIN,
+	Bozo.Desire.WINE,
+	Bozo.Desire.MASK,
+	Bozo.Desire.SCROLL,
+]
+
+const desire_to_string = {
+	Bozo.Desire.SWORD: "sword",
+	Bozo.Desire.COIN: "coin",
+	Bozo.Desire.WINE: "wine",
+	Bozo.Desire.MASK: "mask",
+	Bozo.Desire.SCROLL: "scroll",
+}
+
+const disere_to_trial = {
+	Bozo.Desire.SWORD: Bozo.Trial.BATTLE,
+	Bozo.Desire.COIN: Bozo.Trial.AUCTION,
+	Bozo.Desire.WINE: Bozo.Trial.FEAST,
+	Bozo.Desire.MASK: Bozo.Trial.MASQUERADE,
+	Bozo.Desire.SCROLL: Bozo.Trial.THEATER,
+}
+
+const trial_to_disere = {
+	Bozo.Trial.BATTLE: Bozo.Desire.SWORD,
+	Bozo.Trial.AUCTION: Bozo.Desire.COIN,
+	Bozo.Trial.FEAST: Bozo.Desire.WINE,
+	Bozo.Trial.MASQUERADE: Bozo.Desire.MASK,
+	Bozo.Trial.THEATER: Bozo.Desire.SCROLL,
+}
+
+const disere_to_angle = {
+	Bozo.Desire.SWORD: -45.0,
+	Bozo.Desire.COIN: 45,
+	Bozo.Desire.WINE: 90,
+	Bozo.Desire.MASK: 0,
+	Bozo.Desire.SCROLL: 180,
+}
+
+const desire_to_color = {
+	Bozo.Desire.SWORD: Color(0.812, 0.157, 0.157),
+	Bozo.Desire.COIN: Color(0.941, 0.859, 0.137),
+	Bozo.Desire.WINE: Color(0.145, 0.871, 0.145),
+	Bozo.Desire.MASK: Color(0.188, 0.714, 0.922),
+	Bozo.Desire.SCROLL: Color(0.42, 0.184, 0.89),
+}
+#endregion

@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bltmo2pppbjre"]
-
-[ext_resource type="Script" uid="uid://nprq0dip3rer" path="res://entities/hell/nightmare/button.gd" id="1_be2hb"]
-
-[node name="Button" type="Button" unique_id=250034607]
-text = "Lock"
-script = ExtResource("1_be2hb")

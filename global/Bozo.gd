@@ -128,3 +128,16 @@ enum Attitude {
 	DISFAVOR = 97,
 	SCORN = 98,
 }
+
+enum Desire {
+	NONE = 0,
+	SWORD = 100,
+	COIN = 101,
+	WINE = 102,
+	MASK = 103,
+	SCROLL = 104
+}
+
+enum Phase {
+	NONE = 0,
+}

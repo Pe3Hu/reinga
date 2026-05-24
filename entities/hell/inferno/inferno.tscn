@@ -98,7 +98,7 @@ modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_kpn7t")
 amount = 400
 texture = ExtResource("2_8ou0o")
-lifetime = 2.0
+lifetime = 3.0
 visibility_rect = Rect2(-200, -100, 400, 200)
 process_material = SubResource("ParticleProcessMaterial_6fu1w")
 

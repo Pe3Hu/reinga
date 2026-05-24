@@ -4,6 +4,7 @@ class_name Cage
 
 var jail: Jail
 @export var sinner: Sinner
+@export var cloak: Cloak
 
 var coord: Vector2i
 
