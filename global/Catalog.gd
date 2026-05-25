@@ -436,13 +436,14 @@ var windrose_to_trait_to_indexs = {
 #endregion
 
 #region volcano
-const DEFAULT_ERUPTION_COUNT: int = 50
+const VOLCANO_SPRITE_SIZE = Vector2(48, 48)
+const DEFAULT_ERUPTION_COUNT: int = 100
 const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
 
 const ERUPTION_DURATION: float = 0.8
-const TRAIL_DURATION: float = 0.4
-const VOLCANO_BURST_DURATION: float = 0.8
+const TRAIL_DURATION: float =  0.4
+const VOLCANO_BURST_DURATION: float =  0.8
 #endregion
 
 #region blob
@@ -454,6 +455,7 @@ const blob_to_string = {
 const blob_default_color = Color.LIGHT_SLATE_GRAY
 #endregion
 
+#region progression
 const attitude_to_string = {
 	Bozo.Attitude.RAPTURE: "rapture",
 	Bozo.Attitude.FAVOR: "favor",
@@ -467,12 +469,13 @@ const half_to_string = {
 	Bozo.Half.MORE: "more",
 	Bozo.Half.DOUBLE: "double",
 }
+#endregion
 
 #region desire
 const PRIMARY_DESIRE_COUNT: int = 2
 const SECONDARY_DESIRE_COUNT: int = 1
-const DESIRE_DISSOLVE_DURATION: float = 1.2
-const SPASH_DURATION: float = 0.5
+const DESIRE_DISSOLVE_DURATION: float = 0.2#1.2
+const SPASH_DURATION: float = 0.2#0.5
 
 const desires = [
 	Bozo.Desire.SWORD,
@@ -522,3 +525,22 @@ const desire_to_color = {
 	Bozo.Desire.SCROLL: Color(0.42, 0.184, 0.89),
 }
 #endregion
+
+
+const phases = [
+	Bozo.Phase.ENDOWMENT,
+	Bozo.Phase.REPLENISHMENT,
+	Bozo.Phase.PAYMENT,
+	Bozo.Phase.APPRAISEMENT,
+	Bozo.Phase.DISBURSEMENT,
+	Bozo.Phase.INVESTMENT,
+]
+
+const phase_to_next = {
+	Bozo.Phase.ENDOWMENT: Bozo.Phase.REPLENISHMENT,
+	Bozo.Phase.REPLENISHMENT: Bozo.Phase.PAYMENT,
+	Bozo.Phase.PAYMENT: Bozo.Phase.APPRAISEMENT,
+	Bozo.Phase.APPRAISEMENT: Bozo.Phase.DISBURSEMENT,
+	Bozo.Phase.DISBURSEMENT: Bozo.Phase.INVESTMENT,
+	Bozo.Phase.INVESTMENT: Bozo.Phase.REPLENISHMENT
+}

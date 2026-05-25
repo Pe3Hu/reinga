@@ -146,4 +146,10 @@ enum Progression {
 
 enum Phase {
 	NONE = 0,
+	ENDOWMENT = 200,
+	REPLENISHMENT = 201,
+	PAYMENT = 202,
+	APPRAISEMENT = 203,
+	DISBURSEMENT = 204,
+	INVESTMENT = 205,
 }

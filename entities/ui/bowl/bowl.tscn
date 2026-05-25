@@ -14,7 +14,6 @@ type = 90
 trial = 11
 side = 92
 blobs = [NodePath("Blobs/CenterBlobs/Blob1"), NodePath("Blobs/SideBlobs/Blob2"), NodePath("Blobs/SideBlobs/Blob3"), NodePath("Blobs/SideBlobs/Blob4"), NodePath("Blobs/SideBlobs/Blob5"), NodePath("Blobs/CenterBlobs/Blob6")]
-value = 2
 
 [node name="Blobs" type="HBoxContainer" parent="." unique_id=359836434]
 unique_name_in_owner = true
@@ -41,10 +40,8 @@ layout_mode = 2
 trial = 11
 
 [node name="Blob2" parent="Blobs/SideBlobs" unique_id=1284606459 instance=ExtResource("2_y4wk2")]
-modulate = Color(0.59607846, 0.9843137, 0.59607846, 1)
 layout_mode = 2
 trial = 11
-is_active = true
 
 [node name="CenterBlobs" type="VBoxContainer" parent="Blobs" unique_id=281839020]
 unique_name_in_owner = true
@@ -57,8 +54,6 @@ size_flags_vertical = 8
 trial = 11
 
 [node name="Blob1" parent="Blobs/CenterBlobs" unique_id=1968183792 instance=ExtResource("2_y4wk2")]
-modulate = Color(0.59607846, 0.9843137, 0.59607846, 1)
 layout_mode = 2
 size_flags_vertical = 0
 trial = 11
-is_active = true

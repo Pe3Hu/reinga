@@ -12,7 +12,7 @@ extends Panel
 		value = value_
 		label.text = str(value)
 		if !always_visible:
-			visible = value > 0
+			visible = value != 0
 		else:
 			visible = true
 

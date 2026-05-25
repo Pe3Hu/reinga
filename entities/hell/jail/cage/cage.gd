@@ -30,7 +30,6 @@ func setup(jail_: Jail, coord_: Vector2i):
 
 func highligh() -> void:
 	jail.reset_cages()
-	jail.active_cage = self
 	row.highligh_cages()
 	col.highligh_cages()
 	jail.update_cages()
@@ -41,4 +40,4 @@ func switch_side() -> void:
 	cloak.visible = !cloak.visible
 
 func _on_texture_button_pressed() -> void:
-	EventBus.cage_selected.emit(self)
+	jail._on_cage_selected(self)

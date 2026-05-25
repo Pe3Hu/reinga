@@ -13,6 +13,7 @@ var tributes: Array[Tribute]
 func _ready() -> void:
 	init_tributes()
 
+#region init
 func init_tributes() -> void:
 	for windrose in Catalog.tribute_windroses:
 		add_tribute(windrose)
@@ -31,11 +32,18 @@ func add_tribute(windrose_: Bozo.Windrose) -> void:
 func get_tribute(windrose_: Bozo.Windrose) -> Tribute:
 	var index = Catalog.tribute_windroses.find(windrose_)
 	return tributes[index]
+#endregion
+
+func appraisement_preparation() -> void:
+	update_tributes()
+	resort_judgment(Bozo.Judgment.RANK)
+	reorder_tribute()
 
 func update_tributes() -> void:
 	for tribute in tributes:
 		tribute.update_tokens()
 
+#region resort
 func resort(token_: Token) -> void:
 	if token_ is TokenSin:
 		resort_sin(token_.type)
@@ -81,11 +89,12 @@ func sort_icon_shift(token_: Token) -> void:
 	var best_token = best_tribute.get_token(token_.type)
 	sort_icon.global_position.y = best_token.global_position.y - 4
 	sort_icon.visible = true
+#endregion
 
 func hide_not_selected_tributes() -> void:
 	for tribute in tributes:
-		tribute.visible = tribute.cage == hell.jail.active_cage
+		tribute.margin_panel.visible = tribute.cage == hell.jail.active_cage
 
 func show_all_tributes() -> void:
 	for tribute in tributes:
-		tribute.visible = true
+		tribute.margin_panel.visible = true

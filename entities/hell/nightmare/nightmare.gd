@@ -9,11 +9,14 @@ var data: NightmareData = NightmareData.new()
 @export var hell: Hell
 @export var lock_button: Button
 
+var type_to_trial: Dictionary
+
 
 func _ready() -> void:
 	for _i in data.trials.size():
 		var trial = trials[_i]
 		trial.data = data.trials[_i]
+		type_to_trial[trial.data.type] = trial
 
 func awaken_dreams() -> void:
 	for cage in hell.jail.cages:
@@ -33,5 +36,3 @@ func awaken_dreams() -> void:
 func _on_lock_button_pressed() -> void:
 	lock_button.visible = false
 	hell.jail.is_locked = true
-	hell.treasury.hide_not_selected_tributes()
-	hell.volcano.burst_eruption()

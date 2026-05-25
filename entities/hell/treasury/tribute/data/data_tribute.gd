@@ -4,6 +4,7 @@ extends Resource
 
 var traits: Array[TraitData]
 var tokens: Array[TokenData]
+var sins: Array[SinData]
 
 var pride: SinData = SinData.new(Bozo.Sin.PRIDE)
 var envy: SinData = SinData.new(Bozo.Sin.ENVY)
@@ -27,6 +28,14 @@ func _init() -> void:
 		gluttony,
 		madness,
 		oblivion,
+	]
+	sins = [
+		pride,
+		envy,
+		anger,
+		lust,
+		greed,
+		gluttony,
 	]
 
 func reset() -> void:

@@ -34,6 +34,3 @@ func init_sin_tokens() -> void:
 		token.value = data.sins[_i].value
 		token.type = data.sins[_i].type
 		sin_to_token[token.type] = token
-
-func update_sins() -> void:
-	pass

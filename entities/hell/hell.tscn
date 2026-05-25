@@ -63,3 +63,9 @@ hell = NodePath("../../../..")
 
 [node name="Volcano" parent="." unique_id=516806711 node_paths=PackedStringArray("hell") instance=ExtResource("2_kcv0y")]
 hell = NodePath("..")
+
+[node name="PhaseTimer" type="Timer" parent="." unique_id=1169019040]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]

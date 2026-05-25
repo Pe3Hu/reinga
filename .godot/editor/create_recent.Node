@@ -1,14 +1,1 @@
-Control
-Node2D
-Label
-MarginContainer
-HBoxContainer
-TextureRect
-VBoxContainer
-PanelContainer
-Button
-NinePatchRect
-GPUParticles2D
-ColorRect
-Camera2D
-Sprite2D
+Timer

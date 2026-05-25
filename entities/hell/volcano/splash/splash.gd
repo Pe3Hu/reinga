@@ -20,7 +20,8 @@ func reset(progression_: Progression, value_: int = 1):
 	
 	value = value_
 	progression = progression_
-	position = Vector2()
+	var y = randf_range(-0.25, -0.75) * Catalog.VOLCANO_SPRITE_SIZE.y
+	position = Vector2(0, y)
 	text = str(value_)
 	if value_ > 0:
 		text = "+"+str(value_)

@@ -42,7 +42,6 @@ var is_locked: bool = false:
 
 
 func _ready():
-	EventBus.cage_selected.connect(_on_cage_selected)
 	init_cages()
 
 func init_cages() -> void:
@@ -104,22 +103,20 @@ func update_cages() -> void:
 			if cage.coord.x > col_index:
 				cage.status = Bozo.Cage.RIGHT
 
-func next_turn() -> void:
-	hell.tribunal.refill_actual()
-	
-	update_sinner_datas()
-	hell.nightmare.awaken_dreams()
-	
-	hell.treasury.update_tributes()
-	hell.treasury.resort_judgment(Bozo.Judgment.RANK)
-	hell.treasury.reorder_tribute()
-
 func update_sinner_datas() -> void:
 	for _i in hell.tribunal.actual.sinners.size():
 		var sinner_data = hell.tribunal.actual.sinners[_i]
 		var cage = cages[_i]
 		cage.sinner.data = sinner_data
+		cage.switch_side()
 
 func reset_active_cage() -> void:
 	active_cage = null
 	reset_cages()
+
+func apply_phase_visiblity() -> void:
+	%Cages.visible = true
+	
+	match Scope.phase:
+		Bozo.Phase.DISBURSEMENT:
+			%Cages.visible = false

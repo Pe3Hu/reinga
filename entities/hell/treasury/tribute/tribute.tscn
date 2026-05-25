@@ -17,7 +17,7 @@ shader_parameter/speed = 3.0
 shader_parameter/radius = 1.0
 shader_parameter/line_thickness = 0.03
 
-[node name="Tribute" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "border", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
+[node name="Tribute" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "border", "margin_panel", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
 custom_minimum_size = Vector2(58, 378)
 offset_right = 4.0
 offset_bottom = 5.0
@@ -25,6 +25,7 @@ mouse_filter = 1
 script = ExtResource("1_8dslb")
 candle = NodePath("NinePatchRect/Margin/Box/Candle")
 border = NodePath("NinePatchRect/Margin/Box/Candle/SelectBorder")
+margin_panel = NodePath("NinePatchRect/Margin")
 pride = NodePath("NinePatchRect/Margin/Box/Pride")
 envy = NodePath("NinePatchRect/Margin/Box/Envy")
 anger = NodePath("NinePatchRect/Margin/Box/Anger")

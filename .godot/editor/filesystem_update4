@@ -1,15 +1,3 @@
-res://entities/hell/volcano/volcano.gd
-res://entities/hell/nightmare/nightmare.gd
-res://entities/hell/volcano/eruption/eruption.gd
-res://entities/hell/volcano/eruption/eruption.tscn
-res://entities/ui/token/desire/desire gradient.gdshader
-res://entities/hell/jail/catena/catena.gdshader
-res://entities/hell/inferno/inferno.gdshader
-res://entities/hell/treasury/tribute/candle/shaders/candle.gdshader
-res://global/Catalog.gd
-res://entities/hell/nightmare/activity/activity.tscn
-res://global/Bozo.gd
-res://entities/hell/nightmare/progression/progression.gd
-res://entities/hell/nightmare/flame/flame.tscn
-res://entities/hell/volcano/splash/splash.gd
-res://entities/hell/nightmare/progression/progression.tscn
+res://entities/hell/hell.gd
+res://entities/hell/hell.tscn
+res://global/Scope.gd

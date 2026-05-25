@@ -9,8 +9,9 @@ extends PanelContainer
 
 @export var type: Bozo.Half:
 	set(value_):
-		type = value_
-		icon.texture = load("res://entities/hell/nightmare/activity/images/%s.png" % Catalog.half_to_string[type])
+		if type != value_:
+			type = value_
+			icon.texture = load("res://entities/hell/nightmare/activity/images/%s.png" % Catalog.half_to_string[type])
 
 
 func _ready() -> void:

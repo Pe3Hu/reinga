@@ -22,10 +22,9 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Catalog="*res://global/Catalog.gd"
-GameState="*uid://b7sfugmovx1ie"
-EventBus="*uid://dr0ta1gtsc74h"
 Bozo="*uid://dbsdvijpm0ge3"
 Helper="*uid://lxf7v5iki76s"
+Scope="*uid://d3yu1hr47arqb"
 
 [display]
 

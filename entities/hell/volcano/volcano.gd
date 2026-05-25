@@ -2,15 +2,12 @@ class_name Volcano
 extends Node
 
 
+var flow: FlowData = FlowData.new()
+
 @export var eruption_scene: PackedScene
 @export var splash_scene: PackedScene
 
-
 @export var hell: Hell
-@export var trials: Array[Trial]
-@export var tokens: Array[TokenSin]
-
-@export var total_eruptions: int
 
 var eruption_pool: Array[Eruption]
 var splash_pool: Array[Splash]
@@ -22,10 +19,12 @@ var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
+	flow.nightmare = hell.nightmare.data
 	prewarm_eruption(Catalog.DEFAULT_ERUPTION_COUNT)
 	prewarm_splash(Catalog.DEFAULT_SPLASH_COUNT)
 	setup_trail_pool(Catalog.DEFAULT_ERUPTION_COUNT * 10)
 
+#region eruption
 func prewarm_eruption(count_: int):
 	for _i in count_:
 		add_eruption()
@@ -49,7 +48,7 @@ func setup_trail_pool(count_: int) -> void:
 func get_eruption() -> Eruption:
 	var eruption: Eruption
 
-	if eruption_pool.size() > 0:
+	if !eruption_pool.is_empty():
 		eruption = eruption_pool.pop_back()
 	else:
 		eruption = eruption_scene.instantiate() as Eruption
@@ -63,83 +62,33 @@ func get_eruption() -> Eruption:
 func return_eruption(eruption_: Eruption):
 	eruption_.visible = false
 	eruption_pool.append(eruption_)
+	#print(["return", eruption_pool.size(), eruption_fridge.size()])
+	
+	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_pool.size() == Catalog.DEFAULT_ERUPTION_COUNT:
+		Scope.in_progress = false
+		Scope.next_phase()
 
+func flow_update():
+	flow.tribute = hell.jail.active_cage.tribute.data
+	flow.init_eruptions()
+	
 func burst_eruption():
-	fill_trials()
-	total_eruptions = min(tokens.size(), trials.size())
-	var step = Catalog.VOLCANO_BURST_DURATION / float(total_eruptions)
+	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
 	apply_shake_effect()
 
-	for _i in range(total_eruptions):
-		await get_tree().create_timer(step).timeout
-		spawn_eruption(_i)
-	
-	#tokens.clear()
-	#trials.clear()
+	for _i in range(flow.eruptions.size()-1, -1, -1):
+		spawn_eruption(_i, step * (_i + 1))
 
-func fill_trials() -> void:
-	var tribute = hell.jail.active_cage.tribute
-	
-	var sin_to_available: Dictionary
-	var sin_to_trial_to_weight: Dictionary
-	var awaited_sins: Array#[Bozo.Sin]
-	
-	for token in tribute.tokens:
-		if token is TokenSin:
-			sin_to_available[token.type] = token.value
-			sin_to_trial_to_weight[token.type] = {}
-	
-	for trial in hell.nightmare.trials:
-		for sin_data in trial.sins:
-			if sin_to_trial_to_weight.has(sin_data.type):
-				sin_to_trial_to_weight[sin_data.type][trial] = sin_data.value
-	
-	while sin_to_available:
-		var sin_type = Helper.get_random_key(sin_to_available)
-		
-		if sin_type == null:
-			sin_to_available.clear()
-			break
-		
-		if !sin_to_trial_to_weight.has(sin_type):
-			awaited_sins.append(sin_type)
-			sin_to_available.erase(sin_type)
-			continue
-		
-		var trial = Helper.get_random_key(sin_to_trial_to_weight[sin_type])
-		var amount = randi_range(1, sin_to_trial_to_weight[sin_type][trial])
-		var token = tribute.get_token(sin_type)
-		
-		for _i in amount:
-			tokens.append(token)
-			trials.append(trial)
-		
-		sin_to_available[sin_type] -= amount
-		
-		if sin_to_available[sin_type] <= 0:
-			sin_to_available.erase(sin_type)
-		
-		sin_to_trial_to_weight[sin_type][trial] -= amount
-		
-		if sin_to_trial_to_weight[sin_type][trial] <= 0:
-			sin_to_trial_to_weight[sin_type].erase(trial)
-		
-		if sin_to_trial_to_weight[sin_type].keys().is_empty():
-			sin_to_trial_to_weight.erase(sin_type)
-
-func spawn_eruption(index_: int):
-	if trials.is_empty() or tokens.is_empty():
-		push_error("Start or End points are not assigned!")
-		return
-
+func spawn_eruption(index_: int, timeout_: float):
+	var eruption_data = flow.eruptions[index_]
+	var token = hell.jail.active_cage.tribute.get_token(eruption_data.sin_type)
+	var trial = hell.nightmare.type_to_trial[eruption_data.trial_type]
+	#print(["spawn", eruption_pool.size(), eruption_fridge.size()])
 	var eruption = get_eruption()
+	eruption.reset(token, trial, timeout_)
+#endregion
 
-	var trial = trials[index_]
-	var token = tokens[index_]
-
-	eruption.reset(token, trial)
-	eruption.call_deferred("activate")
-
+#region shake
 func apply_shake_effect():
 	var camera_tween = get_tree().create_tween()
 	var time = Catalog.VOLCANO_BURST_DURATION + Catalog.ERUPTION_DURATION
@@ -149,7 +98,7 @@ func start_camera_shake(intensity_: float):
 	var camera_offset = camera_shake_noise.get_noise_2d(randf_range(0.0, 100.0), Time.get_ticks_msec() * 0.001) * intensity_
 	camera_2d.offset.x = camera_offset
 	camera_2d.offset.y = camera_offset
-
+#endregion
 
 #region splash
 func prewarm_splash(count_: int):
@@ -175,15 +124,14 @@ func return_splash(splash_: Splash):
 	splash_pool.append(splash_)
 
 func burst_splash(progression_: Progression, count_: int) -> void:
-	if count_ == 1:
-		var splash = get_splash()
-		splash.reset(progression_)
-		return
-	
 	var step = (Catalog.DESIRE_DISSOLVE_DURATION - Catalog.SPASH_DURATION) / float(count_)
 
 	for _i in range(count_):
 		await get_tree().create_timer(step).timeout
 		var splash = get_splash()
 		splash.reset(progression_)
+
+func single_splash(progression_: Progression) -> void:
+	var splash = get_splash()
+	splash.reset(progression_)
 #endregion

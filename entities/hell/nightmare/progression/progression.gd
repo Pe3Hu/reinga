@@ -23,11 +23,11 @@ func update() -> void:
 	
 	match type:
 		Bozo.Progression.ACTIVITY:
-			if current_value < limit_value and node.type != Bozo.Half.LESS:
+			if current_value < limit_value:# and node.type != Bozo.Half.LESS:
 				node.type = Bozo.Half.LESS
-			elif current_value < limit_value * 2 and node.type != Bozo.Half.MORE:
+			elif current_value < limit_value * 2:# and node.type != Bozo.Half.MORE:
 				node.type = Bozo.Half.MORE
-			elif current_value == limit_value * 2 and node.type != Bozo.Half.DOUBLE:
+			elif current_value == limit_value * 2:# and node.type != Bozo.Half.DOUBLE:
 				node.type = Bozo.Half.DOUBLE
 		Bozo.Progression.FLAME:
 			if current_value >= limit_value:

@@ -38,3 +38,4 @@ texture = ExtResource("2_o7m6w")
 layout_mode = 2
 size_flags_horizontal = 4
 type = 106
+limit_value = 20

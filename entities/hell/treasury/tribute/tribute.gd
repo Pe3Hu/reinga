@@ -8,6 +8,7 @@ var data: TributeData = TributeData.new()
 @export var treasury: Treasury
 @export var candle: Candle
 @export var border: ColorRect
+@export var margin_panel: MarginContainer
 
 @export var pride: TokenSin
 @export var envy: TokenSin
@@ -38,6 +39,8 @@ func _ready() -> void:
 	reset_tokens()
 
 func reset_tokens() -> void:
+	data.reset()
+	
 	for token in tokens:
 		token.reset()
 	

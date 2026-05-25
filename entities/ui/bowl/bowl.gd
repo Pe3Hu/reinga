@@ -18,7 +18,7 @@ extends Control
 
 @export var blobs: Array[Blob]
 
-@export_range(0, 6, 1) var value: int:
+@export_range(0, 6, 1) var value: int = 0:
 	set(value_):
 		var shift = value_ - value
 		switch_blob(shift)

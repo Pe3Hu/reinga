@@ -14,12 +14,12 @@ sinner = NodePath("Sinner")
 cloak = NodePath("Cloak")
 
 [node name="Sinner" parent="." unique_id=1474778463 node_paths=PackedStringArray("cage") instance=ExtResource("2_bynt2")]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 cage = NodePath("..")
 
 [node name="Cloak" parent="." unique_id=39582059 node_paths=PackedStringArray("cage") instance=ExtResource("3_r5l2a")]
+visible = false
 layout_mode = 2
 cage = NodePath("..")
 
