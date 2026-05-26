@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_mx65u"]
 [ext_resource type="Script" uid="uid://cbr61jlp6eyut" path="res://entities/ui/token/sin/sin.gd" id="2_k0mcm"]
 [ext_resource type="Texture2D" uid="uid://dugn64otk6dcd" path="res://entities/ui/token/images/sin.png" id="3_sm11y"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_patn8"]
 
 [node name="TokenSin" unique_id=1672584037 instance=ExtResource("1_mx65u")]
 visible = false
@@ -15,3 +16,7 @@ texture = ExtResource("3_sm11y")
 
 [node name="ValueLabel" parent="." index="1" unique_id=1083729365]
 text = "0"
+
+[node name="TooltipInteract" parent="." index="2" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_patn8")]
+layout_mode = 1
+target = NodePath("..")

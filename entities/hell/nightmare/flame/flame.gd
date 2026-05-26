@@ -3,6 +3,7 @@ class_name Flame
 extends PanelContainer
 
 
+@export var type: Bozo.Tooltip = Bozo.Tooltip.FLAME
 @export var trial: Trial
 @export var icon: TextureRect
 @export var progression: Progression

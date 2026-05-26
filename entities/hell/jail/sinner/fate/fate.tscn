@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bcu8tdx132s04"]
+
+[ext_resource type="Script" uid="uid://82od0rw0p61h" path="res://entities/hell/jail/sinner/fate/fate.gd" id="1_kxvkn"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_fsptg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d7qc"]
+
+[node name="Fate" type="Panel" unique_id=1985656009 node_paths=PackedStringArray("label")]
+custom_minimum_size = Vector2(0, 16)
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5d7qc")
+script = ExtResource("1_kxvkn")
+type = 30
+label = NodePath("TypeLabel")
+
+[node name="TypeLabel" type="RichTextLabel" parent="." unique_id=292673400]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Heir"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_fsptg")]
+layout_mode = 1
+target = NodePath("..")

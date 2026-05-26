@@ -71,7 +71,7 @@ func update_tokens() -> void:
 		
 		for index in indexs:
 			var _cage = treasury.hell.jail.cages[index]
-			var trait_data = _cage.sinner.get_trait_data(_trait)
+			var trait_data = _cage.sinner.soul.get_trait_data(_trait)
 			data.traits.append(trait_data)
 	
 	data.recalc()

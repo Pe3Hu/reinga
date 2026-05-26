@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bbxmxhiy4f4i1"]
+
+[ext_resource type="Script" uid="uid://bnjnab8wxvav1" path="res://entities/ui/tooltip/tooltip.gd" id="1_f81pm"]
+[ext_resource type="Script" uid="uid://dgmvmh3mg133w" path="res://entities/ui/label/matrix.gd" id="2_igk67"]
+[ext_resource type="Script" uid="uid://roq4lan4ctto" path="res://entities/ui/label/ghost.gd" id="3_a3sp5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f81pm"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_a3sp5"]
+script = ExtResource("2_igk67")
+metadata/_custom_type_script = "uid://dgmvmh3mg133w"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3u3o7"]
+script = ExtResource("3_a3sp5")
+metadata/_custom_type_script = "uid://roq4lan4ctto"
+
+[node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("label")]
+theme_override_styles/panel = SubResource("StyleBoxFlat_f81pm")
+script = ExtResource("1_f81pm")
+label = NodePath("MarginContainer/RichTextLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1985010751]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1036358874]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "111
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7")]
+meta_underlined = false

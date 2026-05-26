@@ -25,6 +25,7 @@ Catalog="*res://global/Catalog.gd"
 Bozo="*uid://dbsdvijpm0ge3"
 Helper="*uid://lxf7v5iki76s"
 Scope="*uid://d3yu1hr47arqb"
+TooltipManager="*uid://conex48jd2wgi"
 
 [display]
 

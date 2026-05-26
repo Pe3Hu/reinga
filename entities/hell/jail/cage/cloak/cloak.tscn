@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/npr_border.tscn" id="2_kpr6p"]
 [ext_resource type="PackedScene" uid="uid://cdpj6amwhbdjm" path="res://entities/ui/token/faction/faction.tscn" id="3_wb1vr"]
 [ext_resource type="PackedScene" uid="uid://brr6hbxdbyiqr" path="res://entities/hell/jail/cage/cloak/dream/dream.tscn" id="4_4atu8"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="5_0vhm1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4atu8"]
 
@@ -101,3 +102,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 cloak = NodePath("../../../../../..")
+
+[node name="TooltipInteract" parent="Panel/NinePatchRect" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("5_0vhm1")]
+layout_mode = 1
+target = NodePath("../../..")

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hgbxva7v3mmn" path="res://entities/hell/nightmare/activity/activity.gd" id="1_h00t8"]
 [ext_resource type="Texture2D" uid="uid://b6vxl1lb21bfs" path="res://entities/hell/nightmare/activity/images/less.png" id="2_o0j3o"]
 [ext_resource type="PackedScene" uid="uid://bokvfaxgoa8xr" path="res://entities/hell/nightmare/progression/progression.tscn" id="3_a5tkp"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_7lmej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0j3o"]
 
@@ -28,3 +29,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 type = 105
 limit_value = 5
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_7lmej")]
+layout_mode = 2
+target = NodePath("..")

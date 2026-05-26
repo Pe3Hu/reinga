@@ -2,22 +2,23 @@
 
 [ext_resource type="Script" uid="uid://7rki777unic4" path="res://entities/hell/nightmare/trial/trial.gd" id="1_sh5ag"]
 [ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/npr_border.tscn" id="2_16bw8"]
-[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="2_rsvmq"]
 [ext_resource type="PackedScene" uid="uid://c1c5xaejc7vke" path="res://entities/hell/nightmare/attitude/attitude.tscn" id="2_w5v66"]
 [ext_resource type="PackedScene" uid="uid://d34qbt65thfel" path="res://entities/hell/nightmare/activity/activity.tscn" id="4_m7eak"]
+[ext_resource type="PackedScene" uid="uid://ctj1b2idjftmp" path="res://entities/hell/nightmare/trial/claim/claim.tscn" id="4_no32l"]
 [ext_resource type="PackedScene" uid="uid://bfseoli4hdx47" path="res://entities/hell/nightmare/flame/flame.tscn" id="6_no32l"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="7_51ln6"]
 
-[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("sins", "attitude", "activity", "flame")]
+[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("attitude", "activity", "flame", "claim")]
 custom_minimum_size = Vector2(358, 100)
 offset_right = 128.0
 offset_bottom = 84.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_sh5ag")
-sins = [NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin1"), NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin2"), NodePath("NinePatchRect/HBox/VBox/SinContainer/Sins/Sin3")]
 attitude = NodePath("NinePatchRect/HBox/Attitude")
 activity = NodePath("NinePatchRect/HBox/Activity")
 flame = NodePath("NinePatchRect/HBox/Flame")
+claim = NodePath("NinePatchRect/HBox/VBox/Claim")
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_16bw8")]
 layout_mode = 2
@@ -29,9 +30,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.0
+offset_left = -182.0
 offset_top = -48.0
-offset_right = 156.0
+offset_right = 182.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -43,6 +44,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 trial = NodePath("../../..")
+type = 58
 
 [node name="VBox" type="VBoxContainer" parent="NinePatchRect/HBox" unique_id=980774418]
 custom_minimum_size = Vector2(0, 32)
@@ -80,36 +82,9 @@ text = "Auction"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SinContainer" type="MarginContainer" parent="NinePatchRect/HBox/VBox" unique_id=1977348404]
-custom_minimum_size = Vector2(0, 48)
+[node name="Claim" parent="NinePatchRect/HBox/VBox" unique_id=499230753 node_paths=PackedStringArray("trial") instance=ExtResource("4_no32l")]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Sins" type="HBoxContainer" parent="NinePatchRect/HBox/VBox/SinContainer" unique_id=1112698762]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
-
-[node name="Sin1" parent="NinePatchRect/HBox/VBox/SinContainer/Sins" unique_id=1672584037 instance=ExtResource("2_rsvmq")]
-visible = true
-layout_mode = 2
-type = 3
-value = 2
-
-[node name="Sin2" parent="NinePatchRect/HBox/VBox/SinContainer/Sins" unique_id=851171515 instance=ExtResource("2_rsvmq")]
-visible = true
-layout_mode = 2
-type = 2
-value = 1
-
-[node name="Sin3" parent="NinePatchRect/HBox/VBox/SinContainer/Sins" unique_id=1634598779 instance=ExtResource("2_rsvmq")]
-visible = true
-layout_mode = 2
-type = 5
+trial = NodePath("../../../..")
 
 [node name="Attitude" parent="NinePatchRect/HBox" unique_id=925080586 node_paths=PackedStringArray("trial") instance=ExtResource("2_w5v66")]
 layout_mode = 2
@@ -119,4 +94,9 @@ trial = NodePath("../../..")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+type = 307
 trial = NodePath("../../..")
+
+[node name="TooltipInteract" parent="NinePatchRect" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("7_51ln6")]
+layout_mode = 1
+target = NodePath("../..")

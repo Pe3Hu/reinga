@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dwuuh3cev1gfk"]
+
+[ext_resource type="Script" uid="uid://qg73mb015jcf" path="res://entities/ui/tooltip/interact/tooltip_interact.gd" id="1_6dmuh"]
+
+[node name="TooltipInteract" type="Control" unique_id=1790257899]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dmuh")

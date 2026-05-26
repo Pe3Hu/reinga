@@ -18,7 +18,7 @@ var active_cage: Cage:
 		if is_locked: return
 		if active_cage != null:
 			active_cage.tribute.border.visible = false
-			active_cage.sinner.unfocus()
+			active_cage.sinner.fate.unfocus()
 			active_cage.col.visible = false
 			active_cage.row.visible = false
 			hell.nightmare.lock_button.visible = false
@@ -27,7 +27,7 @@ var active_cage: Cage:
 		
 		if active_cage != null:
 			active_cage.tribute.border.visible = true
-			active_cage.sinner.focus()
+			active_cage.sinner.fate.focus()
 			#active_cage.col.visible = true
 			#active_cage.row.visible = true
 			hell.nightmare.lock_button.visible = true

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://crvjqfte61wlt"]
+
+[ext_resource type="Script" uid="uid://mn8lg5gkpgsj" path="res://entities/hell/jail/sinner/soul/soul.gd" id="1_rlesa"]
+[ext_resource type="PackedScene" uid="uid://c7pdwsba8i3ln" path="res://entities/hell/jail/sinner/trait/trait.tscn" id="1_xf3uh"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="3_mnjxa"]
+
+[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("fear", "horror", "guilt", "repose")]
+custom_minimum_size = Vector2(156, 156)
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_rlesa")
+fear = NodePath("TraitFear")
+horror = NodePath("TraitHorror")
+guilt = NodePath("TraitGuilt")
+repose = NodePath("TraitRepose")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2105037464]
+layout_mode = 2
+color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[node name="TraitFear" parent="." unique_id=1493565861 instance=ExtResource("1_xf3uh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+type = 20
+
+[node name="TraitHorror" parent="." unique_id=1900910593 instance=ExtResource("1_xf3uh")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+type = 21
+
+[node name="TraitGuilt" parent="." unique_id=147113289 instance=ExtResource("1_xf3uh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+type = 22
+
+[node name="TraitRepose" parent="." unique_id=578949780 instance=ExtResource("1_xf3uh")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+type = 23
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
+layout_mode = 2
+target = NodePath("..")

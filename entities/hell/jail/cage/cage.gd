@@ -6,17 +6,18 @@ var jail: Jail
 @export var sinner: Sinner
 @export var cloak: Cloak
 
+var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
 var coord: Vector2i
 
 var status: Bozo.Cage = Bozo.Cage.NONE:
 	set(value_):
 		status = value_
 		
-		sinner.reset_blur()
+		sinner.soul.reset_blur()
 		var traits = Catalog.cage_to_traits[status]
 		
 		for _trait in traits:
-			sinner.select_trait(_trait)
+			sinner.soul.select_trait(_trait)
 
 var col: Catena
 var row: Catena

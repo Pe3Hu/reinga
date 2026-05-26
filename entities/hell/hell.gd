@@ -46,7 +46,7 @@ func execute_phase() -> void:
 		Bozo.Phase.APPRAISEMENT:
 			Scope.in_progress = true
 			treasury.appraisement_preparation()
-			simulate_choice()
+			#simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
 			Scope.in_progress = true
 			treasury.hide_not_selected_tributes()

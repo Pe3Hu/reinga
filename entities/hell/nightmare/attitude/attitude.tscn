@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://m42emkfyqb0a" path="res://entities/hell/nightmare/attitude/attitude.gd" id="1_wh6ds"]
 [ext_resource type="PackedScene" uid="uid://do7x0nsb3iqqq" path="res://entities/ui/bowl/bowl.tscn" id="2_20sca"]
 [ext_resource type="Texture2D" uid="uid://c7clt6v7ftlp" path="res://entities/hell/nightmare/attitude/images/indifference.png" id="3_rah6n"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_dlfou"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rah6n"]
 
@@ -30,3 +31,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_rah6n")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_dlfou")]
+layout_mode = 2
+target = NodePath("..")
