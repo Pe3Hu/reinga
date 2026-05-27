@@ -4,40 +4,67 @@ const TOOLTIP_SCENE = preload("res://entities/ui/tooltip/tooltip.tscn")
 
 var root_tooltip: Tooltip
 
+var interacts: Array[TooltipInteract]
+var focused_interact: TooltipInteract
 
+
+# -----------------------------
+# INPUT (ПРАВЫЙ КЛИК)
+# -----------------------------
+func _input(event):
+	if event.is_action_pressed("right_click"):
+		on_right_click(event.position)
+
+
+func on_right_click(mouse_pos: Vector2):
+	clear()
+
+	var data := get_tooltip_data()
+	if data == null: return
+
+	var source_rect := Rect2(mouse_pos, Vector2.ZERO)
+	show_root(data, source_rect)
+
+
+# -----------------------------
+# TOOLTIP ROOT
+# -----------------------------
 func show_root(data: TooltipData, source_rect: Rect2) -> Tooltip:
-	_clear()
+	clear()
 
-	var t := _create_tooltip(data, null)
+	var t := create_tooltip(data, null)
 	root_tooltip = t
 
 	t.source_rect = source_rect
 
-	_position_tooltip(t, source_rect.position)
-
+	update_tooltip_position(t, source_rect.position)
 	return t
 
 
 func show_child(parent: Tooltip, data: TooltipData, pos: Vector2) -> Tooltip:
 	if parent.child:
-		parent.child.destroy_branch()
-
-	var tooltip := _create_tooltip(data, parent)
+		parent.childata.destroy_branch()
+	
+	if data.text.contains("%s "):
+		data.text = data.text.replace("%s ", "")
+	var tooltip := create_tooltip(data, parent)
 	parent.child = tooltip
+	tooltip.close_button.visible = false
+
 	var child_offset = Vector2(-8, -8)
-	_position_tooltip(tooltip, pos + child_offset)
+	update_tooltip_position(tooltip, pos + child_offset)
 
 	return tooltip
 
 
-func _create_tooltip(data: TooltipData, parent: Tooltip) -> Tooltip:
+func create_tooltip(data: TooltipData, parent: Tooltip) -> Tooltip:
 	var t: Tooltip = TOOLTIP_SCENE.instantiate()
 	add_child(t)
 	t.setup(data, parent)
 	return t
 
 
-func _position_tooltip(t: Tooltip, pos: Vector2):
+func update_tooltip_position(t: Tooltip, pos: Vector2):
 	var offset_ = Vector2(24, 24)
 	var final_pos = pos + offset_
 
@@ -53,28 +80,33 @@ func _position_tooltip(t: Tooltip, pos: Vector2):
 	t.global_position = final_pos
 
 
-func _clear():
+func clear():
 	if root_tooltip:
 		root_tooltip.destroy_branch()
 		root_tooltip = null
+	
 
 
-func update_root_hover():
-	if not root_tooltip:
-		return
-
-	var mouse := get_viewport().get_mouse_position()
-
-	if root_tooltip._is_mouse_in_interest_area(mouse):
-		return
-
-	root_tooltip.destroy_branch()
-	root_tooltip = null
-
-
-func _process(_delta):
-	update_root_hover()
-
+func get_tooltip_data() -> TooltipData:
+	if interacts.is_empty(): return null
+	focused_interact = interacts.back()
+	var data = TooltipData.new()
+	data.type = Catalog.type_to_tooltip[focused_interact.target.type]
+	data.text = TooltipManager.get_template(data.type)
+	
+	match data.type:
+		Bozo.Tooltip.SIN:
+			data.text = data.text % Catalog.sin_to_string[focused_interact.target.type].capitalize()
+			
+			if focused_interact.target.get_parent().get_parent() is Claim:
+				data.text = data.text.replace("Produces", "Consumes")
+		#Bozo.Tooltip.MADNESS:
+			#data.text = data.text % Catalog.posture_to_string[target.type]
+		#Bozo.Tooltip.OBLIVION:
+			#data.text = data.text % Catalog.posture_to_string[target.type]
+	
+	data.text = Catalog.tooltip_to_string[data.type].capitalize() + "\n" + data.text
+	return data
 
 func get_template(type_: Bozo.Tooltip) -> String:
 	return Catalog.tooltip_to_template.get(type_ , "Unknown tooltip type")#, "Unknown tooltip type: %s" % type)

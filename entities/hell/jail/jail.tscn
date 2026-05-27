@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa2e4"]
 
 [node name="Jail" type="PanelContainer" unique_id=282794866]
-custom_minimum_size = Vector2(548, 632)
+custom_minimum_size = Vector2(650, 722)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qa2e4")
 script = ExtResource("1_ge72r")

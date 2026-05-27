@@ -1,3 +1,7 @@
+VBoxContainer
+Timer
+TextureButton
+Button
 Camera2D
 SubViewport
 ColorRect
@@ -6,4 +10,3 @@ PanelContainer
 MarginContainer
 Control
 RichTextLabel
-Timer

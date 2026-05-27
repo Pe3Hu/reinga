@@ -598,6 +598,7 @@ var type_to_tooltip = {
 }
 
 const string_to_tooltip = {
+	"sin": Bozo.Tooltip.SIN,
 	"essense": Bozo.Tooltip.ESSENCE,
 	"attitude": Bozo.Tooltip.ATTITUIDE,
 	"overlord": Bozo.Tooltip.OVERLORD,

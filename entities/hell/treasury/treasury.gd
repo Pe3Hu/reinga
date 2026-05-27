@@ -6,6 +6,7 @@ extends PanelContainer
 
 @export var hell: Hell
 @export var sort_icon: TextureRect
+@export var lock_button: CustomButton
 
 var contributions: Array[Contribution]
 
@@ -35,6 +36,8 @@ func get_contribution(windrose_: Bozo.Windrose) -> Contribution:
 #endregion
 
 func appraisement_preparation() -> void:
+	show_vbox()
+	show_all_contributions()
 	update_contributions()
 	resort_judgment(Bozo.Judgment.RANK)
 	reorder_contribution()
@@ -93,8 +96,22 @@ func sort_icon_shift(token_: Token) -> void:
 
 func hide_not_selected_contributions() -> void:
 	for contribution in contributions:
-		contribution.margin_panel.visible = contribution.cage == hell.jail.active_cage
+		contribution.visible = contribution.cage == hell.jail.active_cage
 
 func show_all_contributions() -> void:
 	for contribution in contributions:
-		contribution.margin_panel.visible = true
+		contribution.visible = true
+
+func hide_vbox() -> void:
+	%VBox.visible = false
+
+func show_vbox() -> void:
+	%VBox.visible = true
+
+func _on_lock_button_pressed() -> void:
+	lock_button.visible = false
+	hell.jail.is_locked = true
+	
+	hide_not_selected_contributions()
+	Scope.in_progress = false
+	Scope.next_phase()

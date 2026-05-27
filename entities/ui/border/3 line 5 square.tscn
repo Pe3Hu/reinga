@@ -6,8 +6,9 @@
 texture_filter = 1
 offset_right = 540.0
 offset_bottom = 391.0
+mouse_filter = 1
 texture = ExtResource("1_ghnmm")
-region_rect = Rect2(0, 0, 192, 192)
+region_rect = Rect2(0, 0, 200, 200)
 patch_margin_left = 68
 patch_margin_top = 68
 patch_margin_right = 68

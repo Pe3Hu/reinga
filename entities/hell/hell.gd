@@ -23,8 +23,7 @@ func update_size() -> void:
 
 func simulate_choice() -> void:
 	jail.active_cage = treasury.contributions.back().cage
-	nightmare._on_lock_button_pressed()
-	#nightmare._on_lock_button_pressed()
+	treasury._on_lock_button_pressed()
 	await get_tree().create_timer(1).timeout
 	Scope.in_progress = false
 	Scope.next_phase()

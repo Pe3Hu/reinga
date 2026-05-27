@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://btt636vcw23jm"]
+
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="1_phuxe"]
+[ext_resource type="Script" uid="uid://deihio3a4pehf" path="res://entities/ui/button/lock_button.gd" id="2_c4lkn"]
+
+[node name="LockButton" unique_id=250034607 instance=ExtResource("1_phuxe")]
+text = "Lock"
+script = ExtResource("2_c4lkn")

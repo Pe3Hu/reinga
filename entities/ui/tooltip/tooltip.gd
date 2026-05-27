@@ -9,6 +9,7 @@ const META_DELAY := 0.1
 const EDGE_PADDING := 8.0
 
 @export var label: RichTextLabel
+@export var close_button: TextureButton
 
 var data: TooltipData
 var parent: Tooltip
@@ -27,6 +28,7 @@ var source_rect: Rect2
 
 func _ready():
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	label.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func setup(d: TooltipData, p: Tooltip):
 	data = d
@@ -132,6 +134,7 @@ func destroy_branch():
 		child.destroy_branch()
 
 	_fade(0.0)
+	TooltipManager.interacts.clear()
 
 	await get_tree().create_timer(FADE_TIME).timeout
 	queue_free()
@@ -171,9 +174,21 @@ func update_size_to_fit_text():
 
 	# Calculate the size (returns a Vector2)
 	var text_size = font.get_string_size(visible_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
-	var width = text_size.x + 8
+	var width = text_size.x + 16
 	# Устанавливаем размер (добавляем небольшой отступ)
 	size.x = width
 	
 	# Высоту можно получить через get_content_height()
 	#size.y = label.get_content_height()
+
+
+func close() -> void:
+	close_button.visible = false
+	TooltipManager.clear()
+	
+
+func _on_button_pressed() -> void:
+	close()
+
+func _on_close_timer_timeout() -> void:
+	close()

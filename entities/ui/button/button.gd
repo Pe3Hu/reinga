@@ -1,3 +1,4 @@
+class_name CustomButton
 extends Button
 
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)

@@ -23,11 +23,10 @@ func reset(token_: TokenSin, trial_: Trial, timeout_: float):
 	%ActivateTimer.start()
 	
 	t = 0.0
-	visible = true
 
 func update_vectors() -> void:
 	start = sin_token.global_position
-	var trial_token = trial.sin_to_token[sin_token.type]
+	var trial_token = trial.claim.sin_to_token[sin_token.type]
 	end = trial_token.global_position
 	
 	var shift = Vector2.from_angle(randf() * PI * 2) * Catalog.ERUPTION_OFFSET_L
@@ -48,7 +47,7 @@ func _process(delta_):
 
 	global_position = bezier(start, control, end, time)
 	
-	if get_tree().get_frame() % 6 == 0:
+	if get_tree().get_frame() % 1 == 0:
 		if not volcano.trail_pool.is_empty():
 			var sprite = volcano.trail_pool.pop_front()
 			sprite.global_position = global_position + sprite.texture.get_size() / 2
@@ -78,11 +77,11 @@ func deactivate() -> void:
 	volcano.return_eruption(self)
 	
 	if trial:
-		var trial_token = trial.sin_to_token[sin_token.type]
+		var trial_token = trial.claim.sin_to_token[sin_token.type]
 		trial_token.value -= 1
 		#if trial_token.value < 0:
 		#	volcano.check_sin(sin_token.type)
-		volcano.single_splash(trial.activity.progression)
+		volcano.single_splash(trial.tribute.progression)
 	
 	for trail in trails:
 		trail.visible = false

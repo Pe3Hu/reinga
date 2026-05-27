@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bnjnab8wxvav1" path="res://entities/ui/tooltip/tooltip.gd" id="1_f81pm"]
 [ext_resource type="Script" uid="uid://dgmvmh3mg133w" path="res://entities/ui/label/matrix.gd" id="2_igk67"]
+[ext_resource type="PackedScene" uid="uid://dj3yn6e7xags1" path="res://entities/ui/border/tooltip border.tscn" id="2_mx6om"]
 [ext_resource type="Script" uid="uid://roq4lan4ctto" path="res://entities/ui/label/ghost.gd" id="3_a3sp5"]
+[ext_resource type="Texture2D" uid="uid://k45djv3sp1cg" path="res://entities/ui/button/images/cross 8 normal.png" id="4_3u3o7"]
+[ext_resource type="Texture2D" uid="uid://dgjcas8dbnytt" path="res://entities/ui/button/images/cross 8 hover.png" id="5_2onvb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f81pm"]
 
@@ -14,29 +17,58 @@ metadata/_custom_type_script = "uid://dgmvmh3mg133w"
 script = ExtResource("3_a3sp5")
 metadata/_custom_type_script = "uid://roq4lan4ctto"
 
-[node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("label")]
+[node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("label", "close_button")]
 theme_override_styles/panel = SubResource("StyleBoxFlat_f81pm")
 script = ExtResource("1_f81pm")
 label = NodePath("MarginContainer/RichTextLabel")
+close_button = NodePath("MarginContainer/RichTextLabel/CloseButton")
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_mx6om")]
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1985010751]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
 
 [node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1036358874]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+mouse_filter = 1
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "111
+text = "Test
+test long text
 "
+autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7")]
 meta_underlined = false
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/RichTextLabel" unique_id=929539297]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+texture_normal = ExtResource("4_3u3o7")
+texture_pressed = ExtResource("4_3u3o7")
+texture_hover = ExtResource("5_2onvb")
+texture_focused = ExtResource("4_3u3o7")
+
+[node name="CloseTimer" type="Timer" parent="." unique_id=918154694]
+wait_time = 7.0
+autostart = true
+
+[connection signal="pressed" from="MarginContainer/RichTextLabel/CloseButton" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="CloseTimer" to="." method="_on_close_timer_timeout"]

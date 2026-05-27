@@ -32,7 +32,3 @@ func awaken_dreams() -> void:
 		if desires.has(desire):
 			var heat_value = desires[desire]
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
-
-func _on_lock_button_pressed() -> void:
-	lock_button.visible = false
-	hell.jail.is_locked = true

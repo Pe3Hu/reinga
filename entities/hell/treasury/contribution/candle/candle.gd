@@ -24,7 +24,6 @@ func apply_windrose():
 		%TextureRect.texture = load("res://entities/hell/treasury/contribution/candle/images/%d.png" % windrose)
 		return
 	
-	
 	if windrose == Bozo.Windrose.ESWN:
 		rect.rotation_degrees = 0.0
 		rect.material.shader = load("uid://b0h2a2506yvi1")

@@ -1,15 +1,9 @@
-res://entities/hell/nightmare/trial/trial.tscn
+res://entities/ui/tooltip/tooltip.tscn
 res://entities/sanctuary/shader/matrix.gdshader
 res://entities/sanctuary/shader/portal.gdshader
 res://entities/sanctuary/shader/matrix small.gdshader
 res://entities/sanctuary/shader/mix.gdshader
 res://entities/sanctuary/shader/matrix no bg.gdshader
-res://entities/hell/nightmare/progression/progression.gd
-res://entities/hell/volcano/splash/splash.gd
-res://entities/hell/nightmare/tribute/tribute.gd
-res://entities/hell/hell.tscn
-res://entities/ui/border/3 line 5 square.tscn
-res://entities/ui/border/1 line 0 square.tscn
-res://entities/ui/border/1 line 3 square.tscn
-res://entities/ui/border/1 line 7 square.tscn
-res://entities/ui/border/2 line 3 square.tscn
+res://entities/ui/tooltip/tooltip.gd
+res://entities/hell/volcano/eruption/eruption.gd
+res://global/Catalog.gd

@@ -2,18 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cqtuvmogeve5v" path="res://entities/hell/nightmare/nightmare.gd" id="1_khbtt"]
 [ext_resource type="PackedScene" uid="uid://1p5dvi6npkvy" path="res://entities/hell/nightmare/trial/trial.tscn" id="2_jqqfa"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="3_grd2t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_grd2t"]
 
-[node name="Nightmare" type="PanelContainer" unique_id=1765068744 node_paths=PackedStringArray("trials", "lock_button")]
+[node name="Nightmare" type="PanelContainer" unique_id=1765068744 node_paths=PackedStringArray("trials")]
 custom_minimum_size = Vector2(0, 572)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_grd2t")
 script = ExtResource("1_khbtt")
 trials = [NodePath("VBox/Trials/Battle"), NodePath("VBox/Trials/Auction"), NodePath("VBox/Trials/Feast"), NodePath("VBox/Trials/Masquerade"), NodePath("VBox/Trials/Theater")]
-lock_button = NodePath("VBox/LockButton")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1223715976]
 layout_mode = 2
@@ -52,11 +50,3 @@ type = 12
 layout_mode = 2
 nightmare = NodePath("../../..")
 type = 13
-
-[node name="LockButton" parent="VBox" unique_id=250034607 instance=ExtResource("3_grd2t")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[connection signal="pressed" from="VBox/LockButton" to="." method="_on_lock_button_pressed"]

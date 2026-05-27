@@ -76,6 +76,7 @@ size_flags_vertical = 4
 
 [node name="SelectBorder" type="ColorRect" parent="Margin/Box/Candle" unique_id=1408912230]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_abunu")
 layout_mode = 1
 anchors_preset = 15
