@@ -1,5 +1,6 @@
+ColorRect
 MarginContainer
+PanelContainer
 Control
 RichTextLabel
-PanelContainer
 Timer

@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_ge72r"]
 [ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/hell/jail/catena/catena.tscn" id="3_o0tu8"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa2e4"]
+
 [node name="Jail" type="PanelContainer" unique_id=282794866]
 custom_minimum_size = Vector2(548, 632)
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qa2e4")
 script = ExtResource("1_ge72r")
 cage_scene = ExtResource("2_ge72r")
 catena_scene = ExtResource("3_o0tu8")
