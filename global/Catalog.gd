@@ -375,7 +375,7 @@ var windroses = [
 	Bozo.Windrose.SE,
 ]
 
-var tribute_windroses = [
+var contribution_windroses = [
 	Bozo.Windrose.NW,
 	Bozo.Windrose.W,
 	Bozo.Windrose.SW,
@@ -554,9 +554,9 @@ var type_to_tooltip = {
 	Bozo.Sin.PRIDE: Bozo.Tooltip.SIN,
 	Bozo.Posture.MADNESS: Bozo.Tooltip.MADNESS,
 	Bozo.Posture.OBLIVION: Bozo.Tooltip.OBLIVION,
-	Bozo.Half.LESS: Bozo.Tooltip.ACTIVITY,
-	Bozo.Half.MORE: Bozo.Tooltip.ACTIVITY,
-	Bozo.Half.DOUBLE: Bozo.Tooltip.ACTIVITY,
+	Bozo.Half.LESS: Bozo.Tooltip.TRIBUTE,
+	Bozo.Half.MORE: Bozo.Tooltip.TRIBUTE,
+	Bozo.Half.DOUBLE: Bozo.Tooltip.TRIBUTE,
 	Bozo.Attitude.RAPTURE: Bozo.Tooltip.ATTITUIDE,
 	Bozo.Attitude.FAVOR: Bozo.Tooltip.ATTITUIDE,
 	Bozo.Attitude.INDIFFERENCE: Bozo.Tooltip.ATTITUIDE,
@@ -602,7 +602,7 @@ const string_to_tooltip = {
 	"attitude": Bozo.Tooltip.ATTITUIDE,
 	"overlord": Bozo.Tooltip.OVERLORD,
 	"flame": Bozo.Tooltip.FLAME,
-	"activity": Bozo.Tooltip.ACTIVITY,
+	"tribute": Bozo.Tooltip.TRIBUTE,
 	"claim": Bozo.Tooltip.CLAIM,
 	"desire": Bozo.Tooltip.DESIRE,
 	"faction": Bozo.Tooltip.FACTION,
@@ -616,7 +616,7 @@ var tooltip_to_template = {
 	Bozo.Tooltip.ESSENCE: "Primal hell currency",
 	Bozo.Tooltip.MADNESS: "Makes the game more difficult",
 	Bozo.Tooltip.OBLIVION: "Makes the game easier",
-	Bozo.Tooltip.ACTIVITY: "Changes [ghost][meta attitude]Attitude[/meta][/ghost]",
+	Bozo.Tooltip.TRIBUTE: "Changes [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.ATTITUIDE: "Shows relationship with [ghost][meta overlord]Overlord[/meta][/ghost]",
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essense]Essence[/meta][/ghost]",
 	Bozo.Tooltip.TRIAL: "[ghost][meta overlord]Overlord[/meta][/ghost] domain is formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
@@ -636,7 +636,7 @@ var tooltip_to_string = {
 	Bozo.Tooltip.ESSENCE: "essence",
 	Bozo.Tooltip.MADNESS: "madness",
 	Bozo.Tooltip.OBLIVION: "oblivion",
-	Bozo.Tooltip.ACTIVITY: "activity",
+	Bozo.Tooltip.TRIBUTE: "tribute",
 	Bozo.Tooltip.ATTITUIDE: "attitude",
 	Bozo.Tooltip.TRIAL: "trial",
 	Bozo.Tooltip.FLAME: "flame",

@@ -12,7 +12,7 @@ func reset(progression_: Progression, value_: int = 1):
 	var x_sign = 1
 	
 	match progression_.type:
-		Bozo.Progression.ACTIVITY:
+		Bozo.Progression.TRIBUTE:
 			progression_.current_label.add_child(self)
 			x_sign = -1
 		Bozo.Progression.FLAME:

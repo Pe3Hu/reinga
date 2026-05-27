@@ -2,7 +2,7 @@ class_name FlowData
 extends Resource
 
 
-var tribute: TributeData
+var contribution: ContributionData
 var nightmare: NightmareData
 var eruptions: Array[EruptionData]
 
@@ -14,7 +14,7 @@ func init_eruptions() -> void:
 	sin_to_available.clear()
 	sin_to_trial_to_weight.clear()
 	
-	for _sin in tribute.sins:
+	for _sin in contribution.sins:
 		sin_to_available[_sin.type] = _sin.value
 		sin_to_trial_to_weight[_sin.type] = {}
 	

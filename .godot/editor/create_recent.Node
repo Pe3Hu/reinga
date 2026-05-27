@@ -1,6 +1,9 @@
+Camera2D
+SubViewport
 ColorRect
-MarginContainer
+Sprite2D
 PanelContainer
+MarginContainer
 Control
 RichTextLabel
 Timer

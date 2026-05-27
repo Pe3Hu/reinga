@@ -22,7 +22,7 @@ func update() -> void:
 	var node = get_parent().get_parent()
 	
 	match type:
-		Bozo.Progression.ACTIVITY:
+		Bozo.Progression.TRIBUTE:
 			if current_value < limit_value:# and node.type != Bozo.Half.LESS:
 				node.type = Bozo.Half.LESS
 			elif current_value < limit_value * 2:# and node.type != Bozo.Half.MORE:

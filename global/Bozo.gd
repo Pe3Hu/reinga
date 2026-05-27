@@ -92,7 +92,7 @@ enum Half {
 enum Judgment {
 	NONE = 0,
 	RANK = 61,
-	ACTIVITY = 62
+	TRIBUTE = 62
 }
 
 enum Windrose {
@@ -140,7 +140,7 @@ enum Desire {
 
 enum Progression {
 	NONE = 0,
-	ACTIVITY = 105,
+	TRIBUTE = 105,
 	FLAME = 106
 }
 
@@ -166,7 +166,7 @@ enum Tooltip {
 	DESIRE = 305,
 	CLAIM = 306,
 	FLAME = 307,
-	ACTIVITY = 308,
+	TRIBUTE = 308,
 	SOUL = 309,
 	OBLIVION = 310,
 	MADNESS = 311,

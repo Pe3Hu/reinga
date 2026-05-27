@@ -22,7 +22,7 @@ func update_size() -> void:
 	inferno.resize_rect(viewport_size)
 
 func simulate_choice() -> void:
-	jail.active_cage = treasury.tributes.back().cage
+	jail.active_cage = treasury.contributions.back().cage
 	nightmare._on_lock_button_pressed()
 	#nightmare._on_lock_button_pressed()
 	await get_tree().create_timer(1).timeout
@@ -49,7 +49,7 @@ func execute_phase() -> void:
 			#simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
 			Scope.in_progress = true
-			treasury.hide_not_selected_tributes()
+			treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
 			volcano.flow_update()
 			volcano.burst_eruption()

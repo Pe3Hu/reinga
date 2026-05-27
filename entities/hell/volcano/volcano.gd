@@ -69,7 +69,7 @@ func return_eruption(eruption_: Eruption):
 		Scope.next_phase()
 
 func flow_update():
-	flow.tribute = hell.jail.active_cage.tribute.data
+	flow.contribution = hell.jail.active_cage.contribution.data
 	flow.init_eruptions()
 	
 func burst_eruption():
@@ -81,7 +81,7 @@ func burst_eruption():
 
 func spawn_eruption(index_: int, timeout_: float):
 	var eruption_data = flow.eruptions[index_]
-	var token = hell.jail.active_cage.tribute.get_token(eruption_data.sin_type)
+	var token = hell.jail.active_cage.contribution.get_token(eruption_data.sin_type)
 	var trial = hell.nightmare.type_to_trial[eruption_data.trial_type]
 	#print(["spawn", eruption_pool.size(), eruption_fridge.size()])
 	var eruption = get_eruption()

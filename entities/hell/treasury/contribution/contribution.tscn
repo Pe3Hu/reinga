@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://cvy22kttxafa4"]
+
+[ext_resource type="Script" uid="uid://dq6a3w48ddhq2" path="res://entities/hell/treasury/contribution/contribution.gd" id="1_8dslb"]
+[ext_resource type="PackedScene" uid="uid://dml6ro6ukmvo3" path="res://entities/ui/token/judgment/judgment.tscn" id="2_abunu"]
+[ext_resource type="PackedScene" uid="uid://0kmvjsv7skyh" path="res://entities/hell/treasury/contribution/candle/candle.tscn" id="2_cicqm"]
+[ext_resource type="PackedScene" uid="uid://c26nsodxae3fj" path="res://entities/ui/border/1 line 0 square.tscn" id="2_v3u6x"]
+[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="3_10cs7"]
+[ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_cicqm"]
+[ext_resource type="Shader" uid="uid://dvh5x2623erk2" path="res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader" id="5_nutaa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3u6x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abunu"]
+shader = ExtResource("5_nutaa")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/direction = -1.0
+shader_parameter/frequency = 15.0
+shader_parameter/speed = 3.0
+shader_parameter/radius = 1.0
+shader_parameter/line_thickness = 0.03
+
+[node name="Contribution" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "border", "margin_panel", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "rank")]
+custom_minimum_size = Vector2(58, 388)
+offset_right = 58.0
+offset_bottom = 378.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v3u6x")
+script = ExtResource("1_8dslb")
+candle = NodePath("Margin/Box/Candle")
+border = NodePath("Margin/Box/Candle/SelectBorder")
+margin_panel = NodePath("Margin")
+pride = NodePath("Margin/Box/Pride")
+envy = NodePath("Margin/Box/Envy")
+anger = NodePath("Margin/Box/Anger")
+lust = NodePath("Margin/Box/Lust")
+greed = NodePath("Margin/Box/Greed")
+gluttony = NodePath("Margin/Box/Gluttony")
+madness = NodePath("Margin/Box/Madness")
+oblivion = NodePath("Margin/Box/Oblivion")
+rank = NodePath("Margin/Box/Rank")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1437224617]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 16
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1308274337]
+layout_mode = 2
+color = Color(0.23921569, 0.23921569, 0.23921569, 0.84705883)
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_v3u6x")]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1743495520]
+custom_minimum_size = Vector2(56, 376)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="Box" type="VBoxContainer" parent="Margin" unique_id=1103355469]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Rank" parent="Margin/Box" unique_id=1672584037 instance=ExtResource("2_abunu")]
+visible = true
+layout_mode = 2
+
+[node name="Candle" parent="Margin/Box" unique_id=634893612 instance=ExtResource("2_cicqm")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SelectBorder" type="ColorRect" parent="Margin/Box/Candle" unique_id=1408912230]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_abunu")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Anger" parent="Margin/Box" unique_id=1974550261 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 3
+
+[node name="Envy" parent="Margin/Box" unique_id=826058108 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 2
+
+[node name="Greed" parent="Margin/Box" unique_id=39581473 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 5
+
+[node name="Gluttony" parent="Margin/Box" unique_id=1307276266 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 6
+
+[node name="Lust" parent="Margin/Box" unique_id=1882563100 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 4
+
+[node name="Pride" parent="Margin/Box" unique_id=1494368103 instance=ExtResource("3_10cs7")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 1
+
+[node name="Madness" parent="Margin/Box" unique_id=1814065818 instance=ExtResource("4_cicqm")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 8
+
+[node name="Oblivion" parent="Margin/Box" unique_id=710263459 instance=ExtResource("4_cicqm")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+type = 7

@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://7rki777unic4" path="res://entities/hell/nightmare/trial/trial.gd" id="1_sh5ag"]
 [ext_resource type="PackedScene" uid="uid://d2uerny0as5sv" path="res://entities/ui/border/1 line 3 square.tscn" id="2_51ln6"]
 [ext_resource type="PackedScene" uid="uid://c1c5xaejc7vke" path="res://entities/hell/nightmare/attitude/attitude.tscn" id="2_w5v66"]
-[ext_resource type="PackedScene" uid="uid://d34qbt65thfel" path="res://entities/hell/nightmare/activity/activity.tscn" id="4_m7eak"]
+[ext_resource type="PackedScene" uid="uid://d34qbt65thfel" path="res://entities/hell/nightmare/tribute/tribute.tscn" id="4_m7eak"]
 [ext_resource type="PackedScene" uid="uid://ctj1b2idjftmp" path="res://entities/hell/nightmare/trial/claim/claim.tscn" id="4_no32l"]
 [ext_resource type="PackedScene" uid="uid://bfseoli4hdx47" path="res://entities/hell/nightmare/flame/flame.tscn" id="6_no32l"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="7_51ln6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51ln6"]
 
-[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("attitude", "activity", "flame", "claim")]
+[node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("attitude", "tribute", "flame", "claim")]
 custom_minimum_size = Vector2(358, 100)
 offset_right = 128.0
 offset_bottom = 84.0
@@ -19,7 +19,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_51ln6")
 script = ExtResource("1_sh5ag")
 attitude = NodePath("MarginContainer/HBox/Attitude")
-activity = NodePath("MarginContainer/HBox/Activity")
+tribute = NodePath("MarginContainer/HBox/Tribute")
 flame = NodePath("MarginContainer/HBox/Flame")
 claim = NodePath("MarginContainer/HBox/VBox/Claim")
 
@@ -46,7 +46,7 @@ layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Activity" parent="MarginContainer/HBox" unique_id=281809045 node_paths=PackedStringArray("trial") instance=ExtResource("4_m7eak")]
+[node name="Tribute" parent="MarginContainer/HBox" unique_id=281809045 node_paths=PackedStringArray("trial") instance=ExtResource("4_m7eak")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -110,3 +110,4 @@ target = NodePath("../..")
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_51ln6")]
 layout_mode = 2
+mouse_filter = 2

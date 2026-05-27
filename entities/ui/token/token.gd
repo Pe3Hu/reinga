@@ -2,7 +2,7 @@ class_name Token
 extends Panel
 
 
-@export var tribute: Tribute
+@export var contribution: Contribution
 
 @export var texture_rect: TextureRect
 @export var label: Label
@@ -29,5 +29,5 @@ func _on_gui_input(event: InputEvent) -> void:
 			click_event()
 
 func click_event() -> void:
-	if tribute != null:
-		tribute.treasury.resort(self)
+	if contribution != null:
+		contribution.treasury.resort(self)

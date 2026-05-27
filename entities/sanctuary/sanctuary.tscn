@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b5j0hjjauwolx"]
+
+[ext_resource type="Script" uid="uid://be5r56u7b3uyx" path="res://entities/sanctuary/sanctuary.gd" id="1_8k0x1"]
+[ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="2_svdwa"]
+[ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="3_svdwa"]
+[ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/sanctuary/shader/portal.gdshader" id="4_3m33d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svdwa"]
+
+[sub_resource type="Gradient" id="Gradient_3m33d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ccgy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ajpus"]
+width = 800
+height = 800
+noise = SubResource("FastNoiseLite_4ccgy")
+color_ramp = SubResource("Gradient_3m33d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ccgy"]
+shader = ExtResource("4_3m33d")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_ajpus")
+shader_parameter/radius = 0.15
+shader_parameter/effectControl = 0.45
+shader_parameter/burnSpeed = 0.25
+shader_parameter/shape = 0.0
+shader_parameter/fireColorTop = Color(0.6122994, 7.70092e-07, 4.3317675e-07, 1)
+shader_parameter/fireColorBottom = Color(1, 0.18, 0.27566677, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m33d"]
+shader = ExtResource("2_svdwa")
+shader_parameter/chars = ExtResource("3_svdwa")
+shader_parameter/columns = 60.0
+shader_parameter/trail_color = Color(0.9, 0.09900001, 0.09900001, 1)
+shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
+
+[node name="Sanctuary" type="PanelContainer" unique_id=1191295728]
+clip_contents = true
+offset_right = 1800.0
+offset_bottom = 900.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_svdwa")
+script = ExtResource("1_8k0x1")
+
+[node name="PortalRect" type="ColorRect" parent="." unique_id=238841151]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_4ccgy")
+custom_minimum_size = Vector2(1024, 1024)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MatrixRect" type="ColorRect" parent="." unique_id=615930760]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_3m33d")
+layout_mode = 2

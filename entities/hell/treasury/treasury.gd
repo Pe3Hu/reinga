@@ -2,46 +2,46 @@ class_name Treasury
 extends PanelContainer
 
 
-@export var tribute_scene: PackedScene
+@export var contribution_scene: PackedScene
 
 @export var hell: Hell
 @export var sort_icon: TextureRect
 
-var tributes: Array[Tribute]
+var contributions: Array[Contribution]
 
 
 func _ready() -> void:
-	init_tributes()
+	init_contributions()
 
 #region init
-func init_tributes() -> void:
-	for windrose in Catalog.tribute_windroses:
-		add_tribute(windrose)
+func init_contributions() -> void:
+	for windrose in Catalog.contribution_windroses:
+		add_contribution(windrose)
 
-func add_tribute(windrose_: Bozo.Windrose) -> void:
-	var tribute = tribute_scene.instantiate()
+func add_contribution(windrose_: Bozo.Windrose) -> void:
+	var contribution = contribution_scene.instantiate()
 	var index = Catalog.windroses.find(windrose_)
 	var cage = hell.jail.cages[index]
-	%Tributes.add_child(tribute)
-	tributes.append(tribute)
-	tribute.treasury = self
-	tribute.candle.windrose = windrose_
-	tribute.cage = cage
-	cage.tribute = tribute
+	%Contributions.add_child(contribution)
+	contributions.append(contribution)
+	contribution.treasury = self
+	contribution.candle.windrose = windrose_
+	contribution.cage = cage
+	cage.contribution = contribution
 
-func get_tribute(windrose_: Bozo.Windrose) -> Tribute:
-	var index = Catalog.tribute_windroses.find(windrose_)
-	return tributes[index]
+func get_contribution(windrose_: Bozo.Windrose) -> Contribution:
+	var index = Catalog.contribution_windroses.find(windrose_)
+	return contributions[index]
 #endregion
 
 func appraisement_preparation() -> void:
-	update_tributes()
+	update_contributions()
 	resort_judgment(Bozo.Judgment.RANK)
-	reorder_tribute()
+	reorder_contribution()
 
-func update_tributes() -> void:
-	for tribute in tributes:
-		tribute.update_tokens()
+func update_contributions() -> void:
+	for contribution in contributions:
+		contribution.update_tokens()
 
 #region resort
 func resort(token_: Token) -> void:
@@ -52,49 +52,49 @@ func resort(token_: Token) -> void:
 	if token_ is TokenJudgment:
 		resort_judgment(token_.type)
 	
-	reorder_tribute()
+	reorder_contribution()
 	hell.jail.reset_active_cage()
 	sort_icon_shift(token_)
 
 func resort_sin(type_: Bozo.Sin) -> void:
-	tributes.sort_custom(func(a, b):
+	contributions.sort_custom(func(a, b):
 		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
 func resort_posture(type_: Bozo.Posture) -> void:
 	if type_ == Bozo.Posture.MADNESS: return
-	tributes.sort_custom(func(a, b):
+	contributions.sort_custom(func(a, b):
 		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
 func resort_judgment(type_: Bozo.Judgment) -> void:
-	tributes.sort_custom(func(a, b):
+	contributions.sort_custom(func(a, b):
 		return a.get_token(type_).value < b.get_token(type_).value
 	)
 
-func reorder_tribute() -> void:
-	for _i in range(tributes.size()):
-		%Tributes.move_child(tributes[_i], _i)
+func reorder_contribution() -> void:
+	for _i in range(contributions.size()):
+		%Contributions.move_child(contributions[_i], _i)
 
 func undo_resort() -> void:
-	tributes.sort_custom(func(a, b):
-		return Catalog.tribute_windroses.find(a.candle.windrose) > Catalog.tribute_windroses.find(b.candle.windrose)
+	contributions.sort_custom(func(a, b):
+		return Catalog.contribution_windroses.find(a.candle.windrose) > Catalog.contribution_windroses.find(b.candle.windrose)
 	)
-	reorder_tribute()
+	reorder_contribution()
 	hell.jail.reset_active_cage()
 
 func sort_icon_shift(token_: Token) -> void:
 	if token_.type == Bozo.Posture.MADNESS: return
-	var best_tribute = tributes.back()
-	var best_token = best_tribute.get_token(token_.type)
+	var best_contribution = contributions.back()
+	var best_token = best_contribution.get_token(token_.type)
 	sort_icon.global_position.y = best_token.global_position.y - 4
 	sort_icon.visible = true
 #endregion
 
-func hide_not_selected_tributes() -> void:
-	for tribute in tributes:
-		tribute.margin_panel.visible = tribute.cage == hell.jail.active_cage
+func hide_not_selected_contributions() -> void:
+	for contribution in contributions:
+		contribution.margin_panel.visible = contribution.cage == hell.jail.active_cage
 
-func show_all_tributes() -> void:
-	for tribute in tributes:
-		tribute.margin_panel.visible = true
+func show_all_contributions() -> void:
+	for contribution in contributions:
+		contribution.margin_panel.visible = true
