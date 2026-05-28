@@ -3,17 +3,12 @@
 [ext_resource type="Script" uid="uid://del3f1urt64p" path="res://entities/hell/jail/sinner/trait/trait.gd" id="1_l0bnk"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="2_27ekl"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="3_mjuel"]
-[ext_resource type="Shader" uid="uid://658xgv40dxen" path="res://entities/hell/jail/sinner/trait/blur.gdshader" id="4_27ekl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj1t3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_27ekl"]
-shader = ExtResource("4_27ekl")
-shader_parameter/blur_amount = 0.8
-shader_parameter/radius = 0.25
-shader_parameter/softness = 0.5
-
 [node name="Trait" type="PanelContainer" unique_id=1493565861 node_paths=PackedStringArray("token_grid")]
+offset_right = 32.0
+offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qj1t3")
 script = ExtResource("1_l0bnk")
 token_grid = NodePath("Tokens")
@@ -26,22 +21,3 @@ layout_mode = 2
 theme_override_constants/h_separation = 2
 theme_override_constants/v_separation = 2
 columns = 3
-
-[node name="Control" type="Control" parent="." unique_id=663232985]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="Control" unique_id=1968706119]
-unique_name_in_owner = true
-rect = Rect2(0, 0, 200, 200)
-
-[node name="Blur" type="ColorRect" parent="Control" unique_id=1814168011]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_27ekl")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

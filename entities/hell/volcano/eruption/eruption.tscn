@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dugn64otk6dcd" path="res://entities/ui/token/images/sin.png" id="2_irf0u"]
 
 [node name="Eruption" type="Node2D" unique_id=409762527]
+z_index = -1
 script = ExtResource("1_nrr16")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1435813782]

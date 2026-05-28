@@ -38,3 +38,28 @@ res://entities/hell/jail/sinner/soul/soul.gd
 res://entities/hell/jail/sinner/trait/trait.gd
 res://entities/tribunal/data/data_gyre.gd
 res://entities/tribunal/data/data_tribunal.gd
+res://entities/sanctuary/gate/gate.tscn
+res://entities/sanctuary/gate/gate.gd
+res://entities/hell/jail/cage/cage.gd
+res://entities/hell/jail/catena/catena.gd
+res://entities/sanctuary/gate/shader/portal.gdshader
+res://entities/sanctuary/gate/shader/portal circle.gdshader
+res://entities/sanctuary/gate/shader/portal square.gdshader
+res://entities/hell/inferno/inferno.tscn
+res://entities/hell/inferno/inferno.gd
+res://entities/hell/inferno/void.gdshader
+res://entities/sanctuary/sanctuary.tscn
+res://entities/sanctuary/sanctuary.gd
+res://entities/world/world.tscn
+res://entities/world/world.gd
+res://entities/tribunal/data/data_gate.gd
+res://entities/hell/jail/sinner/data/data_sinner.gd
+res://entities/hell/volcano/eruption/eruption.tscn
+res://entities/ui/token/token.tscn
+res://entities/hell/jail/cage/cage.tscn
+res://entities/hell/jail/catena/catena.tscn
+res://entities/hell/jail/sinner/trait/trait.tscn
+res://entities/hell/jail/sinner/trait/blur.gdshader
+res://entities/sanctuary/gate/gate blur.gdshader
+res://entities/sanctuary/borders.gdshader
+res://entities/sanctuary/coffee.gdshader

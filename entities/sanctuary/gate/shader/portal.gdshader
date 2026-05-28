@@ -1,10 +1,10 @@
 shader_type canvas_item;
 
 uniform sampler2D textureNoise: repeat_enable;
-uniform float radius: hint_range(0.0, 1.0) = 0.15;
-uniform float effectControl: hint_range(0.0, 1.0) = 0.45;
-uniform float burnSpeed: hint_range(0.0, 1.0) = 0.25;
-uniform float shape: hint_range(0.0, 1.0) = 0.0;
+uniform float radius: hint_range(0.0, 1.0) = 0.1;
+uniform float effectControl: hint_range(0.0, 1.0) = 0.55;
+uniform float burnSpeed: hint_range(0.0, 1.0) = 0.33;
+uniform float shape: hint_range(0.0, 1.0) = 0.3;
 
 uniform vec3 fireColorTop  : source_color = vec3(1.0, 0.1, 0.0);
 uniform vec3 fireColorBottom  : source_color = vec3(1.0, 0.6, 0.4);

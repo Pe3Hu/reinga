@@ -24,9 +24,10 @@ extends PanelContainer
 var is_selected: bool = true:
 	set(value_):
 		is_selected = value_
-		%Blur.visible = !is_selected
+		#%Blur.visible = !is_selected
 
 
+#region init
 func _ready() -> void:
 	if sin_scene == null:
 		sin_scene = load("res://entities/token/sin/sin.tscn")
@@ -56,12 +57,14 @@ func add_posture(data_: PostureData) -> void:
 	update_columns()
 	
 func update_columns():
-	%BackBufferCopy.rect = Rect2(%Blur.position, %Blur.size)
+	#var a = %Blur
+	#%BackBufferCopy.rect = Rect2(%Blur.position, %Blur.size)
+	if tokens.is_empty(): return
 	
-	if  tokens.is_empty(): return
 	token_grid.columns = 1
 	if type == Bozo.Triat.FEAR or type == Bozo.Triat.GUILT:
 		token_grid.columns = tokens.size()
+#endregion
 
 func test_max_token_count() -> void:
 	if !data.sins.is_empty():

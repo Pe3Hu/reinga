@@ -12,6 +12,7 @@ extends Resource
 
 var gyre: GyreData
 var dream: DreamData
+var gate: GateData
 
 
 func _init(fate_: Bozo.Fate) -> void:

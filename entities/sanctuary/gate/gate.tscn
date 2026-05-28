@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://dyhxbif7c6n2"]
+
+[ext_resource type="Script" uid="uid://dx0abuuuaaav4" path="res://entities/sanctuary/gate/gate.gd" id="1_73phx"]
+[ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_22103"]
+[ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/hell/jail/catena/catena.tscn" id="3_4f2db"]
+[ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/sanctuary/gate/shader/portal.gdshader" id="4_gmdhp"]
+[ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/sanctuary/gate/gate blur.gdshader" id="5_dans4"]
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="6_ttr3x"]
+
+[sub_resource type="Gradient" id="Gradient_ttr3x"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dans4"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ttr3x"]
+width = 800
+height = 800
+noise = SubResource("FastNoiseLite_dans4")
+color_ramp = SubResource("Gradient_ttr3x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xft3k"]
+shader = ExtResource("4_gmdhp")
+shader_parameter/textureNoise = SubResource("NoiseTexture2D_ttr3x")
+shader_parameter/radius = 0.10000000475
+shader_parameter/effectControl = 0.55
+shader_parameter/burnSpeed = 0.33
+shader_parameter/shape = 0.3
+shader_parameter/fireColorTop = Color(0.6117647, 0, 0, 1)
+shader_parameter/fireColorBottom = Color(1, 0.18039216, 0.27450982, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttr3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hqeo4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ttr3x"]
+shader = ExtResource("5_dans4")
+shader_parameter/selected_row = 0
+shader_parameter/selected_col = 0
+shader_parameter/blur_strength = 0.8
+shader_parameter/blur_amount = 1.0
+
+[node name="Gate" type="Control" unique_id=417570486]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_73phx")
+cage_scene = ExtResource("2_22103")
+catena_scene = ExtResource("3_4f2db")
+
+[node name="Portal" type="ColorRect" parent="." unique_id=1255010420]
+material = SubResource("ShaderMaterial_xft3k")
+custom_minimum_size = Vector2(1083, 1083)
+layout_mode = 0
+offset_left = 418.5
+offset_top = -1.5
+offset_right = 1501.5
+offset_bottom = 1081.5
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=710686505]
+custom_minimum_size = Vector2(650, 884)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -442.0
+offset_right = 325.0
+offset_bottom = 442.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ttr3x")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=470508177]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=2014595488]
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 64
+text = "Fresh Blood"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=56151963]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hqeo4")
+
+[node name="Catenas" type="Control" parent="PanelContainer/VBoxContainer/Panel" unique_id=2048673265]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Cages" type="GridContainer" parent="PanelContainer/VBoxContainer/Panel" unique_id=1458026598]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="Blur" type="ColorRect" parent="PanelContainer/VBoxContainer/Panel" unique_id=1660884187]
+unique_name_in_owner = true
+visible = false
+z_index = 101
+material = SubResource("ShaderMaterial_ttr3x")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SelectButton" parent="PanelContainer/VBoxContainer" unique_id=250034607 instance=ExtResource("6_ttr3x")]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Select"

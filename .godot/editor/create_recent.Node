@@ -1,12 +1,13 @@
+ColorRect
+Control
+PanelContainer
+RichTextLabel
 VBoxContainer
+Label
 Timer
 TextureButton
 Button
 Camera2D
 SubViewport
-ColorRect
 Sprite2D
-PanelContainer
 MarginContainer
-Control
-RichTextLabel

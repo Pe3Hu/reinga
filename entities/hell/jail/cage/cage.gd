@@ -3,6 +3,7 @@ class_name Cage
 
 
 var jail: Jail
+var gate: Gate
 @export var sinner: Sinner
 @export var cloak: Cloak
 
@@ -24,8 +25,11 @@ var row: Catena
 var contribution: Contribution
 
 
-func setup(jail_: Jail, coord_: Vector2i):
-	jail = jail_
+func setup(owner_: Variant, coord_: Vector2i):
+	if owner_ is Jail:
+		jail = owner_
+	if owner_ is Gate:
+		gate = owner_
 	coord = coord_ 
 	position = Vector2(coord) * Catalog.CAGE_SIZE
 
@@ -41,4 +45,8 @@ func switch_side() -> void:
 	cloak.visible = !cloak.visible
 
 func _on_texture_button_pressed() -> void:
-	jail._on_cage_selected(self)
+	if jail:
+		jail._on_cage_selected(self)
+	if gate:
+		gate._on_cage_selected(self)
+		

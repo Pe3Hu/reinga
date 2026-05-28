@@ -3,10 +3,10 @@ extends Node
 
 #region cage
 const JAIL_CAGE_GRID = Vector2i(3, 3)
-const CAGE_SIZE = Vector2(188, 212)
+const CAGE_SIZE = Vector2(214, 238)#Vector2(188, 212)
 const SINNER_PANEL_SIZE = Vector2(172, 196)
 
-const JAIL_SIZE = Vector2(548, 632)
+const JAIL_SIZE = Vector2(650, 722)#Vector2(548, 632)
 
 const cage_to_color = {
 	Bozo.Cage.NONE: Color.WHITE,
@@ -726,4 +726,9 @@ var tooltip_to_string = {
 	Bozo.Tooltip.SINNER: "sinner",
 	Bozo.Tooltip.CLOAK: "cloak",
 }
+#endregion
+
+#region gate
+const GATE_FATE_SIZE = 9
+const GATE_FATE_MAX = 2
 #endregion

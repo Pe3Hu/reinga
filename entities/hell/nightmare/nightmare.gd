@@ -27,7 +27,7 @@ func awaken_dreams() -> void:
 	
 	var desires: Dictionary
 	
-	for sinner in hell.tribunal.actual.sinners:
+	for sinner in hell.world.tribunal.actual.sinners:
 		sinner.dream.update_desires(desires)
 	
 	for trial in trials:

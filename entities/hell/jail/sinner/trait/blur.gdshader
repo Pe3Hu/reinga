@@ -9,10 +9,8 @@ uniform float softness : hint_range(0.0, 0.5) = 0.5;
 void fragment() {
     vec2 uv = SCREEN_UV;
 
-    // расстояние до центра ColorRect (в UV локальных!)
     float dist = distance(UV, vec2(0.5));
 
-    // маска: 1 в центре → 0 к краям
     float mask = 1.0 - smoothstep(radius, radius + softness, dist);
 
     vec3 sharp = texture(SCREEN_TEXTURE, uv).rgb;

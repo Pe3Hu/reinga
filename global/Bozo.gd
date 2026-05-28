@@ -155,6 +155,13 @@ enum Phase {
 	INVESTMENT = 206,
 }
 
+enum Layer {
+	NONE = 0,
+	HELL = 250,
+	GATE = 251,
+	SANCTUARY = 252
+}
+
 enum Tooltip {
 	NONE = 0,
 	OVERLORD = 298,

@@ -47,6 +47,10 @@ func unblur() -> void:
 	for _trait in traits:
 		_trait.is_selected = true
 
+func blur() -> void:
+	for _trait in traits:
+		_trait.is_selected = false
+
 func get_trait_data(trait_: Bozo.Triat) -> TraitData:
 	var trait_str = Catalog.trait_to_string[trait_]
 	var trait_data: Trait = get(trait_str)

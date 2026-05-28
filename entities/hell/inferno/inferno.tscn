@@ -2,7 +2,29 @@
 
 [ext_resource type="Script" uid="uid://c33pre14ygp7x" path="res://entities/hell/inferno/inferno.gd" id="1_6fu1w"]
 [ext_resource type="Texture2D" uid="uid://caj2u032oc102" path="res://entities/hell/inferno/images/ash..png" id="2_8ou0o"]
+[ext_resource type="Shader" uid="uid://ca2rlgnhch40f" path="res://entities/hell/inferno/void.gdshader" id="2_hb8tl"]
 [ext_resource type="Shader" uid="uid://dg17m0ldf7le6" path="res://entities/hell/inferno/inferno.gdshader" id="3_kpn7t"]
+
+[sub_resource type="Gradient" id="Gradient_jb1cd"]
+colors = PackedColorArray(0, 0.5500002, 1, 1, 0.40230015, 0.08099999, 0.54, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4hf3v"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7edp"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_4hf3v")
+color_ramp = SubResource("Gradient_jb1cd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75ftt"]
+shader = ExtResource("2_hb8tl")
+shader_parameter/portal_texture = SubResource("NoiseTexture2D_t7edp")
+shader_parameter/portal_tint = Color(0.33, 0.165, 0.32724997, 1)
+shader_parameter/vortex_effect_radius = 0.9999999776480001
+shader_parameter/twist_strength = 3.5
+shader_parameter/overall_rotation_speed = 0.25
+shader_parameter/texture_scroll_speed = Vector2(0, 0)
+shader_parameter/edge_softness = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hb8tl"]
 shader = ExtResource("3_kpn7t")
@@ -84,8 +106,18 @@ color_initial_ramp = SubResource("GradientTexture1D_t7edp")
 [node name="Inferno" type="Node2D" unique_id=1034484674]
 script = ExtResource("1_6fu1w")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1039139842]
+[node name="VoidBackground" type="ColorRect" parent="." unique_id=742603730]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_75ftt")
+custom_minimum_size = Vector2(300, 300)
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 303.0
+offset_bottom = 304.0
+
+[node name="FireBackground" type="ColorRect" parent="." unique_id=1039139842]
+unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_hb8tl")
 offset_left = -246.0
 offset_top = -187.0
@@ -94,6 +126,7 @@ offset_bottom = 178.0
 
 [node name="AshParticles" type="GPUParticles2D" parent="." unique_id=1073394952]
 unique_name_in_owner = true
+visible = false
 modulate = Color(0, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_kpn7t")
 amount = 400
@@ -104,6 +137,7 @@ process_material = SubResource("ParticleProcessMaterial_6fu1w")
 
 [node name="WindParticles" type="GPUParticles2D" parent="." unique_id=1597794720]
 unique_name_in_owner = true
+visible = false
 amount = 50
 texture = SubResource("GradientTexture2D_jb1cd")
 lifetime = 5.0

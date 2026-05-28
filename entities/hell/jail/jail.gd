@@ -40,6 +40,7 @@ var is_locked: bool = false:
 			hell.treasury.sort_icon.visible = false
 
 
+#region init
 func _ready():
 	init_cages()
 
@@ -82,6 +83,7 @@ func add_cage(coord_: Vector2i) -> void:
 	var col_catena = vector_to_catena[col_coord]
 	col_catena.cages.append(cage)
 	cage.col = col_catena
+#endregion
 
 func _on_cage_selected(cage_: Cage):
 	active_cage = cage_
@@ -103,8 +105,8 @@ func update_cages() -> void:
 				cage.status = Bozo.Cage.RIGHT
 
 func update_sinner_datas() -> void:
-	for _i in hell.tribunal.actual.sinners.size():
-		var sinner_data = hell.tribunal.actual.sinners[_i]
+	for _i in hell.world.tribunal.actual.sinners.size():
+		var sinner_data = hell.world.tribunal.actual.sinners[_i]
 		var cage = cages[_i]
 		cage.sinner.data = sinner_data
 		cage.switch_side()
