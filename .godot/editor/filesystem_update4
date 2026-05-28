@@ -1,9 +1,27 @@
-res://entities/ui/tooltip/tooltip.tscn
+res://entities/hell/hell.tscn
 res://entities/sanctuary/shader/matrix.gdshader
 res://entities/sanctuary/shader/portal.gdshader
 res://entities/sanctuary/shader/matrix small.gdshader
 res://entities/sanctuary/shader/mix.gdshader
 res://entities/sanctuary/shader/matrix no bg.gdshader
-res://entities/ui/tooltip/tooltip.gd
-res://entities/hell/volcano/eruption/eruption.gd
+res://entities/hell/hell.gd
+res://entities/hell/nightmare/trial/trial.tscn
+res://entities/hell/nightmare/nightmare.gd
+res://entities/hell/nightmare/trial/trial.gd
+res://entities/hell/nightmare/tribute/tribute.gd
+res://entities/hell/nightmare/tribute/tribute.tscn
+res://entities/hell/volcano/volcano.gd
 res://global/Catalog.gd
+res://global/Scope.gd
+res://entities/hell/treasury/treasury.gd
+res://entities/hell/treasury/contribution/contribution.tscn
+res://entities/hell/treasury/contribution/contribution.gd
+res://entities/hell/treasury/contribution/data/data_contribution.gd
+res://entities/hell/volcano/data/data_flow.gd
+res://entities/hell/jail/cage/cloak/dream/dream.tscn
+res://entities/ui/token/desire/desire.gd
+res://entities/hell/jail/cage/cloak/dream/dream.gd
+res://entities/ui/bowl/bowl.gd
+res://entities/hell/nightmare/attitude/attitude.gd
+res://entities/ui/bowl/bowl.tscn
+res://entities/hell/nightmare/attitude/attitude.tscn

@@ -18,10 +18,13 @@ var data: ContributionData = ContributionData.new()
 @export var gluttony: TokenSin
 @export var madness: TokenPosture
 @export var oblivion: TokenPosture
-@export var rank: TokenJudgment
+@export var tribute: TokenJudgment
 
 var tokens: Array[Token]
-var cage: Cage
+var cage: Cage:
+	set(value_):
+		cage = value_
+		data.flow.nightmare = cage.jail.hell.nightmare.data
 
 
 func _ready() -> void:
@@ -44,7 +47,7 @@ func reset_tokens() -> void:
 	for token in tokens:
 		token.reset()
 	
-	rank.value = 0
+	tribute.value = 0
 
 func get_token(type_: Variant) -> Token:
 	var str_type: String
@@ -74,8 +77,8 @@ func update_tokens() -> void:
 			var trait_data = _cage.sinner.soul.get_trait_data(_trait)
 			data.traits.append(trait_data)
 	
-	data.recalc()
-	rank.value = data.rank_sum
+	data.calc_token_sums()
+	tribute.value = data.tribute_sum
 	
 	for token_data in data.tokens:
 		change_token_value(token_data.type, token_data.value)

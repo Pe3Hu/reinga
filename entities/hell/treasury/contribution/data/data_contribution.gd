@@ -16,9 +16,12 @@ var madness: PostureData = PostureData.new(Bozo.Posture.MADNESS)
 var oblivion: PostureData = PostureData.new(Bozo.Posture.OBLIVION)
 
 var rank_sum: int = 0
+var tribute_sum: int = 0
+var flow: FlowData = FlowData.new()
 
 
 func _init() -> void:
+	flow.contribution = self
 	tokens = [
 		pride,
 		envy,
@@ -43,9 +46,10 @@ func reset() -> void:
 		token.reset()
 	
 	rank_sum = 0
+	tribute_sum = 0
 	traits.clear()
 
-func recalc() -> void:
+func calc_token_sums() -> void:
 	for _trait in traits:
 		rank_sum += _trait.rank
 		
@@ -53,6 +57,8 @@ func recalc() -> void:
 			change_token(_sin.type, _sin.value)
 		for posture in _trait.postures:
 			change_token(posture.type, posture.value)
+	
+	flow.calc_tribute_sum()
 
 func change_token(type_: Variant, value_: int) -> void:
 	var token = get_token(type_)

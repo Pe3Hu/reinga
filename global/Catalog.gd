@@ -300,7 +300,8 @@ const TRIAL_MIN_SIN_AMOUNT: int = 2
 
 #region rank
 const judgment_to_string = {
-	Bozo.Judgment.RANK: "rank"
+	Bozo.Judgment.RANK: "rank",
+	Bozo.Judgment.TRIBUTE: "tribute"
 }
 
 const traits = [
@@ -464,11 +465,56 @@ const attitude_to_string = {
 	Bozo.Attitude.SCORN: "scorn",
 }
 
+const attitude_to_factor = {
+	Bozo.Attitude.RAPTURE: 1,
+	Bozo.Attitude.FAVOR: 2,
+	Bozo.Attitude.INDIFFERENCE: 3,
+	Bozo.Attitude.DISFAVOR: 2,
+	Bozo.Attitude.SCORN: 1,
+}
+
+const attitude_to_blob_to_attitude = {
+	Bozo.Attitude.RAPTURE: {
+		Bozo.Blob.PLUS: Bozo.Attitude.INDIFFERENCE,
+		Bozo.Blob.MINUS: Bozo.Attitude.FAVOR
+	},
+	Bozo.Attitude.FAVOR: {
+		Bozo.Blob.PLUS: Bozo.Attitude.RAPTURE,
+		Bozo.Blob.MINUS: Bozo.Attitude.INDIFFERENCE
+	},
+	Bozo.Attitude.INDIFFERENCE: {
+		Bozo.Blob.PLUS: Bozo.Attitude.FAVOR,
+		Bozo.Blob.MINUS: Bozo.Attitude.DISFAVOR
+	},
+	Bozo.Attitude.DISFAVOR: {
+		Bozo.Blob.PLUS: Bozo.Attitude.INDIFFERENCE,
+		Bozo.Blob.MINUS: Bozo.Attitude.SCORN
+	},
+	Bozo.Attitude.SCORN: {
+		Bozo.Blob.PLUS: Bozo.Attitude.DISFAVOR,
+		Bozo.Blob.MINUS: Bozo.Attitude.INDIFFERENCE
+	},
+}
+
+const BOWL_LIMIT: int = 6
+
 const half_to_string = {
 	Bozo.Half.LESS: "less",
 	Bozo.Half.MORE: "more",
 	Bozo.Half.DOUBLE: "double",
 }
+
+const half_to_shift = {
+	Bozo.Half.LESS: -1,
+	Bozo.Half.MORE: 1,
+	Bozo.Half.DOUBLE: 2
+}
+
+const WORST_TRIBUTE_SHIFT = -1
+const BEST_TRIBUTE_SHIFT = 1
+
+const DRAIN_TICK = 0.1
+const REPLETION_TICK = 0.5
 #endregion
 
 #region desire
@@ -526,7 +572,7 @@ const desire_to_color = {
 }
 #endregion
 
-
+#region phase
 const phases = [
 	Bozo.Phase.ENDOWMENT,
 	Bozo.Phase.REPLENISHMENT,
@@ -545,6 +591,17 @@ const phase_to_next = {
 	Bozo.Phase.INVESTMENT: Bozo.Phase.REPLENISHMENT
 }
 
+const phase_to_string = {
+	Bozo.Phase.ENDOWMENT: "ENDOWMENT",
+	Bozo.Phase.PAYMENT: "PAYMENT",
+	Bozo.Phase.APPRAISEMENT: "APPRAISEMENT",
+	Bozo.Phase.DISBURSEMENT: "DISBURSEMENT",
+	Bozo.Phase.INVESTMENT: "INVESTMENT",
+	Bozo.Phase.REPLENISHMENT: "REPLENISHMENT"
+}
+#endregion
+
+#region tooltip
 var type_to_tooltip = {
 	Bozo.Sin.ANGER: Bozo.Tooltip.SIN,
 	Bozo.Sin.ENVY: Bozo.Tooltip.SIN,
@@ -650,3 +707,4 @@ var tooltip_to_string = {
 	Bozo.Tooltip.SINNER: "sinner",
 	Bozo.Tooltip.CLOAK: "cloak",
 }
+#endregion

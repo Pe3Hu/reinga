@@ -65,8 +65,8 @@ func return_eruption(eruption_: Eruption):
 	#print(["return", eruption_pool.size(), eruption_fridge.size()])
 	
 	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_pool.size() == Catalog.DEFAULT_ERUPTION_COUNT:
-		Scope.in_progress = false
 		hell.treasury.hide_vbox()
+		Scope.in_progress = false
 		Scope.next_phase()
 
 func flow_update():

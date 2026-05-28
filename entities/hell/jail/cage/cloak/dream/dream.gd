@@ -11,6 +11,9 @@ var data: DreamData:
 @export var cloak: Cloak
 @export var primary_tokens: Array[TokenDesire]
 @export var secondary_token: TokenDesire
+@export var desires: Array[TokenDesire]
+
+var dissolves: Array[TokenDesire]
 
 
 func update_tokens() -> void:
@@ -20,10 +23,17 @@ func update_tokens() -> void:
 	
 	secondary_token.type = data.secondary_desire
 
-func dissolve_tokens() -> void:
-	for token in primary_tokens:
-		token.dissolve()
+func start_dissolve_tokens() -> void:
+	cloak.cage.jail.hell.nightmare.dissolve_dreams.append(self)
+	dissolves.append_array(desires)
 	
-	secondary_token.dissolve()
-	await get_tree().create_timer(Catalog.DESIRE_DISSOLVE_DURATION).timeout
-	cloak.cage.switch_side()
+	for token in desires:
+		token.dissolve()
+
+
+func end_dissolve(desire_: TokenDesire) -> void:
+	dissolves.erase(desire_)
+	
+	if dissolves.is_empty():
+		cloak.cage.jail.hell.nightmare.end_dream_dissolve(self)
+		cloak.cage.switch_side()

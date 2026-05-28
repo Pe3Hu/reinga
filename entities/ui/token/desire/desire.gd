@@ -3,6 +3,7 @@ class_name TokenDesire
 extends Token
 
 
+@export var dream: Dream
 @export var type: Bozo.Desire:
 	set(value_):
 		type = value_
@@ -28,9 +29,13 @@ func _ready() -> void:
 func dissolve():
 	if texture_rect.material and texture_rect.material is ShaderMaterial:
 		var tween = create_tween()
+		var duration = randf_range(0.9, 1.1) * Catalog.DESIRE_DISSOLVE_DURATION
 		var angle = Helper.rng.randf_range(0.0, 360.0)
 		texture_rect.material.set_shader_parameter("direction", angle)
-		tween.tween_method(update_progress, -1.5, 1.6, Catalog.DESIRE_DISSOLVE_DURATION)
+		tween.tween_method(update_progress, -1.5, 1.6, duration)
+		tween.tween_callback(func():
+			dream.end_dissolve(self)
+		)
 	 
 func update_progress(value_: float):
 	if texture_rect.material:

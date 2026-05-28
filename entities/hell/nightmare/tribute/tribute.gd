@@ -14,5 +14,13 @@ extends PanelContainer
 			icon.texture = load("res://entities/hell/nightmare/tribute/images/%s.png" % Catalog.half_to_string[type])
 
 
-func _ready() -> void:
-	pass
+func start_drain() -> void:
+	trial.nightmare.drain_tributes.append(self)
+	var duration = progression.current_value * Catalog.DRAIN_TICK
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(progression, "current_value", 0, duration)
+	tween.tween_callback(func():
+		trial.nightmare.end_tribute_drain(self)
+	)

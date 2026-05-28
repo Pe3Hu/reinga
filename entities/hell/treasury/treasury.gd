@@ -39,7 +39,7 @@ func appraisement_preparation() -> void:
 	show_vbox()
 	show_all_contributions()
 	update_contributions()
-	resort_judgment(Bozo.Judgment.RANK)
+	resort_judgment(Bozo.Judgment.TRIBUTE)
 	reorder_contribution()
 
 func update_contributions() -> void:
@@ -109,9 +109,11 @@ func show_vbox() -> void:
 	%VBox.visible = true
 
 func _on_lock_button_pressed() -> void:
+	lock()
+	Scope.next_phase()
+	
+func lock() -> void:
 	lock_button.visible = false
 	hell.jail.is_locked = true
-	
 	hide_not_selected_contributions()
 	Scope.in_progress = false
-	Scope.next_phase()

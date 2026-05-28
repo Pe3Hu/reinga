@@ -5,12 +5,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0gus"]
 
-[node name="Dream" type="PanelContainer" unique_id=384642275 node_paths=PackedStringArray("primary_tokens", "secondary_token")]
+[node name="Dream" type="PanelContainer" unique_id=384642275 node_paths=PackedStringArray("primary_tokens", "secondary_token", "desires")]
 custom_minimum_size = Vector2(32, 32)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_e0gus")
 script = ExtResource("1_wsku3")
 primary_tokens = [NodePath("VBoxContainer/HBoxContainer/Primary1"), NodePath("VBoxContainer/HBoxContainer/Primary2")]
 secondary_token = NodePath("VBoxContainer/Secondary")
+desires = [NodePath("VBoxContainer/HBoxContainer/Primary1"), NodePath("VBoxContainer/HBoxContainer/Primary2"), NodePath("VBoxContainer/Secondary")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1804014529]
 layout_mode = 2
@@ -21,13 +22,16 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Primary1" parent="VBoxContainer/HBoxContainer" unique_id=1672584037 instance=ExtResource("2_e5v2l")]
+[node name="Primary1" parent="VBoxContainer/HBoxContainer" unique_id=1672584037 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
+dream = NodePath("../../..")
 
-[node name="Primary2" parent="VBoxContainer/HBoxContainer" unique_id=1747933182 instance=ExtResource("2_e5v2l")]
+[node name="Primary2" parent="VBoxContainer/HBoxContainer" unique_id=1747933182 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
+dream = NodePath("../../..")
 
-[node name="Secondary" parent="VBoxContainer" unique_id=1481403845 instance=ExtResource("2_e5v2l")]
+[node name="Secondary" parent="VBoxContainer" unique_id=1481403845 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+dream = NodePath("../..")

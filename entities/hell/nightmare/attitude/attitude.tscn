@@ -12,14 +12,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_rah6n")
 script = ExtResource("1_wh6ds")
 icon = NodePath("Icon")
 type = 96
-bowls = [NodePath("LeftBowl"), NodePath("RightBowl")]
+bowls = [NodePath("MinusBowl"), NodePath("PlusBowl")]
 
-[node name="LeftBowl" parent="." unique_id=2091172175 instance=ExtResource("2_20sca")]
+[node name="MinusBowl" parent="." unique_id=2091172175 instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
 type = 91
 
-[node name="RightBowl" parent="." unique_id=21642768 instance=ExtResource("2_20sca")]
+[node name="PlusBowl" parent="." unique_id=21642768 instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
 side = 93

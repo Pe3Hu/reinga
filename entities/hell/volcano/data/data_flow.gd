@@ -7,6 +7,7 @@ var nightmare: NightmareData
 var eruptions: Array[EruptionData]
 
 var sin_to_available: Dictionary
+var sin_to_demand: Dictionary
 var sin_to_trial_to_weight: Dictionary
 
 
@@ -44,19 +45,30 @@ func init_eruptions() -> void:
 			var eruption = EruptionData.new(self, sin_type, trial)
 			eruptions.append(eruption)
 		
-		if sin_to_available[sin_type] < 0:
-			pass
-		
 		if sin_to_available[sin_type] == 0:
 			sin_to_available.erase(sin_type)
 		
 		sin_to_trial_to_weight[sin_type][trial] -= amount
-		
-		if sin_to_trial_to_weight[sin_type][trial] < 0:
-			pass
 		
 		if sin_to_trial_to_weight[sin_type][trial] == 0:
 			sin_to_trial_to_weight[sin_type].erase(trial)
 		
 		if sin_to_trial_to_weight[sin_type].keys().is_empty():
 			sin_to_trial_to_weight.erase(sin_type)
+
+func calc_tribute_sum() -> void:
+	contribution.tribute_sum = 0
+	sin_to_available.clear()
+	sin_to_demand.clear()
+	
+	for _sin in contribution.sins:
+		sin_to_available[_sin.type] = _sin.value
+		sin_to_demand[_sin.type] = 0
+	
+	for trial in nightmare.trials:
+		for _sin in trial.sins:
+			if sin_to_demand.has(_sin.type):
+				sin_to_demand[_sin.type] += _sin.value
+	
+	for sin_type in sin_to_available:
+		contribution.tribute_sum += min(sin_to_demand[sin_type], sin_to_available[sin_type])

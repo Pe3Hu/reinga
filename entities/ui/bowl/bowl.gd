@@ -3,6 +3,7 @@ class_name Bowl
 extends Control
 
 
+@export var attitude: Attitude
 @export var type: Bozo.Blob:
 	set(value_):
 		type = value_
@@ -23,12 +24,15 @@ extends Control
 		var shift = value_ - value
 		switch_blob(shift)
 		value = value_
+		if value == Catalog.BOWL_LIMIT:
+			attitude.drain_bowl(self)
 
 @export var is_flipped: bool = false:
 	set(value_):
 		#if is_flipped != value_:
 		update_blob_order()
 		is_flipped = value_
+
 
 
 func update_blob_type() -> void:
@@ -71,3 +75,5 @@ func switch_blob(shift_: int) -> void:
 		if index >= 0 and index < blobs.size():
 			var blob = blobs[index]
 			blob.is_active = shift_ > 0
+
+		Scope.in_progress = false
