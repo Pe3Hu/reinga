@@ -59,7 +59,7 @@ offset_right = 1501.5
 offset_bottom = 1081.5
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=710686505]
-custom_minimum_size = Vector2(650, 884)
+custom_minimum_size = Vector2(650, 900)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

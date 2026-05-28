@@ -3,13 +3,25 @@ extends Node
 
 enum Sin {
 	NONE = 0,
-	PRIDE = 1,
+	ANGER = 1,
 	ENVY = 2,
-	ANGER = 3,
-	LUST = 4,
-	GREED = 5, 
-	GLUTTONY = 6
+	GREED = 3, 
+	GLUTTONY = 4,
+	LUST = 5,
+	PRIDE = 6,
 }
+
+enum Amber {
+	NONE = 0,
+	ANGER = 1,
+	ENVY = 2,
+	GREED = 3, 
+	GLUTTONY = 4,
+	LUST = 5,
+	PRIDE = 6,
+	INDOLENCE = -7,
+}
+
 
 enum Posture {
 	NONE = 0,
@@ -153,6 +165,14 @@ enum Phase {
 	DISBURSEMENT = 204,
 	DEVELOPMENT = 205,
 	INVESTMENT = 206,
+}
+
+enum Modifier {
+	NONE = 0,
+	MISS = 220,
+	CRIT = 221,
+	MEGACRIT = 222,
+	ULTRACRIT = 223
 }
 
 enum Layer {

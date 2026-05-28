@@ -1,12 +1,11 @@
 [gd_resource type="StyleBoxTexture" format=3 uid="uid://db2oee8k2qoba"]
 
-[ext_resource type="Texture2D" uid="uid://ikb4cddfpnke" path="res://entities/ui/border/images/ui_border.png" id="1_f34nd"]
+[ext_resource type="Texture2D" uid="uid://drgu0gi6ucrx7" path="res://entities/ui/button/images/button.png" id="1_dcghb"]
 
 [resource]
-texture = ExtResource("1_f34nd")
-texture_margin_left = 3.0
-texture_margin_top = 2.0
-texture_margin_right = 3.0
-texture_margin_bottom = 5.0
-region_rect = Rect2(0, 0, 7, 8)
-modulate_color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+texture = ExtResource("1_dcghb")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(0, 0, 28, 32)

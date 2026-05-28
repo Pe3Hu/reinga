@@ -38,6 +38,7 @@ folder_colors={
 "res://entities/hell/jail/": "green",
 "res://entities/hell/nightmare/": "purple",
 "res://entities/hell/treasury/": "yellow",
+"res://entities/hell/underground/": "gray",
 "res://entities/hell/volcano/": "red",
 "res://entities/sinner/": "red",
 "res://entities/tribunal/": "pink",

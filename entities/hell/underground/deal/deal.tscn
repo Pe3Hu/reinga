@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://crlket5dp8m2r"]
+
+[ext_resource type="Script" uid="uid://1oeyqv3nxtwd" path="res://entities/hell/underground/deal/deal.gd" id="1_smell"]
+[ext_resource type="PackedScene" uid="uid://v3ake58hqvvd" path="res://entities/ui/border/0 line 0 square.tscn" id="2_5v5v6"]
+[ext_resource type="PackedScene" uid="uid://betsvirwxjqy7" path="res://entities/ui/token/amber/amber.tscn" id="2_7mydp"]
+[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="3_5v5v6"]
+
+[node name="Deal" type="PanelContainer" unique_id=970576021 node_paths=PackedStringArray("sin_token", "amber_token")]
+script = ExtResource("1_smell")
+sin_token = NodePath("MarginContainer/VBoxContainer/TokenSin")
+amber_token = NodePath("MarginContainer/VBoxContainer/TokenAmber")
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_5v5v6")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1365227577]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=821791903]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="TokenSin" parent="MarginContainer/VBoxContainer" unique_id=1672584037 instance=ExtResource("3_5v5v6")]
+visible = true
+layout_mode = 2
+
+[node name="TokenAmber" parent="MarginContainer/VBoxContainer" unique_id=634912735 instance=ExtResource("2_7mydp")]
+visible = true
+layout_mode = 2

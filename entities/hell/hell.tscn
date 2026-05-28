@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://sku4ussmdh7x" path="res://entities/hell/nightmare/nightmare.tscn" id="2_hymf2"]
 [ext_resource type="PackedScene" uid="uid://dkdcibsiow4i8" path="res://entities/hell/volcano/volcano.tscn" id="2_kcv0y"]
 [ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/hell/jail/jail.tscn" id="2_kksrj"]
+[ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="3_b2gxv"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
 [ext_resource type="PackedScene" uid="uid://d3rj37vuqu6pa" path="res://entities/ui/border/3 line 5 square.tscn" id="3_qjiqm"]
+[ext_resource type="PackedScene" uid="uid://ciho4pq82ouf5" path="res://entities/hell/underground/shelter/shelter.tscn" id="6_0u57p"]
+[ext_resource type="PackedScene" uid="uid://bic8fb8vsph13" path="res://entities/hell/underground/market/market.tscn" id="7_b2gxv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmjwd"]
 bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0)
@@ -18,13 +21,15 @@ script = ExtResource("1_al7up")
 volcano = NodePath("Volcano")
 nightmare = NodePath("UI/MarginContainer/HBox/Nightmare")
 jail = NodePath("UI/MarginContainer/HBox/Jail")
-treasury = NodePath("UI/MarginContainer/HBox/Treasury")
+treasury = NodePath("UI/MarginContainer/HBox/VBoxContainer/Treasury")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 4.0
-offset_bottom = 5.0
+offset_left = -881.0
+offset_top = -375.0
+offset_right = 881.0
+offset_bottom = 427.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xmjwd")
 
@@ -54,9 +59,30 @@ hell = NodePath("../../../..")
 layout_mode = 2
 hell = NodePath("../../../..")
 
-[node name="Treasury" parent="UI/MarginContainer/HBox" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBox" unique_id=899020654]
 layout_mode = 2
-hell = NodePath("../../../..")
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=1357191306]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=388645775 instance=ExtResource("3_b2gxv")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Shelter" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=526715784 instance=ExtResource("6_0u57p")]
+layout_mode = 2
+
+[node name="Treasury" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]
+layout_mode = 2
+hell = NodePath("../../../../..")
+
+[node name="Market" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=255913063 instance=ExtResource("7_b2gxv")]
+layout_mode = 2
 
 [node name="Volcano" parent="." unique_id=516806711 node_paths=PackedStringArray("hell") instance=ExtResource("2_kcv0y")]
 hell = NodePath("..")

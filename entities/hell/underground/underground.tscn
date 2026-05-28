@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://kraoobf5ksow"]
+
+[ext_resource type="Script" uid="uid://0cfgnkumuh1i" path="res://entities/hell/underground/underground.gd" id="1_h18uu"]
+[ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="2_exxsi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exxsi"]
+
+[node name="Underground" type="PanelContainer" unique_id=2000279231]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_exxsi")
+script = ExtResource("1_h18uu")
+
+[node name="Bank" parent="." unique_id=388645775 instance=ExtResource("2_exxsi")]
+layout_mode = 2

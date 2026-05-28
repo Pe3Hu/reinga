@@ -8,11 +8,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ajpus"]
 shader = ExtResource("2_4ccgy")
-shader_parameter/colorA = Color(0.05, 0, 0.2, 1)
-shader_parameter/colorB = Color(0.301, 0.46725002, 0.7, 1)
-shader_parameter/colorC = Color(0.39999998, 0.19999999, 1, 1)
+shader_parameter/colorA = Color(0, 0.090000056, 0.2, 1)
+shader_parameter/colorB = Color(0.301, 0.55370003, 0.7, 1)
+shader_parameter/colorC = Color(0.19999999, 0.7066667, 1, 1)
 shader_parameter/discomode = false
-shader_parameter/speed = 0.10000000149012
+shader_parameter/speed = 0.20000000624012
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m33d"]
 shader = ExtResource("2_svdwa")
@@ -47,6 +47,7 @@ shader_parameter/vignette_falloff = 0.25
 shader_parameter/noise_influence = 1.0
 
 [node name="Sanctuary" type="Control" unique_id=550126807]
+visible = false
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0

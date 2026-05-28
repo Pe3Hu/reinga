@@ -58,13 +58,13 @@ const sins = [
 	Bozo.Sin.PRIDE,
 ]
 
-const sin_to_color = {
-	Bozo.Sin.PRIDE: Color.REBECCA_PURPLE,
-	Bozo.Sin.ENVY: Color.DARK_ORANGE,
-	Bozo.Sin.ANGER: Color.CRIMSON,
-	Bozo.Sin.LUST: Color.ROYAL_BLUE,
-	Bozo.Sin.GREED: Color.GOLD,
-	Bozo.Sin.GLUTTONY: Color.SEA_GREEN,
+var sin_to_color = {
+	Bozo.Sin.PRIDE: Color.from_hsv(0.75, 0.9, 0.9),
+	Bozo.Sin.ENVY: Color.from_hsv(0.08, 0.9, 0.9),
+	Bozo.Sin.ANGER: Color.from_hsv(0.0, 0.9, 0.9),
+	Bozo.Sin.LUST: Color.from_hsv(0.6, 0.9, 0.9),
+	Bozo.Sin.GREED: Color.from_hsv(0.15, 0.9, 0.9),
+	Bozo.Sin.GLUTTONY: Color.from_hsv(0.4, 0.9, 0.9),
 }
 
 const sin_to_string = {
@@ -74,6 +74,27 @@ const sin_to_string = {
 	Bozo.Sin.LUST: "lust",
 	Bozo.Sin.GREED: "greed",
 	Bozo.Sin.GLUTTONY: "gluttony",
+}
+
+
+var amber_to_color = {
+	Bozo.Amber.PRIDE: Color.from_hsv(0.75, 0.7, 0.6),
+	Bozo.Amber.ENVY: Color.from_hsv(0.08, 0.7, 0.6),
+	Bozo.Amber.ANGER: Color.from_hsv(0.0, 0.7, 0.6),
+	Bozo.Amber.LUST: Color.from_hsv(0.6, 0.7, 0.6),
+	Bozo.Amber.GREED: Color.from_hsv(0.15, 0.7, 0.6),
+	Bozo.Amber.GLUTTONY: Color.from_hsv(0.4, 0.7, 0.6),
+	Bozo.Amber.INDOLENCE: Color.from_hsv(1.0, 0.0, 1.0)
+}
+
+const amber_to_string = {
+	Bozo.Amber.PRIDE: "pride",
+	Bozo.Amber.ENVY: "envy",
+	Bozo.Amber.ANGER: "anger",
+	Bozo.Amber.LUST: "lust",
+	Bozo.Amber.GREED: "greed",
+	Bozo.Amber.GLUTTONY: "gluttony",
+	Bozo.Amber.INDOLENCE: "indolence",
 }
 #endregion
 
@@ -588,6 +609,14 @@ const desire_to_color = {
 }
 #endregion
 
+const modifier_to_string = {
+	Bozo.Modifier.MISS: "miss",
+	Bozo.Modifier.CRIT: "crit",
+	Bozo.Modifier.MEGACRIT: "megacrit",
+	Bozo.Modifier.ULTRACRIT: "ultracrit",
+}
+
+
 #region phase
 const phases = [
 	Bozo.Phase.ENDOWMENT,
@@ -731,4 +760,14 @@ var tooltip_to_string = {
 #region gate
 const GATE_FATE_SIZE = 9
 const GATE_FATE_MAX = 2
+#endregion
+
+#region market
+const market_in_range = {
+	1: [8, 10]
+}
+
+const market_out_range = {
+	1: [4, 6]
+}
 #endregion

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bic8fb8vsph13"]
+
+[ext_resource type="Script" uid="uid://b243osiwvkuef" path="res://entities/hell/underground/market/market.gd" id="1_cojst"]
+[ext_resource type="PackedScene" uid="uid://crlket5dp8m2r" path="res://entities/hell/underground/deal/deal.tscn" id="1_exak4"]
+[ext_resource type="PackedScene" uid="uid://dulgip855c2ob" path="res://entities/ui/border/2 line 0 square.tscn" id="2_qov3d"]
+
+[node name="Market" type="PanelContainer" unique_id=255913063 node_paths=PackedStringArray("deals")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -54.0
+offset_right = 102.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_cojst")
+deals = [NodePath("MarginContainer/Deals/Deal1"), NodePath("MarginContainer/Deals/Deal2"), NodePath("MarginContainer/Deals/Deal3"), NodePath("MarginContainer/Deals/Deal4"), NodePath("MarginContainer/Deals/Deal5"), NodePath("MarginContainer/Deals/Deal6")]
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_qov3d")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1194021884]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Deals" type="HBoxContainer" parent="MarginContainer" unique_id=6905708]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Deal1" parent="MarginContainer/Deals" unique_id=970576021 instance=ExtResource("1_exak4")]
+layout_mode = 2
+
+[node name="Deal2" parent="MarginContainer/Deals" unique_id=2105158313 instance=ExtResource("1_exak4")]
+layout_mode = 2
+
+[node name="Deal3" parent="MarginContainer/Deals" unique_id=435275889 instance=ExtResource("1_exak4")]
+layout_mode = 2
+
+[node name="Deal4" parent="MarginContainer/Deals" unique_id=1134187120 instance=ExtResource("1_exak4")]
+layout_mode = 2
+
+[node name="Deal5" parent="MarginContainer/Deals" unique_id=164568404 instance=ExtResource("1_exak4")]
+layout_mode = 2
+
+[node name="Deal6" parent="MarginContainer/Deals" unique_id=536713568 instance=ExtResource("1_exak4")]
+layout_mode = 2

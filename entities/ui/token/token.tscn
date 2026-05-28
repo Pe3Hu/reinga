@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://73yuvwyoiyqh"]
 
-[ext_resource type="Texture2D" uid="uid://8kjv4yrf5ew3" path="res://entities/ui/token/images/oblivion.png" id="1_5ppb3"]
+[ext_resource type="Texture2D" uid="uid://8kjv4yrf5ew3" path="res://entities/ui/token/images/amber.png" id="1_5ppb3"]
 [ext_resource type="Script" uid="uid://crgcsvoom0jid" path="res://entities/ui/token/token.gd" id="1_et4ju"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_072et"]

@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://cmk5hxv43634p"]
+
+[ext_resource type="Script" uid="uid://dd33wupdgckon" path="res://entities/hell/underground/bank/bank.gd" id="1_s3piu"]
+[ext_resource type="PackedScene" uid="uid://betsvirwxjqy7" path="res://entities/ui/token/amber/amber.tscn" id="2_3vq1a"]
+[ext_resource type="PackedScene" uid="uid://c26nsodxae3fj" path="res://entities/ui/border/1 line 0 square.tscn" id="2_43la0"]
+[ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_2q8u8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vq1a"]
+
+[node name="Bank" type="PanelContainer" unique_id=388645775]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3vq1a")
+script = ExtResource("1_s3piu")
+
+[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_43la0")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1704929901]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=1927856651]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1645152643]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1917045613]
+layout_mode = 2
+
+[node name="Ambers" type="HBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1288958843]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Anger" parent="MarginContainer/HBoxContainer/Ambers" unique_id=1672584037 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 1
+
+[node name="Envy" parent="MarginContainer/HBoxContainer/Ambers" unique_id=2011394348 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 2
+
+[node name="Greed" parent="MarginContainer/HBoxContainer/Ambers" unique_id=1303019151 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 3
+
+[node name="Gluttony" parent="MarginContainer/HBoxContainer/Ambers" unique_id=1377352268 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 4
+
+[node name="Lust" parent="MarginContainer/HBoxContainer/Ambers" unique_id=386423178 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 5
+
+[node name="Pride" parent="MarginContainer/HBoxContainer/Ambers" unique_id=1059953365 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = 6
+
+[node name="Indolence" parent="MarginContainer/HBoxContainer/Ambers" unique_id=1763473416 instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+type = -7
+
+[node name="Madness" parent="MarginContainer/HBoxContainer" unique_id=459988574 instance=ExtResource("4_2q8u8")]
+visible = true
+layout_mode = 2
+type = 8
+
+[node name="Oblivion" parent="MarginContainer/HBoxContainer" unique_id=392952052 instance=ExtResource("4_2q8u8")]
+visible = true
+layout_mode = 2
+type = 7
