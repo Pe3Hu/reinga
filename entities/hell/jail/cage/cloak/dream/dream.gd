@@ -30,7 +30,6 @@ func start_dissolve_tokens() -> void:
 	for token in desires:
 		token.dissolve()
 
-
 func end_dissolve(desire_: TokenDesire) -> void:
 	dissolves.erase(desire_)
 	

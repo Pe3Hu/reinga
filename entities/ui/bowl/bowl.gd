@@ -19,13 +19,17 @@ extends Control
 
 @export var blobs: Array[Blob]
 
-@export_range(0, 6, 1) var value: int = 0:
+@export var value: int = 0:
 	set(value_):
 		var shift = value_ - value
 		switch_blob(shift)
 		value = value_
-		if value == Catalog.BOWL_LIMIT:
+		if value_ == Catalog.BOWL_LIMIT:
 			attitude.drain_bowl(self)
+
+var step: int = 0:
+	set(value_):
+		step = value
 
 @export var is_flipped: bool = false:
 	set(value_):
@@ -76,4 +80,8 @@ func switch_blob(shift_: int) -> void:
 			var blob = blobs[index]
 			blob.is_active = shift_ > 0
 
-		Scope.in_progress = false
+func reset() -> void:
+	value = 0
+	
+	for blob in blobs:
+		blob.is_active = false

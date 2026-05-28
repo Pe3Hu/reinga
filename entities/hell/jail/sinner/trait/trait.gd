@@ -71,3 +71,8 @@ func test_max_token_count() -> void:
 	if !data.postures.is_empty():
 		while tokens.size() < 3:
 			add_posture(data.postures.front())
+
+func reset() -> void:
+	while !tokens.is_empty():
+		var token = tokens.pop_back()
+		token_grid.remove_child(token)

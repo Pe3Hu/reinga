@@ -4,6 +4,7 @@ extends Resource
 
 var tribunal: TribunalData
 var fol: GyreData
+var ere: GyreData
 
 @export var type: Bozo.Gyre 
 

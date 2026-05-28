@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctj1b2idjftmp"]
 
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="1_eejge"]
-[ext_resource type="Script" uid="uid://brntlor2gwmt5" path="res://entities/hell/nightmare/trial/claim/claim.gd" id="1_iriit"]
+[ext_resource type="Script" uid="uid://brntlor2gwmt5" path="res://entities/hell/nightmare/claim/claim.gd" id="1_iriit"]
 
 [node name="Claim" type="MarginContainer" unique_id=499230753 node_paths=PackedStringArray("sins")]
 custom_minimum_size = Vector2(0, 48)

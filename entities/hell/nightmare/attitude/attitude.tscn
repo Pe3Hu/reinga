@@ -14,14 +14,16 @@ icon = NodePath("Icon")
 type = 96
 bowls = [NodePath("MinusBowl"), NodePath("PlusBowl")]
 
-[node name="MinusBowl" parent="." unique_id=2091172175 instance=ExtResource("2_20sca")]
+[node name="MinusBowl" parent="." unique_id=2091172175 node_paths=PackedStringArray("attitude") instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
+attitude = NodePath("..")
 type = 91
 
-[node name="PlusBowl" parent="." unique_id=21642768 instance=ExtResource("2_20sca")]
+[node name="PlusBowl" parent="." unique_id=21642768 node_paths=PackedStringArray("attitude") instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
+attitude = NodePath("..")
 side = 93
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1730307282]

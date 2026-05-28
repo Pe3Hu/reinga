@@ -9,12 +9,18 @@ var hereafter: GyreData = GyreData.new(self, Bozo.Gyre.HEREAFTER)
 
 func _init() -> void:
 	update_gyre_fol()
+	update_gyre_ere()
 	init_fates()
 
 func update_gyre_fol() -> void:
 	hereafter.fol = actual
 	actual.fol = bygone
 	bygone.fol = hereafter
+
+func update_gyre_ere() -> void:
+	hereafter.ere = bygone
+	actual.ere = hereafter
+	bygone.ere = actual
 
 func init_fates() -> void:
 	var fates: Array[Bozo.Fate]
@@ -34,5 +40,8 @@ func add_sinner(fate_: Bozo.Fate) -> void:
 	sinner.gyre = hereafter
 
 func refill_actual() -> void:
+	if hereafter.sinners.is_empty():
+		hereafter.ere.clear()
+	
 	while actual.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE:
 		hereafter.transfer_sinner()

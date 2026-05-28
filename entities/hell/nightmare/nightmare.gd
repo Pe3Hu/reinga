@@ -10,8 +10,8 @@ var data: NightmareData = NightmareData.new()
 @export var lock_button: Button
 
 var type_to_trial: Dictionary
-var drain_tributes: Array[Tribute]
 var dissolve_dreams: Array[Dream]
+var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
 
 
@@ -36,8 +36,13 @@ func awaken_dreams() -> void:
 			var heat_value = desires[desire]
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
 
+func end_dream_dissolve(dream_: Dream) -> void:
+	dissolve_dreams.erase(dream_)
+	
+	if dissolve_dreams.is_empty():
+		Scope.next_phase()
+
 func start_drain_tributes() -> void:
-	Scope.in_progress = true
 	find_best_and_worst_tribute()
 	
 	for trial in trials:
@@ -73,19 +78,19 @@ func end_tribute_drain(tribute_: Tribute) -> void:
 	drain_tributes.erase(tribute_)
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
-		Scope.in_progress = false
 		Scope.next_phase()
 
-func end_dream_dissolve(dream_: Dream) -> void:
-	dissolve_dreams.erase(dream_)
-	
-	if dissolve_dreams.is_empty():
-		Scope.in_progress = false
-		Scope.next_phase()
-
-func end_repletion_attitude(attitude_: Attitude) -> void:
+func end_attitude_repletion(attitude_: Attitude) -> void:
 	repletion_attitudes.erase(attitude_)
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
-		Scope.in_progress = false
 		Scope.next_phase()
+
+func refill_claims() -> void:
+	for trail in trials:
+		trail.claim.refill()
+	
+	
+	
+	
+	

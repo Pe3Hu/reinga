@@ -32,7 +32,6 @@ var active_cage: Cage:
 			#active_cage.row.visible = true
 			hell.treasury.lock_button.visible = true
 
-
 var is_locked: bool = false:
 	set(value_):
 		is_locked = value_

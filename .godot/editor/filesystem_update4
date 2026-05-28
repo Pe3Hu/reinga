@@ -25,3 +25,16 @@ res://entities/ui/bowl/bowl.gd
 res://entities/hell/nightmare/attitude/attitude.gd
 res://entities/ui/bowl/bowl.tscn
 res://entities/hell/nightmare/attitude/attitude.tscn
+res://entities/hell/jail/jail.gd
+res://entities/hell/nightmare/trial/claim/claim.gd
+res://entities/hell/nightmare/flame/data/data_flame.gd
+res://entities/hell/nightmare/trial/data/data_trial.gd
+res://entities/hell/nightmare/claim/data/data_claim.gd
+res://entities/hell/nightmare/data/data_nightmare.gd
+res://entities/hell/nightmare/claim/claim.gd
+res://global/Bozo.gd
+res://entities/hell/jail/sinner/sinner.gd
+res://entities/hell/jail/sinner/soul/soul.gd
+res://entities/hell/jail/sinner/trait/trait.gd
+res://entities/tribunal/data/data_gyre.gd
+res://entities/tribunal/data/data_tribunal.gd

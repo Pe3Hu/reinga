@@ -111,9 +111,8 @@ func show_vbox() -> void:
 func _on_lock_button_pressed() -> void:
 	lock()
 	Scope.next_phase()
-	
+
 func lock() -> void:
 	lock_button.visible = false
 	hell.jail.is_locked = true
 	hide_not_selected_contributions()
-	Scope.in_progress = false

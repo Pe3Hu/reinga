@@ -24,6 +24,7 @@ func _ready() -> void:
 	]
 
 func connect_datas() -> void:
+	reset()
 	fear.data = sinner.data.fear
 	horror.data = sinner.data.horror
 	guilt.data = sinner.data.guilt
@@ -50,3 +51,7 @@ func get_trait_data(trait_: Bozo.Triat) -> TraitData:
 	var trait_str = Catalog.trait_to_string[trait_]
 	var trait_data: Trait = get(trait_str)
 	return trait_data.data
+
+func reset() -> void:
+	for _trait in traits:
+		_trait.reset()

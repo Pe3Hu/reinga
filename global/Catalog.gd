@@ -298,6 +298,22 @@ var trial_sin_amounts: Array[int] = [1, 1, 1, 2, 2, 3]
 const TRIAL_MIN_SIN_AMOUNT: int = 2
 #endregion
 
+#region flame
+const flame_to_claim = {
+	1: [5, 3, 2],
+	2: [8, 5, 3],
+	3: [13, 8, 5],
+	4: [21, 13, 8]
+}
+
+const flame_to_heat = {
+	1: 15,
+	2: 20,
+	3: 25,
+	4: 30
+}
+#endregion
+
 #region rank
 const judgment_to_string = {
 	Bozo.Judgment.RANK: "rank",
@@ -442,9 +458,9 @@ const DEFAULT_ERUPTION_COUNT: int = 100
 const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
 
-const ERUPTION_DURATION: float = 0.8
+const ERUPTION_DURATION: float = 0.4#0.8
 const TRAIL_DURATION: float =  0.4
-const VOLCANO_BURST_DURATION: float =  0.8
+const VOLCANO_BURST_DURATION: float =  0.4#0.8
 #endregion
 
 #region blob
@@ -514,7 +530,7 @@ const WORST_TRIBUTE_SHIFT = -1
 const BEST_TRIBUTE_SHIFT = 1
 
 const DRAIN_TICK = 0.1
-const REPLETION_TICK = 0.5
+const REPLETION_TICK = 0.25
 #endregion
 
 #region desire
@@ -579,6 +595,7 @@ const phases = [
 	Bozo.Phase.PAYMENT,
 	Bozo.Phase.APPRAISEMENT,
 	Bozo.Phase.DISBURSEMENT,
+	Bozo.Phase.DEVELOPMENT,
 	Bozo.Phase.INVESTMENT,
 ]
 
@@ -587,7 +604,8 @@ const phase_to_next = {
 	Bozo.Phase.REPLENISHMENT: Bozo.Phase.PAYMENT,
 	Bozo.Phase.PAYMENT: Bozo.Phase.APPRAISEMENT,
 	Bozo.Phase.APPRAISEMENT: Bozo.Phase.DISBURSEMENT,
-	Bozo.Phase.DISBURSEMENT: Bozo.Phase.INVESTMENT,
+	Bozo.Phase.DISBURSEMENT: Bozo.Phase.DEVELOPMENT,
+	Bozo.Phase.DEVELOPMENT: Bozo.Phase.INVESTMENT,
 	Bozo.Phase.INVESTMENT: Bozo.Phase.REPLENISHMENT
 }
 
@@ -596,6 +614,7 @@ const phase_to_string = {
 	Bozo.Phase.PAYMENT: "PAYMENT",
 	Bozo.Phase.APPRAISEMENT: "APPRAISEMENT",
 	Bozo.Phase.DISBURSEMENT: "DISBURSEMENT",
+	Bozo.Phase.DEVELOPMENT: "DEVELOPMENT",
 	Bozo.Phase.INVESTMENT: "INVESTMENT",
 	Bozo.Phase.REPLENISHMENT: "REPLENISHMENT"
 }

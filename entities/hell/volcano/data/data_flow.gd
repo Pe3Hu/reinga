@@ -12,6 +12,7 @@ var sin_to_trial_to_weight: Dictionary
 
 
 func init_eruptions() -> void:
+	eruptions.clear()
 	sin_to_available.clear()
 	sin_to_trial_to_weight.clear()
 	
@@ -20,7 +21,7 @@ func init_eruptions() -> void:
 		sin_to_trial_to_weight[_sin.type] = {}
 	
 	for trial in nightmare.trials:
-		for _sin in trial.sins:
+		for _sin in trial.claim.sins:
 			if sin_to_trial_to_weight.has(_sin.type):
 				sin_to_trial_to_weight[_sin.type][trial.type] = _sin.value
 	
@@ -66,7 +67,7 @@ func calc_tribute_sum() -> void:
 		sin_to_demand[_sin.type] = 0
 	
 	for trial in nightmare.trials:
-		for _sin in trial.sins:
+		for _sin in trial.claim.sins:
 			if sin_to_demand.has(_sin.type):
 				sin_to_demand[_sin.type] += _sin.value
 	

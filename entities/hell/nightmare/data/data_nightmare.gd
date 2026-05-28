@@ -25,7 +25,7 @@ func check_sin_spread() -> void:
 	var sin_to_weight: Dictionary
 	
 	for trial in trials:
-		for _sin in trial.sins:
+		for _sin in trial.claim.sins:
 			if !sin_to_amount.has(_sin.type):
 				sin_to_amount[_sin.type] = 0
 				sin_to_weight[_sin.type] = 0
@@ -82,14 +82,14 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 			var trial_type = trial_optins[_i]
 			var trial_data = type_to_trial[trial_type]
 			
-			if trial_data.type_to_sin.has(problem_sin):
+			if trial_data.claim.type_to_sin.has(problem_sin):
 				trial_optins.erase(trial_type)
 				continue
 			
 			var is_donor = false
 			
 			for donor_sin in donor_sins_:
-				if trial_data.type_to_sin.has(donor_sin):
+				if trial_data.claim.type_to_sin.has(donor_sin):
 					is_donor = true
 					break
 				
@@ -102,21 +102,21 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 			var trial_data = type_to_trial[trial_type]
 			var donor_options = []
 			
-			for donor_sin in trial_data.type_to_sin:
+			for donor_sin in trial_data.claim.type_to_sin:
 				if donor_sins_.has(donor_sin):
 					donor_options.append(donor_sin)
 			
 			var donor_type = donor_options.pick_random()
-			trial_data.swap_sin_type(donor_type, problem_sin)
+			trial_data.claim.swap_sin_type(donor_type, problem_sin)
 			sin_to_amount_[donor_type] -= 1
-			sin_to_weight_[donor_type] -= trial_data.type_to_sin[problem_sin].value
+			sin_to_weight_[donor_type] -= trial_data.claim.type_to_sin[problem_sin].value
 			
 			if !sin_to_amount_.has(problem_sin):
 				sin_to_amount_[problem_sin] = 0
 				sin_to_weight_[problem_sin] = 0
 			
 			sin_to_amount_[problem_sin] += 1
-			sin_to_weight_[problem_sin] += trial_data.type_to_sin[problem_sin].value
+			sin_to_weight_[problem_sin] += trial_data.claim.type_to_sin[problem_sin].value
 			
 			if Catalog.TRIAL_MIN_SIN_AMOUNT - sin_to_amount_[donor_type] >= 0:
 				donor_sins_.erase(donor_type)

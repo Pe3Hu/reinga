@@ -62,11 +62,9 @@ func get_eruption() -> Eruption:
 func return_eruption(eruption_: Eruption):
 	eruption_.visible = false
 	eruption_pool.append(eruption_)
-	#print(["return", eruption_pool.size(), eruption_fridge.size()])
 	
 	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_pool.size() == Catalog.DEFAULT_ERUPTION_COUNT:
 		hell.treasury.hide_vbox()
-		Scope.in_progress = false
 		Scope.next_phase()
 
 func flow_update():
@@ -84,7 +82,6 @@ func spawn_eruption(index_: int, timeout_: float):
 	var eruption_data = flow.eruptions[index_]
 	var token = hell.jail.active_cage.contribution.get_token(eruption_data.sin_type)
 	var trial = hell.nightmare.type_to_trial[eruption_data.trial_type]
-	#print(["spawn", eruption_pool.size(), eruption_fridge.size()])
 	var eruption = get_eruption()
 	eruption.reset(token, trial, timeout_)
 #endregion

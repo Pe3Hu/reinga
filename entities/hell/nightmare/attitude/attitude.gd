@@ -10,10 +10,11 @@ extends PanelContainer
 	set(value_):
 		type = value_
 		if is_node_ready():
-			icon.texture = load("res://entities/hell/nightmare/trial/images/%s.png" % Catalog.attitude_to_string[type]) 
+			icon.texture = load("res://entities/hell/nightmare/attitude/images/%s.png" % Catalog.attitude_to_string[type]) 
 
 @export var bowls: Array[Bowl]
 var shifts: Array[int]
+var ban_type: Bozo.Attitude
 
 
 func _ready() -> void:
@@ -34,7 +35,8 @@ func start_repletion() -> void:
 
 func apply_shifts() -> void:
 	if shifts.is_empty(): 
-		trial.end_attitude_repletion(self)
+		trial.nightmare.end_attitude_repletion(self)
+		ban_type = Bozo.Attitude.NONE
 		return
 	var shift = shifts.pop_back()
 	var factor = Catalog.attitude_to_factor[type]
@@ -45,7 +47,8 @@ func apply_shifts() -> void:
 	
 	var limit_step = Catalog.BOWL_LIMIT / factor
 	var current_step = bowl.value / factor
-	var step_size = min(limit_step - current_step, shift)
+	var step_size = min(limit_step - current_step, abs(shift))
+	var new_value = (current_step + step_size) * factor
 	shift -= sign(shift) * step_size
 	
 	if abs(shift) != 0:
@@ -55,9 +58,13 @@ func apply_shifts() -> void:
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(bowl, "value", current_step + step_size, duration)
+	tween.tween_property(bowl, "value", new_value, duration)
+	tween.tween_callback(apply_shifts)
 
 func drain_bowl(bowl_: Bowl) -> void:
-	bowl_.value = 0
-	type = Catalog.attitude_to_sign_to_attitude[type][bowl_.type]
-	apply_shifts()
+	for bowl in bowls:
+		bowl.reset()
+	
+	if ban_type == Bozo.Attitude.NONE:
+		type = Catalog.attitude_to_blob_to_attitude[type][bowl_.type]
+		ban_type = Catalog.attitude_to_blob_to_attitude[type][bowl_.type]
