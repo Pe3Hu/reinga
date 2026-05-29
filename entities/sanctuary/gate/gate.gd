@@ -82,8 +82,8 @@ func add_cage(coord_: Vector2i) -> void:
 	cage.col = col_catena
 
 func update_sinner_datas() -> void:
-	for _i in world.tribunal.gate.sinners.size():
-		var sinner_data = world.tribunal.gate.sinners[_i]
+	for _i in world.data.tribunal.gate.sinners.size():
+		var sinner_data = world.data.tribunal.gate.sinners[_i]
 		var cage = cages[_i]
 		cage.sinner.data = sinner_data
 #endregion

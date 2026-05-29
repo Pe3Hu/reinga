@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://btkoa6q4ga0y3"]
 
-[ext_resource type="Shader" uid="uid://dye4ksh34ca0s" path="res://entities/world/parallax.gdshader" id="1_1d6ah"]
+[ext_resource type="Shader" uid="uid://dye4ksh34ca0s" path="res://entities/ui/parallax/parallax.gdshader" id="1_1d6ah"]
 
 [sub_resource type="Gradient" id="Gradient_db8ab"]
 

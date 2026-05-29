@@ -8,7 +8,7 @@ extends Node
 @export var sanctuary: Sanctuary
 
 
-var tribunal = TribunalData.new()
+var data = WorldData.new()
 
 
 func _ready() -> void:

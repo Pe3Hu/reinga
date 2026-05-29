@@ -1,4 +1,4 @@
-res://entities/hell/underground/shelter/modifier/modifier.tscn
+res://entities/hell/hell.tscn
 res://entities/sanctuary/shader/matrix.gdshader
 res://entities/sanctuary/gate/shader/portal.gdshader
 res://entities/sanctuary/gate/shader/portal circle.gdshader
@@ -9,8 +9,29 @@ res://entities/sanctuary/gate/gate blur.gdshader
 res://entities/sanctuary/borders.gdshader
 res://entities/sanctuary/coffee.gdshader
 res://entities/sanctuary/sea.gdshader
-res://entities/world/parallax.gdshader
+res://entities/ui/parallax/parallax.gdshader
 res://entities/sanctuary/parallax 2d.gdshader
-res://entities/hell/underground/shelter/modifier/modifier.gd
-res://entities/hell/underground/shelter/shelter.tscn
-res://entities/hell/hell.tscn
+res://entities/hell/underground/bank/bank.gd
+res://entities/hell/underground/bank/data_bank.gd
+res://entities/ui/token/token.gd
+res://entities/hell/nightmare/claim/claim.gd
+res://entities/hell/nightmare/claim/data/data_claim.gd
+res://entities/hell/nightmare/progression/data_progression.gd
+res://entities/hell/nightmare/tribute/data_tribute.gd
+res://entities/hell/nightmare/progression/progression.gd
+res://entities/hell/nightmare/tribute/tribute.gd
+res://entities/ui/token/data_token.gd
+res://entities/ui/token/amber/amber.gd
+res://entities/ui/token/data/data_amber.gd
+res://entities/ui/token/sin/sin.gd
+res://entities/ui/token/data/data_sin.gd
+res://entities/hell/nightmare/trial/trial.gd
+res://entities/hell/hell.gd
+res://entities/hell/jail/data_jail.gd
+res://entities/hell/data_hell.gd
+res://entities/hell/nightmare/data_nightmare.gd
+res://entities/hell/treasury/data_treasury.gd
+res://entities/hell/nightmare/nightmare.gd
+res://entities/hell/treasury/contribution/contribution.gd
+res://entities/hell/underground/deal/deal.gd
+res://entities/hell/jail/sinner/trait/trait.gd

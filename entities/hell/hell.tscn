@@ -69,10 +69,11 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=388645775 instance=ExtResource("3_b2gxv")]
+[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+hell = NodePath("../../../../../..")
 
 [node name="Shelter" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=526715784 instance=ExtResource("6_0u57p")]
 layout_mode = 2
@@ -81,8 +82,9 @@ layout_mode = 2
 layout_mode = 2
 hell = NodePath("../../../../..")
 
-[node name="Market" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=255913063 instance=ExtResource("7_b2gxv")]
+[node name="Market" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=255913063 node_paths=PackedStringArray("hell") instance=ExtResource("7_b2gxv")]
 layout_mode = 2
+hell = NodePath("../../../../..")
 
 [node name="Volcano" parent="." unique_id=516806711 node_paths=PackedStringArray("hell") instance=ExtResource("2_kcv0y")]
 hell = NodePath("..")

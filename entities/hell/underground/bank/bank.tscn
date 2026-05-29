@@ -7,9 +7,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vq1a"]
 
-[node name="Bank" type="PanelContainer" unique_id=388645775]
+[node name="Bank" type="PanelContainer" unique_id=388645775 node_paths=PackedStringArray("ambers")]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3vq1a")
 script = ExtResource("1_s3piu")
+ambers = [NodePath("MarginContainer/HBoxContainer/Ambers/Anger"), NodePath("MarginContainer/HBoxContainer/Ambers/Envy"), NodePath("MarginContainer/HBoxContainer/Ambers/Greed"), NodePath("MarginContainer/HBoxContainer/Ambers/Gluttony"), NodePath("MarginContainer/HBoxContainer/Ambers/Lust"), NodePath("MarginContainer/HBoxContainer/Ambers/Pride"), NodePath("MarginContainer/HBoxContainer/Ambers/Indolence")]
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_43la0")]
 layout_mode = 2

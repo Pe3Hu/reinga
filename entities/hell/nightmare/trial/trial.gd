@@ -3,13 +3,12 @@ class_name Trial
 extends PanelContainer
 
 
-@export var nightmare: Nightmare
-
 var data: TrialData:
 	set(value_):
 		data = value_
-		claim.init_sin_tokens()
+		claim.connect_datas()
 
+@export var nightmare: Nightmare
 @export var type: Bozo.Trial:
 	set(value_):
 		type = value_

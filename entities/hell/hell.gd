@@ -2,17 +2,34 @@ extends Control
 class_name Hell
 
 
+var data: HellData:
+	set(value_):
+		data = value_
+		connect_datas()
+
 @export var world: World
 @export var volcano: Volcano
 @export var nightmare: Nightmare
 @export var jail: Jail
 @export var treasury: Treasury
 
+@export var bank: Bank
+@export var market: Market
+@export var shelter: Shelter
 
 
 func _ready():
 	Scope.phase_timer = %PhaseTimer
 	update_size()
+
+
+func connect_datas() -> void:
+	nightmare.data = world.data.nightmare
+	jail.data = world.data.jail
+	treasury.data = world.data.treasury
+	bank.data = world.data.bank
+	market.data = world.data.market
+	shelter.data = world.data.shelter
 
 func update_size() -> void:
 	var viewport_size = get_viewport_rect().size
@@ -33,7 +50,7 @@ func execute_phase() -> void:
 		Bozo.Phase.ENDOWMENT:
 			pass
 		Bozo.Phase.REPLENISHMENT:
-			world.tribunal.refill_actual()
+			world.data.tribunal.refill_actual()
 			jail.apply_phase_visiblity()
 			jail.update_sinner_datas()
 			Scope.next_phase()
@@ -51,7 +68,7 @@ func execute_phase() -> void:
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
 			nightmare.refill_claims()
-			world.tribunal.actual.clear()
+			world.data.tribunal.actual.clear()
 			Scope.next_phase()
 			#Scope.is_pause = true
 

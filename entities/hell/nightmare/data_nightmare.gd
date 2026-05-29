@@ -2,11 +2,13 @@ class_name NightmareData
 extends Resource
 
 
+var hell: HellData
 var trials: Array[TrialData]
 var type_to_trial: Dictionary
 
 
-func _init() -> void:
+func _init(hell_: HellData) -> void:
+	hell = hell_
 	init_trials()
 
 func init_trials() -> void:

@@ -2,7 +2,10 @@ class_name Nightmare
 extends PanelContainer
 
 
-var data: NightmareData = NightmareData.new()
+var data: NightmareData:
+	set(value_):
+		data = value_
+		connect_datas()
 
 @export var trials: Array[Trial]
 
@@ -15,7 +18,7 @@ var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
 
 
-func _ready() -> void:
+func connect_datas() -> void:
 	for _i in data.trials.size():
 		var trial = trials[_i]
 		trial.data = data.trials[_i]
@@ -27,7 +30,7 @@ func awaken_dreams() -> void:
 	
 	var desires: Dictionary
 	
-	for sinner in hell.world.tribunal.actual.sinners:
+	for sinner in hell.world.data.tribunal.actual.sinners:
 		sinner.dream.update_desires(desires)
 	
 	for trial in trials:

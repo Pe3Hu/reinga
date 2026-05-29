@@ -76,6 +76,24 @@ const sin_to_string = {
 	Bozo.Sin.GLUTTONY: "gluttony",
 }
 
+const ambers = [
+	Bozo.Amber.ANGER,
+	Bozo.Amber.ENVY,
+	Bozo.Amber.GREED,
+	Bozo.Amber.GLUTTONY,
+	Bozo.Amber.LUST,
+	Bozo.Amber.PRIDE,
+	Bozo.Amber.INDOLENCE,
+]
+
+const deal_ambers = [
+	Bozo.Amber.ANGER,
+	Bozo.Amber.ENVY,
+	Bozo.Amber.GREED,
+	Bozo.Amber.GLUTTONY,
+	Bozo.Amber.LUST,
+	Bozo.Amber.PRIDE,
+]
 
 var amber_to_color = {
 	Bozo.Amber.PRIDE: Color.from_hsv(0.75, 0.7, 0.6),

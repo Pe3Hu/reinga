@@ -3,33 +3,24 @@ class_name Progression
 extends HBoxContainer
 
 
-@export var type: Bozo.Progression
+var data: ProgressionData:
+	set(value_):
+		data = value_
+		apply_data_info()
+
 @export var current_label: Label
 @export var limit_label: Label
 
-@export var current_value: int:
-	set(value_):
-		current_value = value_
-		current_label.text = str(current_value)
-		update()
-@export var limit_value: int = 10:
-	set(value_):
-		limit_value = value_
-		limit_label.text = str(limit_value)
+
+func apply_data_info() -> void:
+	data.current_value_changed.connect(_on_current_value_changed)
+	data.limit_value_changed.connect(_on_limit_value_changed)
+	_on_current_value_changed()
+	_on_limit_value_changed()
 
 
-func update() -> void:
-	var node = get_parent().get_parent()
-	
-	match type:
-		Bozo.Progression.TRIBUTE:
-			if current_value < limit_value:# and node.type != Bozo.Half.LESS:
-				node.type = Bozo.Half.LESS
-			elif current_value < limit_value * 2:# and node.type != Bozo.Half.MORE:
-				node.type = Bozo.Half.MORE
-			elif current_value == limit_value * 2:# and node.type != Bozo.Half.DOUBLE:
-				node.type = Bozo.Half.DOUBLE
-		Bozo.Progression.FLAME:
-			if current_value >= limit_value:
-				current_value -= limit_value
-				node.level += 1
+func _on_current_value_changed():
+	current_label.text = str(data.current_value)
+
+func _on_limit_value_changed():
+	limit_label.text = str(data.limit_value)

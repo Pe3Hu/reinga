@@ -105,8 +105,8 @@ func update_cages() -> void:
 				cage.status = Bozo.Cage.RIGHT
 
 func update_sinner_datas() -> void:
-	for _i in hell.world.tribunal.actual.sinners.size():
-		var sinner_data = hell.world.tribunal.actual.sinners[_i]
+	for _i in hell.world.data.tribunal.actual.sinners.size():
+		var sinner_data = hell.world.data.tribunal.actual.sinners[_i]
 		var cage = cages[_i]
 		cage.sinner.data = sinner_data
 		cage.switch_side()

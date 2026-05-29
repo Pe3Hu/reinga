@@ -39,15 +39,8 @@ func _ready() -> void:
 		oblivion,
 	]
 	
-	reset_tokens()
-
-func reset_tokens() -> void:
 	data.reset()
-	
-	for token in tokens:
-		token.reset()
-	
-	tribute.value = 0
+
 
 func get_token(type_: Variant) -> Token:
 	var str_type: String
@@ -67,7 +60,7 @@ func change_token_value(type_: Variant, value_) -> void:
 	token.value += value_
 
 func update_tokens() -> void:
-	reset_tokens()
+	data.reset()
 	
 	for _trait in Catalog.traits:
 		var indexs = Catalog.windrose_to_trait_to_indexs[_trait][candle.windrose]

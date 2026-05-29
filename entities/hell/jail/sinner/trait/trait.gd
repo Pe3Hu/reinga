@@ -42,16 +42,14 @@ func init_tokens() -> void:
 
 func add_sin(data_: SinData) -> void:
 	var token = sin_scene.instantiate()
-	token.type = data_.type
-	token.value = data_.value
+	token.data = data
 	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
 
 func add_posture(data_: PostureData) -> void:
 	var token = posture_scene.instantiate()
-	token.type = data_.type
-	token.value = data_.value
+	token.data = data
 	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
