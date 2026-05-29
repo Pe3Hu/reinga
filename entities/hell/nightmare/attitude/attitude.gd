@@ -21,11 +21,11 @@ func _ready() -> void:
 	for bowl in bowls:
 		bowl.side = bowl.side
 
-func update_trial() -> void:
-	icon.modulate = Catalog.trial_to_color[trial.type]
+func apply_type() -> void:
+	icon.modulate = Catalog.trial_to_color[trial.data.type]
 	
 	for bowl in bowls:
-		bowl.trial = trial.type
+		bowl.trial = trial.data.type
 
 func start_repletion() -> void:
 	var shift = Catalog.half_to_shift[trial.tribute.type]

@@ -4,7 +4,7 @@ extends TokenData
 
 var type: Bozo.Sin:
 	set(value_):
-		value = value_
+		type = value_
 		emit_signal("type_changed")
 
 

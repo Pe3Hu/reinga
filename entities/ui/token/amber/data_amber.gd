@@ -5,7 +5,7 @@ extends TokenData
 
 var type: Bozo.Amber:
 	set(value_):
-		value = value_
+		type = value_
 		emit_signal("type_changed")
 
 

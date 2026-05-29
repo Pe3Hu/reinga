@@ -2,7 +2,6 @@ class_name Token
 extends Panel
 
 
-
 var data: Resource:
 	set(value_):
 		data = value_

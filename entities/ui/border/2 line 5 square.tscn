@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bg06s2ik3brqk"]
+
+[ext_resource type="Texture2D" uid="uid://dcvto1glcsxp4" path="res://entities/ui/border/images/2 line 5 square.png" id="1_vu7yi"]
+
+[node name="NinePatchRect" type="NinePatchRect" unique_id=716478958]
+texture_filter = 1
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("1_vu7yi")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

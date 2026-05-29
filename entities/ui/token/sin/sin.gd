@@ -10,9 +10,10 @@ func _on_value_changed() -> void:
 
 func apply_data_info() -> void:
 	super.apply_data_info()
-	apply_type()
+	data.type_changed.connect(_on_type_changed)
+	_on_type_changed()
 
-func apply_type() -> void:
+func _on_type_changed() -> void:
 	if data.type == 0: return
 	texture_rect.texture = load("res://entities/ui/token/images/sin.png")
 	texture_rect.modulate = Catalog.sin_to_color[data.type]

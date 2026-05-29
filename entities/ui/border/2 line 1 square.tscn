@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpkxkfb4retgb"]
 
-[ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/border/images/2 line 3 square.png" id="1_wsvem"]
+[ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/border/images/2 line 1 square.png" id="1_wsvem"]
 
 [node name="NinePatchRect" type="NinePatchRect" unique_id=716478958]
 texture_filter = 1

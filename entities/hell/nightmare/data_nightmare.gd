@@ -126,3 +126,7 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 			#rint([Catalog.trial_to_string[trial_type], Catalog.sin_to_string[donor_type], Catalog.sin_to_string[problem_sin]])
 		else:
 			print("fail swap_sin_type")
+
+func refill_claims() -> void:
+	for trail in trials:
+		trail.claim.refill()

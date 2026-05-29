@@ -7,12 +7,9 @@ var data: NightmareData:
 		data = value_
 		connect_datas()
 
+@export var hell: Hell
 @export var trials: Array[Trial]
 
-@export var hell: Hell
-@export var lock_button: Button
-
-var type_to_trial: Dictionary
 var dissolve_dreams: Array[Dream]
 var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
@@ -21,8 +18,8 @@ var repletion_attitudes: Array[Attitude]
 func connect_datas() -> void:
 	for _i in data.trials.size():
 		var trial = trials[_i]
-		trial.data = data.trials[_i]
-		type_to_trial[trial.data.type] = trial
+		var trial_data = data.trials[_i]
+		trial.data = trial_data
 
 func awaken_dreams() -> void:
 	for cage in hell.jail.cages:
@@ -88,12 +85,3 @@ func end_attitude_repletion(attitude_: Attitude) -> void:
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
 		Scope.next_phase()
-
-func refill_claims() -> void:
-	for trail in trials:
-		trail.claim.refill()
-	
-	
-	
-	
-	

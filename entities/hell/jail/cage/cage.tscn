@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bp2rppn86ih0m" path="res://entities/hell/jail/cage/cage.gd" id="1_2m11p"]
 [ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/hell/jail/sinner/sinner.tscn" id="2_bynt2"]
-[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/border/2 line 3 square.tscn" id="2_hlo7k"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/border/2 line 1 square.tscn" id="2_hlo7k"]
 [ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]

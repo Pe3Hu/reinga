@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmktr6ep0dmxw"
-path="res://.godot/imported/1 line 3square.png-27f2216b7408167d4de53e4061c309b9.ctex"
+uid="uid://bl57qhmjykb5k"
+path="res://.godot/imported/3 line 17 square.png-058fed09d1b7b3dde4c816f0273a7c01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/border/images/1 line 3square.png"
-dest_files=["res://.godot/imported/1 line 3square.png-27f2216b7408167d4de53e4061c309b9.ctex"]
+source_file="res://entities/ui/border/images/3 line 17 square.png"
+dest_files=["res://.godot/imported/3 line 17 square.png-058fed09d1b7b3dde4c816f0273a7c01.ctex"]
 
 [params]
 

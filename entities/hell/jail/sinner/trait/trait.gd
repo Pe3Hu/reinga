@@ -42,21 +42,19 @@ func init_tokens() -> void:
 
 func add_sin(data_: SinData) -> void:
 	var token = sin_scene.instantiate()
-	token.data = data
+	token.data = data_
 	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
 
 func add_posture(data_: PostureData) -> void:
 	var token = posture_scene.instantiate()
-	token.data = data
+	token.data = data_
 	token_grid.add_child(token)
 	tokens.append(token)
 	update_columns()
 	
 func update_columns():
-	#var a = %Blur
-	#%BackBufferCopy.rect = Rect2(%Blur.position, %Blur.size)
 	if tokens.is_empty(): return
 	
 	token_grid.columns = 1

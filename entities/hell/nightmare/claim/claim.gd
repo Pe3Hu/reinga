@@ -2,7 +2,10 @@ class_name Claim
 extends MarginContainer
 
 
-var data: ClaimData
+var data: ClaimData:
+	set(value_):
+		data = value_
+		connect_datas()
 
 @export var trial: Trial
 @export var sins: Array[TokenSin]
