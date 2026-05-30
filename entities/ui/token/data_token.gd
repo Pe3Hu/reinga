@@ -1,10 +1,8 @@
 class_name TokenData
-extends Resource
+extends TypeData
 
 
 signal value_changed
-@warning_ignore("unused_signal")
-signal type_changed
 
 var value: int = 0:
 	set(value_):

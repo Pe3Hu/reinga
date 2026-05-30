@@ -12,7 +12,12 @@ var data = WorldData.new()
 
 
 func _ready() -> void:
+	connect_datas()
 	update_layer()
+
+func connect_datas() -> void:
+	hell.data = data.hell
+	gate.data = data.gate
 
 func _input(event) -> void:
 	if event is InputEventKey:

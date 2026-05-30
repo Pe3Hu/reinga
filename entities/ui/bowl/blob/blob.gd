@@ -3,23 +3,23 @@ class_name Blob
 extends TextureRect
 
 
-@export var type: Bozo.Blob:
+var data: BlobData:
 	set(value_):
-		type = value_
-		texture = load("res://entities/ui/bowl/blob/images/%s.png" % Catalog.blob_to_string[type])
+		data = value_
+		apply_data_info()
 
-@export var trial: Bozo.Trial = Bozo.Trial.BATTLE:
-	set(value_):
-		trial = value_
-		if trial == 0 or trial == null: return
-		is_active = is_active
+func apply_data_info() -> void:
+	data.bowl.type_changed.connect(_on_visual_changed)
+	data.bowl.attitude.trial.type_changed.connect(_on_visual_changed)
+	data.is_active_changed.connect(_on_visual_changed)
+	_on_visual_changed()
 
-@export var is_active: bool = false:
-	set(value_):
-		is_active = value_
-		
-		if is_active and trial != 0:
-			modulate = Catalog.trial_to_color[trial]
-			return
-		
-		modulate = Catalog.blob_default_color
+func _on_visual_changed() -> void:
+	if data.bowl.type == 0: return
+	texture = load("res://entities/ui/bowl/blob/images/%s.png" % Catalog.blob_to_string[data.bowl.type])
+	
+	if data.is_active and data.bowl.attitude.trial.type != 0:
+		modulate = Catalog.trial_to_color[data.bowl.attitude.trial.type]
+		return
+	
+	modulate = Catalog.blob_default_color

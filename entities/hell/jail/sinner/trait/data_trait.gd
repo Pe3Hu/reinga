@@ -2,16 +2,21 @@ class_name TraitData
 extends Resource
 
 
-var sinner: SinnerData
-var type: Bozo.Triat
+signal type_changed
+
+var soul: SoulData
+var type: Bozo.Triat:
+	set(value_):
+		type = value_
+		emit_signal("type_changed")
 var rank: int
 
 var sins: Array[SinData]
 var postures: Array[PostureData]
 
 
-func _init(sinner_: SinnerData, type_: Bozo.Triat, rank_: int) -> void:
-	sinner = sinner_
+func _init(soul_: SoulData, type_: Bozo.Triat, rank_: int) -> void:
+	soul = soul_
 	type = type_
 	rank = rank_
 	
@@ -27,7 +32,7 @@ func init_tokens() -> void:
 		var amount = amounts.back()
 		add_posture(Bozo.Posture.OBLIVION, amount)
 	else:
-		token_types.append_array(Catalog.fate_to_sin[sinner.fate])
+		token_types.append_array(Catalog.fate_to_sin[soul.sinner.fate.type])
 		token_types.shuffle()
 	
 		for amount in amounts:

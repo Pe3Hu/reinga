@@ -2,22 +2,38 @@ class_name Fate
 extends Panel
 
 
-@export var sinner: Sinner
-@export var type: Bozo.Fate:
+var data: FateData:
 	set(value_):
-		type = value_
-		if type == 0: return
-		
-		if label:
-			unfocus()
-			sinner.faction.visible = true
-			sinner.faction.type = Catalog.fate_to_faction[type]
+		data = value_
+		apply_data_info()
 
+@export var sinner: Sinner
 @export var label: RichTextLabel
 
 
+func apply_data_info() -> void:
+	if !data.type_changed.is_connected(_on_type_changed):
+		data.type_changed.connect(_on_type_changed)
+		data.is_selected_changed.connect(_on_is_selected_changed)
+	_on_type_changed()
+	_on_is_selected_changed()
+
+func _on_type_changed() -> void:
+	if data.type == 0: return
+	
+	if label:
+		unfocus()
+		sinner.faction.visible = true
+
+
+func _on_is_selected_changed() -> void:
+	if data.is_selected:
+		focus()
+	else:
+		unfocus()
+
 func focus() -> void:
-	label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % Catalog.fate_to_string[type].capitalize()
+	label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % Catalog.fate_to_string[data.type].capitalize()
 
 func unfocus() -> void:
-	label.text = Catalog.fate_to_string[type].capitalize()
+	label.text = Catalog.fate_to_string[data.type].capitalize()

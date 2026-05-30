@@ -5,8 +5,7 @@ extends PanelContainer
 var data: DreamData:
 	set(value_):
 		data = value_
-		
-		update_tokens()
+		apply_data_info()
 
 @export var cloak: Cloak
 @export var primary_tokens: Array[TokenDesire]
@@ -16,12 +15,19 @@ var data: DreamData:
 var dissolves: Array[TokenDesire]
 
 
-func update_tokens() -> void:
+func apply_data_info() -> void:
 	if !data: return
+	if! data.primary_desire_changed.is_connected(_on_desires_changed):
+		data.primary_desire_changed.connect(_on_desires_changed)
+		data.secondary_desire_changed.connect(_on_desires_changed)
+		_on_desires_changed()
+		cloak.visible = true
+
+func _on_desires_changed() -> void:
 	for token in primary_tokens:
-		token.type = data.primary_desire
+		token.data = data.primary
 	
-	secondary_token.type = data.secondary_desire
+	secondary_token.data = data.secondary
 
 func start_dissolve_tokens() -> void:
 	cloak.cage.jail.hell.nightmare.dissolve_dreams.append(self)

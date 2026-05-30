@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]
 
 [node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("sinner", "cloak")]
-custom_minimum_size = Vector2(172, 200)
+custom_minimum_size = Vector2(206, 230)
 offset_right = 172.0
 offset_bottom = 192.0
 mouse_filter = 1
@@ -39,6 +39,7 @@ theme_override_constants/margin_right = 17
 theme_override_constants/margin_bottom = 17
 
 [node name="Sinner" parent="MarginContainer" unique_id=1474778463 node_paths=PackedStringArray("cage") instance=ExtResource("2_bynt2")]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 cage = NodePath("../..")

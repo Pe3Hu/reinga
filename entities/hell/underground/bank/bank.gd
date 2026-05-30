@@ -3,16 +3,15 @@ class_name Bank
 extends PanelContainer
 
 
-var data: BankData
+var data: BankData:
+	set(value_):
+		data = value_
+		connect_datas()
 
 @export var hell: Hell
 
 @export var ambers: Array[TokenAmber]
 
-
-func _ready() -> void:
-	data = hell.world.data.hell.bank
-	connect_datas()
 
 func connect_datas() -> void:
 	for _i in ambers.size():

@@ -3,12 +3,12 @@ class_name Candle
 extends Control
 
 
-@export var contribution: Contribution
-
-@export var windrose: Bozo.Windrose =  Bozo.Windrose.NONE:
+var data: ContributionData:
 	set(value_):
-		windrose = value_
-		apply_windrose()
+		data = value_
+		apply_data_info()
+
+@export var contribution: Contribution
 
 @onready var rect: ColorRect = %ColorRect
 
@@ -19,19 +19,23 @@ func _ready():
 	rect.pivot_offset = rect.size / 2.0
 	rect.material = ShaderMaterial.new()
 
-func apply_windrose():
+func apply_data_info() -> void:
+	data.windrose_changed.connect(_on_windrose_changed)
+	_on_windrose_changed()
+
+func _on_windrose_changed() -> void:
 	if is_simple:
-		%TextureRect.texture = load("res://entities/hell/treasury/contribution/candle/images/%d.png" % windrose)
+		%TextureRect.texture = load("res://entities/hell/treasury/contribution/candle/images/%d.png" % data.type)
 		return
 	
-	if windrose == Bozo.Windrose.ESWN:
+	if data.type == Bozo.Windrose.ESWN:
 		rect.rotation_degrees = 0.0
 		rect.material.shader = load("uid://b0h2a2506yvi1")
 		return
 	else:
 		rect.material.shader = load("uid://cpdpc4c7cty0b")
 	
-	var angle_deg := float(windrose % 8) * 45.0
+	var angle_deg := float(data.type % 8) * 45.0
 	rect.rotation_degrees = angle_deg
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:

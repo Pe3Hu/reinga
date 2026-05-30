@@ -26,7 +26,7 @@ func reset(token_: TokenSin, trial_: Trial, timeout_: float):
 
 func update_vectors() -> void:
 	start = sin_token.global_position
-	var trial_token = trial.claim.sin_to_token[sin_token.type]
+	var trial_token = trial.claim.sin_to_token[sin_token.data.type]
 	end = trial_token.global_position
 	
 	var shift = Vector2.from_angle(randf() * PI * 2) * Catalog.ERUPTION_OFFSET_L
@@ -77,10 +77,10 @@ func deactivate() -> void:
 	volcano.return_eruption(self)
 	
 	if trial:
-		var trial_token = trial.claim.sin_to_token[sin_token.type]
-		trial_token.value -= 1
-		#if trial_token.value < 0:
-		#	volcano.check_sin(sin_token.type)
+		var trial_token = trial.claim.sin_to_token[sin_token.data.type]
+		trial_token.data.value -= 1
+		#if trial_token.data.value < 0:
+		#	volcano.check_sin(sin_token.data.type)
 		volcano.single_splash(trial.tribute.progression)
 	
 	for trail in trails:
@@ -102,8 +102,8 @@ func activate() -> void:
 	control = mid + perp * randf_range(-180, 180)
 
 	if sin_token:
-		modulate = Catalog.sin_to_color[sin_token.type]
-		sin_token.value -= 1
+		modulate = Catalog.sin_to_color[sin_token.data.type]
+		sin_token.data.value -= 1
 
 func bezier(a_: Vector2, b_: Vector2, c_: Vector2, t_: float):
 	var ab = a_.lerp(b_, t_)

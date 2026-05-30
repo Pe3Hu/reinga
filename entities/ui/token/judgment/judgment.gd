@@ -3,13 +3,13 @@ class_name TokenJudgment
 extends Token
 
 
-@export var type: Bozo.Judgment:
-	set(value_):
-		type = value_
-		#if type == 0: return
-		#texture_rect.texture = load("res://entities/token/judgment/judgment.gd")
-		#texture_rect.modulate = Color.WHITE
-
-
 func _ready() -> void:
 	always_visible = true
+
+func apply_data_info() -> void:
+	super.apply_data_info()
+	data.type_changed.connect(_on_type_changed)
+	_on_type_changed()
+
+func _on_type_changed() -> void:
+	pass

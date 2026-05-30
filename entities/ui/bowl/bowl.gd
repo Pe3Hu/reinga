@@ -3,53 +3,32 @@ class_name Bowl
 extends Control
 
 
-@export var attitude: Attitude
-@export var type: Bozo.Blob:
+var data: BowlData:
 	set(value_):
-		type = value_
-		update_blob_type()
-@export var trial: Bozo.Trial:
-	set(value_):
-		trial = value_
-		update_blob_trial()
-@export var side: Bozo.Side:
-	set(value_):
-		side = value_
-		update_vbox_order()
+		data = value_
+		apply_data_info()
 
+@export var attitude: Attitude
 @export var blobs: Array[Blob]
 
-@export var value: int = 0:
-	set(value_):
-		var shift = value_ - value
-		switch_blob(shift)
-		value = value_
-		if value_ == Catalog.BOWL_LIMIT:
-			attitude.drain_bowl(self)
 
-var step: int = 0:
-	set(value_):
-		step = value
+func apply_data_info() -> void:
+	data.side_changed.connect(_on_side_changed)
+	data.value_changed.connect(_on_value_changed)
+	data.is_flipped_changed.connect(_on_is_flipped_changed)
+	_connect_blobs()
+	_on_side_changed()
+	_on_value_changed()
+	#_on_is_flipped_changed()
 
-@export var is_flipped: bool = false:
-	set(value_):
-		#if is_flipped != value_:
-		update_blob_order()
-		is_flipped = value_
+func _connect_blobs() -> void:
+	for i in blobs.size():
+		if i < data.blobs.size():
+			blobs[i].data = data.blobs[i]
 
-
-
-func update_blob_type() -> void:
-	for blob in blobs:
-		blob.type = type
-
-func update_blob_trial() -> void:
-	for blob in blobs:
-		blob.trial = trial
-
-func update_vbox_order() -> void:
+func _on_side_changed() -> void:
 	if is_node_ready():
-		match side:
+		match data.side:
 			Bozo.Side.LEFT:
 				%Blobs.move_child(%SideBlobs, 0)
 				%Blobs.position = Vector2(0, 0)
@@ -57,7 +36,7 @@ func update_vbox_order() -> void:
 				%Blobs.move_child(%CenterBlobs, 0)
 				%Blobs.position = Vector2(size.x / 2, 0)
 
-func update_blob_order() -> void:
+func _on_is_flipped_changed() -> void:
 	var reverse_blobs = %CenterBlobs.get_children()
 	reverse_blobs.reverse()
 	
@@ -70,18 +49,24 @@ func update_blob_order() -> void:
 	for _i in reverse_blobs.size():
 		%SideBlobs.move_child(reverse_blobs[_i], _i)
 
+func _on_value_changed() -> void:
+	var shift = data.value - data.previous_value
+	switch_blob(shift)
+	data.previous_value = data.value
+	if data.value == Catalog.BOWL_LIMIT:
+		attitude.drain_bowl(self)
+
 func switch_blob(shift_: int) -> void:
 	for _i in abs(shift_):
-		var index = value + _i
+		var index = data.previous_value + _i
 		if sign(shift_) == -1:
 			index -= 1
 		
-		if index >= 0 and index < blobs.size():
-			var blob = blobs[index]
-			blob.is_active = shift_ > 0
+		if index >= 0 and index < blobs.size() and index < data.blobs.size():
+			data.blobs[index].is_active = shift_ > 0
 
 func reset() -> void:
-	value = 0
+	data.reset()
 	
-	for blob in blobs:
-		blob.is_active = false
+	for blob_data in data.blobs:
+		blob_data.is_active = false

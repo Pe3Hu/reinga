@@ -498,7 +498,7 @@ const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
 
 const ERUPTION_DURATION: float = 0.4#0.8
-const TRAIL_DURATION: float =  0.4
+const TRAIL_DURATION: float =  0.4#
 const VOLCANO_BURST_DURATION: float =  0.4#0.8
 #endregion
 
@@ -575,8 +575,8 @@ const REPLETION_TICK = 0.25
 #region desire
 const PRIMARY_DESIRE_COUNT: int = 2
 const SECONDARY_DESIRE_COUNT: int = 1
-const DESIRE_DISSOLVE_DURATION: float = 0.2#1.2
-const SPASH_DURATION: float = 0.2#0.5
+const DESIRE_DISSOLVE_DURATION: float = 0.5#1.2
+const SPASH_DURATION: float = 0.4#0.5
 
 const desires = [
 	Bozo.Desire.SWORD,

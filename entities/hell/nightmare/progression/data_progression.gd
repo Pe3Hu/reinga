@@ -5,7 +5,7 @@ extends Resource
 signal current_value_changed(new_value)
 signal limit_value_changed(new_value)
 
-var boss
+var boss: Resource
 var type: Bozo.Progression
 
 var current_value: int:
@@ -18,6 +18,9 @@ var limit_value: int = 10:
 		limit_value = value_
 		emit_signal("limit_value_changed")
 
+
+func _init(boss_: Resource) -> void:
+	boss = boss_
 
 func update() -> void:
 	match type:

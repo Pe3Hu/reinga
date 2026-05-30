@@ -15,8 +15,9 @@ var data: SinnerData:
 		
 		if data != null:
 			%Header.visible = true
-			fate.type = data.fate
-			soul.connect_datas()
+			fate.data = data.fate
+			faction.data = data.fate.faction
+			soul.data = data.soul
 			cage.cloak.dream.data = data.dream
 		else:
 			%Header.visible = false

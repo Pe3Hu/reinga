@@ -24,12 +24,12 @@ func _ready():
 
 
 func connect_datas() -> void:
-	nightmare.data = world.data.nightmare
-	jail.data = world.data.jail
-	treasury.data = world.data.treasury
-	bank.data = world.data.bank
-	market.data = world.data.market
-	shelter.data = world.data.shelter
+	nightmare.data = data.nightmare
+	jail.data = data.jail
+	treasury.data = data.treasury
+	bank.data = data.bank
+	market.data = data.market
+	shelter.data = data.shelter
 
 func update_size() -> void:
 	var viewport_size = get_viewport_rect().size
@@ -37,10 +37,11 @@ func update_size() -> void:
 	%UI.position = -%UI.size / 2
 
 func simulate_choice() -> void:
-	jail.active_cage = treasury.contributions.back().cage
+	var contribution = treasury.contributions.back()
+	jail.data.table.active_cage = contribution.cage.data
 	treasury.lock()
 	#await get_tree().create_timer(1).timeout
-	Scope.next_phase()
+	#Scope.next_phase()
 
 func execute_phase() -> void:
 	if Scope.is_pause: return
@@ -48,7 +49,7 @@ func execute_phase() -> void:
 	
 	match Scope.phase:
 		Bozo.Phase.ENDOWMENT:
-			pass
+			Scope.next_phase()
 		Bozo.Phase.REPLENISHMENT:
 			world.data.tribunal.refill_actual()
 			jail.apply_phase_visiblity()
@@ -60,14 +61,14 @@ func execute_phase() -> void:
 			treasury.appraisement_preparation()
 			simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
-			treasury.hide_not_selected_contributions()
+			#treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
 			volcano.flow_update()
 			volcano.burst_eruption()
 		Bozo.Phase.DEVELOPMENT:
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
-			nightmare.refill_claims()
+			nightmare.data.refill_claims()
 			world.data.tribunal.actual.clear()
 			Scope.next_phase()
 			#Scope.is_pause = true
@@ -75,3 +76,9 @@ func execute_phase() -> void:
 
 func _on_phase_timer_timeout() -> void:
 	execute_phase()
+
+func _process(_delta):
+	# Fires EXACTLY ONCE when the spacebar is first hit
+	if Input.is_action_just_pressed("ui_accept"):
+		Scope.update_phase()
+		execute_phase()

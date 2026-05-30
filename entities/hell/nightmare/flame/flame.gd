@@ -3,12 +3,21 @@ class_name Flame
 extends PanelContainer
 
 
-@export var type: Bozo.Tooltip = Bozo.Tooltip.FLAME
+var data: FlameData:
+	set(value_):
+		data = value_
+		apply_data_info()
+
 @export var trial: Trial
 @export var icon: TextureRect
 @export var progression: Progression
 
-@export var level: int = 1:
-	set(value_):
-		level = value_
-		icon.texture = load("res://entities/hell/nightmare/flame/images/%d.png" % level)
+
+
+func apply_data_info() -> void:
+	progression.data = data.progression
+	data.level_changed.connect(_on_level_changed)
+	_on_level_changed()
+
+func _on_level_changed() -> void:
+	icon.texture = load("res://entities/hell/nightmare/flame/images/%d.png" % data.level)

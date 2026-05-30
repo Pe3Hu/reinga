@@ -27,6 +27,5 @@ func connect_datas() -> void:
 func apply_type() -> void:
 	%HeaderColorRect.color = Catalog.trial_to_color[data.type]
 	%HeaderLabel.text = Catalog.trial_to_string[data.type].capitalize()
-	attitude.update_trial()
 	tribute.icon.modulate = Catalog.trial_to_color[data.type]
 	flame.icon.modulate = Catalog.trial_to_color[data.type]

@@ -13,7 +13,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmjwd"]
 bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0)
 
-[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury")]
+[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "shelter")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
@@ -22,6 +22,9 @@ volcano = NodePath("Volcano")
 nightmare = NodePath("UI/MarginContainer/HBox/Nightmare")
 jail = NodePath("UI/MarginContainer/HBox/Jail")
 treasury = NodePath("UI/MarginContainer/HBox/VBoxContainer/Treasury")
+bank = NodePath("UI/MarginContainer/HBox/VBoxContainer/HBoxContainer/Bank")
+market = NodePath("UI/MarginContainer/HBox/VBoxContainer/Market")
+shelter = NodePath("UI/MarginContainer/HBox/VBoxContainer/HBoxContainer/Shelter")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
@@ -91,7 +94,7 @@ hell = NodePath("..")
 
 [node name="PhaseTimer" type="Timer" parent="." unique_id=1169019040]
 unique_name_in_owner = true
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 autostart = true
 

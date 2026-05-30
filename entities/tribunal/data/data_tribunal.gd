@@ -6,7 +6,6 @@ var world: WorldData
 var bygone: GyreData = GyreData.new(self, Bozo.Gyre.BYGONE)
 var actual: GyreData = GyreData.new(self, Bozo.Gyre.ACTUAL)
 var hereafter: GyreData = GyreData.new(self, Bozo.Gyre.HEREAFTER)
-var gate: GateData = GateData.new(self)
 
 
 func _init(world_: WorldData) -> void:

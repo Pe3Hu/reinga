@@ -54,7 +54,6 @@ theme_override_constants/separation = 0
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-type = 14
 
 [node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/Header" unique_id=1699418279]
 visible = false

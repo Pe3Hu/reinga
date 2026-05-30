@@ -3,7 +3,10 @@ class_name Contribution
 extends PanelContainer
 
 
-var data: ContributionData = ContributionData.new()
+var data: ContributionData:
+	set(value_):
+		data = value_
+		apply_data_info()
 
 @export var treasury: Treasury
 @export var candle: Candle
@@ -24,23 +27,21 @@ var tokens: Array[Token]
 var cage: Cage:
 	set(value_):
 		cage = value_
+		cage.contribution = self
 		data.flow.nightmare = cage.jail.hell.nightmare.data
 
 
-func _ready() -> void:
-	tokens = [
-		pride,
-		envy,
-		anger,
-		lust,
-		greed,
-		gluttony,
-		madness,
-		oblivion,
-	]
-	
-	data.reset()
-
+func apply_data_info() -> void:
+	pride.data = data.pride
+	envy.data = data.envy
+	anger.data = data.anger
+	lust.data = data.lust
+	greed.data = data.greed
+	gluttony.data = data.gluttony
+	madness.data = data.madness
+	oblivion.data = data.oblivion
+	tribute.data = data.tribute
+	candle.data = data
 
 func get_token(type_: Variant) -> Token:
 	var str_type: String
@@ -54,24 +55,3 @@ func get_token(type_: Variant) -> Token:
 	
 	var token = get(str_type)
 	return token
-
-func change_token_value(type_: Variant, value_) -> void:
-	var token = get_token(type_)
-	token.value += value_
-
-func update_tokens() -> void:
-	data.reset()
-	
-	for _trait in Catalog.traits:
-		var indexs = Catalog.windrose_to_trait_to_indexs[_trait][candle.windrose]
-		
-		for index in indexs:
-			var _cage = treasury.hell.jail.cages[index]
-			var trait_data = _cage.sinner.soul.get_trait_data(_trait)
-			data.traits.append(trait_data)
-	
-	data.calc_token_sums()
-	tribute.value = data.tribute_sum
-	
-	for token_data in data.tokens:
-		change_token_value(token_data.type, token_data.value)

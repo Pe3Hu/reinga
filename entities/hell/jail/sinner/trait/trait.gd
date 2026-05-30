@@ -3,16 +3,12 @@ class_name Trait
 extends PanelContainer
 
 
-@export var data: TraitData:
+var data: TraitData:
 	set(value_):
 		data = value_
+		if data:
+			data.type_changed.connect(_on_type_changed)
 		call_deferred("init_tokens")
-
-@export var type: Bozo.Triat:
-	set(value_):
-		type = value_
-		update_columns()
-
 
 @export var tokens: Array[Token]
 
@@ -39,6 +35,7 @@ func init_tokens() -> void:
 		add_sin(sin_data)
 	for posture_data in data.postures:
 		add_posture(posture_data)
+	_on_type_changed()
 
 func add_sin(data_: SinData) -> void:
 	var token = sin_scene.instantiate()
@@ -54,11 +51,14 @@ func add_posture(data_: PostureData) -> void:
 	tokens.append(token)
 	update_columns()
 	
+func _on_type_changed() -> void:
+	update_columns()
+	
 func update_columns():
 	if tokens.is_empty(): return
 	
 	token_grid.columns = 1
-	if type == Bozo.Triat.FEAR or type == Bozo.Triat.GUILT:
+	if data.type == Bozo.Triat.FEAR or data.type == Bozo.Triat.GUILT:
 		token_grid.columns = tokens.size()
 #endregion
 

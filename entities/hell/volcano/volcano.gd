@@ -2,7 +2,7 @@ class_name Volcano
 extends Node
 
 
-var flow: FlowData = FlowData.new()
+var flow: FlowData
 
 @export var eruption_scene: PackedScene
 @export var splash_scene: PackedScene
@@ -19,7 +19,6 @@ var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 
 
 func _ready() -> void:
-	flow.nightmare = hell.nightmare.data
 	prewarm_eruption(Catalog.DEFAULT_ERUPTION_COUNT)
 	prewarm_splash(Catalog.DEFAULT_SPLASH_COUNT)
 	setup_trail_pool(Catalog.DEFAULT_ERUPTION_COUNT * 10)
@@ -38,12 +37,15 @@ func add_eruption() -> Eruption:
 
 func setup_trail_pool(count_: int) -> void:
 	for i in count_:
-		var newSprite: Sprite2D = Sprite2D.new()
-		newSprite.texture = load("uid://dugn64otk6dcd")
-		newSprite.z_index = 0
-		newSprite.modulate.a = 0.0
-		%Trails.add_child.call_deferred(newSprite)
-		trail_pool.append(newSprite)
+		add_trial()
+
+func add_trial() -> void:
+	var newSprite: Sprite2D = Sprite2D.new()
+	newSprite.texture = load("uid://dugn64otk6dcd")
+	newSprite.z_index = 0
+	newSprite.modulate.a = 0.0
+	%Trails.add_child.call_deferred(newSprite)
+	trail_pool.append(newSprite)
 
 func get_eruption() -> Eruption:
 	var eruption: Eruption
@@ -68,7 +70,8 @@ func return_eruption(eruption_: Eruption):
 		Scope.next_phase()
 
 func flow_update():
-	flow.contribution = hell.jail.active_cage.contribution.data
+	flow = hell.data.jail.table.active_cage.contribution.flow
+	flow.nightmare = hell.nightmare.data
 	flow.init_eruptions()
 	
 func burst_eruption():
@@ -80,7 +83,8 @@ func burst_eruption():
 
 func spawn_eruption(index_: int, timeout_: float):
 	var eruption_data = flow.eruptions[index_]
-	var token = hell.jail.active_cage.contribution.get_token(eruption_data.sin_type)
+	var cage = hell.jail.get_active_cage()
+	var token = cage.contribution.get_token(eruption_data.sin_type)
 	var trial = hell.nightmare.type_to_trial[eruption_data.trial_type]
 	var eruption = get_eruption()
 	eruption.reset(token, trial, timeout_)

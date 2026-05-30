@@ -87,16 +87,22 @@ func clear():
 	
 
 
+func get_target_type(target: Control) -> Variant:
+	if target is Token and target.data != null:
+		return target.data.type
+	return target.type
+
 func get_tooltip_data() -> TooltipData:
 	if interacts.is_empty(): return null
 	focused_interact = interacts.back()
+	var target_type = get_target_type(focused_interact.target)
 	var data = TooltipData.new()
-	data.type = Catalog.type_to_tooltip[focused_interact.target.type]
+	data.type = Catalog.type_to_tooltip[target_type]
 	data.text = TooltipManager.get_template(data.type)
 	
 	match data.type:
 		Bozo.Tooltip.SIN:
-			data.text = data.text % Catalog.sin_to_string[focused_interact.target.type].capitalize()
+			data.text = data.text % Catalog.sin_to_string[target_type].capitalize()
 			
 			if focused_interact.target.get_parent().get_parent() is Claim:
 				data.text = data.text.replace("Produces", "Consumes")

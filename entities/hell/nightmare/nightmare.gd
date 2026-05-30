@@ -9,6 +9,7 @@ var data: NightmareData:
 
 @export var hell: Hell
 @export var trials: Array[Trial]
+var type_to_trial: Dictionary
 
 var dissolve_dreams: Array[Dream]
 var drain_tributes: Array[Tribute]
@@ -20,6 +21,7 @@ func connect_datas() -> void:
 		var trial = trials[_i]
 		var trial_data = data.trials[_i]
 		trial.data = trial_data
+		type_to_trial[trial.data.type] = trial
 
 func awaken_dreams() -> void:
 	for cage in hell.jail.cages:
@@ -31,7 +33,7 @@ func awaken_dreams() -> void:
 		sinner.dream.update_desires(desires)
 	
 	for trial in trials:
-		var desire = Catalog.trial_to_desire[trial.type]
+		var desire = Catalog.trial_to_desire[trial.data.type]
 		if desires.has(desire):
 			var heat_value = desires[desire]
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
@@ -43,7 +45,7 @@ func end_dream_dissolve(dream_: Dream) -> void:
 		Scope.next_phase()
 
 func start_drain_tributes() -> void:
-	find_best_and_worst_tribute()
+	data.find_best_and_worst_tribute()
 	
 	for trial in trials:
 		trial.attitude.start_repletion()
@@ -56,7 +58,7 @@ func find_best_and_worst_tribute() -> void:
 	var best_options = []
 	
 	for trial in trials:
-		var value = trial.tribute.progression.current_value
+		var value = trial.tribute.progression.data.current_value
 		
 		if worst_value == value:
 			worst_options.append(trial)

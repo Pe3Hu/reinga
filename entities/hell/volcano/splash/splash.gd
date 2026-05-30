@@ -11,7 +11,7 @@ func reset(progression_: Progression, value_: int = 1):
 	get_parent().remove_child(self)
 	var x_sign = 1
 	
-	match progression_.type:
+	match progression_.data.type:
 		Bozo.Progression.TRIBUTE:
 			progression_.current_label.add_child(self)
 			x_sign = -1
@@ -26,8 +26,8 @@ func reset(progression_: Progression, value_: int = 1):
 	if value_ > 0:
 		text = "+"+str(value_)
 	
-	var trial = progression.get_parent().get_parent().trial
-	modulate = Catalog.trial_to_color[trial.type]
+	var trial_data = progression.data.boss.trial
+	modulate = Catalog.trial_to_color[trial_data.type]
 	z_index = 5
 	visible = true
 	#await resized
@@ -63,7 +63,7 @@ func reset(progression_: Progression, value_: int = 1):
 	tween.finished.connect(_on_finished)
 
 func _on_finished():
-	progression.current_value += value
+	progression.data.current_value += value
 	progression = null
 	visible = false
 	scale = Vector2.ONE

@@ -8,7 +8,6 @@
 [node name="TokenAmber" unique_id=1672584037 instance=ExtResource("1_75qpo")]
 visible = false
 script = ExtResource("2_wvv82")
-type = 0
 
 [node name="TextureRect" parent="." index="0" unique_id=2027400341]
 modulate = Color(0.4, 0.2, 0.6, 1)

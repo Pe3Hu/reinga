@@ -130,3 +130,28 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 func refill_claims() -> void:
 	for trail in trials:
 		trail.claim.refill()
+
+func find_best_and_worst_tribute() -> void:
+	var worst_value = INF
+	var worst_options = []
+	var best_value = -INF
+	var best_options = []
+	
+	for trial in trials:
+		var value = trial.tribute.progression.current_value
+		
+		if worst_value == value:
+			worst_options.append(trial)
+		if best_value == value:
+			best_options.append(trial)
+		if worst_value > value:
+			worst_value = value
+			worst_options = [trial]
+		if best_value < value:
+			best_value = value
+			best_options = [trial]
+	
+	var best_trial = best_options.pick_random()
+	best_trial.attitude.shifts.append(Catalog.BEST_TRIBUTE_SHIFT) 
+	var worst_trial = worst_options.pick_random()
+	worst_trial.attitude.shifts.append(Catalog.WORST_TRIBUTE_SHIFT) 

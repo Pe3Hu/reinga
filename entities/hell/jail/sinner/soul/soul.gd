@@ -2,6 +2,10 @@ class_name Soul
 extends MarginContainer
 
 
+var data: SoulData:
+	set(value_):
+		data = value_
+		connect_datas()
 @export var sinner: Sinner
 
 var traits: Array[Trait]
@@ -25,10 +29,10 @@ func _ready() -> void:
 
 func connect_datas() -> void:
 	reset()
-	fear.data = sinner.data.fear
-	horror.data = sinner.data.horror
-	guilt.data = sinner.data.guilt
-	repose.data = sinner.data.repose
+	fear.data = data.fear
+	horror.data = data.horror
+	guilt.data = data.guilt
+	repose.data = data.repose
 	unblur()
 
 func select_trait(triat_: Bozo.Triat) -> void:
