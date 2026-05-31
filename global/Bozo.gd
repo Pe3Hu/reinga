@@ -201,4 +201,6 @@ enum Tooltip {
 	CAGE = 312,
 	SINNER = 313,
 	CLOAK = 314,
+	POSTURE = 315,
+	JUDGMENT = 316,
 }

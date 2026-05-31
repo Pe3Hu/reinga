@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://cu2eerfflfqob" path="res://entities/hell/treasury/images/sort.png" id="3_2hnv5"]
 [ext_resource type="PackedScene" uid="uid://btt636vcw23jm" path="res://entities/ui/button/lock_button.tscn" id="4_fxvs5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3045x"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxvs5"]
 
 [node name="Treasury" type="PanelContainer" unique_id=2005910419 node_paths=PackedStringArray("sort_icon", "lock_button")]
-custom_minimum_size = Vector2(594, 420)
+custom_minimum_size = Vector2(594, 443)
 offset_right = 560.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_3045x")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fxvs5")
 script = ExtResource("1_utu1h")
 contribution_scene = ExtResource("2_3045x")
 sort_icon = NodePath("VBox/HBox/Control/SortIcon")

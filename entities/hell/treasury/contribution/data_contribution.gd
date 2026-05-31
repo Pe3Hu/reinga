@@ -15,6 +15,7 @@ var traits: Array[TraitData]
 var tokens: Array[TokenData]
 var sins: Array[SinData]
 
+var candle: CandleData
 var pride: SinData
 var envy: SinData
 var anger: SinData
@@ -25,8 +26,7 @@ var madness: PostureData
 var oblivion: PostureData
 var tribute: JudgmentData
 
-var rank_sum: int = 0
-var tribute_sum: int = 0
+#var rank_sum: int = 0
 var flow: FlowData
 
 
@@ -34,10 +34,12 @@ func _init(treasury_: TreasuryData, type_: Bozo.Windrose, cage_: CageData) -> vo
 	treasury = treasury_
 	type = type_
 	cage = cage_
+	
 	cage.contribution = self
 	flow = FlowData.new()
 	flow.contribution = self
 	
+	candle = CandleData.new(self)
 	pride = SinData.new(Bozo.Sin.PRIDE)
 	envy = SinData.new(Bozo.Sin.ENVY)
 	anger = SinData.new(Bozo.Sin.ANGER)
@@ -72,14 +74,12 @@ func reset() -> void:
 	for token in tokens:
 		token.reset()
 	
-	rank_sum = 0
-	tribute_sum = 0
+	#rank_sum = 0
 	traits.clear()
 
 func calc_token_sums() -> void:
 	for _trait in traits:
-		rank_sum += _trait.rank
-		
+		#rank_sum += _trait.rank
 		for _sin in _trait.sins:
 			change_token(_sin.type, _sin.value)
 		for posture in _trait.postures:

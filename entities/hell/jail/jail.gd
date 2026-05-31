@@ -59,3 +59,11 @@ func get_active_cage() ->  Variant:
 		if cage.data == data.table.active_cage:
 			return cage
 	return null
+
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			if not get_global_rect().has_point(get_global_mouse_position()):
+				data.table.reset_cage()

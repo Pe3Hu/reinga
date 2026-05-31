@@ -58,7 +58,7 @@ func init_eruptions() -> void:
 			sin_to_trial_to_weight.erase(sin_type)
 
 func calc_tribute_sum() -> void:
-	contribution.tribute_sum = 0
+	contribution.tribute.value = 0
 	sin_to_available.clear()
 	sin_to_demand.clear()
 	
@@ -72,4 +72,5 @@ func calc_tribute_sum() -> void:
 				sin_to_demand[_sin.type] += _sin.value
 	
 	for sin_type in sin_to_available:
-		contribution.tribute_sum += min(sin_to_demand[sin_type], sin_to_available[sin_type])
+		contribution.tribute.value += min(sin_to_demand[sin_type], sin_to_available[sin_type])
+	pass

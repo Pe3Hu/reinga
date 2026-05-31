@@ -11,3 +11,4 @@ var type: Bozo.Judgment:
 func _init(type_: Bozo.Judgment, value_: int = 0) -> void:
 	type = type_
 	value = value_
+	always_visible = true

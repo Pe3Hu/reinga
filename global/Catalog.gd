@@ -627,6 +627,14 @@ const desire_to_color = {
 }
 #endregion
 
+#region shelter
+const modifiers = [
+	Bozo.Modifier.MISS,
+	Bozo.Modifier.CRIT,
+	Bozo.Modifier.MEGACRIT,
+	Bozo.Modifier.ULTRACRIT,
+]
+
 const modifier_to_string = {
 	Bozo.Modifier.MISS: "miss",
 	Bozo.Modifier.CRIT: "crit",
@@ -634,6 +642,15 @@ const modifier_to_string = {
 	Bozo.Modifier.ULTRACRIT: "ultracrit",
 }
 
+const level_modifier_to_percent = {
+	1: {
+		Bozo.Modifier.MISS: 3,
+		Bozo.Modifier.CRIT: 5,
+		Bozo.Modifier.MEGACRIT: 1,
+		Bozo.Modifier.ULTRACRIT: 0,
+	}
+}
+#endregion
 
 #region phase
 const phases = [

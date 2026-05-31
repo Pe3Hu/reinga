@@ -12,7 +12,6 @@ var data: Resource:
 @export var texture_rect: TextureRect
 @export var label: Label
 
-var always_visible: bool = false
 
 
 
@@ -28,11 +27,12 @@ func _on_gui_input(event: InputEvent) -> void:
 
 func click_event() -> void:
 	if contribution != null:
-		contribution.treasury.resort(self)
+		contribution.treasury.reoder(data.type)
+		contribution.treasury.sort_icon_shift(self)
 
 func _on_value_changed():
 	label.text = str(data.value)
-	if !always_visible:
-		visible = data.value != 0
-	else:
+	visible = data.value != 0
+	
+	if data.always_visible:
 		visible = true

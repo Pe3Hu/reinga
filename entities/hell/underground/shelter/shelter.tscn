@@ -5,9 +5,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqbuq"]
 
-[node name="Shelter" type="PanelContainer" unique_id=526715784]
+[node name="Shelter" type="PanelContainer" unique_id=526715784 node_paths=PackedStringArray("ultracrit", "megacrit", "crit", "misscrit")]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wqbuq")
 script = ExtResource("1_26dln")
+ultracrit = NodePath("Modifiers/Ultracrit")
+megacrit = NodePath("Modifiers/Megacrit")
+crit = NodePath("Modifiers/Crit")
+misscrit = NodePath("Modifiers/Miss")
 
 [node name="Modifiers" type="VBoxContainer" parent="." unique_id=415147411]
 unique_name_in_owner = true
@@ -16,20 +20,17 @@ theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Ultracrit" parent="Modifiers" unique_id=1037539979 instance=ExtResource("2_wqbuq")]
+unique_name_in_owner = true
 layout_mode = 2
-type = 223
 
 [node name="Megacrit" parent="Modifiers" unique_id=1800487850 instance=ExtResource("2_wqbuq")]
+unique_name_in_owner = true
 layout_mode = 2
-type = 222
-value = 1
 
 [node name="Crit" parent="Modifiers" unique_id=1884690285 instance=ExtResource("2_wqbuq")]
+unique_name_in_owner = true
 layout_mode = 2
-type = 221
-value = 5
 
 [node name="Miss" parent="Modifiers" unique_id=264578528 instance=ExtResource("2_wqbuq")]
+unique_name_in_owner = true
 layout_mode = 2
-type = 220
-value = 3

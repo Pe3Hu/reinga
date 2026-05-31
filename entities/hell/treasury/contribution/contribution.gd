@@ -41,7 +41,7 @@ func apply_data_info() -> void:
 	madness.data = data.madness
 	oblivion.data = data.oblivion
 	tribute.data = data.tribute
-	candle.data = data
+	candle.data = data.candle
 
 func get_token(type_: Variant) -> Token:
 	var str_type: String

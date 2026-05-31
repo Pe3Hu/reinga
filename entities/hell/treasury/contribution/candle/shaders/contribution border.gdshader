@@ -5,7 +5,7 @@ uniform float direction: hint_range(-1.0, 1.0, 1.0) = -1.0;
 uniform float frequency: hint_range(0.1, 30.0, 0.1) = 15.0; // the number of dotted lines
 uniform float speed: hint_range(0.5, 20, 0.5) = 3.0;     // rotation speed
 uniform float radius: hint_range(0.01, 1.0, 0.01) = 1.0;
-uniform float line_thickness: hint_range(0.0, 0.5, 0.01) = 0.03;
+uniform float line_thickness: hint_range(0.0, 0.5, 0.01) = 0.06;//0.03;
 
 void fragment() {
   vec4 circle_outline;

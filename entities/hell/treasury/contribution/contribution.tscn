@@ -47,8 +47,12 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 16
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1308274337]
+visible = false
 layout_mode = 2
 color = Color(0.23921569, 0.23921569, 0.23921569, 0.84705883)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1936399162]
+layout_mode = 2
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_v3u6x")]
 layout_mode = 2
@@ -65,10 +69,10 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Tribute" parent="Margin/Box" unique_id=1672584037 instance=ExtResource("2_abunu")]
+[node name="Tribute" parent="Margin/Box" unique_id=1672584037 node_paths=PackedStringArray("contribution") instance=ExtResource("2_abunu")]
 visible = true
 layout_mode = 2
-type = 62
+contribution = NodePath("../../..")
 
 [node name="Candle" parent="Margin/Box" unique_id=634893612 instance=ExtResource("2_cicqm")]
 layout_mode = 2
@@ -86,51 +90,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Anger" parent="Margin/Box" unique_id=1974550261 instance=ExtResource("3_10cs7")]
-visible = true
+[node name="Anger" parent="Margin/Box" unique_id=1974550261 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 1
+contribution = NodePath("../../..")
 
-[node name="Envy" parent="Margin/Box" unique_id=826058108 instance=ExtResource("3_10cs7")]
+[node name="Envy" parent="Margin/Box" unique_id=826058108 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 2
+contribution = NodePath("../../..")
 
-[node name="Greed" parent="Margin/Box" unique_id=39581473 instance=ExtResource("3_10cs7")]
+[node name="Greed" parent="Margin/Box" unique_id=39581473 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 3
+contribution = NodePath("../../..")
 
-[node name="Gluttony" parent="Margin/Box" unique_id=1307276266 instance=ExtResource("3_10cs7")]
+[node name="Gluttony" parent="Margin/Box" unique_id=1307276266 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 4
+contribution = NodePath("../../..")
 
-[node name="Lust" parent="Margin/Box" unique_id=1882563100 instance=ExtResource("3_10cs7")]
+[node name="Lust" parent="Margin/Box" unique_id=1882563100 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 5
+contribution = NodePath("../../..")
 
-[node name="Pride" parent="Margin/Box" unique_id=1494368103 instance=ExtResource("3_10cs7")]
+[node name="Pride" parent="Margin/Box" unique_id=1494368103 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 6
+contribution = NodePath("../../..")
 
 [node name="Madness" parent="Margin/Box" unique_id=1814065818 instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 8
 
 [node name="Oblivion" parent="Margin/Box" unique_id=710263459 instance=ExtResource("4_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 7

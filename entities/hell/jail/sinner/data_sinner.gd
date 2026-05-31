@@ -8,6 +8,7 @@ var gyre: GyreData
 var dream: DreamData
 var soul: SoulData
 var gate: GateData
+var cage: CageData
 
 
 func _init(fate_: Bozo.Fate) -> void:

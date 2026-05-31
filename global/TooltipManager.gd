@@ -90,7 +90,7 @@ func clear():
 func get_target_type(target: Control) -> Variant:
 	if target is Token and target.data != null:
 		return target.data.type
-	return target.type
+	return target.data.type
 
 func get_tooltip_data() -> TooltipData:
 	if interacts.is_empty(): return null

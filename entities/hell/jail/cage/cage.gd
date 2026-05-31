@@ -5,17 +5,17 @@ class_name Cage
 var data: CageData:
 	set(value_):
 		data = value_
-		_apply_sinner_data()
+		apply_data()
 
 var jail: Jail
 var gate: Gate
 var contribution: Contribution
+
 @export var sinner: Sinner
 @export var cloak: Cloak
 
 
-func _apply_sinner_data() -> void:
-	if data == null or data.sinner == null: return
+func apply_data() -> void:
 	sinner.data = data.sinner
 
 func switch_side() -> void:

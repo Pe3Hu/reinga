@@ -6,7 +6,6 @@ extends Token
 
 func _on_value_changed() -> void:
 	super._on_value_changed()
-	visible = true
 
 func apply_data_info() -> void:
 	super.apply_data_info()

@@ -21,8 +21,10 @@ func _ready():
 	update_size()
 
 func update_size() -> void:
-	var viewport_size = get_viewport_rect().size
-	size = viewport_size
+	#var viewport_size = get_viewport_rect().size
+	#set_deferred("size", Vector2(viewport_size.x, viewport_size.y))
+	#size = viewport_size
+	pass
 
 func init_cages() -> void:
 	for cage_data in data.table.cages:

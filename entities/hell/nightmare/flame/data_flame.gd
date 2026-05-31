@@ -5,9 +5,11 @@ extends Resource
 signal level_changed
 
 var trial: TrialData
+var type: Bozo.Tooltip = Bozo.Tooltip.FLAME
 var level: int = 1:
 	set(value_):
 		level = value_
+		progression.limit_value = Catalog.flame_to_heat[level]
 		update_sins()
 		emit_signal("level_changed")
 
@@ -20,6 +22,7 @@ func _init(trial_: TrialData) -> void:
 	sins.append_array(trial.claim.sins)
 	progression = ProgressionData.new(self)
 	progression.type = Bozo.Progression.FLAME
+	progression.limit_value = Catalog.flame_to_heat[level]
 
 func update_sins() -> void:
 	for _i in sins.size():

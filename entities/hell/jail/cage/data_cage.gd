@@ -3,7 +3,10 @@ extends Resource
 
 
 var table: TableData
-var sinner: SinnerData
+var sinner: SinnerData:
+	set(value_):
+		sinner = value_
+		sinner.cage = self
 var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
 var coord: Vector2i
 

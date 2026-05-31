@@ -23,4 +23,5 @@ func _init(sinner_: SinnerData, type_: Bozo.Fate) -> void:
 var is_selected: bool = false:
 	set(value_):
 		is_selected = value_
+		sinner.cage.contribution.candle.is_selected = is_selected
 		emit_signal("is_selected_changed")

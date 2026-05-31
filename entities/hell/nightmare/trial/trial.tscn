@@ -10,6 +10,10 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51ln6"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51ln6"]
+bg_color = Color(0.27, 0.27, 0.27, 0.5372549)
+corner_detail = 1
+
 [node name="Trial" type="PanelContainer" unique_id=432939894 node_paths=PackedStringArray("attitude", "tribute", "flame", "claim")]
 custom_minimum_size = Vector2(358, 100)
 offset_right = 128.0
@@ -38,8 +42,13 @@ theme_override_constants/margin_right = -5
 theme_override_constants/margin_bottom = -5
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer" unique_id=1122192700]
+visible = false
 layout_mode = 2
 color = Color(0.35906893, 0.35906914, 0.35906908, 0.89411765)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer" unique_id=236928008]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_51ln6")
 
 [node name="TooltipInteract" parent="MarginContainer/MarginContainer" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("7_51ln6")]
 layout_mode = 2
@@ -55,7 +64,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 trial = NodePath("../../..")
-type = 58
 
 [node name="VBox" type="VBoxContainer" parent="MarginContainer/HBox" unique_id=980774418]
 custom_minimum_size = Vector2(0, 32)
@@ -105,7 +113,6 @@ trial = NodePath("../../..")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-type = 307
 trial = NodePath("../../..")
 
 [node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_51ln6")]

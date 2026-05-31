@@ -41,11 +41,16 @@ func appraisement_preparation() -> void:
 	show_vbox()
 	show_all_contributions()
 	data.update_contributions()
-	data.resort_judgment(Bozo.Judgment.TRIBUTE)
+	reoder(Bozo.Judgment.TRIBUTE)
+	await get_tree().process_frame
+	sort_icon_shift(contributions.front().tribute)
+
+func reoder(type_: Variant) -> void:
+	data.resort(type_)
 	reorder_contribution()
 
 func reorder_contribution() -> void:
-	contributions.sort_custom(func (a, b): data.contributions.find(a.data) > data.contributions.find(b.data))
+	contributions.sort_custom(func (a, b): return data.contributions.find(a.data) < data.contributions.find(b.data))
 
 	for _i in range(contributions.size()-1, -1, -1):
 		%Contributions.move_child(contributions[_i], _i)
@@ -57,15 +62,12 @@ func undo_resort() -> void:
 	reorder_contribution()
 	hell.jail.reset_active_cage()
 
-
-
 func sort_icon_shift(token_: Token) -> void:
 	if token_.data.type == Bozo.Posture.MADNESS: return
 	var best_contribution = contributions.back()
 	var best_token = best_contribution.get_token(token_.data.type)
 	sort_icon.global_position.y = best_token.global_position.y - 4
 	sort_icon.visible = true
-
 
 func hide_not_selected_contributions() -> void:
 	for contribution in contributions:

@@ -5,12 +5,19 @@ extends Resource
 var hell: HellData
 var modifiers: Array[ModifierData]
 var type_to_modifier: Dictionary
+var level: int = 1
 
 
 
 func _init(hell_: HellData) -> void:
 	hell = hell_
+	init_modifiers()
 
-func _init_modifiers() -> void:
+func init_modifiers() -> void:
 	for type in Catalog.modifiers:
-		pass
+		add_shelter(type)
+
+func add_shelter(type_: Bozo.Modifier) -> void:
+	var modifier = ModifierData.new(self, type_)
+	modifiers.append(modifier)
+	type_to_modifier[type_] = modifier

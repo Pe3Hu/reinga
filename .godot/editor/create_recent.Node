@@ -1,10 +1,10 @@
+MarginContainer
+PanelContainer
 HBoxContainer
 VBoxContainer
 RichTextLabel
 TextureRect
-MarginContainer
 ColorRect
-PanelContainer
 MeshInstance3D
 Control
 Label

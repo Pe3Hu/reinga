@@ -38,7 +38,7 @@ func update_size() -> void:
 
 func simulate_choice() -> void:
 	var contribution = treasury.contributions.back()
-	jail.data.table.active_cage = contribution.cage.data
+	jail.data.table._on_cage_selected(contribution.cage.data)
 	treasury.lock()
 	#await get_tree().create_timer(1).timeout
 	#Scope.next_phase()
@@ -78,7 +78,6 @@ func _on_phase_timer_timeout() -> void:
 	execute_phase()
 
 func _process(_delta):
-	# Fires EXACTLY ONCE when the spacebar is first hit
 	if Input.is_action_just_pressed("ui_accept"):
 		Scope.update_phase()
 		execute_phase()

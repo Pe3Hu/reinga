@@ -28,31 +28,14 @@ func update_contributions() -> void:
 		contribution.update_tokens()
 
 #region resort
-func resort(token_: Token) -> void:
-	if token_ is TokenSin:
-		resort_sin(token_.type)
-	if token_ is TokenPosture:
-		resort_posture(token_.type)
-	if token_ is TokenJudgment:
-		resort_judgment(token_.type)
+func resort(type_: Variant) -> void:
+	if type_ != Bozo.Posture.MADNESS:
+		contributions.sort_custom(func(a, b):
+			return a.get_token(type_).value < b.get_token(type_).value
+		)
 	
-	hell.jail.reset_active_cage()
+	hell.jail.table.reset_cage()
 
-func resort_sin(type_: Bozo.Sin) -> void:
-	contributions.sort_custom(func(a, b):
-		return a.get_token(type_).value < b.get_token(type_).value
-	)
-
-func resort_posture(type_: Bozo.Posture) -> void:
-	if type_ == Bozo.Posture.MADNESS: return
-	contributions.sort_custom(func(a, b):
-		return a.get_token(type_).value < b.get_token(type_).value
-	)
-
-func resort_judgment(type_: Bozo.Judgment) -> void:
-	contributions.sort_custom(func(a, b):
-		return a.get_token(type_).value < b.get_token(type_).value
-	)
 func undo_resort() -> void:
 	contributions.sort_custom(func(a, b):
 		return Catalog.contribution_windroses.find(a.type) > Catalog.contribution_windroses.find(b.type)

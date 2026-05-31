@@ -27,6 +27,7 @@ func _on_type_changed() -> void:
 
 
 func _on_is_selected_changed() -> void:
+	sinner.cage.contribution.treasury.lock_button.visible = data.is_selected
 	if data.is_selected:
 		focus()
 	else:
@@ -34,6 +35,7 @@ func _on_is_selected_changed() -> void:
 
 func focus() -> void:
 	label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % Catalog.fate_to_string[data.type].capitalize()
+	
 
 func unfocus() -> void:
 	label.text = Catalog.fate_to_string[data.type].capitalize()
