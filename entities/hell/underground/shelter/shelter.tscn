@@ -1,36 +1,57 @@
 [gd_scene format=3 uid="uid://ciho4pq82ouf5"]
 
 [ext_resource type="Script" uid="uid://bcsqvg2h4wwnm" path="res://entities/hell/underground/shelter/shelter.gd" id="1_26dln"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_om41d"]
 [ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/hell/underground/shelter/modifier/modifier.tscn" id="2_wqbuq"]
+[ext_resource type="Texture2D" uid="uid://dcvto1glcsxp4" path="res://entities/ui/frame/images/shelter.png" id="3_byuj7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqbuq"]
 
 [node name="Shelter" type="PanelContainer" unique_id=526715784 node_paths=PackedStringArray("ultracrit", "megacrit", "crit", "misscrit")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wqbuq")
 script = ExtResource("1_26dln")
-ultracrit = NodePath("Modifiers/Ultracrit")
-megacrit = NodePath("Modifiers/Megacrit")
-crit = NodePath("Modifiers/Crit")
-misscrit = NodePath("Modifiers/Miss")
+ultracrit = NodePath("MarginContainer/Modifiers/Ultracrit")
+megacrit = NodePath("MarginContainer/Modifiers/Megacrit")
+crit = NodePath("MarginContainer/Modifiers/Crit")
+misscrit = NodePath("MarginContainer/Modifiers/Miss")
 
-[node name="Modifiers" type="VBoxContainer" parent="." unique_id=415147411]
+[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_om41d")]
+layout_mode = 2
+texture = ExtResource("3_byuj7")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+type = 333
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=620554594]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Modifiers" type="HBoxContainer" parent="MarginContainer" unique_id=151086313]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Ultracrit" parent="Modifiers" unique_id=1037539979 instance=ExtResource("2_wqbuq")]
+[node name="Miss" parent="MarginContainer/Modifiers" unique_id=264578528 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Megacrit" parent="Modifiers" unique_id=1800487850 instance=ExtResource("2_wqbuq")]
+[node name="Crit" parent="MarginContainer/Modifiers" unique_id=1884690285 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Crit" parent="Modifiers" unique_id=1884690285 instance=ExtResource("2_wqbuq")]
+[node name="Megacrit" parent="MarginContainer/Modifiers" unique_id=1800487850 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Miss" parent="Modifiers" unique_id=264578528 instance=ExtResource("2_wqbuq")]
+[node name="Ultracrit" parent="MarginContainer/Modifiers" unique_id=1037539979 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2

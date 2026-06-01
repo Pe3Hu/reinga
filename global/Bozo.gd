@@ -227,3 +227,21 @@ enum Tooltip {
 	POSTURE = 315,
 	JUDGMENT = 316,
 }
+
+enum Frame {
+	NONE = 0,
+	TOOLTIP = 299,
+	TRIAL = 301,
+	CAGE = 312,
+	SINNER = 313,
+	CLOAK = 314,
+	HELL = 330,
+	JAIL = 331,
+	BANK = 332,
+	SHELTER = 333,
+	TREASURY = 334,
+	MARKET = 335,
+	MODIFIER = 336,
+	CONTRIBUTION = 337,
+	DEAL = 338,
+}

@@ -70,12 +70,18 @@ func sort_icon_shift(token_: Token) -> void:
 	sort_icon.visible = true
 
 func hide_not_selected_contributions() -> void:
+	sort_icon.visible = false
+	
 	for contribution in contributions:
 		contribution.visible = contribution.cage.data == hell.jail.data.table.active_cages.back()
+		
+		if contribution.visible:
+			contribution.hide_not_sins()
 
 func show_all_contributions() -> void:
 	for contribution in contributions:
 		contribution.visible = true
+		contribution.show_not_sins()
 
 func hide_vbox() -> void:
 	%VBox.visible = false

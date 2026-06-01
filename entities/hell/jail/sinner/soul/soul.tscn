@@ -18,7 +18,7 @@ repose = NodePath("TraitRepose")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2105037464]
 layout_mode = 2
-color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+color = Color(0, 0, 0, 0.5254902)
 
 [node name="TooltipInteract" parent="ColorRect" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
 layout_mode = 0
@@ -27,28 +27,26 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 148.0
 offset_bottom = 148.0
+grow_horizontal = 1
+grow_vertical = 1
 target = NodePath("../..")
 
 [node name="TraitFear" parent="." unique_id=1493565861 instance=ExtResource("1_xf3uh")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-type = 20
 
 [node name="TraitHorror" parent="." unique_id=1900910593 instance=ExtResource("1_xf3uh")]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-type = 21
 
 [node name="TraitGuilt" parent="." unique_id=147113289 instance=ExtResource("1_xf3uh")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-type = 22
 
 [node name="TraitRepose" parent="." unique_id=578949780 instance=ExtResource("1_xf3uh")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-type = 23

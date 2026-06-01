@@ -30,7 +30,7 @@ func connect_datas() -> void:
 		type_to_token[posture_data.type] = posture
 		posture.visible = true
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			data.test_change()
+#func _input(event):
+	#if event is InputEventMouseButton:
+		#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			#data.test_change()

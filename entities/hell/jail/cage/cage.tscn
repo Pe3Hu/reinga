@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bp2rppn86ih0m" path="res://entities/hell/jail/cage/cage.gd" id="1_2m11p"]
 [ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/hell/jail/sinner/sinner.tscn" id="2_bynt2"]
-[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/border/2 line 1 square.tscn" id="2_hlo7k"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_hlo7k"]
 [ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
+[ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/frame/images/cage.png" id="3_vmsct"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]
 
@@ -26,10 +27,17 @@ theme_override_constants/margin_bottom = 8
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=238926018]
 layout_mode = 2
-color = Color(0.16078432, 0.16078432, 0.16078432, 0.7921569)
+color = Color(0, 0, 0, 0.5254902)
 
-[node name="NinePatchRect" parent="." unique_id=716478958 instance=ExtResource("2_hlo7k")]
+[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_hlo7k")]
 layout_mode = 2
+texture = ExtResource("3_vmsct")
+region_rect = Rect2(0, 0, 84, 84)
+patch_margin_left = 21
+patch_margin_top = 21
+patch_margin_right = 21
+patch_margin_bottom = 21
+type = 312
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=754715822]
 layout_mode = 2

@@ -861,3 +861,50 @@ var token_to_color = {
 	Bozo.Token.MADNESS: Color.DEEP_PINK
 }
 #endregion
+
+#region frame
+const frame_to_string = {
+	Bozo.Frame.TOOLTIP: "tooltip",
+	Bozo.Frame.TRIAL: "trial",
+	Bozo.Frame.CAGE: "cage",
+	Bozo.Frame.HELL: "hell",
+	Bozo.Frame.JAIL: "jail",
+	Bozo.Frame.BANK: "bank",
+	Bozo.Frame.SHELTER: "shelter",
+	Bozo.Frame.TREASURY: "treasury",
+	Bozo.Frame.MARKET: "market",
+	Bozo.Frame.MODIFIER: "modifier",
+	Bozo.Frame.CONTRIBUTION: "contribution",
+	Bozo.Frame.DEAL: "deal",
+}
+
+const frame_to_region = {
+	Bozo.Frame.TOOLTIP: 18,
+	Bozo.Frame.TRIAL: 120,
+	Bozo.Frame.CAGE: 84,
+	Bozo.Frame.HELL: 200,
+	#Bozo.Frame.JAIL: ,
+	Bozo.Frame.BANK: 160, #not 108,
+	Bozo.Frame.SHELTER: 128,
+	#Bozo.Frame.TREASURY: 240,
+	Bozo.Frame.MARKET: 128,
+	#Bozo.Frame.MODIFIER: ,
+	Bozo.Frame.CONTRIBUTION: 36,
+	Bozo.Frame.DEAL: 36,
+}
+
+const frame_to_patch = {
+	Bozo.Frame.TOOLTIP: 6,
+	Bozo.Frame.TRIAL: 40,
+	Bozo.Frame.CAGE: 21,
+	Bozo.Frame.HELL: 68,
+	#Bozo.Frame.JAIL: ,
+	Bozo.Frame.BANK: 40,#not 44,
+	Bozo.Frame.SHELTER: 48,
+	#Bozo.Frame.TREASURY: 78,
+	Bozo.Frame.MARKET: 60,
+	#Bozo.Frame.MODIFIER: ,
+	Bozo.Frame.CONTRIBUTION: 12,
+	Bozo.Frame.DEAL: 12,
+}
+#endregion

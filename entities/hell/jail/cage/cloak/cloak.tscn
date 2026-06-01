@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://be1h42nriq287"]
 
 [ext_resource type="Script" uid="uid://dknoeu0gjsl37" path="res://entities/hell/jail/cage/cloak/cloak.gd" id="1_4atu8"]
-[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/border/black white pixel.tscn" id="2_kpr6p"]
+[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/frame/black white pixel.tscn" id="2_kpr6p"]
 [ext_resource type="PackedScene" uid="uid://cdpj6amwhbdjm" path="res://entities/ui/token/faction/faction.tscn" id="3_wb1vr"]
 [ext_resource type="PackedScene" uid="uid://brr6hbxdbyiqr" path="res://entities/hell/jail/cage/cloak/dream/dream.tscn" id="4_4atu8"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="5_0vhm1"]

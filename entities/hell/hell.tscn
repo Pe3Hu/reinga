@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cwjeyn62awup2"]
 
 [ext_resource type="Script" uid="uid://mnq8nmw8al0s" path="res://entities/hell/hell.gd" id="1_al7up"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_0u57p"]
 [ext_resource type="PackedScene" uid="uid://sku4ussmdh7x" path="res://entities/hell/nightmare/nightmare.tscn" id="2_hymf2"]
 [ext_resource type="PackedScene" uid="uid://dkdcibsiow4i8" path="res://entities/hell/volcano/volcano.tscn" id="2_kcv0y"]
 [ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/hell/jail/jail.tscn" id="2_kksrj"]
+[ext_resource type="Texture2D" uid="uid://cioo6abb1k8yp" path="res://entities/ui/frame/images/hell.png" id="3_3bli8"]
 [ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="3_b2gxv"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
-[ext_resource type="PackedScene" uid="uid://d3rj37vuqu6pa" path="res://entities/ui/border/3 line 5 square.tscn" id="3_qjiqm"]
 [ext_resource type="PackedScene" uid="uid://ciho4pq82ouf5" path="res://entities/hell/underground/shelter/shelter.tscn" id="6_0u57p"]
 [ext_resource type="PackedScene" uid="uid://bic8fb8vsph13" path="res://entities/hell/underground/market/market.tscn" id="7_b2gxv"]
 
@@ -36,8 +37,15 @@ offset_bottom = 427.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xmjwd")
 
-[node name="NinePatchRect" parent="UI" unique_id=716478958 instance=ExtResource("3_qjiqm")]
+[node name="Frame" parent="UI" unique_id=716478958 instance=ExtResource("2_0u57p")]
 layout_mode = 2
+texture = ExtResource("3_3bli8")
+region_rect = Rect2(0, 0, 200, 200)
+patch_margin_left = 68
+patch_margin_top = 68
+patch_margin_right = 68
+patch_margin_bottom = 68
+type = 330
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=31636910]
 custom_minimum_size = Vector2(1762, 802)

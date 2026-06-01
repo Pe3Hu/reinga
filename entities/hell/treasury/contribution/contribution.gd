@@ -55,3 +55,11 @@ func get_token(type_: Variant) -> Token:
 	
 	var token = get(str_type)
 	return token
+
+func hide_not_sins() -> void:
+	tribute.visible = false
+	candle.visible = false
+
+func show_not_sins() -> void:
+	tribute.visible = true
+	candle.visible = true

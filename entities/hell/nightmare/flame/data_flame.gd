@@ -8,10 +8,11 @@ var trial: TrialData
 var type: Bozo.Tooltip = Bozo.Tooltip.FLAME
 var level: int = 1:
 	set(value_):
-		level = value_
-		progression.limit_value = Catalog.flame_to_heat[level]
-		update_sins()
-		emit_signal("level_changed")
+		if Catalog.flame_to_heat.has(value_):
+			level = value_
+			progression.limit_value = Catalog.flame_to_heat[level]
+			update_sins()
+			emit_signal("level_changed")
 
 var sins: Array[SinData]
 var progression: ProgressionData
