@@ -1,6 +1,8 @@
-MarginContainer
 PanelContainer
 HBoxContainer
+Timer
+Sprite2D
+MarginContainer
 VBoxContainer
 RichTextLabel
 TextureRect
@@ -8,7 +10,5 @@ ColorRect
 MeshInstance3D
 Control
 Label
-Timer
 TextureButton
 Button
-Camera2D

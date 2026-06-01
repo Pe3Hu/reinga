@@ -19,7 +19,7 @@ func _init(nightmare_: NightmareData, type_: Bozo.Trial) -> void:
 	nightmare = nightmare_
 	type = type_
 	
-	tribute = TributeData.new(self)
-	attitude = AttitudeData.new(self)
 	claim = ClaimData.new(self)
+	attitude = AttitudeData.new(self)
 	flame = FlameData.new(self)
+	tribute = TributeData.new(self)

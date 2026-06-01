@@ -71,7 +71,7 @@ func sort_icon_shift(token_: Token) -> void:
 
 func hide_not_selected_contributions() -> void:
 	for contribution in contributions:
-		contribution.visible = contribution.cage.data == hell.jail.data.table.active_cage
+		contribution.visible = contribution.cage.data == hell.jail.data.table.active_cages.back()
 
 func show_all_contributions() -> void:
 	for contribution in contributions:

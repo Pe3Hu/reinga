@@ -11,6 +11,18 @@ enum Sin {
 	PRIDE = 6,
 }
 
+enum Token {
+	NONE = 0,
+	ANGER = 1,
+	ENVY = 2,
+	GREED = 3, 
+	GLUTTONY = 4,
+	LUST = 5,
+	PRIDE = 6,
+	OBLIVION = 7,
+	MADNESS = 8
+}
+
 enum Amber {
 	NONE = 0,
 	ANGER = 1,
@@ -173,6 +185,17 @@ enum Modifier {
 	CRIT = 221,
 	MEGACRIT = 222,
 	ULTRACRIT = 223
+}
+
+enum Eruption {
+	NONE = 0,
+	BATTLE = 9,
+	AUCTION = 10,
+	FEAST = 11,
+	MASQUERADE = 12, 
+	THEATER = 13,
+	BANK = 224,
+	MARKET = 225
 }
 
 enum Layer {

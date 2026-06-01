@@ -13,6 +13,12 @@ var data: TributeData:
 @export var progression: Progression
 
 
+
+func apply_data_info() -> void:
+	progression.data = data.progression
+	data.type_changed.connect(_on_type_changed)
+	_on_type_changed()
+
 func start_drain() -> void:
 	trial.nightmare.drain_tributes.append(self)
 	var duration = progression.data.current_value * Catalog.DRAIN_TICK
@@ -23,11 +29,6 @@ func start_drain() -> void:
 	tween.tween_callback(func():
 		trial.nightmare.end_tribute_drain(self)
 	)
-
-func apply_data_info() -> void:
-	progression.data = data.progression
-	data.type_changed.connect(_on_type_changed)
-	_on_type_changed()
 
 func _on_type_changed() -> void:
 	if data.type == 0: return

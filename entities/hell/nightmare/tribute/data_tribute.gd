@@ -6,14 +6,16 @@ extends TypeData
 var trial: TrialData
 var type: Bozo.Half = Bozo.Half.LESS:
 	set(value_):
-		type = value_
-		emit_signal("type_changed")
+		if type != value_:
+			type = value_
+			emit_signal("type_changed")
 var progression: ProgressionData
 
 func _init(trial_: TrialData) -> void:
 	trial = trial_
 	progression = ProgressionData.new(self)
 	progression.type = Bozo.Progression.TRIBUTE
+	calc_half()
 
 func calc_half() -> void:
 	var new_value = 0

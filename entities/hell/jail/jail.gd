@@ -56,11 +56,13 @@ func apply_phase_visiblity() -> void:
 
 func get_active_cage() ->  Variant:
 	for cage in cages:
-		if cage.data == data.table.active_cage:
+		if cage.data == data.table.active_cages.back():
 			return cage
 	return null
 
-
+func reset() -> void:
+	for cage in cages:
+		cage.reset()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://u5lfbg4t4o01" path="res://entities/hell/jail/sinner/sinner.gd" id="1_05m67"]
 [ext_resource type="PackedScene" uid="uid://cdpj6amwhbdjm" path="res://entities/ui/token/faction/faction.tscn" id="2_5d7qc"]
-[ext_resource type="PackedScene" uid="uid://gqj7ajvguac5" path="res://entities/ui/border/black white pixel.tscn" id="2_17dq6"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_ga41f"]
 [ext_resource type="PackedScene" uid="uid://crvjqfte61wlt" path="res://entities/hell/jail/sinner/soul/soul.tscn" id="4_uk7v1"]
 [ext_resource type="PackedScene" uid="uid://bcu8tdx132s04" path="res://entities/hell/jail/sinner/fate/fate.tscn" id="5_54fy0"]
@@ -59,9 +58,7 @@ theme_override_constants/separation = 0
 
 [node name="TokenFaction" parent="Panel/MarginContainer/VBoxContainer/Header" unique_id=1672584037 instance=ExtResource("2_5d7qc")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-type = 14
 
 [node name="TooltipInteract" parent="Panel/MarginContainer/VBoxContainer/Header/TokenFaction" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_ga41f")]
 layout_mode = 1
@@ -75,14 +72,3 @@ sinner = NodePath("../../../../..")
 [node name="Soul" parent="Panel/MarginContainer/VBoxContainer" unique_id=1263324762 node_paths=PackedStringArray("sinner") instance=ExtResource("4_uk7v1")]
 layout_mode = 2
 sinner = NodePath("../../../..")
-
-[node name="NinePatchRect" parent="Panel" unique_id=716478958 instance=ExtResource("2_17dq6")]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2

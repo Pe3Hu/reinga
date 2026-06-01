@@ -114,6 +114,16 @@ const amber_to_string = {
 	Bozo.Amber.GLUTTONY: "gluttony",
 	Bozo.Amber.INDOLENCE: "indolence",
 }
+
+const sin_to_token = {
+	Bozo.Sin.ANGER: Bozo.Token.ANGER,
+	Bozo.Sin.ENVY: Bozo.Token.ENVY,
+	Bozo.Sin.GREED: Bozo.Token.GREED,
+	Bozo.Sin.GLUTTONY: Bozo.Token.GLUTTONY,
+	Bozo.Sin.LUST: Bozo.Token.LUST,
+	Bozo.Sin.PRIDE: Bozo.Token.PRIDE,
+}
+
 #endregion
 
 #region fate
@@ -331,6 +341,14 @@ const sin_to_trial = {
 	Bozo.Sin.PRIDE: [Bozo.Trial.BATTLE, Bozo.Trial.AUCTION, Bozo.Trial.FEAST, Bozo.Trial.THEATER]
 }
 
+const trial_to_eruption = {
+	Bozo.Trial.BATTLE: Bozo.Eruption.BATTLE,
+	Bozo.Trial.AUCTION: Bozo.Eruption.AUCTION,
+	Bozo.Trial.FEAST: Bozo.Eruption.FEAST,
+	Bozo.Trial.MASQUERADE: Bozo.Eruption.MASQUERADE,
+	Bozo.Trial.THEATER: Bozo.Eruption.THEATER,
+}
+
 var trial_sin_requirements: Array[int] = [2, 3, 5]
 var trial_sin_amounts: Array[int] = [1, 1, 1, 2, 2, 3]
 
@@ -407,6 +425,10 @@ var rank_combinations = [
 #endregion
 
 #region posture
+const postures = [
+	Bozo.Posture.OBLIVION,
+	Bozo.Posture.MADNESS
+]
 const posture_to_string = {
 	Bozo.Posture.OBLIVION: "oblivion",
 	Bozo.Posture.MADNESS: "madness"
@@ -415,6 +437,10 @@ const posture_to_string = {
 const posture_to_color = {
 	Bozo.Posture.OBLIVION: Color.SLATE_GRAY,
 	Bozo.Posture.MADNESS: Color.DEEP_PINK
+}
+const posture_to_token = {
+	Bozo.Posture.OBLIVION: Bozo.Token.OBLIVION,
+	Bozo.Posture.MADNESS: Bozo.Token.MADNESS
 }
 #endregion
 
@@ -494,12 +520,15 @@ var windrose_to_trait_to_indexs = {
 #region volcano
 const VOLCANO_SPRITE_SIZE = Vector2(48, 48)
 const DEFAULT_ERUPTION_COUNT: int = 100
+const DEFAULT_TRAIL_COUNT: int = 1500
+const DEFAULT_PRESSURE_COUNT: int = 10
 const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
 
 const ERUPTION_DURATION: float = 0.4#0.8
 const TRAIL_DURATION: float =  0.4#
 const VOLCANO_BURST_DURATION: float =  0.4#0.8
+const PRESSURE_DURATION: float =  0.8#0.8
 #endregion
 
 #region blob
@@ -628,6 +657,8 @@ const desire_to_color = {
 #endregion
 
 #region shelter
+const PRESSURE_OFFSET_L = 16
+
 const modifiers = [
 	Bozo.Modifier.MISS,
 	Bozo.Modifier.CRIT,
@@ -636,6 +667,7 @@ const modifiers = [
 ]
 
 const modifier_to_string = {
+	Bozo.Modifier.NONE: "none",
 	Bozo.Modifier.MISS: "miss",
 	Bozo.Modifier.CRIT: "crit",
 	Bozo.Modifier.MEGACRIT: "megacrit",
@@ -648,7 +680,17 @@ const level_modifier_to_percent = {
 		Bozo.Modifier.CRIT: 5,
 		Bozo.Modifier.MEGACRIT: 1,
 		Bozo.Modifier.ULTRACRIT: 0,
+		Bozo.Modifier.NONE: 91,
 	}
+}
+
+const modifier_to_factor = {
+	Bozo.Modifier.MISS: 0,
+	Bozo.Modifier.NONE: 1,
+	Bozo.Modifier.CRIT: 2,
+	Bozo.Modifier.MEGACRIT: 3,
+	Bozo.Modifier.ULTRACRIT: 4,
+	
 }
 #endregion
 
@@ -804,5 +846,18 @@ const market_in_range = {
 
 const market_out_range = {
 	1: [4, 6]
+}
+#endregion
+
+#region token
+var token_to_color = {
+	Bozo.Token.PRIDE: Color.from_hsv(0.75, 0.9, 0.9),
+	Bozo.Token.ENVY: Color.from_hsv(0.08, 0.9, 0.9),
+	Bozo.Token.ANGER: Color.from_hsv(0.0, 0.9, 0.9),
+	Bozo.Token.LUST: Color.from_hsv(0.6, 0.9, 0.9),
+	Bozo.Token.GREED: Color.from_hsv(0.15, 0.9, 0.9),
+	Bozo.Token.GLUTTONY: Color.from_hsv(0.4, 0.9, 0.9),
+	Bozo.Token.OBLIVION: Color.SLATE_GRAY,
+	Bozo.Token.MADNESS: Color.DEEP_PINK
 }
 #endregion

@@ -6,12 +6,14 @@ var flow: FlowData
 
 @export var eruption_scene: PackedScene
 @export var splash_scene: PackedScene
+@export var pressure_scene: PackedScene
 
 @export var hell: Hell
 
 var eruption_pool: Array[Eruption]
 var splash_pool: Array[Splash]
 var trail_pool: Array[Sprite2D]
+var pressure_pool: Array[Sprite2D]
 
 @export var camera_2d: Camera2D
 
@@ -21,7 +23,8 @@ var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
 func _ready() -> void:
 	prewarm_eruption(Catalog.DEFAULT_ERUPTION_COUNT)
 	prewarm_splash(Catalog.DEFAULT_SPLASH_COUNT)
-	setup_trail_pool(Catalog.DEFAULT_ERUPTION_COUNT * 10)
+	setup_trail_pool(Catalog.DEFAULT_TRAIL_COUNT)
+	prewarm_pressure_pool(Catalog.DEFAULT_PRESSURE_COUNT)
 
 #region eruption
 func prewarm_eruption(count_: int):
@@ -70,7 +73,7 @@ func return_eruption(eruption_: Eruption):
 		Scope.next_phase()
 
 func flow_update():
-	flow = hell.data.jail.table.active_cage.contribution.flow
+	flow = hell.data.jail.table.active_cages.back().contribution.flow
 	flow.nightmare = hell.nightmare.data
 	flow.init_eruptions()
 	
@@ -83,11 +86,8 @@ func burst_eruption():
 
 func spawn_eruption(index_: int, timeout_: float):
 	var eruption_data = flow.eruptions[index_]
-	var cage = hell.jail.get_active_cage()
-	var token = cage.contribution.get_token(eruption_data.sin_type)
-	var trial = hell.nightmare.type_to_trial[eruption_data.trial_type]
 	var eruption = get_eruption()
-	eruption.reset(token, trial, timeout_)
+	eruption.reset(eruption_data, timeout_)
 #endregion
 
 #region shake
@@ -136,4 +136,29 @@ func burst_splash(progression_: Progression, count_: int) -> void:
 func single_splash(progression_: Progression) -> void:
 	var splash = get_splash()
 	splash.reset(progression_)
+#endregion
+
+
+#region pressure
+func prewarm_pressure_pool(count_: int) -> void:
+	for i in count_:
+		add_pressure()
+
+func add_pressure() -> Pressure:
+	var pressure = pressure_scene.instantiate() as Pressure
+	pressure.volcano = self
+	%Pressures.add_child(pressure)
+	pressure_pool.append(pressure)
+	return pressure
+
+func get_pressure() -> Pressure:
+	if pressure_pool.is_empty():
+		var pressure = add_pressure()
+		return pressure
+	
+	return pressure_pool.pop_back()
+	
+func return_pressure(pressure_: Pressure):
+	pressure_.visible = false
+	pressure_pool.append(pressure_)
 #endregion

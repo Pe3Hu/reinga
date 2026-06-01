@@ -18,6 +18,10 @@ var contribution: Contribution
 func apply_data() -> void:
 	sinner.data = data.sinner
 
+func reset() -> void:
+	sinner.visible = false
+	cloak.visible = false
+
 func switch_side() -> void:
 	sinner.visible = !sinner.visible
 	cloak.visible = !cloak.visible

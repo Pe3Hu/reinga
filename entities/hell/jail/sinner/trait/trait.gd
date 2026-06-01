@@ -7,7 +7,11 @@ var data: TraitData:
 	set(value_):
 		data = value_
 		if data:
+			if data.type_changed.is_connected(_on_type_changed):
+				data.type_changed.disconnect(_on_type_changed)
+			
 			data.type_changed.connect(_on_type_changed)
+		
 		call_deferred("init_tokens")
 
 @export var tokens: Array[Token]

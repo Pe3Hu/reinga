@@ -16,6 +16,9 @@ var data: Resource:
 
 
 func apply_data_info() -> void:
+	if data.value_changed.is_connected(_on_value_changed):
+		data.value_changed.disconnect(_on_value_changed)
+	
 	data.value_changed.connect(_on_value_changed)
 	_on_value_changed()
 

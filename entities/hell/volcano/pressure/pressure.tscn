@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dnhd8ux8uav2y"]
+
+[ext_resource type="Texture2D" uid="uid://c13r8fyrqmtm5" path="res://entities/hell/volcano/pressure/images/miss.png" id="1_cn71k"]
+[ext_resource type="Script" uid="uid://03taa8nmq6rc" path="res://entities/hell/volcano/pressure/pressure.gd" id="2_d8o7s"]
+
+[node name="Pressure" type="Sprite2D" unique_id=1077783535 node_paths=PackedStringArray("timer")]
+visible = false
+texture = ExtResource("1_cn71k")
+script = ExtResource("2_d8o7s")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=494508716]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

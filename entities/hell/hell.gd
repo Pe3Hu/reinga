@@ -41,7 +41,7 @@ func simulate_choice() -> void:
 	jail.data.table._on_cage_selected(contribution.cage.data)
 	treasury.lock()
 	#await get_tree().create_timer(1).timeout
-	#Scope.next_phase()
+	Scope.next_phase()
 
 func execute_phase() -> void:
 	if Scope.is_pause: return
@@ -61,7 +61,7 @@ func execute_phase() -> void:
 			treasury.appraisement_preparation()
 			simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
-			#treasury.hide_not_selected_contributions()
+			treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
 			volcano.flow_update()
 			volcano.burst_eruption()
@@ -70,6 +70,7 @@ func execute_phase() -> void:
 		Bozo.Phase.INVESTMENT:
 			nightmare.data.refill_claims()
 			world.data.tribunal.actual.clear()
+			jail.reset()
 			Scope.next_phase()
 			#Scope.is_pause = true
 

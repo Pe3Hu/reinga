@@ -14,6 +14,7 @@ var type: Bozo.Windrose:
 var traits: Array[TraitData]
 var tokens: Array[TokenData]
 var sins: Array[SinData]
+var postures: Array[PostureData]
 
 var candle: CandleData
 var pride: SinData
@@ -68,6 +69,11 @@ func _init(treasury_: TreasuryData, type_: Bozo.Windrose, cage_: CageData) -> vo
 		lust,
 		greed,
 		gluttony,
+	]
+	
+	postures = [
+		madness,
+		oblivion,
 	]
 
 func reset() -> void:

@@ -2,9 +2,11 @@ class_name Eruption
 extends Node2D
 
 
+var data: EruptionData
 var volcano: Volcano
-var sin_token: TokenSin
-var trial: Trial
+var start_token: Token
+var end_token: Token
+var end_target: Variant
 
 var start: Vector2
 var end: Vector2
@@ -16,18 +18,31 @@ var active: bool = false
 var trails: Array[Sprite2D]
 
 
-func reset(token_: TokenSin, trial_: Trial, timeout_: float):
-	sin_token = token_
-	trial = trial_
+func reset(data_: EruptionData, timeout_: float):
+	data = data_
+	var cage = volcano.hell.jail.get_active_cage()
+	start_token = cage.contribution.get_token(data.token)
+	
+	update_end_token()
+	
 	%ActivateTimer.wait_time = timeout_
 	%ActivateTimer.start()
 	
 	t = 0.0
 
+func update_end_token() -> void:
+	if data.type == Bozo.Eruption.MARKET:
+		end_target = volcano.hell.market
+	elif data.type == Bozo.Eruption.BANK:
+		end_target = volcano.hell.bank
+	else:
+		end_target = volcano.hell.nightmare.type_to_trial[data.type].claim
+	
+	end_token = end_target.type_to_token[start_token.data.type]
+
 func update_vectors() -> void:
-	start = sin_token.global_position
-	var trial_token = trial.claim.sin_to_token[sin_token.data.type]
-	end = trial_token.global_position
+	start = start_token.global_position
+	end = end_token.global_position
 	
 	var shift = Vector2.from_angle(randf() * PI * 2) * Catalog.ERUPTION_OFFSET_L
 	start += shift
@@ -76,12 +91,13 @@ func deactivate() -> void:
 
 	volcano.return_eruption(self)
 	
-	if trial:
-		var trial_token = trial.claim.sin_to_token[sin_token.data.type]
-		trial_token.data.value -= 1
-		#if trial_token.data.value < 0:
-		#	volcano.check_sin(sin_token.data.type)
-		volcano.single_splash(trial.tribute.progression)
+	if end_token:
+		end_token.data.value -= 1
+	
+	if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
+		#if end_token.data.value < 0:
+		#	volcano.check_sin(start_token.data.type)
+		volcano.single_splash(end_target.trial.tribute.progression)
 	
 	for trail in trails:
 		trail.visible = false
@@ -101,15 +117,18 @@ func activate() -> void:
 
 	control = mid + perp * randf_range(-180, 180)
 
-	if sin_token:
-		modulate = Catalog.sin_to_color[sin_token.data.type]
-		sin_token.data.value -= 1
+	if start_token:
+		modulate = Catalog.token_to_color[start_token.data.type]
+		start_token.data.value -= 1
+		
+		if data.pressure.type != Bozo.Modifier.NONE:
+			var pressure = volcano.get_pressure()
+			pressure.eruption = self
 
 func bezier(a_: Vector2, b_: Vector2, c_: Vector2, t_: float):
 	var ab = a_.lerp(b_, t_)
 	var bc = b_.lerp(c_, t_)
 	return ab.lerp(bc, t_)
-
 
 func _on_activate_timer_timeout() -> void:
 	activate()

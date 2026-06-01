@@ -3,11 +3,14 @@ extends Resource
 
 
 var flow: FlowData
-var sin_type: Bozo.Sin
-var trial_type: Bozo.Trial
+var token: Bozo.Token
+var pressure: PressureData
+var type: Bozo.Eruption
+#var modifier: Bozo.Modifier = Bozo.Modifier.NONE
 
 
-func _init(flow_: FlowData, sin_type_: Bozo.Sin, trial_type_: Bozo.Trial) -> void:
+func _init(flow_: FlowData, token_: Bozo.Token, type_: Bozo.Eruption, modifier_: Bozo.Modifier = Bozo.Modifier.NONE) -> void:
 	flow = flow_
-	sin_type = sin_type_
-	trial_type = trial_type_
+	token = token_
+	type = type_
+	pressure = PressureData.new(self, modifier_)

@@ -13,7 +13,7 @@ var current_value: int:
 		current_value = value_
 		update()
 		emit_signal("current_value_changed")
-var limit_value: int = 10:
+var limit_value: int = 0:
 	set(value_):
 		limit_value = value_
 		emit_signal("limit_value_changed")

@@ -21,3 +21,6 @@ func add_shelter(type_: Bozo.Modifier) -> void:
 	var modifier = ModifierData.new(self, type_)
 	modifiers.append(modifier)
 	type_to_modifier[type_] = modifier
+
+func get_modifier_weights() -> Dictionary:
+	return Catalog.level_modifier_to_percent[level]

@@ -10,13 +10,14 @@ var data: ClaimData:
 @export var trial: Trial
 @export var sins: Array[TokenSin]
 
-var sin_to_token: Dictionary
+var type_to_token: Dictionary
 
 
 func connect_datas() -> void:
-	sin_to_token.clear()
+	type_to_token.clear()
+	
 	for _i in data.sins.size():
 		var sin_token = sins[_i]
 		var sin_data = data.sins[_i]
 		sin_token.data = sin_data
-		sin_to_token[sin_data.type] = sin_token
+		type_to_token[sin_data.type] = sin_token
