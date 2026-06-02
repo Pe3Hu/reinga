@@ -115,6 +115,15 @@ const amber_to_string = {
 	Bozo.Amber.INDOLENCE: "indolence",
 }
 
+const amber_to_sin = {
+	Bozo.Amber.ANGER: Bozo.Sin.ANGER,
+	Bozo.Amber.ENVY: Bozo.Sin.ENVY,
+	Bozo.Amber.GREED: Bozo.Sin.GREED,
+	Bozo.Amber.GLUTTONY: Bozo.Sin.GLUTTONY,
+	Bozo.Amber.LUST: Bozo.Sin.LUST,
+	Bozo.Amber.PRIDE: Bozo.Sin.PRIDE,
+}
+
 const sin_to_token = {
 	Bozo.Sin.ANGER: Bozo.Token.ANGER,
 	Bozo.Sin.ENVY: Bozo.Token.ENVY,
@@ -528,7 +537,9 @@ const ERUPTION_OFFSET_L: float = 4
 const ERUPTION_DURATION: float = 0.4#0.8
 const TRAIL_DURATION: float =  0.4#
 const VOLCANO_BURST_DURATION: float =  0.4#0.8
+const DEAL_BURST_DURATION: float =  0.4#0.8
 const PRESSURE_DURATION: float =  0.8#0.8
+const TRAIL_INTERVAL: float = 0.012
 #endregion
 
 #region blob
@@ -841,7 +852,7 @@ const GATE_FATE_MAX = 2
 
 #region market
 const market_in_range = {
-	1: [8, 10]
+	1: [1, 1]#[8, 10]
 }
 
 const market_out_range = {
@@ -884,7 +895,7 @@ const frame_to_region = {
 	Bozo.Frame.CAGE: 84,
 	Bozo.Frame.HELL: 200,
 	#Bozo.Frame.JAIL: ,
-	Bozo.Frame.BANK: 160, #not 108,
+	Bozo.Frame.BANK: 72,
 	Bozo.Frame.SHELTER: 128,
 	#Bozo.Frame.TREASURY: 240,
 	Bozo.Frame.MARKET: 128,
@@ -899,7 +910,7 @@ const frame_to_patch = {
 	Bozo.Frame.CAGE: 21,
 	Bozo.Frame.HELL: 68,
 	#Bozo.Frame.JAIL: ,
-	Bozo.Frame.BANK: 40,#not 44,
+	Bozo.Frame.BANK: 34,#not 44,
 	Bozo.Frame.SHELTER: 48,
 	#Bozo.Frame.TREASURY: 78,
 	Bozo.Frame.MARKET: 60,
@@ -908,3 +919,5 @@ const frame_to_patch = {
 	Bozo.Frame.DEAL: 12,
 }
 #endregion
+
+const TRANSITION_DURATION: float = 1.5

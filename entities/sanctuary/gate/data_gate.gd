@@ -10,6 +10,7 @@ var sinners: Array[SinnerData]
 var fate_options: Array[Bozo.Fate]
 var fate_to_count: Dictionary
 
+var is_open: bool = true#false
 
 
 func _init(world_: WorldData) -> void:
@@ -41,5 +42,3 @@ func add_sinner(fate_: Bozo.Fate) -> void:
 	if fate_to_count[fate_] == Catalog.GATE_FATE_MAX:
 		fate_to_count.erase(fate_)
 		fate_options.erase(fate_)
-	
-	

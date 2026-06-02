@@ -3,13 +3,17 @@ class_name TokenAmber
 extends Token
 
 
+@export var deal: Deal
+@export var bank: Bank
+
+
 func _on_value_changed() -> void:
 	super._on_value_changed()
-	visible = true
 
 func apply_data_info() -> void:
 	super.apply_data_info()
-	data.type_changed.connect(_on_type_changed)
+	if !data.type_changed.is_connected(_on_type_changed):
+		data.type_changed.connect(_on_type_changed)
 	_on_type_changed()
 
 func _on_type_changed() -> void:

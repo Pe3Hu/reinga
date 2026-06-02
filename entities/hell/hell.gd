@@ -66,11 +66,13 @@ func execute_phase() -> void:
 			volcano.flow_update()
 			volcano.burst_eruption()
 		Bozo.Phase.DEVELOPMENT:
+			market.data.refill_closed_deals()
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
 			nightmare.data.refill_claims()
-			world.data.tribunal.actual.clear()
+			world.data.tribunal.open_gate()
 			jail.reset()
+			world.gate.open()
 			Scope.next_phase()
 			#Scope.is_pause = true
 

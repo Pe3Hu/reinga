@@ -13,6 +13,7 @@ var end: Vector2
 var control: Vector2
 
 var t: float = 0.0
+var trail_timer: float = 0.0
 var active: bool = false
 
 var trails: Array[Sprite2D]
@@ -24,21 +25,26 @@ func reset(data_: EruptionData, timeout_: float):
 	start_token = cage.contribution.get_token(data.token)
 	
 	update_end_token()
-	
-	%ActivateTimer.wait_time = timeout_
-	%ActivateTimer.start()
-	
-	t = 0.0
+	reset_timer(timeout_)
 
 func update_end_token() -> void:
 	if data.type == Bozo.Eruption.MARKET:
 		end_target = volcano.hell.market
 	elif data.type == Bozo.Eruption.BANK:
 		end_target = volcano.hell.bank
+		if Catalog.ambers.has(data.token):
+			var market = volcano.hell.market
+			start_token = market.type_to_amber[data.token]
 	else:
 		end_target = volcano.hell.nightmare.type_to_trial[data.type].claim
 	
 	end_token = end_target.type_to_token[start_token.data.type]
+
+func reset_timer(timeout_: float) -> void:
+	%ActivateTimer.stop()
+	%ActivateTimer.wait_time = timeout_
+	%ActivateTimer.start()
+	t = 0.0
 
 func update_vectors() -> void:
 	start = start_token.global_position
@@ -59,53 +65,81 @@ func _process(delta_):
 	if !active: return
 	t += delta_ / Catalog.ERUPTION_DURATION
 	var time = clamp(t, 0, 1)
-
+	trail_timer += delta_
 	global_position = bezier(start, control, end, time)
 	
-	if get_tree().get_frame() % 1 == 0:
-		if not volcano.trail_pool.is_empty():
-			var sprite = volcano.trail_pool.pop_front()
-			sprite.global_position = global_position + sprite.texture.get_size() / 2
-			sprite.modulate = modulate
-			trails.append(sprite)
-			sprite.visible = true
-			
-			var fading_tween = get_tree().create_tween()
-			fading_tween.tween_method(
-				func(value: float) -> void: sprite.modulate.a = value,
-				0.6,
-				0.0,
-				Catalog.TRAIL_DURATION
-			)
-			
-			await fading_tween.finished
-			volcano.trail_pool.append(sprite)
+	if trail_timer >= Catalog.TRAIL_INTERVAL:
+		spawn_trail()
+		
 
 	if time >= 1.0:
 		deactivate()
+
+func spawn_trail() -> void:
+	trail_timer = 0.0
+	if not volcano.trail_pool.is_empty():
+		var sprite = volcano.trail_pool.pop_front()
+		sprite.global_position = global_position + sprite.texture.get_size() / 2
+		sprite.modulate = modulate
+		trails.append(sprite)
+		sprite.visible = true
+		
+		if Catalog.sins.has(data.token):
+			sprite.texture = load("uid://dugn64otk6dcd")
+		else:
+			match data.token:
+				Bozo.Posture.OBLIVION:
+					sprite.texture = load("uid://sqqr87ep0wga")
+				Bozo.Posture.MADNESS:
+					sprite.texture = load("uid://bux8dfbycomad")
+		
+		if start_token.data as AmberData:
+			sprite.texture = load("uid://8kjv4yrf5ew3")
+		
+		var fading_tween = get_tree().create_tween()
+		fading_tween.tween_method(
+			func(value: float) -> void: sprite.modulate.a = value,
+			0.6,
+			0.0,
+			Catalog.TRAIL_DURATION
+		)
+		
+		fading_tween.finished.connect(func():
+			trails.erase(sprite)
+			volcano.trail_pool.append(sprite)
+		)
 
 func deactivate() -> void:
 	if !active: return
 	active = false
 	visible = false
-
-	volcano.return_eruption(self)
+	%ActivateTimer.stop()
 	
 	if end_token:
-		end_token.data.value -= 1
+		var value = -1
+		
+		if end_target as Bank:
+			value = 1
+			if start_token as TokenAmber:
+				pass
+		
+		end_token.data.value += value
 	
 	if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
-		#if end_token.data.value < 0:
-		#	volcano.check_sin(start_token.data.type)
 		volcano.single_splash(end_target.trial.tribute.progression)
 	
 	for trail in trails:
 		trail.visible = false
+		volcano.trail_pool.append(trail)
+	
+	trails.clear()
+	volcano.return_eruption(self)
 
 func activate() -> void:
 	if active: return
 	active = true
 	visible = true
+	z_index = 1
 
 	update_vectors()
 

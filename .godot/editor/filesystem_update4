@@ -1,15 +1,3 @@
-res://entities/ui/tooltip/tooltip.tscn
-res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader
-res://entities/sanctuary/shader/matrix.gdshader
-res://entities/sanctuary/gate/shader/portal.gdshader
-res://entities/sanctuary/gate/shader/portal circle.gdshader
-res://entities/sanctuary/gate/shader/portal square.gdshader
-res://entities/hell/inferno/void.gdshader
-res://entities/hell/jail/sinner/trait/blur.gdshader
-res://entities/sanctuary/gate/gate blur.gdshader
-res://entities/sanctuary/borders.gdshader
-res://entities/sanctuary/coffee.gdshader
-res://entities/sanctuary/sea.gdshader
-res://entities/ui/parallax/parallax.gdshader
-res://entities/sanctuary/parallax 2d.gdshader
-res://entities/hell/underground/bank/bank.gd
+res://entities/ui/transition/transition.tscn
+res://entities/ui/transition/transition.gdshader
+res://entities/ui/transition/transition 1.gdshader

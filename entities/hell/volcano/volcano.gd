@@ -82,12 +82,14 @@ func burst_eruption():
 	apply_shake_effect()
 
 	for _i in range(flow.eruptions.size()-1, -1, -1):
-		spawn_eruption(_i, step * (_i + 1))
+		var eruption = spawn_eruption(_i, step * (_i + 1))
+		flow.eruptions.erase(eruption.data)
 
-func spawn_eruption(index_: int, timeout_: float):
+func spawn_eruption(index_: int, timeout_: float) -> Eruption:
 	var eruption_data = flow.eruptions[index_]
 	var eruption = get_eruption()
 	eruption.reset(eruption_data, timeout_)
+	return eruption
 #endregion
 
 #region shake
@@ -138,7 +140,6 @@ func single_splash(progression_: Progression) -> void:
 	splash.reset(progression_)
 #endregion
 
-
 #region pressure
 func prewarm_pressure_pool(count_: int) -> void:
 	for i in count_:
@@ -162,3 +163,28 @@ func return_pressure(pressure_: Pressure):
 	pressure_.visible = false
 	pressure_pool.append(pressure_)
 #endregion
+
+func deal_burst(deal_: Deal) -> void:
+	var count = deal_.data.amber_data.value
+	#var step = Catalog.DEAL_BURST_DURATION / float(count)
+	var type = deal_.amber_token.data.type
+	#print(count)
+	
+	for _i in count:
+	#for _i in range(count-1, -1, -1):
+		var eruption_data = EruptionData.new(flow, type, Bozo.Eruption.BANK)
+		flow.eruptions.append(eruption_data)
+	
+	burst_deal_eruption()
+
+func burst_deal_eruption():
+	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
+	
+	for i in range(flow.eruptions.size() - 1, -1, -1):
+		var eruption = spawn_eruption(i, step * (i + 1))
+		flow.eruptions.erase(eruption.data)
+
+#func spawn_deal_eruption(type_: Bozo.Token, timeout_: float) -> void:
+	#var eruption_data = EruptionData.new(flow, type_, Bozo.Eruption.BANK)
+	#var eruption = get_eruption()
+	#eruption.reset(eruption_data, timeout_)

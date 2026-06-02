@@ -47,3 +47,7 @@ func refill_actual() -> void:
 	
 	while actual.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE:
 		hereafter.transfer_sinner()
+
+func open_gate() -> void:
+	world.gate.is_open = hereafter.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE
+	actual.clear()

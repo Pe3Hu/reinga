@@ -3,6 +3,9 @@ class_name TokenPosture
 extends Token
 
 
+@export var bank: Bank
+
+
 func apply_data_info() -> void:
 	super.apply_data_info()
 	data.type_changed.connect(_on_type_changed)

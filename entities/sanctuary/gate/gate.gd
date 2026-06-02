@@ -15,7 +15,6 @@ var data: GateData:
 
 
 
-
 #region init
 func _ready():
 	update_size()
@@ -88,3 +87,7 @@ func add_cage(data_: CageData) -> void:
 #
 #func unblur_col(index_: int) -> void:
 	#%Blur.material.set_shader_parameter("selected_col", index_)
+
+
+func open() -> void:
+	if !data.is_open: return

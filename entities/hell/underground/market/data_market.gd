@@ -2,14 +2,18 @@ class_name MarketData
 extends Resource
 
 
+@warning_ignore("unused_signal")
+signal order_changed
+
 var hell: HellData
 var deals: Array[DealData]
 var type_to_deal: Dictionary
 var level: int = 1
 
 var amber_options: Array[Bozo.Amber]
-
-
+var sin_options: Array[Bozo.Sin]
+var closeds: Array[DealData]
+var last_deal: DealData
 
 
 func _init(hell_: HellData) -> void:
@@ -17,22 +21,22 @@ func _init(hell_: HellData) -> void:
 	init_deals()
 
 func init_deals() -> void:
-	
 	for sin_type in Catalog.sins:
 		add_deal(sin_type)
 	
 	deals.shuffle()
 
 func add_deal(sin_type_: Variant) -> void:
-	
 	var in_value = randi_range(Catalog.market_in_range[level].front(), Catalog.market_in_range[level].back())
 	var sin_data = SinData.new(sin_type_, in_value)
 	var amber_type = pull_ember_type()
+	
 	while amber_type == sin_type_:
 		amber_type = pull_ember_type()
+	
 	var out_value = randi_range(Catalog.market_out_range[level].front(), Catalog.market_out_range[level].back())
 	var amber_data = AmberData.new(amber_type, out_value)
-	var deal = DealData.new(sin_data, amber_data)
+	var deal = DealData.new(self, sin_data, amber_data)
 	deals.append(deal)
 	type_to_deal[sin_type_] = deal
 
@@ -44,3 +48,38 @@ func pull_ember_type() -> Bozo.Amber:
 	if amber_options.is_empty():
 		refill_ember_options()
 	return amber_options.pop_back()
+
+func refill_closed_deals() -> void:
+	last_deal = deals.pop_back()
+	closeds.append(last_deal)
+	closeds.shuffle()
+	
+	while !closeds.is_empty():
+		var deal = closeds.pop_back()
+		create_new_deal(deal)
+	
+	emit_signal("order_changed")
+
+func create_new_deal(deal_: DealData) -> void:
+	deals.push_front(deal_)
+	var in_value = randi_range(Catalog.market_in_range[level].front(), Catalog.market_in_range[level].back())
+	deal_.sin_data.value = in_value
+	var out_value = randi_range(Catalog.market_out_range[level].front(), Catalog.market_out_range[level].back())
+	deal_.amber_data.value = out_value
+	sin_options.clear()
+	var sin_type = pull_sin_type(deal_)
+	
+	while deal_.amber_data.type == sin_type:
+		sin_type = pull_sin_type(deal_)
+
+func pull_sin_type(deal_: DealData) -> Bozo.Sin:
+	if sin_options.is_empty():
+		refill_sin_options(deal_)
+	return sin_options.pop_back()
+
+func refill_sin_options(deal_: DealData) -> void:
+	sin_options.append_array(Catalog.sins)
+	var amber_sin = Catalog.amber_to_sin[deal_.amber_data.type]
+	sin_options.erase(amber_sin)
+	sin_options.append(deal_.sin_data.type)
+	sin_options.shuffle()

@@ -50,20 +50,26 @@ size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Deal1" parent="MarginContainer/Deals" unique_id=970576021 instance=ExtResource("1_exak4")]
+[node name="Deal1" parent="MarginContainer/Deals" unique_id=970576021 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")
 
-[node name="Deal2" parent="MarginContainer/Deals" unique_id=2105158313 instance=ExtResource("1_exak4")]
+[node name="Deal2" parent="MarginContainer/Deals" unique_id=2105158313 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")
 
-[node name="Deal3" parent="MarginContainer/Deals" unique_id=435275889 instance=ExtResource("1_exak4")]
+[node name="Deal3" parent="MarginContainer/Deals" unique_id=435275889 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")
 
-[node name="Deal4" parent="MarginContainer/Deals" unique_id=1134187120 instance=ExtResource("1_exak4")]
+[node name="Deal4" parent="MarginContainer/Deals" unique_id=1134187120 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")
 
-[node name="Deal5" parent="MarginContainer/Deals" unique_id=164568404 instance=ExtResource("1_exak4")]
+[node name="Deal5" parent="MarginContainer/Deals" unique_id=164568404 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")
 
-[node name="Deal6" parent="MarginContainer/Deals" unique_id=536713568 instance=ExtResource("1_exak4")]
+[node name="Deal6" parent="MarginContainer/Deals" unique_id=536713568 node_paths=PackedStringArray("market") instance=ExtResource("1_exak4")]
 layout_mode = 2
+market = NodePath("../../..")

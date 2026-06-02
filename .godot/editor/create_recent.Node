@@ -1,7 +1,8 @@
+ColorRect
+CanvasLayer
 VBoxContainer
 PanelContainer
 HBoxContainer
-ColorRect
 MarginContainer
 GridContainer
 Timer
@@ -11,4 +12,3 @@ TextureRect
 MeshInstance3D
 Control
 Label
-TextureButton

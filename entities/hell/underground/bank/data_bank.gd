@@ -25,13 +25,14 @@ func add_amber(type_: Bozo.Amber) -> void:
 	var amber = AmberData.new(type_)
 	ambers.append(amber)
 	type_to_amber[type_] = amber
+	amber.always_visible = true
 
 func init_postures() -> void:
 	for type in Catalog.postures:
 		add_posture(type)
 
 func add_posture(type_: Bozo.Posture) -> void:
-	var default_value = 20
+	var default_value = 0
 	var posture = PostureData.new(type_, default_value)
 	postures.append(posture)
 	type_to_posture[type_] = posture
