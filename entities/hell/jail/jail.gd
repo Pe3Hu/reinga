@@ -12,6 +12,8 @@ var data: JailData:
 @export var catena_scene: PackedScene
 
 @export var hell: Hell
+@export var reset_timer: Timer
+@export var catena_timer: Timer
 
 var cages: Array[Cage]
 
@@ -58,9 +60,12 @@ func get_active_cage() ->  Variant:
 	for cage in cages:
 		if cage.data == data.table.active_cages.back():
 			return cage
+	
 	return null
 
 func reset() -> void:
+	data.table.reset_all_actives()
+	
 	for cage in cages:
 		cage.reset()
 
@@ -68,4 +73,31 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not get_global_rect().has_point(get_global_mouse_position()):
-				data.table.reset_cage()
+				reset_timer.start()
+
+func _on_reset_timer_timeout() -> void:
+	if Scope.layer == Bozo.Layer.HELL:
+		forget_cage()
+	else:
+		reset_timer.stop()
+
+func forget_cage() -> void:
+	data.table.reset_cage(true)
+	data.table.reset_catenas()
+	#catena_timer.stop()
+
+func _on_catena_timer_timeout() -> void:
+	if !data.table.active_catenas.is_empty():
+		catena_timer.wait_time = randf_range(Catalog.CATENA_DURATION_MIN, Catalog.CATENA_DURATION_MAX)
+		var catena = data.table.active_catenas.back()
+		data.z_index_order += 1
+		
+		if data.z_index_order >= 10:
+			data.z_index_order = 0
+		
+		if data.z_index_order % 2 == 0:
+			catena.z_index += 1
+		else:
+			catena.z_index -= 1
+	#else:
+		#catena_timer.stop()

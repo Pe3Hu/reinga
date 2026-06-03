@@ -31,6 +31,7 @@ func _on_gui_input(event: InputEvent) -> void:
 func click_event() -> void:
 	if contribution != null:
 		contribution.treasury.reoder(data.type)
+		await get_tree().process_frame
 		contribution.treasury.sort_icon_shift(self)
 
 func _on_value_changed():

@@ -64,7 +64,7 @@ enum Gyre {
 	ACTUAL = 19
 }
 
-enum Triat {
+enum Trait {
 	NONE = 0,
 	FEAR = 20,
 	HORROR = 21,

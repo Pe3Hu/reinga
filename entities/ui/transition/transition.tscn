@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqrpmplfr7c3r" path="res://entities/ui/transition/transition.gd" id="1_uwg27"]
 [ext_resource type="Shader" uid="uid://s0qawihsaqfb" path="res://entities/ui/transition/transition 1.gdshader" id="2_uwg27"]
-[ext_resource type="Texture2D" uid="uid://cn5und7scbn0u" path="res://entities/ui/transition/images/bubles 64.png" id="3_dx4ro"]
+[ext_resource type="Texture2D" uid="uid://c0f3vj7lsjg0n" path="res://entities/ui/transition/images/19_rusty dirty metal texture-sea.jpg" id="3_dx4ro"]
 
 [sub_resource type="Gradient" id="Gradient_gdw5e"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -10,18 +10,18 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jkns2"]
 gradient = SubResource("Gradient_gdw5e")
 fill = 1
-fill_from = Vector2(0.525641, 0.517094)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uwg27"]
 shader = ExtResource("2_uwg27")
 shader_parameter/base_color = Color(0, 0, 0, 1)
 shader_parameter/node_resolution = Vector2(0, 0)
 shader_parameter/factor = 0.0
-shader_parameter/width = 0.4
+shader_parameter/width = 0.225
 shader_parameter/gradient_texture = SubResource("GradientTexture2D_jkns2")
 shader_parameter/gradient_fixed = false
 shader_parameter/shape_texture = ExtResource("3_dx4ro")
-shader_parameter/shape_tiling = 4.0
+shader_parameter/shape_tiling = 1.0
 shader_parameter/shape_rotation = 0.0
 shader_parameter/shape_scroll = Vector2(0, 0)
 shader_parameter/shape_feathering = 0.0
@@ -29,6 +29,7 @@ shader_parameter/shape_treshold = 1.0
 
 [node name="Transition" type="CanvasLayer" unique_id=645520284 node_paths=PackedStringArray("bg")]
 process_mode = 3
+visible = false
 script = ExtResource("1_uwg27")
 bg = NodePath("Background")
 

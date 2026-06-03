@@ -8,24 +8,26 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]
 
-[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("sinner", "cloak")]
+[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("background", "sinner", "cloak")]
+z_index = 10
 custom_minimum_size = Vector2(206, 230)
 offset_right = 172.0
 offset_bottom = 192.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hlo7k")
 script = ExtResource("1_2m11p")
+background = NodePath("BackgroundMarginContainer/Background")
 sinner = NodePath("MarginContainer/Sinner")
 cloak = NodePath("MarginContainer/Cloak")
 
-[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1035010068]
+[node name="BackgroundMarginContainer" type="MarginContainer" parent="." unique_id=1035010068]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer2" unique_id=238926018]
+[node name="Background" type="ColorRect" parent="BackgroundMarginContainer" unique_id=238926018]
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 

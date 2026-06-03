@@ -7,6 +7,7 @@ var sinner: SinnerData:
 	set(value_):
 		sinner = value_
 		sinner.cage = self
+
 var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
 var coord: Vector2i
 
@@ -14,11 +15,12 @@ var status: Bozo.Cage = Bozo.Cage.NONE:
 	set(value_):
 		status = value_
 		
-		#sinner.soul.reset_blur()
-		#var traits = Catalog.cage_to_traits[status]
-		#
-		#for _trait in traits:
-			#sinner.soul.select_trait(_trait)
+		if sinner:
+			sinner.soul.reset_blur()
+			var traits = Catalog.cage_to_traits[status]
+			
+			for _trait in traits:
+				sinner.soul.select_trait(_trait)
 
 var col: CatenaData
 var row: CatenaData

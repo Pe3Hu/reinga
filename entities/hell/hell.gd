@@ -59,7 +59,7 @@ func execute_phase() -> void:
 			nightmare.awaken_dreams()
 		Bozo.Phase.APPRAISEMENT:
 			treasury.appraisement_preparation()
-			simulate_choice()
+			#simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
 			treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
@@ -70,17 +70,30 @@ func execute_phase() -> void:
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
 			nightmare.data.refill_claims()
-			world.data.tribunal.open_gate()
+			#world.data.tribunal.open_gate()
 			jail.reset()
-			world.gate.open()
-			Scope.next_phase()
+			treasury.reset()
+			#world.gate.open()
+			
+			if world.data.tribunal.is_enough():
+				Scope.next_phase()
+			else:
+				world.data.transition.next_layer = Bozo.Layer.GATE
 			#Scope.is_pause = true
 
 
 func _on_phase_timer_timeout() -> void:
 	execute_phase()
 
-func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		Scope.update_phase()
-		execute_phase()
+#func _process(_delta):
+	#if Input.is_action_just_pressed("ui_accept"):
+		#Scope.update_phase()
+		#execute_phase()
+
+func off_screen() -> void:
+	%PhaseTimer.stop()
+	visible = false
+
+func on_screen():
+	%PhaseTimer.start()
+	visible = true

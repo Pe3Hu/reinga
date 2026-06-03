@@ -38,7 +38,7 @@ shader_parameter/selected_col = 0
 shader_parameter/blur_strength = 0.8
 shader_parameter/blur_amount = 1.0
 
-[node name="Gate" type="Control" unique_id=417570486]
+[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button", "reset_timer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +48,8 @@ grow_vertical = 2
 script = ExtResource("1_73phx")
 cage_scene = ExtResource("2_22103")
 catena_scene = ExtResource("3_4f2db")
+select_button = NodePath("PanelContainer/VBoxContainer/SelectButton")
+reset_timer = NodePath("ResetTimer")
 
 [node name="Portal" type="ColorRect" parent="." unique_id=1255010420]
 material = SubResource("ShaderMaterial_xft3k")
@@ -106,6 +108,7 @@ size_flags_vertical = 0
 
 [node name="Cages" type="GridContainer" parent="PanelContainer/VBoxContainer/Panel" unique_id=1458026598]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -128,3 +131,10 @@ custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Select"
+
+[node name="ResetTimer" type="Timer" parent="." unique_id=956464673]
+wait_time = 0.12
+one_shot = true
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/SelectButton" to="." method="_on_select_button_pressed"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

@@ -25,26 +25,26 @@ const cage_to_string = {
 }
 
 const trait_to_string = {
-	Bozo.Triat.FEAR: "fear",
-	Bozo.Triat.HORROR: "horror",
-	Bozo.Triat.GUILT: "guilt",
-	Bozo.Triat.REPOSE: "repose"
+	Bozo.Trait.FEAR: "fear",
+	Bozo.Trait.HORROR: "horror",
+	Bozo.Trait.GUILT: "guilt",
+	Bozo.Trait.REPOSE: "repose"
 }
 
 const trait_to_cage = {
 	null: Bozo.Cage.NONE,
-	Bozo.Triat.FEAR: Bozo.Cage.MIDDLE,
-	Bozo.Triat.HORROR: Bozo.Cage.RIGHT,
-	Bozo.Triat.GUILT: Bozo.Cage.CENTER,
-	Bozo.Triat.REPOSE: Bozo.Cage.LEFT
+	Bozo.Trait.FEAR: Bozo.Cage.MIDDLE,
+	Bozo.Trait.HORROR: Bozo.Cage.RIGHT,
+	Bozo.Trait.GUILT: Bozo.Cage.CENTER,
+	Bozo.Trait.REPOSE: Bozo.Cage.LEFT
 }
 
 const cage_to_traits = {
-	Bozo.Cage.NONE: [Bozo.Triat.FEAR, Bozo.Triat.HORROR, Bozo.Triat.GUILT, Bozo.Triat.REPOSE],
-	Bozo.Cage.MIDDLE: [Bozo.Triat.FEAR],
-	Bozo.Cage.RIGHT: [Bozo.Triat.HORROR],
-	Bozo.Cage.CENTER: [Bozo.Triat.GUILT, Bozo.Triat.FEAR],
-	Bozo.Cage.LEFT: [Bozo.Triat.REPOSE]
+	Bozo.Cage.NONE: [Bozo.Trait.FEAR, Bozo.Trait.HORROR, Bozo.Trait.GUILT, Bozo.Trait.REPOSE],
+	Bozo.Cage.MIDDLE: [Bozo.Trait.FEAR],
+	Bozo.Cage.RIGHT: [Bozo.Trait.HORROR],
+	Bozo.Cage.CENTER: [Bozo.Trait.GUILT, Bozo.Trait.FEAR],
+	Bozo.Cage.LEFT: [Bozo.Trait.REPOSE]
 }
 #endregion
 
@@ -386,37 +386,42 @@ const judgment_to_string = {
 	Bozo.Judgment.TRIBUTE: "tribute"
 }
 
+const judgment_to_color = {
+	Bozo.Judgment.TRIBUTE: Color.DIM_GRAY
+}
+
+
 const traits = [
-	Bozo.Triat.FEAR,
-	Bozo.Triat.HORROR,
-	Bozo.Triat.GUILT,
-	Bozo.Triat.REPOSE
+	Bozo.Trait.FEAR,
+	Bozo.Trait.HORROR,
+	Bozo.Trait.GUILT,
+	Bozo.Trait.REPOSE
 ]
 
 const rank_to_trait_to_amount = {
 	-1: {
-		Bozo.Triat.FEAR: [[1, 1], [2]],
-		Bozo.Triat.HORROR: [[2, 2], [4]],
-		Bozo.Triat.GUILT: [[0]],
-		Bozo.Triat.REPOSE: [[0]],
+		Bozo.Trait.FEAR: [[1, 1], [2]],
+		Bozo.Trait.HORROR: [[2, 2], [4]],
+		Bozo.Trait.GUILT: [[0]],
+		Bozo.Trait.REPOSE: [[0]],
 	},
 	0: {
-		Bozo.Triat.FEAR: [[2, 1], [3]],
-		Bozo.Triat.HORROR: [[3, 3], [4, 2]],
-		Bozo.Triat.GUILT: [[1]],
-		Bozo.Triat.REPOSE: [[1]],
+		Bozo.Trait.FEAR: [[2, 1], [3]],
+		Bozo.Trait.HORROR: [[3, 3], [4, 2]],
+		Bozo.Trait.GUILT: [[1]],
+		Bozo.Trait.REPOSE: [[1]],
 	},
 	1: {
-		Bozo.Triat.FEAR: [[2, 2], [4]],
-		Bozo.Triat.HORROR: [[4, 4], [6, 2]],
-		Bozo.Triat.GUILT: [[2]],
-		Bozo.Triat.REPOSE: [[2]],
+		Bozo.Trait.FEAR: [[2, 2], [4]],
+		Bozo.Trait.HORROR: [[4, 4], [6, 2]],
+		Bozo.Trait.GUILT: [[2]],
+		Bozo.Trait.REPOSE: [[2]],
 	},
 	2: {
-		Bozo.Triat.FEAR: [[3, 2], [5]],
-		Bozo.Triat.HORROR: [[5, 5], [7, 3]],
-		Bozo.Triat.GUILT: [[3]],
-		Bozo.Triat.REPOSE: [[3]],
+		Bozo.Trait.FEAR: [[3, 2], [5]],
+		Bozo.Trait.HORROR: [[5, 5], [7, 3]],
+		Bozo.Trait.GUILT: [[3]],
+		Bozo.Trait.REPOSE: [[3]],
 	},
 }
 
@@ -479,7 +484,7 @@ var contribution_windroses = [
 ]
 
 var windrose_to_trait_to_indexs = {
-	Bozo.Triat.FEAR: {
+	Bozo.Trait.FEAR: {
 		Bozo.Windrose.NW: [0, 1, 2, 3, 6],
 		Bozo.Windrose.N: [0, 1, 2, 4, 7],
 		Bozo.Windrose.NE: [0, 1, 2, 5, 8],
@@ -490,7 +495,7 @@ var windrose_to_trait_to_indexs = {
 		Bozo.Windrose.S: [1, 4, 6, 7, 8],
 		Bozo.Windrose.SE: [2, 5, 6, 7, 8],
 	},
-	Bozo.Triat.HORROR: {
+	Bozo.Trait.HORROR: {
 		Bozo.Windrose.NW: [4, 5, 7, 8],
 		Bozo.Windrose.W: [1, 2, 7, 8],
 		Bozo.Windrose.SW: [1, 2, 4, 5],
@@ -501,7 +506,7 @@ var windrose_to_trait_to_indexs = {
 		Bozo.Windrose.E: [],
 		Bozo.Windrose.SE: [],
 	},
-	Bozo.Triat.REPOSE:{
+	Bozo.Trait.REPOSE:{
 		Bozo.Windrose.NW: [],
 		Bozo.Windrose.W: [],
 		Bozo.Windrose.SW: [],
@@ -512,7 +517,7 @@ var windrose_to_trait_to_indexs = {
 		Bozo.Windrose.E: [0, 1, 6, 7],
 		Bozo.Windrose.SE: [0, 1, 3, 4],
 	},
-	Bozo.Triat.GUILT: {
+	Bozo.Trait.GUILT: {
 		Bozo.Windrose.NW: [0],
 		Bozo.Windrose.W: [3],
 		Bozo.Windrose.SW: [6],
@@ -920,4 +925,23 @@ const frame_to_patch = {
 }
 #endregion
 
-const TRANSITION_DURATION: float = 1.5
+#region transition
+const TRANSITION_DURATION: float = 0.1#1.5
+
+const layer_to_string = {
+	Bozo.Layer.HELL: "hell",
+	Bozo.Layer.GATE: "gate",
+	Bozo.Layer.SANCTUARY: "sanctuary"
+}
+#endregion
+
+#region catena
+const CATENA_DURATION_MIN: float = 0.4
+const CATENA_DURATION_MAX: float = 0.8
+const CATENA_Z_INDEX_DEFAULT: int = 1
+
+var active_to_color = {
+	true: Color.from_rgba8(0, 0, 0, 170),#230
+	false: Color.from_rgba8(0, 0, 0, 135)
+}
+#endregion

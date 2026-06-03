@@ -9,4 +9,5 @@ func apply_data_info() -> void:
 	_on_type_changed()
 
 func _on_type_changed() -> void:
-	pass
+	if data.type == 0: return
+	texture_rect.modulate = Catalog.judgment_to_color[data.type]

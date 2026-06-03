@@ -3,16 +3,25 @@ extends Resource
 
 
 var world: WorldData
-var bygone: GyreData = GyreData.new(self, Bozo.Gyre.BYGONE)
-var actual: GyreData = GyreData.new(self, Bozo.Gyre.ACTUAL)
 var hereafter: GyreData = GyreData.new(self, Bozo.Gyre.HEREAFTER)
+var actual: GyreData = GyreData.new(self, Bozo.Gyre.ACTUAL)
+var bygone: GyreData = GyreData.new(self, Bozo.Gyre.BYGONE)
+var gyres: Array[GyreData]
+var foreground_sinners: Array[SinnerData]
 
 
 func _init(world_: WorldData) -> void:
 	world = world_
+	
 	update_gyre_fol()
 	update_gyre_ere()
 	init_fates()
+	
+	gyres = [
+		hereafter,
+		actual,
+		bygone,
+	]
 
 func update_gyre_fol() -> void:
 	hereafter.fol = actual
@@ -46,8 +55,22 @@ func refill_actual() -> void:
 		hereafter.ere.clear()
 	
 	while actual.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE:
+		use_foreground()
+
+func use_foreground() -> void:
+	if !foreground_sinners.is_empty():
+		var sinner = foreground_sinners.pop_back()
+		actual.sinners.append(sinner)
+	else:
 		hereafter.transfer_sinner()
 
-func open_gate() -> void:
-	world.gate.is_open = hereafter.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE
-	actual.clear()
+func print_total_sinners() -> void:
+	var count = foreground_sinners.size()
+	
+	for gyre in gyres:
+		count += gyre.sinners.size()
+	
+	print(count)
+
+func is_enough() -> bool:
+	return hereafter.sinners.size() > Catalog.GYRE_ACTUAL_SINNER_SIZE

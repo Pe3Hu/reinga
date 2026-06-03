@@ -41,3 +41,7 @@ func undo_resort() -> void:
 		return Catalog.contribution_windroses.find(a.type) > Catalog.contribution_windroses.find(b.type)
 	)
 #endregion
+
+func reset_candles() -> void:
+	for contribution in contributions:
+		contribution.candle.is_selected = false

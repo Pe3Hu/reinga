@@ -46,18 +46,11 @@ void fragment() {
 
 	float value = clamp((gradient(UV, aspect_uv, gradient_fixed) - progress) / (width), 0.0, 1.0);
 
-	vec2 uv = (aspect_uv + TIME * shape_scroll) * shape_tiling;
-vec2 f = fract(uv);
-vec2 w = smoothstep(0.0, 0.02, f) * (1.0 - smoothstep(0.98, 1.0, f));
+	vec2 tiled_uv = rotate(mod((aspect_uv + vec2(TIME)*shape_scroll) * shape_tiling, 1.0), vec2(0.5), radians(shape_rotation));
+	float shape_value = 1.0 - texture(shape_texture, tiled_uv).r;
 
-float edge_mask = w.x * w.y;
-
-vec2 tiled_uv = rotate(f, vec2(0.5), radians(shape_rotation));
-float shape_value = 1.0 - texture(shape_texture, tiled_uv).r;
-
-// подавляем швы
-shape_value *= edge_mask;
-float shaped_gradient = smoothstep(value - (shape_feathering * 0.5), value + (shape_feathering * 0.5), shape_treshold - shape_value);
+	shape_value = mix(shape_feathering * 0.5, 1.0 - shape_feathering * 0.5, shape_value);
+	float shaped_gradient = smoothstep(value - (shape_feathering * 0.5), value + (shape_feathering * 0.5), shape_treshold - shape_value);
 
 	COLOR.rgb = vec3(0.0);
 	COLOR.a = shaped_gradient;

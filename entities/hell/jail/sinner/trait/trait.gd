@@ -6,13 +6,7 @@ extends PanelContainer
 var data: TraitData:
 	set(value_):
 		data = value_
-		if data:
-			if data.type_changed.is_connected(_on_type_changed):
-				data.type_changed.disconnect(_on_type_changed)
-			
-			data.type_changed.connect(_on_type_changed)
-		
-		call_deferred("init_tokens")
+		connect_signals()
 
 @export var tokens: Array[Token]
 
@@ -21,10 +15,6 @@ var data: TraitData:
 @export var sin_scene: PackedScene
 @export var posture_scene: PackedScene
 
-var is_selected: bool = true:
-	set(value_):
-		is_selected = value_
-		#%Blur.visible = !is_selected
 
 
 #region init
@@ -35,11 +25,19 @@ func _ready() -> void:
 		posture_scene = load("res://entities/token/posture/posture.tscn")
 
 func init_tokens() -> void:
+	reset_tokens()
+	
 	for sin_data in data.sins:
 		add_sin(sin_data)
 	for posture_data in data.postures:
 		add_posture(posture_data)
+	
 	_on_type_changed()
+
+func reset_tokens() -> void:
+	while !tokens.is_empty():
+		var token = tokens.pop_back()
+		token_grid.remove_child(token)
 
 func add_sin(data_: SinData) -> void:
 	var token = sin_scene.instantiate()
@@ -55,16 +53,24 @@ func add_posture(data_: PostureData) -> void:
 	tokens.append(token)
 	update_columns()
 	
-func _on_type_changed() -> void:
-	update_columns()
-	
 func update_columns():
 	if tokens.is_empty(): return
-	
 	token_grid.columns = 1
-	if data.type == Bozo.Triat.FEAR or data.type == Bozo.Triat.GUILT:
+	
+	if data.type == Bozo.Trait.FEAR or data.type == Bozo.Trait.GUILT:
 		token_grid.columns = tokens.size()
 #endregion
+
+func connect_signals() -> void:
+	if data:
+		if data.type_changed.is_connected(_on_type_changed):
+			data.type_changed.disconnect(_on_type_changed)
+			data.is_selected_changed.disconnect(_on_is_selected)
+		
+		data.type_changed.connect(_on_type_changed)
+		data.is_selected_changed.connect(_on_is_selected)
+	
+		call_deferred("init_tokens")
 
 func test_max_token_count() -> void:
 	if !data.sins.is_empty():
@@ -79,3 +85,9 @@ func reset() -> void:
 	while !tokens.is_empty():
 		var token = tokens.pop_back()
 		token_grid.remove_child(token)
+
+func _on_type_changed() -> void:
+	update_columns()
+
+func _on_is_selected() -> void:
+	visible = data.is_selected

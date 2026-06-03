@@ -66,17 +66,28 @@ func sort_icon_shift(token_: Token) -> void:
 	if token_.data.type == Bozo.Posture.MADNESS: return
 	var best_contribution = contributions.back()
 	var best_token = best_contribution.get_token(token_.data.type)
-	sort_icon.global_position.y = best_token.global_position.y - 4
+	sort_icon.global_position.y = best_token.global_position.y - 1
+	sort_icon.global_position.x = best_token.global_position.x + 70
 	sort_icon.visible = true
+	
+	if token_ as TokenJudgment:
+		sort_icon.modulate = Catalog.judgment_to_color[token_.data.type]
+	if token_ as TokenSin:
+		sort_icon.modulate = Catalog.sin_to_color[token_.data.type]
 
 func hide_not_selected_contributions() -> void:
 	sort_icon.visible = false
 	
-	for contribution in contributions:
-		contribution.visible = contribution.cage.data == hell.jail.data.table.active_cages.back()
+	if !hell.jail.data.table.active_cages.is_empty():
+		var active_cage = hell.jail.data.table.active_cages.back()
 		
-		if contribution.visible:
-			contribution.hide_not_sins()
+		for contribution in contributions:
+			contribution.visible = contribution.cage.data == active_cage
+			
+			if contribution.visible:
+				contribution.hide_not_sins()
+	else:
+		pass
 
 func show_all_contributions() -> void:
 	for contribution in contributions:
@@ -94,6 +105,14 @@ func _on_lock_button_pressed() -> void:
 	Scope.next_phase()
 
 func lock() -> void:
-	lock_button.visible = false
-	hell.jail.data.table.is_locked = true
-	#hide_not_selected_contributions()
+	if !hell.jail.data.table.active_cages.is_empty():
+		lock_button.visible = false
+		#hell.jail.data.table.is_locked = true
+		hide_not_selected_contributions()
+		hell.jail.reset_timer.stop()
+		hell.jail.data.table.reset_catenas()
+		#hell.jail.forget_cage()
+
+func reset() -> void:
+	#lock_button.visible = false
+	data.reset_candles()

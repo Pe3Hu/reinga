@@ -1,11 +1,17 @@
 extends Node
 
 
+@warning_ignore("unused_signal")
+signal layer_changed
+
 var is_pause: bool# = true
-var phase: Bozo.Phase = Bozo.Phase.REPLENISHMENT
+var phase: Bozo.Phase = Bozo.Phase.ENDOWMENT
 var phase_timer: Timer
 var turn: int = 0
-var layer: Bozo.Layer = Bozo.Layer.HELL
+var layer: Bozo.Layer = Bozo.Layer.NONE:
+	set(value_):
+		layer = value_
+		emit_signal("layer_changed")
 
 
 func next_phase(auto_: bool = true) -> void:

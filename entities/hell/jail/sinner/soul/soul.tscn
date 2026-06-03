@@ -4,23 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://c7pdwsba8i3ln" path="res://entities/hell/jail/sinner/trait/trait.tscn" id="1_xf3uh"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="3_mnjxa"]
 
-[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("fear", "horror", "guilt", "repose")]
+[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "fear", "horror", "guilt", "repose")]
 custom_minimum_size = Vector2(156, 156)
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("1_rlesa")
+background = NodePath("Background")
 fear = NodePath("TraitFear")
 horror = NodePath("TraitHorror")
 guilt = NodePath("TraitGuilt")
 repose = NodePath("TraitRepose")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2105037464]
+[node name="Background" type="ColorRect" parent="." unique_id=2105037464]
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
-[node name="TooltipInteract" parent="ColorRect" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
+[node name="TooltipInteract" parent="Background" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

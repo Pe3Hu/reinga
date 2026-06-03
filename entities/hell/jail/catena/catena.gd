@@ -2,7 +2,12 @@ extends Control
 class_name Catena
 
 
-var data: CatenaData
+var data: CatenaData:
+	set(value_):
+		data = value_
+		data.is_selected_changed.connect(_on_is_selected_changed)
+		data.z_index_changed.connect(_on_z_index_changed)
+		reset_lightning()
 
 var jail: Jail
 var gate: Gate
@@ -25,8 +30,29 @@ func reset_lightning() -> void:
 		#cage.status = Bozo.Cage.MIDDLE
 
 func focus_on_cages() -> void:
-	gate.blur_all()
-	if data.coord.y == 0:
-		gate.unblur_col(data.coord.x-1)
-	else:
-		gate.unblur_row(data.coord.y-1)
+	if gate:
+		gate.blur_all()
+		
+		if data.coord.y == 0:
+			gate.unblur_col(data.coord.x-1)
+		else:
+			gate.unblur_row(data.coord.y-1)
+
+func _on_is_selected_changed() -> void:
+	visible = data.is_selected
+	
+	if gate:
+		gate.select_button.visible = data.is_selected
+	
+	if data.is_selected:
+		focus_on_cages()
+	
+		if jail:
+			jail.catena_timer.stop()
+			jail.catena_timer.start()
+
+func show_me() -> void:
+	visible = true
+
+func _on_z_index_changed() -> void:
+	z_index = data.z_index

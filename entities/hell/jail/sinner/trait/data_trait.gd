@@ -3,19 +3,28 @@ extends Resource
 
 
 signal type_changed
+@warning_ignore("unused_signal")
+signal is_selected_changed
 
 var soul: SoulData
-var type: Bozo.Triat:
+var type: Bozo.Trait:
 	set(value_):
-		type = value_
-		emit_signal("type_changed")
+		if type != value_:
+			type = value_
+			emit_signal("type_changed")
 var rank: int
 
 var sins: Array[SinData]
 var postures: Array[PostureData]
+var is_selected: bool = false:
+	set(value_):
+		if is_selected != value_:
+			is_selected = value_
+			emit_signal("is_selected_changed")
 
 
-func _init(soul_: SoulData, type_: Bozo.Triat, rank_: int) -> void:
+#region init
+func _init(soul_: SoulData, type_: Bozo.Trait, rank_: int) -> void:
 	soul = soul_
 	type = type_
 	rank = rank_
@@ -28,7 +37,7 @@ func init_tokens() -> void:
 	
 	var token_types: Array
 	
-	if type == Bozo.Triat.REPOSE:
+	if type == Bozo.Trait.REPOSE:
 		var amount = amounts.back()
 		add_posture(Bozo.Posture.OBLIVION, amount)
 	else:
@@ -39,7 +48,7 @@ func init_tokens() -> void:
 			var token_type = token_types.pop_back()
 			add_sin(token_type, amount)
 	
-	if type == Bozo.Triat.HORROR:
+	if type == Bozo.Trait.HORROR:
 		var amount = 1
 		add_posture(Bozo.Posture.MADNESS, amount)
 
@@ -50,3 +59,4 @@ func add_sin(type_: Bozo.Sin, value_: int) -> void:
 func add_posture(type_: Bozo.Posture, value_: int) -> void:
 	var posture = PostureData.new(type_, value_)
 	postures.append(posture)
+#endregion

@@ -1,3 +1,4 @@
+Timer
 ColorRect
 CanvasLayer
 VBoxContainer
@@ -5,7 +6,6 @@ PanelContainer
 HBoxContainer
 MarginContainer
 GridContainer
-Timer
 Sprite2D
 RichTextLabel
 TextureRect

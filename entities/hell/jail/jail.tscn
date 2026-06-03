@@ -6,13 +6,15 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qa2e4"]
 
-[node name="Jail" type="PanelContainer" unique_id=282794866]
+[node name="Jail" type="PanelContainer" unique_id=282794866 node_paths=PackedStringArray("reset_timer", "catena_timer")]
 custom_minimum_size = Vector2(650, 722)
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qa2e4")
 script = ExtResource("1_ge72r")
 cage_scene = ExtResource("2_ge72r")
 catena_scene = ExtResource("3_o0tu8")
+reset_timer = NodePath("ResetTimer")
+catena_timer = NodePath("CatenaTimer")
 
 [node name="Catenas" type="Control" parent="." unique_id=2048673265]
 unique_name_in_owner = true
@@ -24,3 +26,16 @@ layout_mode = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 3
+
+[node name="ResetTimer" type="Timer" parent="." unique_id=1734407247]
+unique_name_in_owner = true
+wait_time = 0.12
+one_shot = true
+
+[node name="CatenaTimer" type="Timer" parent="." unique_id=2121138003]
+unique_name_in_owner = true
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]
+[connection signal="timeout" from="CatenaTimer" to="." method="_on_catena_timer_timeout"]

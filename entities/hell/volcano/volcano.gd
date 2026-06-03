@@ -73,9 +73,12 @@ func return_eruption(eruption_: Eruption):
 		Scope.next_phase()
 
 func flow_update():
-	flow = hell.data.jail.table.active_cages.back().contribution.flow
-	flow.nightmare = hell.nightmare.data
-	flow.init_eruptions()
+	if !hell.data.jail.table.active_cages.is_empty():
+		flow = hell.data.jail.table.active_cages.back().contribution.flow
+		flow.nightmare = hell.nightmare.data
+		flow.init_eruptions()
+	else:
+		pass
 	
 func burst_eruption():
 	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())

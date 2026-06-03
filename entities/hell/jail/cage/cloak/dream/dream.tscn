@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://sa1cgjuyng7g" path="res://entities/hell/jail/cage/cloak/dream/dream.gd" id="1_wsku3"]
 [ext_resource type="PackedScene" uid="uid://c5uuyg6561qv3" path="res://entities/ui/token/desire/desire.tscn" id="2_e5v2l"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0gus"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmmrw"]
 
 [node name="Dream" type="PanelContainer" unique_id=384642275 node_paths=PackedStringArray("primary_tokens", "secondary_token", "desires")]
 custom_minimum_size = Vector2(32, 32)
-theme_override_styles/panel = SubResource("StyleBoxEmpty_e0gus")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lmmrw")
 script = ExtResource("1_wsku3")
 primary_tokens = [NodePath("VBoxContainer/HBoxContainer/Primary1"), NodePath("VBoxContainer/HBoxContainer/Primary2")]
 secondary_token = NodePath("VBoxContainer/Secondary")
