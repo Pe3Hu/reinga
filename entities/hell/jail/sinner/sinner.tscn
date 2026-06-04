@@ -32,10 +32,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ga41f")
 layout_mode = 1
 offset_right = 172.0
 offset_bottom = 196.0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="TooltipInteract" parent="Panel/MarginContainer" unique_id=459704640 node_paths=PackedStringArray("target") instance=ExtResource("4_ga41f")]
 layout_mode = 2
@@ -44,12 +44,11 @@ target = NodePath("../../..")
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=192744357]
 layout_mode = 2
 size_flags_vertical = 8
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 alignment = 1
 
 [node name="Header" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=195387727]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -58,6 +57,7 @@ theme_override_constants/separation = 0
 
 [node name="TokenFaction" parent="Panel/MarginContainer/VBoxContainer/Header" unique_id=1672584037 instance=ExtResource("2_5d7qc")]
 unique_name_in_owner = true
+z_index = 4
 layout_mode = 2
 
 [node name="TooltipInteract" parent="Panel/MarginContainer/VBoxContainer/Header/TokenFaction" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_ga41f")]
@@ -65,8 +65,10 @@ layout_mode = 1
 target = NodePath("..")
 
 [node name="Fate" parent="Panel/MarginContainer/VBoxContainer/Header" unique_id=1985656009 node_paths=PackedStringArray("sinner") instance=ExtResource("5_54fy0")]
-custom_minimum_size = Vector2(110, 16)
+custom_minimum_size = Vector2(110, 32)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 sinner = NodePath("../../../../..")
 
 [node name="Soul" parent="Panel/MarginContainer/VBoxContainer" unique_id=1263324762 node_paths=PackedStringArray("sinner") instance=ExtResource("4_uk7v1")]

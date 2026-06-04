@@ -21,11 +21,19 @@ var trails: Array[Sprite2D]
 
 func reset(data_: EruptionData, timeout_: float):
 	data = data_
-	var cage = volcano.hell.jail.get_active_cage()
-	start_token = cage.contribution.get_token(data.token)
+	update_start_token()
 	
 	update_end_token()
 	reset_timer(timeout_)
+
+
+func update_start_token() -> void:
+	var cage = volcano.hell.jail.get_active_cage()
+	if cage:
+		start_token = cage.contribution.get_token(data.token)
+	else:
+		var token_data = volcano.hell.data.jail.plaza.get_available_token(data.token)
+		start_token = volcano.hell.jail.get_trait_token(token_data)
 
 func update_end_token() -> void:
 	if data.type == Bozo.Eruption.MARKET:
@@ -128,9 +136,9 @@ func deactivate() -> void:
 	if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
 		volcano.single_splash(end_target.trial.tribute.progression)
 	
-	for trail in trails:
-		trail.visible = false
-		volcano.trail_pool.append(trail)
+	#for trail in trails:
+	#	trail.visible = false
+	#	volcano.trail_pool.append(trail)
 	
 	trails.clear()
 	volcano.return_eruption(self)
@@ -153,7 +161,9 @@ func activate() -> void:
 
 	if start_token:
 		modulate = Catalog.token_to_color[start_token.data.type]
-		start_token.data.value -= 1
+		
+		if !start_token.data.trait_data:
+			start_token.data.value -= 1
 		
 		if data.pressure.type != Bozo.Modifier.NONE:
 			var pressure = volcano.get_pressure()

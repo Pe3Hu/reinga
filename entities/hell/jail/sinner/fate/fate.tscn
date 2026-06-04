@@ -1,9 +1,18 @@
 [gd_scene format=3 uid="uid://bcu8tdx132s04"]
 
 [ext_resource type="Script" uid="uid://82od0rw0p61h" path="res://entities/hell/jail/sinner/fate/fate.gd" id="1_kxvkn"]
+[ext_resource type="Script" uid="uid://e5nnetkywufg" path="res://entities/ui/label/glitch.gd" id="2_02wcw"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_fsptg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d7qc"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_02wcw"]
+script = ExtResource("2_02wcw")
+intensity = null
+flicker_speed = null
+flicker_chance = null
+update_rate = null
+metadata/_custom_type_script = "uid://e5nnetkywufg"
 
 [node name="Fate" type="Panel" unique_id=1985656009 node_paths=PackedStringArray("label")]
 custom_minimum_size = Vector2(0, 16)
@@ -24,6 +33,7 @@ bbcode_enabled = true
 text = "Heir"
 horizontal_alignment = 1
 vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_02wcw")]
 
 [node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_fsptg")]
 layout_mode = 1

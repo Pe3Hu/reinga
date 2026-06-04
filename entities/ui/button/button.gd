@@ -1,8 +1,19 @@
 class_name CustomButton
 extends Button
 
+
+@export var treasury: Treasury:
+	set(value_):
+		treasury = value_
+		text = "Lock"
+@export var gate: Gate:
+	set(value_):
+		gate = value_
+		text = "Select"
+
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)
 @export var pressed_scale: Vector2 = Vector2(0.9, 0.9)
+
 
 func _ready() -> void:
 	mouse_entered.connect(_button_enter)
@@ -34,3 +45,22 @@ func _button_pressed() -> void:
 
 	button_press_tween.tween_property(self, "scale", hover_scale, 0.12)\
 		.set_trans(Tween.TRANS_SINE)
+
+func hide_me() -> void:
+	visible = false
+
+func show_me() -> void:
+	visible = true
+
+func update_visible() -> void:
+	if treasury:
+		visible = treasury.data.hell.jail.table.active_cages.size() > 0
+	
+	if gate:
+		visible = gate.data.table.active_cages.size() > 0
+
+func activate() -> void:
+	pass
+
+func is_mouse_inside() -> bool:
+	return get_global_rect().has_point(get_global_mouse_position())

@@ -12,7 +12,6 @@ var data: JailData:
 @export var catena_scene: PackedScene
 
 @export var hell: Hell
-@export var reset_timer: Timer
 @export var catena_timer: Timer
 
 var cages: Array[Cage]
@@ -65,6 +64,8 @@ func get_active_cage() ->  Variant:
 
 func reset() -> void:
 	data.table.reset_all_actives()
+	data.plaza.reset_associations()
+	data.reset_traits()
 	
 	for cage in cages:
 		cage.reset()
@@ -73,18 +74,13 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not get_global_rect().has_point(get_global_mouse_position()):
-				reset_timer.start()
-
-func _on_reset_timer_timeout() -> void:
-	if Scope.layer == Bozo.Layer.HELL:
-		forget_cage()
-	else:
-		reset_timer.stop()
+				if !hell.treasury.lock_button.is_mouse_inside():
+					forget_cage()
 
 func forget_cage() -> void:
-	data.table.reset_cage(true)
-	data.table.reset_catenas()
-	#catena_timer.stop()
+	if Scope.layer == Bozo.Layer.HELL:
+		data.table.reset_cage(true)
+		data.table.reset_catenas()
 
 func _on_catena_timer_timeout() -> void:
 	if !data.table.active_catenas.is_empty():
@@ -101,3 +97,15 @@ func _on_catena_timer_timeout() -> void:
 			catena.z_index -= 1
 	#else:
 		#catena_timer.stop()
+
+func get_trait_token(token_data_: TokenData) -> Variant:
+	for cage in cages:
+		if token_data_.trait.soul.sinner.cage == cage.data:
+			var _trait = cage.sinner.soul.get(Catalog.trait_to_string[token_data_.trait.type])
+			
+			for token in _trait.tokens:
+				if token.data == token_data_:
+					return token
+	
+	return null
+	

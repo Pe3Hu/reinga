@@ -13,7 +13,6 @@ var data: GateData:
 
 @export var world: World
 @export var select_button: Button
-@export var reset_timer: Timer
 
 var cages: Array[Cage]
 
@@ -88,6 +87,7 @@ func on_screen():
 
 
 func _on_select_button_pressed() -> void:
+	select_button.hide_me()
 	data.refill_tribunal()
 	world.transition.data.next_layer = Bozo.Layer.HELL
 
@@ -95,16 +95,12 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not %Panel.get_global_rect().has_point(get_global_mouse_position()):
-				
-				reset_timer.start()
+				if !select_button.is_mouse_inside():
+					forget_catenas()
 
-func _on_reset_timer_timeout() -> void:
-	if Scope.layer == Bozo.Layer.GATE:
-		forget_catenas()
-	else:
-		reset_timer.stop()
 
 func forget_catenas() -> void:
-	data.table.reset_cage()
-	data.table.reset_catenas()
-	unblur_all()
+	if Scope.layer == Bozo.Layer.GATE:
+		data.table.reset_cage()
+		data.table.reset_catenas()
+		unblur_all()

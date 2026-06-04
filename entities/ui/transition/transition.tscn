@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bn1bqih67kk3j"]
 
 [ext_resource type="Script" uid="uid://bqrpmplfr7c3r" path="res://entities/ui/transition/transition.gd" id="1_uwg27"]
-[ext_resource type="Shader" uid="uid://s0qawihsaqfb" path="res://entities/ui/transition/transition 1.gdshader" id="2_uwg27"]
-[ext_resource type="Texture2D" uid="uid://c0f3vj7lsjg0n" path="res://entities/ui/transition/images/19_rusty dirty metal texture-sea.jpg" id="3_dx4ro"]
+[ext_resource type="Shader" uid="uid://cb8vjhgngced0" path="res://entities/ui/transition/transition.gdshader" id="2_uwg27"]
+[ext_resource type="Texture2D" uid="uid://c0f3vj7lsjg0n" path="res://entities/ui/transition/images/transition texture.jpg" id="3_dx4ro"]
 
 [sub_resource type="Gradient" id="Gradient_gdw5e"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)

@@ -27,6 +27,7 @@ claim = NodePath("MarginContainer/HBox/VBox/Claim")
 [node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_51ln6")]
 layout_mode = 2
 texture = ExtResource("3_7srux")
+region_rect = Rect2(0, 0, 120, 120)
 type = 301
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1861599060]
@@ -92,7 +93,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 5
 bbcode_enabled = true
 text = "Auction"
 horizontal_alignment = 1

@@ -16,6 +16,9 @@ var rank: int
 
 var sins: Array[SinData]
 var postures: Array[PostureData]
+var type_to_token: Dictionary
+
+
 var is_selected: bool = false:
 	set(value_):
 		if is_selected != value_:
@@ -54,9 +57,26 @@ func init_tokens() -> void:
 
 func add_sin(type_: Bozo.Sin, value_: int) -> void:
 	var _sin = SinData.new(type_, value_)
+	_sin.trait_data = self
 	sins.append(_sin)
+	type_to_token[type_] = _sin
 
 func add_posture(type_: Bozo.Posture, value_: int) -> void:
 	var posture = PostureData.new(type_, value_)
+	posture.trait_data = self
 	postures.append(posture)
+	type_to_token[type_] = posture
 #endregion
+
+
+#func get_token(type_: Variant) -> TokenData:
+	#var token = type_to_token[type_]
+	##var str_type: String
+	##
+	##if Catalog.sin_to_string.has(type_):
+		##str_type = Catalog.sin_to_string[type_]
+	##if Catalog.posture_to_string.has(type_):
+		##str_type = Catalog.posture_to_string[type_]
+	##
+	##var token = get(str_type)
+	#return token

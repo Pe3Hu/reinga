@@ -1,8 +1,9 @@
-Timer
 ColorRect
+PanelContainer
+Control
+Timer
 CanvasLayer
 VBoxContainer
-PanelContainer
 HBoxContainer
 MarginContainer
 GridContainer
@@ -10,5 +11,4 @@ Sprite2D
 RichTextLabel
 TextureRect
 MeshInstance3D
-Control
 Label

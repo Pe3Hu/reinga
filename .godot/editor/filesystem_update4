@@ -1,45 +1,52 @@
-res://entities/world/world.tscn
+res://entities/herald/herald.tscn
+res://entities/sanctuary/gate/gate blur.gdshader
+res://entities/sanctuary/shader/matrix.gdshader
+res://entities/sanctuary/shader/red orange circle borders.gdshader
+res://entities/herald/shaders/herald.gdshader
+res://entities/herald/shaders/halo.gdshader
+res://entities/herald/shaders/red landscape.gdshader
+res://entities/herald/shaders/grey swamp.gdshader
+res://entities/herald/shaders/red waterfall.gdshader
+res://entities/herald/shaders/romb.gdshader
+res://entities/herald/shaders/white room.gdshader
+res://entities/herald/shaders/grey paint.gdshader
+res://entities/sanctuary/gate/shader/portal circle.gdshader
+res://entities/hell/treasury/contribution/candle/shaders/blue red flame.gdshader
+res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader
+res://entities/sanctuary/gate/shader/portal.gdshader
 res://entities/hell/inferno/void.gdshader
-res://entities/ui/transition/transition 1.gdshader
-res://entities/ui/transition/transition.gdshader
-res://entities/ui/transition/transition.gd
-res://entities/ui/transition/data_transition.gd
-res://entities/world/world.gd
-res://entities/hell/hell.gd
-res://entities/ui/transition/transition.tscn
-res://entities/hell/jail/cage/cage.gd
-res://entities/hell/jail/data_table.gd
-res://entities/hell/jail/sinner/soul/soul.tscn
-res://entities/hell/jail/cage/cage.tscn
-res://entities/hell/jail/jail.gd
-res://entities/hell/jail/jail.tscn
-res://entities/hell/treasury/treasury.tscn
-res://entities/hell/treasury/treasury.gd
-res://entities/hell/jail/cage/cloak/cloak.tscn
-res://entities/hell/jail/cage/cloak/dream/dream.tscn
-res://global/Catalog.gd
-res://entities/hell/jail/sinner/fate/fate.gd
-res://entities/hell/jail/sinner/soul/soul.gd
-res://entities/hell/jail/sinner/soul/data_soul.gd
-res://entities/hell/jail/sinner/trait/data_trait.gd
-res://entities/hell/jail/sinner/trait/trait.gd
-res://entities/hell/hell.tscn
-res://entities/hell/jail/sinner/fate/data_fate.gd
-res://entities/hell/jail/cage/data_cage.gd
-res://entities/world/data_world.gd
-res://entities/sanctuary/gate/gate.gd
-res://entities/sanctuary/gate/data_gate.gd
-res://entities/hell/jail/data_jail.gd
-res://entities/hell/inferno/inferno.tscn
-res://entities/tribunal/data_tribunal.gd
+res://entities/hell/inferno/inferno.gdshader
+res://entities/ui/parallax/parallax.gdshader
+res://entities/hell/inferno/void center.gdshader
+res://entities/hell/inferno/void 2.gdshader
+res://entities/sanctuary/sanctuary.tscn
+res://entities/world/world.tscn
+res://entities/hell/volcano/eruption/eruption.gd
 res://entities/sanctuary/gate/gate.tscn
-res://entities/ui/token/token.gd
-res://entities/ui/token/judgment/judgment.tscn
-res://entities/ui/token/judgment/judgment.gd
-res://entities/hell/jail/catena/data_catena.gd
-res://entities/hell/jail/catena/catena.gd
-res://entities/hell/treasury/data_treasury.gd
-res://entities/hell/treasury/contribution/candle/data_candle.gd
-res://global/Scope.gd
-res://entities/hell/volcano/volcano.gd
+res://entities/ui/token/faction/faction.tscn
+res://global/Catalog.gd
+res://entities/ui/token/faction/faction.gd
+res://entities/hell/jail/sinner/sinner.tscn
+res://entities/ui/token/faction/faction.gdshader
+res://entities/hell/jail/sinner/fate/fate.tscn
+res://entities/hell/jail/sinner/fate/fate.gd
+res://entities/hell/nightmare/trial/trial.tscn
+res://entities/ui/tooltip/tooltip.tscn
+res://entities/ui/label/pendulum.gd
+res://entities/hell/jail/sinner/fate/fate.gdshader
+res://entities/ui/token/faction/faction smoke.gdshader
+res://entities/ui/token/faction/faction icon.gdshader
 res://global/Bozo.gd
+res://entities/hell/jail/data_jail.gd
+res://entities/hell/jail/data_plaza.gd
+res://entities/hell/jail/sinner/fate/data_fate.gd
+res://entities/ui/token/faction/data_faction.gd
+res://entities/hell/hell.gd
+res://entities/ui/label/glitch.gd
+res://entities/hell/jail/jail.gd
+res://entities/hell/volcano/volcano.gd
+res://entities/tribunal/data_tribunal.gd
+res://entities/hell/volcano/data_flow.gd
+res://entities/hell/volcano/eruption/data_eruption.gd
+res://entities/hell/jail/sinner/trait/data_trait.gd
+res://entities/ui/token/sin/data_sin.gd

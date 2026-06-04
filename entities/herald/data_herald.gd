@@ -1,0 +1,2 @@
+class_name HeraldData
+extends Resource

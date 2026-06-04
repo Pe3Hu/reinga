@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_072et"]
 
 [node name="Token" type="Panel" unique_id=1672584037 node_paths=PackedStringArray("texture_rect", "label")]
-z_index = 100
+z_index = 10
 custom_minimum_size = Vector2(32, 32)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_072et")
 script = ExtResource("1_et4ju")

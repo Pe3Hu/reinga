@@ -3,7 +3,7 @@ extends TypeData
 
 
 signal is_selected_changed
-#signal faction_changed
+signal association_changed
 
 var sinner: SinnerData
 var faction: FactionData
@@ -24,6 +24,12 @@ var is_selected: bool = false:
 				sinner.cage.table.jail.update_traits()
 			
 			emit_signal("is_selected_changed")
+
+var association: Bozo.Association:
+	set(value_):
+		if association != value_:
+			association = value_
+			emit_signal("association_changed")
 
 
 func _init(sinner_: SinnerData, type_: Bozo.Fate) -> void:

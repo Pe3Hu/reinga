@@ -2,23 +2,107 @@
 
 [ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_vtx6c"]
 [ext_resource type="Script" uid="uid://nlsoxg7tbh4m" path="res://entities/ui/token/faction/faction.gd" id="2_1a6a2"]
-[ext_resource type="Texture2D" uid="uid://dtvqygwcdwk8d" path="res://entities/ui/token/images/faction.png" id="3_n557j"]
+[ext_resource type="Texture2D" uid="uid://cdcuqg1hho5u3" path="res://entities/ui/token/faction/images/artisan.png" id="3_l7dwe"]
+[ext_resource type="Shader" uid="uid://cpdpc4c7cty0b" path="res://entities/ui/token/faction/faction smoke.gdshader" id="3_stpjv"]
 
-[node name="TokenFaction" unique_id=1672584037 instance=ExtResource("1_vtx6c")]
-custom_minimum_size = Vector2(16, 16)
-offset_right = 16.0
-offset_bottom = 16.0
-scale = Vector2(0.5, 0.5)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1otg"]
+shader = ExtResource("3_stpjv")
+shader_parameter/fire_color = Color(0.29429862, 0.5916175, 0.9811818, 1)
+shader_parameter/fire_power_factor = 0.8
+shader_parameter/fire_intensity = 3.0
+shader_parameter/fire_start = 1.0
+shader_parameter/ball_size = 1.0
+shader_parameter/roughness = 0.675
+shader_parameter/detail = 3
+shader_parameter/scale = 3.0
+shader_parameter/lacunarity = 2.0
+shader_parameter/instance_seed = 1.0
+
+[sub_resource type="Shader" id="Shader_l7dwe"]
+code = "shader_type canvas_item;
+
+// --- Поворот направления градиента ---
+uniform int direction_mode = 1; 
+// 1 = 60°, 2 = 180°, 3 = 300°
+
+
+// --- Цвета градиента ---
+uniform vec4 top_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 bottom_color : source_color = vec4(1.0, 1.0, 1.0, 0.0);
+
+// --- мягкость перехода ---
+uniform float fade_power = 1.5;
+
+float get_angle() {
+    if (direction_mode == 1) return radians(60.0);
+    if (direction_mode == 2) return radians(180.0);
+    return radians(300.0);
+}
+
+void fragment() {
+    vec4 tex = texture(TEXTURE, UV);
+
+    // центрируем UV
+    vec2 centered = UV - vec2(0.5);
+
+    // поворот
+    float angle = get_angle();
+    mat2 rot = mat2(
+        vec2(cos(angle), -sin(angle)),
+        vec2(sin(angle),  cos(angle))
+    );
+
+    vec2 rotated = rot * centered;
+
+    // нормализуем в диапазон 0..1 (как \"высоту градиента\")
+    float grad = rotated.y + 0.5;
+
+    // градиент с усилением
+    grad = clamp(grad, 0.0, 1.0);
+    grad = pow(1.0 - grad, fade_power);
+
+    // цветовой градиент
+    vec4 gradient_color = mix(bottom_color, top_color, grad);
+
+    // итог: текстура × цвет градиента
+    vec4 final_color = tex * gradient_color;
+
+    COLOR = final_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_stpjv"]
+shader = SubResource("Shader_l7dwe")
+shader_parameter/direction_mode = 3
+shader_parameter/top_color = Color(0, 0.5666666, 1, 1)
+shader_parameter/bottom_color = Color(0, 0.5647059, 1, 1)
+shader_parameter/fade_power = 1.5
+
+[node name="TokenFaction" unique_id=1672584037 node_paths=PackedStringArray("smoke") instance=ExtResource("1_vtx6c")]
+offset_right = 32.0
+offset_bottom = 32.0
 script = ExtResource("2_1a6a2")
-type = 0
+smoke = NodePath("Smoke")
 
-[node name="TextureRect" parent="." index="0" unique_id=2027400341]
-modulate = Color(0.28235295, 0.23921569, 0.54509807, 1)
-offset_right = 16.0
-offset_bottom = 16.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_n557j")
+[node name="Smoke" type="ColorRect" parent="." index="0" unique_id=1223835843]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_g1otg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 128.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
 
-[node name="ValueLabel" parent="." index="1" unique_id=1083729365]
+[node name="TextureRect" parent="." index="1" unique_id=2027400341]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_stpjv")
+texture = ExtResource("3_l7dwe")
+
+[node name="ValueLabel" parent="." index="2" unique_id=1083729365]
 visible = false
 text = "0"

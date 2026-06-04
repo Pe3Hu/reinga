@@ -10,6 +10,7 @@ var gyres: Array[GyreData]
 var foreground_sinners: Array[SinnerData]
 
 
+#region init
 func _init(world_: WorldData) -> void:
 	world = world_
 	
@@ -49,13 +50,17 @@ func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)
 	hereafter.sinners.append(sinner)
 	sinner.gyre = hereafter
+#endregion
 
+#region refill
 func refill_actual() -> void:
 	if hereafter.sinners.is_empty():
 		hereafter.ere.clear()
 	
 	while actual.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE:
 		use_foreground()
+	
+	actual.sinners.shuffle()
 
 func use_foreground() -> void:
 	if !foreground_sinners.is_empty():
@@ -63,6 +68,10 @@ func use_foreground() -> void:
 		actual.sinners.append(sinner)
 	else:
 		hereafter.transfer_sinner()
+#endregion
+
+func is_enough() -> bool:
+	return hereafter.sinners.size() >= Catalog.GYRE_ACTUAL_SINNER_SIZE
 
 func print_total_sinners() -> void:
 	var count = foreground_sinners.size()
@@ -71,6 +80,3 @@ func print_total_sinners() -> void:
 		count += gyre.sinners.size()
 	
 	print(count)
-
-func is_enough() -> bool:
-	return hereafter.sinners.size() > Catalog.GYRE_ACTUAL_SINNER_SIZE

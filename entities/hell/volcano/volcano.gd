@@ -72,14 +72,19 @@ func return_eruption(eruption_: Eruption):
 		hell.treasury.hide_vbox()
 		Scope.next_phase()
 
-func flow_update():
+func flow_contribution_update():
 	if !hell.data.jail.table.active_cages.is_empty():
 		flow = hell.data.jail.table.active_cages.back().contribution.flow
 		flow.nightmare = hell.nightmare.data
-		flow.init_eruptions()
+		flow.init_contribution_eruptions()
 	else:
 		pass
-	
+
+func flow_plaza_update() -> void:
+	if !hell.data.jail.plaza.type_to_faction.keys().is_empty():
+		flow.plaza = hell.data.jail.plaza
+		flow.init_plaza_eruptions()
+
 func burst_eruption():
 	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
 	apply_shake_effect()

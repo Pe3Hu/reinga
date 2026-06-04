@@ -102,17 +102,16 @@ func show_vbox() -> void:
 
 func _on_lock_button_pressed() -> void:
 	lock()
-	Scope.next_phase()
 
 func lock() -> void:
 	if !hell.jail.data.table.active_cages.is_empty():
-		lock_button.visible = false
+		lock_button.hide_me()
 		#hell.jail.data.table.is_locked = true
 		hide_not_selected_contributions()
-		hell.jail.reset_timer.stop()
 		hell.jail.data.table.reset_catenas()
+		Scope.next_phase()
 		#hell.jail.forget_cage()
 
 func reset() -> void:
-	#lock_button.visible = false
+	lock_button.hide_me()
 	data.reset_candles()

@@ -168,6 +168,15 @@ enum Progression {
 	FLAME = 106
 }
 
+enum Association {
+	NONE = 0,
+	BROTHERHOOD = 110,
+	GUILD = 111,
+}
+
+
+
+
 enum Phase {
 	NONE = 0,
 	ENDOWMENT = 200,

@@ -4,31 +4,31 @@ extends Resource
 
 var contribution: ContributionData
 var nightmare: NightmareData
+var plaza: PlazaData
 var eruptions: Array[EruptionData]
 
 var sin_to_available: Dictionary
 var sin_to_demand: Dictionary
 var sin_to_trial_to_weight: Dictionary
 var sin_to_supply: Dictionary
+var modifier_weights: Dictionary
 
 
-func init_eruptions() -> void:
+func init_contribution_eruptions() -> void:
 	eruptions.clear()
 	sin_to_available.clear()
 	sin_to_supply.clear()
-	sin_to_trial_to_weight.clear()
-	var modifier_weights = nightmare.hell.shelter.get_modifier_weights()
+	modifier_weights = nightmare.hell.shelter.get_modifier_weights()
 	
 	for _sin in contribution.sins:
 		sin_to_available[_sin.type] = _sin.value
 		sin_to_supply[_sin.type] = 0
 		sin_to_trial_to_weight[_sin.type] = {}
 	
-	for trial in nightmare.trials:
-		for _sin in trial.claim.sins:
-			if sin_to_trial_to_weight.has(_sin.type):
-				sin_to_trial_to_weight[_sin.type][trial.type] = _sin.value
-	
+	recalc_sin_to_trial_to_weight()
+	spread_available()
+
+func spread_available() -> void:
 	while sin_to_available:
 		var sin_type = Helper.get_random_key(sin_to_available)
 		
@@ -121,3 +121,28 @@ func calc_tribute_sum() -> void:
 	
 	for sin_type in sin_to_available:
 		contribution.tribute.value += min(sin_to_demand[sin_type], sin_to_available[sin_type])
+
+func init_plaza_eruptions() -> void:
+	eruptions.clear()
+	sin_to_available.clear()
+	modifier_weights = nightmare.hell.shelter.get_modifier_weights()
+	
+	for faction_type in plaza.type_to_faction:
+		for faction in plaza.type_to_faction[faction_type]:
+			var sins = faction.get_sins_for_eruptions()
+			
+			for _sin in sins:
+				if !sin_to_available.has(_sin.type):
+					sin_to_available[_sin.type] = 0
+				
+				sin_to_available[_sin.type] += _sin.value
+	
+	recalc_sin_to_trial_to_weight()
+
+func recalc_sin_to_trial_to_weight() -> void:
+	sin_to_trial_to_weight.clear()
+	
+	for trial in nightmare.trials:
+		for _sin in trial.claim.sins:
+			if sin_to_trial_to_weight.has(_sin.type):
+				sin_to_trial_to_weight[_sin.type][trial.type] = _sin.value

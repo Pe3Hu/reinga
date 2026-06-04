@@ -22,7 +22,7 @@ func apply_data() -> void:
 
 func reset() -> void:
 	sinner.visible = false
-	cloak.visible = false
+	cloak.visible = true
 
 func switch_side() -> void:
 	sinner.visible = !sinner.visible

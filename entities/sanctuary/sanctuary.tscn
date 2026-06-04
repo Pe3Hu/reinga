@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://b5j0hjjauwolx"]
 
 [ext_resource type="Script" uid="uid://be5r56u7b3uyx" path="res://entities/sanctuary/sanctuary.gd" id="1_8k0x1"]
-[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/sanctuary/coffee.gdshader" id="2_4ccgy"]
+[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/sanctuary/shader/pink coffee.gdshader" id="2_4ccgy"]
 [ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="2_svdwa"]
+[ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="3_ajpus"]
 [ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="3_svdwa"]
-[ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/borders.gdshader" id="4_3m33d"]
+[ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/shader/red orange circle borders.gdshader" id="4_3m33d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ajpus"]
 shader = ExtResource("2_4ccgy")
@@ -13,6 +14,13 @@ shader_parameter/colorB = Color(0.301, 0.55370003, 0.7, 1)
 shader_parameter/colorC = Color(0.19999999, 0.7066667, 1, 1)
 shader_parameter/discomode = false
 shader_parameter/speed = 0.20000000624012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t37mp"]
+shader = ExtResource("3_ajpus")
+shader_parameter/intensity = 0.45
+shader_parameter/raidus = 50.0
+shader_parameter/offset = 3.0
+shader_parameter/time_scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m33d"]
 shader = ExtResource("2_svdwa")
@@ -47,7 +55,6 @@ shader_parameter/vignette_falloff = 0.25
 shader_parameter/noise_influence = 1.0
 
 [node name="Sanctuary" type="Control" unique_id=550126807]
-visible = false
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -56,7 +63,17 @@ offset_bottom = 900.0
 script = ExtResource("1_8k0x1")
 
 [node name="BackgroundRect" type="ColorRect" parent="." unique_id=875049052]
+visible = false
 material = SubResource("ShaderMaterial_ajpus")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2006478286]
+material = SubResource("ShaderMaterial_t37mp")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -4,6 +4,7 @@ extends Resource
 
 var hell: HellData
 var table: TableData
+var plaza: PlazaData = PlazaData.new(self)
 var z_index_order: int = 0
 
 
@@ -31,3 +32,8 @@ func update_traits() -> void:
 				cage.status = Bozo.Cage.RIGHT
 			elif cage.coord.x < active_cage.coord.x:
 				cage.status = Bozo.Cage.LEFT
+
+func reset_traits() -> void:
+	if Scope.layer != Bozo.Layer.HELL: return
+	for cage in table.cages:
+		cage.status = Bozo.Cage.NONE

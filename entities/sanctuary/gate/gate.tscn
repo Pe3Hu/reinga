@@ -4,8 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_22103"]
 [ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/hell/jail/catena/catena.tscn" id="3_4f2db"]
 [ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/sanctuary/gate/shader/portal.gdshader" id="4_gmdhp"]
+[ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="4_xft3k"]
 [ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/sanctuary/gate/gate blur.gdshader" id="5_dans4"]
 [ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="6_ttr3x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1c2el"]
+shader = ExtResource("4_xft3k")
+shader_parameter/intensity = 0.15
+shader_parameter/center = 50.0
+shader_parameter/offset = 3.0
+shader_parameter/time_scale = 1.0
+shader_parameter/radius = 0.33
 
 [sub_resource type="Gradient" id="Gradient_ttr3x"]
 
@@ -38,7 +47,7 @@ shader_parameter/selected_col = 0
 shader_parameter/blur_strength = 0.8
 shader_parameter/blur_amount = 1.0
 
-[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button", "reset_timer")]
+[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +58,16 @@ script = ExtResource("1_73phx")
 cage_scene = ExtResource("2_22103")
 catena_scene = ExtResource("3_4f2db")
 select_button = NodePath("PanelContainer/VBoxContainer/SelectButton")
-reset_timer = NodePath("ResetTimer")
+
+[node name="Halo" type="ColorRect" parent="." unique_id=1735828971]
+visible = false
+material = SubResource("ShaderMaterial_1c2el")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Portal" type="ColorRect" parent="." unique_id=1255010420]
 material = SubResource("ShaderMaterial_xft3k")
@@ -84,6 +102,7 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=2014595488]
+z_index = 5
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -119,22 +138,17 @@ columns = 3
 [node name="Blur" type="ColorRect" parent="PanelContainer/VBoxContainer/Panel" unique_id=1660884187]
 unique_name_in_owner = true
 visible = false
-z_index = 101
+z_index = 105
 material = SubResource("ShaderMaterial_ttr3x")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SelectButton" parent="PanelContainer/VBoxContainer" unique_id=250034607 instance=ExtResource("6_ttr3x")]
+[node name="SelectButton" parent="PanelContainer/VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Select"
-
-[node name="ResetTimer" type="Timer" parent="." unique_id=956464673]
-wait_time = 0.12
-one_shot = true
+gate = NodePath("../../..")
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/SelectButton" to="." method="_on_select_button_pressed"]
-[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

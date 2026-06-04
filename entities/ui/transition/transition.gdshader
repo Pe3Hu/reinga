@@ -3,8 +3,8 @@ shader_type canvas_item;
 uniform vec4 base_color : source_color;
 uniform vec2 node_resolution;
 
-uniform float factor : hint_range(0.0, 1.0, 0.01) = 0.54;
-uniform float width = 0.4;
+uniform float factor : hint_range(0.0, 1.0, 0.01) = 0.0;
+uniform float width = 0.225;
 
 group_uniforms gradient;
 uniform sampler2D gradient_texture;
@@ -12,7 +12,7 @@ uniform bool gradient_fixed = false;
 
 group_uniforms shape;
 uniform sampler2D shape_texture;
-uniform float shape_tiling = 32.0;
+uniform float shape_tiling = 4.0;
 uniform float shape_rotation = 0.0;
 uniform vec2 shape_scroll = vec2(0.0);
 uniform float shape_feathering : hint_range(0.0, 1.0, 0.01) = 0.00;

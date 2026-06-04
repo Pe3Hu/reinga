@@ -157,6 +157,19 @@ const fates = [
 	Bozo.Fate.COURTESAN,
 ]
 
+
+const faction_to_string = {
+	Bozo.Faction.NOBILITY: "nobility",
+	Bozo.Faction.ARTISAN: "artisan",
+	Bozo.Faction.RIFFRAFF: "riffraff",
+}
+
+const faction_to_direction = {
+	Bozo.Faction.ARTISAN: 1,
+	Bozo.Faction.NOBILITY: 2,
+	Bozo.Faction.RIFFRAFF: 3,
+}
+
 const faction_to_fate = {
 	Bozo.Faction.NOBILITY: [
 		Bozo.Fate.HEIR,
@@ -237,8 +250,8 @@ const fate_to_sin = {
 
 const faction_to_color = {
 	Bozo.Faction.NOBILITY: Color.AQUA,
-	Bozo.Faction.ARTISAN: Color.OLIVE,
-	Bozo.Faction.RIFFRAFF: Color.WEB_PURPLE,
+	Bozo.Faction.ARTISAN: Color.LIME,#Color.OLIVE,
+	Bozo.Faction.RIFFRAFF: Color.CRIMSON#Color.PURPLE,
 }
 
 #endregion
@@ -944,4 +957,9 @@ var active_to_color = {
 	true: Color.from_rgba8(0, 0, 0, 170),#230
 	false: Color.from_rgba8(0, 0, 0, 135)
 }
+#endregion
+
+#region plaza
+const PLAZA_FATE_LIMIT: int = 2
+const PLAZA_FACTION_LIMIT: int = 4
 #endregion
