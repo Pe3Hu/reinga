@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dgjcas8dbnytt" path="res://entities/ui/button/images/cross 8 hover.png" id="5_2onvb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f81pm"]
-bg_color = Color(0, 0, 0, 0.5254902)
+bg_color = Color(0.16, 0.16, 0.16, 0.8980392)
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_a3sp5"]
 script = ExtResource("2_igk67")
@@ -70,10 +70,10 @@ anchor_right = 1.0
 offset_left = -8.0
 offset_bottom = 8.0
 grow_horizontal = 0
-texture_normal = ExtResource("4_3u3o7")
+texture_normal = ExtResource("5_2onvb")
 texture_pressed = ExtResource("4_3u3o7")
-texture_hover = ExtResource("5_2onvb")
-texture_focused = ExtResource("4_3u3o7")
+texture_hover = ExtResource("4_3u3o7")
+texture_focused = ExtResource("5_2onvb")
 
 [node name="CloseTimer" type="Timer" parent="." unique_id=918154694]
 wait_time = 7.0

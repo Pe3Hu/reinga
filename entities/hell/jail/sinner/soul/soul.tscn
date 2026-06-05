@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://mn8lg5gkpgsj" path="res://entities/hell/jail/sinner/soul/soul.gd" id="1_rlesa"]
 [ext_resource type="PackedScene" uid="uid://c7pdwsba8i3ln" path="res://entities/hell/jail/sinner/trait/trait.tscn" id="1_xf3uh"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="3_mnjxa"]
+[ext_resource type="PackedScene" uid="uid://6au38kwlubub" path="res://entities/hell/jail/sinner/doom/doom.tscn" id="4_p1p1s"]
 
-[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "fear", "horror", "guilt", "repose")]
+[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "doom", "fear", "horror", "guilt", "repose")]
 custom_minimum_size = Vector2(156, 156)
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -12,6 +13,7 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 script = ExtResource("1_rlesa")
 background = NodePath("Background")
+doom = NodePath("Doom")
 fear = NodePath("TraitFear")
 horror = NodePath("TraitHorror")
 guilt = NodePath("TraitGuilt")
@@ -51,3 +53,9 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+
+[node name="Doom" parent="." unique_id=38386690 node_paths=PackedStringArray("soul") instance=ExtResource("4_p1p1s")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+soul = NodePath("..")

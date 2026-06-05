@@ -13,6 +13,8 @@ var layer: Bozo.Layer = Bozo.Layer.NONE:
 		layer = value_
 		emit_signal("layer_changed")
 
+var guild_level: int = 1
+
 
 func next_phase(auto_: bool = true) -> void:
 	if auto_:

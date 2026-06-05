@@ -52,37 +52,32 @@ func execute_phase() -> void:
 			Scope.next_phase()
 		Bozo.Phase.REPLENISHMENT:
 			world.data.tribunal.refill_actual()
-			jail.apply_phase_visiblity()
 			jail.update_sinner_datas()
 			Scope.next_phase()
 		Bozo.Phase.PAYMENT:
 			nightmare.awaken_dreams()
-			jail.data.plaza.update_associations()
 		Bozo.Phase.APPRAISEMENT:
 			treasury.appraisement_preparation()
+			jail.dissolve_guilds()
 			volcano.flow_plaza_update()
 			#simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
 			treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
 			volcano.flow_contribution_update()
-			volcano.burst_eruption()
 		Bozo.Phase.DEVELOPMENT:
 			market.data.refill_closed_deals()
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
-			nightmare.data.refill_claims()
-			#world.data.tribunal.open_gate()
+			nightmare.reset()
 			jail.reset()
 			treasury.reset()
-			#world.gate.open()
 			world.data.tribunal.actual.clear()
 			
 			if world.data.tribunal.is_enough():
 				Scope.next_phase()
 			else:
 				world.data.transition.next_layer = Bozo.Layer.GATE
-			#Scope.is_pause = true
 
 
 func _on_phase_timer_timeout() -> void:

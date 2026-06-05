@@ -41,6 +41,8 @@ func add_cage(data_: CageData) -> void:
 #endregion
 
 func update_sinner_datas() -> void:
+	apply_phase_visiblity()
+	
 	for _i in hell.world.data.tribunal.actual.sinners.size():
 		var sinner_data = hell.world.data.tribunal.actual.sinners[_i]
 		var cage = cages[_i]
@@ -55,7 +57,10 @@ func apply_phase_visiblity() -> void:
 		Bozo.Phase.DISBURSEMENT:
 			%Cages.visible = false
 
+
 func get_active_cage() ->  Variant:
+	if data.table.active_cages.is_empty(): return null
+	
 	for cage in cages:
 		if cage.data == data.table.active_cages.back():
 			return cage
@@ -68,7 +73,7 @@ func reset() -> void:
 	data.reset_traits()
 	
 	for cage in cages:
-		cage.reset()
+		cage.sinner.apply_phase_visiblity()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -100,12 +105,17 @@ func _on_catena_timer_timeout() -> void:
 
 func get_trait_token(token_data_: TokenData) -> Variant:
 	for cage in cages:
-		if token_data_.trait.soul.sinner.cage == cage.data:
-			var _trait = cage.sinner.soul.get(Catalog.trait_to_string[token_data_.trait.type])
+		if token_data_.trait_data.soul.sinner.cage == cage.data:
+			var _trait = cage.sinner.soul.get(Catalog.trait_to_string[token_data_.trait_data.type])
 			
 			for token in _trait.tokens:
 				if token.data == token_data_:
 					return token
 	
 	return null
-	
+
+func dissolve_guilds() -> void:
+	for cage in cages:
+		#cage.sinner.visible = true
+		if cage.sinner.fate.data.association == Bozo.Association.GUILD:
+			cage.cloak.dream.start_dissolve_guild_tokens()

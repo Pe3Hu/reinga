@@ -7,12 +7,9 @@ var data: Resource:
 		data = value_
 		apply_data_info()
 
-@export var contribution: Contribution
 
 @export var texture_rect: TextureRect
 @export var label: Label
-
-
 
 
 func apply_data_info() -> void:
@@ -29,10 +26,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			click_event()
 
 func click_event() -> void:
-	if contribution != null:
-		contribution.treasury.reoder(data.type)
-		await get_tree().process_frame
-		contribution.treasury.sort_icon_shift(self)
+	pass
 
 func _on_value_changed():
 	label.text = str(data.value)

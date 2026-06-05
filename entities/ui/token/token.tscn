@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://73yuvwyoiyqh"]
 
-[ext_resource type="Texture2D" uid="uid://8kjv4yrf5ew3" path="res://entities/ui/token/images/amber.png" id="1_5ppb3"]
 [ext_resource type="Script" uid="uid://crgcsvoom0jid" path="res://entities/ui/token/token.gd" id="1_et4ju"]
+[ext_resource type="Texture2D" uid="uid://sljxjlyygtuk" path="res://entities/ui/token/sin/sin.png" id="2_75whu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_072et"]
 
@@ -20,7 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_5ppb3")
+texture = ExtResource("2_75whu")
 
 [node name="ValueLabel" type="Label" parent="." unique_id=1083729365]
 layout_mode = 1

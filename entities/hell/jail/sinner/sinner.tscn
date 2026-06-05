@@ -53,7 +53,7 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 0
+theme_override_constants/separation = 4
 
 [node name="TokenFaction" parent="Panel/MarginContainer/VBoxContainer/Header" unique_id=1672584037 instance=ExtResource("2_5d7qc")]
 unique_name_in_owner = true

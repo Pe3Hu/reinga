@@ -1,11 +1,11 @@
-ColorRect
+MarginContainer
 PanelContainer
+ColorRect
 Control
 Timer
 CanvasLayer
 VBoxContainer
 HBoxContainer
-MarginContainer
 GridContainer
 Sprite2D
 RichTextLabel

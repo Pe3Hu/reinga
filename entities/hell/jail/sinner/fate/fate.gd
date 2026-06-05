@@ -38,7 +38,6 @@ func _on_is_selected_changed() -> void:
 		sinner.soul.background.color = Catalog.active_to_color[data.is_selected]
 		sinner.cage.jail.data.update_traits()
 	
-	
 	if data.is_selected:
 		focus()
 	else:
@@ -60,9 +59,12 @@ func _on_association_changed() -> void:
 
 func apply_association() -> void:
 	if data.association == Bozo.Association.GUILD:
-		for effect in label.get_effects():
-			if effect is RichTextGlitch:
-				effect.reset_cache()
-		
-		#if !label.text.contains("glitch"):
-		label.text = "[glitch]"+label.text
+		#apply_glitch()
+		label.text = "[tornado radius=4 freq=1.6]"+label.text
+
+func apply_glitch() -> void:
+	for effect in label.get_effects():
+		if effect is RichTextGlitch:
+			effect.reset_cache()
+	
+	label.text = "[glitch]"+label.text

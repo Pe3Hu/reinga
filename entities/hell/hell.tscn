@@ -25,9 +25,9 @@ volcano = NodePath("Volcano")
 nightmare = NodePath("UI/MarginContainer/HBox/Nightmare")
 jail = NodePath("UI/MarginContainer/HBox/Jail")
 treasury = NodePath("UI/MarginContainer/HBox/VBoxContainer/Treasury")
-bank = NodePath("UI/MarginContainer/HBox/VBoxContainer/HBoxContainer/Bank")
+bank = NodePath("UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer/Bank")
 market = NodePath("UI/MarginContainer/HBox/VBoxContainer/Market")
-shelter = NodePath("UI/MarginContainer/HBox/VBoxContainer/HBoxContainer/Shelter")
+shelter = NodePath("UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer/Shelter")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
@@ -76,19 +76,27 @@ layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=1357191306]
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=57439656]
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer" unique_id=1357191306]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]
+[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 4
-hell = NodePath("../../../../../..")
+hell = NodePath("../../../../../../..")
 
-[node name="Shelter" parent="UI/MarginContainer/HBox/VBoxContainer/HBoxContainer" unique_id=526715784 instance=ExtResource("6_0u57p")]
+[node name="Shelter" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=526715784 instance=ExtResource("6_0u57p")]
+custom_minimum_size = Vector2(292, 128)
 layout_mode = 2
+size_flags_horizontal = 8
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=351820096]
 custom_minimum_size = Vector2(0, 31)

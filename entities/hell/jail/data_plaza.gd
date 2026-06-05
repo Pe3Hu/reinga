@@ -3,6 +3,7 @@ extends Resource
 
 
 var jail: JailData
+var flow: FlowData = FlowData.new()
 
 var type_to_fate: Dictionary
 var type_to_faction: Dictionary
@@ -11,6 +12,8 @@ var type_to_trait_to_value: Dictionary
 
 func _init(jail_: JailData) -> void:
 	jail = jail_
+	flow.plaza = self
+	flow.nightmare = jail.hell.nightmare
 
 func update_associations() -> void:
 	type_to_fate.clear()
@@ -51,6 +54,8 @@ func update_associations() -> void:
 				fate.association = Bozo.Association.GUILD
 		else:
 			type_to_fate.erase(fate_type)
+	
+	apply_guilds()
 
 func reset_associations() -> void:
 	for cage in jail.table.cages:
@@ -72,3 +77,8 @@ func get_available_token(sin_type_: Bozo.Token) -> TokenData:
 		type_to_trait_to_value.erase(sin_type_)
 	
 	return sin_data
+
+func apply_guilds() -> void:
+	for fate_type in type_to_fate:
+		for fate in type_to_fate[fate_type]:
+			fate.sinner.dream.apply_guild()

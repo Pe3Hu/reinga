@@ -87,7 +87,7 @@ enum Fate {
 	SHARPIE = 40,
 	DRUNKARD = 41,
 	COURTESAN = 42,
-	MASHER = 43,
+	ADULTERER = 43,
 	HUCKSTER = 44,
 }
 
@@ -174,6 +174,38 @@ enum Association {
 	GUILD = 111,
 }
 
+enum Omen {
+	NONE = 0,
+	DESTINY = 112,
+	FAMILY = 113,
+}
+
+enum Destiny {
+	NONE = 0,
+	LEADER = 114,
+	GENIUS = 115,
+	LAYMAN = 116,
+	EXILE = 117,
+}
+
+enum Family {
+	NONE = 0,
+	PARENT = 118,
+	CHILD = 119,
+	MOTHER = 120,
+	FATHER = 121,
+	SON = 122,
+	DAUGHTER = 123,
+}
+
+enum Status {
+	NONE = 0,
+	ON = 124,
+	OFF  = 125
+}
+
+
+
 
 
 
@@ -235,6 +267,7 @@ enum Tooltip {
 	CLOAK = 314,
 	POSTURE = 315,
 	JUDGMENT = 316,
+	OMEN = 317,
 }
 
 enum Frame {

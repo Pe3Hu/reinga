@@ -4,7 +4,7 @@ extends Resource
 
 var hell: HellData
 var table: TableData
-var plaza: PlazaData = PlazaData.new(self)
+var plaza: PlazaData
 var z_index_order: int = 0
 
 
@@ -12,6 +12,7 @@ func _init(hell_: HellData) -> void:
 	hell = hell_
 	table = TableData.new()
 	table.jail = self
+	plaza = PlazaData.new(self)
 	#init_cages()
 
 

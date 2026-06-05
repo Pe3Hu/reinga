@@ -8,23 +8,19 @@ var value: int = 1
 
 
 func reset(progression_: Progression, value_: int = 1):
-	get_parent().remove_child(self)
-	var x_sign = 1
-	
-	match progression_.data.type:
-		Bozo.Progression.TRIBUTE:
-			progression_.current_label.add_child(self)
-			x_sign = -1
-		Bozo.Progression.FLAME:
-			progression_.limit_label.add_child(self)
-	
-	value = value_
 	progression = progression_
+	value = value_
+	text = str(value_)
+	
+	get_parent().remove_child(self)
+	
 	var y = randf_range(-0.25, -0.75) * Catalog.VOLCANO_SPRITE_SIZE.y
 	position = Vector2(0, y)
-	text = str(value_)
+	
 	if value_ > 0:
 		text = "+"+str(value_)
+	if value_ < 0:
+		text = "-"+str(value_)
 	
 	var trial_data = progression.data.boss.trial
 	modulate = Catalog.trial_to_color[trial_data.type]
@@ -32,7 +28,19 @@ func reset(progression_: Progression, value_: int = 1):
 	visible = true
 	#await resized
 	pivot_offset = size / 2
+	apply_tween()
 
+
+func apply_tween() -> void:
+	var x_sign = 1
+	
+	match progression.data.type:
+		Bozo.Progression.TRIBUTE:
+			progression.current_label.add_child(self)
+			x_sign = -1
+		Bozo.Progression.FLAME:
+			progression.limit_label.add_child(self)
+	
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 

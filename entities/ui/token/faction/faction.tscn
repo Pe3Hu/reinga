@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_vtx6c"]
 [ext_resource type="Script" uid="uid://nlsoxg7tbh4m" path="res://entities/ui/token/faction/faction.gd" id="2_1a6a2"]
 [ext_resource type="Texture2D" uid="uid://cdcuqg1hho5u3" path="res://entities/ui/token/faction/images/artisan.png" id="3_l7dwe"]
-[ext_resource type="Shader" uid="uid://cpdpc4c7cty0b" path="res://entities/ui/token/faction/faction smoke.gdshader" id="3_stpjv"]
+[ext_resource type="Shader" uid="uid://cpdpc4c7cty0b" path="res://entities/ui/token/faction/shaders/faction smoke.gdshader" id="3_stpjv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g1otg"]
 shader = ExtResource("3_stpjv")
@@ -34,9 +34,9 @@ uniform vec4 bottom_color : source_color = vec4(1.0, 1.0, 1.0, 0.0);
 uniform float fade_power = 1.5;
 
 float get_angle() {
-    if (direction_mode == 1) return radians(60.0);
-    if (direction_mode == 2) return radians(180.0);
-    return radians(300.0);
+    if (direction_mode == 1) return radians(0.0);
+    if (direction_mode == 2) return radians(120.0);
+    return radians(240.0);
 }
 
 void fragment() {

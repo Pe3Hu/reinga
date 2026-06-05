@@ -79,7 +79,6 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="Tribute" parent="Margin/Box/NotSins" unique_id=1672584037 node_paths=PackedStringArray("contribution") instance=ExtResource("2_abunu")]
-visible = true
 layout_mode = 2
 contribution = NodePath("../../../..")
 

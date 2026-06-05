@@ -144,7 +144,7 @@ const fates = [
 	Bozo.Fate.COLLECTOR,
 	Bozo.Fate.GOURMET,
 	Bozo.Fate.DUELIST,
-	Bozo.Fate.MASHER,
+	Bozo.Fate.ADULTERER,
 	Bozo.Fate.ACTOR,
 	Bozo.Fate.BLACKSMITH,
 	Bozo.Fate.TAILOR,
@@ -176,7 +176,7 @@ const faction_to_fate = {
 		Bozo.Fate.COLLECTOR,
 		Bozo.Fate.GOURMET,
 		Bozo.Fate.DUELIST,
-		Bozo.Fate.MASHER,
+		Bozo.Fate.ADULTERER,
 	],
 	Bozo.Faction.ARTISAN: [
 		Bozo.Fate.ACTOR,
@@ -199,7 +199,7 @@ const fate_to_faction = {
 	Bozo.Fate.COLLECTOR: Bozo.Faction.NOBILITY,
 	Bozo.Fate.GOURMET: Bozo.Faction.NOBILITY,
 	Bozo.Fate.DUELIST: Bozo.Faction.NOBILITY,
-	Bozo.Fate.MASHER: Bozo.Faction.NOBILITY,
+	Bozo.Fate.ADULTERER: Bozo.Faction.NOBILITY,
 	Bozo.Fate.ACTOR: Bozo.Faction.ARTISAN,
 	Bozo.Fate.BLACKSMITH: Bozo.Faction.ARTISAN,
 	Bozo.Fate.TAILOR: Bozo.Faction.ARTISAN,
@@ -217,7 +217,7 @@ const fate_to_string = {
 	Bozo.Fate.COLLECTOR: "collector",
 	Bozo.Fate.GOURMET: "gourmet",
 	Bozo.Fate.DUELIST: "duelist",
-	Bozo.Fate.MASHER: "masher",
+	Bozo.Fate.ADULTERER: "adulterer",
 	Bozo.Fate.ACTOR: "actor",
 	Bozo.Fate.BLACKSMITH: "blacksmith",
 	Bozo.Fate.TAILOR: "tailor",
@@ -235,7 +235,7 @@ const fate_to_sin = {
 	Bozo.Fate.COLLECTOR: [Bozo.Sin.PRIDE, Bozo.Sin.GREED],
 	Bozo.Fate.GOURMET: [Bozo.Sin.PRIDE, Bozo.Sin.GLUTTONY],
 	Bozo.Fate.DUELIST: [Bozo.Sin.ANGER, Bozo.Sin.LUST],
-	Bozo.Fate.MASHER: [Bozo.Sin.LUST, Bozo.Sin.GLUTTONY],
+	Bozo.Fate.ADULTERER: [Bozo.Sin.LUST, Bozo.Sin.GLUTTONY],
 	Bozo.Fate.ACTOR: [Bozo.Sin.PRIDE, Bozo.Sin.LUST],
 	Bozo.Fate.BLACKSMITH: [Bozo.Sin.ENVY, Bozo.Sin.ANGER],
 	Bozo.Fate.TAILOR: [Bozo.Sin.ENVY, Bozo.Sin.LUST],
@@ -320,7 +320,7 @@ const fate_to_trial = {
 	Bozo.Fate.COLLECTOR: Bozo.Trial.AUCTION,
 	Bozo.Fate.GOURMET: Bozo.Trial.FEAST,
 	Bozo.Fate.DUELIST: Bozo.Trial.BATTLE,
-	Bozo.Fate.MASHER: Bozo.Trial.MASQUERADE,
+	Bozo.Fate.ADULTERER: Bozo.Trial.MASQUERADE,
 	Bozo.Fate.ACTOR: Bozo.Trial.THEATER,
 	Bozo.Fate.BLACKSMITH: Bozo.Trial.BATTLE,
 	Bozo.Fate.TAILOR: Bozo.Trial.THEATER,
@@ -400,7 +400,7 @@ const judgment_to_string = {
 }
 
 const judgment_to_color = {
-	Bozo.Judgment.TRIBUTE: Color.DIM_GRAY
+	Bozo.Judgment.TRIBUTE: Color.DARK_SLATE_GRAY
 }
 
 
@@ -631,10 +631,11 @@ const REPLETION_TICK = 0.25
 #endregion
 
 #region desire
-const PRIMARY_DESIRE_COUNT: int = 2
-const SECONDARY_DESIRE_COUNT: int = 1
+#const PRIMARY_DESIRE_COUNT: int = 2
+#const SECONDARY_DESIRE_COUNT: int = 1
 const DESIRE_DISSOLVE_DURATION: float = 0.5#1.2
 const SPASH_DURATION: float = 0.4#0.5
+const DESIRE_PROGRESS_LIMIT: float = 1.6
 
 const desires = [
 	Bozo.Desire.SWORD,
@@ -682,6 +683,16 @@ const desire_to_color = {
 	Bozo.Desire.WINE: Color(0.145, 0.871, 0.145),
 	Bozo.Desire.MASK: Color(0.188, 0.714, 0.922),
 	Bozo.Desire.SCROLL: Color(0.42, 0.184, 0.89),
+}
+
+const guild_level_to_index = {
+	-3: [0, 1, 2],
+	-2: [0, 2],
+	-1: [0],
+	0: [],
+	1: [0],
+	2: [0, 2],
+	3: [0, 1, 2]
 }
 #endregion
 
@@ -786,7 +797,7 @@ var type_to_tooltip = {
 	Bozo.Fate.COLLECTOR: Bozo.Tooltip.FATE,
 	Bozo.Fate.GOURMET: Bozo.Tooltip.FATE,
 	Bozo.Fate.DUELIST: Bozo.Tooltip.FATE,
-	Bozo.Fate.MASHER: Bozo.Tooltip.FATE,
+	Bozo.Fate.ADULTERER: Bozo.Tooltip.FATE,
 	Bozo.Fate.ACTOR: Bozo.Tooltip.FATE,
 	Bozo.Fate.BLACKSMITH: Bozo.Tooltip.FATE,
 	Bozo.Fate.TAILOR: Bozo.Tooltip.FATE,
@@ -961,5 +972,131 @@ var active_to_color = {
 
 #region plaza
 const PLAZA_FATE_LIMIT: int = 2
-const PLAZA_FACTION_LIMIT: int = 4
+const PLAZA_FACTION_LIMIT: int = 5
+#endregion
+
+#region omen
+const family_to_family = {
+	Bozo.Family.MOTHER: Bozo.Family.PARENT,
+	Bozo.Family.FATHER: Bozo.Family.PARENT,
+	Bozo.Family.SON: Bozo.Family.CHILD,
+	Bozo.Family.DAUGHTER: Bozo.Family.CHILD,
+}
+
+const faction_to_destiny = {
+	Bozo.Faction.NOBILITY: {
+		Bozo.Destiny.LAYMAN: 1,
+		Bozo.Destiny.GENIUS: 1,
+		Bozo.Destiny.LEADER: 2
+	},
+	Bozo.Faction.RIFFRAFF: {
+		Bozo.Destiny.LAYMAN: 1,
+		Bozo.Destiny.EXILE: 2,
+		Bozo.Destiny.LEADER: 1
+	},
+	Bozo.Faction.ARTISAN: {
+		Bozo.Destiny.LAYMAN: 1,
+		Bozo.Destiny.EXILE: 1,
+		Bozo.Destiny.GENIUS: 2,
+	},
+}
+
+const fate_to_family = {
+	Bozo.Fate.HEIR: {
+		Bozo.Family.SON: 7,
+		Bozo.Family.DAUGHTER: 3
+	},
+	Bozo.Fate.COLLECTOR: {
+		Bozo.Family.MOTHER: 3,
+		Bozo.Family.FATHER: 4,
+		Bozo.Family.SON: 2,
+		Bozo.Family.DAUGHTER: 1
+	},
+	Bozo.Fate.GOURMET: {
+		Bozo.Family.FATHER: 3,
+		Bozo.Family.DAUGHTER: 7
+	},
+	Bozo.Fate.DUELIST: {
+		Bozo.Family.FATHER: 4,
+		Bozo.Family.SON: 6,
+	},
+	Bozo.Fate.ADULTERER: {
+		Bozo.Family.MOTHER: 1,
+		Bozo.Family.FATHER: 2,
+		Bozo.Family.SON: 4,
+		Bozo.Family.DAUGHTER: 3
+	},
+	Bozo.Fate.ACTOR: {
+		Bozo.Family.MOTHER: 4,
+		Bozo.Family.FATHER: 3,
+		Bozo.Family.SON: 1,
+		Bozo.Family.DAUGHTER: 2
+	},
+	Bozo.Fate.BLACKSMITH: {
+		Bozo.Family.FATHER: 5,
+		Bozo.Family.SON: 5,
+	},
+	Bozo.Fate.TAILOR: {
+		Bozo.Family.MOTHER: 5,
+		Bozo.Family.DAUGHTER: 5
+	},
+	Bozo.Fate.COOK: {
+		Bozo.Family.MOTHER: 7,
+		Bozo.Family.DAUGHTER: 3
+	},
+	Bozo.Fate.HUCKSTER: {
+		Bozo.Family.MOTHER: 3,
+		Bozo.Family.FATHER: 7,
+	},
+	Bozo.Fate.EXECUTIONER: {
+		Bozo.Family.FATHER: 7,
+		Bozo.Family.SON: 3
+	},
+	Bozo.Fate.THIEF: {
+		Bozo.Family.MOTHER: 2,
+		Bozo.Family.SON: 5,
+		Bozo.Family.DAUGHTER: 3
+	},
+	Bozo.Fate.SHARPIE: {
+		Bozo.Family.FATHER: 3,
+		Bozo.Family.SON: 7,
+	},
+	Bozo.Fate.DRUNKARD: {
+		Bozo.Family.MOTHER: 3,
+		Bozo.Family.FATHER: 5,
+		Bozo.Family.SON: 2,
+	},
+	Bozo.Fate.COURTESAN: {
+		Bozo.Family.MOTHER: 6,
+		Bozo.Family.FATHER: 0,
+		Bozo.Family.SON: 0,
+		Bozo.Family.DAUGHTER: 4
+	},
+}
+
+const omen_to_string = {
+	Bozo.Omen.FAMILY: "family",
+	Bozo.Omen.DESTINY: "destiny",
+}
+
+const family_to_string = {
+	Bozo.Family.PARENT: "parent",
+	Bozo.Family.CHILD: "child",
+	Bozo.Family.MOTHER: "mother",
+	Bozo.Family.FATHER: "father",
+	Bozo.Family.SON: "son",
+	Bozo.Family.DAUGHTER: "daughter",
+}
+
+const destiny_to_string = {
+	Bozo.Destiny.LEADER: "leader",
+	Bozo.Destiny.GENIUS: "genius",
+	Bozo.Destiny.LAYMAN: "layman",
+	Bozo.Destiny.EXILE: "exile",
+}
+
+const status_to_string = {
+	Bozo.Status.ON: "on",
+	Bozo.Status.OFF: "off"
+}
 #endregion

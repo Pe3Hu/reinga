@@ -4,6 +4,7 @@ extends Token
 
 
 @export var bank: Bank
+@export var contribution: Contribution
 
 
 func apply_data_info() -> void:
@@ -13,5 +14,12 @@ func apply_data_info() -> void:
 
 func _on_type_changed() -> void:
 	if data.type == 0: return
-	texture_rect.texture = load("res://entities/ui/token/images/%s.png" % [Catalog.posture_to_string[data.type]])
+	texture_rect.texture = load("res://entities/ui/token/posture/images/%s.png" % [Catalog.posture_to_string[data.type]])
 	texture_rect.modulate = Catalog.posture_to_color[data.type]
+
+func click_event() -> void:
+	super.click_event()
+	if contribution != null:
+		contribution.treasury.reoder(data.type)
+		await get_tree().process_frame
+		contribution.treasury.sort_icon_shift(self)

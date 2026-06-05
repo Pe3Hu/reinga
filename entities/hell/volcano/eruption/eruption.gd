@@ -46,9 +46,16 @@ func update_end_token() -> void:
 	else:
 		end_target = volcano.hell.nightmare.type_to_trial[data.type].claim
 	
-	end_token = end_target.type_to_token[start_token.data.type]
+	
+	if start_token:
+		end_token = end_target.type_to_token[start_token.data.type]
+	else:
+		active = true
+		deactivate()
+		print("eruption start_token bug")
 
 func reset_timer(timeout_: float) -> void:
+	if !start_token: return
 	%ActivateTimer.stop()
 	%ActivateTimer.wait_time = timeout_
 	%ActivateTimer.start()
@@ -93,16 +100,16 @@ func spawn_trail() -> void:
 		sprite.visible = true
 		
 		if Catalog.sins.has(data.token):
-			sprite.texture = load("uid://dugn64otk6dcd")
+			sprite.texture = load("res://entities/ui/token/sin/sin.png")
 		else:
 			match data.token:
 				Bozo.Posture.OBLIVION:
-					sprite.texture = load("uid://sqqr87ep0wga")
+					sprite.texture = load("res://entities/ui/token/posture/images/oblivion.png")
 				Bozo.Posture.MADNESS:
-					sprite.texture = load("uid://bux8dfbycomad")
+					sprite.texture = load("res://entities/ui/token/posture/images/madness.png")
 		
 		if start_token.data as AmberData:
-			sprite.texture = load("uid://8kjv4yrf5ew3")
+			sprite.texture = load("res://entities/ui/token/amber/amber.png")
 		
 		var fading_tween = get_tree().create_tween()
 		fading_tween.tween_method(
@@ -161,9 +168,13 @@ func activate() -> void:
 
 	if start_token:
 		modulate = Catalog.token_to_color[start_token.data.type]
+		var shift = -1
 		
-		if !start_token.data.trait_data:
-			start_token.data.value -= 1
+		if start_token.data as SinData:
+			if start_token.data.trait_data:
+				shift = 0
+		
+		start_token.data.value += shift
 		
 		if data.pressure.type != Bozo.Modifier.NONE:
 			var pressure = volcano.get_pressure()

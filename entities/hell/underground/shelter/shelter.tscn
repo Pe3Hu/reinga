@@ -8,6 +8,9 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqbuq"]
 
 [node name="Shelter" type="PanelContainer" unique_id=526715784 node_paths=PackedStringArray("ultracrit", "megacrit", "crit", "misscrit")]
+custom_minimum_size = Vector2(260, 128)
+offset_right = 260.0
+offset_bottom = 128.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wqbuq")
@@ -37,6 +40,8 @@ theme_override_constants/margin_bottom = 20
 [node name="Modifiers" type="HBoxContainer" parent="MarginContainer" unique_id=151086313]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 

@@ -60,7 +60,6 @@ catena_scene = ExtResource("3_4f2db")
 select_button = NodePath("PanelContainer/VBoxContainer/SelectButton")
 
 [node name="Halo" type="ColorRect" parent="." unique_id=1735828971]
-visible = false
 material = SubResource("ShaderMaterial_1c2el")
 layout_mode = 1
 anchors_preset = 15

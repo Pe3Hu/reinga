@@ -18,7 +18,7 @@ uniform float range_start: hint_range(0.0, 1.0, 0.01) = 0.0;
 uniform float range_end: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float range_softedge: hint_range(0.0, 1.0, 0.01) = 0.1;
 
-uniform float progress = -1.5;
+uniform float progress = 1.6;
 uniform float noiseForce = 0.2;
 uniform sampler2D noiseTexture;
 uniform vec4 burnColor: source_color = vec4(1.,1.,1.,1.);

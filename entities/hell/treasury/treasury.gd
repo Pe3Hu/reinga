@@ -38,7 +38,7 @@ func get_contribution(windrose_: Bozo.Windrose) -> Contribution:
 #endregion
 
 func appraisement_preparation() -> void:
-	show_vbox()
+	apply_phase_visiblity()
 	show_all_contributions()
 	data.update_contributions()
 	reoder(Bozo.Judgment.TRIBUTE)
@@ -94,11 +94,13 @@ func show_all_contributions() -> void:
 		contribution.visible = true
 		contribution.show_not_sins()
 
-func hide_vbox() -> void:
-	%VBox.visible = false
 
-func show_vbox() -> void:
+func apply_phase_visiblity() -> void:
 	%VBox.visible = true
+	
+	match Scope.phase:
+		Bozo.Phase.DISBURSEMENT:
+			%VBox.visible = false
 
 func _on_lock_button_pressed() -> void:
 	lock()

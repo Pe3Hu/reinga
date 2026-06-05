@@ -85,10 +85,10 @@ func on_screen():
 	data.init_fates()
 	update_sinner_datas()
 
-
 func _on_select_button_pressed() -> void:
 	select_button.hide_me()
 	data.refill_tribunal()
+	Scope.phase = Bozo.Phase.ENDOWMENT
 	world.transition.data.next_layer = Bozo.Layer.HELL
 
 func _input(event: InputEvent) -> void:
@@ -97,7 +97,6 @@ func _input(event: InputEvent) -> void:
 			if not %Panel.get_global_rect().has_point(get_global_mouse_position()):
 				if !select_button.is_mouse_inside():
 					forget_catenas()
-
 
 func forget_catenas() -> void:
 	if Scope.layer == Bozo.Layer.GATE:

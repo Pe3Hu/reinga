@@ -12,6 +12,7 @@ var sin_to_demand: Dictionary
 var sin_to_trial_to_weight: Dictionary
 var sin_to_supply: Dictionary
 var modifier_weights: Dictionary
+var plaza_available: Dictionary
 
 
 func init_contribution_eruptions() -> void:
@@ -81,20 +82,29 @@ func distribute_available() -> void:
 	sin_to_available.clear()
 	var eruption_type = Bozo.Eruption.MARKET
 	
-	for _sin in contribution.sins:
-		sin_to_available[_sin.type] = _sin.value - sin_to_supply[_sin.type]
-		
+	if contribution:
+		for _sin in contribution.sins:
+			sin_to_available[_sin.type] = _sin.value - sin_to_supply[_sin.type]
+	
+	if plaza:
+		for sin_type in plaza_available:
+			plaza_available[sin_type] -= sin_to_supply[sin_type]
+	
 	for deal in nightmare.hell.market.deals:
-		var amount = min(deal.sin_data.value, sin_to_available[deal.sin_data.type])
-		var type = Catalog.sin_to_token[deal.sin_data.type]
-		
-		for _i in amount:
-			var eruption = EruptionData.new(self, type, eruption_type)
-			eruptions.append(eruption)
+		if sin_to_available.has(deal.sin_data.type):
+			var amount = min(deal.sin_data.value, sin_to_available[deal.sin_data.type])
+			var type = Catalog.sin_to_token[deal.sin_data.type]
+			
+			for _i in amount:
+				var eruption = EruptionData.new(self, type, eruption_type)
+				eruptions.append(eruption)
 	
 	distribute_postures()
 
 func distribute_postures() -> void:
+	if plaza:
+		print("temp distribute_postures ignore for plaza")
+		return
 	var eruption_type = Bozo.Eruption.BANK
 	
 	for posture in contribution.postures:
@@ -125,23 +135,29 @@ func calc_tribute_sum() -> void:
 func init_plaza_eruptions() -> void:
 	eruptions.clear()
 	sin_to_available.clear()
-	modifier_weights = nightmare.hell.shelter.get_modifier_weights()
+	sin_to_trial_to_weight.clear()
+	modifier_weights = plaza.jail.hell.shelter.get_modifier_weights()
+	sin_to_supply.clear()
+	plaza_available.clear()
 	
 	for faction_type in plaza.type_to_faction:
 		for faction in plaza.type_to_faction[faction_type]:
-			var sins = faction.get_sins_for_eruptions()
+			var sins = faction.get_token_for_eruptions()
 			
 			for _sin in sins:
 				if !sin_to_available.has(_sin.type):
 					sin_to_available[_sin.type] = 0
+					sin_to_supply[_sin.type] = 0
+					sin_to_trial_to_weight[_sin.type] = {}
 				
 				sin_to_available[_sin.type] += _sin.value
 	
+	plaza_available = sin_to_available.duplicate()
 	recalc_sin_to_trial_to_weight()
+	spread_available()
+	pass
 
 func recalc_sin_to_trial_to_weight() -> void:
-	sin_to_trial_to_weight.clear()
-	
 	for trial in nightmare.trials:
 		for _sin in trial.claim.sins:
 			if sin_to_trial_to_weight.has(_sin.type):

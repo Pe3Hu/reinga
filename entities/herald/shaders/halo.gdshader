@@ -4,7 +4,7 @@ uniform float intensity = 0.15;//0.45
 uniform float center = 50.0;
 uniform float offset = 3.0;
 uniform float time_scale = 1.0;
-uniform float radius = 0.33;//0.6;
+uniform float radius = 0.6;//0.33;
 
 void fragment() {
 

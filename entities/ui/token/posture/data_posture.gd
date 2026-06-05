@@ -2,6 +2,7 @@ class_name PostureData
 extends TokenData
 
 
+var trait_data: TraitData
 var type: Bozo.Posture:
 	set(value_):
 		type = value_

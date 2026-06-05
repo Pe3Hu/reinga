@@ -6,27 +6,27 @@
 [ext_resource type="Texture2D" uid="uid://cikvkssiemrwa" path="res://entities/ui/token/desire/images/wine.png" id="4_u7pk5"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="5_6s887"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qs6pt"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6s887"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pk28"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qs6pt"]
 shader = ExtResource("3_u7pk5")
-shader_parameter/effect_filling = 1.0
+shader_parameter/effect_filling = 0.999999977648
 shader_parameter/angle = 0.0
 shader_parameter/keep_saturation = 0.0
 shader_parameter/keep_luminance = 0.0
-shader_parameter/color_start = Color(0.59607846, 0.9843137, 0.59607846, 1)
+shader_parameter/color_start = Color(1, 1, 1, 1)
 shader_parameter/start_pos = 0.0
 shader_parameter/color_mid = Color(1, 1, 1, 1)
 shader_parameter/mid_pos = 0.5
-shader_parameter/color_end = Color(0.145, 0.871, 0.145, 1)
+shader_parameter/color_end = Color(1, 1, 1, 1)
 shader_parameter/end_pos = 1.0
 shader_parameter/midpos_enabled = false
 shader_parameter/range_start = 0.0
 shader_parameter/range_end = 1.0
 shader_parameter/range_softedge = 0.1
-shader_parameter/progress = -1.5
+shader_parameter/progress = 1.6
 shader_parameter/noiseForce = 0.2
-shader_parameter/noiseTexture = SubResource("NoiseTexture2D_qs6pt")
+shader_parameter/noiseTexture = SubResource("NoiseTexture2D_6s887")
 shader_parameter/burnColor = Color(1, 1, 1, 1)
 shader_parameter/borderWidth = 0.05
 shader_parameter/direction = 180.0
@@ -34,11 +34,10 @@ shader_parameter/direction = 180.0
 [node name="TokenDesire" unique_id=1672584037 instance=ExtResource("1_3jg0l")]
 mouse_filter = 1
 script = ExtResource("1_toi2p")
-type = 102
 
 [node name="TextureRect" parent="." index="0" unique_id=2027400341]
 modulate = Color(0.8039216, 0.36078432, 0.36078432, 1)
-material = SubResource("ShaderMaterial_6pk28")
+material = SubResource("ShaderMaterial_qs6pt")
 texture = ExtResource("4_u7pk5")
 
 [node name="ValueLabel" parent="." index="1" unique_id=1083729365]

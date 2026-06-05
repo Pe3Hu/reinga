@@ -17,10 +17,11 @@ shader_parameter/speed = 0.20000000624012
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t37mp"]
 shader = ExtResource("3_ajpus")
-shader_parameter/intensity = 0.45
-shader_parameter/raidus = 50.0
+shader_parameter/intensity = 0.15
+shader_parameter/center = 50.0
 shader_parameter/offset = 3.0
 shader_parameter/time_scale = 1.0
+shader_parameter/radius = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m33d"]
 shader = ExtResource("2_svdwa")
@@ -72,7 +73,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2006478286]
+[node name="HaloRect" type="ColorRect" parent="." unique_id=2006478286]
+visible = false
 material = SubResource("ShaderMaterial_t37mp")
 layout_mode = 1
 anchors_preset = 15

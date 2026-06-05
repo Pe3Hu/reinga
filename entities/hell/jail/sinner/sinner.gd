@@ -23,3 +23,13 @@ var data: SinnerData:
 			%Header.visible = false
 
 var type: Bozo.Tooltip = Bozo.Tooltip.SINNER
+
+
+func apply_phase_visiblity() -> void:
+	visible = true
+	
+	match Scope.phase:
+		Bozo.Phase.REPLENISHMENT:
+			visible = false
+		Bozo.Phase.INVESTMENT:
+			visible = false

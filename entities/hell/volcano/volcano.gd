@@ -44,7 +44,7 @@ func setup_trail_pool(count_: int) -> void:
 
 func add_trial() -> void:
 	var newSprite: Sprite2D = Sprite2D.new()
-	newSprite.texture = load("uid://dugn64otk6dcd")
+	newSprite.texture = load("res://entities/ui/token/sin/sin.png")
 	newSprite.z_index = 0
 	newSprite.modulate.a = 0.0
 	%Trails.add_child.call_deferred(newSprite)
@@ -69,7 +69,7 @@ func return_eruption(eruption_: Eruption):
 	eruption_pool.append(eruption_)
 	
 	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_pool.size() == Catalog.DEFAULT_ERUPTION_COUNT:
-		hell.treasury.hide_vbox()
+		hell.treasury.apply_phase_visiblity()
 		Scope.next_phase()
 
 func flow_contribution_update():
@@ -77,17 +77,22 @@ func flow_contribution_update():
 		flow = hell.data.jail.table.active_cages.back().contribution.flow
 		flow.nightmare = hell.nightmare.data
 		flow.init_contribution_eruptions()
+		burst_eruption()
 	else:
 		pass
 
 func flow_plaza_update() -> void:
 	if !hell.data.jail.plaza.type_to_faction.keys().is_empty():
-		flow.plaza = hell.data.jail.plaza
+		flow = hell.data.jail.plaza.flow
 		flow.init_plaza_eruptions()
+		burst_eruption()
 
 func burst_eruption():
+	if !flow: return
+	if flow.eruptions.is_empty(): return
 	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
-	apply_shake_effect()
+	if flow.contribution:
+		apply_shake_effect()
 
 	for _i in range(flow.eruptions.size()-1, -1, -1):
 		var eruption = spawn_eruption(_i, step * (_i + 1))
@@ -135,13 +140,13 @@ func add_splash() -> Splash:
 func return_splash(splash_: Splash):
 	splash_pool.append(splash_)
 
-func burst_splash(progression_: Progression, count_: int) -> void:
+func burst_splash(progression_: Progression, count_: int, sign_: int = 1) -> void:
 	var step = (Catalog.DESIRE_DISSOLVE_DURATION - Catalog.SPASH_DURATION) / float(count_)
 
 	for _i in range(count_):
 		await get_tree().create_timer(step).timeout
 		var splash = get_splash()
-		splash.reset(progression_)
+		splash.reset(progression_, sign_)
 
 func single_splash(progression_: Progression) -> void:
 	var splash = get_splash()
