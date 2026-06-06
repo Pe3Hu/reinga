@@ -21,7 +21,7 @@ func apply_data_info() -> void:
 	if! data.desire_changed.is_connected(_on_desires_changed):
 		data.desire_changed.connect(_on_desires_changed)
 		_on_desires_changed()
-		cloak.visible = true
+		#cloak.visible = true
 
 func _on_desires_changed() -> void:
 	for _i in desires.size():

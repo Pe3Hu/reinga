@@ -1,51 +1,77 @@
 [gd_scene format=3 uid="uid://0kmvjsv7skyh"]
 
 [ext_resource type="Script" uid="uid://cnljhc8abn3ur" path="res://entities/hell/treasury/contribution/candle/candle.gd" id="1_cxu8u"]
-[ext_resource type="Texture2D" uid="uid://c7ibl8g5gj1or" path="res://entities/hell/treasury/contribution/candle/images/81.png" id="2_kljyc"]
-[ext_resource type="Shader" uid="uid://dvh5x2623erk2" path="res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader" id="2_tbpv7"]
+[ext_resource type="Shader" uid="uid://b4ancten2g7gc" path="res://entities/hell/treasury/contribution/candle/shaders/axis.gdshader" id="2_i0bxs"]
+[ext_resource type="Shader" uid="uid://bospkr37o0a8i" path="res://entities/hell/treasury/contribution/candle/shaders/ball.gdshader" id="3_tbpv7"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbpv7"]
-shader = ExtResource("2_tbpv7")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/direction = -1.0
-shader_parameter/frequency = 15.0
-shader_parameter/speed = 3.0
-shader_parameter/radius = 1.0
-shader_parameter/line_thickness = 0.05999999865888
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdooe"]
+shader = ExtResource("2_i0bxs")
+shader_parameter/time_scale = 1.0
+shader_parameter/radius = 0.42
+shader_parameter/intensity = 1.2
+shader_parameter/stretch = Vector2(1.6, 1.6)
+shader_parameter/grid_scale = 3.0
+shader_parameter/corner_push = Vector2(0.25, 0.25)
+shader_parameter/state = 0
 
-[node name="Candle" type="Control" unique_id=634893612 node_paths=PackedStringArray("active_border")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4fhqj"]
+shader = ExtResource("3_tbpv7")
+shader_parameter/time = 0.0
+shader_parameter/frame_scope = 3.5
+shader_parameter/use_system_time = true
+shader_parameter/time_accel = 2.0
+shader_parameter/speed = 1.0
+shader_parameter/glow_strength = 0.7
+shader_parameter/edge_softness = 0.15
+shader_parameter/color = Color(1, 0, 0.1, 1)
+shader_parameter/hue_shift = 0.4040000666900001
+shader_parameter/circle_scale = 0.45
+shader_parameter/void_strength = 1.2
+shader_parameter/void_scale = 2.5
+shader_parameter/void_power = 3.0
+shader_parameter/noise_scale = 3.0
+shader_parameter/roughness = 0.65
+shader_parameter/lacunarity = 2.0
+shader_parameter/detail = 3
+shader_parameter/seed = 0.0
+
+[node name="Candle" type="Control" unique_id=634893612 node_paths=PackedStringArray("axis", "ball")]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_cxu8u")
-active_border = NodePath("MarginContainer/ActiveBorder")
+axis = NodePath("MarginContainer/Axis")
+ball = NodePath("MarginContainer/MarginContainer/Ball")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1178007672]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = -2
-theme_override_constants/margin_top = -2
-theme_override_constants/margin_right = -2
-theme_override_constants/margin_bottom = -2
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1434588125]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 36.0
+offset_bottom = 36.0
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -4
 
-[node name="ActiveBorder" type="ColorRect" parent="MarginContainer" unique_id=566570249]
+[node name="Axis" type="ColorRect" parent="MarginContainer" unique_id=1045864137]
 unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_tbpv7")
+material = SubResource("ShaderMaterial_cdooe")
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=854799565]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.66, 0.66)
-texture = ExtResource("2_kljyc")
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=300226230]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[connection signal="gui_input" from="MarginContainer/ActiveBorder" to="." method="_on_color_rect_gui_input"]
+[node name="Ball" type="ColorRect" parent="MarginContainer/MarginContainer" unique_id=465952197]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_4fhqj")
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_g1wwo"]
 [ext_resource type="Script" uid="uid://d4a4xjdp7n3d4" path="res://entities/ui/token/omen/omen.gd" id="2_kw5pi"]
-[ext_resource type="Texture2D" uid="uid://l5ouaql8i0tl" path="res://entities/ui/token/omen/images/child on.png" id="3_kw5pi"]
+[ext_resource type="Texture2D" uid="uid://l5ouaql8i0tl" path="res://entities/ui/token/omen/images/parent on.png" id="3_kw5pi"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_6dp4h"]
 
 [node name="TokenOmen" unique_id=1672584037 instance=ExtResource("1_g1wwo")]

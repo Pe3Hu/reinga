@@ -11,9 +11,15 @@ uniform float time_accel : hint_range(0.0, 10.0) = 2.0;
 uniform float speed         : hint_range(0.0, 2.0) = 1.0; 
 uniform float glow_strength : hint_range(0.0, 3.0) = 0.7;
 uniform float edge_softness : hint_range(0.0, 1.0) = 0.15;
-uniform vec4  color : source_color = vec4(1.0, 0.3, 0.1, 1.0);
+uniform vec4  color : source_color = vec4(1.0, 0.0, 0.1, 1.0);
 
-// --- VOID PARAMS (новое) ---
+// --- HUE SHIFT ---
+uniform float hue_shift : hint_range(-1.0, 1.0) = 0.0;
+
+// --- NEW: REAL RADIUS CONTROL ---
+uniform float circle_scale : hint_range(0.3, 2.0) = 0.45;
+
+// --- VOID PARAMS ---
 uniform float void_strength : hint_range(0.0, 2.0) = 1.2;
 uniform float void_scale    : hint_range(0.5, 5.0) = 2.5;
 uniform float void_power    : hint_range(1.0, 5.0) = 3.0;
@@ -23,6 +29,33 @@ uniform float noise_scale = 3.0;
 uniform float roughness = 0.65;
 uniform float lacunarity = 2.0;
 uniform int detail = 3;
+
+uniform float seed = 0.0;
+
+
+// -------- HSV --------
+vec3 rgb2hsv(vec3 c)
+{
+    vec4 K = vec4(0.0, -1.0/3.0, 2.0/3.0, -1.0);
+    vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+    vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+
+    float d = q.x - min(q.w, q.y);
+    float e = 1e-10;
+
+    return vec3(
+        abs(q.z + (q.w - q.y) / (6.0 * d + e)),
+        d / (q.x + e),
+        q.x
+    );
+}
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec3 p = abs(fract(c.xxx + vec3(0.0, 2.0/3.0, 1.0/3.0)) * 6.0 - 3.0);
+    return c.z * mix(vec3(1.0), clamp(p - 1.0, 0.0, 1.0), c.y);
+}
+
 
 // -------- NOISE --------
 float snoise(vec3 uv, float res)
@@ -103,15 +136,15 @@ vec3 neon(float val, vec3 col) {
     return outp;
 }
 
+
 // -------- MAIN --------
 void fragment() 
 {
-    vec2 p = UV * 2.0 - 1.0;
+    vec2 p = (UV * 2.0 - 1.0) * circle_scale;
     float len_p = length(p);
 
     float t = use_system_time ? TIME * time_accel : time;
 
-    // --- fire ---
     float fire = 3.0 - frame_scope * (2.0 * len_p);
 
     vec3 coord = vec3(
@@ -120,14 +153,17 @@ void fragment()
         0.5
     );
 
-    vec3 time_offset = vec3(0.0, -t * 0.05, t * 0.01);
+    vec3 time_offset = vec3(
+        0.0,
+        -t * 0.05 + seed * 1.7,
+        t * 0.01 + seed * 2.3
+    );
 
     for (int i = 1; i <= 6; i++) {
         float power = exp2(float(i));
         fire += (1.5 / power) * snoise(coord + time_offset, power * 16.0);
     }
 
-    // --- fbm ---
     vec2 n_uv = p * noise_scale + vec2(t * speed, t * speed * 0.4);
     float n = fbm(n_uv);
 
@@ -137,7 +173,6 @@ void fragment()
     float energy = max(fire, 0.0) * edge;
     float glow = energy * glow_strength * (0.6 + n);
 
-    // -------- VOID FLAMES --------
     vec2 void_uv = p * void_scale + vec2(-t * 0.3, t * 0.2);
     float void_noise = fbm(void_uv);
 
@@ -145,15 +180,17 @@ void fragment()
     void_mask *= edge;
     void_mask *= void_strength;
 
-    // "пожирание света"
     glow *= (1.0 - void_mask);
 
-    // --- color ---
     vec3 base_col = color.rgb * (0.6 + n);
     vec3 final_col = neon(glow, base_col);
 
-    // добавляем глубокую тьму
     final_col -= void_mask * 0.8;
+
+    // -------- HUE SHIFT --------
+    vec3 hsv = rgb2hsv(final_col);
+    hsv.x = fract(hsv.x + hue_shift);
+    final_col = hsv2rgb(hsv);
 
     COLOR = vec4(final_col, glow);
 }

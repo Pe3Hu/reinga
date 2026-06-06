@@ -35,16 +35,29 @@ func update_gyre_ere() -> void:
 	bygone.ere = actual
 
 func init_fates() -> void:
-	var fates: Array[Bozo.Fate]
-	fates.append_array(Catalog.fates)
-	fates.shuffle()
+	for faction in Catalog.factions:
+		var options: Array[Bozo.Fate]
+		options.append_array(Catalog.faction_to_fate[faction])
+		options.shuffle()
+		var counts = [2, 2, 1, 1]
+		
+		while !counts.is_empty():
+			var count = counts.pop_back()
+			var fate = options.pop_back()
+			
+			for _i in count:
+				add_sinner(fate)
 	
-	for fate in fates:
-		add_sinner(fate)
-	
-	while hereafter.sinners.size() < Catalog.GYRE_HEREAFTER_SINNER_SIZE and !fates.is_empty():
-		var fate = fates.pop_back()
-		add_sinner(fate)
+	#var fates: Array[Bozo.Fate]
+	#fates.append_array(Catalog.fates)
+	#fates.shuffle()
+	#
+	#for fate in fates:
+		#add_sinner(fate)
+		
+	#while hereafter.sinners.size() < Catalog.GYRE_HEREAFTER_SINNER_SIZE and !fates.is_empty():
+	#	var fate = fates.pop_back()
+	#	add_sinner(fate)
 
 func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)

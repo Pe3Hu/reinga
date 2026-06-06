@@ -157,6 +157,12 @@ const fates = [
 	Bozo.Fate.COURTESAN,
 ]
 
+const factions = [
+	Bozo.Faction.ARTISAN,
+	Bozo.Faction.NOBILITY,
+	Bozo.Faction.RIFFRAFF,
+]
+
 
 const faction_to_string = {
 	Bozo.Faction.NOBILITY: "nobility",
@@ -541,6 +547,80 @@ var windrose_to_trait_to_indexs = {
 		Bozo.Windrose.E: [5],
 		Bozo.Windrose.SE: [8],
 	}
+}
+
+const neighbours_coords = [
+	Vector2i(0, -1),
+	Vector2i(1, 0),
+	Vector2i(0, 1),
+	Vector2i(-1, 0),
+]
+
+const omen_to_windroses = {
+	Bozo.Family.PARENT: [
+		Bozo.Windrose.SE,
+		Bozo.Windrose.NW,
+	],
+	Bozo.Family.CHILD: [
+		Bozo.Windrose.NE,
+		Bozo.Windrose.SW,
+	],
+	Bozo.Destiny.LEADER: [Bozo.Windrose.NW],
+	Bozo.Destiny.GENIUS: [Bozo.Windrose.SE],
+	Bozo.Destiny.LAYMAN: [Bozo.Windrose.NE],
+	Bozo.Destiny.EXILE: [Bozo.Windrose.SW],
+}
+
+const windrose_to_anchor = {
+	Bozo.Windrose.NE: [
+		Control.SIZE_SHRINK_END,
+		Control.SIZE_SHRINK_BEGIN
+	],
+	Bozo.Windrose.SE: [
+		Control.SIZE_SHRINK_END,
+		Control.SIZE_SHRINK_END
+	],
+	Bozo.Windrose.SW: [
+		Control.SIZE_SHRINK_BEGIN,
+		Control.SIZE_SHRINK_END
+	],
+	Bozo.Windrose.NW: [
+		Control.SIZE_SHRINK_BEGIN,
+		Control.SIZE_SHRINK_BEGIN
+	],
+	Bozo.Windrose.N: [
+		Control.SIZE_SHRINK_CENTER,
+		Control.SIZE_SHRINK_BEGIN
+	],
+	Bozo.Windrose.E: [
+		Control.SIZE_SHRINK_END,
+		Control.SIZE_SHRINK_CENTER
+	],
+	Bozo.Windrose.S: [
+		Control.SIZE_SHRINK_CENTER,
+		Control.SIZE_SHRINK_END
+	],
+	Bozo.Windrose.W: [
+		Control.SIZE_SHRINK_BEGIN,
+		Control.SIZE_SHRINK_CENTER
+	],
+	Bozo.Windrose.ESWN: [
+		Control.SIZE_SHRINK_CENTER,
+		Control.SIZE_SHRINK_CENTER
+	],
+}
+
+const windrose_to_state = {
+	Bozo.Windrose.NW: 0,
+	Bozo.Windrose.N: 1,
+	Bozo.Windrose.NE: 0,
+	Bozo.Windrose.W: 4,
+	Bozo.Windrose.ESWN: 0,
+	Bozo.Windrose.E: 2,
+	Bozo.Windrose.SW: 0,
+	Bozo.Windrose.S: 3,
+	Bozo.Windrose.SE: 0,
+	
 }
 #endregion
 
@@ -976,6 +1056,11 @@ const PLAZA_FACTION_LIMIT: int = 5
 #endregion
 
 #region omen
+const omens = [
+	Bozo.Omen.FAMILY,
+	Bozo.Omen.DESTINY
+]
+
 const family_to_family = {
 	Bozo.Family.MOTHER: Bozo.Family.PARENT,
 	Bozo.Family.FATHER: Bozo.Family.PARENT,
@@ -1074,6 +1159,38 @@ const fate_to_family = {
 	},
 }
 
+const neighbour_to_destiny = {
+	2: Bozo.Destiny.EXILE,
+	3: Bozo.Destiny.LAYMAN,
+	4: Bozo.Destiny.LEADER,
+}
+
+const destiny_to_neighbour = {
+	Bozo.Destiny.EXILE: 2,
+	Bozo.Destiny.LAYMAN: 3,
+	Bozo.Destiny.LEADER: 4
+	#Bozo.Destiny.LEADER: [
+		#Vector2i(1, 1)
+	#],
+	#Bozo.Destiny.LAYMAN: [
+		#Vector2i(1, 0),
+		#Vector2i(0, 1),
+		#Vector2i(-1, 0),
+		#Vector2i(0, -1),
+	#],
+	#Bozo.Destiny.EXILE: [
+		#Vector2i(0, 0),
+		#Vector2i(0, 2),
+		#Vector2i(2, 2),
+		#Vector2i(2, 0),
+	#],
+}
+
+const family_to_success = {
+	Bozo.Family.PARENT: 2,
+	Bozo.Family.CHILD: 1
+}
+
 const omen_to_string = {
 	Bozo.Omen.FAMILY: "family",
 	Bozo.Omen.DESTINY: "destiny",
@@ -1093,6 +1210,42 @@ const destiny_to_string = {
 	Bozo.Destiny.GENIUS: "genius",
 	Bozo.Destiny.LAYMAN: "layman",
 	Bozo.Destiny.EXILE: "exile",
+}
+
+const omen_to_omen = {
+	Bozo.Family.PARENT: [
+		Bozo.Destiny.LEADER,
+		Bozo.Destiny.GENIUS
+	],
+	Bozo.Family.CHILD: [
+		Bozo.Destiny.LAYMAN,
+		Bozo.Destiny.EXILE
+	],
+	Bozo.Destiny.LAYMAN: [
+		Bozo.Family.CHILD,
+		Bozo.Family.SON,
+		Bozo.Family.DAUGHTER
+	],
+	Bozo.Destiny.GENIUS: [
+		Bozo.Family.CHILD,
+		Bozo.Family.MOTHER,
+		Bozo.Family.FATHER
+	],
+	Bozo.Destiny.EXILE: [
+		Bozo.Family.CHILD,
+		Bozo.Family.SON,
+		Bozo.Family.DAUGHTER
+	],
+	Bozo.Destiny.LEADER: [
+		Bozo.Family.CHILD,
+		Bozo.Family.MOTHER,
+		Bozo.Family.FATHER
+	],
+}
+
+const bool_to_status = {
+	true: Bozo.Status.ON,
+	false: Bozo.Status.OFF
 }
 
 const status_to_string = {

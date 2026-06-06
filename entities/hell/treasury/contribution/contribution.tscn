@@ -4,23 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://dml6ro6ukmvo3" path="res://entities/ui/token/judgment/judgment.tscn" id="2_abunu"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_b5ia5"]
 [ext_resource type="PackedScene" uid="uid://0kmvjsv7skyh" path="res://entities/hell/treasury/contribution/candle/candle.tscn" id="2_cicqm"]
+[ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/grey paint.gdshader" id="2_luy0l"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="3_10cs7"]
 [ext_resource type="Texture2D" uid="uid://pcnivgl4olgp" path="res://entities/ui/frame/images/contribution.png" id="3_b5ia5"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_cicqm"]
-[ext_resource type="Shader" uid="uid://dvh5x2623erk2" path="res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader" id="5_nutaa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3u6x"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_abunu"]
-shader = ExtResource("5_nutaa")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/direction = -1.0
-shader_parameter/frequency = 15.0
-shader_parameter/speed = 3.0
-shader_parameter/radius = 1.0
-shader_parameter/line_thickness = 0.03
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5ia5"]
+shader = ExtResource("2_luy0l")
+shader_parameter/inverse_speed = 15.0
+shader_parameter/intensity = 0.3
 
-[node name="Contribution" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "border", "margin_panel", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "tribute")]
+[node name="Contribution" type="PanelContainer" unique_id=667563004 node_paths=PackedStringArray("candle", "active_border", "background", "margin_panel", "pride", "envy", "anger", "lust", "greed", "gluttony", "madness", "oblivion", "tribute")]
+visible = false
 custom_minimum_size = Vector2(46, 372)
 offset_right = 42.0
 offset_bottom = 42.0
@@ -28,7 +25,8 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_v3u6x")
 script = ExtResource("1_8dslb")
 candle = NodePath("Margin/Box/NotSins/Candle")
-border = NodePath("Margin/Box/NotSins/Candle/SelectBorder")
+active_border = NodePath("SelectBorder")
+background = NodePath("MarginContainer/Background")
 margin_panel = NodePath("Margin")
 pride = NodePath("Margin/Box/Pride")
 envy = NodePath("Margin/Box/Envy")
@@ -40,6 +38,12 @@ madness = NodePath("Margin/Box/Madness")
 oblivion = NodePath("Margin/Box/Oblivion")
 tribute = NodePath("Margin/Box/NotSins/Tribute")
 
+[node name="SelectBorder" type="ColorRect" parent="." unique_id=345851033]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_b5ia5")
+layout_mode = 2
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1437224617]
 layout_mode = 2
 theme_override_constants/margin_left = 8
@@ -47,7 +51,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1308274337]
+[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=1308274337]
+unique_name_in_owner = true
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
@@ -74,6 +79,7 @@ size_flags_vertical = 0
 theme_override_constants/separation = 4
 
 [node name="NotSins" type="VBoxContainer" parent="Margin/Box" unique_id=443943004]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(32, 68)
 layout_mode = 2
 theme_override_constants/separation = 4
@@ -82,21 +88,11 @@ theme_override_constants/separation = 4
 layout_mode = 2
 contribution = NodePath("../../../..")
 
-[node name="Candle" parent="Margin/Box/NotSins" unique_id=634893612 instance=ExtResource("2_cicqm")]
+[node name="Candle" parent="Margin/Box/NotSins" unique_id=634893612 node_paths=PackedStringArray("contribution") instance=ExtResource("2_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="SelectBorder" type="ColorRect" parent="Margin/Box/NotSins/Candle" unique_id=1408912230]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_abunu")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+contribution = NodePath("../../../..")
 
 [node name="Anger" parent="Margin/Box" unique_id=1974550261 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]
 layout_mode = 2

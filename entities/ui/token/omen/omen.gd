@@ -17,6 +17,7 @@ func apply_data_info() -> void:
 		data.status_changed.connect(update_texture)
 		data.token.value_changed.connect(_on_value_changed)
 	
+	visible = true
 	_on_value_changed()
 	update_texture()
 
@@ -34,3 +35,6 @@ func update_texture() -> void:
 	texture_rect.modulate = Catalog.sin_to_color[data.token.type]
 	
 	label.visible = Bozo.Status.ON == data.status
+
+func reset() -> void:
+	visible = false

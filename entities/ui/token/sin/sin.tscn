@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://73yuvwyoiyqh" path="res://entities/ui/token/token.tscn" id="1_mx65u"]
 [ext_resource type="Script" uid="uid://cbr61jlp6eyut" path="res://entities/ui/token/sin/sin.gd" id="2_k0mcm"]
-[ext_resource type="Texture2D" uid="uid://sljxjlyygtuk" path="res://entities/ui/token/sin/sin.png" id="3_patn8"]
+[ext_resource type="Texture2D" uid="uid://sljxjlyygtuk" path="res://entities/ui/token/sin/sin 0.png" id="3_patn8"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_patn8"]
 
 [node name="TokenSin" unique_id=1672584037 instance=ExtResource("1_mx65u")]

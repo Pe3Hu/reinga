@@ -7,23 +7,19 @@ var gate: GateData
 var cages: Array[CageData]
 var catenas: Array[CatenaData]
 
-var vector_to_cage: Dictionary
-var vector_to_catena: Dictionary
+var coord_to_cage: Dictionary
+var coord_to_catena: Dictionary
 
 var active_catenas: Array[CatenaData]
 var active_cages: Array[CageData]
+
+var echo_coord: Vector2i
 
 
 #region init
 func _init() -> void:
 	init_catenas()
 	init_cages()
-
-func init_cages() -> void:
-	for _y in Catalog.JAIL_CAGE_GRID.y:
-		for _x in Catalog.JAIL_CAGE_GRID.x:
-			var coord = Vector2i(_x, _y)
-			add_cage(coord)
 
 func init_catenas() -> void:
 	for _y in Catalog.JAIL_CAGE_GRID.y:
@@ -37,21 +33,40 @@ func init_catenas() -> void:
 func add_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 	var catena = CatenaData.new(self, coord_, type_)
 	catenas.append(catena)
-	vector_to_catena[coord_] = catena
+	coord_to_catena[coord_] = catena
+
+func init_cages() -> void:
+	for _y in Catalog.JAIL_CAGE_GRID.y:
+		for _x in Catalog.JAIL_CAGE_GRID.x:
+			var coord = Vector2i(_x, _y)
+			add_cage(coord)
+	
+	init_cage_neighbours()
 
 func add_cage(coord_: Vector2i) -> void:
 	var cage = CageData.new(self, coord_)
 	cages.append(cage)
+	coord_to_cage[coord_] = cage
 	
 	var row_coord = Vector2i(0, coord_.y + 1)
-	var row_catena = vector_to_catena[row_coord]
+	var row_catena = coord_to_catena[row_coord]
 	row_catena.cages.append(cage)
 	cage.row = row_catena
 	
 	var col_coord = Vector2i(coord_.x + 1, 0)
-	var col_catena = vector_to_catena[col_coord]
+	var col_catena = coord_to_catena[col_coord]
 	col_catena.cages.append(cage)
 	cage.col = col_catena
+
+func init_cage_neighbours() -> void:
+	for cage in cages:
+		for direction in Catalog.neighbours_coords:
+			var coord = cage.coord + direction
+			if coord_to_cage.has(coord):
+				var neighbour = coord_to_cage[coord]
+				cage.neighbours.append(neighbour)
+		
+		cage.destiny = Catalog.neighbour_to_destiny[cage.neighbours.size()]
 #endregion
 
 #region select

@@ -12,9 +12,22 @@ var data: DoomData:
 @export var destiny: TokenOmen
 
 
-func _ready() -> void:
-	data = DoomData.new()
-
 func connect_datas() -> void:
-	family.data = data.family
-	destiny.data = data.destiny
+	family.reset()
+	destiny.reset()
+	
+	if data.family:
+		family.data = data.family
+	if data.destiny:
+		destiny.data = data.destiny
+	
+	rearrange_omens()
+
+func rearrange_omens() -> void:
+	var anchors = Catalog.windrose_to_anchor[data.contribution.type]
+	family.size_flags_horizontal = anchors.front()
+	family.size_flags_vertical = anchors.back()
+	
+	anchors = Catalog.windrose_to_anchor[data.contribution.type]
+	destiny.size_flags_horizontal = anchors.front()
+	destiny.size_flags_vertical = anchors.back()

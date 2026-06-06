@@ -29,6 +29,7 @@ var tribute: JudgmentData
 
 #var rank_sum: int = 0
 var flow: FlowData
+var best_sins: Array[SinData]
 
 
 func _init(treasury_: TreasuryData, type_: Bozo.Windrose, cage_: CageData) -> void:
@@ -84,6 +85,8 @@ func reset() -> void:
 	traits.clear()
 
 func calc_token_sums() -> void:
+	best_sins.clear()
+	
 	for _trait in traits:
 		#rank_sum += _trait.rank
 		for _sin in _trait.sins:
@@ -91,11 +94,36 @@ func calc_token_sums() -> void:
 		for posture in _trait.postures:
 			change_token(posture.type, posture.value)
 	
+	for token in sins:
+		updaet_best_sins(token)
+	
 	flow.calc_tribute_sum()
 
 func change_token(type_: Variant, value_: int) -> void:
 	var token = get_token(type_)
 	token.value += value_
+	
+	#updaet_best_sins(token)
+
+func updaet_best_sins(token_) -> void:
+	if token_ as SinData:
+		#var best_sin
+		#
+		#for _i in range(best_sins.size()-1,-1-1):
+			#best_sin = best_sins.back()
+			#
+			#if best_sin == null:
+				#best_sins.erase(best_sin)
+		
+		if token_ != null:
+			if best_sins.is_empty():
+				best_sins.append(token_)
+			else:
+				if !best_sins.has(token_):
+					if best_sins.back().value < token_.value:
+						best_sins = [token_]
+					if best_sins.back().value == token_.value:
+						best_sins.append(token_)
 
 func get_token(type_: Variant) -> TokenData:
 	var str_type: String
@@ -122,3 +150,4 @@ func update_tokens() -> void:
 			traits.append(trait_data)
 	
 	calc_token_sums()
+	

@@ -1,7 +1,7 @@
 MarginContainer
-PanelContainer
-ColorRect
 Control
+ColorRect
+PanelContainer
 Timer
 CanvasLayer
 VBoxContainer

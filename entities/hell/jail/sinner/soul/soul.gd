@@ -35,4 +35,5 @@ func connect_datas() -> void:
 	horror.data = data.horror
 	guilt.data = data.guilt
 	repose.data = data.repose
+	doom.data = data.doom
 #endregion

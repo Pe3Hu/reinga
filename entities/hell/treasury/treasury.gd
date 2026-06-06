@@ -41,6 +41,7 @@ func appraisement_preparation() -> void:
 	apply_phase_visiblity()
 	show_all_contributions()
 	data.update_contributions()
+	update_candle_hues()
 	reoder(Bozo.Judgment.TRIBUTE)
 	await get_tree().process_frame
 	sort_icon_shift(contributions.front().tribute)
@@ -94,7 +95,6 @@ func show_all_contributions() -> void:
 		contribution.visible = true
 		contribution.show_not_sins()
 
-
 func apply_phase_visiblity() -> void:
 	%VBox.visible = true
 	
@@ -117,3 +117,7 @@ func lock() -> void:
 func reset() -> void:
 	lock_button.hide_me()
 	data.reset_candles()
+
+func update_candle_hues() -> void:
+	for contribution in contributions:
+		contribution.candle.update_hue()

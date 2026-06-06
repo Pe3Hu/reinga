@@ -8,6 +8,7 @@ var fear: TraitData
 var repose: TraitData
 var horror: TraitData
 var guilt: TraitData
+var doom: DoomData
 
 var type_to_trait: Dictionary
 
@@ -19,6 +20,7 @@ var selected_triat_types: Array[Bozo.Trait]
 func _init(sinner_: SinnerData) -> void:
 	sinner = sinner_
 	init_traits()
+	doom = DoomData.new(self)
 
 func init_traits() -> void:
 	var trait_options = []

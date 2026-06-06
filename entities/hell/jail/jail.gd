@@ -49,6 +49,13 @@ func update_sinner_datas() -> void:
 		cage.data.sinner = sinner_data
 		cage.sinner.data = sinner_data
 		cage.cloak.dream.data = sinner_data.dream
+	
+	update_omens()
+
+func update_omens() -> void:
+	for cage in cages:
+		for omen_data in cage.sinner.soul.doom.data.omens:
+			omen_data.update_status()
 
 func apply_phase_visiblity() -> void:
 	%Cages.visible = true
@@ -56,7 +63,6 @@ func apply_phase_visiblity() -> void:
 	match Scope.phase:
 		Bozo.Phase.DISBURSEMENT:
 			%Cages.visible = false
-
 
 func get_active_cage() ->  Variant:
 	if data.table.active_cages.is_empty(): return null
