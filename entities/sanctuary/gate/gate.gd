@@ -88,7 +88,7 @@ func on_screen():
 func _on_select_button_pressed() -> void:
 	select_button.hide_me()
 	data.refill_tribunal()
-	Scope.phase = Bozo.Phase.ENDOWMENT
+	#Scope.phase = Bozo.Phase.ENDOWMENT
 	world.transition.data.next_layer = Bozo.Layer.HELL
 
 func _input(event: InputEvent) -> void:

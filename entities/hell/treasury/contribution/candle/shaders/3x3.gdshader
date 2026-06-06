@@ -14,6 +14,8 @@ uniform float refraction = 0.01;
 
 const vec2 GRID = vec2(3.0, 3.0);
 
+uniform float seed = 0.0;
+
 float random(vec2 st) {
     return fract(sin(dot(st, vec2(12.9898, 78.233))) * 43758.5453123);
 }
@@ -52,7 +54,7 @@ void fragment() {
 
     int id = int(cell_id.y) * 3 + int(cell_id.x);
 
-    float t = TIME * speed;
+    float t = TIME * speed + seed;
     float rn = random(cell_id);
 
     float pulse = 0.5 + 0.5 * sin(t + rn * 6.2831);

@@ -41,7 +41,7 @@ func end_payment_dissolve(desire_: TokenDesire) -> void:
 	dissolves.erase(desire_)
 	
 	if dissolves.is_empty():
-		cloak.cage.jail.hell.nightmare.end_dream_dissolve(self)
+		cloak.cage.jail.hell.nightmare.end_dream_dissolve_payment(self)
 
 func start_dissolve_guild_tokens() -> void:
 	for token in desires:

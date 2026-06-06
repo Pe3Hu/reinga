@@ -50,9 +50,9 @@ func update_sinner_datas() -> void:
 		cage.sinner.data = sinner_data
 		cage.cloak.dream.data = sinner_data.dream
 	
-	update_omens()
+	update_status_omens()
 
-func update_omens() -> void:
+func update_status_omens() -> void:
 	for cage in cages:
 		for omen_data in cage.sinner.soul.doom.data.omens:
 			omen_data.update_status()
@@ -92,20 +92,24 @@ func forget_cage() -> void:
 	if Scope.layer == Bozo.Layer.HELL:
 		data.table.reset_cage(true)
 		data.table.reset_catenas()
+		update_visiblity_omens()
 
 func _on_catena_timer_timeout() -> void:
 	if !data.table.active_catenas.is_empty():
 		catena_timer.wait_time = randf_range(Catalog.CATENA_DURATION_MIN, Catalog.CATENA_DURATION_MAX)
-		var catena = data.table.active_catenas.back()
 		data.z_index_order += 1
 		
 		if data.z_index_order >= 10:
 			data.z_index_order = 0
 		
-		if data.z_index_order % 2 == 0:
-			catena.z_index += 1
-		else:
-			catena.z_index -= 1
+		for _i in data.table.active_catenas.size():
+			var catena = data.table.active_catenas[_i]
+			
+			if data.z_index_order % 2 == _i % 2:
+				catena.z_index = Catalog.CATENA_Z_INDEX_DEFAULT + 1
+			else:
+				catena.z_index = Catalog.CATENA_Z_INDEX_DEFAULT - 1
+		
 	#else:
 		#catena_timer.stop()
 
@@ -125,3 +129,10 @@ func dissolve_guilds() -> void:
 		#cage.sinner.visible = true
 		if cage.sinner.fate.data.association == Bozo.Association.GUILD:
 			cage.cloak.dream.start_dissolve_guild_tokens()
+
+func update_visiblity_omens() -> void:
+	var is_cage_selected = !data.table.active_cages.is_empty()
+	
+	for cage in cages:
+		cage.sinner.soul.doom.apply_select_visiblity(is_cage_selected)
+	

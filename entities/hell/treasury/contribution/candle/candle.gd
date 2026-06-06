@@ -29,9 +29,11 @@ func apply_data_info() -> void:
 func unique_shaders() -> void:
 	axis.material = ShaderMaterial.new()
 	axis.material.shader = load("uid://b4ancten2g7gc")
+	var axis_seed = randf_range(-1.0, 1.0)
+	axis.material.set_shader_parameter("seed", axis_seed)
 	ball.material = ShaderMaterial.new()
 	ball.material.shader = load("uid://bospkr37o0a8i")
-	var ball_seed = randf_range(0.1, 10.0)
+	var ball_seed = randf_range(0.1, 100.0)
 	ball.material.set_shader_parameter("seed", ball_seed)
 
 func _on_windrose_changed() -> void:

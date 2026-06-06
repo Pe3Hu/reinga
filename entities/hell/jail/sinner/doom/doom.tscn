@@ -5,12 +5,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvvb0"]
 
-[node name="Doom" type="PanelContainer" unique_id=38386690 node_paths=PackedStringArray("family", "destiny")]
+[node name="Doom" type="PanelContainer" unique_id=38386690 node_paths=PackedStringArray("family", "destiny", "omens")]
 custom_minimum_size = Vector2(64, 64)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kvvb0")
 script = ExtResource("1_efwcu")
 family = NodePath("MarginContainer/FamilyOmen")
 destiny = NodePath("MarginContainer/DestinyOmen")
+omens = [NodePath("MarginContainer/FamilyOmen"), NodePath("MarginContainer/DestinyOmen")]
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1924629138]
 layout_mode = 2

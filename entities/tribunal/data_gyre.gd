@@ -22,5 +22,8 @@ func clear() -> void:
 	sinners.clear()
 
 func transfer_sinner() -> void:
+	#if sinners.is_empty():
+	#	ere.clear()
+	
 	var sinner = sinners.pop_back()
 	fol.sinners.append(sinner)

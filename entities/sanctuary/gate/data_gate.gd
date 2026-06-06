@@ -51,7 +51,7 @@ func refill_tribunal() -> void:
 	var catena = table.active_catenas.back()
 	
 	for cage in catena.cages:
-		print(Catalog.fate_to_string[cage.sinner.fate.type])
+		#print(Catalog.fate_to_string[cage.sinner.fate.type])
 		tribunal.foreground_sinners.append(cage.sinner)
 	
-	world.tribunal.print_total_sinners()
+	#world.tribunal.print_total_sinners()

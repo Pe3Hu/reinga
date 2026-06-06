@@ -63,6 +63,8 @@ func reset_associations() -> void:
 		fate.association = Bozo.Association.NONE
 		var faction = cage.sinner.fate.faction
 		faction.association = Bozo.Association.NONE
+		var dream = cage.sinner.dream
+		dream.reset_associations()
 
 func get_available_token(sin_type_: Bozo.Token) -> TokenData:
 	var options = type_to_trait_to_value[sin_type_].keys()

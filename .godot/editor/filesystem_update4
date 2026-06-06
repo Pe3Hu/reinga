@@ -1,38 +1,30 @@
-res://entities/hell/jail/sinner/doom/doom.tscn
-res://entities/ui/token/faction/shaders/faction smoke.gdshader
-res://entities/ui/token/desire/desire gradient.gdshader
-res://entities/ui/token/faction/shaders/faction icon.gdshader
-res://entities/ui/transition/transition.gdshader
-res://entities/herald/shaders/halo.gdshader
-res://global/Catalog.gd
-res://entities/hell/jail/cage/data_cage.gd
-res://entities/tribunal/data_table.gd
-res://entities/hell/jail/sinner/soul/soul.tscn
-res://entities/hell/jail/cage/cloak/dream/dream.gd
-res://entities/hell/jail/jail.gd
-res://entities/hell/jail/sinner/soul/soul.gd
 res://entities/hell/jail/sinner/doom/doom.gd
-res://entities/hell/jail/sinner/doom/data_doom.gd
-res://entities/hell/jail/sinner/soul/data_soul.gd
 res://entities/ui/token/omen/data_omen.gd
-res://entities/ui/token/omen/omen.gd
-res://entities/ui/token/omen/omen.tscn
-res://entities/hell/treasury/contribution/candle/candle.tscn
-res://entities/hell/treasury/contribution/candle/candle.gdshader
-res://entities/hell/treasury/contribution/candle/candle 1.gdshader
-res://entities/hell/treasury/contribution/candle/candle 2.gdshader
-res://entities/hell/jail/catena/catena.gdshader
-res://entities/hell/treasury/contribution/candle/candle 5 table good.gdshader
-res://entities/hell/treasury/contribution/candle/candle 9 halo.gdshader
-res://entities/hell/treasury/contribution/candle/candle 7 circle.gdshader
-res://entities/hell/treasury/contribution/contribution.tscn
-res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader
-res://entities/hell/treasury/contribution/contribution active.gdshader
-res://entities/herald/shaders/grey paint.gdshader
-res://entities/hell/treasury/contribution/contribution.gd
-res://entities/hell/treasury/contribution/candle/candle.gd
+res://entities/hell/jail/sinner/doom/doom.tscn
 res://entities/hell/treasury/contribution/candle/shaders/axis.gdshader
 res://entities/hell/treasury/contribution/candle/shaders/ball.gdshader
-res://entities/hell/treasury/contribution/data_contribution.gd
+res://entities/hell/treasury/contribution/candle/shaders/3x3.gdshader
+res://entities/hell/treasury/contribution/candle/candle.gd
+res://entities/hell/jail/sinner/doom/data_doom.gd
+res://global/Helper.gd
+res://entities/tribunal/data_table.gd
 res://entities/hell/treasury/treasury.gd
-res://entities/hell/underground/shelter/shelter.tscn
+res://entities/hell/jail/cage/data_cage.gd
+res://global/Catalog.gd
+res://entities/hell/jail/sinner/fate/data_fate.gd
+res://global/Bozo.gd
+res://entities/hell/treasury/contribution/data_contribution.gd
+res://entities/hell/treasury/data_treasury.gd
+res://entities/hell/jail/sinner/trait/data_trait.gd
+res://entities/hell/jail/jail.gd
+res://entities/hell/jail/cage/cage.gd
+res://entities/hell/hell.tscn
+res://entities/hell/jail/catena/data_catena.gd
+res://entities/sanctuary/gate/data_gate.gd
+res://entities/sanctuary/gate/gate.gd
+res://entities/hell/hell.gd
+res://entities/tribunal/data_gyre.gd
+res://entities/hell/nightmare/nightmare.gd
+res://entities/hell/jail/cage/cloak/dream/dream.gd
+res://entities/hell/jail/cage/cloak/dream/data_dream.gd
+res://entities/hell/jail/data_plaza.gd

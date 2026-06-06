@@ -27,9 +27,9 @@ var is_selected: bool = false:
 
 var z_index: int = 1:
 	set(value_):
-		if value_ != z_index:
-			z_index = value_
-			emit_signal("z_index_changed")
+		#if value_ != z_index:
+		z_index = value_
+		emit_signal("z_index_changed")
 
 
 func _init(table_: TableData, coord_: Vector2i, type_: Bozo.Catena):

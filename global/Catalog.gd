@@ -149,7 +149,7 @@ const fates = [
 	Bozo.Fate.BLACKSMITH,
 	Bozo.Fate.TAILOR,
 	Bozo.Fate.COOK,
-	Bozo.Fate.HUCKSTER,
+	Bozo.Fate.MONGER,
 	Bozo.Fate.EXECUTIONER,
 	Bozo.Fate.THIEF,
 	Bozo.Fate.SHARPIE,
@@ -189,7 +189,7 @@ const faction_to_fate = {
 		Bozo.Fate.BLACKSMITH,
 		Bozo.Fate.TAILOR,
 		Bozo.Fate.COOK,
-		Bozo.Fate.HUCKSTER,
+		Bozo.Fate.MONGER,
 	],
 	Bozo.Faction.RIFFRAFF: [
 		Bozo.Fate.EXECUTIONER,
@@ -210,7 +210,7 @@ const fate_to_faction = {
 	Bozo.Fate.BLACKSMITH: Bozo.Faction.ARTISAN,
 	Bozo.Fate.TAILOR: Bozo.Faction.ARTISAN,
 	Bozo.Fate.COOK: Bozo.Faction.ARTISAN,
-	Bozo.Fate.HUCKSTER: Bozo.Faction.ARTISAN,
+	Bozo.Fate.MONGER: Bozo.Faction.ARTISAN,
 	Bozo.Fate.EXECUTIONER: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.THIEF: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.SHARPIE: Bozo.Faction.RIFFRAFF,
@@ -228,7 +228,7 @@ const fate_to_string = {
 	Bozo.Fate.BLACKSMITH: "blacksmith",
 	Bozo.Fate.TAILOR: "tailor",
 	Bozo.Fate.COOK: "cook",
-	Bozo.Fate.HUCKSTER: "huckster",
+	Bozo.Fate.MONGER: "monger",
 	Bozo.Fate.EXECUTIONER: "executioner",
 	Bozo.Fate.THIEF: "thief",
 	Bozo.Fate.SHARPIE: "sharpie",
@@ -246,7 +246,7 @@ const fate_to_sin = {
 	Bozo.Fate.BLACKSMITH: [Bozo.Sin.ENVY, Bozo.Sin.ANGER],
 	Bozo.Fate.TAILOR: [Bozo.Sin.ENVY, Bozo.Sin.LUST],
 	Bozo.Fate.COOK: [Bozo.Sin.ENVY, Bozo.Sin.GLUTTONY],
-	Bozo.Fate.HUCKSTER: [Bozo.Sin.GREED, Bozo.Sin.GLUTTONY],
+	Bozo.Fate.MONGER: [Bozo.Sin.GREED, Bozo.Sin.GLUTTONY],
 	Bozo.Fate.EXECUTIONER: [Bozo.Sin.PRIDE, Bozo.Sin.ANGER],
 	Bozo.Fate.THIEF: [Bozo.Sin.ENVY, Bozo.Sin.GREED],
 	Bozo.Fate.SHARPIE: [Bozo.Sin.ANGER, Bozo.Sin.GREED],
@@ -331,7 +331,7 @@ const fate_to_trial = {
 	Bozo.Fate.BLACKSMITH: Bozo.Trial.BATTLE,
 	Bozo.Fate.TAILOR: Bozo.Trial.THEATER,
 	Bozo.Fate.COOK: Bozo.Trial.FEAST,
-	Bozo.Fate.HUCKSTER: Bozo.Trial.AUCTION,
+	Bozo.Fate.MONGER: Bozo.Trial.AUCTION,
 	Bozo.Fate.EXECUTIONER: Bozo.Trial.BATTLE,
 	Bozo.Fate.THIEF: Bozo.Trial.AUCTION,
 	Bozo.Fate.SHARPIE: Bozo.Trial.MASQUERADE,
@@ -558,12 +558,12 @@ const neighbours_coords = [
 
 const omen_to_windroses = {
 	Bozo.Family.PARENT: [
-		Bozo.Windrose.SE,
-		Bozo.Windrose.NW,
-	],
-	Bozo.Family.CHILD: [
 		Bozo.Windrose.NE,
 		Bozo.Windrose.SW,
+	],
+	Bozo.Family.CHILD: [
+		Bozo.Windrose.SE,
+		Bozo.Windrose.NW,
 	],
 	Bozo.Destiny.LEADER: [Bozo.Windrose.NW],
 	Bozo.Destiny.GENIUS: [Bozo.Windrose.SE],
@@ -882,7 +882,7 @@ var type_to_tooltip = {
 	Bozo.Fate.BLACKSMITH: Bozo.Tooltip.FATE,
 	Bozo.Fate.TAILOR: Bozo.Tooltip.FATE,
 	Bozo.Fate.COOK: Bozo.Tooltip.FATE,
-	Bozo.Fate.HUCKSTER: Bozo.Tooltip.FATE,
+	Bozo.Fate.MONGER: Bozo.Tooltip.FATE,
 	Bozo.Fate.EXECUTIONER: Bozo.Tooltip.FATE,
 	Bozo.Fate.THIEF: Bozo.Tooltip.FATE,
 	Bozo.Fate.SHARPIE: Bozo.Tooltip.FATE,
@@ -1129,7 +1129,7 @@ const fate_to_family = {
 		Bozo.Family.MOTHER: 7,
 		Bozo.Family.DAUGHTER: 3
 	},
-	Bozo.Fate.HUCKSTER: {
+	Bozo.Fate.MONGER: {
 		Bozo.Family.MOTHER: 3,
 		Bozo.Family.FATHER: 7,
 	},
@@ -1214,38 +1214,43 @@ const destiny_to_string = {
 
 const omen_to_omen = {
 	Bozo.Family.PARENT: [
-		Bozo.Destiny.LEADER,
-		Bozo.Destiny.GENIUS
-	],
-	Bozo.Family.CHILD: [
 		Bozo.Destiny.LAYMAN,
 		Bozo.Destiny.EXILE
 	],
+	Bozo.Family.CHILD: [
+		Bozo.Destiny.LEADER,
+		Bozo.Destiny.GENIUS
+	],
 	Bozo.Destiny.LAYMAN: [
-		Bozo.Family.CHILD,
-		Bozo.Family.SON,
-		Bozo.Family.DAUGHTER
+		Bozo.Family.PARENT,
+		Bozo.Family.MOTHER,
+		Bozo.Family.FATHER
 	],
 	Bozo.Destiny.GENIUS: [
 		Bozo.Family.CHILD,
-		Bozo.Family.MOTHER,
-		Bozo.Family.FATHER
-	],
-	Bozo.Destiny.EXILE: [
-		Bozo.Family.CHILD,
 		Bozo.Family.SON,
 		Bozo.Family.DAUGHTER
 	],
-	Bozo.Destiny.LEADER: [
-		Bozo.Family.CHILD,
+	Bozo.Destiny.EXILE: [
+		Bozo.Family.PARENT,
 		Bozo.Family.MOTHER,
 		Bozo.Family.FATHER
+	],
+	Bozo.Destiny.LEADER: [
+		Bozo.Family.CHILD,
+		Bozo.Family.SON,
+		Bozo.Family.DAUGHTER
 	],
 }
 
 const bool_to_status = {
 	true: Bozo.Status.ON,
 	false: Bozo.Status.OFF
+}
+
+const status_to_bool = {
+	Bozo.Status.ON: true,
+	Bozo.Status.OFF: false
 }
 
 const status_to_string = {

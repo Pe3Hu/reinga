@@ -88,7 +88,7 @@ enum Fate {
 	DRUNKARD = 41,
 	COURTESAN = 42,
 	ADULTERER = 43,
-	HUCKSTER = 44,
+	MONGER = 44,
 }
 
 enum Cage {

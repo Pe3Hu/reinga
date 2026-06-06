@@ -28,3 +28,4 @@ func _on_texture_button_pressed() -> void:
 		data.table._on_cage_gate_selected(data)
 	if jail:
 		data.table._on_cage_jail_selected(data)
+		jail.update_visiblity_omens()

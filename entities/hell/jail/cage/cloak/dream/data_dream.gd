@@ -64,4 +64,4 @@ func apply_guild() -> void:
 		
 func reset_associations() -> void:
 	for desire in desires:
-		desire.data.association = Bozo.Association.NONE
+		desire.association = Bozo.Association.NONE

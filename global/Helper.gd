@@ -32,37 +32,31 @@ func get_random_key(dict_: Dictionary):
 	push_error("random selection failed")
 	return null
 
+func get_omen_value_based_on_level(omen_: Variant, level_: int = 1) -> int:
+	match omen_:
+		Bozo.Destiny.GENIUS:
+			return formula_a(level_)
+		Bozo.Destiny.LEADER:
+			return formula_a(level_)
+		Bozo.Destiny.EXILE:
+			return formula_b(level_)
+		Bozo.Destiny.LAYMAN:
+			return formula_b(level_)
+		Bozo.Family.PARENT:
+			return formula_c(level_)
+		Bozo.Family.CHILD:
+			return formula_d(level_)
+	
+	return 0
 
-#var example_weights = {
-	#"miss": 3,
-	#"crit": 5,
-	#"megacrit": 1,
-	#"normal": 92
-#}
-#
-#var subtype_to_count = {
-	#"example 1": 10,
-	#"example 2": 15,
-	#"example 3": 20
-#}
-#
-#func simulate_per_subtype(subtype_to_count: Dictionary, weights: Dictionary) -> Dictionary:
-	#var result = {}
-	#
-	#for subtype in subtype_to_count:
-		#var count = subtype_to_count[subtype]
-		#
-		#var local = {
-			#"miss": 0,
-			#"normal": 0,
-			#"crit": 0,
-			#"megacrit": 0
-		#}
-		#
-		#for i in count:
-			#var roll = get_random_key(weights)
-			#local[roll] += 1
-		#
-		#result[subtype] = local
-	#
-	#return result
+func formula_a(x_: int, factor_: int = 4, offset_: int = 2) -> int:
+	return factor_ * (x_ + offset_)
+
+func formula_b(x_: int, offset_: int = 2) -> int:
+	return x_ + offset_
+
+func formula_c(x_: int, factor_: int = 4, offset_: int = 1) -> int:
+	return factor_ * (x_ + offset_)
+
+func formula_d(x_: int, factor_: int = 6, offset_: int = 1) -> int:
+	return factor_ * (x_ + offset_)

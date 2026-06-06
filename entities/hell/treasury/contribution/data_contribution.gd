@@ -2,9 +2,10 @@ class_name ContributionData
 extends Resource
 
 
+signal windrose_changed
+
 var treasury: TreasuryData
 var cage: CageData
-signal windrose_changed
 
 var type: Bozo.Windrose:
 	set(value_):
@@ -93,6 +94,9 @@ func calc_token_sums() -> void:
 			change_token(_sin.type, _sin.value)
 		for posture in _trait.postures:
 			change_token(posture.type, posture.value)
+	
+	for omen in treasury.omens:
+		change_token(omen.token.type, omen.token.value)
 	
 	for token in sins:
 		updaet_best_sins(token)

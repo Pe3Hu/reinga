@@ -67,16 +67,3 @@ func add_posture(type_: Bozo.Posture, value_: int) -> void:
 	postures.append(posture)
 	type_to_token[type_] = posture
 #endregion
-
-
-#func get_token(type_: Variant) -> TokenData:
-	#var token = type_to_token[type_]
-	##var str_type: String
-	##
-	##if Catalog.sin_to_string.has(type_):
-		##str_type = Catalog.sin_to_string[type_]
-	##if Catalog.posture_to_string.has(type_):
-		##str_type = Catalog.posture_to_string[type_]
-	##
-	##var token = get(str_type)
-	#return token

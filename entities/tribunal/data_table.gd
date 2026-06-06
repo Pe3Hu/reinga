@@ -13,7 +13,7 @@ var coord_to_catena: Dictionary
 var active_catenas: Array[CatenaData]
 var active_cages: Array[CageData]
 
-var echo_coord: Vector2i
+var genius_coord: Vector2i = Vector2i(-1, -1)
 
 
 #region init
@@ -118,7 +118,10 @@ func reset_cages() -> void:
 			cage.sinner.fate.is_selected = false
 	
 
-func reset_catenas() -> void:
+func reset_catenas(is_locked_: bool = false) -> void:
+	if is_locked_:
+		genius_coord = active_cages.back().coord
+	
 	for catena in catenas:
 		catena.is_selected = false
 
@@ -134,6 +137,5 @@ func _on_cage_jail_selected(cage_: CageData):
 		
 		cage_.col.is_selected = true
 		cage_.row.is_selected = true
-	
 	reset_cage()
 #endregion

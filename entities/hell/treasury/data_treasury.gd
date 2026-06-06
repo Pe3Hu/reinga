@@ -4,6 +4,7 @@ extends Resource
 
 var hell: HellData
 var contributions: Array[ContributionData]
+var omens: Array[OmenData]
 
 
 #region init
@@ -41,6 +42,10 @@ func undo_resort() -> void:
 		return Catalog.contribution_windroses.find(a.type) > Catalog.contribution_windroses.find(b.type)
 	)
 #endregion
+
+func reset() -> void:
+	omens.clear()
+	reset_candles()
 
 func reset_candles() -> void:
 	for contribution in contributions:

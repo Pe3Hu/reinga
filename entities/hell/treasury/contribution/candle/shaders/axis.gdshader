@@ -7,6 +7,7 @@ uniform vec2 stretch = vec2(1.6, 1.6);
 uniform float grid_scale = 3.0;
 uniform vec2 corner_push = vec2(0.25);
 uniform int state = 0;
+uniform float seed = 0.0;
 
 float diamond(vec2 p) {
     p *= stretch;
@@ -54,7 +55,7 @@ void fragment() {
         float d = diamond(p);
         float ax = axes(p);
 
-        float pulse = 0.6 + 0.4 * sin(TIME * time_scale + float(i) * 2.0);
+        float pulse = 0.6 + 0.4 * sin(TIME * time_scale + float(i) * 2.0 + seed);
         float shape = d + ax;
 
         result += shape * mask * pulse * vis;

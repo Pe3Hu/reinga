@@ -46,6 +46,7 @@ func appraisement_preparation() -> void:
 	await get_tree().process_frame
 	sort_icon_shift(contributions.front().tribute)
 
+#region sort
 func reoder(type_: Variant) -> void:
 	data.resort(type_)
 	reorder_contribution()
@@ -75,6 +76,7 @@ func sort_icon_shift(token_: Token) -> void:
 		sort_icon.modulate = Catalog.judgment_to_color[token_.data.type]
 	if token_ as TokenSin:
 		sort_icon.modulate = Catalog.sin_to_color[token_.data.type]
+#endregion
 
 func hide_not_selected_contributions() -> void:
 	sort_icon.visible = false
@@ -87,8 +89,6 @@ func hide_not_selected_contributions() -> void:
 			
 			if contribution.visible:
 				contribution.hide_not_sins()
-	else:
-		pass
 
 func show_all_contributions() -> void:
 	for contribution in contributions:
@@ -110,13 +110,13 @@ func lock() -> void:
 		lock_button.hide_me()
 		#hell.jail.data.table.is_locked = true
 		hide_not_selected_contributions()
-		hell.jail.data.table.reset_catenas()
+		hell.jail.data.table.reset_catenas(true)
 		Scope.next_phase()
 		#hell.jail.forget_cage()
 
 func reset() -> void:
 	lock_button.hide_me()
-	data.reset_candles()
+	data.reset()
 
 func update_candle_hues() -> void:
 	for contribution in contributions:

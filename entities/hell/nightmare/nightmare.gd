@@ -43,9 +43,8 @@ func awaken_dreams() -> void:
 		if desires.has(desire):
 			var heat_value = desires[desire]
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
-	
 
-func end_dream_dissolve(dream_: Dream) -> void:
+func end_dream_dissolve_payment(dream_: Dream) -> void:
 	dissolve_dreams.erase(dream_)
 	dream_.cloak.cage.sinner.apply_phase_visiblity()
 	
