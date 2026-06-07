@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://svunue6mvge7"
-path="res://.godot/imported/amber.png-e756809bc9c1471176d61ae429c8602a.ctex"
+uid="uid://ckird4q6mt1y8"
+path="res://.godot/imported/sin on.png-6cc69e43c3ee017e23544f823afb90d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/token/amber/amber.png"
-dest_files=["res://.godot/imported/amber.png-e756809bc9c1471176d61ae429c8602a.ctex"]
+source_file="res://entities/ui/token/sin/sin on.png"
+dest_files=["res://.godot/imported/sin on.png-6cc69e43c3ee017e23544f823afb90d2.ctex"]
 
 [params]
 

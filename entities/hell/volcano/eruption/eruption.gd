@@ -100,7 +100,7 @@ func spawn_trail() -> void:
 		sprite.visible = true
 		
 		if Catalog.sins.has(data.token):
-			sprite.texture = load("res://entities/ui/token/sin/sin.png")
+			sprite.texture = load("res://entities/ui/token/sin/sin on.png")
 		else:
 			match data.token:
 				Bozo.Posture.OBLIVION:
@@ -109,7 +109,7 @@ func spawn_trail() -> void:
 					sprite.texture = load("res://entities/ui/token/posture/images/madness.png")
 		
 		if start_token.data as AmberData:
-			sprite.texture = load("res://entities/ui/token/amber/amber.png")
+			sprite.texture = load("res://entities/ui/token/amber/amber on.png")
 		
 		var fading_tween = get_tree().create_tween()
 		fading_tween.tween_method(
@@ -138,10 +138,11 @@ func deactivate() -> void:
 			if start_token as TokenAmber:
 				pass
 		
-		end_token.data.value += value
+		end_token.data.value += value * Catalog.status_to_sign[data.status]
 	
-	if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
-		volcano.single_splash(end_target.trial.tribute.progression)
+	if data.status == Bozo.Status.ON:
+		if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
+			volcano.single_splash(end_target.trial.tribute.progression)
 	
 	#for trail in trails:
 	#	trail.visible = false

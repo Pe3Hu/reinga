@@ -18,7 +18,6 @@ var sins: Array[SinData]
 var postures: Array[PostureData]
 var type_to_token: Dictionary
 
-
 var is_selected: bool = false:
 	set(value_):
 		if is_selected != value_:
@@ -35,6 +34,10 @@ func _init(soul_: SoulData, type_: Bozo.Trait, rank_: int) -> void:
 	init_tokens()
 
 func init_tokens() -> void:
+	if Catalog.special_fates.has(soul.sinner.fate.type):
+		if !Catalog.special_to_trait[soul.sinner.fate.type].has(type): 
+			return
+	
 	var amount_options = Catalog.rank_to_trait_to_amount[rank][type]
 	var amounts = amount_options.pick_random()
 	
@@ -60,10 +63,16 @@ func add_sin(type_: Bozo.Sin, value_: int) -> void:
 	_sin.trait_data = self
 	sins.append(_sin)
 	type_to_token[type_] = _sin
+	
+	if Catalog.enemy_fates.has(soul.sinner.fate.type):
+		_sin.value *= -1
 
 func add_posture(type_: Bozo.Posture, value_: int) -> void:
 	var posture = PostureData.new(type_, value_)
 	posture.trait_data = self
 	postures.append(posture)
 	type_to_token[type_] = posture
+	
+	if Catalog.enemy_fates.has(soul.sinner.fate.type) and type_ == Bozo.Posture.OBLIVION:
+		posture.value *= -1
 #endregion

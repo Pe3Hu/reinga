@@ -33,6 +33,14 @@ func reset() -> void:
 	texture_rect.material.set_shader_parameter("update_progress", Catalog.DESIRE_PROGRESS_LIMIT)
 
 func dissolve():
+	if data.value == 0: 
+		#match data.association:
+			#Bozo.Association.NONE:
+				#dream.end_payment_dissolve(self)
+			#Bozo.Association.GUILD:
+				#dream.end_dissolve_guild_tokens(self)
+		return
+	
 	if texture_rect.material and texture_rect.material is ShaderMaterial:
 		texture_rect.visible = true
 		var tween = create_tween()
@@ -40,16 +48,19 @@ func dissolve():
 		var angle = Helper.rng.randf_range(0.0, 360.0)
 		texture_rect.material.set_shader_parameter("direction", angle)
 		tween.tween_method(update_progress, -Catalog.DESIRE_PROGRESS_LIMIT, Catalog.DESIRE_PROGRESS_LIMIT, duration)
-		
-		match data.association:
-			Bozo.Association.NONE:
-				tween.tween_callback(func():
-					dream.end_payment_dissolve(self)
-				)
-			Bozo.Association.GUILD:
-				tween.tween_callback(func():
-					dream.end_dissolve_guild_tokens(self)
-				)
+		end_dissolve(tween)
+
+
+func end_dissolve(tween_: Tween) -> void:
+	match data.association:
+		Bozo.Association.NONE:
+			tween_.tween_callback(func():
+				dream.end_payment_dissolve(self)
+			)
+		Bozo.Association.GUILD:
+			tween_.tween_callback(func():
+				dream.end_dissolve_guild_tokens(self)
+			)
 	 
 func update_progress(value_: float):
 	if texture_rect.material:

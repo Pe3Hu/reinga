@@ -29,6 +29,10 @@ func _on_type_changed() -> void:
 func update_materials() -> void:
 	texture_rect.texture = load("res://entities/ui/token/faction/images/%s.png" % Catalog.faction_to_string[data.type])
 	var color = Catalog.faction_to_color[data.type]
+	
+	if Catalog.special_fates.has(data.fate.type):
+		color = Catalog.relationship_to_color[data.fate.relationship]
+	
 	texture_rect.material.set_shader_parameter("top_color", color)
 	smoke.visible = data.association == Bozo.Association.BROTHERHOOD
 	
@@ -37,7 +41,12 @@ func update_materials() -> void:
 		var direction = Catalog.faction_to_direction[data.type]
 		texture_rect.material.set_shader_parameter("direction_mode", direction)
 	else:
-		smoke.material.set_shader_parameter("fire_color", color)
+		var fire_color = color
+		
+		if Catalog.special_fates.has(data.fate.type):
+			fire_color = Catalog.relationship_to_color[data.fate.relationship]
+		
+		smoke.material.set_shader_parameter("fire_color", fire_color)
 	
 	texture_rect.material.set_shader_parameter("bottom_color", color)
 	visible = true

@@ -10,8 +10,8 @@ var data: ContributionData:
 
 @export var treasury: Treasury
 @export var candle: Candle
-@export var active_border: ColorRect
-@export var background: ColorRect
+@export var active_background: ColorRect
+@export var passive_background: ColorRect
 @export var margin_panel: MarginContainer
 
 @export var pride: TokenSin

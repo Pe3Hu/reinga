@@ -27,8 +27,13 @@ func init_traits() -> void:
 	trait_options.append_array(Catalog.traits)
 	trait_options.shuffle()
 	
-	var combination_index = Helper.get_random_key(Catalog.combination_to_weight)
-	var rank_options = Catalog.rank_combinations[combination_index]
+	var combination_index: int = Helper.get_random_key(Catalog.combination_to_weight)
+	var rank_options: Array[int]
+	
+	if Catalog.special_fates.has(sinner.fate.type):
+		rank_options.append_array(Catalog.special_rank_combinations[0])
+	else:
+		rank_options.append_array(Catalog.rank_combinations[combination_index])
 	
 	rank_options.shuffle()
 	
@@ -59,7 +64,6 @@ func add_trait(type_: Bozo.Trait, rank_: int,) -> void:
 			repose = TraitData.new(self, type_, rank_)
 			type_to_trait[type_] = repose
 #endregion
-
 
 #region blur
 func select_trait(triat_type_: Bozo.Trait) -> void:

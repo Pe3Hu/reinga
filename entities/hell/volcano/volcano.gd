@@ -44,7 +44,7 @@ func setup_trail_pool(count_: int) -> void:
 
 func add_trial() -> void:
 	var newSprite: Sprite2D = Sprite2D.new()
-	newSprite.texture = load("res://entities/ui/token/sin/sin.png")
+	newSprite.texture = load("res://entities/ui/token/sin/sin on.png")
 	newSprite.z_index = 0
 	newSprite.modulate.a = 0.0
 	%Trails.add_child.call_deferred(newSprite)

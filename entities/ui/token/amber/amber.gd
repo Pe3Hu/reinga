@@ -18,5 +18,5 @@ func apply_data_info() -> void:
 
 func _on_type_changed() -> void:
 	if data.type == 0: return
-	texture_rect.texture = load("res://entities/ui/token/amber/amber.png")
+	texture_rect.texture = load("res://entities/ui/token/amber/amber on.png")
 	texture_rect.modulate = Catalog.amber_to_color[data.type]

@@ -1,15 +1,14 @@
 shader_type canvas_item;
 
-// --- Поворот направления градиента ---
+// --- Режим направления ---
 uniform int direction_mode = 1; 
-// 1 = 60°, 2 = 180°, 3 = 300°
+// 1 = 60°, 2 = 180°, 3 = 300°, 0 = radial center
 
-
-// --- Цвета градиента ---
+// --- Цвета ---
 uniform vec4 top_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform vec4 bottom_color : source_color = vec4(1.0, 1.0, 1.0, 0.0);
 
-// --- мягкость перехода ---
+// --- мягкость ---
 uniform float fade_power = 1.5;
 
 float get_angle() {
@@ -20,31 +19,42 @@ float get_angle() {
 
 void fragment() {
     vec4 tex = texture(TEXTURE, UV);
+    float grad;
 
-    // центрируем UV
-    vec2 centered = UV - vec2(0.5);
+    if (direction_mode == 0) {
+        // --- РАДИАЛЬНЫЙ ГРАДИЕНТ ---
+        vec2 centered = UV - vec2(0.5);
 
-    // поворот
-    float angle = get_angle();
-    mat2 rot = mat2(
-        vec2(cos(angle), -sin(angle)),
-        vec2(sin(angle),  cos(angle))
-    );
+        // нормализуем расстояние: 0 в центре → 1 в углах
+        float dist = length(centered) / 0.70710678;
 
-    vec2 rotated = rot * centered;
+        dist = clamp(dist, 0.0, 1.0);
 
-    // нормализуем в диапазон 0..1 (как "высоту градиента")
-    float grad = rotated.y + 0.5;
+        // центр = 1, края = 0
+        grad = pow(1.0 - dist, fade_power);
 
-    // градиент с усилением
-    grad = clamp(grad, 0.0, 1.0);
-    grad = pow(1.0 - grad, fade_power);
+    } else {
+        // --- ЛИНЕЙНЫЙ ГРАДИЕНТ ---
+        vec2 centered = UV - vec2(0.5);
 
-    // цветовой градиент
+        float angle = get_angle();
+        mat2 rot = mat2(
+            vec2(cos(angle), -sin(angle)),
+            vec2(sin(angle),  cos(angle))
+        );
+
+        vec2 rotated = rot * centered;
+
+        grad = rotated.y + 0.5;
+        grad = clamp(grad, 0.0, 1.0);
+
+        // инверсия + мягкость
+        grad = pow(1.0 - grad, fade_power);
+    }
+
+    // --- смешивание цветов ---
     vec4 gradient_color = mix(bottom_color, top_color, grad);
 
-    // итог: текстура × цвет градиента
-    vec4 final_color = tex * gradient_color;
-
-    COLOR = final_color;
+    // --- итог ---
+    COLOR = tex * gradient_color;
 }

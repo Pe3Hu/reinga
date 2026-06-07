@@ -25,12 +25,12 @@ enum Token {
 
 enum Amber {
 	NONE = 0,
-	ANGER = 1,
-	ENVY = 2,
-	GREED = 3, 
-	GLUTTONY = 4,
-	LUST = 5,
-	PRIDE = 6,
+	ANGER = -1,
+	ENVY = -2,
+	GREED = -3, 
+	GLUTTONY = -4,
+	LUST = -5,
+	PRIDE = -6,
 	INDOLENCE = -7,
 }
 
@@ -55,6 +55,8 @@ enum Faction {
 	NOBILITY = 14,
 	ARTISAN = 15,
 	RIFFRAFF = 16,
+	TRUST = 217,#ALLY = 217,
+	HOPE = 218,#ENEMY = 218,
 }
 
 enum Gyre {
@@ -89,6 +91,10 @@ enum Fate {
 	COURTESAN = 42,
 	ADULTERER = 43,
 	MONGER = 44,
+	FRIEND = 145,
+	TRAITOR = 146,
+	HERO = 147,
+	VILLAIN = 148,
 }
 
 enum Cage {
@@ -206,6 +212,14 @@ enum Status {
 
 
 
+#145-147 fate
+
+enum Spectacle {
+	NONE = 0,
+	BALLET = 155,
+	OPERA = 156,
+	PUPPETRY = 157,
+}
 
 
 
@@ -219,6 +233,13 @@ enum Phase {
 	DEVELOPMENT = 205,
 	INVESTMENT = 206,
 }
+
+enum Relationship {
+	NONE = 0,
+	ALLY = 215,
+	ENEMY = 216,
+}
+#217-218 faction
 
 enum Modifier {
 	NONE = 0,
@@ -248,8 +269,9 @@ enum Layer {
 
 enum Tooltip {
 	NONE = 0,
-	OVERLORD = 298,
-	ESSENCE = 299,
+	OVERLORD = 297,
+	ESSENCE = 298,
+	AMBER = 299,
 	SIN = 300,
 	TRIAL = 301,
 	FACTION = 302,

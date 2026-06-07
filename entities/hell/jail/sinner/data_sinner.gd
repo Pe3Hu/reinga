@@ -2,7 +2,6 @@ class_name SinnerData
 extends Resource
 
 
-
 var fate: FateData
 var gyre: GyreData
 var dream: DreamData

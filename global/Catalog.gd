@@ -157,6 +157,38 @@ const fates = [
 	Bozo.Fate.COURTESAN,
 ]
 
+const special_fates = [
+	Bozo.Fate.FRIEND,
+	Bozo.Fate.TRAITOR,
+	Bozo.Fate.HERO,
+	Bozo.Fate.VILLAIN,
+]
+
+const trust_fates = [
+	Bozo.Fate.FRIEND,
+	Bozo.Fate.TRAITOR,
+]
+
+const hope_fates = [
+	Bozo.Fate.HERO,
+	Bozo.Fate.VILLAIN,
+]
+
+const special_factions = [
+	Bozo.Faction.TRUST,
+	Bozo.Faction.HOPE
+]
+
+const enemy_fates = [
+	Bozo.Fate.TRAITOR,
+	Bozo.Fate.VILLAIN
+]
+
+const ally_fates = [
+	Bozo.Fate.FRIEND,
+	Bozo.Fate.HERO
+]
+
 const factions = [
 	Bozo.Faction.ARTISAN,
 	Bozo.Faction.NOBILITY,
@@ -168,12 +200,18 @@ const faction_to_string = {
 	Bozo.Faction.NOBILITY: "nobility",
 	Bozo.Faction.ARTISAN: "artisan",
 	Bozo.Faction.RIFFRAFF: "riffraff",
+	Bozo.Faction.HOPE: "hope",
+	Bozo.Faction.TRUST: "trust",
+	#Bozo.Faction.ALLY: "ally",
+	#Bozo.Faction.ENEMY: "enemy",
 }
 
 const faction_to_direction = {
 	Bozo.Faction.ARTISAN: 1,
 	Bozo.Faction.NOBILITY: 2,
 	Bozo.Faction.RIFFRAFF: 3,
+	Bozo.Faction.TRUST: 0,
+	Bozo.Faction.HOPE: 0,
 }
 
 const faction_to_fate = {
@@ -216,6 +254,10 @@ const fate_to_faction = {
 	Bozo.Fate.SHARPIE: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.DRUNKARD: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.COURTESAN: Bozo.Faction.RIFFRAFF,
+	Bozo.Fate.FRIEND: Bozo.Faction.TRUST,
+	Bozo.Fate.TRAITOR: Bozo.Faction.TRUST,
+	Bozo.Fate.HERO: Bozo.Faction.HOPE,
+	Bozo.Fate.VILLAIN: Bozo.Faction.HOPE,
 }
 
 const fate_to_string = {
@@ -234,6 +276,10 @@ const fate_to_string = {
 	Bozo.Fate.SHARPIE: "sharpie",
 	Bozo.Fate.DRUNKARD: "drunkard",
 	Bozo.Fate.COURTESAN: "courtesan",
+	Bozo.Fate.FRIEND: "friend",
+	Bozo.Fate.TRAITOR: "traitor",
+	Bozo.Fate.HERO: "hero",
+	Bozo.Fate.VILLAIN: "villain",
 }
 
 const fate_to_sin = {
@@ -252,14 +298,69 @@ const fate_to_sin = {
 	Bozo.Fate.SHARPIE: [Bozo.Sin.ANGER, Bozo.Sin.GREED],
 	Bozo.Fate.DRUNKARD: [Bozo.Sin.ANGER, Bozo.Sin.GLUTTONY],
 	Bozo.Fate.COURTESAN: [Bozo.Sin.LUST, Bozo.Sin.GREED],
+	Bozo.Fate.FRIEND: [
+		Bozo.Sin.ANGER,
+		Bozo.Sin.ENVY,
+		Bozo.Sin.GREED,
+		Bozo.Sin.GLUTTONY,
+		Bozo.Sin.LUST,
+		Bozo.Sin.PRIDE,
+	],
+	Bozo.Fate.TRAITOR: [
+		Bozo.Sin.ANGER,
+		Bozo.Sin.ENVY,
+		Bozo.Sin.GREED,
+		Bozo.Sin.GLUTTONY,
+		Bozo.Sin.LUST,
+		Bozo.Sin.PRIDE,
+	],
+	Bozo.Fate.HERO: [
+		Bozo.Sin.ANGER,
+		Bozo.Sin.ENVY,
+		Bozo.Sin.GREED,
+		Bozo.Sin.GLUTTONY,
+		Bozo.Sin.LUST,
+		Bozo.Sin.PRIDE,
+	],
+	Bozo.Fate.VILLAIN: [
+		Bozo.Sin.ANGER,
+		Bozo.Sin.ENVY,
+		Bozo.Sin.GREED,
+		Bozo.Sin.GLUTTONY,
+		Bozo.Sin.LUST,
+		Bozo.Sin.PRIDE,
+	],
 }
 
 const faction_to_color = {
 	Bozo.Faction.NOBILITY: Color.AQUA,
 	Bozo.Faction.ARTISAN: Color.LIME,#Color.OLIVE,
-	Bozo.Faction.RIFFRAFF: Color.CRIMSON#Color.PURPLE,
+	Bozo.Faction.RIFFRAFF: Color.CRIMSON,#Color.PURPLE,
+	Bozo.Faction.TRUST: Color.GRAY,
+	Bozo.Faction.HOPE: Color.GRAY,
 }
 
+const relationship_to_color = {
+	Bozo.Relationship.ALLY: Color.GRAY,
+	Bozo.Relationship.ENEMY: Color.BLACK
+}
+
+const relationship_to_sign = {
+	Bozo.Relationship.ALLY: 1,
+	Bozo.Relationship.ENEMY: -1
+}
+
+const fate_to_relationship = {
+	Bozo.Fate.FRIEND: Bozo.Relationship.ALLY,
+	Bozo.Fate.HERO: Bozo.Relationship.ALLY,
+	Bozo.Fate.TRAITOR: Bozo.Relationship.ENEMY,
+	Bozo.Fate.VILLAIN: Bozo.Relationship.ENEMY,
+}
+
+const faction_to_association = {
+	Bozo.Faction.HOPE: Bozo.Association.BROTHERHOOD,
+	Bozo.Faction.TRUST: Bozo.Association.GUILD
+}
 #endregion
 
 #region trial
@@ -358,6 +459,20 @@ const faction_to_trial = {
 		Bozo.Trial.AUCTION: 1,
 		Bozo.Trial.MASQUERADE: 1,
 	},
+	Bozo.Faction.TRUST: {
+		Bozo.Trial.THEATER: 1,
+		Bozo.Trial.BATTLE: 1,
+		Bozo.Trial.FEAST: 1,
+		Bozo.Trial.AUCTION: 1,
+		Bozo.Trial.MASQUERADE: 1,
+	},
+	Bozo.Faction.HOPE: {
+		Bozo.Trial.THEATER: 1,
+		Bozo.Trial.BATTLE: 1,
+		Bozo.Trial.FEAST: 1,
+		Bozo.Trial.AUCTION: 1,
+		Bozo.Trial.MASQUERADE: 1,
+	},
 }
 
 const sin_to_trial = {
@@ -444,16 +559,41 @@ const rank_to_trait_to_amount = {
 	},
 }
 
+const special_to_trait = {
+	Bozo.Fate.FRIEND: [
+		Bozo.Trait.FEAR,
+		Bozo.Trait.HORROR
+	],
+	Bozo.Fate.TRAITOR: [
+		Bozo.Trait.FEAR,
+		Bozo.Trait.HORROR
+	],
+	Bozo.Fate.HERO: [
+		Bozo.Trait.GUILT,
+		Bozo.Trait.REPOSE
+	],
+	Bozo.Fate.VILLAIN: [
+		Bozo.Trait.GUILT,
+		Bozo.Trait.REPOSE
+	],
+}
+
 const combination_to_weight = {
 	0: 5,
 	1: 3,
 	2: 2,
 }
 
-var rank_combinations = [
+const rank_combinations = [
 	[0, 0, 0, 1],
 	[-1, 0, 1, 1],
 	[-1, 0, 0, 2]
+]
+
+const special_rank_combinations = [
+	[2, 2, 2, 2],
+	#[3, 3, 3, 3],
+	#[4, 4, 4, 4],
 ]
 #endregion
 
@@ -854,6 +994,13 @@ var type_to_tooltip = {
 	Bozo.Sin.GLUTTONY: Bozo.Tooltip.SIN,
 	Bozo.Sin.LUST: Bozo.Tooltip.SIN,
 	Bozo.Sin.PRIDE: Bozo.Tooltip.SIN,
+	Bozo.Amber.ANGER: Bozo.Tooltip.AMBER,
+	Bozo.Amber.ENVY: Bozo.Tooltip.AMBER,
+	Bozo.Amber.GREED: Bozo.Tooltip.AMBER,
+	Bozo.Amber.GLUTTONY: Bozo.Tooltip.AMBER,
+	Bozo.Amber.LUST: Bozo.Tooltip.AMBER,
+	Bozo.Amber.PRIDE: Bozo.Tooltip.AMBER,
+	Bozo.Amber.INDOLENCE: Bozo.Tooltip.AMBER,
 	Bozo.Posture.MADNESS: Bozo.Tooltip.MADNESS,
 	Bozo.Posture.OBLIVION: Bozo.Tooltip.OBLIVION,
 	Bozo.Half.LESS: Bozo.Tooltip.TRIBUTE,
@@ -961,7 +1108,7 @@ const GATE_FATE_MAX = 2
 
 #region market
 const market_in_range = {
-	1: [1, 1]#[8, 10]
+	1: [8, 10]#[1, 1]#
 }
 
 const market_out_range = {
@@ -1050,10 +1197,6 @@ var active_to_color = {
 }
 #endregion
 
-#region plaza
-const PLAZA_FATE_LIMIT: int = 2
-const PLAZA_FACTION_LIMIT: int = 5
-#endregion
 
 #region omen
 const omens = [
@@ -1257,4 +1400,19 @@ const status_to_string = {
 	Bozo.Status.ON: "on",
 	Bozo.Status.OFF: "off"
 }
+
+const status_to_sign = {
+	Bozo.Status.ON: 1,
+	Bozo.Status.OFF: -1
+}
+
+const friend_to_sign = {
+	Bozo.Status.ON: 1,
+	Bozo.Status.OFF: -1
+}
 #endregion
+
+
+const indexs = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+const left_indexs = [0, 1, 3, 4, 6, 7]
+const right_indexs = [1, 2, 4, 5, 7, 8]

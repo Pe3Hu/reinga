@@ -31,8 +31,24 @@ var association: Bozo.Association:
 			association = value_
 			emit_signal("association_changed")
 
+var relationship: Bozo.Relationship = Bozo.Relationship.NONE
 
+
+#region init
 func _init(sinner_: SinnerData, type_: Bozo.Fate) -> void:
 	sinner = sinner_
 	type = type_
 	faction = FactionData.new(self)
+	
+	apply_special()
+
+func apply_special() -> void:
+	if !Catalog.special_fates.has(type): return
+	relationship = Catalog.fate_to_relationship[type]
+	
+	match faction.type:
+		Bozo.Faction.TRUST:
+			association = Catalog.faction_to_association[faction.type]
+		Bozo.Faction.HOPE:
+			faction.association = Catalog.faction_to_association[faction.type]
+#endregion

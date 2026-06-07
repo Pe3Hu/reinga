@@ -43,13 +43,12 @@ func _on_is_selected_changed() -> void:
 	else:
 		unfocus()
 	
-	
 	apply_association()
 
 func focus() -> void:
-	unfocus()
-	label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % label.text
-	
+	#unfocus()
+	#label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % label.text
+	label.text = "[outline_size=4][outline_color=white][color=black]%s" % Catalog.fate_to_string[data.type].capitalize()
 
 func unfocus() -> void:
 	label.text = "[outline_size=4][outline_color=black]%s" % Catalog.fate_to_string[data.type].capitalize()
@@ -59,8 +58,9 @@ func _on_association_changed() -> void:
 
 func apply_association() -> void:
 	if data.association == Bozo.Association.GUILD:
+		if data.type == Bozo.Fate.TRAITOR: return
 		#apply_glitch()
-		label.text = "[tornado radius=4 freq=1.6]"+label.text
+		label.text = "[tornado radius=4 freq=1.6]%s" % label.text
 
 func apply_glitch() -> void:
 	for effect in label.get_effects():

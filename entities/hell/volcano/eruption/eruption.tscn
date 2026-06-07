@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://66bn558g5j6n"]
 
 [ext_resource type="Script" uid="uid://crtilunxuvlrb" path="res://entities/hell/volcano/eruption/eruption.gd" id="1_nrr16"]
-[ext_resource type="Texture2D" uid="uid://sljxjlyygtuk" path="res://entities/ui/token/sin/sin 0.png" id="2_nrr16"]
 
 [node name="Eruption" type="Node2D" unique_id=409762527]
 z_index = -1
@@ -9,7 +8,6 @@ script = ExtResource("1_nrr16")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1435813782]
 position = Vector2(16, 16)
-texture = ExtResource("2_nrr16")
 
 [node name="ActivateTimer" type="Timer" parent="." unique_id=252308571]
 unique_name_in_owner = true

@@ -38,10 +38,10 @@ func update_size() -> void:
 
 func simulate_choice() -> void:
 	var contribution = treasury.contributions.back()
-	jail.data.table._on_cage_selected(contribution.cage.data)
+	jail.data.table._on_cage_gate_selected(contribution.cage.data)
 	treasury.lock()
 	#await get_tree().create_timer(1).timeout
-	Scope.next_phase()
+	#Scope.next_phase()
 
 func execute_phase() -> void:
 	if Scope.is_pause: return

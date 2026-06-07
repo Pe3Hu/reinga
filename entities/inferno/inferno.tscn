@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0xlhq07ulx2i"]
 
-[ext_resource type="Script" uid="uid://c33pre14ygp7x" path="res://entities/hell/inferno/inferno.gd" id="1_6fu1w"]
-[ext_resource type="Texture2D" uid="uid://caj2u032oc102" path="res://entities/hell/inferno/images/ash..png" id="2_8ou0o"]
-[ext_resource type="Shader" uid="uid://ca2rlgnhch40f" path="res://entities/hell/inferno/void.gdshader" id="2_hb8tl"]
-[ext_resource type="Shader" uid="uid://dg17m0ldf7le6" path="res://entities/hell/inferno/inferno.gdshader" id="3_kpn7t"]
+[ext_resource type="Script" uid="uid://c33pre14ygp7x" path="res://entities/inferno/inferno.gd" id="1_6fu1w"]
+[ext_resource type="Texture2D" uid="uid://caj2u032oc102" path="res://entities/inferno/images/ash..png" id="2_8ou0o"]
+[ext_resource type="Shader" uid="uid://ca2rlgnhch40f" path="res://entities/inferno/void.gdshader" id="2_hb8tl"]
+[ext_resource type="Shader" uid="uid://dg17m0ldf7le6" path="res://entities/inferno/inferno.gdshader" id="3_kpn7t"]
 
 [sub_resource type="Gradient" id="Gradient_jb1cd"]
 colors = PackedColorArray(0.38994882, 0.09539913, 0.5541228, 1, 0, 0.5500002, 1, 1)

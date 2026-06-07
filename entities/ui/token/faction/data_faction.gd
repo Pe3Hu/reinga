@@ -42,9 +42,7 @@ func get_token_for_eruptions() -> Array:
 				
 				plaza.type_to_trait_to_value[trait_sin.type][_trait] = trait_sin.value
 	
-	
 	for key in type_to_sin:
 		sins.append(type_to_sin[key])
-	
 	
 	return sins

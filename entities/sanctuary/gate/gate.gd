@@ -84,6 +84,7 @@ func on_screen():
 	unblur_all()
 	data.init_fates()
 	update_sinner_datas()
+	simulate_choice()
 
 func _on_select_button_pressed() -> void:
 	select_button.hide_me()
@@ -103,3 +104,10 @@ func forget_catenas() -> void:
 		data.table.reset_cage()
 		data.table.reset_catenas()
 		unblur_all()
+
+
+func simulate_choice() -> void:
+	await get_tree().create_timer(0.3).timeout
+	var catena = data.table.catenas.back()
+	catena.is_selected = true
+	_on_select_button_pressed()

@@ -12,7 +12,8 @@ var jail: Jail
 var gate: Gate
 var contribution: Contribution
 
-@export var background: ColorRect
+@export var active_background: ColorRect
+@export var passive_background: ColorRect
 @export var sinner: Sinner
 @export var cloak: Cloak
 

@@ -9,6 +9,10 @@ var bygone: GyreData = GyreData.new(self, Bozo.Gyre.BYGONE)
 var gyres: Array[GyreData]
 var foreground_sinners: Array[SinnerData]
 
+var left_indexs: Array[int]
+var right_indexs: Array[int]
+var special_to_index: Dictionary
+
 
 #region init
 func _init(world_: WorldData) -> void:
@@ -48,16 +52,9 @@ func init_fates() -> void:
 			for _i in count:
 				add_sinner(fate)
 	
-	#var fates: Array[Bozo.Fate]
-	#fates.append_array(Catalog.fates)
-	#fates.shuffle()
-	#
-	#for fate in fates:
-		#add_sinner(fate)
-		
-	#while hereafter.sinners.size() < Catalog.GYRE_HEREAFTER_SINNER_SIZE and !fates.is_empty():
-	#	var fate = fates.pop_back()
-	#	add_sinner(fate)
+	hereafter.sinners.shuffle()
+	for _i in 2:
+		add_sinner(Bozo.Fate.VILLAIN)
 
 func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)
@@ -74,13 +71,78 @@ func refill_actual() -> void:
 		use_foreground()
 	
 	actual.sinners.shuffle()
+	apply_special_rules()
+
+func refill_loop() -> void:
+	actual.null_sinner_bug_update()
+
+func apply_special_rules() -> void:
+	special_to_index.clear()
+	trust_on_right()
+	hope_on_left()
+	sort_special_fate()
+
+func trust_on_right() -> void:
+	right_indexs.clear()
+	var trusts = actual.sinners.filter(func (a): return Catalog.trust_fates.has(a.fate.type))
+	
+	if !trusts.is_empty():
+		right_indexs.append_array(Catalog.right_indexs)
+		right_indexs.shuffle()
+		
+		while !trusts.is_empty() and !right_indexs.is_empty():
+			var trust = trusts.pop_back()
+			var index = right_indexs.pop_back()
+			set_special_index(trust, index)
+
+func hope_on_left() -> void:
+	left_indexs.clear()
+	var hopes = actual.sinners.filter(func (a): return Catalog.hope_fates.has(a.fate.type))
+	
+	if !hopes.is_empty():
+		left_indexs.append_array(Catalog.left_indexs)
+		left_indexs.shuffle()
+		
+		while !hopes.is_empty() and !left_indexs.is_empty():
+			var hope = hopes.pop_back()
+			var index = left_indexs.pop_back()
+			set_special_index(hope, index)
+
+func set_special_index(special_: Variant, index_: int) -> void: 
+	special_to_index[special_] = index_
+	
+	if left_indexs.has(index_):
+		left_indexs.erase(index_)
+	
+	if right_indexs.has(index_):
+		right_indexs.erase(index_)
+
+func sort_special_fate() -> void:
+	if special_to_index.keys().is_empty(): return
+	var options: Array[int]
+	options.append_array(Catalog.indexs)
+	
+	for special in special_to_index:
+		var index = special_to_index[special]
+		options.erase(index)
+	
+	for sinner in actual.sinners:
+		if !special_to_index.has(sinner):
+			var index = options.pop_back()
+			special_to_index[sinner] = index
+	
+	actual.sinners.sort_custom(func (a, b): return special_to_index[a] < special_to_index[b])
 
 func use_foreground() -> void:
+	var sinner: SinnerData
 	if !foreground_sinners.is_empty():
-		var sinner = foreground_sinners.pop_back()
+		sinner = foreground_sinners.pop_back()
 		actual.sinners.append(sinner)
 	else:
-		hereafter.transfer_sinner()
+		sinner = hereafter.transfer_sinner()
+	
+	if sinner == null:
+		pass
 #endregion
 
 func is_enough() -> bool:

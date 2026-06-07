@@ -17,7 +17,7 @@ func apply_data_info() -> void:
 
 func _on_type_changed() -> void:
 	if data.type == 0: return
-	texture_rect.texture = load("res://entities/ui/token/sin/sin.png")
+	texture_rect.texture = load("res://entities/ui/token/sin/sin on.png")
 	texture_rect.modulate = Catalog.sin_to_color[data.type]
 
 func click_event() -> void:

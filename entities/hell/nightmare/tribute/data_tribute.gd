@@ -2,15 +2,16 @@ class_name TributeData
 extends TypeData
 
 
-
 var trial: TrialData
+var progression: ProgressionData
 var type: Bozo.Half = Bozo.Half.LESS:
 	set(value_):
 		if type != value_:
 			type = value_
 			emit_signal("type_changed")
-var progression: ProgressionData
 
+
+#region init
 func _init(trial_: TrialData) -> void:
 	trial = trial_
 	progression = ProgressionData.new(self)
@@ -23,5 +24,5 @@ func calc_half() -> void:
 	for token in trial.claim.sins:
 		new_value += token.value
 	
-	
 	progression.limit_value = floor(new_value*0.5)
+#endregion

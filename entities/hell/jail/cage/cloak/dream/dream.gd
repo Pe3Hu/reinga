@@ -29,13 +29,18 @@ func _on_desires_changed() -> void:
 		desire.data = data.desires[_i]
 #endregion
 
+#region dissolve
 func start_dissolve_payment_tokens() -> void:
 	dissolves.clear()
 	cloak.cage.jail.hell.nightmare.dissolve_dreams.append(self)
-	dissolves.append_array(desires)
+	#dissolves.append_array(desires)
 	
-	for token in desires:
-		token.dissolve()
+	for desire in desires:
+		if desire.data.value > 0:
+			dissolves.append(desire)
+	
+	for desire in desires:
+		desire.dissolve()
 
 func end_payment_dissolve(desire_: TokenDesire) -> void:
 	dissolves.erase(desire_)
@@ -46,13 +51,16 @@ func end_payment_dissolve(desire_: TokenDesire) -> void:
 func start_dissolve_guild_tokens() -> void:
 	for token in desires:
 		if token.data.association == Bozo.Association.GUILD:
-			#if !cloak.visible:
-			#	cloak.visible = true
-			
 			token.dissolve()
 
 func end_dissolve_guild_tokens(desire_: TokenDesire) -> void:
 	#desire_.texture_rect.visible = false
 	var trial_type: Bozo.Trial = Catalog.desire_to_trial[desire_.data.type]
 	var trial = cloak.cage.jail.hell.nightmare.type_to_trial[trial_type]
-	cloak.cage.jail.hell.volcano.burst_splash(trial.flame.progression, 1, -1)
+	var _sign = -1
+	
+	if Catalog.enemy_fates.has(desire_.data.dream.sinner.fate.type):
+		_sign *= -1
+	
+	cloak.cage.jail.hell.volcano.burst_splash(trial.flame.progression, 1, _sign)
+#endregion

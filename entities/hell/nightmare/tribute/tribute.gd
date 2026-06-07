@@ -13,7 +13,6 @@ var data: TributeData:
 @export var progression: Progression
 
 
-
 func apply_data_info() -> void:
 	progression.data = data.progression
 	data.type_changed.connect(_on_type_changed)

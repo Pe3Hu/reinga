@@ -15,6 +15,11 @@ var layer: Bozo.Layer = Bozo.Layer.NONE:
 
 var guild_level: int = 1
 
+#region plaza
+var trust_limit: int = 2
+var hope_limit: int = 3
+#endregion
+
 
 func next_phase(auto_: bool = true) -> void:
 	if auto_:
@@ -22,7 +27,7 @@ func next_phase(auto_: bool = true) -> void:
 		phase_timer.start()
 
 func update_phase() -> void:
-	print([turn, Catalog.phase_to_string[phase]])
+	#print([turn, Catalog.phase_to_string[phase]])
 	phase = Catalog.phase_to_next[phase]
 	if phase == Bozo.Phase.REPLENISHMENT:
 		turn += 1

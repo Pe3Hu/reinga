@@ -5,12 +5,14 @@ extends Label
 var volcano: Volcano
 var progression: Progression
 var value: int = 1
+var status: Bozo.Status = Bozo.Status.ON
 
 
-func reset(progression_: Progression, value_: int = 1):
+func reset(progression_: Progression, value_: int = 1, status_: Bozo.Status = Bozo.Status.ON):
 	progression = progression_
 	value = value_
 	text = str(value_)
+	status = status_
 	
 	get_parent().remove_child(self)
 	

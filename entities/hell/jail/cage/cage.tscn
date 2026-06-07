@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://bp2rppn86ih0m" path="res://entities/hell/jail/cage/cage.gd" id="1_2m11p"]
 [ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/hell/jail/sinner/sinner.tscn" id="2_bynt2"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_hlo7k"]
+[ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/grey paint.gdshader" id="2_s5x2c"]
 [ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
 [ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/frame/images/cage.png" id="3_vmsct"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]
 
-[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("background", "sinner", "cloak")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubheq"]
+shader = ExtResource("2_s5x2c")
+shader_parameter/inverse_speed = 15.0
+shader_parameter/intensity = 0.3
+
+[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("active_background", "passive_background", "sinner", "cloak")]
 z_index = 10
 custom_minimum_size = Vector2(206, 230)
 offset_right = 172.0
@@ -16,9 +22,29 @@ offset_bottom = 192.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hlo7k")
 script = ExtResource("1_2m11p")
-background = NodePath("BackgroundMarginContainer/Background")
+active_background = NodePath("BackgroundMarginContainer/ActiveBackground")
+passive_background = NodePath("BackgroundMarginContainer/PassiveBackground")
 sinner = NodePath("MarginContainer/Sinner")
 cloak = NodePath("MarginContainer/Cloak")
+
+[node name="BackgroundMarginContainer" type="MarginContainer" parent="." unique_id=1035010068]
+z_index = -11
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PassiveBackground" type="ColorRect" parent="BackgroundMarginContainer" unique_id=238926018]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="ActiveBackground" type="ColorRect" parent="BackgroundMarginContainer" unique_id=1068769356]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_ubheq")
+layout_mode = 2
 
 [node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_hlo7k")]
 layout_mode = 2
@@ -29,17 +55,6 @@ patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
 type = 312
-
-[node name="BackgroundMarginContainer" type="MarginContainer" parent="." unique_id=1035010068]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="Background" type="ColorRect" parent="BackgroundMarginContainer" unique_id=238926018]
-layout_mode = 2
-color = Color(0, 0, 0, 0.5254902)
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=754715822]
 layout_mode = 2

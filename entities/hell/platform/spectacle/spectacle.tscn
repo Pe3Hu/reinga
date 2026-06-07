@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ya3nuge1sfvn"]
+
+[ext_resource type="Script" uid="uid://co52w2a8oognf" path="res://entities/hell/platform/spectacle/spectacle.gd" id="1_qc54y"]
+
+[node name="Spectacle" type="PanelContainer" unique_id=1181787697]
+script = ExtResource("1_qc54y")

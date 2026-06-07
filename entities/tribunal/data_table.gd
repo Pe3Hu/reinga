@@ -116,7 +116,6 @@ func reset_cages() -> void:
 	for cage in cages:
 		if cage.sinner:
 			cage.sinner.fate.is_selected = false
-	
 
 func reset_catenas(is_locked_: bool = false) -> void:
 	if is_locked_:

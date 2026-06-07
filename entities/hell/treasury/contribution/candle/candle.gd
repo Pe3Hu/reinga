@@ -50,8 +50,12 @@ func update_hue() -> void:
 	ball.material.set_shader_parameter("hue_shift", hue_shift)
 
 func _is_selected_changed() -> void:
-	contribution.active_border.visible = data.is_selected
-	contribution.background.visible = !data.is_selected
+	contribution.active_background.visible = data.is_selected
+	contribution.passive_background.visible = !data.is_selected
+	
+	if contribution.cage:
+		contribution.cage.active_background.visible = data.is_selected
+		contribution.cage.passive_background.visible = !data.is_selected
 
 func _on_color_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

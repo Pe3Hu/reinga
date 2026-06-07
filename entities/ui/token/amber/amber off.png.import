@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caj2u032oc102"
-path="res://.godot/imported/ash..png-065d9ed798f07ebb47849a409684b79b.ctex"
+uid="uid://d15wyoinq6vpa"
+path="res://.godot/imported/amber off.png-c3bce5023a1e8f517744bced5ed61e9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/hell/inferno/images/ash..png"
-dest_files=["res://.godot/imported/ash..png-065d9ed798f07ebb47849a409684b79b.ctex"]
+source_file="res://entities/ui/token/amber/amber off.png"
+dest_files=["res://.godot/imported/amber off.png-c3bce5023a1e8f517744bced5ed61e9f.ctex"]
 
 [params]
 
