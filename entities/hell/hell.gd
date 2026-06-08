@@ -15,7 +15,7 @@ var data: HellData:
 
 @export var bank: Bank
 @export var market: Market
-@export var shelter: Shelter
+@export var platform: Platform
 
 
 func _ready():
@@ -29,7 +29,7 @@ func connect_datas() -> void:
 	treasury.data = data.treasury
 	bank.data = data.bank
 	market.data = data.market
-	shelter.data = data.shelter
+	#shelter.data = data.shelter
 
 func update_size() -> void:
 	var viewport_size = get_viewport_rect().size
@@ -39,7 +39,7 @@ func update_size() -> void:
 func simulate_choice() -> void:
 	var contribution = treasury.contributions.back()
 	jail.data.table._on_cage_gate_selected(contribution.cage.data)
-	treasury.lock()
+	bank.lock()
 	#await get_tree().create_timer(1).timeout
 	#Scope.next_phase()
 
@@ -69,9 +69,7 @@ func execute_phase() -> void:
 			market.data.refill_closed_deals()
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
-			nightmare.reset()
-			jail.reset()
-			treasury.reset()
+			reset()
 			world.data.tribunal.actual.clear()
 			
 			if world.data.tribunal.is_enough():
@@ -79,9 +77,14 @@ func execute_phase() -> void:
 			else:
 				world.data.transition.next_layer = Bozo.Layer.GATE
 
-
 func _on_phase_timer_timeout() -> void:
 	execute_phase()
+
+func reset() -> void:
+	nightmare.reset()
+	jail.reset()
+	treasury.reset()
+	bank.reset()
 
 #func _process(_delta):
 	#if Input.is_action_just_pressed("ui_accept"):

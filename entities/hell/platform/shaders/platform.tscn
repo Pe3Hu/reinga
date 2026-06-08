@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://q3fe4113ir2i"]
+
+[ext_resource type="Script" uid="uid://rj33cooidnw1" path="res://entities/hell/platform/platform.gd" id="1_ldl54"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_4gkyp"]
+[ext_resource type="Shader" uid="uid://yhjpjlwu6i4" path="res://entities/hell/platform/shaders/platform.gdshader" id="2_dh1k7"]
+[ext_resource type="Shader" uid="uid://r7uoxcu02reb" path="res://entities/hell/platform/shaders/platform rainbow.gdshader" id="3_dw00x"]
+[ext_resource type="Texture2D" uid="uid://blvgsmpvw80lt" path="res://entities/hell/platform/images/lightning.png" id="4_mxqor"]
+[ext_resource type="Texture2D" uid="uid://dq14vm8pw26rn" path="res://entities/ui/frame/images/platform.png" id="6_mxqor"]
+[ext_resource type="PackedScene" uid="uid://ya3nuge1sfvn" path="res://entities/hell/platform/spectacle/spectacle.tscn" id="7_r8t06"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mxqor"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_utooa"]
+shader = ExtResource("2_dh1k7")
+shader_parameter/scene_size = Vector2(200, 200)
+shader_parameter/cell_state_0 = 0
+shader_parameter/cell_state_1 = 0
+shader_parameter/cell_state_2 = 0
+shader_parameter/cell_state_3 = 0
+shader_parameter/cell_state_4 = 0
+shader_parameter/cell_state_5 = 0
+shader_parameter/cell_state_6 = 0
+shader_parameter/cell_state_7 = 0
+shader_parameter/cell_state_8 = 0
+shader_parameter/state_0_pulse_speed_norm = 0.5
+shader_parameter/state_0_pulse_amplitude = 0.2
+shader_parameter/state_1_rotation_speed_norm = -0.8
+shader_parameter/state_1_rotation_variation = 0.2
+shader_parameter/ball_movement_speed_norm = 1.0
+shader_parameter/ball_movement_variation = 0.2
+shader_parameter/ball_pulse_speed_norm = 1.0
+shader_parameter/ball_pulse_variation = 1.0
+shader_parameter/ball_pulse_amplitude = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_81jw2"]
+shader = ExtResource("3_dw00x")
+shader_parameter/strength = 0.75
+shader_parameter/speed = 0.35
+shader_parameter/angle = 45.0000021375
+shader_parameter/rotate_hue = false
+
+[node name="Platform" type="PanelContainer" unique_id=1146596007 node_paths=PackedStringArray("cells", "active_cage", "operas", "puppetrys", "ballets", "spectacles")]
+offset_right = 86.0
+offset_bottom = 86.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mxqor")
+script = ExtResource("1_ldl54")
+cells = NodePath("FrameMargin/Cells")
+active_cage = NodePath("Frame/FrameMargin/Cage")
+operas = [null, null]
+puppetrys = [null, null, null]
+ballets = [null, null, null]
+spectacles = [null, null, null, null, null, null, null, null]
+
+[node name="FrameMargin" type="MarginContainer" parent="." unique_id=160128129]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Cells" type="ColorRect" parent="FrameMargin" unique_id=111948854]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_utooa")
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+
+[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_4gkyp")]
+layout_mode = 2
+texture = ExtResource("6_mxqor")
+region_rect = Rect2(0, 0, 136, 136)
+patch_margin_left = 66
+patch_margin_top = 66
+patch_margin_right = 66
+patch_margin_bottom = 66
+type = 339
+
+[node name="FrameMargin" type="MarginContainer" parent="Frame" unique_id=1234764770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Cage" type="MarginContainer" parent="Frame/FrameMargin" unique_id=580801386]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="CageIcon" type="TextureRect" parent="Frame/FrameMargin/Cage" unique_id=376422057]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_81jw2")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_mxqor")
+
+[node name="Opera1" parent="." unique_id=1729684653 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Opera2" parent="." unique_id=421682576 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Puppetry" type="HBoxContainer" parent="." unique_id=1073121209]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 32
+
+[node name="Puppetry1" parent="Puppetry" unique_id=808217795 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Puppetry2" parent="Puppetry" unique_id=232546604 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Puppetry3" parent="Puppetry" unique_id=13129951 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Ballet" type="VBoxContainer" parent="." unique_id=139935819]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+
+[node name="Ballet1" parent="Ballet" unique_id=1741122974 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Ballet2" parent="Ballet" unique_id=1844315130 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Ballet3" parent="Ballet" unique_id=767557003 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8

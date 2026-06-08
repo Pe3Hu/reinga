@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cioo6abb1k8yp" path="res://entities/ui/frame/images/hell.png" id="3_3bli8"]
 [ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="3_b2gxv"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
-[ext_resource type="PackedScene" uid="uid://ciho4pq82ouf5" path="res://entities/hell/underground/shelter/shelter.tscn" id="6_0u57p"]
+[ext_resource type="PackedScene" uid="uid://q3fe4113ir2i" path="res://entities/hell/platform/shaders/platform.tscn" id="6_gxyx2"]
 [ext_resource type="PackedScene" uid="uid://bic8fb8vsph13" path="res://entities/hell/underground/market/market.tscn" id="7_b2gxv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmjwd"]
@@ -16,18 +16,18 @@ bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bli8"]
 
-[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "shelter")]
+[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "platform")]
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_al7up")
 volcano = NodePath("Volcano")
-nightmare = NodePath("UI/MarginContainer/HBox/Nightmare")
-jail = NodePath("UI/MarginContainer/HBox/Jail")
-treasury = NodePath("UI/MarginContainer/HBox/VBoxContainer/Treasury")
-bank = NodePath("UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer/Bank")
-market = NodePath("UI/MarginContainer/HBox/VBoxContainer/Market")
-shelter = NodePath("UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer/Shelter")
+nightmare = NodePath("UI/FrameMargin/HBox/Nightmare")
+jail = NodePath("UI/FrameMargin/HBox/Jail")
+treasury = NodePath("UI/FrameMargin/HBox/VBox/Treasury")
+bank = NodePath("UI/FrameMargin/HBox/VBox/HBox/Bank")
+market = NodePath("UI/FrameMargin/Market")
+platform = NodePath("UI/FrameMargin/Platform")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
@@ -49,65 +49,62 @@ patch_margin_right = 68
 patch_margin_bottom = 68
 type = 330
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=31636910]
+[node name="FrameMargin" type="MarginContainer" parent="UI" unique_id=31636910]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBox" type="HBoxContainer" parent="UI/MarginContainer" unique_id=1457327838]
+[node name="Market" parent="UI/FrameMargin" unique_id=255913063 node_paths=PackedStringArray("hell") instance=ExtResource("7_b2gxv")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+hell = NodePath("../../..")
+
+[node name="Platform" parent="UI/FrameMargin" unique_id=1146596007 node_paths=PackedStringArray("hell") instance=ExtResource("6_gxyx2")]
+layout_mode = 2
+size_flags_horizontal = 8
+hell = NodePath("../../..")
+
+[node name="HBox" type="HBoxContainer" parent="UI/FrameMargin" unique_id=1457327838]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Nightmare" parent="UI/MarginContainer/HBox" unique_id=1765068744 node_paths=PackedStringArray("hell") instance=ExtResource("2_hymf2")]
+[node name="Nightmare" parent="UI/FrameMargin/HBox" unique_id=1765068744 node_paths=PackedStringArray("hell") instance=ExtResource("2_hymf2")]
 layout_mode = 2
 hell = NodePath("../../../..")
 
-[node name="Jail" parent="UI/MarginContainer/HBox" unique_id=247800843 node_paths=PackedStringArray("hell") instance=ExtResource("2_kksrj")]
+[node name="Jail" parent="UI/FrameMargin/HBox" unique_id=247800843 node_paths=PackedStringArray("hell") instance=ExtResource("2_kksrj")]
 layout_mode = 2
 hell = NodePath("../../../..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/HBox" unique_id=899020654]
+[node name="VBox" type="VBoxContainer" parent="UI/FrameMargin/HBox" unique_id=899020654]
 layout_mode = 2
-theme_override_constants/separation = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=57439656]
+[node name="HBox" type="HBoxContainer" parent="UI/FrameMargin/HBox/VBox" unique_id=391931774]
 layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/margin_right = 8
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer" unique_id=1357191306]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="Bank" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]
+[node name="Bank" parent="UI/FrameMargin/HBox/VBox/HBox" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-hell = NodePath("../../../../../../..")
+hell = NodePath("../../../../../..")
 
-[node name="Shelter" parent="UI/MarginContainer/HBox/VBoxContainer/MarginContainer/HBoxContainer" unique_id=526715784 instance=ExtResource("6_0u57p")]
-custom_minimum_size = Vector2(292, 128)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="PanelContainer" type="PanelContainer" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=351820096]
-custom_minimum_size = Vector2(0, 31)
+[node name="BlankPanel" type="PanelContainer" parent="UI/FrameMargin/HBox/VBox/HBox" unique_id=411404646]
+custom_minimum_size = Vector2(218, 218)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3bli8")
 
-[node name="Treasury" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]
-layout_mode = 2
-hell = NodePath("../../../../..")
-
-[node name="Market" parent="UI/MarginContainer/HBox/VBoxContainer" unique_id=255913063 node_paths=PackedStringArray("hell") instance=ExtResource("7_b2gxv")]
+[node name="Treasury" parent="UI/FrameMargin/HBox/VBox" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]
 layout_mode = 2
 hell = NodePath("../../../../..")
 

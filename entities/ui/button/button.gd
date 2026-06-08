@@ -2,9 +2,9 @@ class_name CustomButton
 extends Button
 
 
-@export var treasury: Treasury:
+@export var bank: Bank:
 	set(value_):
-		treasury = value_
+		bank = value_
 		text = "Lock"
 @export var gate: Gate:
 	set(value_):
@@ -53,8 +53,8 @@ func show_me() -> void:
 	visible = true
 
 func update_visible() -> void:
-	if treasury:
-		visible = treasury.data.hell.jail.table.active_cages.size() > 0
+	if bank:
+		visible = bank.data.hell.jail.table.active_cages.size() > 0
 	
 	if gate:
 		visible = gate.data.table.active_cages.size() > 0

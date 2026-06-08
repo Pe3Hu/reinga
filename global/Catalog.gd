@@ -1143,6 +1143,7 @@ const frame_to_string = {
 	Bozo.Frame.MODIFIER: "modifier",
 	Bozo.Frame.CONTRIBUTION: "contribution",
 	Bozo.Frame.DEAL: "deal",
+	Bozo.Frame.PLATFORM: "platform",
 }
 
 const frame_to_region = {
@@ -1155,9 +1156,9 @@ const frame_to_region = {
 	Bozo.Frame.SHELTER: 128,
 	#Bozo.Frame.TREASURY: 240,
 	Bozo.Frame.MARKET: 128,
-	#Bozo.Frame.MODIFIER: ,
 	Bozo.Frame.CONTRIBUTION: 36,
 	Bozo.Frame.DEAL: 36,
+	Bozo.Frame.PLATFORM: 136,
 }
 
 const frame_to_patch = {
@@ -1170,9 +1171,9 @@ const frame_to_patch = {
 	Bozo.Frame.SHELTER: 48,
 	#Bozo.Frame.TREASURY: 78,
 	Bozo.Frame.MARKET: 60,
-	#Bozo.Frame.MODIFIER: ,
 	Bozo.Frame.CONTRIBUTION: 12,
 	Bozo.Frame.DEAL: 12,
+	Bozo.Frame.PLATFORM: 66,
 }
 #endregion
 
@@ -1416,3 +1417,9 @@ const friend_to_sign = {
 const indexs = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 const left_indexs = [0, 1, 3, 4, 6, 7]
 const right_indexs = [1, 2, 4, 5, 7, 8]
+
+const catena_to_spectacle = {
+	Bozo.Catena.ROW: Bozo.Spectacle.BALLET,
+	Bozo.Catena.COL: Bozo.Spectacle.PUPPETRY,
+	Bozo.Catena.DIAGONAL: Bozo.Spectacle.OPERA,
+}

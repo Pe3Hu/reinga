@@ -2,10 +2,15 @@ class_name TableData
 extends Resource
 
 
-var jail: JailData
 var gate: GateData
+var jail: JailData:
+	set(value_):
+		jail = value_
+		jail_extensions()
+
 var cages: Array[CageData]
 var catenas: Array[CatenaData]
+var special_catenas: Array[CatenaData]
 
 var coord_to_cage: Dictionary
 var coord_to_catena: Dictionary
@@ -67,6 +72,29 @@ func init_cage_neighbours() -> void:
 				cage.neighbours.append(neighbour)
 		
 		cage.destiny = Catalog.neighbour_to_destiny[cage.neighbours.size()]
+
+func jail_extensions() -> void:
+	var coord = Vector2i(1, 1)
+	var type = Bozo.Catena.DIAGONAL
+	add_special_catena(coord, type)
+	coord = Vector2i(-1, 1)
+	add_special_catena(coord, type)
+
+func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
+	var catena = CatenaData.new(self, coord_, type_)
+	special_catenas.append(catena)
+	
+	var cage_grid = Vector2i(0, 0)
+	
+	if coord_ == Vector2i(-1, 1):
+		cage_grid = Vector2i(2, 0)
+	
+	for _i in Catalog.JAIL_CAGE_GRID.x:
+		var cage = coord_to_cage[cage_grid]
+		catena.cages.append(cage)
+		cage_grid += coord_
+	
+	special_catenas.append(catena)
 #endregion
 
 #region select

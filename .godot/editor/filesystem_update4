@@ -1,38 +1,20 @@
-res://global/Catalog.gd
-res://entities/hell/jail/data_plaza.gd
-res://entities/tribunal/data_tribunal.gd
-res://entities/hell/jail/cage/cloak/dream/data_dream.gd
-res://entities/hell/jail/cage/cloak/dream/dream.gd
-res://entities/ui/token/faction/faction.tscn
-res://entities/ui/token/faction/shaders/faction icon.gdshader
-res://entities/herald/shaders/grey paint.gdshader
-res://entities/hell/treasury/contribution/candle/shaders/axis.gdshader
-res://entities/hell/treasury/contribution/candle/shaders/ball.gdshader
-res://entities/hell/treasury/contribution/candle/shaders/3x3.gdshader
-res://entities/ui/token/desire/desire.gd
-res://entities/ui/token/desire/data_desire.gd
-res://entities/hell/jail/sinner/trait/data_trait.gd
-res://entities/ui/token/amber/amber.gd
-res://entities/ui/token/sin/sin.gd
-res://entities/hell/volcano/eruption/eruption.gd
-res://entities/hell/volcano/eruption/eruption.tscn
-res://entities/hell/volcano/volcano.gd
-res://entities/hell/volcano/eruption/data_eruption.gd
-res://entities/hell/volcano/data_flow.gd
-res://entities/hell/nightmare/tribute/data_tribute.gd
-res://entities/hell/nightmare/tribute/tribute.gd
-res://entities/hell/volcano/splash/splash.gd
+res://entities/hell/platform/shaders/platform.tscn
+res://entities/hell/platform/shaders/platform.gdshader
+res://entities/hell/platform/shaders/platform rainbow.gdshader
+res://entities/hell/platform/shaders/mix perfect 0.gdshader
 res://entities/hell/hell.tscn
-res://entities/hell/jail/sinner/fate/fate.gd
-res://global/Scope.gd
-res://entities/tribunal/data_gyre.gd
+res://entities/hell/underground/bank/bank.tscn
 res://entities/hell/hell.gd
-res://entities/tribunal/data_table.gd
-res://entities/sanctuary/gate/gate.gd
+res://entities/hell/underground/deal/deal.tscn
 res://global/Bozo.gd
-res://entities/hell/platform/spectacle/spectacle.tscn
-res://entities/hell/platform/platform.gd
 res://entities/hell/platform/data_platform.gd
-res://entities/hell/platform/spectacle/spectacle.gd
+res://entities/hell/platform/spectacle/data_fruit.gd
+res://entities/hell/jail/catena/data_catena.gd
 res://entities/hell/platform/spectacle/data_spectacle.gd
-res://entities/hell/platform/platform.tscn
+res://entities/hell/jail/cage/data_cage.gd
+res://global/Catalog.gd
+res://entities/hell/jail/data_jail.gd
+res://entities/hell/platform/spectacle/spectacle.tscn
+res://entities/hell/platform/spectacle/spectacle.gd
+res://entities/hell/platform/platform.gd
+res://entities/tribunal/data_table.gd

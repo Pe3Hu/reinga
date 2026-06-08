@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://ya3nuge1sfvn"]
 
-[ext_resource type="Script" uid="uid://co52w2a8oognf" path="res://entities/hell/platform/spectacle/spectacle.gd" id="1_qc54y"]
+[ext_resource type="Texture2D" uid="uid://cnu8j5jr06iw6" path="res://entities/hell/platform/spectacle/images/ballet.png" id="1_h6rhi"]
+[ext_resource type="Script" uid="uid://h5vudn48fc8" path="res://entities/hell/platform/spectacle/spectacle.gd" id="1_qc54y"]
 
-[node name="Spectacle" type="PanelContainer" unique_id=1181787697]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6rhi"]
+
+[node name="Spectacle" type="PanelContainer" unique_id=1475546146 node_paths=PackedStringArray("icon")]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h6rhi")
 script = ExtResource("1_qc54y")
+icon = NodePath("Icon")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1729684653]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_h6rhi")

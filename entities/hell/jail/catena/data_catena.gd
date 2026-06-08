@@ -6,6 +6,7 @@ signal is_selected_changed
 signal z_index_changed
 
 var table: TableData
+var spectacle: SpectacleData
 
 var type: Bozo.Catena
 var coord: Vector2i

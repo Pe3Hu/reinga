@@ -85,7 +85,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not get_global_rect().has_point(get_global_mouse_position()):
-				if !hell.treasury.lock_button.is_mouse_inside():
+				if !hell.bank.lock_button.is_mouse_inside():
 					forget_cage()
 
 func forget_cage() -> void:

@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1780823038
+::res://::1780902883
 ::res://assets/::1780179721
 icon.svg::CompressedTexture2D::5994948088208690775::1765022965::1779695632::1::::<><><>0<>0<>02eacd1de94d8cd03fff6a9e79b797e2<>res://.godot/imported/icon.svg-56083ea2a1f1a4f1e49773bdc6d7826c.ctex::
 ::res://assets/fonts/::1780179721
@@ -9,20 +9,20 @@ geometria_medium.otf::FontFile::2004850369633487270::1632889758::1779695632::1::
 Inter.otf::FontFile::1589023350328996289::1627516836::1779695632::1::::<><><>0<>0<>bbbcb61b7fd55c9ff0dc9f2e503cbd4e<>res://.godot/imported/Inter.otf-f936cb0872c9a151322132cf17004ffd.fontdata::
 meslo.ttf::FontFile::2948952988611021511::1492497582::1779695632::1::::<><><>0<>0<>3af8f6d7f02eb8f4978fdfdd9fa6a172<>res://.godot/imported/meslo.ttf-0a1acd7c79b3aacda41bf1c665c9e236.fontdata::
 ::res://entities/::1780823038
-::res://entities/hell/::1780823038
+::res://entities/hell/::1780900307
 data_hell.gd::GDScript::7727634748534905776::1780041684::0::1::::HellData<>Resource<><>0<>0<><>::
-hell.gd::GDScript::870134139927187552::1780821743::0::1::::Hell<>Control<><>0<>0<><>::
-hell.tscn::PackedScene::6335861786154369465::1780822496::0::1::::<><><>0<>0<><>::uid://mnq8nmw8al0s::::res://entities/hell/hell.gd<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://sku4ussmdh7x::::res://entities/hell/nightmare/nightmare.tscn<>uid://dkdcibsiow4i8::::res://entities/hell/volcano/volcano.tscn<>uid://cca13j77q3a26::::res://entities/hell/jail/jail.tscn<>uid://cioo6abb1k8yp::::res://entities/ui/frame/images/hell.png<>uid://cmk5hxv43634p::::res://entities/hell/underground/bank/bank.tscn<>uid://bhblfmmey6iuk::::res://entities/hell/treasury/treasury.tscn<>uid://ciho4pq82ouf5::::res://entities/hell/underground/shelter/shelter.tscn<>uid://bic8fb8vsph13::::res://entities/hell/underground/market/market.tscn
+hell.gd::GDScript::870134139927187552::1780899742::0::1::::Hell<>Control<><>0<>0<><>::
+hell.tscn::PackedScene::6335861786154369465::1780900307::0::1::::<><><>0<>0<><>::uid://mnq8nmw8al0s::::res://entities/hell/hell.gd<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://sku4ussmdh7x::::res://entities/hell/nightmare/nightmare.tscn<>uid://dkdcibsiow4i8::::res://entities/hell/volcano/volcano.tscn<>uid://cca13j77q3a26::::res://entities/hell/jail/jail.tscn<>uid://cioo6abb1k8yp::::res://entities/ui/frame/images/hell.png<>uid://cmk5hxv43634p::::res://entities/hell/underground/bank/bank.tscn<>uid://bhblfmmey6iuk::::res://entities/hell/treasury/treasury.tscn<>uid://q3fe4113ir2i::::res://entities/hell/platform/shaders/platform.tscn<>uid://bic8fb8vsph13::::res://entities/hell/underground/market/market.tscn
 ::res://entities/hell/images/::1779837181
-::res://entities/hell/jail/::1780823031
-data_jail.gd::GDScript::6618830383566568412::1780597547::0::1::::JailData<>Resource<><>0<>0<><>::
+::res://entities/hell/jail/::1780905841
+data_jail.gd::GDScript::6618830383566568412::1780905841::0::1::::JailData<>Resource<><>0<>0<><>::
 data_plaza.gd::GDScript::4526223796400801073::1780821788::0::1::::PlazaData<>Resource<><>0<>0<><>::
-jail.gd::GDScript::3056732624743350869::1780735853::0::1::::Jail<>PanelContainer<><>0<>0<><>::
+jail.gd::GDScript::3056732624743350869::1780892550::0::1::::Jail<>PanelContainer<><>0<>0<><>::
 jail.tscn::PackedScene::4914848222323841045::1780508771::0::1::::<><><>0<>0<><>::uid://bjsx67lmdxjh2::::res://entities/hell/jail/jail.gd<>uid://bjlm6t5oqacjy::::res://entities/hell/jail/cage/cage.tscn<>uid://bgiycfwaus1np::::res://entities/hell/jail/catena/catena.tscn
-::res://entities/hell/jail/cage/::1780806481
+::res://entities/hell/jail/cage/::1780906271
 cage.gd::GDScript::3496051322882632458::1780806476::0::1::::Cage<>PanelContainer<><>0<>1<><>::
 cage.tscn::PackedScene::3041613440199564562::1780806481::0::1::::<><><>0<>0<><>::uid://bp2rppn86ih0m::::res://entities/hell/jail/cage/cage.gd<>uid://rulm0xbbiyn5::::res://entities/hell/jail/sinner/sinner.tscn<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://b4oa3mk5fctpv::::res://entities/herald/shaders/grey paint.gdshader<>uid://be1h42nriq287::::res://entities/hell/jail/cage/cloak/cloak.tscn<>uid://diddtbi56s7mg::::res://entities/ui/frame/images/cage.png
-data_cage.gd::GDScript::2983569369022434712::1780731798::0::1::::CageData<>Resource<><>0<>0<><>::
+data_cage.gd::GDScript::2983569369022434712::1780906271::0::1::::CageData<>Resource<><>0<>0<><>::
 ::res://entities/hell/jail/cage/cloak/::1780605354
 cloak.gd::GDScript::7888845668709228196::1780605159::0::1::::Cloak<>Control<><>0<>1<><>::
 cloak.tscn::PackedScene::2721328125820057422::1780605354::0::1::::<><><>0<>0<><>::uid://dknoeu0gjsl37::::res://entities/hell/jail/cage/cloak/cloak.gd<>uid://gqj7ajvguac5::::res://entities/ui/frame/black white pixel.tscn<>uid://cdpj6amwhbdjm::::res://entities/ui/token/faction/faction.tscn<>uid://brr6hbxdbyiqr::::res://entities/hell/jail/cage/cloak/dream/dream.tscn<>uid://dwuuh3cev1gfk::::res://entities/ui/tooltip/interact/tooltip_Interact.tscn
@@ -30,11 +30,11 @@ cloak.tscn::PackedScene::2721328125820057422::1780605354::0::1::::<><><>0<>0<><>
 data_dream.gd::GDScript::6535467827343685852::1780818639::0::1::::DreamData<>Resource<><>0<>0<><>::
 dream.gd::GDScript::1264981728868960902::1780817818::0::1::::Dream<>PanelContainer<><>0<>0<><>::
 dream.tscn::PackedScene::3616620262884209857::1780603412::0::1::::<><><>0<>0<><>::uid://sa1cgjuyng7g::::res://entities/hell/jail/cage/cloak/dream/dream.gd<>uid://c5uuyg6561qv3::::res://entities/ui/token/desire/desire.tscn
-::res://entities/hell/jail/catena/::1780735519
+::res://entities/hell/jail/catena/::1780905481
 catena.gd::GDScript::1175033369692582283::1780451685::0::1::::Catena<>Control<><>0<>0<><>::
 catena.gdshader::Shader::1621076443961044949::1780706888::0::1::::<><><>0<>0<><>::
 catena.tscn::PackedScene::2825529843597891073::1780368486::0::1::::<><><>0<>0<><>::uid://q0gvl464nwgp::::res://entities/hell/jail/catena/catena.gd<>uid://xdi5lmvmean2::::res://entities/hell/jail/catena/catena.gdshader
-data_catena.gd::GDScript::4090636252166255754::1780735519::0::1::::CatenaData<>Resource<><>0<>0<><>::
+data_catena.gd::GDScript::4090636252166255754::1780905481::0::1::::CatenaData<>Resource<><>0<>0<><>::
 lightning.gdshader::Shader::9196404020232591630::1779407346::0::1::::<><><>0<>0<><>::
 ::res://entities/hell/jail/sinner/::1780792181
 data_sinner.gd::GDScript::1577795966664763439::1780792181::0::1::::SinnerData<>Resource<><>0<>0<><>::
@@ -44,9 +44,9 @@ sinner.tscn::PackedScene::1235188562036405480::1780642565::0::1::::<><><>0<>0<><
 data_doom.gd::GDScript::2521385128668788227::1780734719::0::1::::DoomData<>Resource<><>0<>0<><>::
 doom.gd::GDScript::2014078937197548995::1780734764::0::1::::Doom<>PanelContainer<><>0<>0<><>::
 doom.tscn::PackedScene::2177120244597336125::1780734493::0::1::::<><><>0<>0<><>::uid://3xvt6hwo5wtv::::res://entities/hell/jail/sinner/doom/doom.gd<>uid://fudc0xn76lhs::::res://entities/ui/token/omen/omen.tscn
-::res://entities/hell/jail/sinner/fate/::1780818817
+::res://entities/hell/jail/sinner/fate/::1780892358
 data_fate.gd::GDScript::6816019569403326550::1780807231::0::1::::FateData<>TypeData<><>0<>0<><>::
-fate.gd::GDScript::2372826775074170495::1780818817::0::1::::Fate<>Panel<><>0<>0<><>::
+fate.gd::GDScript::2372826775074170495::1780892358::0::1::::Fate<>Panel<><>0<>0<><>::
 fate.tscn::PackedScene::2570123711216221007::1780543365::0::1::::<><><>0<>0<><>::uid://82od0rw0p61h::::res://entities/hell/jail/sinner/fate/fate.gd<>uid://e5nnetkywufg::::res://entities/ui/label/glitch.gd<>uid://dwuuh3cev1gfk::::res://entities/ui/tooltip/interact/tooltip_Interact.tscn
 ::res://entities/hell/jail/sinner/images/::1779319368
 ::res://entities/hell/jail/sinner/soul/::1780807336
@@ -107,18 +107,31 @@ tribute.tscn::PackedScene::9185390932711435535::1779929219::0::1::::<><><>0<>0<>
 double.png::CompressedTexture2D::6051628345524384042::1779602631::1779851185::1::::<><><>0<>0<>e28c3b64fedb3823ad7fbc82656b2127<>res://.godot/imported/double.png-8e6e90a80147ef622c20a17bc9de3ee4.ctex::
 less.png::CompressedTexture2D::4607044286556434848::1779602631::1779851185::1::::<><><>0<>0<>9ded5a92387d97e7b8ccae2373538e1d<>res://.godot/imported/less.png-8602a8b3007a1a21e843dd1b78529674.ctex::
 more.png::CompressedTexture2D::6863606283689077510::1779602631::1779851185::1::::<><><>0<>0<>d89b92171d532700680eb70595b9043f<>res://.godot/imported/more.png-42a0e4189f47a43e97856b4d62524a1d.ctex::
-::res://entities/hell/platform/::1780823227
-platform.tscn::PackedScene::1181136368022786210::1780823064::0::1::::<><><>0<>0<><>::
-platform.gd::GDScript::1213539946980769042::1780823207::0::1::::Platform<>PanelContainer<><>0<>0<><>::
-data_platform.gd::GDScript::3703691018162709163::1780823207::0::1::::PlatformData<>TypeData<><>0<>0<><>::
-::res://entities/hell/platform/spectacle/::1780823114
-data_spectacle.gd::GDScript::7320500015743642541::1780823227::0::1::::PlatformData<>TypeData<><>0<>0<><>::
-spectacle.gd::GDScript::5819096576860140231::1780823207::0::1::::Spectacle<>PanelContainer<><>0<>0<><>::
-spectacle.tscn::PackedScene::1686256598384031643::1780823207::0::1::::<><><>0<>0<><>::uid://co52w2a8oognf::::res://entities/hell/platform/spectacle/spectacle.gd
-::res://entities/hell/treasury/::1780733978
+::res://entities/hell/platform/::1780906271
+data_platform.gd::GDScript::3703691018162709163::1780906271::0::1::::PlatformData<>TypeData<><>0<>0<><>::
+platform.gd::GDScript::1213539946980769042::1780886246::0::1::::Platform<>PanelContainer<><>0<>0<><>::
+::res://entities/hell/platform/images/::1780902884
+lightning.png::CompressedTexture2D::3202246997230737077::1780901863::1780902884::1::::<><><>0<>0<>26237c42a68288312228d3edc9e4dd1b<>res://.godot/imported/lightning.png-377a4d0c685cb69e5dcb734eb0f8ef16.ctex::
+::res://entities/hell/platform/shaders/::1780906271
+3х3 perfect 0.gdshader::Shader::5788789259388218417::1780883379::0::1::::<><><>0<>0<><>::
+mix perfect 0.gdshader::Shader::2752152985958920338::1780898808::0::1::::<><><>0<>0<><>::
+platform 1.gdshader::Shader::5602035235419853215::1780882855::0::1::::<><><>0<>0<><>::
+platform 2.gdshader::Shader::2853015664670138562::1780883150::0::1::::<><><>0<>0<><>::
+platform perfect 0.gdshader::Shader::2733204283264663762::1780884004::0::1::::<><><>0<>0<><>::
+platform rainbow.gdshader::Shader::1260510983016321205::1780902017::0::1::::<><><>0<>0<><>::
+platform.gdshader::Shader::49986959475447113::1780902331::0::1::::<><><>0<>0<><>::
+platform.tscn::PackedScene::1181136368022786210::1780906271::0::1::::<><><>0<>0<><>::uid://rj33cooidnw1::::res://entities/hell/platform/platform.gd<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://yhjpjlwu6i4::::res://entities/hell/platform/shaders/platform.gdshader<>uid://r7uoxcu02reb::::res://entities/hell/platform/shaders/platform rainbow.gdshader<>uid://blvgsmpvw80lt::::res://entities/hell/platform/images/lightning.png<>uid://dq14vm8pw26rn::::res://entities/ui/frame/images/platform.png
+::res://entities/hell/platform/spectacle/::1780906345
+data_spectacle.gd::GDScript::7320500015743642541::1780905722::0::1::::SpectacleData<>TypeData<><>0<>0<><>::
+spectacle.tscn::PackedScene::1686256598384031643::1780906334::0::1::::<><><>0<>0<><>::
+::res://entities/hell/platform/spectacle/images/::1780906348
+ballet.png::CompressedTexture2D::5728605213079039123::1780906348::1780906349::1::::<><><>0<>0<>c34e0e4bf6dc757602275fc34016f342<>res://.godot/imported/ballet.png-e2a61d2164520bc93d6ff3a0fa7db1aa.ctex::
+opera.png::CompressedTexture2D::1494944330437234770::1780906348::1780906349::1::::<><><>0<>0<>cc174680f364cdd1c5370714b39176f6<>res://.godot/imported/opera.png-a2a2369db4d6e41670f7b66cbbbfbd55.ctex::
+puppetry.png::CompressedTexture2D::2140378098275025580::1780906348::1780906349::1::::<><><>0<>0<>2a39280af19bb562a916f04274c7831d<>res://.godot/imported/puppetry.png-684cae1c90aaf971bc26944567f3fa7f.ctex::
+::res://entities/hell/treasury/::1780892678
 data_treasury.gd::GDScript::49517774407430493::1780733708::0::1::::TreasuryData<>Resource<><>0<>0<><>::
-treasury.gd::GDScript::4568535367047209982::1780733978::0::1::::Treasury<>PanelContainer<><>0<>0<><>::
-treasury.tscn::PackedScene::2880484431836239946::1780606368::0::1::::<><><>0<>0<><>::uid://b6dbd0gm5n8fi::::res://entities/hell/treasury/treasury.gd<>uid://cvy22kttxafa4::::res://entities/hell/treasury/contribution/contribution.tscn<>uid://b23lng60xoibg::::res://entities/hell/treasury/images/sort.png<>uid://bltmo2pppbjre::::res://entities/ui/button/button.tscn
+treasury.gd::GDScript::4568535367047209982::1780892678::0::1::::Treasury<>PanelContainer<><>0<>0<><>::
+treasury.tscn::PackedScene::2880484431836239946::1780892610::0::1::::<><><>0<>0<><>::uid://b6dbd0gm5n8fi::::res://entities/hell/treasury/treasury.gd<>uid://cvy22kttxafa4::::res://entities/hell/treasury/contribution/contribution.tscn<>uid://b23lng60xoibg::::res://entities/hell/treasury/images/sort.png
 ::res://entities/hell/treasury/contribution/::1780806495
 contribution.gd::GDScript::8346330463709547263::1780806386::0::1::::Contribution<>PanelContainer<><>0<>1<><>::
 contribution.tscn::PackedScene::6298040280601243457::1780806495::0::1::::<><><>0<>0<><>::uid://dq6a3w48ddhq2::::res://entities/hell/treasury/contribution/contribution.gd<>uid://dml6ro6ukmvo3::::res://entities/ui/token/judgment/judgment.tscn<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://0kmvjsv7skyh::::res://entities/hell/treasury/contribution/candle/candle.tscn<>uid://b4oa3mk5fctpv::::res://entities/herald/shaders/grey paint.gdshader<>uid://3g7mqhgfhoe3::::res://entities/ui/token/sin/sin.tscn<>uid://pcnivgl4olgp::::res://entities/ui/frame/images/contribution.png<>uid://b5vhgobnhlxsd::::res://entities/ui/token/posture/posture.tscn
@@ -128,10 +141,10 @@ candle.gd::GDScript::5708563599494639457::1780806518::0::1::::Candle<>Control<><
 candle.tscn::PackedScene::1776131475590865039::1780715321::0::1::::<><><>0<>0<><>::uid://cnljhc8abn3ur::::res://entities/hell/treasury/contribution/candle/candle.gd<>uid://b4ancten2g7gc::::res://entities/hell/treasury/contribution/candle/shaders/axis.gdshader<>uid://bospkr37o0a8i::::res://entities/hell/treasury/contribution/candle/shaders/ball.gdshader
 data_candle.gd::GDScript::9002693837060742216::1780452697::0::1::::CandleData<>TypeData<><>0<>0<><>::
 spiral.gdshader::Shader::6622335946940912715::1780708023::0::1::::<><><>0<>0<><>::
-::res://entities/hell/treasury/contribution/candle/shaders/::1780814640
+::res://entities/hell/treasury/contribution/candle/shaders/::1780875007
 3x3.gdshader::Shader::6337168215185188063::1780814640::0::1::::<><><>0<>0<><>::
-axis.gdshader::Shader::4422691046439699022::1780814640::0::1::::<><><>0<>0<><>::
-ball.gdshader::Shader::3407152844654278418::1780814640::0::1::::<><><>0<>0<><>::
+axis.gdshader::Shader::4422691046439699022::1780875007::0::1::::<><><>0<>0<><>::
+ball.gdshader::Shader::3407152844654278418::1780875007::0::1::::<><><>0<>0<><>::
 blue red flame.gdshader::Shader::706648202193082281::1780523096::0::1::::<><><>0<>0<><>::
 contribution active.gdshader::Shader::8321376216218871660::1780711620::0::1::::<><><>0<>0<><>::
 contribution border.gdshader::Shader::8649542462082950067::1780711169::0::1::::<><><>0<>0<><>::
@@ -141,14 +154,14 @@ sort.png::CompressedTexture2D::4340013505471062536::1780449302::1780449309::1:::
 ::res://entities/hell/underground/::1780179721
 underground.gd::GDScript::1759164845363326456::1779965043::0::1::::Underground<>PanelContainer<><>0<>0<><>::
 underground.tscn::PackedScene::737008596453396554::1779965728::0::1::::<><><>0<>0<><>::uid://0cfgnkumuh1i::::res://entities/hell/underground/underground.gd<>uid://cmk5hxv43634p::::res://entities/hell/underground/bank/bank.tscn
-::res://entities/hell/underground/bank/::1780354413
-bank.gd::GDScript::7429371596153926817::1780329471::0::1::::Bank<>PanelContainer<><>0<>1<><>::
-bank.tscn::PackedScene::5637586520757759217::1780354413::0::1::::<><><>0<>0<><>::uid://dd33wupdgckon::::res://entities/hell/underground/bank/bank.gd<>uid://betsvirwxjqy7::::res://entities/ui/token/amber/amber.tscn<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://b5vhgobnhlxsd::::res://entities/ui/token/posture/posture.tscn
+::res://entities/hell/underground/bank/::1780899297
+bank.gd::GDScript::7429371596153926817::1780892677::0::1::::Bank<>PanelContainer<><>0<>1<><>::
+bank.tscn::PackedScene::5637586520757759217::1780899297::0::1::::<><><>0<>0<><>::uid://dd33wupdgckon::::res://entities/hell/underground/bank/bank.gd<>uid://betsvirwxjqy7::::res://entities/ui/token/amber/amber.tscn<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://b5vhgobnhlxsd::::res://entities/ui/token/posture/posture.tscn<>uid://bltmo2pppbjre::::res://entities/ui/button/button.tscn
 data_bank.gd::GDScript::4163157617958313591::1780345134::0::1::::BankData<>Resource<><>0<>0<><>::
-::res://entities/hell/underground/deal/::1780345844
+::res://entities/hell/underground/deal/::1780900577
 data_deal.gd::GDScript::2298707508125606332::1780345844::0::1::::DealData<>Resource<><>0<>0<><>::
 deal.gd::GDScript::1854097824275448195::1780345735::0::1::::Deal<>PanelContainer<><>0<>1<><>::
-deal.tscn::PackedScene::5989375222076142767::1780345844::0::1::::<><><>0<>0<><>::uid://1oeyqv3nxtwd::::res://entities/hell/underground/deal/deal.gd<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://betsvirwxjqy7::::res://entities/ui/token/amber/amber.tscn<>uid://3g7mqhgfhoe3::::res://entities/ui/token/sin/sin.tscn<>uid://dyl8ywwwp3nsa::::res://entities/ui/frame/images/deal.png
+deal.tscn::PackedScene::5989375222076142767::1780900577::0::1::::<><><>0<>0<><>::uid://1oeyqv3nxtwd::::res://entities/hell/underground/deal/deal.gd<>uid://bpkxkfb4retgb::::res://entities/ui/frame/frame.tscn<>uid://betsvirwxjqy7::::res://entities/ui/token/amber/amber.tscn<>uid://3g7mqhgfhoe3::::res://entities/ui/token/sin/sin.tscn<>uid://dyl8ywwwp3nsa::::res://entities/ui/frame/images/deal.png
 ::res://entities/hell/underground/market/::1780346775
 data_market.gd::GDScript::2631848963185237496::1780346775::0::1::::MarketData<>Resource<><>0<>0<><>::
 market.gd::GDScript::4343112452506635069::1780345316::0::1::::Market<>PanelContainer<><>0<>0<><>::
@@ -190,8 +203,8 @@ splash.tscn::PackedScene::7794031202449713883::1779608229::0::1::::<><><>0<>0<><
 data_herald.gd::GDScript::8768942212459535945::1780515281::0::1::::HeraldData<>Resource<><>0<>0<><>::
 herald.gd::GDScript::8774799287271234205::1780515242::0::1::::Herald<>Control<><>0<>0<><>::
 herald.tscn::PackedScene::1270856721739474029::1780523252::0::1::::<><><>0<>0<><>::uid://dxatwrs7xpvr6::::res://entities/herald/herald.gd<>uid://uo7sbyi62gti::::res://entities/herald/shaders/halo.gdshader<>uid://byekugw8o1f27::::res://entities/sanctuary/shader/matrix.gdshader<>uid://dvh5x2623erk2::::res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader<>uid://cbrchm50fy3gj::::res://entities/sanctuary/images/runes17x18.png
-::res://entities/herald/shaders/::1780814640
-grey paint.gdshader::Shader::4450849087080305535::1780814640::0::1::::<><><>0<>0<><>::
+::res://entities/herald/shaders/::1780875007
+grey paint.gdshader::Shader::4450849087080305535::1780875007::0::1::::<><><>0<>0<><>::
 grey swamp.gdshader::Shader::8432175011442782867::1780523096::0::1::::<><><>0<>0<><>::
 halo.gdshader::Shader::1434653339380934254::1780708738::0::1::::<><><>0<>0<><>::
 herald.gdshader::Shader::3373665547185194518::1780523096::0::1::::<><><>0<>0<><>::
@@ -248,9 +261,9 @@ data_blob.gd::GDScript::8599911610117110194::1780096695::0::1::::BlobData<>Resou
 ::res://entities/ui/bowl/blob/images/::1780179722
 minus.png::CompressedTexture2D::1777132479538892855::1779505142::1779695632::1::::<><><>0<>0<>01d74b1165a61a383cc4e6fea82dfba5<>res://.godot/imported/minus.png-c96ecfcbf78b1329a33e4548600fbabf.ctex::
 plus.png::CompressedTexture2D::4318945214244237760::1779505142::1779695632::1::::<><><>0<>0<>d8c0ef0972d6fe7ef240683ca1f80e5c<>res://.godot/imported/plus.png-d0281dae06e8ac72a2af700a2505b19e.ctex::
-::res://entities/ui/button/::1780508771
+::res://entities/ui/button/::1780892610
 button version 4-7.gd::GDScript::2726472775994407622::1779414467::0::1::::<>Button<><>0<>0<><>::
-button.gd::GDScript::944482713287641453::1780508771::0::1::::CustomButton<>Button<><>0<>0<><>::
+button.gd::GDScript::944482713287641453::1780892610::0::1::::CustomButton<>Button<><>0<>0<><>::
 button.tscn::PackedScene::3198476188070605954::1780507135::0::1::::<><><>0<>0<><>::uid://db2oee8k2qoba::::res://entities/ui/button/style/normal_style_box_texture.tres<>uid://nprq0dip3rer::::res://entities/ui/button/button.gd<>uid://dbixwf4p180qp::::res://entities/ui/button/style/hover_style_box_texture.tres
 ::res://entities/ui/button/images/::1780179722
 button.png::CompressedTexture2D::8366117973087024162::1779961843::1779961866::1::::<><><>0<>0<>e16140bc168956260e4086aa78ae6cd8<>res://.godot/imported/button.png-cf5777f16039c875e7fc386250a1e397.ctex::
@@ -260,18 +273,19 @@ cross 16.png::CompressedTexture2D::1878073983556716014::1779861436::1779861436::
 ::res://entities/ui/button/style/::1780179722
 hover_style_box_texture.tres::StyleBoxTexture::7247402003183031515::1779962146::0::1::::<><><>0<>0<><>::uid://drgu0gi6ucrx7::::res://entities/ui/button/images/button.png
 normal_style_box_texture.tres::StyleBoxTexture::7286046536714326282::1779961978::0::1::::<><><>0<>0<><>::uid://drgu0gi6ucrx7::::res://entities/ui/button/images/button.png
-::res://entities/ui/frame/::1780329285
+::res://entities/ui/frame/::1780888183
 black white pixel.tscn::PackedScene::454766719099193410::1780326746::0::1::::<><><>0<>0<><>::uid://ikb4cddfpnke::::res://entities/ui/frame/images/ui_border.png
 frame.gd::GDScript::7686640286111027769::1780325984::0::1::::Frame<>NinePatchRect<><>0<>1<><>::
-frame.tscn::PackedScene::3461311730078941737::1780328418::0::1::::<><><>0<>0<><>::uid://b0qcae5dqepxr::::res://entities/ui/frame/images/bank.png<>uid://dhrp3v53ogwj6::::res://entities/ui/frame/frame.gd
+frame.tscn::PackedScene::3461311730078941737::1780888183::0::1::::<><><>0<>0<><>::uid://b0qcae5dqepxr::::res://entities/ui/frame/images/bank.png<>uid://dhrp3v53ogwj6::::res://entities/ui/frame/frame.gd
 tooltip border.tscn::PackedScene::5565689802700459210::1780329285::0::1::::<><><>0<>0<><>::uid://qfqj4xihsxle::::res://entities/ui/frame/images/tooltip.png
-::res://entities/ui/frame/images/::1780354326
+::res://entities/ui/frame/images/::1780900417
 bank.png::CompressedTexture2D::4174293509289796059::1780354320::1780354326::1::::<><><>0<>0<>73dfb3acd78d106aa81710f123e865e0<>res://.godot/imported/bank.png-57efc9271d0d93d5d023106d38ccd5cb.ctex::
 cage.png::CompressedTexture2D::7727182080795253470::1779838221::1780322872::1::::<><><>0<>0<>d63ee7b681df4afbdd8cd58eb4f36258<>res://.godot/imported/cage.png-a43b3243877ec5cfbec8b46770c9bce9.ctex::
 contribution.png::CompressedTexture2D::1057766130134094631::1780324839::1780324840::1::::<><><>0<>0<>b5f699109bb72b9c39ffa4dfe08d9004<>res://.godot/imported/contribution.png-0e58add1054fd217de33739033fb5e45.ctex::
-deal.png::CompressedTexture2D::8868550164021889576::1779963571::1780323410::1::::<><><>0<>0<>792f9f36d10bca9cb9538b1ca3de15fe<>res://.godot/imported/deal.png-4c43246b336124d4067fad058dc42fca.ctex::
-hell.png::CompressedTexture2D::5364158804182496915::1779856199::1780326320::1::::<><><>0<>0<>2d5454c84882ce3cdee4fde287bc4701<>res://.godot/imported/hell.png-13890cd2ff05de9c389ffafaa921f4a2.ctex::
+deal.png::CompressedTexture2D::8868550164021889576::1780900417::1780900417::1::::<><><>0<>0<>792f9f36d10bca9cb9538b1ca3de15fe<>res://.godot/imported/deal.png-4c43246b336124d4067fad058dc42fca.ctex::
+hell.png::CompressedTexture2D::5364158804182496915::1780900062::1780900062::1::::<><><>0<>0<>2d5454c84882ce3cdee4fde287bc4701<>res://.godot/imported/hell.png-13890cd2ff05de9c389ffafaa921f4a2.ctex::
 market.png::CompressedTexture2D::5976142162530698711::1780034438::1780325994::1::::<><><>0<>0<>68b289dcde527970a189ebb419dec1a4<>res://.godot/imported/market.png-9e5a36139f523bafa75ca2c66c2b047e.ctex::
+platform.png::CompressedTexture2D::8337756347326381603::1780898890::1780898890::1::::<><><>0<>0<>1d0fe081bbf0f651ce8300cf3553f26f<>res://.godot/imported/platform.png-ac37f3a8d936149d3969a30246f92892.ctex::
 shelter.png::CompressedTexture2D::7344171670546981767::1780033233::1780327310::1::::<><><>0<>0<>e599b4089a4758815c28dcee704ae89b<>res://.godot/imported/shelter.png-4598c0568d6b8306deb9a6b874a8ef19.ctex::
 tooltip.png::CompressedTexture2D::1134332490089452438::1779862238::1780329245::1::::<><><>0<>0<>034d1c53d8417acc96eba3979cb78ad9<>res://.godot/imported/tooltip.png-ffa9294e7934d1d4fff974683c390754.ctex::
 trial.png::CompressedTexture2D::3250516201367177948::1779840295::1780326485::1::::<><><>0<>0<>c9a35160c230c6550314ae1809c6edcf<>res://.godot/imported/trial.png-1355c4d9ed3549daf6b8bbd61752df88.ctex::
@@ -320,8 +334,8 @@ hope.png::CompressedTexture2D::117960567732644824::1780791736::1780803711::1::::
 nobility.png::CompressedTexture2D::4595101029216502353::1780598024::1780598024::1::::<><><>0<>0<>e7a5e226893fc5226f4b0fb15cf64425<>res://.godot/imported/nobility.png-2f88078959bd5d5184270fcdcae9fdb4.ctex::
 riffraff.png::CompressedTexture2D::5008287559281268891::1780598024::1780598024::1::::<><><>0<>0<>897e4ff60c2dd071a253fa5cf4aaf2f4<>res://.godot/imported/riffraff.png-4a73805267734fd208fd9e7d55d19c1f.ctex::
 trust.png::CompressedTexture2D::8239067381107331947::1780791736::1780803714::1::::<><><>0<>0<>7c92ca5f51bad30fa31f2d3b7b7d952d<>res://.godot/imported/trust.png-68b95c471916de20ceb5fc7955faf973.ctex::
-::res://entities/ui/token/faction/shaders/::1780814640
-faction icon.gdshader::Shader::8258393432071902248::1780814640::0::1::::<><><>0<>0<><>::
+::res://entities/ui/token/faction/shaders/::1780875007
+faction icon.gdshader::Shader::8258393432071902248::1780875007::0::1::::<><><>0<>0<><>::
 faction smoke.gdshader::Shader::5832783009422318571::1780697937::0::1::::<><><>0<>0<><>::
 ::res://entities/ui/token/judgment/::1780643731
 data_judgment.gd::GDScript::1427556419310286601::1780251280::0::1::::JudgmentData<>TokenData<><>0<>0<><>::
@@ -379,9 +393,9 @@ data_type.gd::GDScript::7387614613469547872::1780038436::0::1::::TypeData<>Resou
 data_world.gd::GDScript::1559473956286743706::1780446077::0::1::::WorldData<>Resource<><>0<>0<><>::
 world.gd::GDScript::1186082734165819011::1780446830::0::1::::World<>Node<><>0<>0<><>::
 world.tscn::PackedScene::8687635180721816570::1780823038::0::1::::<><><>0<>0<><>::uid://q5suynu18b52::::res://entities/world/world.gd<>uid://b0xlhq07ulx2i::::res://entities/inferno/inferno.tscn<>uid://cwjeyn62awup2::::res://entities/hell/hell.tscn<>uid://b5j0hjjauwolx::::res://entities/sanctuary/sanctuary.tscn<>uid://dyhxbif7c6n2::::res://entities/sanctuary/gate/gate.tscn<>uid://bn1bqih67kk3j::::res://entities/ui/transition/transition.tscn<>uid://sdu3bfosnkuv::::res://entities/herald/herald.tscn
-::res://global/::1780822496
-Bozo.gd::GDScript::7266829781729311716::1780822452::0::1::::<>Node<><>0<>0<><>::
-Catalog.gd::GDScript::3495370124140258623::1780822496::0::1::::<>Node<><>0<>0<><>::
+::res://global/::1780905705
+Bozo.gd::GDScript::7266829781729311716::1780902631::0::1::::<>Node<><>0<>0<><>::
+Catalog.gd::GDScript::3495370124140258623::1780905705::0::1::::<>Node<><>0<>0<><>::
 Helper.gd::GDScript::819919848442204816::1780731606::0::1::::<>Node<><>0<>0<><>::
 Scope.gd::GDScript::9175355904824037445::1780821841::0::1::::<>Node<><>0<>0<><>::
 TooltipManager.gd::GDScript::5782607604922025620::1780181443::0::1::::<>CanvasLayer<><>0<>0<><>::

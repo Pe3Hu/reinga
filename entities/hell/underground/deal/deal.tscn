@@ -26,18 +26,17 @@ type = 338
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 4
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=821791903]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="TokenSin" parent="MarginContainer/VBoxContainer" unique_id=1672584037 instance=ExtResource("3_5v5v6")]
-visible = true
 layout_mode = 2
 
 [node name="TokenAmber" parent="MarginContainer/VBoxContainer" unique_id=634912735 node_paths=PackedStringArray("deal") instance=ExtResource("2_7mydp")]

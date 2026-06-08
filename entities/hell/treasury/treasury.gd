@@ -11,7 +11,6 @@ var data: TreasuryData:
 
 @export var hell: Hell
 @export var sort_icon: TextureRect
-@export var lock_button: CustomButton
 
 var contributions: Array[Contribution]
 
@@ -102,22 +101,9 @@ func apply_phase_visiblity() -> void:
 		Bozo.Phase.DISBURSEMENT:
 			%VBox.visible = false
 
-func _on_lock_button_pressed() -> void:
-	lock()
-
-func lock() -> void:
-	if !hell.jail.data.table.active_cages.is_empty():
-		lock_button.hide_me()
-		#hell.jail.data.table.is_locked = true
-		hide_not_selected_contributions()
-		hell.jail.data.table.reset_catenas(true)
-		Scope.next_phase()
-		#hell.jail.forget_cage()
-
-func reset() -> void:
-	lock_button.hide_me()
-	data.reset()
-
 func update_candle_hues() -> void:
 	for contribution in contributions:
 		contribution.candle.update_hue()
+
+func reset() -> void:
+	data.reset()

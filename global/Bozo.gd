@@ -210,6 +210,13 @@ enum Status {
 	OFF  = 125
 }
 
+enum Fruit {
+	NONE = 0,
+	FRESH = 126,
+	RIPE  = 127,
+	ROTTEN  = 128
+}
+
 
 
 #145-147 fate
@@ -308,4 +315,5 @@ enum Frame {
 	MODIFIER = 336,
 	CONTRIBUTION = 337,
 	DEAL = 338,
+	PLATFORM = 339,
 }

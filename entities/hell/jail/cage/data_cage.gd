@@ -8,9 +8,13 @@ var sinner: SinnerData:
 		sinner = value_
 		sinner.cage = self
 
-var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
-var coord: Vector2i
+var col: CatenaData
+var row: CatenaData
+var contribution: ContributionData
+
 var neighbours: Array[CageData]
+var coord: Vector2i
+var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
 var destiny: Bozo.Destiny
 
 var status: Bozo.Cage = Bozo.Cage.NONE:
@@ -24,9 +28,18 @@ var status: Bozo.Cage = Bozo.Cage.NONE:
 			for _trait in traits:
 				sinner.soul.select_trait(_trait)
 
-var col: CatenaData
-var row: CatenaData
-var contribution: ContributionData
+var fruit: Bozo.Fruit = Bozo.Fruit.NONE:
+	set(value_):
+		if fruit != value_:
+			fruit = value_
+			
+			match fruit:
+				Bozo.Fruit.FRESH:
+					col.spectacle.cages.append(self)
+					row.spectacle.cages.append(self)
+				Bozo.Fruit.NONE:
+					col.spectacle.cages.erase(self)
+					row.spectacle.cages.erase(self)
 
 
 func _init(table_: TableData, coord_: Vector2i):
