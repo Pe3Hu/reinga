@@ -2,7 +2,8 @@ class_name AmberData
 extends TokenData
 
 
-
+var next_value: int
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.AMBER
 var type: Bozo.Amber:
 	set(value_):
 		type = value_

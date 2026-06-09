@@ -9,6 +9,7 @@ var sinner: SinnerData
 var faction: FactionData
 
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.FATE
 var type: Bozo.Fate:
 	set(value_):
 		type = value_

@@ -22,11 +22,12 @@ func apply_data() -> void:
 	sinner.data = data.sinner
 
 func _on_texture_button_pressed() -> void:
-	if gate:
-		gate.unblur_all()
-	
-	if gate:
-		data.table._on_cage_gate_selected(data)
-	if jail:
-		data.table._on_cage_jail_selected(data)
-		jail.update_visiblity_omens()
+	match Scope.layer:
+		Bozo.Layer.HELL:
+			if jail and Scope.phase == Bozo.Phase.APPRAISEMENT:
+				data.table._on_cage_jail_selected(data)
+				jail.update_visiblity_omens()
+		Bozo.Layer.GATE:
+			if gate:
+				gate.unblur_all()
+				data.table._on_cage_gate_selected(data)

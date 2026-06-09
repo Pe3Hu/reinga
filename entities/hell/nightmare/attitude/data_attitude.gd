@@ -7,6 +7,7 @@ var bowls: Array[BowlData]
 var blob_to_bowls: Dictionary
 var shifts: Array[int]
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.ATTITUIDE
 var type: Bozo.Attitude = Bozo.Attitude.INDIFFERENCE:
 	set(value_):
 		type = value_

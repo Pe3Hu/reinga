@@ -34,7 +34,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_left = -881.0
 offset_top = -375.0
-offset_right = 733.0
+offset_right = 685.0
 offset_bottom = 427.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xmjwd")
@@ -70,6 +70,7 @@ hell = NodePath("../../..")
 [node name="HBox" type="HBoxContainer" parent="UI/FrameMargin" unique_id=1457327838]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 16
 alignment = 1
 metadata/_edit_use_anchors_ = true
@@ -85,12 +86,14 @@ hell = NodePath("../../../..")
 [node name="VBox" type="VBoxContainer" parent="UI/FrameMargin/HBox" unique_id=899020654]
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_constants/separation = 12
 alignment = 1
 
 [node name="HBox" type="HBoxContainer" parent="UI/FrameMargin/HBox/VBox" unique_id=391931774]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Bank" parent="UI/FrameMargin/HBox/VBox/HBox" unique_id=388645775 node_paths=PackedStringArray("hell") instance=ExtResource("3_b2gxv")]

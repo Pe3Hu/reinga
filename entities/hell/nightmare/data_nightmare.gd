@@ -6,7 +6,15 @@ var hell: HellData
 var trials: Array[TrialData]
 var type_to_trial: Dictionary
 
+var best_tribute: TributeData
+var worst_tribute: TributeData
+var best_attitude: AttitudeData
+var worst_attitude: AttitudeData
+var best_flame: FlameData
+var worst_flame: FlameData
 
+
+#region init
 func _init(hell_: HellData) -> void:
 	hell = hell_
 	init_trials()
@@ -21,6 +29,7 @@ func add_trial(trial_: Bozo.Trial) -> void:
 	var trial = TrialData.new(self, trial_)
 	trials.append(trial)
 	type_to_trial[trial_] = trial
+#endregion
 
 func check_sin_spread() -> void:
 	var sin_to_amount: Dictionary
@@ -127,11 +136,8 @@ func implement_missing_sin(sin_to_amount_: Dictionary, sin_to_weight_: Dictionar
 		else:
 			print("fail swap_sin_type")
 
-func refill_claims() -> void:
-	for trail in trials:
-		trail.claim.refill()
-
-func find_best_and_worst_tribute() -> void:
+#region best and worst
+func update_best_and_worst_tribute() -> void:
 	var worst_value = INF
 	var worst_options = []
 	var best_value = -INF
@@ -141,17 +147,78 @@ func find_best_and_worst_tribute() -> void:
 		var value = trial.tribute.progression.current_value
 		
 		if worst_value == value:
-			worst_options.append(trial)
+			worst_options.append(trial.tribute)
 		if best_value == value:
-			best_options.append(trial)
+			best_options.append(trial.tribute)
 		if worst_value > value:
 			worst_value = value
-			worst_options = [trial]
+			worst_options = [trial.tribute]
 		if best_value < value:
 			best_value = value
-			best_options = [trial]
+			best_options = [trial.tribute]
 	
-	var best_trial = best_options.pick_random()
-	best_trial.attitude.shifts.append(Catalog.BEST_TRIBUTE_SHIFT) 
-	var worst_trial = worst_options.pick_random()
-	worst_trial.attitude.shifts.append(Catalog.WORST_TRIBUTE_SHIFT) 
+	best_tribute = best_options.pick_random()
+	worst_tribute = worst_options.pick_random()
+
+func update_best_and_worst_flame() -> void:
+	var worst_value = -INF
+	var worst_options = []
+	var best_value = INF
+	var best_options = []
+	
+	for trial in trials:
+		var value = trial.flame.progression.current_value
+		value += Catalog.flame_to_baggage[trial.flame.level]
+		
+		if worst_value == value:
+			worst_options.append(trial.flame)
+		if best_value == value:
+			best_options.append(trial.flame)
+		if worst_value < value:
+			worst_value = value
+			worst_options = [trial.flame]
+		if best_value > value:
+			best_value = value
+			best_options = [trial.flame]
+	
+	best_flame = best_options.pick_random()
+	worst_flame = worst_options.pick_random()
+
+func update_best_and_worst_attitude() -> void:
+	var worst_value = INF
+	var worst_options = []
+	var best_value = -INF
+	var best_options = []
+	
+	for trial in trials:
+		var minus_bowl = trial.attitude.blob_to_bowls[Bozo.Blob.MINUS]
+		var plus_bowl = trial.attitude.blob_to_bowls[Bozo.Blob.PLUS]
+		var minus_value = minus_bowl.get_value_with_baggage()
+		var plus_value = plus_bowl.get_value_with_baggage()
+		
+		if worst_value == minus_value:
+			worst_options.append(trial.attitude)
+		if best_value == plus_value:
+			best_options.append(trial.attitude)
+		if worst_value > minus_value:
+			worst_value = minus_value
+			worst_options = [trial.attitude]
+		if best_value < plus_value:
+			best_value = plus_value
+			best_options = [trial.attitude]
+	
+	best_attitude = best_options.pick_random()
+	worst_attitude = worst_options.pick_random()
+#endregion
+
+func reset() -> void:
+	best_tribute = null
+	worst_tribute = null
+	best_attitude = null
+	worst_attitude = null
+	best_flame = null
+	worst_flame = null
+
+func refill_claims() -> void:
+	for trail in trials:
+		trail.claim.refill()

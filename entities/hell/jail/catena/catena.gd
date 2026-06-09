@@ -5,12 +5,17 @@ class_name Catena
 var data: CatenaData:
 	set(value_):
 		data = value_
-		data.is_selected_changed.connect(_on_is_selected_changed)
-		data.z_index_changed.connect(_on_z_index_changed)
-		reset_lightning()
+		apply_data_info()
 
 var jail: Jail
 var gate: Gate
+
+
+func apply_data_info() -> void:
+	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
+		data.is_selected_changed.connect(_on_is_selected_changed)
+		data.z_index_changed.connect(_on_z_index_changed)
+		reset_lightning()
 
 func reset_lightning() -> void:
 	%Lightning.material = ShaderMaterial.new()

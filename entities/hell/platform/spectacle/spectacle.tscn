@@ -2,10 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://cnu8j5jr06iw6" path="res://entities/hell/platform/spectacle/images/ballet.png" id="1_h6rhi"]
 [ext_resource type="Script" uid="uid://h5vudn48fc8" path="res://entities/hell/platform/spectacle/spectacle.gd" id="1_qc54y"]
+[ext_resource type="Shader" uid="uid://r7uoxcu02reb" path="res://entities/hell/platform/shaders/platform rainbow.gdshader" id="2_n2teg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6rhi"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jadnw"]
+shader = ExtResource("2_n2teg")
+shader_parameter/strength = 0.75
+shader_parameter/speed = 0.35
+shader_parameter/angle = 45.0
+shader_parameter/rotate_hue = false
+
 [node name="Spectacle" type="PanelContainer" unique_id=1475546146 node_paths=PackedStringArray("icon")]
+custom_minimum_size = Vector2(24, 24)
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h6rhi")
@@ -13,7 +22,7 @@ script = ExtResource("1_qc54y")
 icon = NodePath("Icon")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1729684653]
-visible = false
+material = SubResource("ShaderMaterial_jadnw")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

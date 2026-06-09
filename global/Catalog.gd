@@ -512,6 +512,13 @@ const flame_to_heat = {
 	3: 25,
 	4: 30
 }
+
+const flame_to_baggage = {
+	1: 0,
+	2: 15,
+	3: 35,
+	4: 60
+}
 #endregion
 
 #region rank
@@ -806,6 +813,14 @@ const attitude_to_factor = {
 	Bozo.Attitude.SCORN: 1,
 }
 
+const attitude_to_baggage = {
+	Bozo.Attitude.RAPTURE: 5,
+	Bozo.Attitude.FAVOR: 2,
+	Bozo.Attitude.INDIFFERENCE: 0,
+	Bozo.Attitude.DISFAVOR: -2,
+	Bozo.Attitude.SCORN: -5,
+}
+
 const attitude_to_blob_to_attitude = {
 	Bozo.Attitude.RAPTURE: {
 		Bozo.Blob.PLUS: Bozo.Attitude.INDIFFERENCE,
@@ -856,6 +871,7 @@ const REPLETION_TICK = 0.25
 const DESIRE_DISSOLVE_DURATION: float = 0.5#1.2
 const SPASH_DURATION: float = 0.4#0.5
 const DESIRE_PROGRESS_LIMIT: float = 1.6
+const SPECTACLE_AMBER_DURATION: float = 0.8#0.5
 
 const desires = [
 	Bozo.Desire.SWORD,
@@ -987,64 +1003,64 @@ const phase_to_string = {
 #endregion
 
 #region tooltip
-var type_to_tooltip = {
-	Bozo.Sin.ANGER: Bozo.Tooltip.SIN,
-	Bozo.Sin.ENVY: Bozo.Tooltip.SIN,
-	Bozo.Sin.GREED: Bozo.Tooltip.SIN,
-	Bozo.Sin.GLUTTONY: Bozo.Tooltip.SIN,
-	Bozo.Sin.LUST: Bozo.Tooltip.SIN,
-	Bozo.Sin.PRIDE: Bozo.Tooltip.SIN,
-	Bozo.Amber.ANGER: Bozo.Tooltip.AMBER,
-	Bozo.Amber.ENVY: Bozo.Tooltip.AMBER,
-	Bozo.Amber.GREED: Bozo.Tooltip.AMBER,
-	Bozo.Amber.GLUTTONY: Bozo.Tooltip.AMBER,
-	Bozo.Amber.LUST: Bozo.Tooltip.AMBER,
-	Bozo.Amber.PRIDE: Bozo.Tooltip.AMBER,
-	Bozo.Amber.INDOLENCE: Bozo.Tooltip.AMBER,
-	Bozo.Posture.MADNESS: Bozo.Tooltip.MADNESS,
-	Bozo.Posture.OBLIVION: Bozo.Tooltip.OBLIVION,
-	Bozo.Half.LESS: Bozo.Tooltip.TRIBUTE,
-	Bozo.Half.MORE: Bozo.Tooltip.TRIBUTE,
-	Bozo.Half.DOUBLE: Bozo.Tooltip.TRIBUTE,
-	Bozo.Attitude.RAPTURE: Bozo.Tooltip.ATTITUIDE,
-	Bozo.Attitude.FAVOR: Bozo.Tooltip.ATTITUIDE,
-	Bozo.Attitude.INDIFFERENCE: Bozo.Tooltip.ATTITUIDE,
-	Bozo.Attitude.DISFAVOR: Bozo.Tooltip.ATTITUIDE,
-	Bozo.Attitude.SCORN: Bozo.Tooltip.ATTITUIDE,
-	Bozo.Trial.BATTLE: Bozo.Tooltip.TRIAL,
-	Bozo.Trial.AUCTION: Bozo.Tooltip.TRIAL,
-	Bozo.Trial.FEAST: Bozo.Tooltip.TRIAL,
-	Bozo.Trial.MASQUERADE: Bozo.Tooltip.TRIAL,
-	Bozo.Trial.THEATER: Bozo.Tooltip.TRIAL,
-	Bozo.Tooltip.FLAME: Bozo.Tooltip.FLAME,
-	Bozo.Faction.NOBILITY: Bozo.Tooltip.FACTION,
-	Bozo.Faction.RIFFRAFF: Bozo.Tooltip.FACTION,
-	Bozo.Faction.ARTISAN: Bozo.Tooltip.FACTION,
-	Bozo.Fate.HEIR: Bozo.Tooltip.FATE,
-	Bozo.Fate.COLLECTOR: Bozo.Tooltip.FATE,
-	Bozo.Fate.GOURMET: Bozo.Tooltip.FATE,
-	Bozo.Fate.DUELIST: Bozo.Tooltip.FATE,
-	Bozo.Fate.ADULTERER: Bozo.Tooltip.FATE,
-	Bozo.Fate.ACTOR: Bozo.Tooltip.FATE,
-	Bozo.Fate.BLACKSMITH: Bozo.Tooltip.FATE,
-	Bozo.Fate.TAILOR: Bozo.Tooltip.FATE,
-	Bozo.Fate.COOK: Bozo.Tooltip.FATE,
-	Bozo.Fate.MONGER: Bozo.Tooltip.FATE,
-	Bozo.Fate.EXECUTIONER: Bozo.Tooltip.FATE,
-	Bozo.Fate.THIEF: Bozo.Tooltip.FATE,
-	Bozo.Fate.SHARPIE: Bozo.Tooltip.FATE,
-	Bozo.Fate.DRUNKARD: Bozo.Tooltip.FATE,
-	Bozo.Fate.COURTESAN: Bozo.Tooltip.FATE,
-	Bozo.Tooltip.CAGE: Bozo.Tooltip.CAGE,
-	Bozo.Tooltip.SOUL: Bozo.Tooltip.SOUL,
-	Bozo.Tooltip.SINNER: Bozo.Tooltip.SINNER,
-	Bozo.Tooltip.CLOAK: Bozo.Tooltip.CLOAK,
-	Bozo.Desire.SWORD: Bozo.Tooltip.DESIRE,
-	Bozo.Desire.COIN: Bozo.Tooltip.DESIRE,
-	Bozo.Desire.WINE: Bozo.Tooltip.DESIRE,
-	Bozo.Desire.MASK: Bozo.Tooltip.DESIRE,
-	Bozo.Desire.SCROLL: Bozo.Tooltip.DESIRE,
-}
+#var type_to_tooltip = {
+	#Bozo.Sin.ANGER: Bozo.Tooltip.SIN,
+	#Bozo.Sin.ENVY: Bozo.Tooltip.SIN,
+	#Bozo.Sin.GREED: Bozo.Tooltip.SIN,
+	#Bozo.Sin.GLUTTONY: Bozo.Tooltip.SIN,
+	#Bozo.Sin.LUST: Bozo.Tooltip.SIN,
+	#Bozo.Sin.PRIDE: Bozo.Tooltip.SIN,
+	#Bozo.Amber.ANGER: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.ENVY: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.GREED: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.GLUTTONY: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.LUST: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.PRIDE: Bozo.Tooltip.AMBER,
+	#Bozo.Amber.INDOLENCE: Bozo.Tooltip.AMBER,
+	#Bozo.Posture.MADNESS: Bozo.Tooltip.MADNESS,
+	#Bozo.Posture.OBLIVION: Bozo.Tooltip.OBLIVION,
+	#Bozo.Half.LESS: Bozo.Tooltip.TRIBUTE,
+	#Bozo.Half.MORE: Bozo.Tooltip.TRIBUTE,
+	#Bozo.Half.DOUBLE: Bozo.Tooltip.TRIBUTE,
+	#Bozo.Attitude.RAPTURE: Bozo.Tooltip.ATTITUIDE,
+	#Bozo.Attitude.FAVOR: Bozo.Tooltip.ATTITUIDE,
+	#Bozo.Attitude.INDIFFERENCE: Bozo.Tooltip.ATTITUIDE,
+	#Bozo.Attitude.DISFAVOR: Bozo.Tooltip.ATTITUIDE,
+	#Bozo.Attitude.SCORN: Bozo.Tooltip.ATTITUIDE,
+	#Bozo.Trial.BATTLE: Bozo.Tooltip.TRIAL,
+	#Bozo.Trial.AUCTION: Bozo.Tooltip.TRIAL,
+	#Bozo.Trial.FEAST: Bozo.Tooltip.TRIAL,
+	#Bozo.Trial.MASQUERADE: Bozo.Tooltip.TRIAL,
+	#Bozo.Trial.THEATER: Bozo.Tooltip.TRIAL,
+	#Bozo.Tooltip.FLAME: Bozo.Tooltip.FLAME,
+	#Bozo.Faction.NOBILITY: Bozo.Tooltip.FACTION,
+	#Bozo.Faction.RIFFRAFF: Bozo.Tooltip.FACTION,
+	#Bozo.Faction.ARTISAN: Bozo.Tooltip.FACTION,
+	#Bozo.Fate.HEIR: Bozo.Tooltip.FATE,
+	#Bozo.Fate.COLLECTOR: Bozo.Tooltip.FATE,
+	#Bozo.Fate.GOURMET: Bozo.Tooltip.FATE,
+	#Bozo.Fate.DUELIST: Bozo.Tooltip.FATE,
+	#Bozo.Fate.ADULTERER: Bozo.Tooltip.FATE,
+	#Bozo.Fate.ACTOR: Bozo.Tooltip.FATE,
+	#Bozo.Fate.BLACKSMITH: Bozo.Tooltip.FATE,
+	#Bozo.Fate.TAILOR: Bozo.Tooltip.FATE,
+	#Bozo.Fate.COOK: Bozo.Tooltip.FATE,
+	#Bozo.Fate.MONGER: Bozo.Tooltip.FATE,
+	#Bozo.Fate.EXECUTIONER: Bozo.Tooltip.FATE,
+	#Bozo.Fate.THIEF: Bozo.Tooltip.FATE,
+	#Bozo.Fate.SHARPIE: Bozo.Tooltip.FATE,
+	#Bozo.Fate.DRUNKARD: Bozo.Tooltip.FATE,
+	#Bozo.Fate.COURTESAN: Bozo.Tooltip.FATE,
+	#Bozo.Tooltip.CAGE: Bozo.Tooltip.CAGE,
+	#Bozo.Tooltip.SOUL: Bozo.Tooltip.SOUL,
+	#Bozo.Tooltip.SINNER: Bozo.Tooltip.SINNER,
+	#Bozo.Tooltip.CLOAK: Bozo.Tooltip.CLOAK,
+	#Bozo.Desire.SWORD: Bozo.Tooltip.DESIRE,
+	#Bozo.Desire.COIN: Bozo.Tooltip.DESIRE,
+	#Bozo.Desire.WINE: Bozo.Tooltip.DESIRE,
+	#Bozo.Desire.MASK: Bozo.Tooltip.DESIRE,
+	#Bozo.Desire.SCROLL: Bozo.Tooltip.DESIRE,
+#}
 
 const string_to_tooltip = {
 	"sin": Bozo.Tooltip.SIN,
@@ -1079,6 +1095,7 @@ var tooltip_to_template = {
 	Bozo.Tooltip.CAGE: "Contains [ghost][meta sinner]Sinner[/meta][/ghost] and [ghost][meta cloak]Cloak[/meta][/ghost]",
 	Bozo.Tooltip.SINNER: "Shows [ghost][meta fate]Fate[/meta][/ghost], [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost] as frontside",
 	Bozo.Tooltip.CLOAK: "Shows [ghost][meta desire]Desire[/meta][/ghost] as backside",
+	Bozo.Tooltip.AMBER: "Stores %s [ghost][meta essense]Essense[/meta][/ghost]",
 }
 
 var tooltip_to_string = {
@@ -1098,6 +1115,7 @@ var tooltip_to_string = {
 	Bozo.Tooltip.CAGE: "cage",
 	Bozo.Tooltip.SINNER: "sinner",
 	Bozo.Tooltip.CLOAK: "cloak",
+	Bozo.Tooltip.AMBER: "amber",
 }
 #endregion
 
@@ -1125,7 +1143,14 @@ var token_to_color = {
 	Bozo.Token.GREED: Color.from_hsv(0.15, 0.9, 0.9),
 	Bozo.Token.GLUTTONY: Color.from_hsv(0.4, 0.9, 0.9),
 	Bozo.Token.OBLIVION: Color.SLATE_GRAY,
-	Bozo.Token.MADNESS: Color.DEEP_PINK
+	Bozo.Token.MADNESS: Color.DEEP_PINK,
+	Bozo.Amber.PRIDE: Color.from_hsv(0.75, 0.9, 0.9),
+	Bozo.Amber.ENVY: Color.from_hsv(0.08, 0.9, 0.9),
+	Bozo.Amber.ANGER: Color.from_hsv(0.0, 0.9, 0.9),
+	Bozo.Amber.LUST: Color.from_hsv(0.6, 0.9, 0.9),
+	Bozo.Amber.GREED: Color.from_hsv(0.15, 0.9, 0.9),
+	Bozo.Amber.GLUTTONY: Color.from_hsv(0.4, 0.9, 0.9),
+	Bozo.Amber.INDOLENCE: Color.from_hsv(0.0, 0.0, 0.9),
 }
 #endregion
 
@@ -1197,7 +1222,6 @@ var active_to_color = {
 	false: Color.from_rgba8(0, 0, 0, 135)
 }
 #endregion
-
 
 #region omen
 const omens = [
@@ -1413,13 +1437,35 @@ const friend_to_sign = {
 }
 #endregion
 
-
+#region indexs
 const indexs = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 const left_indexs = [0, 1, 3, 4, 6, 7]
 const right_indexs = [1, 2, 4, 5, 7, 8]
+#endregion
 
+#region spectacle
 const catena_to_spectacle = {
-	Bozo.Catena.ROW: Bozo.Spectacle.BALLET,
-	Bozo.Catena.COL: Bozo.Spectacle.PUPPETRY,
+	Bozo.Catena.ROW: Bozo.Spectacle.PUPPETRY,
+	Bozo.Catena.COL: Bozo.Spectacle.BALLET,
 	Bozo.Catena.DIAGONAL: Bozo.Spectacle.OPERA,
 }
+
+const spectacles = [
+	Bozo.Spectacle.BALLET,
+	Bozo.Spectacle.PUPPETRY,
+	Bozo.Spectacle.OPERA,
+]
+
+const spectacle_to_string = {
+	Bozo.Spectacle.BALLET: "ballet",
+	Bozo.Spectacle.PUPPETRY: "puppetry",
+	Bozo.Spectacle.OPERA: "opera",
+}
+
+const fruit_to_state = {
+	Bozo.Fruit.ROTTEN: 0,
+	Bozo.Fruit.RIPE: 1,
+	Bozo.Fruit.FRESH: 2,
+	Bozo.Fruit.IMMATURE: 3,
+}
+#endregion

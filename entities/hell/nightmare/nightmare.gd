@@ -15,11 +15,6 @@ var dissolve_dreams: Array[Dream]
 var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
 
-func reset() -> void:
-	dissolve_dreams.clear()
-	drain_tributes.clear()
-	repletion_attitudes.clear()
-	data.refill_claims()
 
 func connect_datas() -> void:
 	for _i in data.trials.size():
@@ -53,36 +48,15 @@ func end_dream_dissolve_payment(dream_: Dream) -> void:
 		Scope.next_phase()
 
 func start_drain_tributes() -> void:
-	data.find_best_and_worst_tribute()
+	data.update_best_and_worst_tribute()
+	var best_trial = data.best_tribute.trial
+	best_trial.attitude.shifts.append(Catalog.BEST_TRIBUTE_SHIFT) 
+	var worst_trial = data.worst_tribute.trial
+	worst_trial.attitude.shifts.append(Catalog.WORST_TRIBUTE_SHIFT) 
 	
 	for trial in trials:
 		trial.attitude.start_repletion()
 		trial.tribute.start_drain()
-
-func find_best_and_worst_tribute() -> void:
-	var worst_value = INF
-	var worst_options = []
-	var best_value = -INF
-	var best_options = []
-	
-	for trial in trials:
-		var value = trial.tribute.progression.data.current_value
-		
-		if worst_value == value:
-			worst_options.append(trial)
-		if best_value == value:
-			best_options.append(trial)
-		if worst_value > value:
-			worst_value = value
-			worst_options = [trial]
-		if best_value < value:
-			best_value = value
-			best_options = [trial]
-	
-	var best_trial = best_options.pick_random()
-	best_trial.attitude.shifts.append(Catalog.BEST_TRIBUTE_SHIFT) 
-	var worst_trial = worst_options.pick_random()
-	worst_trial.attitude.shifts.append(Catalog.WORST_TRIBUTE_SHIFT) 
 
 func end_tribute_drain(tribute_: Tribute) -> void:
 	drain_tributes.erase(tribute_)
@@ -95,3 +69,22 @@ func end_attitude_repletion(attitude_: Attitude) -> void:
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
 		Scope.next_phase()
+
+func reset() -> void:
+	data.reset()
+	dissolve_dreams.clear()
+	drain_tributes.clear()
+	repletion_attitudes.clear()
+	data.refill_claims()
+
+func get_progression(data_: ProgressionData) -> Progression:
+	var progression: Progression
+	var boss_string = Catalog.tooltip_to_string[data_.boss.tooltip]
+	#var trial_type = Catalog.trial_to_string[data_.boss.trial.type]  
+	var trial = type_to_trial[data_.boss.trial.type]
+	var boss = trial.get(boss_string)
+	return boss.progression
+
+func apply_attitude_shifts() -> void:
+	for trial in trials:
+		trial.attitude.apply_shifts()

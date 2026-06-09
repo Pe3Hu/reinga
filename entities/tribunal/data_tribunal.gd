@@ -53,8 +53,8 @@ func init_fates() -> void:
 				add_sinner(fate)
 	
 	hereafter.sinners.shuffle()
-	for _i in 2:
-		add_sinner(Bozo.Fate.VILLAIN)
+	#for _i in 2:
+	#	add_sinner(Bozo.Fate.VILLAIN)
 
 func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)

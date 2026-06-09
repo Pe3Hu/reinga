@@ -7,9 +7,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fxvs5"]
 
 [node name="Treasury" type="PanelContainer" unique_id=2005910419 node_paths=PackedStringArray("sort_icon")]
-custom_minimum_size = Vector2(446, 372)
-offset_right = 446.0
-offset_bottom = 372.0
+custom_minimum_size = Vector2(398, 372)
+offset_right = 32.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fxvs5")
@@ -50,5 +49,5 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/separation = 4
+theme_override_constants/separation = -2
 alignment = 1

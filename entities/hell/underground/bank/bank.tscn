@@ -114,10 +114,10 @@ layout_mode = 2
 bank = NodePath("../../../../../..")
 
 [node name="LockButton" parent="VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("bank") instance=ExtResource("5_bvxrg")]
-visible = true
 custom_minimum_size = Vector2(72, 24)
 layout_mode = 2
 text = "Lock"
 bank = NodePath("../..")
+hover_scale = Vector2(1.25, 1.14)
 
 [connection signal="pressed" from="VBoxContainer/LockButton" to="." method="_on_lock_button_pressed"]

@@ -5,6 +5,7 @@ extends TokenData
 signal association_changed
 
 var dream: DreamData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.DESIRE
 var type: Bozo.Desire:
 	set(value_):
 		type = value_

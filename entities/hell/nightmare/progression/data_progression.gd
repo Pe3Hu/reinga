@@ -17,6 +17,7 @@ var limit_value: int = 0:
 	set(value_):
 		limit_value = value_
 		emit_signal("limit_value_changed")
+var next_value: int
 
 
 func _init(boss_: Resource) -> void:

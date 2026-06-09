@@ -4,6 +4,8 @@ extends TypeData
 
 var trial: TrialData
 var progression: ProgressionData
+
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.TRIBUTE
 var type: Bozo.Half = Bozo.Half.LESS:
 	set(value_):
 		if type != value_:

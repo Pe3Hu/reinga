@@ -8,6 +8,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edm6f"]
 
 [node name="Market" type="PanelContainer" unique_id=255913063 node_paths=PackedStringArray("deals")]
+custom_minimum_size = Vector2(398, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

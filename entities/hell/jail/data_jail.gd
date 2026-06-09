@@ -15,8 +15,6 @@ func _init(hell_: HellData) -> void:
 	table.jail = self
 	plaza = PlazaData.new(self)
 	platform = PlatformData.new(self)
-	#init_cages()
-
 
 func update_traits() -> void:
 	if Scope.layer != Bozo.Layer.HELL: return

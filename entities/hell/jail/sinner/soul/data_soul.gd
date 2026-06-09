@@ -12,6 +12,7 @@ var doom: DoomData
 
 var type_to_trait: Dictionary
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.SOUL
 var traits: Array[TraitData]
 var selected_triat_types: Array[Bozo.Trait]
 

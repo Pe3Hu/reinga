@@ -2,9 +2,10 @@ class_name SinData
 extends TokenData
 
 
-var tooltip: Bozo.Tooltip = Bozo.Tooltip.SIN
 var deal: DealData
 var trait_data: TraitData 
+
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.SIN
 var type: Bozo.Sin:
 	set(value_):
 		type = value_

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rj33cooidnw1" path="res://entities/hell/platform/platform.gd" id="1_ldl54"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_4gkyp"]
-[ext_resource type="Shader" uid="uid://yhjpjlwu6i4" path="res://entities/hell/platform/shaders/platform.gdshader" id="2_dh1k7"]
+[ext_resource type="Shader" uid="uid://yhjpjlwu6i4" path="res://entities/hell/platform/shaders/platform cells.gdshader" id="2_dh1k7"]
 [ext_resource type="Shader" uid="uid://r7uoxcu02reb" path="res://entities/hell/platform/shaders/platform rainbow.gdshader" id="3_dw00x"]
 [ext_resource type="Texture2D" uid="uid://blvgsmpvw80lt" path="res://entities/hell/platform/images/lightning.png" id="4_mxqor"]
 [ext_resource type="Texture2D" uid="uid://dq14vm8pw26rn" path="res://entities/ui/frame/images/platform.png" id="6_mxqor"]
@@ -39,7 +39,7 @@ shader_parameter/speed = 0.35
 shader_parameter/angle = 45.0000021375
 shader_parameter/rotate_hue = false
 
-[node name="Platform" type="PanelContainer" unique_id=1146596007 node_paths=PackedStringArray("cells", "active_cage", "operas", "puppetrys", "ballets", "spectacles")]
+[node name="Platform" type="PanelContainer" unique_id=1146596007 node_paths=PackedStringArray("cells", "lightning", "operas", "puppetrys", "ballets", "spectacles")]
 offset_right = 86.0
 offset_bottom = 86.0
 size_flags_horizontal = 0
@@ -47,11 +47,11 @@ size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mxqor")
 script = ExtResource("1_ldl54")
 cells = NodePath("FrameMargin/Cells")
-active_cage = NodePath("Frame/FrameMargin/Cage")
-operas = [null, null]
-puppetrys = [null, null, null]
-ballets = [null, null, null]
-spectacles = [null, null, null, null, null, null, null, null]
+lightning = NodePath("Frame/FrameMargin/Lightning")
+operas = [NodePath("Opera1"), NodePath("Opera2")]
+puppetrys = [NodePath("SpectacleMargin/Puppetry/Puppetry1"), NodePath("SpectacleMargin/Puppetry/Puppetry2"), NodePath("SpectacleMargin/Puppetry/Puppetry3")]
+ballets = [NodePath("SpectacleMargin/Ballet/Ballet1"), NodePath("SpectacleMargin/Ballet/Ballet2"), NodePath("SpectacleMargin/Ballet/Ballet3")]
+spectacles = [NodePath("SpectacleMargin/Puppetry/Puppetry1"), NodePath("SpectacleMargin/Puppetry/Puppetry2"), NodePath("SpectacleMargin/Puppetry/Puppetry3"), NodePath("SpectacleMargin/Ballet/Ballet1"), NodePath("SpectacleMargin/Ballet/Ballet2"), NodePath("SpectacleMargin/Ballet/Ballet3"), NodePath("Opera1"), NodePath("Opera2")]
 
 [node name="FrameMargin" type="MarginContainer" parent="." unique_id=160128129]
 layout_mode = 2
@@ -88,8 +88,9 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="Cage" type="MarginContainer" parent="Frame/FrameMargin" unique_id=580801386]
+[node name="Lightning" type="MarginContainer" parent="Frame/FrameMargin" unique_id=580801386]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -98,7 +99,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="CageIcon" type="TextureRect" parent="Frame/FrameMargin/Cage" unique_id=376422057]
+[node name="LightningIcon" type="TextureRect" parent="Frame/FrameMargin/Lightning" unique_id=376422057]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_81jw2")
 layout_mode = 2
@@ -106,48 +107,58 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("4_mxqor")
 
-[node name="Opera1" parent="." unique_id=1729684653 instance=ExtResource("7_r8t06")]
+[node name="SpectacleMargin" type="MarginContainer" parent="." unique_id=1371695325]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+theme_override_constants/margin_left = -12
+theme_override_constants/margin_top = -8
+theme_override_constants/margin_right = -12
+theme_override_constants/margin_bottom = -8
 
-[node name="Opera2" parent="." unique_id=421682576 instance=ExtResource("7_r8t06")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="Puppetry" type="HBoxContainer" parent="." unique_id=1073121209]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 32
-
-[node name="Puppetry1" parent="Puppetry" unique_id=808217795 instance=ExtResource("7_r8t06")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Puppetry2" parent="Puppetry" unique_id=232546604 instance=ExtResource("7_r8t06")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Puppetry3" parent="Puppetry" unique_id=13129951 instance=ExtResource("7_r8t06")]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="Ballet" type="VBoxContainer" parent="." unique_id=139935819]
+[node name="Puppetry" type="VBoxContainer" parent="SpectacleMargin" unique_id=2044107116]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/separation = 32
+alignment = 1
 
-[node name="Ballet1" parent="Ballet" unique_id=1741122974 instance=ExtResource("7_r8t06")]
+[node name="Puppetry1" parent="SpectacleMargin/Puppetry" unique_id=808217795 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Puppetry2" parent="SpectacleMargin/Puppetry" unique_id=232546604 instance=ExtResource("7_r8t06")]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Ballet2" parent="Ballet" unique_id=1844315130 instance=ExtResource("7_r8t06")]
+[node name="Puppetry3" parent="SpectacleMargin/Puppetry" unique_id=13129951 instance=ExtResource("7_r8t06")]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Ballet3" parent="Ballet" unique_id=767557003 instance=ExtResource("7_r8t06")]
+[node name="Ballet" type="HBoxContainer" parent="SpectacleMargin" unique_id=746998991]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Ballet1" parent="SpectacleMargin/Ballet" unique_id=1741122974 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Ballet2" parent="SpectacleMargin/Ballet" unique_id=1844315130 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Ballet3" parent="SpectacleMargin/Ballet" unique_id=767557003 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Opera1" parent="." unique_id=421682576 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Opera2" parent="." unique_id=1729684653 instance=ExtResource("7_r8t06")]
+layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 8

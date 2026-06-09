@@ -212,9 +212,10 @@ enum Status {
 
 enum Fruit {
 	NONE = 0,
-	FRESH = 126,
+	ROTTEN  = 126,
 	RIPE  = 127,
-	ROTTEN  = 128
+	FRESH = 128,
+	IMMATURE = 129,
 }
 
 
@@ -294,7 +295,7 @@ enum Tooltip {
 	CAGE = 312,
 	SINNER = 313,
 	CLOAK = 314,
-	POSTURE = 315,
+	#POSTURE = 315,
 	JUDGMENT = 316,
 	OMEN = 317,
 }

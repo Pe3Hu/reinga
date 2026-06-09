@@ -30,6 +30,7 @@ func connect_datas() -> void:
 	bank.data = data.bank
 	market.data = data.market
 	#shelter.data = data.shelter
+	platform.data = data.jail.platform
 
 func update_size() -> void:
 	var viewport_size = get_viewport_rect().size
@@ -62,6 +63,7 @@ func execute_phase() -> void:
 			volcano.flow_plaza_update()
 			#simulate_choice()
 		Bozo.Phase.DISBURSEMENT:
+			platform.apply_performances()
 			treasury.hide_not_selected_contributions()
 			jail.apply_phase_visiblity()
 			volcano.flow_contribution_update()
@@ -85,6 +87,7 @@ func reset() -> void:
 	jail.reset()
 	treasury.reset()
 	bank.reset()
+	platform.reset()
 
 #func _process(_delta):
 	#if Input.is_action_just_pressed("ui_accept"):

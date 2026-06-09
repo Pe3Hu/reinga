@@ -32,6 +32,7 @@ var previous_value: int = 0
 const BLOB_COUNT := 6
 
 
+#region init
 func _init(attitude_: AttitudeData, type_: Bozo.Blob, side_: Bozo.Side) -> void:
 	attitude = attitude_
 	type = type_
@@ -41,9 +42,15 @@ func _init(attitude_: AttitudeData, type_: Bozo.Blob, side_: Bozo.Side) -> void:
 func init_blobs() -> void:
 	for _i in range(BLOB_COUNT):
 		blobs.append(BlobData.new(self))
+#endregion
 
 func reset() -> void:
 	value = 0
 	
 	for blob in blobs:
 		blob.is_active = false
+
+func get_value_with_baggage() -> int:
+	var baggage: int = int(value / Catalog.attitude_to_factor[attitude.type])
+	baggage += Catalog.attitude_to_baggage[attitude.type]
+	return baggage

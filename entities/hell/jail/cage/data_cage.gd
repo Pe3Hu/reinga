@@ -14,7 +14,9 @@ var contribution: ContributionData
 
 var neighbours: Array[CageData]
 var coord: Vector2i
-var type: Bozo.Tooltip = Bozo.Tooltip.CAGE
+var index: int
+
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.CAGE
 var destiny: Bozo.Destiny
 
 var status: Bozo.Cage = Bozo.Cage.NONE:
@@ -28,9 +30,10 @@ var status: Bozo.Cage = Bozo.Cage.NONE:
 			for _trait in traits:
 				sinner.soul.select_trait(_trait)
 
-var fruit: Bozo.Fruit = Bozo.Fruit.NONE:
+var fruit: Bozo.Fruit = Bozo.Fruit.ROTTEN:
 	set(value_):
 		if fruit != value_:
+			update_previous_fruit()
 			fruit = value_
 			
 			match fruit:
@@ -40,11 +43,19 @@ var fruit: Bozo.Fruit = Bozo.Fruit.NONE:
 				Bozo.Fruit.NONE:
 					col.spectacle.cages.erase(self)
 					row.spectacle.cages.erase(self)
+			
+			col.spectacle.platfrom.index_to_fruit[index] = fruit
+
+var previous_fruit: Bozo.Fruit = Bozo.Fruit.NONE:
+	set(value_):
+		previous_fruit = value_
+		pass
 
 
 func _init(table_: TableData, coord_: Vector2i):
 	table = table_
 	coord = coord_ 
+	index = table.cages.size()
 
 #region omen
 func check_destiny(destiny_: Bozo.Destiny) -> bool:
@@ -72,3 +83,6 @@ func get_family_status(family_: Bozo.Family) -> Bozo.Status:
 	var flag: bool = successes >= Catalog.family_to_success[family_]
 	return Catalog.bool_to_status[flag]
 #endregion
+
+func update_previous_fruit() -> void:
+	previous_fruit = fruit

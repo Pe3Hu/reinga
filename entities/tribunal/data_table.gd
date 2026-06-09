@@ -18,7 +18,7 @@ var coord_to_catena: Dictionary
 var active_catenas: Array[CatenaData]
 var active_cages: Array[CageData]
 
-var genius_coord: Vector2i = Vector2i(-1, -1)
+#var genius_coord: Vector2i = Vector2i(-1, -1)
 
 
 #region init
@@ -79,6 +79,7 @@ func jail_extensions() -> void:
 	add_special_catena(coord, type)
 	coord = Vector2i(-1, 1)
 	add_special_catena(coord, type)
+	pass
 
 func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 	var catena = CatenaData.new(self, coord_, type_)
@@ -93,8 +94,6 @@ func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 		var cage = coord_to_cage[cage_grid]
 		catena.cages.append(cage)
 		cage_grid += coord_
-	
-	special_catenas.append(catena)
 #endregion
 
 #region select
@@ -115,6 +114,7 @@ func reset_cage(is_all_: bool = false) -> void:
 func unselect_cage() -> void:
 	if !active_cages.is_empty():
 		var cage = active_cages.pop_front()
+		cage.table.jail.platform.undo_immature_cage(cage)
 		cage.sinner.fate.is_selected = false
 
 func detect_catena() -> void:
@@ -147,7 +147,9 @@ func reset_cages() -> void:
 
 func reset_catenas(is_locked_: bool = false) -> void:
 	if is_locked_:
-		genius_coord = active_cages.back().coord
+		var cage = active_cages.back()
+		#cage.fruit = Bozo.Fruit.IMMATURE
+		jail.platform.immatures.append(cage)
 	
 	for catena in catenas:
 		catena.is_selected = false
@@ -164,5 +166,6 @@ func _on_cage_jail_selected(cage_: CageData):
 		
 		cage_.col.is_selected = true
 		cage_.row.is_selected = true
+	
 	reset_cage()
 #endregion

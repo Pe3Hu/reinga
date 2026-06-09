@@ -5,6 +5,7 @@ extends TokenData
 signal association_changed
 
 var fate: FateData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.FACTION
 var type: Bozo.Faction:
 	set(value_):
 		type = value_

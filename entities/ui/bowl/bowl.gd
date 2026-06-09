@@ -6,25 +6,26 @@ extends Control
 var data: BowlData:
 	set(value_):
 		data = value_
+		connect_datas()
 		apply_data_info()
 
 @export var attitude: Attitude
 @export var blobs: Array[Blob]
 
 
+
+func connect_datas() -> void:
+	for i in blobs.size():
+		if i < data.blobs.size():
+			blobs[i].data = data.blobs[i]
+
 func apply_data_info() -> void:
 	data.side_changed.connect(_on_side_changed)
 	data.value_changed.connect(_on_value_changed)
 	data.is_flipped_changed.connect(_on_is_flipped_changed)
-	_connect_blobs()
 	_on_side_changed()
 	_on_value_changed()
 	#_on_is_flipped_changed()
-
-func _connect_blobs() -> void:
-	for i in blobs.size():
-		if i < data.blobs.size():
-			blobs[i].data = data.blobs[i]
 
 func _on_side_changed() -> void:
 	if is_node_ready():
@@ -52,7 +53,9 @@ func _on_is_flipped_changed() -> void:
 func _on_value_changed() -> void:
 	var shift = data.value - data.previous_value
 	switch_blob(shift)
+	
 	data.previous_value = data.value
+	
 	if data.value == Catalog.BOWL_LIMIT:
 		attitude.drain_bowl(self)
 

@@ -34,6 +34,7 @@ func _on_is_selected_changed() -> void:
 		#if sinner.cage.contribution.treasury.lock_button:
 		#sinner.cage.contribution.treasury.lock_button.update_visible()
 		sinner.cage.contribution.treasury.hell.bank.lock_button.update_visible()
+		sinner.cage.jail.hell.platform._on_is_selected_changed()
 	
 	if sinner.cage.jail:
 		sinner.soul.background.color = Catalog.active_to_color[data.is_selected]

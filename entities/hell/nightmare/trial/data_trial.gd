@@ -9,6 +9,7 @@ var tribute: TributeData
 var attitude: AttitudeData
 var flame: FlameData
 var claim: ClaimData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.TRIAL
 var type: Bozo.Trial:
 	set(value_):
 		type = value_

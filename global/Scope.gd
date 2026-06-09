@@ -17,7 +17,11 @@ var guild_level: int = 1
 
 #region plaza
 var trust_limit: int = 2
-var hope_limit: int = 3
+var hope_limit: int = 5
+
+var attitude_shift: int = 1
+var amber_shift: int = 5
+var flame_shift: int = 6
 #endregion
 
 

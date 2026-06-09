@@ -6,6 +6,7 @@ extends PanelContainer
 var data: AttitudeData:
 	set(value_):
 		data = value_
+		connect_datas()
 		apply_data_info()
 
 @export var trial: Trial
@@ -16,6 +17,23 @@ var data: AttitudeData:
 
 
 
+func connect_datas() -> void:
+	%MinusBowl.data = data.blob_to_bowls[Bozo.Blob.MINUS]
+	%PlusBowl.data = data.blob_to_bowls[Bozo.Blob.PLUS]
+
+func apply_data_info() -> void:
+	data.type_changed.connect(_on_type_changed)
+	trial.data.type_changed.connect(_on_trial_type_changed)
+	_on_type_changed()
+	_on_trial_type_changed()
+
+func _on_type_changed() -> void:
+	if data.type == 0: return
+	icon.texture = load("res://entities/hell/nightmare/attitude/images/%s.png" % Catalog.attitude_to_string[data.type]) 
+
+func _on_trial_type_changed() -> void:
+	if trial.data.type == 0: return
+	icon.modulate = Catalog.trial_to_color[trial.data.type]
 
 func start_repletion() -> void:
 	var shift = Catalog.half_to_shift[trial.tribute.data.type]
@@ -28,6 +46,7 @@ func apply_shifts() -> void:
 		trial.nightmare.end_attitude_repletion(self)
 		data.ban_type = Bozo.Attitude.NONE
 		return
+	
 	var shift = data.shifts.pop_back()
 	var factor = Catalog.attitude_to_factor[data.type]
 	var bowl: Bowl = %PlusBowl
@@ -58,22 +77,3 @@ func drain_bowl(bowl_: Bowl) -> void:
 	if data.ban_type == Bozo.Attitude.NONE:
 		data.type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
 		data.ban_type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
-
-func apply_data_info() -> void:
-	data.type_changed.connect(_on_type_changed)
-	trial.data.type_changed.connect(_on_trial_type_changed)
-	_connect_bowls()
-	_on_type_changed()
-	_on_trial_type_changed()
-
-func _connect_bowls() -> void:
-	%MinusBowl.data = data.blob_to_bowls[Bozo.Blob.MINUS]
-	%PlusBowl.data = data.blob_to_bowls[Bozo.Blob.PLUS]
-
-func _on_type_changed() -> void:
-	if data.type == 0: return
-	icon.texture = load("res://entities/hell/nightmare/attitude/images/%s.png" % Catalog.attitude_to_string[data.type]) 
-
-func _on_trial_type_changed() -> void:
-	if trial.data.type == 0: return
-	icon.modulate = Catalog.trial_to_color[trial.data.type]
