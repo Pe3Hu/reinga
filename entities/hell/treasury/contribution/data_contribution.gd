@@ -7,6 +7,7 @@ signal windrose_changed
 var treasury: TreasuryData
 var cage: CageData
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.CONTRIBUTION
 var type: Bozo.Windrose:
 	set(value_):
 		type = value_

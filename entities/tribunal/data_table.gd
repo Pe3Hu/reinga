@@ -114,7 +114,8 @@ func reset_cage(is_all_: bool = false) -> void:
 func unselect_cage() -> void:
 	if !active_cages.is_empty():
 		var cage = active_cages.pop_front()
-		cage.table.jail.platform.undo_immature_cage(cage)
+		if cage.table.jail:
+			cage.table.jail.platform.undo_immature_cage(cage)
 		cage.sinner.fate.is_selected = false
 
 func detect_catena() -> void:

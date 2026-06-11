@@ -6,6 +6,7 @@ signal is_selected_changed
 
 var platfrom: PlatformData
 var catena: CatenaData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.SPECTACLE
 var type: Bozo.Spectacle:
 	set(value_):
 		type = value_

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dd33wupdgckon" path="res://entities/hell/underground/bank/bank.gd" id="1_s3piu"]
 [ext_resource type="PackedScene" uid="uid://betsvirwxjqy7" path="res://entities/ui/token/amber/amber.tscn" id="2_3vq1a"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_bvxrg"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_ipowr"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_2q8u8"]
 [ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="5_bvxrg"]
 
@@ -19,6 +20,10 @@ script = ExtResource("1_s3piu")
 ambers = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Anger"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Envy"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Greed"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Gluttony"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Lust"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Pride"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Indolence")]
 postures = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Madness"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Oblivion")]
 lock_button = NodePath("VBoxContainer/LockButton")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_ipowr")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=574513681]
 layout_mode = 2

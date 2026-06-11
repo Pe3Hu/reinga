@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rj33cooidnw1" path="res://entities/hell/platform/platform.gd" id="1_ldl54"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_4gkyp"]
 [ext_resource type="Shader" uid="uid://yhjpjlwu6i4" path="res://entities/hell/platform/shaders/platform cells.gdshader" id="2_dh1k7"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_p5fmy"]
 [ext_resource type="Shader" uid="uid://r7uoxcu02reb" path="res://entities/hell/platform/shaders/platform rainbow.gdshader" id="3_dw00x"]
 [ext_resource type="Texture2D" uid="uid://blvgsmpvw80lt" path="res://entities/hell/platform/images/lightning.png" id="4_mxqor"]
 [ext_resource type="Texture2D" uid="uid://dq14vm8pw26rn" path="res://entities/ui/frame/images/platform.png" id="6_mxqor"]
@@ -52,6 +53,10 @@ operas = [NodePath("Opera1"), NodePath("Opera2")]
 puppetrys = [NodePath("SpectacleMargin/Puppetry/Puppetry1"), NodePath("SpectacleMargin/Puppetry/Puppetry2"), NodePath("SpectacleMargin/Puppetry/Puppetry3")]
 ballets = [NodePath("SpectacleMargin/Ballet/Ballet1"), NodePath("SpectacleMargin/Ballet/Ballet2"), NodePath("SpectacleMargin/Ballet/Ballet3")]
 spectacles = [NodePath("SpectacleMargin/Puppetry/Puppetry1"), NodePath("SpectacleMargin/Puppetry/Puppetry2"), NodePath("SpectacleMargin/Puppetry/Puppetry3"), NodePath("SpectacleMargin/Ballet/Ballet1"), NodePath("SpectacleMargin/Ballet/Ballet2"), NodePath("SpectacleMargin/Ballet/Ballet3"), NodePath("Opera1"), NodePath("Opera2")]
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_p5fmy")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="FrameMargin" type="MarginContainer" parent="." unique_id=160128129]
 layout_mode = 2

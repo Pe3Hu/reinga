@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_b5ia5"]
 [ext_resource type="PackedScene" uid="uid://0kmvjsv7skyh" path="res://entities/hell/treasury/contribution/candle/candle.tscn" id="2_cicqm"]
 [ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/grey paint.gdshader" id="2_luy0l"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_mwge5"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="3_10cs7"]
 [ext_resource type="Texture2D" uid="uid://pcnivgl4olgp" path="res://entities/ui/frame/images/contribution.png" id="3_b5ia5"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_cicqm"]
@@ -37,6 +38,10 @@ gluttony = NodePath("Margin/Box/Gluttony")
 madness = NodePath("Margin/Box/Madness")
 oblivion = NodePath("Margin/Box/Oblivion")
 tribute = NodePath("Margin/Box/NotSins/Tribute")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_mwge5")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="ActiveBackground" type="ColorRect" parent="." unique_id=345851033]
 unique_name_in_owner = true

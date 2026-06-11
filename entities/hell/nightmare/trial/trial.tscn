@@ -22,7 +22,7 @@ script = ExtResource("1_sh5ag")
 attitude = NodePath("MarginContainer/HBox/Attitude")
 tribute = NodePath("MarginContainer/HBox/Tribute")
 flame = NodePath("MarginContainer/HBox/Flame")
-claim = NodePath("MarginContainer/HBox/VBox/Claim")
+claim = NodePath("MarginContainer/HBox/Claim")
 
 [node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_51ln6")]
 layout_mode = 2
@@ -67,45 +67,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 trial = NodePath("../../..")
 
-[node name="VBox" type="VBoxContainer" parent="MarginContainer/HBox" unique_id=980774418]
-custom_minimum_size = Vector2(0, 32)
+[node name="Claim" parent="MarginContainer/HBox" unique_id=499230753 node_paths=PackedStringArray("trial") instance=ExtResource("4_no32l")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="HeaderContainer" type="MarginContainer" parent="MarginContainer/HBox/VBox" unique_id=1323181639]
-custom_minimum_size = Vector2(128, 32)
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 0
-
-[node name="HeaderColorRect" type="ColorRect" parent="MarginContainer/HBox/VBox/HeaderContainer" unique_id=1206119297]
-unique_name_in_owner = true
-layout_mode = 2
-color = Color(0.9411765, 0.9019608, 0.54901963, 1)
-
-[node name="HeaderLabel" type="RichTextLabel" parent="MarginContainer/HBox/VBox/HeaderContainer/HeaderColorRect" unique_id=1239696281]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-bbcode_enabled = true
-text = "Auction"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Claim" parent="MarginContainer/HBox/VBox" unique_id=499230753 node_paths=PackedStringArray("trial") instance=ExtResource("4_no32l")]
-layout_mode = 2
-trial = NodePath("../../../..")
+trial = NodePath("../../..")
 
 [node name="Attitude" parent="MarginContainer/HBox" unique_id=925080586 node_paths=PackedStringArray("trial") instance=ExtResource("2_w5v66")]
 layout_mode = 2

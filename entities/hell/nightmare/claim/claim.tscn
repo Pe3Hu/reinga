@@ -2,35 +2,73 @@
 
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="1_eejge"]
 [ext_resource type="Script" uid="uid://brntlor2gwmt5" path="res://entities/hell/nightmare/claim/claim.gd" id="1_iriit"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_ovff2"]
 
-[node name="Claim" type="MarginContainer" unique_id=499230753 node_paths=PackedStringArray("sins")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xiexw"]
+
+[node name="Claim" type="PanelContainer" unique_id=2839468 node_paths=PackedStringArray("sins")]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xiexw")
+script = ExtResource("1_iriit")
+sins = [NodePath("VBox/MarginSins/Sins/Sin1"), NodePath("VBox/MarginSins/Sins/Sin2"), NodePath("VBox/MarginSins/Sins/Sin3")]
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_ovff2")]
+layout_mode = 2
+target = NodePath("..")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=585816458]
+layout_mode = 2
+
+[node name="HeaderContainer" type="MarginContainer" parent="VBox" unique_id=927070215]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="HeaderColorRect" type="ColorRect" parent="VBox/HeaderContainer" unique_id=634213517]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.9411765, 0.9019608, 0.54901963, 1)
+
+[node name="HeaderLabel" type="RichTextLabel" parent="VBox/HeaderContainer/HeaderColorRect" unique_id=1741164877]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+bbcode_enabled = true
+text = "Auction"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginSins" type="MarginContainer" parent="VBox" unique_id=499230753]
 custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
-script = ExtResource("1_iriit")
-sins = [NodePath("Sins/Sin1"), NodePath("Sins/Sin2"), NodePath("Sins/Sin3")]
 
-[node name="Sins" type="HBoxContainer" parent="." unique_id=1138538666]
+[node name="Sins" type="HBoxContainer" parent="VBox/MarginSins" unique_id=1138538666]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Sin1" parent="Sins" unique_id=1672584037 instance=ExtResource("1_eejge")]
-visible = true
+[node name="Sin1" parent="VBox/MarginSins/Sins" unique_id=1672584037 instance=ExtResource("1_eejge")]
 layout_mode = 2
-type = 3
-value = 2
 
-[node name="Sin2" parent="Sins" unique_id=2074934885 instance=ExtResource("1_eejge")]
-visible = true
+[node name="Sin2" parent="VBox/MarginSins/Sins" unique_id=2074934885 instance=ExtResource("1_eejge")]
 layout_mode = 2
-type = 2
-value = 1
 
-[node name="Sin3" parent="Sins" unique_id=992287235 instance=ExtResource("1_eejge")]
-visible = true
+[node name="Sin3" parent="VBox/MarginSins/Sins" unique_id=992287235 instance=ExtResource("1_eejge")]
 layout_mode = 2
-type = 5

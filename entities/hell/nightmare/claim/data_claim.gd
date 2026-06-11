@@ -4,6 +4,7 @@ extends Resource
 
 var trial: TrialData
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.CLAIM
 var sins: Array[SinData]
 var type_to_sin: Dictionary
 var sit_to_weight: Dictionary

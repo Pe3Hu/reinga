@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cnu8j5jr06iw6" path="res://entities/hell/platform/spectacle/images/ballet.png" id="1_h6rhi"]
 [ext_resource type="Script" uid="uid://h5vudn48fc8" path="res://entities/hell/platform/spectacle/spectacle.gd" id="1_qc54y"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_jadnw"]
 [ext_resource type="Shader" uid="uid://r7uoxcu02reb" path="res://entities/hell/platform/shaders/platform rainbow.gdshader" id="2_n2teg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6rhi"]
@@ -20,6 +21,10 @@ offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_h6rhi")
 script = ExtResource("1_qc54y")
 icon = NodePath("Icon")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_jadnw")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1729684653]
 material = SubResource("ShaderMaterial_jadnw")

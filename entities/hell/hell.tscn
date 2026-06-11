@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cioo6abb1k8yp" path="res://entities/ui/frame/images/hell.png" id="3_3bli8"]
 [ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="3_b2gxv"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
-[ext_resource type="PackedScene" uid="uid://q3fe4113ir2i" path="res://entities/hell/platform/shaders/platform.tscn" id="6_gxyx2"]
+[ext_resource type="PackedScene" uid="uid://q3fe4113ir2i" path="res://entities/hell/platform/platform.tscn" id="6_gxyx2"]
 [ext_resource type="PackedScene" uid="uid://bic8fb8vsph13" path="res://entities/hell/underground/market/market.tscn" id="7_b2gxv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmjwd"]
@@ -105,6 +105,7 @@ hell = NodePath("../../../../../..")
 [node name="BlankPanel" type="PanelContainer" parent="UI/FrameMargin/HBox/VBox/HBox" unique_id=411404646]
 custom_minimum_size = Vector2(218, 218)
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3bli8")
 
 [node name="Treasury" parent="UI/FrameMargin/HBox/VBox" unique_id=2005910419 node_paths=PackedStringArray("hell") instance=ExtResource("3_mcit4")]

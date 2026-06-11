@@ -10,16 +10,75 @@ var focused_interact: TooltipInteract
 
 
 func _input(event):
-	if event.is_action_pressed("right_click"):
-		on_right_click(event.position)
+	if event is InputEventMouseButton and event.is_action_pressed("right_click"):
+		on_right_click(event.global_position)
 
 func on_right_click(mouse_pos: Vector2):
 	clear()
-	var data = get_tooltip_data()
+	var hovered = pick_control_at(mouse_pos)
+	var target = find_tooltip_target(hovered)
+	if target == null: return
+	var data = build_tooltip_data(target)
 	if data == null: return
 	var source_rect = Rect2(mouse_pos, Vector2.ZERO)
 	show_root(data, source_rect)
 
+func pick_control_at(global_pos: Vector2) -> Control:
+	return _pick_deepest_control(get_tree().root, global_pos)
+
+func _pick_deepest_control(node: Node, global_pos: Vector2) -> Control:
+	if node is CanvasItem and not (node as CanvasItem).is_visible_in_tree():
+		return null
+	for i in range(node.get_child_count() - 1, -1, -1):
+		var child_pick := _pick_deepest_control(node.get_child(i), global_pos)
+		if child_pick:
+			return child_pick
+	if node is Control:
+		var control := node as Control
+		if control.mouse_filter != Control.MOUSE_FILTER_IGNORE \
+				and control.get_global_rect().has_point(global_pos):
+			return control
+	return null
+
+
+func find_tooltip_target(hovered: Control) -> Control:
+	if hovered == null: return null
+	var cage_fallback: Control = null
+	var current: Node = hovered
+	while current:
+		if current is Control:
+			var control := current as Control
+			if control is TooltipInteract:
+				var interact_target = control.get_resolved_target()
+				if interact_target and not _is_excluded_tooltip_target(interact_target):
+					if interact_target is Cage:
+						cage_fallback = interact_target
+					elif _control_provides_tooltip(interact_target):
+						return interact_target
+			elif not _is_excluded_tooltip_target(control) and _control_provides_tooltip(control):
+				if control is Cage:
+					cage_fallback = control
+				else:
+					return control
+		current = current.get_parent()
+	return cage_fallback
+
+func _is_excluded_tooltip_target(control: Control) -> bool:
+	return control is Sinner \
+		or control is Cloak #\
+		#or control is Soul \
+		#or control is Dream \
+		#or control is Doom
+
+func _control_provides_tooltip(control: Control) -> bool:
+	if _is_excluded_tooltip_target(control):
+		return false
+	#if control is Platform or control is Spectacle:
+	#	return control.data != null
+	var data = control.get("data")
+	if data != null and data.get("tooltip") != null:
+		return true
+	return false
 
 func show_root(data: TooltipData, source_rect: Rect2) -> Tooltip:
 	clear()
@@ -33,8 +92,8 @@ func show_child(parent: Tooltip, data: TooltipData, pos: Vector2) -> Tooltip:
 	if parent.child:
 		parent.child.destroy_branch()
 	
-	if data.text.contains("%s "):
-		data.text = data.text.replace("%s ", "")
+	if data.descritipion.contains("%s "):
+		data.descritipion = data.descritipion.replace("%s ", "")
 	
 	var tooltip := create_tooltip(data, parent)
 	parent.child = tooltip
@@ -70,31 +129,42 @@ func clear():
 		root_tooltip = null
 
 func get_target_tooltip_type(target: Control) -> Bozo.Tooltip:
-	return target.data.tooltip
+	#if target is Platform and target.data:
+	#	return target.data.tooltip
+	if target is Spectacle and target.data:
+		return target.data.tooltip
+	var data = target.get("data")
+	if data != null and data.get("tooltip") != null:
+		return data.tooltip
+	return Bozo.Tooltip.NONE
 
-func get_tooltip_data() -> TooltipData:
-	if interacts.is_empty(): return null
-	focused_interact = interacts.back()
-	var target_type = get_target_tooltip_type(focused_interact.target)
+func build_tooltip_data(target: Control) -> TooltipData:
+	var target_type = get_target_tooltip_type(target)
+	if target_type == Bozo.Tooltip.NONE: return null
 	var data = TooltipData.new()
-	data.type = target_type#Catalog.type_to_tooltip[target_type]
-	data.text = TooltipManager.get_template(data.type)
+	data.type = target_type
+	var descritipion = TooltipManager.get_template(data.type)
 	
 	match data.type:
 		Bozo.Tooltip.SIN:
-			data.text = data.text % Catalog.sin_to_string[focused_interact.target.data.type].capitalize()
+			var text_with_color = Helper.get_colored_sin(target.data.type)
+			descritipion = descritipion % text_with_color
 			
-			if focused_interact.target.get_parent().get_parent() is Claim:
-				data.text = data.text.replace("Produces", "Consumes")
+			#if target.get_parent().get_parent() is Claim:
+			#	descritipion = descritipion.replace("Produces", "Consumes")
 		Bozo.Tooltip.AMBER:
-			data.text = data.text % Catalog.amber_to_string[focused_interact.target.data.type].capitalize()
-			
-		#Bozo.Tooltip.MADNESS:
-			#data.text = data.text % Catalog.posture_to_string[target.type]
-		#Bozo.Tooltip.OBLIVION:
-		#	data.text = data.text % Catalog.posture_to_string[focused_interact.target.data.type]
+			var text_with_color = Helper.get_colored_amber(target.data.type)
+			descritipion = descritipion % text_with_color
+		Bozo.Tooltip.SPECTACLE:
+			if target.data.type in Catalog.spectacle_to_string:
+				descritipion = descritipion % Catalog.spectacle_to_string[target.data.type].capitalize()
+		Bozo.Tooltip.OMEN:
+			if target.data.type in Catalog.omen_to_string:
+				descritipion = descritipion % Catalog.omen_to_string[target.data.type].capitalize()
 	
-	data.text = Catalog.tooltip_to_string[data.type].capitalize() + "\n" + data.text
+	if not Catalog.tooltip_to_string.has(data.type): return null
+	
+	data.descritipion = descritipion
 	return data
 
 func get_template(type_: Bozo.Tooltip) -> String:

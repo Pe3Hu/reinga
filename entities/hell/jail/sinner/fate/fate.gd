@@ -50,10 +50,10 @@ func _on_is_selected_changed() -> void:
 func focus() -> void:
 	#unfocus()
 	#label.text = "[pulse freq=0.66 color=#5b5b5b ease=-2.0]%s" % label.text
-	label.text = "[outline_size=4][outline_color=white][color=black]%s" % Catalog.fate_to_string[data.type].capitalize()
+	label.text = Helper.get_focused_text(Catalog.fate_to_string[data.type].capitalize())
 
 func unfocus() -> void:
-	label.text = "[outline_size=4][outline_color=black]%s" % Catalog.fate_to_string[data.type].capitalize()
+	label.text =  Helper.get_unfocused_text(Catalog.fate_to_string[data.type].capitalize())
 
 func _on_association_changed() -> void:
 	apply_association()

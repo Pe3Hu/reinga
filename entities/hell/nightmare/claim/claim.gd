@@ -1,5 +1,5 @@
 class_name Claim
-extends MarginContainer
+extends PanelContainer
 
 
 var data: ClaimData:
@@ -21,3 +21,7 @@ func connect_datas() -> void:
 		var sin_data = data.sins[_i]
 		sin_token.data = sin_data
 		type_to_token[sin_data.type] = sin_token
+
+func apply_type() -> void:
+	%HeaderColorRect.color = Catalog.trial_to_color[data.trial.type]
+	%HeaderLabel.text = Catalog.trial_to_string[data.trial.type].capitalize()

@@ -2,13 +2,15 @@
 class_name Tooltip
 extends PanelContainer
 
+
 const PIN_DELAY := 0.6
 const MOVE_THRESHOLD := 2.0
 const FADE_TIME := 0.15
 const META_DELAY := 0.1
 const EDGE_PADDING := 8.0
 
-@export var label: RichTextLabel
+@export var header_label: RichTextLabel
+@export var descritipion_label: RichTextLabel
 @export var close_button: TextureButton
 
 var data: TooltipData
@@ -27,27 +29,31 @@ var source_rect: Rect2
 
 
 func _ready():
-	label.autowrap_mode = TextServer.AUTOWRAP_OFF
-	label.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	%CloseTimer.wait_time = Catalog.TOOLTIP_DURATION
+	header_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	header_label.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	descritipion_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	descritipion_label.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 func setup(d: TooltipData, p: Tooltip):
 	data = d
 	parent = p
+	%CloseTimer.start()
 
-	label.bbcode_enabled = true
-	label.text = _apply_template(data.text)
+	header_label.text = _apply_template(data.header)
+	descritipion_label.text = _apply_template(data.descritipion)
+
 	update_size_to_fit_text()
-
-	label.meta_hover_started.connect(_on_meta_hover)
-	label.meta_hover_ended.connect(_on_meta_exit)
+	header_label.meta_hover_started.connect(_on_meta_hover)
+	header_label.meta_hover_ended.connect(_on_meta_exit)
+	descritipion_label.meta_hover_started.connect(_on_meta_hover)
+	descritipion_label.meta_hover_ended.connect(_on_meta_exit)
 
 	modulate.a = 0.0
 	show()
 
 	_fade(1.0)
 
-
-# --- TEMPLATE PARSING ---
 
 func _apply_template(text: String) -> String:
 	var regex := RegEx.new()
@@ -65,9 +71,7 @@ func _apply_template(text: String) -> String:
 
 	return result
 
-
-# --- META HOVER ---
-
+#region meta
 func _on_meta_hover(meta):
 	pending_meta = meta
 
@@ -79,17 +83,13 @@ func _on_meta_hover(meta):
 
 
 func _spawn_pending_meta():
-	if pending_meta == null:
-		return
-
+	if pending_meta == null: return
 	var mouse := get_viewport().get_mouse_position()
-
-	if not _is_mouse_in_interest_area(mouse):
-		return
-
+	if not _is_mouse_in_interest_area(mouse): return
 	var data_ := _get_meta_tooltip(pending_meta)
-
 	child = TooltipManager.show_child(self, data_, mouse)
+	%CloseTimer.stop()
+	%CloseTimer.start()
 
 
 func _on_meta_exit(_meta):
@@ -99,21 +99,17 @@ func _on_meta_exit(_meta):
 		child.destroy_branch()
 		child = null
 
-
-# --- META DATA ---
-
 func _get_meta_tooltip(meta) -> TooltipData:
 	var d := TooltipData.new()
 	d.type = Catalog.string_to_tooltip[meta]
-	d.text = TooltipManager.get_template(d.type)
+	d.header = meta
+	d.descritipion = TooltipManager.get_template(d.type)
 	return d
+#endregion
 
-
-# --- LIFECYCLE ---
-
+#region LIFECYCLE
 func _process(delta):
-	if pinned:
-		return
+	if pinned: return
 
 	var mouse := get_viewport().get_mouse_position()
 	var moved := mouse.distance_to(last_mouse_pos)
@@ -146,7 +142,7 @@ func _fade(value: float):
 
 	opacity_tween = create_tween()
 	opacity_tween.tween_property(self, "modulate:a", value, FADE_TIME)
-
+#endregion
 
 func _is_mouse_in_interest_area(mouse: Vector2) -> bool:
 	if source_rect.grow(EDGE_PADDING).has_point(mouse):
@@ -170,7 +166,7 @@ func update_size_to_fit_text():
 	# Получаем текущий шрифт и размер
 	var font = get_theme_font("normal_font")
 	var font_size = get_theme_font_size("normal_font_size")
-	var visible_text = label.get_parsed_text()
+	var visible_text = descritipion_label.get_parsed_text()
 
 	# Calculate the size (returns a Vector2)
 	var text_size = font.get_string_size(visible_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size)
@@ -182,13 +178,15 @@ func update_size_to_fit_text():
 	#size.y = label.get_content_height()
 
 
+#region close
 func close() -> void:
 	close_button.visible = false
 	TooltipManager.clear()
-	
+	%CloseTimer.stop()
 
 func _on_button_pressed() -> void:
 	close()
 
 func _on_close_timer_timeout() -> void:
 	close()
+#endregion

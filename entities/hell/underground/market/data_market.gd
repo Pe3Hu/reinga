@@ -6,6 +6,7 @@ extends Resource
 signal order_changed
 
 var hell: HellData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.MARKET
 var deals: Array[DealData]
 var type_to_deal: Dictionary
 var level: int = 1

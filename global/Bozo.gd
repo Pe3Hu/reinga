@@ -229,8 +229,6 @@ enum Spectacle {
 	PUPPETRY = 157,
 }
 
-
-
 enum Phase {
 	NONE = 0,
 	ENDOWMENT = 200,
@@ -247,6 +245,7 @@ enum Relationship {
 	ALLY = 215,
 	ENEMY = 216,
 }
+
 #217-218 faction
 
 enum Modifier {
@@ -298,6 +297,38 @@ enum Tooltip {
 	#POSTURE = 315,
 	JUDGMENT = 316,
 	OMEN = 317,
+	LEADER = 114,
+	GENIUS = 115,
+	LAYMAN = 116,
+	EXILE = 117,
+	PARENT = 118,
+	CHILD = 119,
+	MOTHER = 120,
+	FATHER = 121,
+	SON = 122,
+	DAUGHTER = 123,
+	BANK = 318,
+	MARKET = 319,
+	DEAL = 320,
+	PLATFORM = 321,
+	SPECTACLE = 322,
+	BALLET = 155,
+	OPERA = 156,
+	PUPPETRY = 157,
+	CONTRIBUTION = 323,
+	NEIGHBOR = 324,
+	CATENA = 325,
+	TRAIT = 326,
+	TORTURE = 327,
+	FEAR = 20,
+	HORROR = 21,
+	GUILT = 22,
+	REPOSE = 23,
+	PERMANENT = 328,
+	TRANSIENT = 329,
+	ECLIPSE = 330,
+	BROTHERHOOD = 110,
+	GUILD = 111,
 }
 
 enum Frame {

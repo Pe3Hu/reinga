@@ -7,6 +7,7 @@ var hell: HellData
 var ambers: Array[AmberData]
 var postures: Array[PostureData]
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.BANK
 var type_to_amber: Dictionary
 var type_to_posture: Dictionary
 

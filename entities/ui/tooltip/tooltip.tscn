@@ -19,11 +19,17 @@ metadata/_custom_type_script = "uid://dgmvmh3mg133w"
 script = ExtResource("3_a3sp5")
 metadata/_custom_type_script = "uid://roq4lan4ctto"
 
-[node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("label", "close_button")]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wnfyf"]
+color = Color(1, 1, 1, 1)
+grow_begin = 2.0
+grow_end = 2.0
+
+[node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("header_label", "descritipion_label", "close_button")]
 theme_override_styles/panel = SubResource("StyleBoxFlat_f81pm")
 script = ExtResource("1_f81pm")
-label = NodePath("MarginContainer/RichTextLabel")
-close_button = NodePath("MarginContainer/RichTextLabel/CloseButton")
+header_label = NodePath("MarginContainer/Labels/Header")
+descritipion_label = NodePath("MarginContainer/Labels/Descritipion")
+close_button = NodePath("MarginContainer/CloseButton")
 
 [node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_mx6om")]
 layout_mode = 2
@@ -43,8 +49,13 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=1036358874]
-custom_minimum_size = Vector2(0, 32)
+[node name="Labels" type="VBoxContainer" parent="MarginContainer" unique_id=1854794941]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="RichTextLabel" parent="MarginContainer/Labels" unique_id=1036358874]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(1, 1, 1, 1)
@@ -53,7 +64,6 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "Test
-test long text
 "
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -61,23 +71,43 @@ vertical_alignment = 1
 custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7")]
 meta_underlined = false
 
-[node name="CloseButton" type="TextureButton" parent="MarginContainer/RichTextLabel" unique_id=929539297]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Labels" unique_id=1381856893]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_wnfyf")
+
+[node name="Descritipion" type="RichTextLabel" parent="MarginContainer/Labels" unique_id=1757038826]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -8.0
-offset_bottom = 8.0
-grow_horizontal = 0
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "test long text
+"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7")]
+meta_underlined = false
+
+[node name="CloseButton" type="TextureButton" parent="MarginContainer" unique_id=929539297]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 texture_normal = ExtResource("5_2onvb")
 texture_pressed = ExtResource("4_3u3o7")
 texture_hover = ExtResource("4_3u3o7")
 texture_focused = ExtResource("5_2onvb")
 
 [node name="CloseTimer" type="Timer" parent="." unique_id=918154694]
-wait_time = 7.0
-autostart = true
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
 
-[connection signal="pressed" from="MarginContainer/RichTextLabel/CloseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/CloseButton" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CloseTimer" to="." method="_on_close_timer_timeout"]

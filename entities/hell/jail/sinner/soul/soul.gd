@@ -18,7 +18,6 @@ var data: SoulData:
 
 var traits: Array[Trait]
 
-var type: Bozo.Tooltip = Bozo.Tooltip.SOUL
 
 
 #region init

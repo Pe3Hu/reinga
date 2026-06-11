@@ -7,6 +7,7 @@ var data: TrialData:
 	set(value_):
 		data = value_
 		connect_datas()
+		apply_type()
 
 @export var nightmare: Nightmare
 
@@ -21,11 +22,8 @@ func connect_datas() -> void:
 	tribute.data = data.tribute
 	flame.data = data.flame
 	claim.data = data.claim
-	
-	apply_type()
 
 func apply_type() -> void:
-	%HeaderColorRect.color = Catalog.trial_to_color[data.type]
-	%HeaderLabel.text = Catalog.trial_to_string[data.type].capitalize()
+	claim.apply_type()
 	tribute.icon.modulate = Catalog.trial_to_color[data.type]
 	flame.icon.modulate = Catalog.trial_to_color[data.type]

@@ -1,7 +1,8 @@
+HSeparator
 VBoxContainer
+PanelContainer
 HBoxContainer
 MarginContainer
-PanelContainer
 TextureRect
 Control
 CanvasLayer

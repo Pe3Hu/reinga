@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b243osiwvkuef" path="res://entities/hell/underground/market/market.gd" id="1_cojst"]
 [ext_resource type="PackedScene" uid="uid://crlket5dp8m2r" path="res://entities/hell/underground/deal/deal.tscn" id="1_exak4"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_edm6f"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_k6yil"]
 [ext_resource type="Texture2D" uid="uid://cre5gnwu26xcp" path="res://entities/ui/frame/images/market.png" id="3_k6yil"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_edm6f"]
@@ -25,6 +26,10 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_edm6f")
 script = ExtResource("1_cojst")
 deals = [NodePath("MarginContainer/Deals/Deal1"), NodePath("MarginContainer/Deals/Deal2"), NodePath("MarginContainer/Deals/Deal3"), NodePath("MarginContainer/Deals/Deal4"), NodePath("MarginContainer/Deals/Deal5"), NodePath("MarginContainer/Deals/Deal6")]
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_k6yil")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_edm6f")]
 layout_mode = 2

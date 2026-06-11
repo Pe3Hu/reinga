@@ -60,3 +60,23 @@ func formula_c(x_: int, factor_: int = 4, offset_: int = 1) -> int:
 
 func formula_d(x_: int, factor_: int = 6, offset_: int = 1) -> int:
 	return factor_ * (x_ + offset_)
+
+func get_focused_text(origin_: String) -> String:
+	var result = "[color=black][outline_size=4][outline_color=white]%s" % origin_
+	return result
+
+func get_unfocused_text(origin_: String) -> String:
+	var result = "[color=white][outline_size=4][outline_color=black]%s" % origin_
+	return result
+
+func get_colored_sin(type_: Bozo.Sin) -> String:
+	var sin_color = Catalog.sin_to_color[type_].to_html(false)
+	var sin_text = Catalog.sin_to_string[type_].capitalize()
+	var result = "[color=%s]%s[/color]" % [sin_color, sin_text]
+	return result
+
+func get_colored_amber(type_: Bozo.Amber) -> String:
+	var amber_color = Catalog.amber_to_color[type_].to_html(false)
+	var amber_text = Catalog.amber_to_string[type_].capitalize()
+	var result = "[color=%s]%s[/color]" % [amber_color, amber_text]
+	return result
