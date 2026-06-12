@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://82moekcjcay1"
-path="res://.godot/imported/rapture.png-66f9c10f6f49f6530323506d37707c04.ctex"
+uid="uid://yg2piovotx04"
+path="res://.godot/imported/scorn.png-b42b086911ea1ed32208675e57bd7b81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/hell/nightmare/attitude/images/rapture.png"
-dest_files=["res://.godot/imported/rapture.png-66f9c10f6f49f6530323506d37707c04.ctex"]
+source_file="res://entities/hell/nightmare/attitude/images/crown/scorn.png"
+dest_files=["res://.godot/imported/scorn.png-b42b086911ea1ed32208675e57bd7b81.ctex"]
 
 [params]
 

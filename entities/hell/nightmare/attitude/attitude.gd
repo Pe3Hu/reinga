@@ -10,7 +10,8 @@ var data: AttitudeData:
 		apply_data_info()
 
 @export var trial: Trial
-@export var icon: TextureRect
+@export var crown_icon: TextureRect
+@export var face_icon: TextureRect
 
 
 @export var bowls: Array[Bowl]
@@ -29,11 +30,14 @@ func apply_data_info() -> void:
 
 func _on_type_changed() -> void:
 	if data.type == 0: return
-	icon.texture = load("res://entities/hell/nightmare/attitude/images/%s.png" % Catalog.attitude_to_string[data.type]) 
+	face_icon.texture = load("res://entities/hell/nightmare/attitude/images/face/%s.png" % Catalog.attitude_to_string[data.type]) 
+	crown_icon.texture = load("res://entities/hell/nightmare/attitude/images/crown/%s.png" % Catalog.attitude_to_string[data.type]) 
 
 func _on_trial_type_changed() -> void:
 	if trial.data.type == 0: return
-	icon.modulate = Catalog.trial_to_color[trial.data.type]
+	face_icon.modulate = Catalog.trial_to_color[trial.data.type]
+	crown_icon.modulate = Catalog.trial_to_color[trial.data.type]
+	crown_icon.modulate.a = 0.7
 
 func start_repletion() -> void:
 	var shift = Catalog.half_to_shift[trial.tribute.data.type]

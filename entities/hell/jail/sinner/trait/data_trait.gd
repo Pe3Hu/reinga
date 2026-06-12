@@ -7,6 +7,7 @@ signal type_changed
 signal is_selected_changed
 
 var soul: SoulData
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.TRAIT
 var type: Bozo.Trait:
 	set(value_):
 		if type != value_:

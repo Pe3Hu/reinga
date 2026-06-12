@@ -100,14 +100,27 @@ func _on_meta_exit(_meta):
 		child = null
 
 func _get_meta_tooltip(meta) -> TooltipData:
-	var d := TooltipData.new()
-	d.type = Catalog.string_to_tooltip[meta]
-	d.header = meta
-	d.descritipion = TooltipManager.get_template(d.type)
-	return d
+	var child_tooltip := TooltipData.new()
+	child_tooltip.type = Catalog.string_to_tooltip[meta]
+	child_tooltip.header = meta
+	var descritipion = TooltipManager.get_template(child_tooltip.type)
+	var tooltip_type = Catalog.string_to_tooltip[meta]
+	
+	match tooltip_type:
+		Bozo.Tooltip.SIN:
+			descritipion = descritipion + "[ghost][meta essense]Essense[/meta][/ghost]"
+		Bozo.Tooltip.AMBER:
+			descritipion = descritipion.replace("[meta essense]%s[/meta]", "[ghost][meta essense]Essense[/meta][/ghost]")
+		Bozo.Tooltip.SPECTACLE:
+			if descritipion.contains(" %s,"):
+				descritipion = descritipion.replace(" %s,", " [i]something[/i],")
+	
+	
+	child_tooltip.descritipion = descritipion
+	return child_tooltip
 #endregion
 
-#region LIFECYCLE
+#region lifecycle
 func _process(delta):
 	if pinned: return
 
@@ -148,17 +161,15 @@ func _is_mouse_in_interest_area(mouse: Vector2) -> bool:
 	if source_rect.grow(EDGE_PADDING).has_point(mouse):
 		return true
 
-	var t: Tooltip = self
-	while t:
-		if t.get_global_rect().grow(EDGE_PADDING).has_point(mouse):
-			return true
-		t = t.child
+	var tooltip: Tooltip = self
+	while tooltip:
+		if tooltip.get_global_rect().grow(EDGE_PADDING).has_point(mouse): return true
+		tooltip = tooltip.child
 
-	t = parent
-	while t:
-		if t.get_global_rect().grow(EDGE_PADDING).has_point(mouse):
-			return true
-		t = t.parent
+	tooltip = parent
+	while tooltip:
+		if tooltip.get_global_rect().grow(EDGE_PADDING).has_point(mouse): return true
+		tooltip = tooltip.parent
 
 	return false
 
@@ -173,6 +184,10 @@ func update_size_to_fit_text():
 	var width = text_size.x + 16
 	# Устанавливаем размер (добавляем небольшой отступ)
 	size.x = width
+	
+	if data.type == Bozo.Tooltip.FAMILY or data.type == Bozo.Tooltip.DESTINY:
+		size.y += text_size.y * 3 
+		descritipion_label.custom_minimum_size.y += text_size.y * 3
 	
 	# Высоту можно получить через get_content_height()
 	#size.y = label.get_content_height()

@@ -297,6 +297,8 @@ enum Tooltip {
 	#POSTURE = 315,
 	JUDGMENT = 316,
 	OMEN = 317,
+	DESTINY = 112,
+	FAMILY = 113,
 	LEADER = 114,
 	GENIUS = 115,
 	LAYMAN = 116,
@@ -329,6 +331,7 @@ enum Tooltip {
 	ECLIPSE = 330,
 	BROTHERHOOD = 110,
 	GUILD = 111,
+	USEFUL =  331,
 }
 
 enum Frame {

@@ -11,7 +11,7 @@ var family: OmenData
 func _init(soul_: SoulData) -> void:
 	soul = soul_
 	
-	#roll_omens()
+	roll_omens()
 
 func roll_omens() -> void:
 	var options: Array[Bozo.Omen]

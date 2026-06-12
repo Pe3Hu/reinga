@@ -21,10 +21,6 @@ ambers = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/A
 postures = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Madness"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Oblivion")]
 lock_button = NodePath("VBoxContainer/LockButton")
 
-[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_ipowr")]
-layout_mode = 2
-target = NodePath("..")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=574513681]
 layout_mode = 2
 theme_override_constants/separation = -4
@@ -32,6 +28,10 @@ theme_override_constants/separation = -4
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1933898007]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ipowr")
+
+[node name="TooltipInteract" parent="VBoxContainer/PanelContainer" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_ipowr")]
+layout_mode = 2
+target = NodePath("../../..")
 
 [node name="Frame" parent="VBoxContainer/PanelContainer" unique_id=716478958 instance=ExtResource("2_bvxrg")]
 layout_mode = 2

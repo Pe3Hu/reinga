@@ -60,7 +60,8 @@ func _init(table_: TableData, coord_: Vector2i):
 #region omen
 func check_destiny(destiny_: Bozo.Destiny) -> bool:
 	if destiny_ == Bozo.Destiny.GENIUS:
-		return table.genius_coord == coord
+		return table.jail.platform.freshs.has(self)
+		#return table.genius_coord == coord
 	
 	return destiny == destiny_
 

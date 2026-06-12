@@ -27,17 +27,18 @@ func pick_control_at(global_pos: Vector2) -> Control:
 	return _pick_deepest_control(get_tree().root, global_pos)
 
 func _pick_deepest_control(node: Node, global_pos: Vector2) -> Control:
-	if node is CanvasItem and not (node as CanvasItem).is_visible_in_tree():
-		return null
+	if node is CanvasItem and not (node as CanvasItem).is_visible_in_tree(): return null
+	
 	for i in range(node.get_child_count() - 1, -1, -1):
 		var child_pick := _pick_deepest_control(node.get_child(i), global_pos)
-		if child_pick:
-			return child_pick
+		if child_pick: return child_pick
+	
 	if node is Control:
 		var control := node as Control
 		if control.mouse_filter != Control.MOUSE_FILTER_IGNORE \
 				and control.get_global_rect().has_point(global_pos):
 			return control
+	
 	return null
 
 
@@ -71,13 +72,11 @@ func _is_excluded_tooltip_target(control: Control) -> bool:
 		#or control is Doom
 
 func _control_provides_tooltip(control: Control) -> bool:
-	if _is_excluded_tooltip_target(control):
-		return false
+	if _is_excluded_tooltip_target(control): return false
 	#if control is Platform or control is Spectacle:
 	#	return control.data != null
 	var data = control.get("data")
-	if data != null and data.get("tooltip") != null:
-		return true
+	if data != null and data.get("tooltip") != null: return true
 	return false
 
 func show_root(data: TooltipData, source_rect: Rect2) -> Tooltip:
@@ -91,9 +90,6 @@ func show_root(data: TooltipData, source_rect: Rect2) -> Tooltip:
 func show_child(parent: Tooltip, data: TooltipData, pos: Vector2) -> Tooltip:
 	if parent.child:
 		parent.child.destroy_branch()
-	
-	if data.descritipion.contains("%s "):
-		data.descritipion = data.descritipion.replace("%s ", "")
 	
 	var tooltip := create_tooltip(data, parent)
 	parent.child = tooltip
@@ -143,6 +139,7 @@ func build_tooltip_data(target: Control) -> TooltipData:
 	if target_type == Bozo.Tooltip.NONE: return null
 	var data = TooltipData.new()
 	data.type = target_type
+	if !Catalog.tooltip_to_string.has(data.type): return null
 	var descritipion = TooltipManager.get_template(data.type)
 	
 	match data.type:
@@ -157,12 +154,29 @@ func build_tooltip_data(target: Control) -> TooltipData:
 			descritipion = descritipion % text_with_color
 		Bozo.Tooltip.SPECTACLE:
 			if target.data.type in Catalog.spectacle_to_string:
-				descritipion = descritipion % Catalog.spectacle_to_string[target.data.type].capitalize()
+				var trigger_string = Catalog.spectacle_to_string[target.data.type]
+				descritipion = descritipion.replace("[meta trigger]", "[meta %s]" % trigger_string)
+			
+				#var spectacle_string = Catalog.spectacle_to_string[target.data.type]
+				#var spectacle_meta = "[ghost][meta %s]%s[/meta][/ghost]" % [spectacle_string, spectacle_string.capitalize()]
+				#descritipion = descritipion % spectacle_meta #descritipion % Catalog.spectacle_to_string[target.data.type].capitalize()
 		Bozo.Tooltip.OMEN:
-			if target.data.type in Catalog.omen_to_string:
-				descritipion = descritipion % Catalog.omen_to_string[target.data.type].capitalize()
-	
-	if not Catalog.tooltip_to_string.has(data.type): return null
+			descritipion = TooltipManager.get_template(Bozo.Tooltip.OMEN)
+			var trigger_string = Catalog.omen_to_string[target.data.subtype]
+			descritipion = descritipion.replace("[meta trigger]", "[meta %s]" % trigger_string)
+			var omen_string = Catalog.omen_to_string[target.data.type]
+			var omen_meta = "[ghost][meta %s]%s[/meta][/ghost]" % [omen_string, omen_string.capitalize()]
+			
+			descritipion = descritipion % omen_meta
+			#if target.data.type in Catalog.omen_to_string:
+			#	var omen_descritipion = get_template(target.data.type)
+			#	descritipion = omen_descritipion + descritipion# % Catalog.omen_to_string[target.data.type].capitalize()
+		Bozo.Tooltip.TRAIT:
+			var trigger_string = Catalog.trait_to_string[target.data.type]
+			descritipion = descritipion.replace("[meta trigger]", "[meta %s]" % trigger_string)
+			var side_type = Catalog.trait_to_cage[target.data.type]
+			var side_string = Catalog.cage_to_string[side_type].capitalize()
+			descritipion = descritipion % side_string
 	
 	data.descritipion = descritipion
 	return data

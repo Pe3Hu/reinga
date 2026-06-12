@@ -2,31 +2,44 @@
 
 [ext_resource type="Script" uid="uid://m42emkfyqb0a" path="res://entities/hell/nightmare/attitude/attitude.gd" id="1_wh6ds"]
 [ext_resource type="PackedScene" uid="uid://do7x0nsb3iqqq" path="res://entities/ui/bowl/bowl.tscn" id="2_20sca"]
-[ext_resource type="Texture2D" uid="uid://c7clt6v7ftlp" path="res://entities/hell/nightmare/attitude/images/indifference.png" id="3_rah6n"]
+[ext_resource type="Texture2D" uid="uid://bmvi5cmfkmj5r" path="res://entities/hell/nightmare/attitude/images/crown/favor.png" id="3_2e10a"]
+[ext_resource type="Texture2D" uid="uid://c7clt6v7ftlp" path="res://entities/hell/nightmare/attitude/images/face/indifference.png" id="3_rah6n"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_dlfou"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rah6n"]
 
-[node name="Attitude" type="PanelContainer" unique_id=925080586 node_paths=PackedStringArray("icon", "bowls")]
+[node name="Attitude" type="PanelContainer" unique_id=925080586 node_paths=PackedStringArray("crown_icon", "face_icon", "bowls")]
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rah6n")
 script = ExtResource("1_wh6ds")
-icon = NodePath("Icon")
-type = 96
+crown_icon = NodePath("MarginContainer/CrownIcon")
+face_icon = NodePath("FaceIcon")
 bowls = [NodePath("MinusBowl"), NodePath("PlusBowl")]
 
 [node name="MinusBowl" parent="." unique_id=2091172175 node_paths=PackedStringArray("attitude") instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
 attitude = NodePath("..")
-type = 91
 
 [node name="PlusBowl" parent="." unique_id=21642768 node_paths=PackedStringArray("attitude") instance=ExtResource("2_20sca")]
 unique_name_in_owner = true
 layout_mode = 2
 attitude = NodePath("..")
-side = 93
 
-[node name="Icon" type="TextureRect" parent="." unique_id=1730307282]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=525962650]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = -24
+
+[node name="CrownIcon" type="TextureRect" parent="MarginContainer" unique_id=597872843]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_2e10a")
+
+[node name="FaceIcon" type="TextureRect" parent="." unique_id=1730307282]
 unique_name_in_owner = true
 modulate = Color(0.59607846, 0.9843137, 0.59607846, 1)
 layout_mode = 2

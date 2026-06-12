@@ -10,4 +10,15 @@ extends Resource
 		header = Helper.get_focused_text(value_.capitalize())
 @export var descritipion: String:
 	set(value_):
-		descritipion = Helper.get_unfocused_text(value_)
+		var text = value_
+		
+		#if text.contains(" %s, "):
+		#	text = text.replace("%s", ",")
+		
+		if text.contains("%s"):
+			text = text.replace("%s", "")
+		
+		#if text.contains(" ,"):
+		#	text = text.replace(" ,", ",")
+		
+		descritipion = Helper.get_unfocused_text(text)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfqamp8yxtvvb"
-path="res://.godot/imported/scorn.png-27737fc6ff97ab7666af88f40daec8ef.ctex"
+uid="uid://bqu5cwtvekm24"
+path="res://.godot/imported/favor.png-d7e98e7fa406618924a0b5d9a5e25853.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/hell/nightmare/attitude/images/scorn.png"
-dest_files=["res://.godot/imported/scorn.png-27737fc6ff97ab7666af88f40daec8ef.ctex"]
+source_file="res://entities/hell/nightmare/attitude/images/face/favor.png"
+dest_files=["res://.godot/imported/favor.png-d7e98e7fa406618924a0b5d9a5e25853.ctex"]
 
 [params]
 

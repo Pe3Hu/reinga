@@ -33,6 +33,7 @@ func init_tokens() -> void:
 		add_posture(posture_data)
 	
 	_on_type_changed()
+	update_tooltipe_size()
 
 func reset_tokens() -> void:
 	while !tokens.is_empty():
@@ -59,6 +60,14 @@ func update_columns():
 	
 	if data.type == Bozo.Trait.FEAR or data.type == Bozo.Trait.GUILT:
 		token_grid.columns = tokens.size()
+
+func update_tooltipe_size() -> void:
+	var margins = Catalog.trait_to_margin[data.type]
+	var l = Catalog.TRAIT_MARGIN_OFFSET
+	%TooltipMargin.add_theme_constant_override("margin_top", margins[0] * l)
+	%TooltipMargin.add_theme_constant_override("margin_right", margins[1] * l)
+	%TooltipMargin.add_theme_constant_override("margin_bottom", margins[2] * l)
+	%TooltipMargin.add_theme_constant_override("margin_left", margins[3] * l)
 #endregion
 
 func connect_signals() -> void:

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://del3f1urt64p" path="res://entities/hell/jail/sinner/trait/trait.gd" id="1_l0bnk"]
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="2_27ekl"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="3_mjuel"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_p6mic"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj1t3"]
 
@@ -14,6 +15,14 @@ script = ExtResource("1_l0bnk")
 token_grid = NodePath("Tokens")
 sin_scene = ExtResource("2_27ekl")
 posture_scene = ExtResource("3_mjuel")
+
+[node name="TooltipMargin" type="MarginContainer" parent="." unique_id=2113125366]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TooltipInteract" parent="TooltipMargin" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_p6mic")]
+layout_mode = 2
+target = NodePath("../..")
 
 [node name="Tokens" type="GridContainer" parent="." unique_id=801101660]
 unique_name_in_owner = true

@@ -1,9 +1,9 @@
+MarginContainer
+TextureRect
 HSeparator
 VBoxContainer
 PanelContainer
 HBoxContainer
-MarginContainer
-TextureRect
 Control
 CanvasLayer
 ColorRect
@@ -12,4 +12,3 @@ Timer
 Sprite2D
 RichTextLabel
 MeshInstance3D
-Label

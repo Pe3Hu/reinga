@@ -2,6 +2,7 @@ class_name JudgmentData
 extends TokenData
 
 
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.JUDGMENT
 var type: Bozo.Judgment:
 	set(value_):
 		type = value_

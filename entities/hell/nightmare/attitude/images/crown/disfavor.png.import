@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v1yimbs4fboc"
-path="res://.godot/imported/disfavor.png-8467ac0b03469b7a93884e1d11cce8ad.ctex"
+uid="uid://b17qpef8ltduu"
+path="res://.godot/imported/disfavor.png-de37111c3086dfb50b7e6c26595af89a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/hell/nightmare/attitude/images/disfavor.png"
-dest_files=["res://.godot/imported/disfavor.png-8467ac0b03469b7a93884e1d11cce8ad.ctex"]
+source_file="res://entities/hell/nightmare/attitude/images/crown/disfavor.png"
+dest_files=["res://.godot/imported/disfavor.png-de37111c3086dfb50b7e6c26595af89a.ctex"]
 
 [params]
 
