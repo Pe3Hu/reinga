@@ -41,7 +41,6 @@ func _pick_deepest_control(node: Node, global_pos: Vector2) -> Control:
 	
 	return null
 
-
 func find_tooltip_target(hovered: Control) -> Control:
 	if hovered == null: return null
 	var cage_fallback: Control = null

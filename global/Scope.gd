@@ -4,6 +4,9 @@ extends Node
 @warning_ignore("unused_signal")
 signal layer_changed
 
+
+var sanctuary: SanctuaryData
+
 var is_pause: bool# = true
 var phase: Bozo.Phase = Bozo.Phase.ENDOWMENT
 var phase_timer: Timer
@@ -19,8 +22,8 @@ var guild_level: int = 1
 var trust_limit: int = 2
 var hope_limit: int = 5
 
-var attitude_shift: int = 1
 var amber_shift: int = 5
+var attitude_shift: int = 1
 var flame_shift: int = 6
 #endregion
 

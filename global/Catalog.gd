@@ -950,44 +950,6 @@ const guild_level_to_index = {
 }
 #endregion
 
-#region shelter
-const PRESSURE_OFFSET_L = 16
-
-const modifiers = [
-	Bozo.Modifier.MISS,
-	Bozo.Modifier.CRIT,
-	Bozo.Modifier.MEGACRIT,
-	Bozo.Modifier.ULTRACRIT,
-]
-
-const modifier_to_string = {
-	Bozo.Modifier.NONE: "none",
-	Bozo.Modifier.MISS: "miss",
-	Bozo.Modifier.CRIT: "crit",
-	Bozo.Modifier.MEGACRIT: "megacrit",
-	Bozo.Modifier.ULTRACRIT: "ultracrit",
-}
-
-const level_modifier_to_percent = {
-	1: {
-		Bozo.Modifier.MISS: 3,
-		Bozo.Modifier.CRIT: 5,
-		Bozo.Modifier.MEGACRIT: 1,
-		Bozo.Modifier.ULTRACRIT: 0,
-		Bozo.Modifier.NONE: 91,
-	}
-}
-
-const modifier_to_factor = {
-	Bozo.Modifier.MISS: 0,
-	Bozo.Modifier.NONE: 1,
-	Bozo.Modifier.CRIT: 2,
-	Bozo.Modifier.MEGACRIT: 3,
-	Bozo.Modifier.ULTRACRIT: 4,
-	
-}
-#endregion
-
 #region phase
 const phases = [
 	Bozo.Phase.ENDOWMENT,
@@ -1063,6 +1025,7 @@ const string_to_tooltip = {
 	"repose": Bozo.Tooltip.REPOSE,
 	"horror": Bozo.Tooltip.HORROR,
 	"guilt": Bozo.Tooltip.GUILT,
+	"catena": Bozo.Tooltip.CATENA,
 	"chain": Bozo.Tooltip.CATENA,
 	"torture": Bozo.Tooltip.TORTURE,
 	"permanent": Bozo.Tooltip.PERMANENT,
@@ -1192,16 +1155,6 @@ const GATE_FATE_SIZE = 9
 const GATE_FATE_MAX = 2
 #endregion
 
-#region market
-const market_in_range = {
-	1: [8, 10]#[1, 1]#
-}
-
-const market_out_range = {
-	1: [4, 6]
-}
-#endregion
-
 #region token
 var token_to_color = {
 	Bozo.Token.PRIDE: Color.from_hsv(0.75, 0.9, 0.9),
@@ -1237,6 +1190,7 @@ const frame_to_string = {
 	Bozo.Frame.CONTRIBUTION: "contribution",
 	Bozo.Frame.DEAL: "deal",
 	Bozo.Frame.PLATFORM: "platform",
+	Bozo.Frame.SANCTUARY: "sanctuary",
 }
 
 const frame_to_region = {
@@ -1244,14 +1198,13 @@ const frame_to_region = {
 	Bozo.Frame.TRIAL: 120,
 	Bozo.Frame.CAGE: 84,
 	Bozo.Frame.HELL: 200,
-	#Bozo.Frame.JAIL: ,
 	Bozo.Frame.BANK: 72,
 	Bozo.Frame.SHELTER: 128,
-	#Bozo.Frame.TREASURY: 240,
 	Bozo.Frame.MARKET: 128,
 	Bozo.Frame.CONTRIBUTION: 36,
 	Bozo.Frame.DEAL: 36,
 	Bozo.Frame.PLATFORM: 136,
+	Bozo.Frame.SANCTUARY: 124,
 }
 
 const frame_to_patch = {
@@ -1259,14 +1212,13 @@ const frame_to_patch = {
 	Bozo.Frame.TRIAL: 40,
 	Bozo.Frame.CAGE: 21,
 	Bozo.Frame.HELL: 68,
-	#Bozo.Frame.JAIL: ,
 	Bozo.Frame.BANK: 34,#not 44,
 	Bozo.Frame.SHELTER: 48,
-	#Bozo.Frame.TREASURY: 78,
 	Bozo.Frame.MARKET: 60,
 	Bozo.Frame.CONTRIBUTION: 12,
 	Bozo.Frame.DEAL: 12,
 	Bozo.Frame.PLATFORM: 66,
+	Bozo.Frame.SANCTUARY: 60,
 }
 #endregion
 
@@ -1545,5 +1497,109 @@ const fruit_to_state = {
 	Bozo.Fruit.RIPE: 1,
 	Bozo.Fruit.FRESH: 2,
 	Bozo.Fruit.IMMATURE: 3,
+}
+#endregion
+
+#region overlord
+const overlord_to_trial = {
+	Bozo.Overlord.CALTHEX: Bozo.Trial.THEATER,
+	Bozo.Overlord.KHARZEN: Bozo.Trial.BATTLE,
+	Bozo.Overlord.VIRELLO: Bozo.Trial.AUCTION,
+	Bozo.Overlord.XALVORR: Bozo.Trial.FEAST,
+	Bozo.Overlord.SIREXIL: Bozo.Trial.MASQUERADE,
+}
+
+const trial_to_overlord = {
+	Bozo.Overlord.CALTHEX: Bozo.Trial.THEATER,
+	Bozo.Overlord.KHARZEN: Bozo.Trial.BATTLE,
+	Bozo.Overlord.VIRELLO: Bozo.Trial.AUCTION,
+	Bozo.Overlord.XALVORR: Bozo.Trial.FEAST,
+	Bozo.Overlord.SIREXIL: Bozo.Trial.MASQUERADE,
+}
+
+const overlord_to_string = {
+	Bozo.Overlord.CALTHEX: "calthex",
+	Bozo.Overlord.KHARZEN: "kharzen",
+	Bozo.Overlord.VIRELLO: "virello",
+	Bozo.Overlord.XALVORR: "xalvorr",
+	Bozo.Overlord.SIREXIL: "sirexil",
+	Bozo.Overlord.MARVONE: "marvone"
+}
+
+const overlord_to_modifier = {
+	Bozo.Overlord.XALVORR: [
+		Bozo.Modifier.MISS,
+		Bozo.Modifier.CRIT,
+		Bozo.Modifier.MEGACRIT,
+		Bozo.Modifier.ULTRACRIT,
+	],
+	Bozo.Overlord.VIRELLO: [
+		Bozo.Modifier.SIN,
+		Bozo.Modifier.AMBER,
+	],
+}
+
+const level_to_modifier_to_range = {
+	0: {
+		Bozo.Modifier.SIN: [8, 10],#[1, 1]#
+		Bozo.Modifier.AMBER: [4, 6],#[1, 1]
+	}
+}
+#endregion
+
+#region modifier
+const PRESSURE_OFFSET_L = 16
+
+const modifiers = [
+	Bozo.Modifier.MISS,
+	Bozo.Modifier.CRIT,
+	Bozo.Modifier.MEGACRIT,
+	Bozo.Modifier.ULTRACRIT,
+	Bozo.Modifier.SIN,
+	Bozo.Modifier.AMBER,
+]
+
+const modifier_to_string = {
+	Bozo.Modifier.NONE: "none",
+	Bozo.Modifier.MISS: "miss",
+	Bozo.Modifier.CRIT: "crit",
+	Bozo.Modifier.MEGACRIT: "megacrit",
+	Bozo.Modifier.ULTRACRIT: "ultracrit",
+	Bozo.Modifier.SIN: "sin",
+	Bozo.Modifier.AMBER: "amber",
+	Bozo.Modifier.GENIUS: "genius",
+	Bozo.Modifier.EXILE: "exile",
+	Bozo.Modifier.LAYMAN: "layman",
+	Bozo.Modifier.LEADER: "leader",
+	Bozo.Modifier.PARENT: "parent",
+	Bozo.Modifier.CHILD: "child",
+	#Bozo.Modifier.: "",
+}
+
+const level_modifier_to_percent = {
+	0: {
+		Bozo.Modifier.MISS: 3,
+		Bozo.Modifier.CRIT: 5,
+		Bozo.Modifier.MEGACRIT: 1,
+		Bozo.Modifier.ULTRACRIT: 0,
+		Bozo.Modifier.NONE: 91,
+	}
+}
+
+const omen_to_percent = {
+	Bozo.Modifier.PARENT: 15,
+	Bozo.Modifier.CHILD: 10,
+	Bozo.Modifier.LEADER: 11,
+	Bozo.Modifier.GENIUS: 11,
+	Bozo.Modifier.LAYMAN: 44,
+	Bozo.Modifier.EXILE: 44,
+}
+
+const modifier_to_factor = {
+	Bozo.Modifier.MISS: 0,
+	Bozo.Modifier.NONE: 1,
+	Bozo.Modifier.CRIT: 2,
+	Bozo.Modifier.MEGACRIT: 3,
+	Bozo.Modifier.ULTRACRIT: 4,
 }
 #endregion

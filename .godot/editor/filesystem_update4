@@ -1,16 +1,46 @@
-res://entities/hell/underground/bank/bank.tscn
+res://entities/sanctuary/sanctuary.tscn
+res://entities/herald/shaders/grey paint.gdshader
+res://entities/hell/jail/catena/catena.gdshader
+res://entities/hell/treasury/contribution/candle/shaders/ball.gdshader
 res://entities/hell/platform/shaders/platform cells.gdshader
 res://entities/hell/platform/shaders/platform rainbow.gdshader
-res://global/Catalog.gd
-res://entities/ui/tooltip/data_tooltip.gd
-res://global/TooltipManager.gd
-res://entities/ui/tooltip/tooltip.tscn
-res://entities/ui/tooltip/tooltip.gd
-res://entities/hell/jail/sinner/doom/data_doom.gd
-res://entities/hell/jail/cage/data_cage.gd
+res://entities/herald/shaders/white room.gdshader
+res://entities/sanctuary/shader/matrix.gdshader
+res://entities/sanctuary/shader/pink coffee.gdshader
+res://entities/sanctuary/shader/red orange circle borders.gdshader
+res://entities/herald/shaders/halo.gdshader
+res://entities/hell/treasury/contribution/candle/shaders/contribution border.gdshader
+res://entities/herald/shaders/herald.gdshader
+res://entities/herald/shaders/grey swamp.gdshader
+res://entities/herald/shaders/main menu.gdshader
+res://entities/herald/shaders/red waterfall.gdshader
+res://entities/herald/shaders/romb.gdshader
+res://entities/herald/shaders/red landscape.gdshader
+res://entities/herald/shaders/red landscape 0.gdshader
+res://entities/sanctuary/gate/shader/portal.gdshader
+res://entities/sanctuary/gate/shader/gate blur.gdshader
+res://entities/sanctuary/shader/sea.gdshader
+res://entities/ui/parallax/parallax.gdshader
+res://entities/inferno/void.gdshader
+res://entities/inferno/inferno.gdshader
+res://entities/hell/treasury/contribution/candle/shaders/blue red flame.gdshader
+res://entities/hell/treasury/contribution/candle/spiral.gdshader
+res://entities/world/world.tscn
 res://global/Bozo.gd
-res://entities/hell/jail/sinner/trait/trait.tscn
-res://entities/hell/jail/sinner/trait/data_trait.gd
-res://entities/hell/jail/sinner/trait/trait.gd
-res://entities/ui/token/judgment/judgment.tscn
-res://entities/ui/token/judgment/data_judgment.gd
+res://entities/world/world.gd
+res://entities/ui/transition/data_transition.gd
+res://entities/sanctuary/sanctuary.gd
+res://entities/hell/underground/shelter/shelter.tscn
+res://entities/hell/underground/shelter/modifier/modifier.tscn
+res://entities/hell/underground/shelter/data_shelter.gd
+res://entities/sanctuary/data_sanctuary.gd
+res://entities/world/data_world.gd
+res://entities/hell/underground/shelter/modifier/data_modifier.gd
+res://entities/hell/data_hell.gd
+res://global/Scope.gd
+res://global/Catalog.gd
+res://entities/hell/underground/market/data_market.gd
+res://entities/hell/underground/shelter/modifier/modifier.gd
+res://entities/sanctuary/modifier/modifier.tscn
+res://entities/sanctuary/modifier/modifier.gd
+res://entities/sanctuary/modifier/data_modifier.gd

@@ -7,6 +7,7 @@ extends Resource
 		header = Catalog.tooltip_to_string[type]
 @export var header: String:
 	set(value_):
+		print(value_)
 		header = Helper.get_focused_text(value_.capitalize())
 @export var descritipion: String:
 	set(value_):

@@ -102,7 +102,7 @@ func _on_meta_exit(_meta):
 func _get_meta_tooltip(meta) -> TooltipData:
 	var child_tooltip := TooltipData.new()
 	child_tooltip.type = Catalog.string_to_tooltip[meta]
-	child_tooltip.header = meta
+	#child_tooltip.header = meta
 	var descritipion = TooltipManager.get_template(child_tooltip.type)
 	var tooltip_type = Catalog.string_to_tooltip[meta]
 	

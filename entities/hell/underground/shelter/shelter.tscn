@@ -2,62 +2,87 @@
 
 [ext_resource type="Script" uid="uid://bcsqvg2h4wwnm" path="res://entities/hell/underground/shelter/shelter.gd" id="1_26dln"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_om41d"]
-[ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/hell/underground/shelter/modifier/modifier.tscn" id="2_wqbuq"]
-[ext_resource type="Texture2D" uid="uid://dcvto1glcsxp4" path="res://entities/ui/frame/images/shelter.png" id="3_byuj7"]
+[ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/sanctuary/modifier/modifier.tscn" id="2_wqbuq"]
+[ext_resource type="Texture2D" uid="uid://b4tk8mqujterh" path="res://entities/ui/frame/images/sanctuary.png" id="3_byuj7"]
+[ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="4_uroqt"]
+[ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="5_2k4me"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wqbuq"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwo48"]
+shader = ExtResource("4_uroqt")
+shader_parameter/chars = ExtResource("5_2k4me")
+shader_parameter/columns = 50.0
+shader_parameter/trail_color = Color(0.9, 0.09900001, 0.09900001, 1)
+shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
+
 [node name="Shelter" type="PanelContainer" unique_id=526715784 node_paths=PackedStringArray("ultracrit", "megacrit", "crit", "misscrit")]
-custom_minimum_size = Vector2(260, 128)
+custom_minimum_size = Vector2(754, 572)
 offset_right = 260.0
 offset_bottom = 128.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_wqbuq")
 script = ExtResource("1_26dln")
-ultracrit = NodePath("MarginContainer/Modifiers/Ultracrit")
-megacrit = NodePath("MarginContainer/Modifiers/Megacrit")
-crit = NodePath("MarginContainer/Modifiers/Crit")
-misscrit = NodePath("MarginContainer/Modifiers/Miss")
+ultracrit = NodePath("Feast/Ultracrit")
+megacrit = NodePath("Feast/Megacrit")
+crit = NodePath("Feast/Crit")
+misscrit = NodePath("Feast/Miss")
 
-[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_om41d")]
+[node name="MatrixPanel" type="MarginContainer" parent="." unique_id=1695155555]
+visible = false
+custom_minimum_size = Vector2(746, 576)
 layout_mode = 2
-texture = ExtResource("3_byuj7")
-region_rect = Rect2(0, 0, 128, 128)
-patch_margin_left = 48
-patch_margin_top = 48
-patch_margin_right = 48
-patch_margin_bottom = 48
-type = 333
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="MatrixBackground" type="ColorRect" parent="." unique_id=1687084482]
+layout_mode = 2
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="Matrix" type="ColorRect" parent="." unique_id=488744031]
+material = SubResource("ShaderMaterial_jwo48")
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=620554594]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = -40
+theme_override_constants/margin_top = -40
+theme_override_constants/margin_right = -40
+theme_override_constants/margin_bottom = -40
 
-[node name="Modifiers" type="HBoxContainer" parent="MarginContainer" unique_id=151086313]
+[node name="Frame" parent="MarginContainer" unique_id=716478958 instance=ExtResource("2_om41d")]
+layout_mode = 2
+texture = ExtResource("3_byuj7")
+region_rect = Rect2(0, 0, 124, 124)
+patch_margin_left = 60
+patch_margin_top = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
+type = 340
+
+[node name="Feast" type="VBoxContainer" parent="." unique_id=1122166651]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Miss" parent="MarginContainer/Modifiers" unique_id=264578528 instance=ExtResource("2_wqbuq")]
+[node name="Miss" parent="Feast" unique_id=264578528 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Crit" parent="MarginContainer/Modifiers" unique_id=1884690285 instance=ExtResource("2_wqbuq")]
+[node name="Crit" parent="Feast" unique_id=1884690285 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Megacrit" parent="MarginContainer/Modifiers" unique_id=1800487850 instance=ExtResource("2_wqbuq")]
+[node name="Megacrit" parent="Feast" unique_id=1800487850 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Ultracrit" parent="MarginContainer/Modifiers" unique_id=1037539979 instance=ExtResource("2_wqbuq")]
+[node name="Ultracrit" parent="Feast" unique_id=1037539979 instance=ExtResource("2_wqbuq")]
 unique_name_in_owner = true
 layout_mode = 2

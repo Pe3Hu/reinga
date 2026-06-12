@@ -1,12 +1,12 @@
-MarginContainer
-TextureRect
-HSeparator
 VBoxContainer
 PanelContainer
 HBoxContainer
+ColorRect
+MarginContainer
+TextureRect
+HSeparator
 Control
 CanvasLayer
-ColorRect
 GridContainer
 Timer
 Sprite2D

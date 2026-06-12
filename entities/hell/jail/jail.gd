@@ -87,6 +87,8 @@ func _input(event: InputEvent) -> void:
 			if not get_global_rect().has_point(get_global_mouse_position()):
 				if !hell.bank.lock_button.is_mouse_inside():
 					forget_cage()
+			
+			TooltipManager.clear()
 
 func forget_cage() -> void:
 	if Scope.layer == Bozo.Layer.HELL:

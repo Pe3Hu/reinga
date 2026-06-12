@@ -1,71 +1,47 @@
 [gd_scene format=3 uid="uid://b5j0hjjauwolx"]
 
 [ext_resource type="Script" uid="uid://be5r56u7b3uyx" path="res://entities/sanctuary/sanctuary.gd" id="1_8k0x1"]
-[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/sanctuary/shader/pink coffee.gdshader" id="2_4ccgy"]
+[ext_resource type="Shader" uid="uid://drrkwexw4qnet" path="res://entities/herald/shaders/white room.gdshader" id="2_3m33d"]
 [ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="2_svdwa"]
-[ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="3_ajpus"]
 [ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="3_svdwa"]
-[ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/shader/red orange circle borders.gdshader" id="4_3m33d"]
+[ext_resource type="Texture2D" uid="uid://b4tk8mqujterh" path="res://entities/ui/frame/images/sanctuary.png" id="4_ajpus"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="5_4ccgy"]
+[ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/sanctuary/modifier/modifier.tscn" id="8_kw3pa"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajpus"]
-shader = ExtResource("2_4ccgy")
-shader_parameter/colorA = Color(0, 0.090000056, 0.2, 1)
-shader_parameter/colorB = Color(0.301, 0.55370003, 0.7, 1)
-shader_parameter/colorC = Color(0.19999999, 0.7066667, 1, 1)
-shader_parameter/discomode = false
-shader_parameter/speed = 0.20000000624012
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ccgy"]
+shader = ExtResource("2_3m33d")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t37mp"]
-shader = ExtResource("3_ajpus")
-shader_parameter/intensity = 0.15
-shader_parameter/center = 50.0
-shader_parameter/offset = 3.0
-shader_parameter/time_scale = 1.0
-shader_parameter/radius = 0.6
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t37mp"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m33d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7x6c"]
 shader = ExtResource("2_svdwa")
 shader_parameter/chars = ExtResource("3_svdwa")
-shader_parameter/columns = 40.0
+shader_parameter/columns = 50.0
 shader_parameter/trail_color = Color(0.9, 0.09900001, 0.09900001, 1)
 shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
 
-[sub_resource type="Gradient" id="Gradient_3m33d"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw3pa"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ccgy"]
-noise_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ajpus"]
-width = 128
-height = 1024
-noise = SubResource("FastNoiseLite_4ccgy")
-color_ramp = SubResource("Gradient_3m33d")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ccgy"]
-shader = ExtResource("4_3m33d")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_ajpus")
-shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
-shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
-shader_parameter/poster_color = 6.0
-shader_parameter/fire_alpha = 1.0
-shader_parameter/fire_speed = Vector2(0.015, 0.5)
-shader_parameter/fire_aperture = 0.0
-shader_parameter/vignette_radius = 0.25
-shader_parameter/vignette_falloff = 0.25
-shader_parameter/noise_influence = 1.0
-
-[node name="Sanctuary" type="Control" unique_id=550126807]
+[node name="Sanctuary" type="Control" unique_id=550126807 node_paths=PackedStringArray("miss", "crit", "megacrit", "ultracrit", "sin", "amber")]
 clip_contents = true
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1800.0
-offset_bottom = 900.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_8k0x1")
+miss = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Miss")
+crit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Crit")
+megacrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Megacrit")
+ultracrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Ultracrit")
+sin = NodePath("PanelContainer/Modifiers/HBox/Virello/Sin")
+amber = NodePath("PanelContainer/Modifiers/HBox/Virello/Amber")
 
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=875049052]
+[node name="Background" type="ColorRect" parent="." unique_id=417448287]
 visible = false
-material = SubResource("ShaderMaterial_ajpus")
+material = SubResource("ShaderMaterial_4ccgy")
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,39 +49,88 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HaloRect" type="ColorRect" parent="." unique_id=2006478286]
-visible = false
-material = SubResource("ShaderMaterial_t37mp")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MatrixRect" type="ColorRect" parent="." unique_id=615930760]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_3m33d")
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=322259929]
+custom_minimum_size = Vector2(754, 572)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -400.0
-offset_right = 400.0
-offset_bottom = 400.0
+offset_left = -377.0
+offset_top = -288.0
+offset_right = 377.0
+offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t37mp")
 
-[node name="BorderRect" type="ColorRect" parent="." unique_id=181544090]
+[node name="MatrixBackground" type="ColorRect" parent="PanelContainer" unique_id=645930844]
+layout_mode = 2
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="Matrix" type="ColorRect" parent="PanelContainer" unique_id=1456775445]
+visible = false
+material = SubResource("ShaderMaterial_c7x6c")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1631207641]
+layout_mode = 2
+theme_override_constants/margin_left = -40
+theme_override_constants/margin_top = -40
+theme_override_constants/margin_right = -40
+theme_override_constants/margin_bottom = -40
+
+[node name="Frame" parent="PanelContainer/MarginContainer" unique_id=1193395324 instance=ExtResource("5_4ccgy")]
+layout_mode = 2
+texture = ExtResource("4_ajpus")
+region_rect = Rect2(0, 0, 124, 124)
+patch_margin_left = 60
+patch_margin_top = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
+type = 340
+
+[node name="Modifiers" type="PanelContainer" parent="PanelContainer" unique_id=1378584004]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kw3pa")
+
+[node name="HBox" type="HBoxContainer" parent="PanelContainer/Modifiers" unique_id=957970132]
+layout_mode = 2
+
+[node name="Xalvorr" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1415671919]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_4ccgy")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Miss" parent="PanelContainer/Modifiers/HBox/Xalvorr" unique_id=264578528 instance=ExtResource("8_kw3pa")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Crit" parent="PanelContainer/Modifiers/HBox/Xalvorr" unique_id=1933649223 instance=ExtResource("8_kw3pa")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Megacrit" parent="PanelContainer/Modifiers/HBox/Xalvorr" unique_id=1326925979 instance=ExtResource("8_kw3pa")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Ultracrit" parent="PanelContainer/Modifiers/HBox/Xalvorr" unique_id=1867585076 instance=ExtResource("8_kw3pa")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Virello" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1876709135]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sin" parent="PanelContainer/Modifiers/HBox/Virello" unique_id=631911047 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Amber" parent="PanelContainer/Modifiers/HBox/Virello" unique_id=2046968489 instance=ExtResource("8_kw3pa")]
+layout_mode = 2

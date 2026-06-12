@@ -9,7 +9,6 @@ var hell: HellData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.MARKET
 var deals: Array[DealData]
 var type_to_deal: Dictionary
-var level: int = 1
 
 var amber_options: Array[Bozo.Amber]
 var sin_options: Array[Bozo.Sin]
@@ -28,14 +27,15 @@ func init_deals() -> void:
 	deals.shuffle()
 
 func add_deal(sin_type_: Variant) -> void:
-	var in_value = randi_range(Catalog.market_in_range[level].front(), Catalog.market_in_range[level].back())
+	var level = Scope.sanctuary.virello_level
+	var in_value = randi_range(Catalog.level_to_modifier_to_range[level][Bozo.Modifier.SIN].front(), Catalog.level_to_modifier_to_range[level][Bozo.Modifier.SIN].back())
 	var sin_data = SinData.new(sin_type_, in_value)
 	var amber_type = pull_ember_type()
 	
 	while amber_type == sin_type_:
 		amber_type = pull_ember_type()
 	
-	var out_value = randi_range(Catalog.market_out_range[level].front(), Catalog.market_out_range[level].back())
+	var out_value = randi_range(Catalog.level_to_modifier_to_range[level][Bozo.Modifier.AMBER].front(), Catalog.level_to_modifier_to_range[level][Bozo.Modifier.AMBER].back())
 	var amber_data = AmberData.new(amber_type, out_value)
 	var deal = DealData.new(self, sin_data, amber_data)
 	deals.append(deal)
@@ -62,10 +62,11 @@ func refill_closed_deals() -> void:
 	emit_signal("order_changed")
 
 func create_new_deal(deal_: DealData) -> void:
+	var level = Scope.sanctuary.virello_level
 	deals.push_front(deal_)
-	var in_value = randi_range(Catalog.market_in_range[level].front(), Catalog.market_in_range[level].back())
+	var in_value = randi_range(Catalog.level_to_modifier_to_range[level][Bozo.Modifier.SIN].front(), Catalog.level_to_modifier_to_range[level][Bozo.Modifier.SIN].back())
 	deal_.sin_data.value = in_value
-	var out_value = randi_range(Catalog.market_out_range[level].front(), Catalog.market_out_range[level].back())
+	var out_value = randi_range(Catalog.level_to_modifier_to_range[level][Bozo.Modifier.AMBER].front(), Catalog.level_to_modifier_to_range[level][Bozo.Modifier.AMBER].back())
 	deal_.amber_data.value = out_value
 	sin_options.clear()
 	var sin_type = pull_sin_type(deal_)

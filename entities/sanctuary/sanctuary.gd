@@ -2,17 +2,35 @@ class_name Sanctuary
 extends Control
 
 
+var data: SanctuaryData:
+	set(value_):
+		data = value_
+		connect_datas()
+
 @export var world: World
 
+@export var miss: Modifier
+@export var crit: Modifier
+@export var megacrit: Modifier
+@export var ultracrit: Modifier
 
-func _ready():
-	update_size()
 
-func update_size() -> void:
-	var viewport_size = get_viewport_rect().size
-	size = viewport_size
-	%MatrixRect.size = Vector2.ONE * max(size.x, size.y) * 0.9
-	%MatrixRect.position = size / 2 - %MatrixRect.size / 2
+@warning_ignore("shadowed_global_identifier")
+@export var sin: Modifier
+@export var amber: Modifier
+
+
+func connect_datas() -> void:
+	for type in Catalog.modifiers:
+		var type_str = Catalog.modifier_to_string[type]
+		var modifier = get(type_str)
+		modifier.data = data.type_to_modifier[type]
+	
+	
+	#miss.data = data.type_to_modifier[Bozo.Modifier.MISS]
+	#crit.data = data.type_to_modifier[Bozo.Modifier.CRIT]
+	#megacrit.data = data.type_to_modifier[Bozo.Modifier.MEGACRIT]
+	#ultracrit.data = data.type_to_modifier[Bozo.Modifier.ULTRACRIT]
 
 func off_screen() -> void:
 	visible = false

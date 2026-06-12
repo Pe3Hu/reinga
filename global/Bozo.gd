@@ -250,10 +250,28 @@ enum Relationship {
 
 enum Modifier {
 	NONE = 0,
+	BATTLE = 9,
+	AUCTION = 10,
+	FEAST = 11,
+	MASQUERADE = 12, 
+	THEATER = 13,
+	LEADER = 114,
+	GENIUS = 115,
+	LAYMAN = 116,
+	EXILE = 117,
+	PARENT = 118,
+	CHILD = 119,
+	BALLET = 155,
+	OPERA = 156,
+	PUPPETRY = 157,
 	MISS = 220,
 	CRIT = 221,
 	MEGACRIT = 222,
-	ULTRACRIT = 223
+	ULTRACRIT = 223,
+	TRUST = 224,
+	HOPE = 225,
+	AMBER = 299,
+	SIN = 300,
 }
 
 enum Eruption {
@@ -269,9 +287,11 @@ enum Eruption {
 
 enum Layer {
 	NONE = 0,
+	MENU = 249,
 	HELL = 250,
 	GATE = 251,
-	SANCTUARY = 252
+	SANCTUARY = 252,
+	HERALD = 253
 }
 
 enum Tooltip {
@@ -351,4 +371,15 @@ enum Frame {
 	CONTRIBUTION = 337,
 	DEAL = 338,
 	PLATFORM = 339,
+	SANCTUARY = 340,
+}
+
+enum Overlord {
+	NONE = 0,
+	CALTHEX = 500,
+	KHARZEN = 501,
+	VIRELLO = 502,
+	XALVORR = 503,
+	SIREXIL = 504,
+	MARVONE = 505,
 }

@@ -16,10 +16,11 @@ func _ready() -> void:
 	connect_datas()
 	#Scope.layer_changed.connect(update_layer)
 	#update_layer()
+	transition.data.next_layer = Bozo.Layer.SANCTUARY
 	transition.apply_layer()
-	#transition.data.next_layer = Bozo.Layer.HELL
 
 func connect_datas() -> void:
+	sanctuary.data = data.sanctuary
 	hell.data = data.hell
 	gate.data = data.gate
 	transition.data = data.transition

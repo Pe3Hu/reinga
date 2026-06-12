@@ -22,15 +22,12 @@ func apply_data() -> void:
 	sinner.data = data.sinner
 
 func _input(event: InputEvent) -> void:
-	if not visible or not _can_select_cage():
-		return
+	if not visible or not _can_select_cage(): return
 	if not (event is InputEventMouseButton \
 			and event.button_index == MOUSE_BUTTON_LEFT \
-			and event.pressed):
-		return
+			and event.pressed): return
 	var hovered := get_viewport().gui_get_hovered_control()
-	if hovered == null or (hovered != self and not is_ancestor_of(hovered)):
-		return
+	if hovered == null or (hovered != self and not is_ancestor_of(hovered)): return
 	_on_texture_button_pressed()
 	get_viewport().set_input_as_handled()
 
@@ -43,6 +40,8 @@ func _can_select_cage() -> bool:
 	return false
 
 func _on_texture_button_pressed() -> void:
+	TooltipManager.clear()
+	
 	match Scope.layer:
 		Bozo.Layer.HELL:
 			if jail and Scope.phase == Bozo.Phase.APPRAISEMENT:
