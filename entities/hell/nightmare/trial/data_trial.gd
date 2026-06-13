@@ -10,6 +10,7 @@ var attitude: AttitudeData
 var flame: FlameData
 var claim: ClaimData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.TRIAL
+var overlord: Bozo.Overlord
 var type: Bozo.Trial:
 	set(value_):
 		type = value_
@@ -19,6 +20,7 @@ var type: Bozo.Trial:
 func _init(nightmare_: NightmareData, type_: Bozo.Trial) -> void:
 	nightmare = nightmare_
 	type = type_
+	overlord = Catalog.trial_to_overlord[type]
 	
 	claim = ClaimData.new(self)
 	attitude = AttitudeData.new(self)

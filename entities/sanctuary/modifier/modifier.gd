@@ -23,15 +23,16 @@ func apply_data_info() -> void:
 func _on_type_changed() -> void:
 	if data.type == 0: return
 	var type_str = Catalog.modifier_to_string[data.type]
-	var path_str = ""
+	var path_str = "res://entities/sanctuary/modifier/images/"
 	var format_str = ".png"
 	
 	match data.overlord:
-		Bozo.Overlord.XALVORR:
-			path_str = "res://entities/sanctuary/modifier/images/"
 		Bozo.Overlord.VIRELLO:
 			path_str = "res://entities/ui/token/%s/" % type_str
 			format_str = " on%s" % format_str
+		Bozo.Overlord.SIREXIL:
+			path_str = "res://entities/ui/token/faction/images/"
+			
 	
 	#print("%s%s%s" % [path_str, type_str, format_str])
 	icon.texture = load("%s%s%s" % [path_str, type_str, format_str])
@@ -42,6 +43,12 @@ func _on_value_changed() -> void:
 			label.text = str(data.value) + "%"
 		Bozo.Overlord.VIRELLO:
 			label.text = str(data.value) + " - "
+		Bozo.Overlord.KHARZEN:
+			label.text = str(data.value) + "%"
+		Bozo.Overlord.CALTHEX:
+			label.text = str(data.value)
+		Bozo.Overlord.SIREXIL:
+			label.text = str(data.value)
 
 func _on_subvalue_changed() -> void:
 	match data.overlord:

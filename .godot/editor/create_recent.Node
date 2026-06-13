@@ -1,8 +1,8 @@
-VBoxContainer
 PanelContainer
-HBoxContainer
 ColorRect
+VBoxContainer
 MarginContainer
+HBoxContainer
 TextureRect
 HSeparator
 Control

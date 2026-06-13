@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://uy5n7r3hyjkq"]
+
+[ext_resource type="Script" uid="uid://tspg684tull5" path="res://entities/hell/nightmare/tax/tax.gd" id="1_evcqk"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_5uw6d"]
+[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/overlord.gdshader" id="3_5pct8"]
+[ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="4_65giq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xiexw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_35jud"]
+resource_local_to_scene = true
+shader = ExtResource("3_5pct8")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Tax" type="PanelContainer" unique_id=2839468 node_paths=PackedStringArray("sins")]
+offset_right = 120.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xiexw")
+script = ExtResource("1_evcqk")
+sins = [NodePath("MarginSins/Sins/Sin1"), NodePath("MarginSins/Sins/Sin2"), NodePath("MarginSins/Sins/Sin3")]
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_5uw6d")]
+layout_mode = 2
+target = NodePath("..")
+
+[node name="Background" type="ColorRect" parent="." unique_id=893081386]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_35jud")
+layout_mode = 2
+
+[node name="MarginSins" type="MarginContainer" parent="." unique_id=499230753]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Sins" type="HBoxContainer" parent="MarginSins" unique_id=1138538666]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Sin1" parent="MarginSins/Sins" unique_id=1672584037 instance=ExtResource("4_65giq")]
+layout_mode = 2
+
+[node name="Sin2" parent="MarginSins/Sins" unique_id=2074934885 instance=ExtResource("4_65giq")]
+layout_mode = 2
+
+[node name="Sin3" parent="MarginSins/Sins" unique_id=992287235 instance=ExtResource("4_65giq")]
+layout_mode = 2

@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="3_svdwa"]
 [ext_resource type="Texture2D" uid="uid://b4tk8mqujterh" path="res://entities/ui/frame/images/sanctuary.png" id="4_ajpus"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="5_4ccgy"]
+[ext_resource type="PackedScene" uid="uid://uy5n7r3hyjkq" path="res://entities/hell/nightmare/tax/tax.tscn" id="8_c7x6c"]
 [ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/sanctuary/modifier/modifier.tscn" id="8_kw3pa"]
+[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/overlord.gdshader" id="9_c7x6c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t37mp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ccgy"]
 shader = ExtResource("2_3m33d")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t37mp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c7x6c"]
 shader = ExtResource("2_svdwa")
@@ -22,12 +24,41 @@ shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw3pa"]
 
-[node name="Sanctuary" type="Control" unique_id=550126807 node_paths=PackedStringArray("miss", "crit", "megacrit", "ultracrit", "sin", "amber")]
+[sub_resource type="Gradient" id="Gradient_c7x6c"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aj3l4"]
+gradient = SubResource("Gradient_c7x6c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qk50e"]
+texture = SubResource("GradientTexture1D_aj3l4")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aj3l4"]
+shader = ExtResource("9_c7x6c")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Sanctuary" type="Control" unique_id=550126807 node_paths=PackedStringArray("miss", "crit", "megacrit", "ultracrit", "sin", "amber", "genius", "exile", "layman", "leader", "parent", "child", "ballet", "puppetry", "opera", "trust", "hope", "taxs")]
 clip_contents = true
+custom_minimum_size = Vector2(574, 458)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -202.0
+offset_right = 257.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8k0x1")
@@ -35,37 +66,46 @@ miss = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Miss")
 crit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Crit")
 megacrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Megacrit")
 ultracrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Ultracrit")
-sin = NodePath("PanelContainer/Modifiers/HBox/Virello/Sin")
-amber = NodePath("PanelContainer/Modifiers/HBox/Virello/Amber")
-
-[node name="Background" type="ColorRect" parent="." unique_id=417448287]
-visible = false
-material = SubResource("ShaderMaterial_4ccgy")
-custom_minimum_size = Vector2(600, 300)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+sin = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Virello/Sin")
+amber = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Virello/Amber")
+genius = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Genius")
+exile = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Exile")
+layman = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Layman")
+leader = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Leader")
+parent = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Parent")
+child = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Child")
+ballet = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Ballet")
+puppetry = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Puppetry")
+opera = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Opera")
+trust = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Trust")
+hope = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Hope")
+taxs = [NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Battle"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Auction"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Feast"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Masquerade"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Theater")]
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=322259929]
-custom_minimum_size = Vector2(754, 572)
+custom_minimum_size = Vector2(492, 378)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -377.0
-offset_top = -288.0
-offset_right = 377.0
-offset_bottom = 288.0
+offset_left = -217.0
+offset_top = -162.0
+offset_right = 217.0
+offset_bottom = 162.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_t37mp")
 
+[node name="LineMargin" type="MarginContainer" parent="PanelContainer" unique_id=522506151]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="PanelContainer/LineMargin" unique_id=417448287]
+material = SubResource("ShaderMaterial_4ccgy")
+layout_mode = 2
+
 [node name="MatrixBackground" type="ColorRect" parent="PanelContainer" unique_id=645930844]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
@@ -99,6 +139,9 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kw3pa")
 
 [node name="HBox" type="HBoxContainer" parent="PanelContainer/Modifiers" unique_id=957970132]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 2
 
 [node name="Xalvorr" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1415671919]
 unique_name_in_owner = true
@@ -124,13 +167,105 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Virello" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1876709135]
+[node name="VBoxPecent" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=419539297]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Sin" parent="PanelContainer/Modifiers/HBox/Virello" unique_id=631911047 instance=ExtResource("8_kw3pa")]
+[node name="Kharzen" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxPecent" unique_id=2094140577]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Genius" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=489698292 instance=ExtResource("8_kw3pa")]
 layout_mode = 2
 
-[node name="Amber" parent="PanelContainer/Modifiers/HBox/Virello" unique_id=2046968489 instance=ExtResource("8_kw3pa")]
+[node name="Exile" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1040168166 instance=ExtResource("8_kw3pa")]
 layout_mode = 2
+
+[node name="Layman" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=909488257 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Leader" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1669052470 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Parent" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1853317092 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Child" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=57733969 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="VBoxLimit" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1295306971]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Calthex" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1668982811]
+layout_mode = 2
+
+[node name="Ballet" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1189408285 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Puppetry" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=223163737 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Opera" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1565618501 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Virello" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1876709135]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sin" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Virello" unique_id=631911047 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Amber" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Virello" unique_id=2046968489 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Sirexil" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1853854923]
+layout_mode = 2
+
+[node name="Trust" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil" unique_id=716084881 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Hope" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil" unique_id=1812666071 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1441853757]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_qk50e")
+
+[node name="Taxs" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/PanelContainer" unique_id=2106653315]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Battle" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=2839468 instance=ExtResource("8_c7x6c")]
+layout_mode = 2
+
+[node name="Auction" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=795893318 instance=ExtResource("8_c7x6c")]
+layout_mode = 2
+
+[node name="Feast" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=471023498 instance=ExtResource("8_c7x6c")]
+layout_mode = 2
+
+[node name="Masquerade" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=1411068570 instance=ExtResource("8_c7x6c")]
+layout_mode = 2
+
+[node name="Theater" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=548427833 instance=ExtResource("8_c7x6c")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=841845660]
+visible = false
+material = SubResource("ShaderMaterial_aj3l4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

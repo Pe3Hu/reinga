@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sdu3bfosnkuv"]
 
 [ext_resource type="Script" uid="uid://dxatwrs7xpvr6" path="res://entities/herald/herald.gd" id="1_54vv2"]
-[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/sanctuary/shader/pink coffee.gdshader" id="2_0xgxo"]
+[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/herald/overlord/shaders/pink coffee.gdshader" id="2_0xgxo"]
 [ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/shader/red orange circle borders.gdshader" id="5_155ja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmj4q"]

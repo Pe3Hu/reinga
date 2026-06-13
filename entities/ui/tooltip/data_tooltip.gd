@@ -7,8 +7,9 @@ extends Resource
 		header = Catalog.tooltip_to_string[type]
 @export var header: String:
 	set(value_):
-		print(value_)
-		header = Helper.get_focused_text(value_.capitalize())
+		var text = value_.capitalize()
+		text = text.replace(" (mod)", "")
+		header = Helper.get_focused_text(text)
 @export var descritipion: String:
 	set(value_):
 		var text = value_

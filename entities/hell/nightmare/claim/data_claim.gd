@@ -79,10 +79,10 @@ func swap_sin_type(old_type_: Bozo.Sin, new_type_: Bozo.Sin) -> void:
 	sit_to_weight.erase(old_type_)
 	type_to_sin[new_type_] = sin_data
 	sit_to_weight[new_type_] = sin_data.value
-	trial.flame.swap_sin_type(old_type_, new_type_)
+	trial.flame.tax.swap_sin_type(old_type_, new_type_)
 
 func refill() -> void:
-	for flame_sin in trial.flame.sins:
+	for flame_sin in trial.flame.tax.sins:
 		var claim_sin = type_to_sin[flame_sin.type]
 		claim_sin.value += flame_sin.value
 	

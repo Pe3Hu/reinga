@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dpvtt1a445er6"]
 
 [ext_resource type="Script" uid="uid://dm2yvwnbr1ng2" path="res://entities/sanctuary/modifier/modifier.gd" id="1_budi8"]
-[ext_resource type="Texture2D" uid="uid://dd1tbjyaiqiat" path="res://entities/sanctuary/modifier/images/miss.png" id="2_venrv"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_gdquc"]
+[ext_resource type="Texture2D" uid="uid://bctp3bam0o4sm" path="res://entities/sanctuary/modifier/images/ultracrit.png" id="2_vnuot"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_emtg5"]
 
@@ -12,6 +13,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_emtg5")
 script = ExtResource("1_budi8")
 icon = NodePath("HBox/Icon")
 label = NodePath("HBox/Label")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_gdquc")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="HBox" type="HBoxContainer" parent="." unique_id=1429863658]
 layout_mode = 2
@@ -24,7 +29,7 @@ modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("2_venrv")
+texture = ExtResource("2_vnuot")
 
 [node name="Label" type="RichTextLabel" parent="HBox" unique_id=443588657]
 unique_name_in_owner = true

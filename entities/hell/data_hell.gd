@@ -8,7 +8,6 @@ var jail: JailData
 var treasury: TreasuryData
 
 var bank: BankData = BankData.new(self)
-#var shelter: ShelterData = ShelterData.new(self)
 var market: MarketData = MarketData.new(self)
 
 

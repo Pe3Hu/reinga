@@ -23,5 +23,9 @@ func connect_datas() -> void:
 		type_to_token[sin_data.type] = sin_token
 
 func apply_type() -> void:
-	%HeaderColorRect.color = Catalog.trial_to_color[data.trial.type]
+	%HeaderBackground.color = Catalog.trial_to_color[data.trial.type]
 	%HeaderLabel.text = Catalog.trial_to_string[data.trial.type].capitalize()
+
+func apply_sanctuary() -> void:
+	%HeaderContainer.visible = false
+	#%Background.color = Catalog.trial_to_color[data.trial.type]

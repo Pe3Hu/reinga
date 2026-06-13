@@ -20,6 +20,8 @@ func _init(world_: WorldData) -> void:
 	world = world_
 	current_layer = Bozo.Layer.HELL
 	next_layer = Bozo.Layer.HELL
+	
+	world.sanctuary.init_taxs()
 
 func reset() -> void:
 	Scope.layer = next_layer

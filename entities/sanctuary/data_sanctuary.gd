@@ -5,10 +5,15 @@ extends Resource
 var world: WorldData
 
 var modifiers: Array[ModifierData]
+var taxs: Array[TaxData]
 var type_to_modifier: Dictionary
+var overlord_to_claim: Dictionary
 
 var xalvorr_level: int = 0
 var virello_level: int = 0
+var kharzen_level: int = 0
+var calthex_level: int = 0
+var sirexil_level: int = 0
 
 
 #region init
@@ -17,7 +22,6 @@ func _init(world_: WorldData) -> void:
 	
 	Scope.sanctuary = self
 	init_modifiers()
-	#apply_default_values()
 
 func init_modifiers() -> void:
 	for overlord in Catalog.overlord_to_modifier:
@@ -29,13 +33,8 @@ func add_shelter(overlord_: Bozo.Overlord, type_: Bozo.Modifier) -> void:
 	modifiers.append(modifier)
 	type_to_modifier[type_] = modifier
 
-#func apply_default_values() -> void:
-	#apply_xalvorr()
-#
-#func apply_xalvorr() -> void:
-	#var xalvorr_modifiers: Array = Catalog.overlord_to_modifier[Bozo.Overlord.XALVORR]
-	#
-	#for modifier_type in xalvorr_modifiers:
-		#var modifier = type_to_modifier[modifier_type]
-		#modifier.value = Catalog.level_modifier_to_percent[xalvorr_level][modifier_type]
+func init_taxs() -> void:
+	for trial in world.hell.nightmare.trials:
+		var tax = trial.flame.tax
+		taxs.append(tax)
 #endregion
