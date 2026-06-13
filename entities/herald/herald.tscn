@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://sdu3bfosnkuv"]
 
 [ext_resource type="Script" uid="uid://dxatwrs7xpvr6" path="res://entities/herald/herald.gd" id="1_54vv2"]
-[ext_resource type="Shader" uid="uid://d2lopkpbwaajy" path="res://entities/herald/overlord/shaders/pink coffee.gdshader" id="2_0xgxo"]
 [ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/shader/red orange circle borders.gdshader" id="5_155ja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmj4q"]
-shader = ExtResource("2_0xgxo")
-shader_parameter/colorA = Color(0, 0.090000056, 0.2, 1)
-shader_parameter/colorB = Color(0.301, 0.55370003, 0.7, 1)
-shader_parameter/colorC = Color(0.19999999, 0.7066667, 1, 1)
-shader_parameter/discomode = false
-shader_parameter/speed = 0.20000000624012
 
 [sub_resource type="Gradient" id="Gradient_g3tg7"]
 

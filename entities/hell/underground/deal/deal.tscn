@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dyl8ywwwp3nsa" path="res://entities/ui/frame/images/deal.png" id="3_omdrp"]
 
 [node name="Deal" type="PanelContainer" unique_id=970576021 node_paths=PackedStringArray("sin_token", "amber_token")]
-custom_minimum_size = Vector2(40, 76)
+custom_minimum_size = Vector2(42, 76)
+offset_right = 42.0
+offset_bottom = 76.0
 script = ExtResource("1_smell")
 sin_token = NodePath("MarginContainer/VBoxContainer/TokenSin")
 amber_token = NodePath("MarginContainer/VBoxContainer/TokenAmber")

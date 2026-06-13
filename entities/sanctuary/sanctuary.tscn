@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="5_4ccgy"]
 [ext_resource type="PackedScene" uid="uid://uy5n7r3hyjkq" path="res://entities/hell/nightmare/tax/tax.tscn" id="8_c7x6c"]
 [ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/sanctuary/modifier/modifier.tscn" id="8_kw3pa"]
-[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/domain.gdshader" id="9_c7x6c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t37mp"]
 
@@ -23,15 +22,6 @@ shader_parameter/trail_color = Color(0.9, 0.09900001, 0.09900001, 1)
 shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw3pa"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aj3l4"]
-shader = ExtResource("9_c7x6c")
-shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
-shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
-shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
-shader_parameter/discomode = false
-shader_parameter/speed = 0.2
-shader_parameter/scale = 1.0
 
 [node name="Sanctuary" type="Control" unique_id=550126807 node_paths=PackedStringArray("miss", "crit", "megacrit", "ultracrit", "sin", "amber", "genius", "exile", "layman", "leader", "parent", "child", "ballet", "puppetry", "opera", "trust", "hope", "taxs")]
 clip_contents = true
@@ -91,11 +81,6 @@ layout_mode = 2
 material = SubResource("ShaderMaterial_4ccgy")
 layout_mode = 2
 
-[node name="MatrixBackground" type="ColorRect" parent="PanelContainer" unique_id=645930844]
-visible = false
-layout_mode = 2
-color = Color(0, 0, 0, 0.5254902)
-
 [node name="Matrix" type="ColorRect" parent="PanelContainer" unique_id=1456775445]
 visible = false
 material = SubResource("ShaderMaterial_c7x6c")
@@ -128,7 +113,8 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kw3pa")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 2
+theme_override_constants/separation = -2
+alignment = 1
 
 [node name="Xalvorr" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1415671919]
 unique_name_in_owner = true
@@ -158,12 +144,14 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+alignment = 1
 
 [node name="Kharzen" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxPecent" unique_id=2094140577]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Genius" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=489698292 instance=ExtResource("8_kw3pa")]
 layout_mode = 2
@@ -240,13 +228,3 @@ layout_mode = 2
 
 [node name="Theater" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=548427833 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=841845660]
-visible = false
-material = SubResource("ShaderMaterial_aj3l4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

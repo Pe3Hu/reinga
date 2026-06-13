@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d34qbt65thfel"]
 
 [ext_resource type="Script" uid="uid://hgbxva7v3mmn" path="res://entities/hell/nightmare/tribute/tribute.gd" id="1_h00t8"]
-[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="2_d6go0"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="2_d6go0"]
 [ext_resource type="Texture2D" uid="uid://b6vxl1lb21bfs" path="res://entities/hell/nightmare/tribute/images/less.png" id="2_o0j3o"]
 [ext_resource type="PackedScene" uid="uid://bokvfaxgoa8xr" path="res://entities/hell/nightmare/progression/progression.tscn" id="3_a5tkp"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_7lmej"]

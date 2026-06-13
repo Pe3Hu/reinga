@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bp2rppn86ih0m" path="res://entities/hell/jail/cage/cage.gd" id="1_2m11p"]
 [ext_resource type="PackedScene" uid="uid://rulm0xbbiyn5" path="res://entities/hell/jail/sinner/sinner.tscn" id="2_bynt2"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_hlo7k"]
-[ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/grey paint.gdshader" id="2_s5x2c"]
+[ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/torture.gdshader" id="2_s5x2c"]
 [ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
 [ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/frame/images/cage.png" id="3_vmsct"]
 [ext_resource type="Texture2D" uid="uid://d4ajl3hshwinh" path="res://entities/ui/frame/images/torture.png" id="5_ubheq"]

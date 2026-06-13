@@ -1,7 +1,13 @@
-res://entities/hell/jail/cage/cage.tscn
-res://entities/herald/overlord/shaders/domain texture.gdshader
 res://entities/herald/overlord/shaders/domain.gdshader
 res://entities/ui/transition/transition.gdshader
+res://entities/ui/glory/glory.tscn
+res://entities/ui/glory/glory.gdshader
+res://entities/hell/hell.tscn
+res://entities/ui/glory/glory.gd
+res://entities/herald/shaders/grey paint.gdshader
+res://entities/hell/jail/cage/cage.tscn
+res://entities/herald/shaders/torture.gdshader
 res://entities/hell/jail/cage/cage.gd
-res://entities/hell/jail/sinner/sinner.gd
-res://entities/hell/jail/sinner/sinner.tscn
+res://entities/hell/underground/deal/deal.tscn
+res://entities/hell/treasury/contribution/candle/shaders/contribution active.gdshader
+res://entities/sanctuary/sanctuary.tscn

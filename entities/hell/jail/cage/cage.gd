@@ -46,8 +46,9 @@ func _can_select_cage() -> bool:
 	return false
 
 func _on_texture_button_pressed() -> void:
+	if jail:
+		jail.hell.eye_button.hide_sanctuary()
 	torture_frame.visible = false
-	jail.hell.eye_button.hide_sanctuary()
 	TooltipManager.clear()
 	
 	match Scope.layer:

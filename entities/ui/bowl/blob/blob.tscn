@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cylltbvbxra5m"]
 
-[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="1_d1tjd"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="1_d1tjd"]
 [ext_resource type="Texture2D" uid="uid://b2senqs3fkhlo" path="res://entities/ui/bowl/blob/images/plus.png" id="1_t0kqv"]
 [ext_resource type="Script" uid="uid://1p0t0c4d354j" path="res://entities/ui/bowl/blob/blob.gd" id="2_2f1tx"]
 

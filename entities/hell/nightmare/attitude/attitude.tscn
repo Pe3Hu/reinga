@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://m42emkfyqb0a" path="res://entities/hell/nightmare/attitude/attitude.gd" id="1_wh6ds"]
 [ext_resource type="PackedScene" uid="uid://do7x0nsb3iqqq" path="res://entities/ui/bowl/bowl.tscn" id="2_20sca"]
 [ext_resource type="Texture2D" uid="uid://bmvi5cmfkmj5r" path="res://entities/hell/nightmare/attitude/images/crown/favor.png" id="3_2e10a"]
-[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="3_35ha4"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="3_35ha4"]
 [ext_resource type="Texture2D" uid="uid://c7clt6v7ftlp" path="res://entities/hell/nightmare/attitude/images/face/indifference.png" id="3_rah6n"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_dlfou"]
 

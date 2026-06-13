@@ -14,7 +14,7 @@ func show_sanctuary() -> void:
 func hide_sanctuary() -> void:
 	hell.world.sanctuary.off_screen()
 	button_pressed = false
-	disabled  = false
+	disabled = false
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventMouseButton \

@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform sampler2D mask_texture : hint_default_white;
 uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
 uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
 uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
@@ -101,5 +102,7 @@ void fragment() {
     
     res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
 
-    COLOR = vec4(res_color, 1.0);
+	float mask_alpha = texture(mask_texture, UV).a;
+    
+	COLOR = vec4(res_color, mask_alpha);
 }

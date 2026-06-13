@@ -5,16 +5,11 @@ uniform float intensity = 0.3;
 
 void fragment() {
     vec2 fragCoord = FRAGCOORD.xy;
-
-    // эквивалент iResolution
     vec2 res = 1.0 / SCREEN_PIXEL_SIZE;
-
-    // нормализация как в Shadertoy
     vec2 uv = (2.0 * fragCoord - res) / min(res.x, res.y);
 
     float t = TIME / inverse_speed;
 
-    // LOD = 50
     for (int i = 1; i < 50; i++) {
         float fi = float(i);
 
