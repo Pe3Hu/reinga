@@ -20,7 +20,8 @@ func init_contribution_eruptions() -> void:
 	eruptions.clear()
 	sin_to_available.clear()
 	sin_to_supply.clear()
-	modifier_weights = nightmare.hell.shelter.get_modifier_weights()
+	var level = nightmare.hell.world.sanctuary.xalvorr_level
+	modifier_weights = Catalog.level_modifier_to_percent[level]
 	
 	for _sin in contribution.sins:
 		sin_to_available[_sin.type] = _sin.value
@@ -138,7 +139,8 @@ func init_plaza_eruptions() -> void:
 	eruptions.clear()
 	sin_to_available.clear()
 	sin_to_trial_to_weight.clear()
-	modifier_weights = plaza.jail.hell.shelter.get_modifier_weights()
+	var level = plaza.jail.hell.world.sanctuary.xalvorr_level
+	modifier_weights = Catalog.level_modifier_to_percent[level]
 	sin_to_supply.clear()
 	plaza_available.clear()
 	

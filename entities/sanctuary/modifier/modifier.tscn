@@ -3,8 +3,19 @@
 [ext_resource type="Script" uid="uid://dm2yvwnbr1ng2" path="res://entities/sanctuary/modifier/modifier.gd" id="1_budi8"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_gdquc"]
 [ext_resource type="Texture2D" uid="uid://bctp3bam0o4sm" path="res://entities/sanctuary/modifier/images/ultracrit.png" id="2_vnuot"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="3_dqb8y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_emtg5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3yh3b"]
+resource_local_to_scene = true
+shader = ExtResource("3_dqb8y")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
 
 [node name="Modifier" type="PanelContainer" unique_id=264578528 node_paths=PackedStringArray("icon", "label")]
 offset_right = 86.0
@@ -26,6 +37,7 @@ alignment = 1
 [node name="Icon" type="TextureRect" parent="HBox" unique_id=140814477]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_3yh3b")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

@@ -1,13 +1,23 @@
 [gd_scene format=3 uid="uid://cylltbvbxra5m"]
 
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="1_d1tjd"]
 [ext_resource type="Texture2D" uid="uid://b2senqs3fkhlo" path="res://entities/ui/bowl/blob/images/plus.png" id="1_t0kqv"]
 [ext_resource type="Script" uid="uid://1p0t0c4d354j" path="res://entities/ui/bowl/blob/blob.gd" id="2_2f1tx"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ws5pc"]
+resource_local_to_scene = true
+shader = ExtResource("1_d1tjd")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
 [node name="Blob" type="TextureRect" unique_id=1968183792]
 modulate = Color(0.46666667, 0.53333336, 0.6, 1)
+material = SubResource("ShaderMaterial_ws5pc")
 offset_right = 32.0
 offset_bottom = 32.0
 texture = ExtResource("1_t0kqv")
 script = ExtResource("2_2f1tx")
-type = 90
-trial = null

@@ -32,10 +32,11 @@ func _on_type_changed() -> void:
 			format_str = " on%s" % format_str
 		Bozo.Overlord.SIREXIL:
 			path_str = "res://entities/ui/token/faction/images/"
-			
 	
 	#print("%s%s%s" % [path_str, type_str, format_str])
 	icon.texture = load("%s%s%s" % [path_str, type_str, format_str])
+	icon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
+	Helper.update_colors(icon, data.overlord)
 
 func _on_value_changed() -> void:
 	match data.overlord:

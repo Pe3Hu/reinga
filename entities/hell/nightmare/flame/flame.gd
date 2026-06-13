@@ -21,3 +21,4 @@ func apply_data_info() -> void:
 
 func _on_level_changed() -> void:
 	icon.texture = load("res://entities/hell/nightmare/flame/images/%d.png" % data.level)
+	icon.material.set_shader_parameter("mask_texture", load("res://entities/hell/nightmare/flame/images/%d.png" % data.level))

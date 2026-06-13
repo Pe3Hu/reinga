@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="5_4ccgy"]
 [ext_resource type="PackedScene" uid="uid://uy5n7r3hyjkq" path="res://entities/hell/nightmare/tax/tax.tscn" id="8_c7x6c"]
 [ext_resource type="PackedScene" uid="uid://dpvtt1a445er6" path="res://entities/sanctuary/modifier/modifier.tscn" id="8_kw3pa"]
-[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/overlord.gdshader" id="9_c7x6c"]
+[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/domain.gdshader" id="9_c7x6c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t37mp"]
 
@@ -23,19 +23,6 @@ shader_parameter/trail_color = Color(0.9, 0.09900001, 0.09900001, 1)
 shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw3pa"]
-
-[sub_resource type="Gradient" id="Gradient_c7x6c"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aj3l4"]
-gradient = SubResource("Gradient_c7x6c")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qk50e"]
-texture = SubResource("GradientTexture1D_aj3l4")
-texture_margin_left = 4.0
-texture_margin_top = 4.0
-texture_margin_right = 4.0
-texture_margin_bottom = 4.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aj3l4"]
 shader = ExtResource("9_c7x6c")
@@ -79,7 +66,7 @@ puppetry = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Puppetry")
 opera = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Opera")
 trust = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Trust")
 hope = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Hope")
-taxs = [NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Battle"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Auction"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Feast"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Masquerade"), NodePath("PanelContainer/Modifiers/HBox/PanelContainer/Taxs/Theater")]
+taxs = [NodePath("PanelContainer/Modifiers/HBox/Taxs/Battle"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Auction"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Feast"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Masquerade"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Theater")]
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=322259929]
 custom_minimum_size = Vector2(492, 378)
@@ -201,18 +188,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Calthex" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1668982811]
-layout_mode = 2
-
-[node name="Ballet" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1189408285 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Puppetry" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=223163737 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Opera" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1565618501 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
 [node name="Virello" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1876709135]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -233,31 +208,37 @@ layout_mode = 2
 [node name="Hope" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil" unique_id=1812666071 instance=ExtResource("8_kw3pa")]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1441853757]
+[node name="Calthex" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1668982811]
+layout_mode = 2
+
+[node name="Ballet" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1189408285 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Puppetry" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=223163737 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Opera" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Calthex" unique_id=1565618501 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Taxs" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=2106653315]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_qk50e")
+theme_override_constants/separation = -4
 
-[node name="Taxs" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/PanelContainer" unique_id=2106653315]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-
-[node name="Battle" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=2839468 instance=ExtResource("8_c7x6c")]
+[node name="Battle" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=2839468 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
 
-[node name="Auction" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=795893318 instance=ExtResource("8_c7x6c")]
+[node name="Auction" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=795893318 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
 
-[node name="Feast" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=471023498 instance=ExtResource("8_c7x6c")]
+[node name="Feast" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=471023498 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
 
-[node name="Masquerade" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=1411068570 instance=ExtResource("8_c7x6c")]
+[node name="Masquerade" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=1411068570 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
 
-[node name="Theater" parent="PanelContainer/Modifiers/HBox/PanelContainer/Taxs" unique_id=548427833 instance=ExtResource("8_c7x6c")]
+[node name="Theater" parent="PanelContainer/Modifiers/HBox/Taxs" unique_id=548427833 instance=ExtResource("8_c7x6c")]
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=841845660]

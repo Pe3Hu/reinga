@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mnq8nmw8al0s" path="res://entities/hell/hell.gd" id="1_al7up"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_0u57p"]
+[ext_resource type="PackedScene" uid="uid://rre501o3wx2s" path="res://entities/ui/button/variants/eye button.tscn" id="2_gxyx2"]
 [ext_resource type="PackedScene" uid="uid://sku4ussmdh7x" path="res://entities/hell/nightmare/nightmare.tscn" id="2_hymf2"]
 [ext_resource type="PackedScene" uid="uid://dkdcibsiow4i8" path="res://entities/hell/volcano/volcano.tscn" id="2_kcv0y"]
 [ext_resource type="PackedScene" uid="uid://cca13j77q3a26" path="res://entities/hell/jail/jail.tscn" id="2_kksrj"]
@@ -16,9 +17,13 @@ bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bli8"]
 
-[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "platform")]
+[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "platform", "eye_button")]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_al7up")
 volcano = NodePath("Volcano")
@@ -28,16 +33,35 @@ treasury = NodePath("UI/FrameMargin/HBox/VBox/Treasury")
 bank = NodePath("UI/FrameMargin/HBox/VBox/HBox/Bank")
 market = NodePath("UI/FrameMargin/Market")
 platform = NodePath("UI/FrameMargin/Platform")
+eye_button = NodePath("UI/EyeMargin/EyeButton")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -881.0
-offset_top = -375.0
-offset_right = 685.0
-offset_bottom = 427.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -783.0
+offset_top = -401.0
+offset_right = 783.0
+offset_bottom = 401.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_xmjwd")
+
+[node name="EyeMargin" type="MarginContainer" parent="UI" unique_id=650407420]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -64
+theme_override_constants/margin_right = -64
+
+[node name="EyeButton" parent="UI/EyeMargin" unique_id=671915696 node_paths=PackedStringArray("hell") instance=ExtResource("2_gxyx2")]
+layout_mode = 2
+hell = NodePath("../../..")
 
 [node name="Frame" parent="UI" unique_id=716478958 instance=ExtResource("2_0u57p")]
 layout_mode = 2

@@ -1,19 +1,7 @@
-res://entities/sanctuary/sanctuary.tscn
-res://entities/herald/overlord/shaders/overlord.gdshader
-res://entities/hell/nightmare/tax/claim.gd
-res://entities/hell/nightmare/tax/claim.tscn
-res://entities/hell/nightmare/tax/data_claim.gd
-res://entities/hell/nightmare/tax/data_tax.gd
-res://entities/hell/nightmare/tax/tax.tscn
-res://entities/hell/nightmare/tax/tax.gd
-res://entities/hell/nightmare/flame/data_flame.gd
-res://entities/sanctuary/data_sanctuary.gd
-res://entities/hell/nightmare/trial/data_trial.gd
-res://entities/sanctuary/sanctuary.gd
-res://entities/world/data_world.gd
-res://global/Catalog.gd
-res://entities/hell/data_hell.gd
-res://entities/hell/nightmare/claim/data_claim.gd
-res://entities/ui/transition/data_transition.gd
-res://global/Bozo.gd
-res://entities/hell/hell.tscn
+res://entities/hell/jail/cage/cage.tscn
+res://entities/herald/overlord/shaders/domain texture.gdshader
+res://entities/herald/overlord/shaders/domain.gdshader
+res://entities/ui/transition/transition.gdshader
+res://entities/hell/jail/cage/cage.gd
+res://entities/hell/jail/sinner/sinner.gd
+res://entities/hell/jail/sinner/sinner.tscn

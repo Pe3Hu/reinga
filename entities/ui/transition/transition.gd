@@ -19,14 +19,17 @@ func _ready() -> void:
 
 #region animate
 func animate_in() -> void:
-	visible = true
-	tween = create_tween()
-	get_tree().paused = true
-	tween.tween_property(bg.material, "shader_parameter/factor", 1, Catalog.TRANSITION_DURATION)\
-	 .set_trans(Tween.TRANS_QUAD)\
-	 .set_ease(Tween.EASE_IN_OUT)
-	await tween.finished
-	animate_out()
+	if !data.skip_animation:
+		visible = true
+		tween = create_tween()
+		get_tree().paused = true
+		tween.tween_property(bg.material, "shader_parameter/factor", 1, Catalog.TRANSITION_DURATION)\
+		 .set_trans(Tween.TRANS_QUAD)\
+		 .set_ease(Tween.EASE_IN_OUT)
+		await tween.finished
+		animate_out()
+	else:
+		no_animation()
 
 func animate_out() -> void:
 	apply_layer()
@@ -38,6 +41,9 @@ func animate_out() -> void:
 	await tween.finished
 	get_tree().paused = false
 	visible = false
+
+func no_animation() -> void:
+	apply_on_screen()
 #endregion
 
 #region apply

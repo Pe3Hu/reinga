@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/gate/shader/portal.gdshader" id="4_gmdhp"]
 [ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="4_xft3k"]
 [ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/gate/shader/gate blur.gdshader" id="5_dans4"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="6_ttr3x"]
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/variants/select button.tscn" id="6_ttr3x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1c2el"]
 shader = ExtResource("4_xft3k")
@@ -143,11 +143,5 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SelectButton" parent="PanelContainer/VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Select"
 gate = NodePath("../../..")
-
-[connection signal="pressed" from="PanelContainer/VBoxContainer/SelectButton" to="." method="_on_select_button_pressed"]

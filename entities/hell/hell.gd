@@ -17,6 +17,8 @@ var data: HellData:
 @export var market: Market
 @export var platform: Platform
 
+@export var eye_button: CustomButton
+
 
 func _ready():
 	Scope.phase_timer = %PhaseTimer

@@ -3,11 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://3g7mqhgfhoe3" path="res://entities/ui/token/sin/sin.tscn" id="1_eejge"]
 [ext_resource type="Script" uid="uid://brntlor2gwmt5" path="res://entities/hell/nightmare/claim/claim.gd" id="1_iriit"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_ovff2"]
-[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/overlord.gdshader" id="3_5wkm7"]
+[ext_resource type="Shader" uid="uid://b2jgjr5cacdpb" path="res://entities/herald/overlord/shaders/domain.gdshader" id="3_5wkm7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xiexw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_35jud"]
+resource_local_to_scene = true
 shader = ExtResource("3_5wkm7")
 shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
 shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
@@ -29,11 +30,6 @@ sins = [NodePath("VBox/MarginSins/Sins/Sin1"), NodePath("VBox/MarginSins/Sins/Si
 layout_mode = 2
 target = NodePath("..")
 
-[node name="Background" type="ColorRect" parent="." unique_id=893081386]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_35jud")
-layout_mode = 2
-
 [node name="VBox" type="VBoxContainer" parent="." unique_id=585816458]
 layout_mode = 2
 
@@ -48,8 +44,8 @@ theme_override_constants/margin_bottom = 0
 
 [node name="HeaderBackground" type="ColorRect" parent="VBox/HeaderContainer" unique_id=634213517]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_35jud")
 layout_mode = 2
-color = Color(0.9411765, 0.9019608, 0.54901963, 1)
 
 [node name="HeaderLabel" type="RichTextLabel" parent="VBox/HeaderContainer/HeaderBackground" unique_id=1741164877]
 unique_name_in_owner = true

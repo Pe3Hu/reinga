@@ -89,14 +89,14 @@ custom_minimum_size = Vector2(32, 68)
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Tribute" parent="Margin/Box/NotSins" unique_id=1672584037 node_paths=PackedStringArray("contribution") instance=ExtResource("2_abunu")]
-layout_mode = 2
-contribution = NodePath("../../../..")
-
 [node name="Candle" parent="Margin/Box/NotSins" unique_id=634893612 node_paths=PackedStringArray("contribution") instance=ExtResource("2_cicqm")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+contribution = NodePath("../../../..")
+
+[node name="Tribute" parent="Margin/Box/NotSins" unique_id=1672584037 node_paths=PackedStringArray("contribution") instance=ExtResource("2_abunu")]
+layout_mode = 2
 contribution = NodePath("../../../..")
 
 [node name="Anger" parent="Margin/Box" unique_id=1974550261 node_paths=PackedStringArray("contribution") instance=ExtResource("3_10cs7")]

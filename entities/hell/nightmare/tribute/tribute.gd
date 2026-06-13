@@ -32,3 +32,4 @@ func start_drain() -> void:
 func _on_type_changed() -> void:
 	if data.type == 0: return
 	icon.texture = load("res://entities/hell/nightmare/tribute/images/%s.png" % Catalog.half_to_string[data.type])
+	icon.material.set_shader_parameter("mask_texture", load("res://entities/hell/nightmare/tribute/images/%s.png" % Catalog.half_to_string[data.type]))

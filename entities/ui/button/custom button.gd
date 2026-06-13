@@ -1,15 +1,7 @@
 class_name CustomButton
-extends Button
+extends BaseButton
 
 
-@export var bank: Bank:
-	set(value_):
-		bank = value_
-		text = "Lock"
-@export var gate: Gate:
-	set(value_):
-		gate = value_
-		text = "Select"
 
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)
 @export var pressed_scale: Vector2 = Vector2(0.9, 0.9)
@@ -53,11 +45,7 @@ func show_me() -> void:
 	visible = true
 
 func update_visible() -> void:
-	if bank:
-		visible = bank.data.hell.jail.table.active_cages.size() > 0
-	
-	if gate:
-		visible = gate.data.table.active_cages.size() > 0
+	pass
 
 func activate() -> void:
 	pass

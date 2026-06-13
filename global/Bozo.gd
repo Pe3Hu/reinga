@@ -396,6 +396,7 @@ enum Frame {
 	DEAL = 338,
 	PLATFORM = 339,
 	SANCTUARY = 340,
+	TORTURE = 341
 }
 
 enum Overlord {

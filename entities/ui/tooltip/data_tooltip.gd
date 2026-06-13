@@ -8,7 +8,12 @@ extends Resource
 @export var header: String:
 	set(value_):
 		var text = value_.capitalize()
-		text = text.replace(" (mod)", "")
+		
+		if Catalog.tooltip_to_suffix.has(type):
+			text = text.replace(" (mod)", "")
+			var suffix = Catalog.tooltip_to_suffix[type]
+			text += suffix
+		
 		header = Helper.get_focused_text(text)
 @export var descritipion: String:
 	set(value_):

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_bvxrg"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_ipowr"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_2q8u8"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/button.tscn" id="5_bvxrg"]
+[ext_resource type="PackedScene" uid="uid://bumjsoptu327e" path="res://entities/ui/button/variants/lock button.tscn" id="6_ipowr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vq1a"]
 
@@ -118,11 +118,6 @@ visible = true
 layout_mode = 2
 bank = NodePath("../../../../../..")
 
-[node name="LockButton" parent="VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("bank") instance=ExtResource("5_bvxrg")]
-custom_minimum_size = Vector2(72, 24)
+[node name="LockButton" parent="VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("bank") instance=ExtResource("6_ipowr")]
 layout_mode = 2
-text = "Lock"
 bank = NodePath("../..")
-hover_scale = Vector2(1.25, 1.14)
-
-[connection signal="pressed" from="VBoxContainer/LockButton" to="." method="_on_lock_button_pressed"]

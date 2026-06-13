@@ -17,7 +17,6 @@ var data: GateData:
 var cages: Array[Cage]
 
 
-
 #region init
 func init_cages() -> void:
 	for cage_data in data.table.cages:
@@ -84,13 +83,7 @@ func on_screen():
 	unblur_all()
 	data.init_fates()
 	update_sinner_datas()
-	simulate_choice()
-
-func _on_select_button_pressed() -> void:
-	select_button.hide_me()
-	data.refill_tribunal()
-	#Scope.phase = Bozo.Phase.ENDOWMENT
-	world.transition.data.next_layer = Bozo.Layer.HELL
+	#simulate_choice()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -110,4 +103,4 @@ func simulate_choice() -> void:
 	await get_tree().create_timer(0.3).timeout
 	var catena = data.table.catenas.back()
 	catena.is_selected = true
-	_on_select_button_pressed()
+	select_button._on_pressed()

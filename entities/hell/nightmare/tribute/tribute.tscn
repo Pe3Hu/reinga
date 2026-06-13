@@ -1,11 +1,22 @@
 [gd_scene format=3 uid="uid://d34qbt65thfel"]
 
 [ext_resource type="Script" uid="uid://hgbxva7v3mmn" path="res://entities/hell/nightmare/tribute/tribute.gd" id="1_h00t8"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain texture.gdshader" id="2_d6go0"]
 [ext_resource type="Texture2D" uid="uid://b6vxl1lb21bfs" path="res://entities/hell/nightmare/tribute/images/less.png" id="2_o0j3o"]
 [ext_resource type="PackedScene" uid="uid://bokvfaxgoa8xr" path="res://entities/hell/nightmare/progression/progression.tscn" id="3_a5tkp"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="4_7lmej"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o0j3o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jn7r3"]
+resource_local_to_scene = true
+shader = ExtResource("2_d6go0")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
 
 [node name="Tribute" type="PanelContainer" unique_id=281809045 node_paths=PackedStringArray("icon", "progression")]
 offset_right = 64.0
@@ -21,14 +32,14 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="Icon" type="TextureRect" parent="VBoxContainer" unique_id=98801643]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_jn7r3")
 layout_mode = 2
 texture = ExtResource("2_o0j3o")
 
 [node name="Progression" parent="VBoxContainer" unique_id=1874653142 instance=ExtResource("3_a5tkp")]
 layout_mode = 2
 size_flags_horizontal = 4
-type = 105
-limit_value = 5
 
 [node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("4_7lmej")]
 layout_mode = 2

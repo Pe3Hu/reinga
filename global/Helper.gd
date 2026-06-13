@@ -80,3 +80,22 @@ func get_colored_amber(type_: Bozo.Amber) -> String:
 	var amber_text = Catalog.amber_to_string[type_].capitalize()
 	var result = "[color=%s]%s[/color]" % [amber_color, amber_text]
 	return result
+
+
+func update_colors(node_, overlord_: Bozo.Overlord) -> void:
+	var hue = Catalog.overlord_to_hue[overlord_]
+	var color_a: Color = Color(Catalog.overlord_to_pallete[0])
+	var color_b: Color = Color(Catalog.overlord_to_pallete[1])
+	var color_c: Color = Color(Catalog.overlord_to_pallete[2])
+	color_a.h += hue
+	color_b.h += hue
+	color_c.h += hue
+	
+	if overlord_ == Bozo.Overlord.MARVONE:
+		color_a.s = 0
+		color_b.s = 0
+		color_c.s = 0
+	
+	node_.material.set_shader_parameter("colorA", color_a)
+	node_.material.set_shader_parameter("colorB", color_b)
+	node_.material.set_shader_parameter("colorC", color_c)

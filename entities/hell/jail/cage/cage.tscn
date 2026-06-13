@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/grey paint.gdshader" id="2_s5x2c"]
 [ext_resource type="PackedScene" uid="uid://be1h42nriq287" path="res://entities/hell/jail/cage/cloak/cloak.tscn" id="3_r5l2a"]
 [ext_resource type="Texture2D" uid="uid://diddtbi56s7mg" path="res://entities/ui/frame/images/cage.png" id="3_vmsct"]
+[ext_resource type="Texture2D" uid="uid://d4ajl3hshwinh" path="res://entities/ui/frame/images/torture.png" id="5_ubheq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hlo7k"]
 
@@ -14,7 +15,7 @@ shader = ExtResource("2_s5x2c")
 shader_parameter/inverse_speed = 15.0
 shader_parameter/intensity = 0.3
 
-[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("active_background", "passive_background", "sinner", "cloak")]
+[node name="Cage" type="PanelContainer" unique_id=1525665167 node_paths=PackedStringArray("active_background", "passive_background", "sinner", "cloak", "torture_frame")]
 z_index = 10
 custom_minimum_size = Vector2(206, 230)
 offset_right = 172.0
@@ -26,6 +27,7 @@ active_background = NodePath("BackgroundMarginContainer/ActiveBackground")
 passive_background = NodePath("BackgroundMarginContainer/PassiveBackground")
 sinner = NodePath("MarginContainer/Sinner")
 cloak = NodePath("MarginContainer/Cloak")
+torture_frame = NodePath("TortureFrame")
 
 [node name="BackgroundMarginContainer" type="MarginContainer" parent="." unique_id=1035010068]
 z_index = -11
@@ -55,6 +57,19 @@ patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
 type = 312
+
+[node name="TortureFrame" parent="." unique_id=1387167416 instance=ExtResource("2_hlo7k")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("5_ubheq")
+region_rect = Rect2(0, 0, 84, 84)
+patch_margin_left = 21
+patch_margin_top = 21
+patch_margin_right = 21
+patch_margin_bottom = 21
+type = 341
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=754715822]
 layout_mode = 2

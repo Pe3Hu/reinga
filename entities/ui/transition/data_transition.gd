@@ -15,6 +15,8 @@ var next_layer: Bozo.Layer = Bozo.Layer.NONE:
 		
 		next_layer = value_
 
+var skip_animation: bool = false
+
 
 func _init(world_: WorldData) -> void:
 	world = world_

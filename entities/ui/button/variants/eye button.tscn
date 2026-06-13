@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://rre501o3wx2s"]
+
+[ext_resource type="Texture2D" uid="uid://doi0kl7mcvo7r" path="res://entities/ui/button/images/eye off.png" id="1_8wfwi"]
+[ext_resource type="Texture2D" uid="uid://dlw2limpqh3o0" path="res://entities/ui/button/images/eye on.png" id="2_henas"]
+[ext_resource type="Script" uid="uid://f7pkrpj4x82w" path="res://entities/ui/button/variants/eye.gd" id="3_3npka"]
+
+[node name="EyeButton" type="TextureButton" unique_id=671915696]
+toggle_mode = true
+texture_normal = ExtResource("1_8wfwi")
+texture_pressed = ExtResource("2_henas")
+texture_hover = ExtResource("2_henas")
+texture_disabled = ExtResource("2_henas")
+script = ExtResource("3_3npka")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -25,6 +25,8 @@ visible = false
 world = NodePath("..")
 
 [node name="Sanctuary" parent="." unique_id=550126807 node_paths=PackedStringArray("world") instance=ExtResource("4_db8ab")]
+visible = false
+z_index = 110
 world = NodePath("..")
 
 [node name="Gate" parent="." unique_id=282794866 node_paths=PackedStringArray("world") instance=ExtResource("5_hl0m3")]

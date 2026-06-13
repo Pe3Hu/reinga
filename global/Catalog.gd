@@ -1023,6 +1023,7 @@ const frame_to_string = {
 	Bozo.Frame.DEAL: "deal",
 	Bozo.Frame.PLATFORM: "platform",
 	Bozo.Frame.SANCTUARY: "sanctuary",
+	Bozo.Frame.TORTURE: "torture",
 }
 
 const frame_to_region = {
@@ -1037,6 +1038,7 @@ const frame_to_region = {
 	Bozo.Frame.DEAL: 36,
 	Bozo.Frame.PLATFORM: 136,
 	Bozo.Frame.SANCTUARY: 124,
+	Bozo.Frame.TORTURE: 84,
 }
 
 const frame_to_patch = {
@@ -1051,6 +1053,7 @@ const frame_to_patch = {
 	Bozo.Frame.DEAL: 12,
 	Bozo.Frame.PLATFORM: 66,
 	Bozo.Frame.SANCTUARY: 60,
+	Bozo.Frame.TORTURE: 21,
 }
 #endregion
 
@@ -1409,6 +1412,7 @@ const overlord_to_hue = {
 	Bozo.Overlord.VIRELLO: 0.15,
 	Bozo.Overlord.XALVORR: 0.35,
 	Bozo.Overlord.SIREXIL: 0.55,
+	Bozo.Overlord.MARVONE: 0.0,
 }
 
 var overlord_to_pallete = [
@@ -1635,8 +1639,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.GENIUS: "[ghost][meta cage]Cage[/meta][/ghost] was [ghost][meta torture]Torture[/meta][/ghost] before [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.LEADER: "[ghost][meta cage]Cage[/meta][/ghost] surrounded by exactly 4 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
 	Bozo.Tooltip.EXILE: "[ghost][meta cage]Cage[/meta][/ghost] surrounded by exactly 2 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
-	Bozo.Tooltip.CHILD: "Enough [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta fate]Fate[/meta][/ghost]",
-	Bozo.Tooltip.PARENT: "Enough [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta faction]Faction[/meta][ghost]",
+	Bozo.Tooltip.CHILD: "There are at least 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with the same [ghost][meta fate]Fate[/meta][/ghost]",
+	Bozo.Tooltip.PARENT: "There are at least 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta faction]Faction[/meta][ghost]",
 	Bozo.Tooltip.NEIGHBOR: "Orthogonally linked [ghost][meta cage]Cage[/meta][/ghost]",
 	Bozo.Tooltip.BALLET: "Produces [meta amber][color=white]Indolence[/color][/meta]",
 	Bozo.Tooltip.PUPPETRY: "Improves better [ghost][meta attitude]Attitude[/meta][/ghost]",
@@ -1671,8 +1675,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.MOD_PARENT: "Chance to have 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta faction]Faction[/meta][/ghost]",
 	Bozo.Tooltip.MOD_HOPE: "Amount of same [ghost][meta faction]Factions[/meta][/ghost] required to form [ghost][meta brotherhood]Brotherhood[/meta][/ghost]",
 	Bozo.Tooltip.MOD_TRUST: "Amount of same [ghost][meta fate]Fates[/meta][/ghost] required to form [ghost][meta guild]Guild[/meta][/ghost]",
-	Bozo.Tooltip.MOD_SIN: "spread of quantity of [ghost][meta sin]Sin[/meta][/ghost] required to conclude [ghost][meta deal]Deal[/meta][/ghost]",
-	Bozo.Tooltip.MOD_AMBER: "Spread of quantity of [ghost][meta amber]Amber[/meta][/ghost] received upon conclusion of [ghost][meta deal]Deal[/meta][/ghost]",
+	Bozo.Tooltip.MOD_SIN: "Min and max amount of [ghost][meta sin]Sin[/meta][/ghost] required to conclude [ghost][meta deal]Deal[/meta][/ghost]",
+	Bozo.Tooltip.MOD_AMBER: "Min and max amount of [ghost][meta amber]Amber[/meta][/ghost] received upon conclusion of [ghost][meta deal]Deal[/meta][/ghost]",
 	Bozo.Tooltip.MOD_BALLET: "Amount of [ghost][meta amber]Indolence[/meta][/ghost] produces when [ghost][meta ballet]Ballet[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_PUPPETRY: "Amount of change of mind for better [ghost][meta attitude]Attitude[/meta][/ghost] when [ghost][meta puppetry]Puppetry[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_OPERA: "Amount of heat extinguished from hottest [ghost][meta flame]Flame[/meta][/ghost] when [ghost][meta opera]Opera[/meta][/ghost] is finished",
@@ -1751,4 +1755,23 @@ var tooltip_to_string = {
 	Bozo.Tooltip.MOD_HOPE: "hope (mod)",
 }
 
+const tooltip_to_suffix = {
+	Bozo.Tooltip.MOD_MISS: ", percent",
+	Bozo.Tooltip.MOD_CRIT: ", percent",
+	Bozo.Tooltip.MOD_MEGACRIT: ", percent",
+	Bozo.Tooltip.MOD_ULTRACRIT: ", percent",
+	Bozo.Tooltip.MOD_LAYMAN: ", percent",
+	Bozo.Tooltip.MOD_GENIUS: ", percent",
+	Bozo.Tooltip.MOD_LEADER: ", percent",
+	Bozo.Tooltip.MOD_EXILE: ", percent",
+	Bozo.Tooltip.MOD_CHILD: ", percent",
+	Bozo.Tooltip.MOD_PARENT: ", percent",
+	Bozo.Tooltip.MOD_HOPE: ", limit",
+	Bozo.Tooltip.MOD_TRUST: ", limit",
+	Bozo.Tooltip.MOD_SIN: ", scope",
+	Bozo.Tooltip.MOD_AMBER: ", scope",
+	Bozo.Tooltip.MOD_BALLET: ", shift",
+	Bozo.Tooltip.MOD_PUPPETRY: ", shift",
+	Bozo.Tooltip.MOD_OPERA: ", shift"
+}
 #endregion
