@@ -218,7 +218,11 @@ enum Fruit {
 	IMMATURE = 129,
 }
 
-
+enum Weather {
+	NONE = 0,
+	SUN = 130,
+	MOON = 131,
+}
 
 #145-147 fate
 
@@ -291,7 +295,8 @@ enum Layer {
 	HELL = 250,
 	GATE = 251,
 	SANCTUARY = 252,
-	HERALD = 253
+	HERALD = 253,
+	ABYSS = 254,
 }
 
 enum Tooltip {

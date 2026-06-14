@@ -8,8 +8,8 @@ func update_visible() -> void:
 	super.update_visible()
 	visible = bank.data.hell.jail.table.active_cages.size() > 0
 
-
-func _on_pressed() -> void:
+func _button_pressed() -> void:
+	super._button_pressed()
 	lock()
 
 func lock() -> void:

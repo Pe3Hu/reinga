@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/gate/shader/portal.gdshader" id="4_gmdhp"]
 [ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="4_xft3k"]
 [ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/gate/shader/gate blur.gdshader" id="5_dans4"]
+[ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="6_t1wnq"]
 [ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/variants/select button.tscn" id="6_ttr3x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1c2el"]
@@ -47,7 +48,7 @@ shader_parameter/selected_col = 0
 shader_parameter/blur_strength = 0.8
 shader_parameter/blur_amount = 1.0
 
-[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button")]
+[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button", "weather_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +59,7 @@ script = ExtResource("1_73phx")
 cage_scene = ExtResource("2_22103")
 catena_scene = ExtResource("3_4f2db")
 select_button = NodePath("PanelContainer/VBoxContainer/SelectButton")
+weather_button = NodePath("PanelContainer/VBoxContainer/Panel/NWMargin/WeatherMargin/WeatherButton")
 
 [node name="Halo" type="ColorRect" parent="." unique_id=1735828971]
 material = SubResource("ShaderMaterial_1c2el")
@@ -117,6 +119,24 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hqeo4")
+
+[node name="NWMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/Panel" unique_id=2079595]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = -60
+theme_override_constants/margin_top = -60
+
+[node name="WeatherMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/Panel/NWMargin" unique_id=1794856754]
+layout_mode = 2
+theme_override_constants/margin_left = -64
+theme_override_constants/margin_top = -64
+
+[node name="WeatherButton" parent="PanelContainer/VBoxContainer/Panel/NWMargin/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("gate") instance=ExtResource("6_t1wnq")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+gate = NodePath("../../../../../..")
 
 [node name="Catenas" type="Control" parent="PanelContainer/VBoxContainer/Panel" unique_id=2048673265]
 unique_name_in_owner = true

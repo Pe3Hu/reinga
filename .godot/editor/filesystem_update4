@@ -1,13 +1,46 @@
-res://entities/herald/overlord/shaders/domain.gdshader
-res://entities/ui/transition/transition.gdshader
-res://entities/ui/glory/glory.tscn
-res://entities/ui/glory/glory.gdshader
 res://entities/hell/hell.tscn
-res://entities/ui/glory/glory.gd
-res://entities/herald/shaders/grey paint.gdshader
-res://entities/hell/jail/cage/cage.tscn
+res://entities/herald/overlord/shaders/domain.gdshader
 res://entities/herald/shaders/torture.gdshader
-res://entities/hell/jail/cage/cage.gd
-res://entities/hell/underground/deal/deal.tscn
+res://entities/ui/glory/glory.gdshader
+res://entities/ui/transition/transition.gdshader
 res://entities/hell/treasury/contribution/candle/shaders/contribution active.gdshader
-res://entities/sanctuary/sanctuary.tscn
+res://entities/ui/tooltip/data_tooltip.gd
+res://entities/ui/button/variants/sky.tscn
+res://entities/ui/button/variants/sky.gd
+res://global/Bozo.gd
+res://entities/ui/button/variants/weather.gd
+res://global/Catalog.gd
+res://entities/ui/button/variants/weather button.tscn
+res://entities/ui/button/custom button.gd
+res://global/Scope.gd
+res://entities/hell/jail/cage/cage.gd
+res://entities/hell/jail/jail.gd
+res://entities/hell/jail/cage/cloak/cloak.tscn
+res://entities/ui/token/desire/desire.gd
+res://entities/hell/jail/cage/cloak/dream/dream.gd
+res://entities/hell/hell.gd
+res://entities/gate/gate.tscn
+res://entities/gate/gate.gd
+res://entities/hell/jail/cage/cage.tscn
+res://entities/hell/nightmare/nightmare.gd
+res://entities/ui/glory/glory.tscn
+res://entities/ui/glory/glory.gd
+res://entities/abyss/abyss.tscn
+res://entities/abyss/abyss.gd
+res://entities/inferno/inferno.tscn
+res://entities/inferno/void.gdshader
+res://entities/world/world.tscn
+res://entities/world/world.gd
+res://entities/world/data_world.gd
+res://entities/abyss/data_abyss.gd
+res://entities/tribunal/data_table.gd
+res://entities/gate/data_gate.gd
+res://entities/hell/jail/sinner/sinner.tscn
+res://entities/hell/jail/sinner/data_sinner.gd
+res://entities/hell/jail/catena/catena.gd
+res://entities/ui/button/variants/sacrifice button.tscn
+res://entities/ui/button/variants/select.gd
+res://entities/ui/button/variants/lock button.tscn
+res://entities/ui/button/variants/lock.gd
+res://entities/ui/button/variants/sacrifice.gd
+res://entities/inferno/inferno.gd

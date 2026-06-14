@@ -6,6 +6,7 @@ extends Node
 @export var hell: Hell
 @export var gate: Gate
 @export var sanctuary: Sanctuary
+@export var abyss: Abyss
 @export var transition: Transition
 
 
@@ -16,13 +17,14 @@ func _ready() -> void:
 	connect_datas()
 	#Scope.layer_changed.connect(update_layer)
 	#update_layer()
-	#transition.data.next_layer = Bozo.Layer.SANCTUARY
+	transition.data.next_layer = Bozo.Layer.ABYSS
 	transition.apply_layer()
 
 func connect_datas() -> void:
 	sanctuary.data = data.sanctuary
 	hell.data = data.hell
 	gate.data = data.gate
+	abyss.data = data.abyss
 	transition.data = data.transition
 
 func _input(event) -> void:

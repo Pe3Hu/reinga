@@ -64,3 +64,11 @@ func end_dissolve_guild_tokens(desire_: TokenDesire) -> void:
 	
 	cloak.cage.jail.hell.volcano.burst_splash(trial.flame.progression, 1, _sign)
 #endregion
+
+func show_desires() -> void:
+	for desire in desires:
+		desire.refill_progress()
+
+func reset_desires() -> void:
+	for desire in desires:
+		desire.reset()

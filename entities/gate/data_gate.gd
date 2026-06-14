@@ -10,8 +10,6 @@ var sinners: Array[SinnerData]
 var fate_options: Array[Bozo.Fate]
 var fate_to_count: Dictionary
 
-var is_open: bool = true#false
-
 
 #region init
 func _init(world_: WorldData) -> void:

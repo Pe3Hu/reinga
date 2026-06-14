@@ -9,7 +9,8 @@ func update_visible() -> void:
 	visible = gate.data.table.active_cages.size() > 0
 
 
-func _on_pressed() -> void:
+func _button_pressed() -> void:
+	super._button_pressed()
 	hide_me()
 	gate.data.refill_tribunal()
 	#Scope.phase = Bozo.Phase.ENDOWMENT

@@ -30,7 +30,10 @@ func _on_type_changed() -> void:
 #endregion
 
 func reset() -> void:
-	texture_rect.material.set_shader_parameter("update_progress", Catalog.DESIRE_PROGRESS_LIMIT)
+	update_progress(Catalog.DESIRE_PROGRESS_LIMIT)
+
+func refill_progress() -> void:
+	update_progress(-Catalog.DESIRE_PROGRESS_LIMIT)
 
 func dissolve():
 	if data.value == 0: 

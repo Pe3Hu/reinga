@@ -2,7 +2,6 @@ class_name CustomButton
 extends BaseButton
 
 
-
 @export var hover_scale: Vector2 = Vector2(1.1, 1.1)
 @export var pressed_scale: Vector2 = Vector2(0.9, 0.9)
 
@@ -23,11 +22,9 @@ func _button_enter() -> void:
 	create_tween().tween_property(self, "scale", hover_scale, 0.1)\
 		.set_trans(Tween.TRANS_SINE)
 
-
 func _button_exit() -> void:
 	create_tween().tween_property(self, "scale", Vector2.ONE, 0.1)\
 		.set_trans(Tween.TRANS_SINE)
-
 
 func _button_pressed() -> void:
 	var button_press_tween: Tween = create_tween()

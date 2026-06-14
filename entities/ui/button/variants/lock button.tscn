@@ -26,5 +26,3 @@ theme_override_styles/pressed = ExtResource("1_obr7j")
 theme_override_styles/hover = ExtResource("2_gtrko")
 text = "Lock"
 script = ExtResource("3_l616l")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

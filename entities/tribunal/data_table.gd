@@ -2,6 +2,7 @@ class_name TableData
 extends Resource
 
 
+var abyss: AbyssData
 var gate: GateData
 var jail: JailData:
 	set(value_):

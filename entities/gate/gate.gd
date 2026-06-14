@@ -13,6 +13,7 @@ var data: GateData:
 
 @export var world: World
 @export var select_button: Button
+@export var weather_button: TextureButton
 
 var cages: Array[Cage]
 
@@ -40,6 +41,7 @@ func add_cage(data_: CageData) -> void:
 	cages.append(cage)
 #endregion
 
+#region blur
 func blur_all() -> void:
 	%Blur.visible = true
 	%Blur.material.set_shader_parameter("selected_row", -1)
@@ -53,6 +55,7 @@ func unblur_row(index_: int) -> void:
 
 func unblur_col(index_: int) -> void:
 	%Blur.material.set_shader_parameter("selected_col", index_)
+#endregion
 
 func update_sinner_datas() -> void:
 	%Cages.visible =  true
@@ -71,9 +74,7 @@ func update_sinner_datas() -> void:
 			cage.cloak.dream.data = sinner_data.dream
 		
 		cage.sinner.visible = true
-
-func open() -> void:
-	if !data.is_open: return
+		cage.passive_background.z_index = 1
 
 func off_screen() -> void:
 	visible = false
@@ -83,6 +84,8 @@ func on_screen():
 	unblur_all()
 	data.init_fates()
 	update_sinner_datas()
+	Scope.weather = Bozo.Weather.SUN
+	weather_button.updaet_margin_offset()
 	#simulate_choice()
 
 func _input(event: InputEvent) -> void:
@@ -98,9 +101,12 @@ func forget_catenas() -> void:
 		data.table.reset_catenas()
 		unblur_all()
 
-
 func simulate_choice() -> void:
 	await get_tree().create_timer(0.3).timeout
 	var catena = data.table.catenas.back()
 	catena.is_selected = true
 	select_button._on_pressed()
+
+func apply_weather() -> void:
+	for cage in cages:
+		cage.apply_weather()

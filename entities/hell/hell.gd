@@ -18,6 +18,7 @@ var data: HellData:
 @export var platform: Platform
 
 @export var eye_button: CustomButton
+@export var weather_button: TextureButton
 
 
 func _ready():
@@ -73,6 +74,7 @@ func execute_phase() -> void:
 			market.data.refill_closed_deals()
 			nightmare.start_drain_tributes()
 		Bozo.Phase.INVESTMENT:
+			weather_button.switch_weather()
 			reset()
 			world.data.tribunal.actual.clear()
 			
@@ -103,3 +105,5 @@ func off_screen() -> void:
 func on_screen():
 	%PhaseTimer.start()
 	visible = true
+	Scope.weather = Bozo.Weather.MOON
+	weather_button.switch_weather()

@@ -7,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://dyhxbif7c6n2" path="res://entities/gate/gate.tscn" id="5_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://bn1bqih67kk3j" path="res://entities/ui/transition/transition.tscn" id="6_db8ab"]
 [ext_resource type="PackedScene" uid="uid://sdu3bfosnkuv" path="res://entities/herald/herald.tscn" id="6_hl0m3"]
+[ext_resource type="PackedScene" uid="uid://dw3y53as422u5" path="res://entities/abyss/abyss.tscn" id="7_ftcbs"]
 
-[node name="World" type="Node" unique_id=548530271 node_paths=PackedStringArray("inferno", "hell", "gate", "sanctuary", "transition")]
+[node name="World" type="Node" unique_id=548530271 node_paths=PackedStringArray("inferno", "hell", "gate", "sanctuary", "abyss", "transition")]
 script = ExtResource("1_plka4")
 inferno = NodePath("Inferno")
 hell = NodePath("Hell")
 gate = NodePath("Gate")
 sanctuary = NodePath("Sanctuary")
+abyss = NodePath("Abyss")
 transition = NodePath("Transition")
 
 [node name="Inferno" parent="." unique_id=1034484674 node_paths=PackedStringArray("world") instance=ExtResource("2_mrp82")]
@@ -35,6 +37,9 @@ world = NodePath("..")
 
 [node name="Herald" parent="." unique_id=696336315 instance=ExtResource("6_hl0m3")]
 visible = false
+
+[node name="Abyss" parent="." unique_id=46915748 node_paths=PackedStringArray("world") instance=ExtResource("7_ftcbs")]
+world = NodePath("..")
 
 [node name="Transition" parent="." unique_id=645520284 node_paths=PackedStringArray("world") instance=ExtResource("6_db8ab")]
 world = NodePath("..")

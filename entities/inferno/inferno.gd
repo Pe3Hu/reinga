@@ -39,5 +39,5 @@ func apply_layer() -> void:
 			%WindParticles.visible = true
 			%AshParticles.visible = true
 			%FireBackground.visible = true
-		Bozo.Layer.GATE:
+		Bozo.Layer.ABYSS:
 			%VoidBackground.visible = true

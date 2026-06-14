@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b2trf0kmwwngk" path="res://entities/ui/glory/glory.tscn" id="2_s0w50"]
 [ext_resource type="Texture2D" uid="uid://cioo6abb1k8yp" path="res://entities/ui/frame/images/hell.png" id="3_3bli8"]
 [ext_resource type="PackedScene" uid="uid://cmk5hxv43634p" path="res://entities/hell/underground/bank/bank.tscn" id="3_b2gxv"]
+[ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="3_j1gjs"]
 [ext_resource type="PackedScene" uid="uid://bhblfmmey6iuk" path="res://entities/hell/treasury/treasury.tscn" id="3_mcit4"]
 [ext_resource type="PackedScene" uid="uid://q3fe4113ir2i" path="res://entities/hell/platform/platform.tscn" id="6_gxyx2"]
 [ext_resource type="PackedScene" uid="uid://bic8fb8vsph13" path="res://entities/hell/underground/market/market.tscn" id="7_b2gxv"]
@@ -18,7 +19,7 @@ bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3bli8"]
 
-[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "platform", "eye_button")]
+[node name="Hell" type="Control" unique_id=1588501557 node_paths=PackedStringArray("volcano", "nightmare", "jail", "treasury", "bank", "market", "platform", "eye_button", "weather_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +36,7 @@ bank = NodePath("UI/FrameMargin/HBox/VBox/HBox/Bank")
 market = NodePath("UI/FrameMargin/Market")
 platform = NodePath("UI/FrameMargin/Platform")
 eye_button = NodePath("UI/EyeMargin/EyeButton")
+weather_button = NodePath("UI/WeatherMargin/WeatherButton")
 
 [node name="UI" type="PanelContainer" parent="." unique_id=1314192830]
 unique_name_in_owner = true
@@ -56,6 +58,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_xmjwd")
 [node name="Glory" parent="UI" unique_id=1217569372 instance=ExtResource("2_s0w50")]
 layout_mode = 2
 
+[node name="WeatherMargin" type="MarginContainer" parent="UI" unique_id=1702968846]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = -64
+theme_override_constants/margin_top = -64
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="WeatherButton" parent="UI/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("hell") instance=ExtResource("3_j1gjs")]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+hell = NodePath("../../..")
+
 [node name="EyeMargin" type="MarginContainer" parent="UI" unique_id=650407420]
 layout_mode = 2
 size_flags_horizontal = 8
@@ -63,7 +79,7 @@ size_flags_vertical = 0
 theme_override_constants/margin_top = -64
 theme_override_constants/margin_right = -64
 
-[node name="EyeButton" parent="UI/EyeMargin" unique_id=671915696 node_paths=PackedStringArray("hell") instance=ExtResource("2_gxyx2")]
+[node name="EyeButton" parent="UI/EyeMargin" unique_id=55492239 node_paths=PackedStringArray("hell") instance=ExtResource("2_gxyx2")]
 layout_mode = 2
 hell = NodePath("../../..")
 

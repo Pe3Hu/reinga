@@ -1063,7 +1063,8 @@ const TRANSITION_DURATION: float = 0.1#1.5
 const layer_to_string = {
 	Bozo.Layer.HELL: "hell",
 	Bozo.Layer.GATE: "gate",
-	Bozo.Layer.SANCTUARY: "sanctuary"
+	Bozo.Layer.ABYSS: "abyss",
+	Bozo.Layer.SANCTUARY: "sanctuary",
 }
 #endregion
 
@@ -1620,14 +1621,14 @@ var tooltip_to_template = {
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essence]Essence[/meta][/ghost]",
 	Bozo.Tooltip.TRIAL: "[ghost][meta overlord]Overlord[/meta][/ghost] domain is formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.FLAME: "Raises [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire[/meta][/ghost]",
-	Bozo.Tooltip.CLAIM: "[ghost][meta overlord]Overlord's[/meta][/ghost] requirements, for now",
-	Bozo.Tooltip.DESIRE: "Raises [ghost][meta flame]Flame[/meta][/ghost] when occupying a [ghost][meta cage]Cage[/meta][/ghost], depends on [ghost][meta faction]Faction[/meta][/ghost]",
+	Bozo.Tooltip.CLAIM: "[ghost][meta overlord]Overlord's[/melayer_to_stringta][/ghost] requirements, for now",
+	Bozo.Tooltip.DESIRE: "Raises [ghost][meta flame]Flame[/meta][/ghost] when occupying [ghost][meta cage]Cage[/meta][/ghost], depends on [ghost][meta faction]Faction[/meta][/ghost]",
 	Bozo.Tooltip.FATE: "Forms [ghost][meta guild]Guild[/meta][/ghost], defines [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost]",
 	Bozo.Tooltip.SOUL: "Set of [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost], [ghost][meta oblivion]Oblivion[/meta][/ghost]",
 	Bozo.Tooltip.FACTION: "Forms [ghost][meta brotherhood]Brotherhood[/meta][/ghost], defines [ghost][meta desire]Desire[/meta][/ghost]",
 	Bozo.Tooltip.CAGE: "Contains [ghost][meta sinner]Sinner[/meta][/ghost] and [ghost][meta cloak]Cloak[/meta][/ghost]",
 	Bozo.Tooltip.SINNER: "Shows [ghost][meta fate]Fate[/meta][/ghost], [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost] as frontside",
-	Bozo.Tooltip.CLOAK: "Shows [ghost][meta desire]Desire[/meta][/ghost] as backside",
+	Bozo.Tooltip.CLOAK: "Shows [ghost][meta desire]Desires[/meta][/ghost] as backside",
 	Bozo.Tooltip.BANK: "Stores [ghost][meta amber]Amber[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost]",
 	Bozo.Tooltip.MARKET: "List of [ghost][meta deal]Deals[/meta][/ghost], wrapped at [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.CONTRIBUTION: "Produces [ghost][meta amber]Amber[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost], depends on [ghost][meta torture]Torture[/meta][/ghost]",
@@ -1639,8 +1640,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.GENIUS: "[ghost][meta cage]Cage[/meta][/ghost] was [ghost][meta torture]Torture[/meta][/ghost] before [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.LEADER: "[ghost][meta cage]Cage[/meta][/ghost] surrounded by exactly 4 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
 	Bozo.Tooltip.EXILE: "[ghost][meta cage]Cage[/meta][/ghost] surrounded by exactly 2 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
-	Bozo.Tooltip.CHILD: "There are at least 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with the same [ghost][meta fate]Fate[/meta][/ghost]",
-	Bozo.Tooltip.PARENT: "There are at least 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta faction]Faction[/meta][ghost]",
+	Bozo.Tooltip.CHILD: "There are at least 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with same [ghost][meta fate]Fate[/meta][/ghost]",
+	Bozo.Tooltip.PARENT: "There are at least 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with same [ghost][meta faction]Faction[/meta][ghost]",
 	Bozo.Tooltip.NEIGHBOR: "Orthogonally linked [ghost][meta cage]Cage[/meta][/ghost]",
 	Bozo.Tooltip.BALLET: "Produces [meta amber][color=white]Indolence[/color][/meta]",
 	Bozo.Tooltip.PUPPETRY: "Improves better [ghost][meta attitude]Attitude[/meta][/ghost]",
@@ -1671,8 +1672,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.MOD_GENIUS: "Chance to occupy [ghost][meta cage]Cage[/meta][/ghost] that was [ghost][meta torture]Torture[/meta][/ghost] before [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.MOD_LEADER: "Chance to occupy [ghost][meta cage]Cage[/meta][/ghost] surrounded by 4 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
 	Bozo.Tooltip.MOD_EXILE: "Chance to occupy [ghost][meta cage]Cage[/meta][/ghost] surrounded by 2 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
-	Bozo.Tooltip.MOD_CHILD: "Chance to have 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with the same [ghost][meta fate]Fate[/meta][/ghost]",
-	Bozo.Tooltip.MOD_PARENT: "Chance to have 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with the same [ghost][meta faction]Faction[/meta][/ghost]",
+	Bozo.Tooltip.MOD_CHILD: "Chance to have 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with same [ghost][meta fate]Fate[/meta][/ghost]",
+	Bozo.Tooltip.MOD_PARENT: "Chance to have 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with same [ghost][meta faction]Faction[/meta][/ghost]",
 	Bozo.Tooltip.MOD_HOPE: "Amount of same [ghost][meta faction]Factions[/meta][/ghost] required to form [ghost][meta brotherhood]Brotherhood[/meta][/ghost]",
 	Bozo.Tooltip.MOD_TRUST: "Amount of same [ghost][meta fate]Fates[/meta][/ghost] required to form [ghost][meta guild]Guild[/meta][/ghost]",
 	Bozo.Tooltip.MOD_SIN: "Min and max amount of [ghost][meta sin]Sin[/meta][/ghost] required to conclude [ghost][meta deal]Deal[/meta][/ghost]",
@@ -1773,5 +1774,12 @@ const tooltip_to_suffix = {
 	Bozo.Tooltip.MOD_BALLET: ", shift",
 	Bozo.Tooltip.MOD_PUPPETRY: ", shift",
 	Bozo.Tooltip.MOD_OPERA: ", shift"
+}
+#endregion
+
+#region weather
+const weather_to_next = {
+	Bozo.Weather.SUN: Bozo.Weather.MOON,
+	Bozo.Weather.MOON: Bozo.Weather.SUN,
 }
 #endregion

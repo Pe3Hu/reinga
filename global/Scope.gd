@@ -16,6 +16,7 @@ var layer: Bozo.Layer = Bozo.Layer.NONE:
 		layer = value_
 		emit_signal("layer_changed")
 
+var weather: Bozo.Weather = Bozo.Weather.MOON
 var guild_level: int = 1
 
 #region plaza
@@ -38,3 +39,6 @@ func update_phase() -> void:
 	phase = Catalog.phase_to_next[phase]
 	if phase == Bozo.Phase.REPLENISHMENT:
 		turn += 1
+
+func switch_weather() -> void:
+	Scope.weather = Catalog.weather_to_next[Scope.weather]

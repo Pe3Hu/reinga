@@ -7,6 +7,7 @@ var gyre: GyreData
 var dream: DreamData
 var soul: SoulData
 var gate: GateData
+var abyss: AbyssData
 var cage: CageData
 
 

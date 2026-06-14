@@ -14,6 +14,9 @@ extends Resource
 			var suffix = Catalog.tooltip_to_suffix[type]
 			text += suffix
 		
+		if type == Bozo.Tooltip.GUILD:
+			text = "[tornado radius=2 freq=1.6]%s" % text
+		
 		header = Helper.get_focused_text(text)
 @export var descritipion: String:
 	set(value_):

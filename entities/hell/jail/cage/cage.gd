@@ -10,6 +10,7 @@ var data: CageData:
 
 var jail: Jail
 var gate: Gate
+var abyss: Abyss
 var contribution: Contribution
 
 @export var active_background: ColorRect
@@ -61,7 +62,6 @@ func _on_texture_button_pressed() -> void:
 				gate.unblur_all()
 				data.table._on_cage_gate_selected(data)
 
-
 func _check_mouse_position() -> void:
 	if active_background.visible: return
 	var local_mouse_pos := get_local_mouse_position()
@@ -72,3 +72,13 @@ func _check_mouse_position() -> void:
 		torture_frame.visible = true
 	elif !is_inside and torture_frame.visible:
 		torture_frame.visible = false
+
+func apply_weather() -> void:
+	if Scope.weather == Bozo.Weather.MOON:
+		cloak.dream.show_desires()
+	else:
+		cloak.dream.reset_desires()
+	
+	sinner.visible = Scope.weather == Bozo.Weather.SUN
+	cloak.visible = Scope.weather == Bozo.Weather.MOON
+	

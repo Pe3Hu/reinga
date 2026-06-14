@@ -137,4 +137,7 @@ func update_visiblity_omens() -> void:
 	
 	for cage in cages:
 		cage.sinner.soul.doom.apply_select_visiblity(is_cage_selected)
-	
+
+func apply_weather() -> void:
+	for cage in cages:
+		cage.apply_weather()

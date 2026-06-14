@@ -44,6 +44,7 @@ func end_dream_dissolve_payment(dream_: Dream) -> void:
 	dream_.cloak.cage.sinner.apply_phase_visiblity()
 	
 	if dissolve_dreams.is_empty():
+		hell.weather_button.switch_weather()
 		hell.jail.data.plaza.update_associations()
 		Scope.next_phase()
 

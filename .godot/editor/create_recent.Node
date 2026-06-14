@@ -1,9 +1,10 @@
-TextureRect
-VBoxContainer
+Control
+Node2D
 MarginContainer
 ColorRect
+TextureRect
+VBoxContainer
 RichTextLabel
-Control
 TextureButton
 PanelContainer
 HBoxContainer
@@ -11,4 +12,3 @@ HSeparator
 CanvasLayer
 GridContainer
 Timer
-Sprite2D

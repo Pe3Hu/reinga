@@ -9,6 +9,7 @@ var data: CatenaData:
 
 var jail: Jail
 var gate: Gate
+var abyss: Abyss
 
 
 func apply_data_info() -> void:
