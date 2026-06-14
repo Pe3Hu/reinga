@@ -358,6 +358,7 @@ enum Tooltip {
 	GUILD = 111,
 	USEFUL =  331,
 	TAX =  332,
+	SACRIFICE = 333,
 	
 	MOD_BATTLE = -9,
 	MOD_AUCTION = -10,

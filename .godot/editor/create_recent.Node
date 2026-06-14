@@ -1,13 +1,13 @@
+MarginContainer
+HBoxContainer
+ColorRect
 Control
 Node2D
-MarginContainer
-ColorRect
 TextureRect
 VBoxContainer
 RichTextLabel
 TextureButton
 PanelContainer
-HBoxContainer
 HSeparator
 CanvasLayer
 GridContainer

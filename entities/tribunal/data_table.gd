@@ -19,8 +19,6 @@ var coord_to_catena: Dictionary
 var active_catenas: Array[CatenaData]
 var active_cages: Array[CageData]
 
-#var genius_coord: Vector2i = Vector2i(-1, -1)
-
 
 #region init
 func _init() -> void:
@@ -80,7 +78,6 @@ func jail_extensions() -> void:
 	add_special_catena(coord, type)
 	coord = Vector2i(-1, 1)
 	add_special_catena(coord, type)
-	pass
 
 func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 	var catena = CatenaData.new(self, coord_, type_)
@@ -98,7 +95,7 @@ func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 #endregion
 
 #region select
-func _on_cage_gate_selected(cage_: CageData):
+func _on_cage_gate_selected(cage_: CageData) -> void:
 	if !active_cages.has(cage_):
 		active_cages.append(cage_)
 		cage_.sinner.fate.is_selected = true
@@ -160,7 +157,7 @@ func reset_all_actives() -> void:
 	reset_catenas()
 	reset_cages()
 
-func _on_cage_jail_selected(cage_: CageData):
+func _on_cage_jail_selected(cage_: CageData) -> void:
 	if !active_cages.has(cage_):
 		reset_catenas()
 		active_cages.append(cage_)
@@ -169,5 +166,13 @@ func _on_cage_jail_selected(cage_: CageData):
 		cage_.col.is_selected = true
 		cage_.row.is_selected = true
 	
+	reset_cage()
+
+func _on_cage_abyss_selected(cage_: CageData) -> void:
+	if !active_cages.has(cage_):
+		active_cages.append(cage_)
+		cage_.sinner.fate.is_selected = true
+	
+	detect_catena()
 	reset_cage()
 #endregion

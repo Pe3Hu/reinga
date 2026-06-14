@@ -31,10 +31,6 @@ func reset_lightning() -> void:
 		%Lightning.size = Vector2(Catalog.CAGE_SIZE.y, Catalog.JAIL_SIZE.x)
 		%Lightning.rotation = PI * 3 / 2
 
-#func highligh_cages() -> void:
-	#for cage in cages:
-		#cage.status = Bozo.Cage.MIDDLE
-
 func focus_on_cages() -> void:
 	if gate:
 		gate.blur_all()

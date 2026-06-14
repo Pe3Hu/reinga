@@ -43,12 +43,15 @@ func _can_select_cage() -> bool:
 			return jail != null and Scope.phase == Bozo.Phase.APPRAISEMENT
 		Bozo.Layer.GATE:
 			return gate != null
+		Bozo.Layer.ABYSS:
+			return abyss != null
 	
 	return false
 
 func _on_texture_button_pressed() -> void:
 	if jail:
 		jail.hell.eye_button.hide_sanctuary()
+	
 	torture_frame.visible = false
 	TooltipManager.clear()
 	
@@ -61,6 +64,10 @@ func _on_texture_button_pressed() -> void:
 			if gate:
 				gate.unblur_all()
 				data.table._on_cage_gate_selected(data)
+		Bozo.Layer.ABYSS:
+			if abyss:
+				abyss.unblur_all()
+				data.table._on_cage_abyss_selected(data)
 
 func _check_mouse_position() -> void:
 	if active_background.visible: return

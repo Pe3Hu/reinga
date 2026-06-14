@@ -58,8 +58,8 @@ grow_vertical = 2
 script = ExtResource("1_73phx")
 cage_scene = ExtResource("2_22103")
 catena_scene = ExtResource("3_4f2db")
-select_button = NodePath("PanelContainer/VBoxContainer/SelectButton")
-weather_button = NodePath("PanelContainer/VBoxContainer/Panel/NWMargin/WeatherMargin/WeatherButton")
+select_button = NodePath("PanelContainer/VBox/SelectButton")
+weather_button = NodePath("PanelContainer/VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
 
 [node name="Halo" type="ColorRect" parent="." unique_id=1735828971]
 material = SubResource("ShaderMaterial_1c2el")
@@ -95,14 +95,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ttr3x")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=470508177]
+[node name="VBox" type="VBoxContainer" parent="PanelContainer" unique_id=470508177]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=2014595488]
+[node name="Header" type="RichTextLabel" parent="PanelContainer/VBox" unique_id=2014595488]
 z_index = 5
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
@@ -114,37 +114,37 @@ text = "Fresh Blood"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=56151963]
+[node name="Panel" type="PanelContainer" parent="PanelContainer/VBox" unique_id=56151963]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_hqeo4")
 
-[node name="NWMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/Panel" unique_id=2079595]
+[node name="NWMargin" type="MarginContainer" parent="PanelContainer/VBox/Panel" unique_id=2079595]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/margin_left = -60
 theme_override_constants/margin_top = -60
 
-[node name="WeatherMargin" type="MarginContainer" parent="PanelContainer/VBoxContainer/Panel/NWMargin" unique_id=1794856754]
+[node name="WeatherMargin" type="MarginContainer" parent="PanelContainer/VBox/Panel/NWMargin" unique_id=1794856754]
 layout_mode = 2
 theme_override_constants/margin_left = -64
 theme_override_constants/margin_top = -64
 
-[node name="WeatherButton" parent="PanelContainer/VBoxContainer/Panel/NWMargin/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("gate") instance=ExtResource("6_t1wnq")]
+[node name="WeatherButton" parent="PanelContainer/VBox/Panel/NWMargin/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("gate") instance=ExtResource("6_t1wnq")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 gate = NodePath("../../../../../..")
 
-[node name="Catenas" type="Control" parent="PanelContainer/VBoxContainer/Panel" unique_id=2048673265]
+[node name="Catenas" type="Control" parent="PanelContainer/VBox/Panel" unique_id=2048673265]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Cages" type="GridContainer" parent="PanelContainer/VBoxContainer/Panel" unique_id=1458026598]
+[node name="Cages" type="GridContainer" parent="PanelContainer/VBox/Panel" unique_id=1458026598]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -154,7 +154,7 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 3
 
-[node name="Blur" type="ColorRect" parent="PanelContainer/VBoxContainer/Panel" unique_id=1660884187]
+[node name="Blur" type="ColorRect" parent="PanelContainer/VBox/Panel" unique_id=1660884187]
 unique_name_in_owner = true
 visible = false
 z_index = 105
@@ -162,6 +162,6 @@ material = SubResource("ShaderMaterial_ttr3x")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SelectButton" parent="PanelContainer/VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
+[node name="SelectButton" parent="PanelContainer/VBox" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
 layout_mode = 2
 gate = NodePath("../../..")

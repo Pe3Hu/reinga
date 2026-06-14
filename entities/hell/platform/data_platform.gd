@@ -6,6 +6,7 @@ signal fruit_is_changed
 
 var jail: JailData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.PLATFORM
+
 var spectacles: Array[SpectacleData]
 var active_spectacles: Array[SpectacleData]
 

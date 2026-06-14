@@ -6,6 +6,7 @@ extends TextureButton
 
 @export var hell: Hell
 @export var gate: Gate
+@export var abyss: Abyss
 
 var released_flag: bool = false
 
@@ -54,6 +55,9 @@ func apply_weather() -> void:
 		Bozo.Layer.GATE:
 			if gate:
 				gate.apply_weather()
+		Bozo.Layer.ABYSS:
+			if abyss:
+				abyss.apply_weather()
 
 func updaet_margin_offset() -> void:
 	match Scope.weather:
@@ -93,4 +97,6 @@ func is_main_button() -> bool:
 			return hell != null
 		Bozo.Layer.GATE:
 			return gate != null
+		Bozo.Layer.ABYSS:
+			return abyss != null
 	return false

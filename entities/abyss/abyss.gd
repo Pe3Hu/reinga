@@ -7,9 +7,11 @@ var data: AbyssData:
 		data = value_
 		init_cages()
 		init_catenas()
+		init_sacrifices()
 
 @export var cage_scene: PackedScene
 @export var catena_scene: PackedScene
+@export var sacrifice_scene: PackedScene
 
 @export var world: World
 @export var sacrifice_button: CustomButton
@@ -27,6 +29,16 @@ func init_cages() -> void:
 func init_catenas() -> void:
 	for catena_data in data.table.catenas:
 		add_catena(catena_data)
+
+func init_sacrifices() -> void:
+	for sacrifice_data in data.sacrifices:
+		add_sacrifice(sacrifice_data)
+
+func add_sacrifice(data_: SacrificeData) -> void:
+	var sacrifice = sacrifice_scene.instantiate()
+	sacrifice.data = data_
+	sacrifice.abyss = self
+	%Sacrifices.add_child(sacrifice)
 
 func add_catena(data_: CatenaData) -> void:
 	var catena = catena_scene.instantiate()
@@ -64,18 +76,23 @@ func update_sinner_datas() -> void:
 	for _i in data.sinners.size():
 		var sinner_data = data.sinners[_i]
 		var cage = cages[_i]
-		
-		if cage.data.sinner != sinner_data:
-			cage.data.sinner = sinner_data
-		
-		if cage.sinner.data != sinner_data:
-			cage.sinner.data = sinner_data
-		
-		if cage.cloak.dream.data != sinner_data.dream:
-			cage.cloak.dream.data = sinner_data.dream
+		cage.data.sinner = sinner_data
+		cage.sinner.data = sinner_data
+		cage.cloak.dream.data = sinner_data.dream
 		
 		cage.sinner.visible = true
 		cage.passive_background.z_index = 1
+	
+	update_sacrifices()
+	
+func update_sacrifices() -> void:
+	#for _i in %Catenas.get_child_count():
+		#var catena = %Catenas.get_child(_i)
+		#var sacrifice = %Sacrifices.get_child(_i)
+		#sacrifice.position = catena.position
+		#sacrifice.size = catena.size
+	
+	data.update_sacrifice_ambers()
 
 func off_screen() -> void:
 	visible = false
@@ -84,7 +101,7 @@ func on_screen():
 	visible = true
 	world.inferno.apply_layer()
 	unblur_all()
-	data.init_fates()
+	data.init_sinners()
 	update_sinner_datas()
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()

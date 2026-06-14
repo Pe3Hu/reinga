@@ -155,3 +155,11 @@ func print_total_sinners() -> void:
 		count += gyre.sinners.size()
 	
 	print(count)
+
+func get_all_sinners() -> Array[SinnerData]:
+	var sinners: Array[SinnerData]
+	
+	for gyre in gyres:
+		sinners.append_array(gyre.sinners)
+	
+	return sinners

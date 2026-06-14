@@ -15,10 +15,10 @@ var data = WorldData.new()
 
 func _ready() -> void:
 	connect_datas()
-	#Scope.layer_changed.connect(update_layer)
-	#update_layer()
+	
+	await get_tree().process_frame
 	transition.data.next_layer = Bozo.Layer.ABYSS
-	transition.apply_layer()
+	#transition.apply_layer()
 
 func connect_datas() -> void:
 	sanctuary.data = data.sanctuary
@@ -37,22 +37,6 @@ func _input(event) -> void:
 			KEY_2:
 				transition.data.next_layer = Bozo.Layer.GATE
 			KEY_3:
-				transition.data.next_layer = Bozo.Layer.SANCTUARY
+				transition.data.next_layer = Bozo.Layer.ABYSS
 			KEY_Q:
 				data.tribunal.print_total_sinners()
-
-#func reset_visible() -> void:
-	#hell.visible = false
-	#gate.visible = false
-	#sanctuary.visible = false
-#
-#func update_layer() -> void:
-	#inferno.apply_layer()
-	#
-	#match Scope.layer:
-		#Bozo.Layer.HELL:
-			#hell.visible = true
-		#Bozo.Layer.GATE:
-			#gate.visible = true
-		#Bozo.Layer.SANCTUARY:
-			#sanctuary.visible = true

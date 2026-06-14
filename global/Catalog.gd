@@ -133,13 +133,13 @@ const amber_to_sin = {
 	Bozo.Amber.PRIDE: Bozo.Sin.PRIDE,
 }
 
-const sin_to_token = {
-	Bozo.Sin.ANGER: Bozo.Token.ANGER,
-	Bozo.Sin.ENVY: Bozo.Token.ENVY,
-	Bozo.Sin.GREED: Bozo.Token.GREED,
-	Bozo.Sin.GLUTTONY: Bozo.Token.GLUTTONY,
-	Bozo.Sin.LUST: Bozo.Token.LUST,
-	Bozo.Sin.PRIDE: Bozo.Token.PRIDE,
+const sin_to_amber = {
+	Bozo.Sin.ANGER: Bozo.Amber.ANGER,
+	Bozo.Sin.ENVY: Bozo.Amber.ENVY,
+	Bozo.Sin.GREED: Bozo.Amber.GREED,
+	Bozo.Sin.GLUTTONY: Bozo.Amber.GLUTTONY,
+	Bozo.Sin.LUST: Bozo.Amber.LUST,
+	Bozo.Sin.PRIDE: Bozo.Amber.PRIDE,
 }
 
 #endregion
@@ -1783,3 +1783,5 @@ const weather_to_next = {
 	Bozo.Weather.MOON: Bozo.Weather.SUN,
 }
 #endregion
+
+const SACRIFICE_AMBER_COUNT: int = 2

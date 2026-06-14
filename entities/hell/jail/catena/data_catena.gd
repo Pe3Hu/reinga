@@ -7,6 +7,7 @@ signal z_index_changed
 
 var table: TableData
 var spectacle: SpectacleData
+var sacrifice: SacrificeData
 
 var type: Bozo.Catena
 var coord: Vector2i
