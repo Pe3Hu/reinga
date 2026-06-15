@@ -2,6 +2,7 @@ class_name TableData
 extends Resource
 
 
+var museum: MuseumData
 var abyss: AbyssData
 var gate: GateData
 var jail: JailData:

@@ -3,10 +3,19 @@
 [ext_resource type="Script" uid="uid://blud37c6ioemq" path="res://entities/abyss/sacrifice/sacrifice.gd" id="1_ngciq"]
 [ext_resource type="PackedScene" uid="uid://betsvirwxjqy7" path="res://entities/ui/token/amber/amber.tscn" id="2_lckd1"]
 
-[node name="Sacrifice" type="Control" unique_id=346013232]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lckd1"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Sacrifice" type="Control" unique_id=346013232 node_paths=PackedStringArray("ambers")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ngciq")
+ambers = [NodePath("Background/Margin/AmberPanel/AmberGrid/Amber1"), NodePath("Background/Margin/AmberPanel/AmberGrid/Amber2")]
 
 [node name="Background" type="ColorRect" parent="." unique_id=2099748649]
 unique_name_in_owner = true
@@ -23,29 +32,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = -48
-theme_override_constants/margin_top = -48
-theme_override_constants/margin_right = -48
-theme_override_constants/margin_bottom = -48
+theme_override_constants/margin_left = -36
+theme_override_constants/margin_top = -36
+theme_override_constants/margin_right = -36
+theme_override_constants/margin_bottom = -36
 
-[node name="Ambers" type="MarginContainer" parent="Background/Margin" unique_id=108888891]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Box" type="HBoxContainer" parent="Background/Margin/Ambers" unique_id=1039937858]
+[node name="AmberPanel" type="PanelContainer" parent="Background/Margin" unique_id=1217095768]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_lckd1")
 
-[node name="Amber1" parent="Background/Margin/Ambers/Box" unique_id=1672584037 instance=ExtResource("2_lckd1")]
+[node name="AmberGrid" type="GridContainer" parent="Background/Margin/AmberPanel" unique_id=2006794246]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+columns = 2
+
+[node name="Amber1" parent="Background/Margin/AmberPanel/AmberGrid" unique_id=1672584037 instance=ExtResource("2_lckd1")]
 unique_name_in_owner = true
 visible = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="Amber2" parent="Background/Margin/Ambers/Box" unique_id=1056799166 instance=ExtResource("2_lckd1")]
+[node name="Amber2" parent="Background/Margin/AmberPanel/AmberGrid" unique_id=1056799166 instance=ExtResource("2_lckd1")]
 unique_name_in_owner = true
 visible = true
 layout_mode = 2

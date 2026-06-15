@@ -5,15 +5,25 @@ extends Control
 var data: SacrificeData:
 	set(value_):
 		data = value_
-		apply_data_info()
+		#connect_datas()
+		connect_signals()
 
 var abyss: Abyss
 var catena: Catena
 
+@export var ambers: Array[TokenAmber]
 
-func apply_data_info() -> void:
+
+func connect_datas() -> void:
+	for _i in data.ambers.size():
+		var amber = ambers[_i]
+		var amber_data = data.ambers[_i]
+		amber.data = amber_data
+
+func connect_signals() -> void:
 	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
 		data.is_selected_changed.connect(_on_is_selected_changed)
+		data.is_updated.connect(_on_is_updated)
 		#data.z_index_changed.connect(_on_z_index_changed)
 
 		reset_margin()
@@ -23,34 +33,33 @@ func reset_margin() -> void:
 		position.x = Catalog.CAGE_SIZE.x * (data.catena.coord.x - 1)
 		%Background.size = Vector2(Catalog.CAGE_SIZE.x, Catalog.JAIL_SIZE.y)
 		
-		var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.N]
-		%Amber1.size_flags_horizontal = anchors.front()
-		%Amber1.size_flags_vertical = anchors.back()
-		
-		anchors = Catalog.windrose_to_anchor[Bozo.Windrose.S]
-		%Amber2.size_flags_horizontal = anchors.front()
-		%Amber2.size_flags_vertical = anchors.back()
+		var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.S]
+		%AmberPanel.size_flags_horizontal = anchors.front()
+		%AmberPanel.size_flags_vertical = anchors.back()
 	else:
-		position.y = Catalog.CAGE_SIZE.y * data.catena.coord.y  
-		%Background.size = Vector2(Catalog.CAGE_SIZE.y, Catalog.JAIL_SIZE.x)
-		%Background.rotation = PI * 3 / 2
-		%Ambers.rotation = PI * 1 / 2
+		position.y = Catalog.CAGE_SIZE.y * (data.catena.coord.y - 1)
+		%Background.size = Vector2(Catalog.JAIL_SIZE.x, Catalog.CAGE_SIZE.y)
 		
-		#var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.N]
-		#%Amber1.size_flags_horizontal = anchors.front()
-		#%Amber1.size_flags_vertical = anchors.back()
-		#
-		#anchors = Catalog.windrose_to_anchor[Bozo.Windrose.S]
-		#%Amber2.size_flags_horizontal = anchors.front()
-		#%Amber2.size_flags_vertical = anchors.back()
+		var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.W]
+		%AmberPanel.size_flags_horizontal = anchors.front()
+		%AmberPanel.size_flags_vertical = anchors.back()
+		%AmberGrid.columns = 1
 
 func _on_is_selected_changed() -> void:
-	visible = data.is_selected
-	abyss.select_button.visible = data.is_selected
+	if data.is_selected:
+		abyss.hide_all_sacrifices()
+		%AmberPanel.visible = data.is_selected
 	
+	abyss.sacrifice_button.visible = data.is_selected
 
 func show_me() -> void:
 	visible = true
 
-func _on_z_index_changed() -> void:
-	z_index = data.z_index
+func _on_is_updated() -> void:
+	connect_datas()
+
+func hide_ambers() -> void:
+	%AmberPanel.visible = false
+
+func show_ambers() -> void:
+	%AmberPanel.visible = true

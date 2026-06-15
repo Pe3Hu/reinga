@@ -297,6 +297,7 @@ enum Layer {
 	SANCTUARY = 252,
 	HERALD = 253,
 	ABYSS = 254,
+	MUSEUM = 255,
 }
 
 enum Tooltip {

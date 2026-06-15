@@ -39,6 +39,13 @@ func focus_on_cages() -> void:
 			gate.unblur_col(data.coord.x-1)
 		else:
 			gate.unblur_row(data.coord.y-1)
+	if abyss:
+		abyss.blur_all()
+		
+		if data.coord.y == 0:
+			abyss.unblur_col(data.coord.x-1)
+		else:
+			abyss.unblur_row(data.coord.y-1)
 
 func _on_is_selected_changed() -> void:
 	visible = data.is_selected

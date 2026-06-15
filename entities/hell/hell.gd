@@ -17,7 +17,7 @@ var data: HellData:
 @export var market: Market
 @export var platform: Platform
 
-@export var eye_button: CustomButton
+@export var eye_button: TextureButton
 @export var weather_button: TextureButton
 
 
@@ -105,5 +105,6 @@ func off_screen() -> void:
 func on_screen():
 	%PhaseTimer.start()
 	visible = true
+	bank.data.emit_signal("sacrifice_received")
 	Scope.weather = Bozo.Weather.MOON
 	weather_button.switch_weather()

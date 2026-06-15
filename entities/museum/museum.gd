@@ -1,18 +1,16 @@
-class_name Abyss
+class_name Museum
 extends Control
 
 
-var data: AbyssData:
+var data: MuseumData:
 	set(value_):
 		data = value_
 		connect_datas()
 
 @export var cage_scene: PackedScene
-@export var catena_scene: PackedScene
-@export var sacrifice_scene: PackedScene
 
 @export var world: World
-@export var sacrifice_button: CustomButton
+@export var realize_button: CustomButton
 @export var weather_button: TextureButton
 
 var cages: Array[Cage]
@@ -21,37 +19,15 @@ var cages: Array[Cage]
 #region init
 func connect_datas() -> void:
 	init_cages()
-	init_catenas()
-	init_sacrifices()
 
 func init_cages() -> void:
 	for cage_data in data.table.cages:
 		add_cage(cage_data)
 
-func init_catenas() -> void:
-	for catena_data in data.table.catenas:
-		add_catena(catena_data)
-
-func init_sacrifices() -> void:
-	for sacrifice_data in data.sacrifices:
-		add_sacrifice(sacrifice_data)
-
-func add_sacrifice(data_: SacrificeData) -> void:
-	var sacrifice = sacrifice_scene.instantiate()
-	sacrifice.data = data_
-	sacrifice.abyss = self
-	%Sacrifices.add_child(sacrifice)
-
-func add_catena(data_: CatenaData) -> void:
-	var catena = catena_scene.instantiate()
-	catena.data = data_
-	catena.abyss = self
-	%Catenas.add_child(catena)
-
 func add_cage(data_: CageData) -> void:
 	var cage = cage_scene.instantiate()
 	cage.data = data_
-	cage.abyss = self
+	cage.museum = self
 	%Cages.add_child(cage)
 	cages.append(cage)
 #endregion
@@ -84,15 +60,14 @@ func update_sinner_datas() -> void:
 		
 		cage.sinner.visible = true
 		cage.passive_background.z_index = 1
-	
-	data.update_sacrifice_ambers()
+
 
 func off_screen() -> void:
 	visible = false
 
 func on_screen():
 	visible = true
-	world.inferno.apply_layer()
+	#world.inferno.apply_layer()
 	unblur_all()
 	data.init_sinners()
 	update_sinner_datas()
@@ -104,30 +79,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not %Panel.get_global_rect().has_point(get_global_mouse_position()):
-				if !sacrifice_button.is_mouse_inside():
-					forget_catenas()
-
-func forget_catenas() -> void:
-	if Scope.layer == Bozo.Layer.ABYSS:
-		data.table.reset_cage()
-		data.table.reset_catenas()
-		unblur_all()
-		show_all_sacrifices()
-
-func simulate_choice() -> void:
-	await get_tree().create_timer(0.3).timeout
-	var catena = data.table.catenas.back()
-	catena.is_selected = true
-	sacrifice_button._on_pressed()
+				
+				if !realize_button.is_mouse_inside():
+					pass
+				#	forget_catenas()
 
 func apply_weather() -> void:
 	for cage in cages:
 		cage.apply_weather()
-
-func hide_all_sacrifices() -> void:
-	for sacrifice in %Sacrifices.get_children():
-		sacrifice.hide_ambers() 
-
-func show_all_sacrifices() -> void:
-	for sacrifice in %Sacrifices.get_children():
-		sacrifice.show_ambers()

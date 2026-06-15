@@ -11,6 +11,7 @@ var data: CageData:
 var jail: Jail
 var gate: Gate
 var abyss: Abyss
+var museum: Museum
 var contribution: Contribution
 
 @export var active_background: ColorRect

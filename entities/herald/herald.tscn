@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://sdu3bfosnkuv"]
 
 [ext_resource type="Script" uid="uid://dxatwrs7xpvr6" path="res://entities/herald/herald.gd" id="1_54vv2"]
-[ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/sanctuary/shader/red orange circle borders.gdshader" id="5_155ja"]
+[ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/museum/shaders/museum flame.gdshader" id="5_155ja"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmj4q"]
 
@@ -10,7 +10,7 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lmj4q"]
 noise_type = 0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ajpus"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_54vv2"]
 width = 128
 height = 1024
 noise = SubResource("FastNoiseLite_lmj4q")
@@ -19,7 +19,7 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_01j4u"]
 shader = ExtResource("5_155ja")
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_ajpus")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_54vv2")
 shader_parameter/root_color = Color(1, 0.75, 0.3, 1)
 shader_parameter/tip_color = Color(1, 0.03, 0.001, 1)
 shader_parameter/poster_color = 6.0

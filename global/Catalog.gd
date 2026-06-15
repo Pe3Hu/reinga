@@ -1065,6 +1065,7 @@ const layer_to_string = {
 	Bozo.Layer.GATE: "gate",
 	Bozo.Layer.ABYSS: "abyss",
 	Bozo.Layer.SANCTUARY: "sanctuary",
+	Bozo.Layer.MUSEUM: "museum",
 }
 #endregion
 
@@ -1301,6 +1302,12 @@ const friend_to_sign = {
 	Bozo.Status.ON: 1,
 	Bozo.Status.OFF: -1
 }
+
+const status_to_next = {
+	Bozo.Status.ON: Bozo.Status.OFF,
+	Bozo.Status.OFF: Bozo.Status.ON
+}
+
 #endregion
 
 #region indexs
@@ -1548,7 +1555,7 @@ const string_to_tooltip = {
 	"soul": Bozo.Tooltip.SOUL,
 	"fate": Bozo.Tooltip.FATE,
 	"cage": Bozo.Tooltip.CAGE,
-	"bank": Bozo.Tooltip.BANK,
+	"treasury": Bozo.Tooltip.BANK,
 	"market": Bozo.Tooltip.MARKET,
 	"contribution": Bozo.Tooltip.CONTRIBUTION,
 	"scene": Bozo.Tooltip.PLATFORM,
@@ -1702,7 +1709,7 @@ var tooltip_to_string = {
 	Bozo.Tooltip.SINNER: "sinner",
 	Bozo.Tooltip.CLOAK: "cloak",
 	Bozo.Tooltip.AMBER: "amber",
-	Bozo.Tooltip.BANK: "bank",
+	Bozo.Tooltip.BANK: "treasury",
 	Bozo.Tooltip.MARKET: "market",
 	Bozo.Tooltip.CONTRIBUTION: "contribution",
 	Bozo.Tooltip.PLATFORM: "scene",
@@ -1784,4 +1791,7 @@ const weather_to_next = {
 }
 #endregion
 
+#region sacrifice
 const SACRIFICE_AMBER_COUNT: int = 2
+const SACRIFICE_AMBER_DURATION: float = 1.0 
+#endregion

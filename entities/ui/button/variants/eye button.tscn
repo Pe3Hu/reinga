@@ -5,11 +5,6 @@
 [ext_resource type="Script" uid="uid://f7pkrpj4x82w" path="res://entities/ui/button/variants/eye.gd" id="3_3npka"]
 
 [node name="EyeButton" type="TextureButton" unique_id=671915696]
-toggle_mode = true
 texture_normal = ExtResource("1_8wfwi")
-texture_pressed = ExtResource("2_henas")
 texture_hover = ExtResource("2_henas")
-texture_disabled = ExtResource("2_henas")
 script = ExtResource("3_3npka")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -25,6 +25,8 @@ var is_selected: bool = false:
 			else:
 				table.active_catenas.erase(self)
 			
+			if sacrifice:
+				sacrifice.is_selected = value_
 			emit_signal("is_selected_changed")
 
 var z_index: int = 1:

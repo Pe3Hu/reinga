@@ -2,16 +2,20 @@ class_name BankData
 extends Resource
 
 
+@warning_ignore("unused_signal")
+signal sacrifice_received
 
 var hell: HellData
 var ambers: Array[AmberData]
 var postures: Array[PostureData]
+var sacrifice: SacrificeData
 
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.BANK
 var type_to_amber: Dictionary
 var type_to_posture: Dictionary
 
 
+#region init
 func _init(hell_: HellData) -> void:
 	hell = hell_
 	
@@ -37,7 +41,17 @@ func add_posture(type_: Bozo.Posture) -> void:
 	var posture = PostureData.new(type_, default_value)
 	postures.append(posture)
 	type_to_posture[type_] = posture
+#endregion
 
-#func test_change() -> void:
-	#var amber = ambers[1]
-	#amber.value += 1
+func get_sacrifice_ambers() -> Array[AmberData]:
+	var sacrifice_ambers: Array[AmberData]
+	
+	for sacrifice_amber in sacrifice.ambers:
+		var bank_amber = type_to_amber[sacrifice_amber.type]
+		bank_amber.next_value = bank_amber.value + sacrifice_amber.value
+		sacrifice_ambers.append(bank_amber)
+	
+	return sacrifice_ambers
+
+func reset_sacrifice() -> void:
+	sacrifice = null

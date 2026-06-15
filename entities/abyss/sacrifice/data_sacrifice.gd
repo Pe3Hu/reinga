@@ -2,6 +2,7 @@ class_name SacrificeData
 extends TypeData
 
 
+signal is_updated
 signal is_selected_changed
 
 var abyss: AbyssData
@@ -60,6 +61,8 @@ func init_ambers() -> void:
 		var amber_type = Catalog.sin_to_amber[sin_.type]
 		var amber = AmberData.new(amber_type, sin_.value)
 		ambers.append(amber)
+	
+	emit_signal("is_updated")
 
 func add_sin(sin_: SinData) -> void:
 	var sin_data: SinData
@@ -72,9 +75,3 @@ func add_sin(sin_: SinData) -> void:
 		sins.append(sin_data)
 	
 	sin_data.value += sin_.value
-	
-	
-	
-	
-	
-	
