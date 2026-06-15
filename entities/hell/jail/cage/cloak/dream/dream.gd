@@ -7,6 +7,8 @@ var data: DreamData:
 		data = value_
 		apply_data_info()
 
+@export var desire_scene: PackedScene
+
 @export var cloak: Cloak
 #@export var primary_tokens: Array[TokenDesire]
 #@export var secondary_token: TokenDesire
@@ -24,9 +26,43 @@ func apply_data_info() -> void:
 		#cloak.visible = true
 
 func _on_desires_changed() -> void:
+	refill_desires()
+	
 	for _i in desires.size():
 		var desire = desires[_i]
 		desire.data = data.desires[_i]
+
+func refill_desires() -> void:
+	refill_primary_desires()
+	refill_secondary_desires()
+
+func refill_primary_desires() -> void:
+	while %PrimaryDesires.get_child_count() > data.type_to_count[data.primary_desire]:
+		var desire = %PrimaryDesires.get_child(0)
+		%PrimaryDesires.remove_child(desire)
+	
+	while %PrimaryDesires.get_child_count() < data.type_to_count[data.primary_desire]:
+		add_primary()
+
+func add_primary() -> void:
+	var desire = desire_scene.instantiate()
+	%PrimaryDesires.add_child(desire)
+	desires.push_front(desire)
+	desire.dream = self
+
+func refill_secondary_desires() -> void:
+	while %SecondaryDesires.get_child_count() > data.type_to_count[data.primary_desire]:
+		var desire = %SecondaryDesires.get_child(0)
+		%SecondaryDesires.remove_child(desire)
+	
+	while %SecondaryDesires.get_child_count() < data.type_to_count[data.secondary_desire]:
+		add_secondary()
+
+func add_secondary() -> void:
+	var desire = desire_scene.instantiate()
+	%SecondaryDesires.add_child(desire)
+	desires.push_back(desire)
+	desire.dream = self
 #endregion
 
 #region dissolve

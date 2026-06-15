@@ -2,6 +2,9 @@ class_name CageData
 extends Resource
 
 
+@warning_ignore("unused_signal")
+signal is_fused
+
 var table: TableData
 var sinner: SinnerData:
 	set(value_):

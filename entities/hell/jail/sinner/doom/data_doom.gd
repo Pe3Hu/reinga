@@ -13,6 +13,7 @@ func _init(soul_: SoulData) -> void:
 	
 	#roll_omens()
 
+#region roll
 func roll_omens() -> void:
 	var options: Array[Bozo.Omen]
 	options.append_array(Catalog.omens)
@@ -33,7 +34,6 @@ func roll_omens() -> void:
 			omen.subtype = subtype
 			omens.append(omen)
 			set(Catalog.omen_to_string[omen_type], omen)
-	
 
 func roll_subtype(omen_: OmenData) -> Variant:
 	if omen_.type == Bozo.Omen.NONE: return
@@ -92,3 +92,10 @@ func roll_family_subtype() -> Variant:
 		subtype = Catalog.family_to_family[family_subtype]
 	
 	return subtype 
+#endregion
+
+func fuse_omen(omen_: OmenData) -> void:
+	var type_str = Catalog.omen_to_string[omen_.type]
+	set(type_str, omen_)
+	omens.append(omen_)
+	omen_.doom = self

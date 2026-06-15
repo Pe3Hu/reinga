@@ -1067,6 +1067,7 @@ const layer_to_string = {
 	Bozo.Layer.ABYSS: "abyss",
 	Bozo.Layer.SANCTUARY: "sanctuary",
 	Bozo.Layer.MUSEUM: "museum",
+	Bozo.Layer.HERALD: "herald",
 }
 #endregion
 

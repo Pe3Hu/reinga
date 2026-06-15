@@ -17,6 +17,8 @@ var secondary_desire: Bozo.Desire:
 		secondary_desire = value_
 		emit_signal("desire_changed")
 
+var type_to_count: Dictionary
+
 
 #region init
 func _init(sinner_: SinnerData) -> void:
@@ -48,6 +50,11 @@ func init_desires() -> void:
 	
 	for desire in desires:
 		desire.dream = self
+		
+		if !type_to_count.has(desire.type):
+			type_to_count[desire.type] = 0
+		
+		type_to_count[desire.type] += 1
 #endregion
 
 func update_desires(desires_: Dictionary) -> void:
@@ -70,3 +77,14 @@ func apply_guild(is_guild_: bool = true) -> void:
 func reset_associations() -> void:
 	for desire in desires:
 		desire.association = Bozo.Association.NONE
+
+func fuse_desire(desire_: DesireData) -> void:
+	desire_.dream = self
+	var is_primary = primary_desire == desire_.type
+	
+	if is_primary:
+		sinner.dream.desires.push_front(desire_)
+	else:
+		sinner.dream.desires.push_back(desire_)
+	
+	type_to_count[desire_.type] += 1

@@ -1,0 +1,2 @@
+class_name Decree
+extends PanelContainer

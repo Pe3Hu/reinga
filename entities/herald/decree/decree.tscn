@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bsqsdwc8ayjym"]
+
+[ext_resource type="Script" uid="uid://pth52fp6wudq" path="res://entities/herald/decree/decree.gd" id="1_vb3oq"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="2_nk658"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_rq6op"]
+[ext_resource type="Texture2D" uid="uid://bctp3bam0o4sm" path="res://entities/sanctuary/modifier/images/ultracrit.png" id="3_6cggk"]
+[ext_resource type="Texture2D" uid="uid://dcvto1glcsxp4" path="res://entities/ui/frame/images/shelter.png" id="3_sb6v5"]
+[ext_resource type="PackedScene" uid="uid://bfwatdmjoe1rl" path="res://entities/ui/button/variants/accept button.tscn" id="4_6cggk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq6op"]
+resource_local_to_scene = true
+shader = ExtResource("2_nk658")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Decree" type="PanelContainer" unique_id=694435509]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 300.0
+offset_bottom = 300.0
+script = ExtResource("1_vb3oq")
+
+[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_rq6op")]
+layout_mode = 2
+texture = ExtResource("3_sb6v5")
+region_rect = Rect2(0, 0, 128, 128)
+patch_margin_left = 48
+patch_margin_top = 48
+patch_margin_right = 48
+patch_margin_bottom = 48
+type = 333
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1582537175]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+
+[node name="Header" type="RichTextLabel" parent="VBoxContainer" unique_id=23569512]
+z_index = 5
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 52
+text = "Calthex Bless"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="VBoxContainer" unique_id=2142299943]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/HBox" unique_id=1572384340]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_rq6op")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_6cggk")
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/HBox" unique_id=1262628422]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/HBox" unique_id=1793268623]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "0%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AcceptButton" parent="VBoxContainer" unique_id=250034607 instance=ExtResource("4_6cggk")]
+layout_mode = 2

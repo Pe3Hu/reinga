@@ -72,6 +72,6 @@ func roll_desire() -> void:
 func update_is_selected() -> void:
 	is_selected = true
 
-func active() -> void:
-	if !is_selected: return
-	is_selected = false
+func fuse_with_sinner() -> void:
+	sinner.dream.fuse_desire(desire)
+	sinner.soul.doom.fuse_omen(omen)

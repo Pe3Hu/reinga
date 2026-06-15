@@ -36,4 +36,6 @@ func reset() -> void:
 			world.hell.jail.table.reset_all_actives()
 			Scope.next_phase()
 		Bozo.Layer.SANCTUARY:
-			pass 
+			pass
+		Bozo.Layer.HERALD:
+			pass

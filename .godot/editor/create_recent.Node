@@ -1,12 +1,12 @@
+VBoxContainer
+PanelContainer
+HBoxContainer
 MarginContainer
 ColorRect
-PanelContainer
 GridContainer
-HBoxContainer
 Control
 Node2D
 TextureRect
-VBoxContainer
 RichTextLabel
 TextureButton
 HSeparator

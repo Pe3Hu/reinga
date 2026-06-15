@@ -1,56 +1,45 @@
-res://entities/abyss/sacrifice/sacrifice.gd
-res://entities/abyss/sacrifice/sacrifice.tscn
+res://entities/museum/exhibit/exhibit.tscn
 res://entities/herald/overlord/shaders/domain.gdshader
 res://entities/herald/shaders/torture.gdshader
 res://entities/ui/glory/glory.gdshader
+res://entities/museum/shaders/museum background.gdshader
+res://entities/museum/shaders/museum flame.gdshader
+res://entities/gate/shader/gate blur.gdshader
 res://entities/ui/transition/transition.gdshader
 res://entities/hell/treasury/contribution/candle/shaders/contribution active.gdshader
 res://entities/inferno/void.gdshader
-res://entities/abyss/abyss.tscn
-res://entities/abyss/abyss.gd
-res://entities/abyss/sacrifice/data_sacrifice.gd
-res://entities/hell/jail/catena/catena.gd
-res://entities/gate/shader/gate blur.gdshader
-res://entities/hell/jail/catena/data_catena.gd
-res://entities/hell/underground/bank/data_bank.gd
-res://global/Catalog.gd
-res://entities/hell/underground/bank/bank.gd
-res://entities/ui/button/variants/sacrifice.gd
-res://entities/hell/hell.tscn
-res://entities/hell/hell.gd
-res://entities/ui/button/variants/eye.gd
-res://entities/ui/button/variants/eye button.tscn
-res://entities/world/world.gd
-res://entities/world/world.tscn
-res://global/Scope.gd
-res://entities/hell/jail/sinner/doom/data_doom.gd
-res://entities/museum/museum.tscn
-res://entities/museum/museum.gd
-res://global/Bozo.gd
-res://entities/herald/shaders/grey swamp.gdshader
-res://entities/sanctuary/shader/red orange circle borders.gdshader
-res://entities/herald/herald.tscn
-res://entities/ui/button/variants/realize button.tscn
-res://entities/ui/button/variants/realize.gd
-res://entities/museum/data_museum.gd
-res://entities/tribunal/data_table.gd
-res://entities/world/data_world.gd
-res://entities/hell/jail/cage/cage.gd
-res://entities/ui/button/variants/weather button.tscn
 res://entities/ui/button/variants/weather.gd
-res://entities/museum/exhibit/exhibit.tscn
-res://entities/abyss/sacrifice/data_exhibit.gd
-res://entities/hell/jail/cage/data_cage.gd
-res://entities/ui/token/omen/data_omen.gd
-res://entities/ui/token/desire/data_desire.gd
-res://entities/hell/jail/cage/cloak/dream/data_dream.gd
+res://entities/ui/button/variants/weather button.tscn
+res://entities/hell/jail/cage/cage.gd
 res://entities/museum/exhibit/exhibit.gd
-res://entities/ui/token/token.gd
-res://entities/ui/token/sin/sin.gd
-res://entities/ui/token/judgment/judgment.gd
-res://entities/ui/token/posture/posture.gd
-res://entities/ui/token/amber/amber.gd
-res://entities/ui/token/desire/desire.gd
-res://entities/ui/token/faction/faction.gd
-res://entities/ui/token/omen/omen.gd
-res://entities/hell/jail/cage/cage.tscn
+res://entities/museum/museum.gd
+res://entities/museum/museum.tscn
+res://entities/museum/data_museum.gd
+res://entities/ui/button/variants/realize.gd
+res://entities/hell/jail/cage/cloak/dream/data_dream.gd
+res://entities/abyss/sacrifice/data_exhibit.gd
+res://entities/hell/jail/sinner/doom/data_doom.gd
+res://entities/hell/jail/cage/data_cage.gd
+res://entities/hell/jail/cage/cloak/dream/dream.tscn
+res://entities/hell/jail/cage/cloak/dream/dream.gd
+res://entities/hell/jail/sinner/sinner.gd
+res://entities/world/data_world.gd
+res://entities/hell/volcano/data_flow.gd
+res://entities/herald/herald.tscn
+res://entities/herald/shaders/white spiral.gdshader
+res://entities/herald/shaders/herald background.gdshader
+res://entities/herald/shaders/romb.gdshader
+res://entities/herald/shaders/white room.gdshader
+res://entities/herald/shaders/herald.gdshader
+res://entities/world/world.tscn
+res://entities/world/world.gd
+res://global/Catalog.gd
+res://entities/herald/shaders/halo.gdshader
+res://entities/ui/transition/data_transition.gd
+res://entities/herald/herald.gd
+res://entities/herald/shaders/sun no background.gdshader
+res://entities/herald/shaders/sun 1.gdshader
+res://entities/herald/decree/decree.tscn
+res://entities/herald/decree/decree.gd
+res://entities/ui/button/variants/accept button.tscn
+res://entities/ui/button/variants/accept.gd

@@ -9,27 +9,37 @@
 custom_minimum_size = Vector2(32, 32)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lmmrw")
 script = ExtResource("1_wsku3")
-desires = [NodePath("VBoxContainer/HBoxContainer/Primary1"), NodePath("VBoxContainer/HBoxContainer/Primary2"), NodePath("VBoxContainer/Secondary")]
+desire_scene = ExtResource("2_e5v2l")
+desires = [NodePath("VBoxContainer/PrimaryDesires/Primary1"), NodePath("VBoxContainer/PrimaryDesires/Primary2"), NodePath("VBoxContainer/SecondaryDesires/Secondary1")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1804014529]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=740942652]
+[node name="PrimaryDesires" type="HBoxContainer" parent="VBoxContainer" unique_id=740942652]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
 theme_override_constants/separation = 4
 
-[node name="Primary1" parent="VBoxContainer/HBoxContainer" unique_id=1672584037 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
+[node name="Primary1" parent="VBoxContainer/PrimaryDesires" unique_id=1672584037 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
 dream = NodePath("../../..")
 
-[node name="Primary2" parent="VBoxContainer/HBoxContainer" unique_id=1747933182 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
+[node name="Primary2" parent="VBoxContainer/PrimaryDesires" unique_id=1747933182 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
 dream = NodePath("../../..")
 
-[node name="Secondary" parent="VBoxContainer" unique_id=1481403845 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
+[node name="SecondaryDesires" type="HBoxContainer" parent="VBoxContainer" unique_id=762557266]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Secondary1" parent="VBoxContainer/SecondaryDesires" unique_id=1481403845 node_paths=PackedStringArray("dream") instance=ExtResource("2_e5v2l")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-dream = NodePath("../..")
+dream = NodePath("../../..")

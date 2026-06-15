@@ -96,7 +96,7 @@ func distribute_available() -> void:
 	for deal in nightmare.hell.market.deals:
 		if sin_to_available.has(deal.sin_data.type):
 			var amount = min(deal.sin_data.value, sin_to_available[deal.sin_data.type])
-			var type = Catalog.sin_to_token[deal.sin_data.type]
+			var type = Catalog.sin_to_amber[deal.sin_data.type]
 			
 			for _i in amount:
 				var eruption = EruptionData.new(self, type, eruption_type)

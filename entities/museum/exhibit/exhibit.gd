@@ -10,7 +10,10 @@ var data: ExhibitData:
 
 var museum: Museum
 
-var cage: Cage
+var cage: Cage:
+	set(value_):
+		cage = value_
+		cage.active_background.z_index = 1
 @export var omen: TokenOmen
 @export var desire: TokenDesire
 @export var torture_frame: Frame
@@ -20,10 +23,12 @@ func connect_datas() -> void:
 	omen.data = data.omen
 	desire.data = data.desire
 	desire.refill_progress()
-	
+	Helper.update_colors(%Domain, get_overloard())
+
+func get_overloard() -> Bozo.Overlord:
 	var trial_type = Catalog.desire_to_trial[desire.data.type]
 	var overlord_type = Catalog.trial_to_overlord[trial_type]
-	Helper.update_colors(%Domain, overlord_type)
+	return overlord_type
 
 func connect_signals() -> void:
 	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
@@ -48,6 +53,10 @@ func _on_is_selected_changed() -> void:
 		museum.hide_all_exhibits()
 		visible = data.is_selected
 		cage.sinner.visible = data.is_selected
+		
+		if data.is_selected:
+			cage.show_background(data.is_selected)
+			Helper.update_colors(cage.active_background, get_overloard())
 	
 	museum.realize_button.update_visible()
 

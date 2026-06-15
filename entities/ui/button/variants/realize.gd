@@ -11,4 +11,5 @@ func update_visible() -> void:
 func _button_pressed() -> void:
 	super._button_pressed()
 	hide_me()
+	museum.data.fuse_active_exhibit()
 	museum.world.transition.data.next_layer = Bozo.Layer.HELL

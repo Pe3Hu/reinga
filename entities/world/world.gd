@@ -8,6 +8,7 @@ extends Node
 @export var sanctuary: Sanctuary
 @export var abyss: Abyss
 @export var museum: Museum
+@export var herald: Herald
 @export var transition: Transition
 
 
@@ -18,9 +19,9 @@ func _ready() -> void:
 	connect_datas()
 	
 	#await get_tree().process_frame
-	transition.data.next_layer = Bozo.Layer.MUSEUM
+	transition.data.next_layer = Bozo.Layer.HERALD
 	#transition.apply_layer()
-	inferno.apply_layer()
+	#inferno.apply_layer()
 
 func connect_datas() -> void:
 	sanctuary.data = data.sanctuary

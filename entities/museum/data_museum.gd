@@ -107,10 +107,9 @@ func add_exhibit(cage_: CageData, sinner_: SinnerData, windrose_: Bozo.Windrose)
 	sin_options.erase(exhibit.omen.token.type)
 #endregion
 
-func update_exhibit_ambers() -> void:
-	for exhibit in exhibits:
-		exhibit.init_ambers()
-
+func fuse_active_exhibit() -> void:
+	var active_exhibit = active_exhibits.pop_back()
+	active_exhibit.fuse_with_sinner()
 
 func _on_exhibit_selected(exhibit_: ExhibitData) -> void:
 	if !active_exhibits.has(exhibit_):
@@ -118,6 +117,7 @@ func _on_exhibit_selected(exhibit_: ExhibitData) -> void:
 	
 	unselect_exhibits()
 
+#region select
 func unselect_exhibits() -> void:
 	while active_exhibits.size() > 1:
 		unselect_exhibit()
@@ -130,3 +130,4 @@ func unselect_exhibit() -> void:
 func reset_exhibits() -> void:
 	while !active_exhibits.is_empty():
 		unselect_exhibit()
+#endregion

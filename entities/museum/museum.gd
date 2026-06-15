@@ -32,6 +32,8 @@ func add_cage(data_: CageData) -> void:
 	cage.museum = self
 	%Cages.add_child(cage)
 	cages.append(cage)
+	cage.active_background.material = ShaderMaterial.new()
+	cage.active_background.material.shader = load("uid://f0xra3senpov")
 
 func init_exhibits() -> void:
 	for exhibit_data in data.exhibits:
@@ -116,6 +118,7 @@ func hide_all_exhibits() -> void:
 	
 	for cage in cages:
 		cage.sinner.visible = false
+		cage.show_background(false)
 
 func show_all_exhibits() -> void:
 	for exhibit in exhibits:
@@ -123,3 +126,4 @@ func show_all_exhibits() -> void:
 	
 	for cage in cages:
 		cage.sinner.visible = true
+		cage.show_background(false)

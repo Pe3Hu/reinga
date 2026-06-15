@@ -94,4 +94,7 @@ func apply_weather() -> void:
 	
 	sinner.visible = Scope.weather == Bozo.Weather.SUN
 	cloak.visible = Scope.weather == Bozo.Weather.MOON
-	
+
+func show_background(flag_: bool) -> void:
+	active_background.visible = flag_
+	passive_background.visible = flag_
