@@ -17,7 +17,6 @@ var association: Bozo.Association = Bozo.Association.NONE:
 		emit_signal("association_changed")
 
 
-func _init(dream_: DreamData, type_: Bozo.Desire, value_: int = 1) -> void:
-	dream = dream_
+func _init(type_: Bozo.Desire, value_: int = 1) -> void:
 	type = type_
 	value = value_

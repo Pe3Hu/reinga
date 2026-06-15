@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://kbrwsjgxtiny"]
+
+[ext_resource type="Script" uid="uid://bu3uh43emjgh1" path="res://entities/museum/exhibit/exhibit.gd" id="1_o17vr"]
+[ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="2_3tj7e"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_224m1"]
+[ext_resource type="PackedScene" uid="uid://fudc0xn76lhs" path="res://entities/ui/token/omen/omen.tscn" id="2_nay5h"]
+[ext_resource type="Texture2D" uid="uid://d4ajl3hshwinh" path="res://entities/ui/frame/images/torture.png" id="3_3tj7e"]
+[ext_resource type="PackedScene" uid="uid://c5uuyg6561qv3" path="res://entities/ui/token/desire/desire.tscn" id="3_fadq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lckd1"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdj0v"]
+resource_local_to_scene = true
+shader = ExtResource("2_3tj7e")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nay5h"]
+
+[node name="Exhibit" type="Control" unique_id=346013232 node_paths=PackedStringArray("omen", "desire", "torture_frame")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_o17vr")
+omen = NodePath("Background/Margin/Panel/Grid/Omen")
+desire = NodePath("Background/Margin/Panel/Grid/Desire")
+torture_frame = NodePath("Background/Margin/Panel/MarginContainer/Frame")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2099748649]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
+
+[node name="Margin" type="MarginContainer" parent="Background" unique_id=369821978]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = -58
+theme_override_constants/margin_bottom = -58
+
+[node name="Panel" type="PanelContainer" parent="Background/Margin" unique_id=1217095768]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_lckd1")
+
+[node name="Domain" type="ColorRect" parent="Background/Margin/Panel" unique_id=1432424406]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_vdj0v")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/Margin/Panel" unique_id=915471264]
+layout_mode = 2
+theme_override_constants/margin_left = -16
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_right = -16
+theme_override_constants/margin_bottom = -16
+
+[node name="Frame" parent="Background/Margin/Panel/MarginContainer" unique_id=716478958 instance=ExtResource("2_224m1")]
+visible = false
+z_index = 11
+layout_mode = 2
+texture = ExtResource("3_3tj7e")
+region_rect = Rect2(0, 0, 84, 84)
+patch_margin_left = 21
+patch_margin_top = 21
+patch_margin_right = 21
+patch_margin_bottom = 21
+type = 341
+
+[node name="Grid" type="GridContainer" parent="Background/Margin/Panel" unique_id=2006794246]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="Omen" parent="Background/Margin/Panel/Grid" unique_id=1672584037 instance=ExtResource("2_nay5h")]
+layout_mode = 2
+
+[node name="Desire" parent="Background/Margin/Panel/Grid" unique_id=1561495967 instance=ExtResource("3_fadq4")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Gap" type="PanelContainer" parent="Background/Margin/Panel/Grid" unique_id=2075751583]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nay5h")

@@ -28,17 +28,17 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		_check_mouse_position()
 
-	if not visible or not _can_select_cage(): return
+	if not visible or not _can_select(): return
 	if not (event is InputEventMouseButton \
 			and event.button_index == MOUSE_BUTTON_LEFT \
 			and event.pressed): return
 	
 	var hovered := get_viewport().gui_get_hovered_control()
 	if hovered == null or (hovered != self and not is_ancestor_of(hovered)): return
-	_on_texture_button_pressed()
+	_on_pressed()
 	get_viewport().set_input_as_handled()
 
-func _can_select_cage() -> bool:
+func _can_select() -> bool:
 	match Scope.layer:
 		Bozo.Layer.HELL:
 			return jail != null and Scope.phase == Bozo.Phase.APPRAISEMENT
@@ -46,10 +46,14 @@ func _can_select_cage() -> bool:
 			return gate != null
 		Bozo.Layer.ABYSS:
 			return abyss != null
+		Bozo.Layer.MUSEUM:
+			return false
 	
 	return false
 
-func _on_texture_button_pressed() -> void:
+func _on_pressed() -> void:
+	if museum != null: return
+	
 	if jail:
 		jail.hell.eye_button.hide_sanctuary()
 	
@@ -72,6 +76,7 @@ func _on_texture_button_pressed() -> void:
 
 func _check_mouse_position() -> void:
 	if active_background.visible: return
+	if museum != null: return
 	var local_mouse_pos := get_local_mouse_position()
 	var is_inside := Rect2(Vector2.ZERO, size).has_point(local_mouse_pos)
 	if is_inside == torture_frame.visible: return

@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://dseuxqgyk7nux" path="res://entities/museum/shaders/museum background.gdshader" id="2_50dyn"]
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_ldxvg"]
 [ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/museum/shaders/museum flame.gdshader" id="3_7dwi8"]
+[ext_resource type="PackedScene" uid="uid://kbrwsjgxtiny" path="res://entities/museum/exhibit/exhibit.tscn" id="3_vx6pv"]
 [ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="4_c3cs4"]
 [ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/gate/shader/gate blur.gdshader" id="5_ldxvg"]
 [ext_resource type="PackedScene" uid="uid://c7sjb2v115om3" path="res://entities/ui/button/variants/realize button.tscn" id="6_vx6pv"]
@@ -57,7 +58,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cfji4")
 cage_scene = ExtResource("2_ldxvg")
-realize_button = NodePath("PanelContainer/VBox/MarginContainer/RealizeButton")
+exhibit_scene = ExtResource("3_vx6pv")
+realize_button = NodePath("PanelContainer/VBox/ButtonMargin/RealizeButton")
 weather_button = NodePath("PanelContainer/VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
 
 [node name="Background" type="ColorRect" parent="." unique_id=676898276]
@@ -81,17 +83,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=575360870]
-custom_minimum_size = Vector2(650, 900)
+custom_minimum_size = Vector2(650, 561)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -325.0
-offset_top = -442.0
-offset_right = 325.0
-offset_bottom = 442.0
+offset_left = -200.0
+offset_top = -56.0
+offset_right = 200.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_s5ukn")
@@ -100,10 +102,14 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_s5ukn")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Header" type="RichTextLabel" parent="PanelContainer/VBox" unique_id=458192635]
+[node name="HeaderMargin" type="MarginContainer" parent="PanelContainer/VBox" unique_id=2020236071]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+
+[node name="Header" type="RichTextLabel" parent="PanelContainer/VBox/HeaderMargin" unique_id=458192635]
 z_index = 5
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
@@ -139,7 +145,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 museum = NodePath("../../../../../..")
 
-[node name="Catenas" type="Control" parent="PanelContainer/VBox/Panel" unique_id=1330277687]
+[node name="Exhibits" type="Control" parent="PanelContainer/VBox/Panel" unique_id=1330277687]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -162,11 +168,10 @@ material = SubResource("ShaderMaterial_hwiff")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBox" unique_id=405922438]
+[node name="ButtonMargin" type="MarginContainer" parent="PanelContainer/VBox" unique_id=405922438]
 layout_mode = 2
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = -80
 
-[node name="RealizeButton" parent="PanelContainer/VBox/MarginContainer" unique_id=250034607 node_paths=PackedStringArray("museum") instance=ExtResource("6_vx6pv")]
+[node name="RealizeButton" parent="PanelContainer/VBox/ButtonMargin" unique_id=250034607 node_paths=PackedStringArray("museum") instance=ExtResource("6_vx6pv")]
+visible = false
 layout_mode = 2
 museum = NodePath("../../../..")

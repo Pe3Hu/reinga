@@ -24,10 +24,10 @@ func reset_lightning() -> void:
 	%Lightning.material.set_shader_parameter("seed", randf() * 100.0)
 	
 	if data.coord.y == 0:
-		position.x = Catalog.CAGE_SIZE.x * (data.coord.x - 1)
+		position.x = (Catalog.CAGE_SIZE.x + Catalog.CAGE_OFFSET.x) * (data.coord.x - 1)
 		%Lightning.size = Vector2(Catalog.CAGE_SIZE.x, Catalog.JAIL_SIZE.y)
 	else:
-		position.y = Catalog.CAGE_SIZE.y * data.coord.y  
+		position.y = (Catalog.CAGE_SIZE.y + Catalog.CAGE_OFFSET.y) * data.coord.y  
 		%Lightning.size = Vector2(Catalog.CAGE_SIZE.y, Catalog.JAIL_SIZE.x)
 		%Lightning.rotation = PI * 3 / 2
 

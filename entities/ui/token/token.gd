@@ -5,14 +5,14 @@ extends Panel
 var data: Resource:
 	set(value_):
 		data = value_
-		apply_data_info()
+		connect_signals()
 
 
 @export var texture_rect: TextureRect
 @export var label: Label
 
 
-func apply_data_info() -> void:
+func connect_signals() -> void:
 	if data.value_changed.is_connected(_on_value_changed):
 		data.value_changed.disconnect(_on_value_changed)
 	

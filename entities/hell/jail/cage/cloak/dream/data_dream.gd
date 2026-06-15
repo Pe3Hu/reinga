@@ -27,11 +27,11 @@ func _init(sinner_: SinnerData) -> void:
 func init_desires() -> void:
 	var trial = Helper.get_random_key(Catalog.faction_to_trial[sinner.fate.faction.type])
 	
-	var primary_data = DesireData.new(self, Catalog.trial_to_desire[trial])
+	var primary_data = DesireData.new( Catalog.trial_to_desire[trial])
 	primary_desire = primary_data.type
 	desires.append(primary_data)
 	
-	primary_data = DesireData.new(self, Catalog.trial_to_desire[trial])
+	primary_data = DesireData.new(Catalog.trial_to_desire[trial])
 	desires.append(primary_data)
 	
 	var desire_options = []
@@ -39,13 +39,15 @@ func init_desires() -> void:
 	desire_options.erase(primary_desire)
 	desire_options.shuffle()
 	secondary_desire = desire_options.pick_random()
-	var secondary_data = DesireData.new(self, secondary_desire)
+	var secondary_data = DesireData.new(secondary_desire)
 	desires.append(secondary_data)
 	
 	if Catalog.special_fates.has(sinner.fate.type):
 		primary_data.value = 0
 		secondary_data.value = 0
 	
+	for desire in desires:
+		desire.dream = self
 #endregion
 
 func update_desires(desires_: Dictionary) -> void:

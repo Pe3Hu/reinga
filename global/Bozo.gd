@@ -360,6 +360,7 @@ enum Tooltip {
 	USEFUL =  331,
 	TAX =  332,
 	SACRIFICE = 333,
+	EXHIBIT = 334,
 	
 	MOD_BATTLE = -9,
 	MOD_AUCTION = -10,

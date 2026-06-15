@@ -26,7 +26,7 @@ func roll_omens() -> void:
 	
 	while !options.is_empty():
 		var omen_type = options.pop_back()
-		var omen = OmenData.new(self, omen_type)
+		var omen = OmenData.new(omen_type)
 		var subtype = roll_subtype(omen)
 		
 		if subtype != null:

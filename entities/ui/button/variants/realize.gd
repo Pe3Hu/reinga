@@ -6,7 +6,7 @@ extends CustomButton
 
 func update_visible() -> void:
 	super.update_visible()
-	visible = museum.data.table.active_cages.size() > 0
+	visible = museum.data.active_exhibits.size() > 0
 
 func _button_pressed() -> void:
 	super._button_pressed()

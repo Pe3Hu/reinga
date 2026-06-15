@@ -2,7 +2,10 @@ class_name TableData
 extends Resource
 
 
-var museum: MuseumData
+var museum: MuseumData:
+	set(value_):
+		museum = value_
+		museum_reductions()
 var abyss: AbyssData
 var gate: GateData
 var jail: JailData:
@@ -67,6 +70,7 @@ func init_cage_neighbours() -> void:
 	for cage in cages:
 		for direction in Catalog.neighbours_coords:
 			var coord = cage.coord + direction
+			
 			if coord_to_cage.has(coord):
 				var neighbour = coord_to_cage[coord]
 				cage.neighbours.append(neighbour)
@@ -93,6 +97,20 @@ func add_special_catena(coord_: Vector2i, type_: Bozo.Catena) -> void:
 		var cage = coord_to_cage[cage_grid]
 		catena.cages.append(cage)
 		cage_grid += coord_
+
+func museum_reductions() -> void:
+	catenas.clear()
+	coord_to_catena.clear()
+	
+	for _i in range(cages.size() - 1, Catalog.MUSEUM_CAGE_COUNT - 1, -1):
+		var cage = cages.pop_back()
+		remove_cage(cage)
+	
+	for cage in cages:
+		cage.neighbours.clear()
+
+func remove_cage(cage_: CageData) -> void:
+	coord_to_cage.erase(cage_.coord)  
 #endregion
 
 #region select
@@ -113,11 +131,15 @@ func reset_cage(is_all_: bool = false) -> void:
 func unselect_cage() -> void:
 	if !active_cages.is_empty():
 		var cage = active_cages.pop_front()
+		
 		if cage.table.jail:
 			cage.table.jail.platform.undo_immature_cage(cage)
+		
 		cage.sinner.fate.is_selected = false
 
 func detect_catena() -> void:
+	if museum != null: return
+	
 	while active_cages.size() > 2:
 		active_cages.pop_front()
 	
@@ -146,6 +168,7 @@ func reset_cages() -> void:
 			cage.sinner.fate.is_selected = false
 
 func reset_catenas(is_locked_: bool = false) -> void:
+	if museum != null: return
 	if is_locked_:
 		var cage = active_cages.back()
 		#cage.fruit = Bozo.Fruit.IMMATURE

@@ -8,9 +8,6 @@ signal is_selected_changed
 var abyss: AbyssData
 var catena: CatenaData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.SACRIFICE
-var type: Bozo.Spectacle:
-	set(value_):
-		type = value_
 
 var type_to_sin: Dictionary
 var sins: Array[SinData]

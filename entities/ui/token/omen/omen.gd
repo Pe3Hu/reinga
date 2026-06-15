@@ -10,7 +10,7 @@ func _on_value_changed() -> void:
 	if data.token.always_visible:
 		visible = true
 
-func apply_data_info() -> void:
+func connect_signals() -> void:
 	if !data.type_changed.is_connected(update_texture):
 		data.type_changed.connect(update_texture)
 		data.subtype_changed.connect(update_texture)

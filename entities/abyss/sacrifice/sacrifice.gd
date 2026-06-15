@@ -30,14 +30,14 @@ func connect_signals() -> void:
 
 func reset_margin() -> void:
 	if data.catena.coord.y == 0:
-		position.x = Catalog.CAGE_SIZE.x * (data.catena.coord.x - 1)
+		position.x = (Catalog.CAGE_SIZE.x + Catalog.CAGE_OFFSET.x) * (data.catena.coord.x - 1)
 		%Background.size = Vector2(Catalog.CAGE_SIZE.x, Catalog.JAIL_SIZE.y)
 		
 		var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.S]
 		%AmberPanel.size_flags_horizontal = anchors.front()
 		%AmberPanel.size_flags_vertical = anchors.back()
 	else:
-		position.y = Catalog.CAGE_SIZE.y * (data.catena.coord.y - 1)
+		position.y = (Catalog.CAGE_SIZE.y + Catalog.CAGE_OFFSET.y) * (data.catena.coord.y - 1)
 		%Background.size = Vector2(Catalog.JAIL_SIZE.x, Catalog.CAGE_SIZE.y)
 		
 		var anchors = Catalog.windrose_to_anchor[Bozo.Windrose.W]

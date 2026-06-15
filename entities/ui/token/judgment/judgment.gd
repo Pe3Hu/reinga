@@ -6,8 +6,8 @@ extends Token
 @export var contribution: Contribution
 
 
-func apply_data_info() -> void:
-	super.apply_data_info()
+func connect_signals() -> void:
+	super.connect_signals()
 	data.type_changed.connect(_on_type_changed)
 	_on_type_changed()
 

@@ -7,6 +7,7 @@ signal status_changed
 
 
 var doom: DoomData
+var exhibit: ExhibitData
 var token: SinData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.OMEN
 var type: Bozo.Omen:
@@ -27,8 +28,7 @@ var status: Bozo.Status = Bozo.Status.ON:
 			emit_signal("status_changed")
 
 
-func _init(doom_: DoomData, type_: Bozo.Omen) -> void:
-	doom = doom_
+func _init(type_: Bozo.Omen) -> void:
 	type = type_
 
 func roll_token() -> void:

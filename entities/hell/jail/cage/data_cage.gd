@@ -49,7 +49,6 @@ var fruit: Bozo.Fruit = Bozo.Fruit.ROTTEN:
 var previous_fruit: Bozo.Fruit = Bozo.Fruit.NONE:
 	set(value_):
 		previous_fruit = value_
-		pass
 
 
 func _init(table_: TableData, coord_: Vector2i):

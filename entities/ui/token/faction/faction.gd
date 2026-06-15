@@ -6,8 +6,8 @@ extends Token
 @export var smoke: ColorRect
 
 
-func apply_data_info() -> void:
-	super.apply_data_info()
+func connect_signals() -> void:
+	super.connect_signals()
 	
 	if !data.type_changed.is_connected(_on_type_changed):
 		#data.type_changed.disconnect(_on_type_changed)

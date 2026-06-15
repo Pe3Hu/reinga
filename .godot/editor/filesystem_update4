@@ -38,3 +38,19 @@ res://entities/world/data_world.gd
 res://entities/hell/jail/cage/cage.gd
 res://entities/ui/button/variants/weather button.tscn
 res://entities/ui/button/variants/weather.gd
+res://entities/museum/exhibit/exhibit.tscn
+res://entities/abyss/sacrifice/data_exhibit.gd
+res://entities/hell/jail/cage/data_cage.gd
+res://entities/ui/token/omen/data_omen.gd
+res://entities/ui/token/desire/data_desire.gd
+res://entities/hell/jail/cage/cloak/dream/data_dream.gd
+res://entities/museum/exhibit/exhibit.gd
+res://entities/ui/token/token.gd
+res://entities/ui/token/sin/sin.gd
+res://entities/ui/token/judgment/judgment.gd
+res://entities/ui/token/posture/posture.gd
+res://entities/ui/token/amber/amber.gd
+res://entities/ui/token/desire/desire.gd
+res://entities/ui/token/faction/faction.gd
+res://entities/ui/token/omen/omen.gd
+res://entities/hell/jail/cage/cage.tscn

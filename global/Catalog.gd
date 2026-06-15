@@ -3,7 +3,8 @@ extends Node
 
 #region cage
 const JAIL_CAGE_GRID = Vector2i(3, 3)
-const CAGE_SIZE = Vector2(214, 238)#Vector2(188, 212)
+const CAGE_SIZE = Vector2(206, 230)#Vector2(188, 212) (214, 238)
+const CAGE_OFFSET = Vector2(16, 16)
 const SINNER_PANEL_SIZE = Vector2(172, 196)
 
 const JAIL_SIZE = Vector2(650, 722)#Vector2(548, 632)
@@ -924,7 +925,7 @@ const trial_to_desire = {
 }
 
 const desire_to_angle = {
-	Bozo.Desire.SWORD: -45.0,
+	Bozo.Desire.SWORD: 135.0,
 	Bozo.Desire.COIN: 45,
 	Bozo.Desire.WINE: 90,
 	Bozo.Desire.MASK: 0,
@@ -1085,6 +1086,15 @@ const omens = [
 	Bozo.Omen.FAMILY,
 	Bozo.Omen.DESTINY
 ]
+
+const subtype_to_omen = {
+	Bozo.Destiny.GENIUS: Bozo.Omen.DESTINY,
+	Bozo.Destiny.EXILE: Bozo.Omen.DESTINY,
+	Bozo.Destiny.LAYMAN: Bozo.Omen.DESTINY,
+	Bozo.Destiny.LEADER: Bozo.Omen.DESTINY,
+	Bozo.Family.PARENT: Bozo.Omen.FAMILY,
+	Bozo.Family.CHILD: Bozo.Omen.FAMILY,
+}
 
 const family_to_family = {
 	Bozo.Family.MOTHER: Bozo.Family.PARENT,
@@ -1794,4 +1804,22 @@ const weather_to_next = {
 #region sacrifice
 const SACRIFICE_AMBER_COUNT: int = 2
 const SACRIFICE_AMBER_DURATION: float = 1.0 
+#endregion
+
+#region museum
+const MUSEUM_CAGE_COUNT: int = 3
+
+const exhibit_windroses = [
+	Bozo.Windrose.N,
+	Bozo.Windrose.S
+]
+
+const museum_omens = [
+	Bozo.Destiny.GENIUS,
+	Bozo.Destiny.EXILE,
+	Bozo.Destiny.LAYMAN,
+	Bozo.Destiny.LEADER,
+	Bozo.Family.PARENT,
+	Bozo.Family.CHILD
+]
 #endregion
