@@ -45,16 +45,16 @@ megacrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Megacrit")
 ultracrit = NodePath("PanelContainer/Modifiers/HBox/Xalvorr/Ultracrit")
 sin = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Virello/Sin")
 amber = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Virello/Amber")
-genius = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Genius")
-exile = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Exile")
-layman = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Layman")
-leader = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Leader")
-parent = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Parent")
-child = NodePath("PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen/Child")
+genius = NodePath("PanelContainer/Modifiers/HBox/Marvone/Genius")
+exile = NodePath("PanelContainer/Modifiers/HBox/Marvone/Exile")
+layman = NodePath("PanelContainer/Modifiers/HBox/Marvone/Layman")
+leader = NodePath("PanelContainer/Modifiers/HBox/Marvone/Leader")
+parent = NodePath("PanelContainer/Modifiers/HBox/Marvone/Parent")
+child = NodePath("PanelContainer/Modifiers/HBox/Marvone/Child")
 ballet = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Ballet")
 puppetry = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Puppetry")
 opera = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Calthex/Opera")
-trust = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Trust")
+trust = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Kharzen/Trust")
 hope = NodePath("PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil/Hope")
 taxs = [NodePath("PanelContainer/Modifiers/HBox/Taxs/Battle"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Auction"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Feast"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Masquerade"), NodePath("PanelContainer/Modifiers/HBox/Taxs/Theater")]
 
@@ -116,6 +116,31 @@ size_flags_vertical = 4
 theme_override_constants/separation = -2
 alignment = 1
 
+[node name="Marvone" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=2094140577]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Exile" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=1040168166 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Layman" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=909488257 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Genius" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=489698292 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Leader" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=1669052470 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Child" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=57733969 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
+[node name="Parent" parent="PanelContainer/Modifiers/HBox/Marvone" unique_id=1853317092 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
+
 [node name="Xalvorr" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1415671919]
 unique_name_in_owner = true
 layout_mode = 2
@@ -140,41 +165,19 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxPecent" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=419539297]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Kharzen" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxPecent" unique_id=2094140577]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 0
-alignment = 1
-
-[node name="Genius" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=489698292 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Exile" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1040168166 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Layman" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=909488257 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Leader" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1669052470 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Parent" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=1853317092 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
-[node name="Child" parent="PanelContainer/Modifiers/HBox/VBoxPecent/Kharzen" unique_id=57733969 instance=ExtResource("8_kw3pa")]
-layout_mode = 2
-
 [node name="VBoxLimit" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox" unique_id=1295306971]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Kharzen" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=419539297]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Trust" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Kharzen" unique_id=716084881 instance=ExtResource("8_kw3pa")]
+layout_mode = 2
 
 [node name="Virello" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1876709135]
 layout_mode = 2
@@ -188,9 +191,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Sirexil" type="VBoxContainer" parent="PanelContainer/Modifiers/HBox/VBoxLimit" unique_id=1853854923]
-layout_mode = 2
-
-[node name="Trust" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil" unique_id=716084881 instance=ExtResource("8_kw3pa")]
 layout_mode = 2
 
 [node name="Hope" parent="PanelContainer/Modifiers/HBox/VBoxLimit/Sirexil" unique_id=1812666071 instance=ExtResource("8_kw3pa")]

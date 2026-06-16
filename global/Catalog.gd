@@ -1025,6 +1025,7 @@ const frame_to_string = {
 	Bozo.Frame.PLATFORM: "platform",
 	Bozo.Frame.SANCTUARY: "sanctuary",
 	Bozo.Frame.TORTURE: "torture",
+	Bozo.Frame.HERALD: "herald",
 }
 
 const frame_to_region = {
@@ -1040,6 +1041,7 @@ const frame_to_region = {
 	Bozo.Frame.PLATFORM: 136,
 	Bozo.Frame.SANCTUARY: 124,
 	Bozo.Frame.TORTURE: 84,
+	Bozo.Frame.HERALD: 128,
 }
 
 const frame_to_patch = {
@@ -1055,6 +1057,7 @@ const frame_to_patch = {
 	Bozo.Frame.PLATFORM: 66,
 	Bozo.Frame.SANCTUARY: 60,
 	Bozo.Frame.TORTURE: 21,
+	Bozo.Frame.HERALD: 62,
 }
 #endregion
 
@@ -1346,6 +1349,12 @@ const spectacle_to_string = {
 	Bozo.Spectacle.OPERA: "opera",
 }
 
+const spectacle_to_basic = {
+	Bozo.Spectacle.BALLET: 5,
+	Bozo.Spectacle.PUPPETRY: 1,
+	Bozo.Spectacle.OPERA: 6,
+}
+
 const fruit_to_state = {
 	Bozo.Fruit.ROTTEN: 0,
 	Bozo.Fruit.RIPE: 1,
@@ -1400,12 +1409,7 @@ const overlord_to_modifier = {
 		Bozo.Modifier.AMBER,
 	],
 	Bozo.Overlord.KHARZEN: [
-		Bozo.Modifier.GENIUS,
-		Bozo.Modifier.EXILE,
-		Bozo.Modifier.LAYMAN,
-		Bozo.Modifier.LEADER,
-		Bozo.Modifier.PARENT,
-		Bozo.Modifier.CHILD,
+		Bozo.Modifier.TRUST,
 	],
 	Bozo.Overlord.CALTHEX: [
 		Bozo.Modifier.BALLET,
@@ -1413,8 +1417,15 @@ const overlord_to_modifier = {
 		Bozo.Modifier.OPERA,
 	],
 	Bozo.Overlord.SIREXIL: [
-		Bozo.Modifier.TRUST,
 		Bozo.Modifier.HOPE,
+	],
+	Bozo.Overlord.MARVONE: [
+		Bozo.Modifier.GENIUS,
+		Bozo.Modifier.EXILE,
+		Bozo.Modifier.LAYMAN,
+		Bozo.Modifier.LEADER,
+		Bozo.Modifier.PARENT,
+		Bozo.Modifier.CHILD,
 	]
 }
 
@@ -1439,6 +1450,16 @@ var overlord_to_pallete = [
 	Color.from_hsv(0.0416, 0.6, 0.7),
 	Color.from_hsv(0.0416, 0.8, 1.0),
 ]
+
+const overlord_to_decree = {
+	Bozo.Modifier.MISS: [56, 42, 28, 19, 10, 7, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0],
+	Bozo.Modifier.CRIT: [1, 2, 3, 4, 5, 5, 6, 6, 9, 12, 15, 20, 25, 30, 25, 5],
+	Bozo.Modifier.MEGACRIT: [0, 0, 0, 0, 0, 1, 1, 3, 6, 10, 15, 20, 26, 30, 25, 15],
+	Bozo.Modifier.ULTRACRIT: [0, 0, 0, 0, 0, 0, 0, 2, 4, 7, 11, 16, 22, 31, 50, 80],
+	Bozo.Modifier.AMBER: [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8],
+	Bozo.Modifier.SIN: [10, 10, 9, 9, 8, 8, 7, 6, 6, 5, 5, 4, 4],
+	Bozo.Modifier.SPECTACLE: [-9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 15],
+}
 #endregion
 
 #region modifier

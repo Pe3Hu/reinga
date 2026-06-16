@@ -43,9 +43,11 @@ func apply_default_value() -> void:
 					value = Catalog.level_to_modifier_to_range[sanctuary.virello_level][Bozo.Modifier.AMBER].front()
 					subvalue = Catalog.level_to_modifier_to_range[sanctuary.virello_level][Bozo.Modifier.AMBER].back()
 		Bozo.Overlord.KHARZEN:
-			value = Catalog.omen_to_percent[type]
+			value = Catalog.level_modifier_to_limit[sanctuary.kharzen_level][type]
 		Bozo.Overlord.CALTHEX:
 			value = Catalog.level_modifier_to_shift[sanctuary.calthex_level][type]
 		Bozo.Overlord.SIREXIL:
 			value = Catalog.level_modifier_to_limit[sanctuary.sirexil_level][type]
+		Bozo.Overlord.MARVONE:
+			value = Catalog.omen_to_percent[type]	
 			

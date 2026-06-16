@@ -276,6 +276,7 @@ enum Modifier {
 	HOPE = -225,
 	AMBER = -299,
 	SIN = -300,
+	SPECTACLE = -555,
 }
 
 enum Eruption {
@@ -404,7 +405,8 @@ enum Frame {
 	DEAL = 338,
 	PLATFORM = 339,
 	SANCTUARY = 340,
-	TORTURE = 341
+	TORTURE = 341,
+	HERALD = 342
 }
 
 enum Overlord {

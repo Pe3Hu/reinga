@@ -30,6 +30,8 @@ func _on_type_changed() -> void:
 		Bozo.Overlord.VIRELLO:
 			path_str = "res://entities/ui/token/%s/" % type_str
 			format_str = " on%s" % format_str
+		Bozo.Overlord.KHARZEN:
+			path_str = "res://entities/ui/token/faction/images/"
 		Bozo.Overlord.SIREXIL:
 			path_str = "res://entities/ui/token/faction/images/"
 	
@@ -45,11 +47,13 @@ func _on_value_changed() -> void:
 		Bozo.Overlord.VIRELLO:
 			label.text = str(data.value) + " - "
 		Bozo.Overlord.KHARZEN:
-			label.text = str(data.value) + "%"
+			label.text = str(data.value)
 		Bozo.Overlord.CALTHEX:
 			label.text = str(data.value)
 		Bozo.Overlord.SIREXIL:
 			label.text = str(data.value)
+		Bozo.Overlord.MARVONE:
+			label.text = str(data.value) + "%"
 
 func _on_subvalue_changed() -> void:
 	match data.overlord:

@@ -6,7 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmj4q"]
 shader = ExtResource("2_54vv2")
-shader_parameter/final_color = Color(0.9, 0.7, 0.3, 1)
+shader_parameter/final_color = Color(0.297, 0.47789994, 0.9, 1)
+shader_parameter/invert = true
 
 [node name="Herald" type="Control" unique_id=696336315]
 z_index = 200

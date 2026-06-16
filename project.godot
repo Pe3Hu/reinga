@@ -41,6 +41,7 @@ folder_colors={
 "res://entities/hell/underground/": "gray",
 "res://entities/hell/volcano/": "red",
 "res://entities/sinner/": "red",
+"res://entities/throne/": "pink",
 "res://entities/tribunal/": "pink",
 "res://entities/ui/token/": "blue"
 }

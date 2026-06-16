@@ -1,45 +1,20 @@
-res://entities/museum/exhibit/exhibit.tscn
-res://entities/herald/overlord/shaders/domain.gdshader
-res://entities/herald/shaders/torture.gdshader
-res://entities/ui/glory/glory.gdshader
-res://entities/museum/shaders/museum background.gdshader
-res://entities/museum/shaders/museum flame.gdshader
-res://entities/gate/shader/gate blur.gdshader
-res://entities/ui/transition/transition.gdshader
-res://entities/hell/treasury/contribution/candle/shaders/contribution active.gdshader
-res://entities/inferno/void.gdshader
-res://entities/ui/button/variants/weather.gd
-res://entities/ui/button/variants/weather button.tscn
-res://entities/hell/jail/cage/cage.gd
-res://entities/museum/exhibit/exhibit.gd
-res://entities/museum/museum.gd
-res://entities/museum/museum.tscn
-res://entities/museum/data_museum.gd
-res://entities/ui/button/variants/realize.gd
-res://entities/hell/jail/cage/cloak/dream/data_dream.gd
-res://entities/abyss/sacrifice/data_exhibit.gd
-res://entities/hell/jail/sinner/doom/data_doom.gd
-res://entities/hell/jail/cage/data_cage.gd
-res://entities/hell/jail/cage/cloak/dream/dream.tscn
-res://entities/hell/jail/cage/cloak/dream/dream.gd
-res://entities/hell/jail/sinner/sinner.gd
-res://entities/world/data_world.gd
-res://entities/hell/volcano/data_flow.gd
 res://entities/herald/herald.tscn
-res://entities/herald/shaders/white spiral.gdshader
-res://entities/herald/shaders/herald background.gdshader
-res://entities/herald/shaders/romb.gdshader
-res://entities/herald/shaders/white room.gdshader
 res://entities/herald/shaders/herald.gdshader
-res://entities/world/world.tscn
-res://entities/world/world.gd
-res://global/Catalog.gd
 res://entities/herald/shaders/halo.gdshader
-res://entities/ui/transition/data_transition.gd
-res://entities/herald/herald.gd
-res://entities/herald/shaders/sun no background.gdshader
-res://entities/herald/shaders/sun 1.gdshader
-res://entities/herald/decree/decree.tscn
-res://entities/herald/decree/decree.gd
 res://entities/ui/button/variants/accept button.tscn
-res://entities/ui/button/variants/accept.gd
+res://entities/herald/decree/decree.tscn
+res://entities/herald/decree/data_decree.gd
+res://entities/herald/decree/decree.gd
+res://entities/herald/data_herald.gd
+res://global/Bozo.gd
+res://global/Catalog.gd
+res://entities/world/world.gd
+res://entities/herald/decree/law/law.tscn
+res://entities/herald/decree/law/law.gd
+res://entities/herald/decree/law/data_law.gd
+res://entities/sanctuary/modifier/data_modifier.gd
+res://entities/sanctuary/sanctuary.tscn
+res://entities/sanctuary/modifier/modifier.gd
+res://entities/throne/data_overlord.gd
+res://entities/throne/data_throne.gd
+res://entities/world/data_world.gd

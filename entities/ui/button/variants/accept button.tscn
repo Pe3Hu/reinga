@@ -19,11 +19,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("1_c44jj")
 theme_override_styles/pressed = ExtResource("1_c44jj")
 theme_override_styles/hover = ExtResource("2_dq0mr")
-text = "Realize"
+text = "Accept"
 script = ExtResource("3_c44jj")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
