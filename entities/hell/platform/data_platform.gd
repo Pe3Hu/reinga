@@ -10,10 +10,6 @@ var tooltip: Bozo.Tooltip = Bozo.Tooltip.PLATFORM
 var spectacles: Array[SpectacleData]
 var active_spectacles: Array[SpectacleData]
 
-#var ballets: Array[SpectacleData] 
-#var puppetrys: Array[SpectacleData]
-#var operas: Array[SpectacleData]
-
 var freshs: Array[CageData]
 var ripes: Array[CageData]
 var rottens: Array[CageData]
@@ -30,16 +26,6 @@ func _init(jail_: JailData) -> void:
 	
 	init_spectacles()
 	init_fruits()
-	
-	var cage = jail.table.cages[1]
-	var fruit = Bozo.Fruit.FRESH
-	force_fruit(cage, fruit)
-	cage = jail.table.cages[4]
-	force_fruit(cage, fruit)
-	cage = jail.table.cages[2]
-	force_fruit(cage, fruit)
-	cage = jail.table.cages[6]
-	#force_fruit(cage, Bozo.Fruit.RIPE)
 
 func init_spectacles() -> void:
 	for catena in jail.table.catenas:
@@ -53,14 +39,6 @@ func init_spectacles() -> void:
 func add_spectacle(catena_: CatenaData) -> void:
 	var spectacle = SpectacleData.new(self, catena_)
 	spectacles.append(spectacle)
-	
-	#match spectacle.type:
-		#Bozo.Spectacle.BALLET:
-			#ballets.append(spectacle)
-		#Bozo.Spectacle.PUPPETRY:
-			#puppetrys.append(spectacle)
-		#Bozo.Spectacle.OPERA:
-			#operas.append(spectacle)
 
 func init_fruits() -> void:
 	for index in Catalog.indexs:
@@ -142,3 +120,15 @@ func force_fruit(cage_: CageData, fruit_: Bozo.Fruit) -> void:
 			rottens.append(cage_)
 	
 	emit_signal("fruit_is_changed")
+
+func test_cages() -> void:
+	#var cage = jail.table.cages[1]
+	#var fruit = Bozo.Fruit.FRESH
+	#force_fruit(cage, fruit)
+	#cage = jail.table.cages[4]
+	#force_fruit(cage, fruit)
+	#cage = jail.table.cages[2]
+	#force_fruit(cage, fruit)
+	#cage = jail.table.cages[6]
+	#force_fruit(cage, Bozo.Fruit.RIPE)
+	pass

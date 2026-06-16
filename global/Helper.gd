@@ -99,3 +99,39 @@ func update_colors(node_, overlord_: Bozo.Overlord) -> void:
 	node_.material.set_shader_parameter("colorA", color_a)
 	node_.material.set_shader_parameter("colorB", color_b)
 	node_.material.set_shader_parameter("colorC", color_c)
+
+func get_xalvorr_percents() -> Dictionary:
+	var weights = {}
+	var rank = Scope.sanctuary.world.throne.xalvorr.rank + Catalog.OVERLORD_MAX_RANK
+	
+	for modifier in Catalog.overlord_to_modifier[Bozo.Overlord.XALVORR]:
+		weights[modifier] = Catalog.modifier_to_rank_to_value[modifier][rank]
+	
+	return weights
+
+func get_modifier_rank_value(modifier_: Bozo.Modifier, rank_shift_: int = 0) -> int:
+	var overlord_type = Catalog.modifier_to_overlord[modifier_]
+	var overlord = Scope.sanctuary.world.throne.type_to_overlord[overlord_type]
+	var rank = overlord.rank + rank_shift_ + Catalog.OVERLORD_MAX_RANK
+	var value = Catalog.modifier_to_rank_to_value[modifier_][rank]
+	return value
+
+func get_spectacle_options(blob_: Bozo.Blob) -> Array:
+	var spectacle_options: Array
+	var origin_factor: int = Scope.spectacle_to_factor[Catalog.spectacles.front()]
+	
+	for spectacle_type in Scope.spectacle_to_factor:
+		if origin_factor == Scope.spectacle_to_factor[spectacle_type]:
+			spectacle_options.append(spectacle_type)
+		
+		match blob_:
+			Bozo.Blob.PLUS:
+				if origin_factor < Scope.spectacle_to_factor[spectacle_type]:
+					origin_factor = Scope.spectacle_to_factor[spectacle_type]
+					spectacle_options = [spectacle_type]
+			Bozo.Blob.MINUS:
+				if origin_factor > Scope.spectacle_to_factor[spectacle_type]:
+					origin_factor = Scope.spectacle_to_factor[spectacle_type]
+					spectacle_options = [spectacle_type]
+	
+	return spectacle_options

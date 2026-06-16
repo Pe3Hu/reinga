@@ -29,6 +29,7 @@ func connect_datas() -> void:
 	gate.data = data.gate
 	abyss.data = data.abyss
 	museum.data = data.museum
+	herald.data = data.herald
 	transition.data = data.transition
 
 func _input(event) -> void:

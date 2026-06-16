@@ -40,7 +40,7 @@ script = ExtResource("1_g2rqh")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="ModifierIcon" type="TextureRect" parent="HBox" unique_id=2033316012]
@@ -61,7 +61,7 @@ size_flags_vertical = 4
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "4%"
 horizontal_alignment = 1
@@ -82,7 +82,7 @@ size_flags_vertical = 4
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 28
 bbcode_enabled = true
 text = "22%"
 horizontal_alignment = 1

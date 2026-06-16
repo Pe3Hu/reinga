@@ -9,12 +9,6 @@ var taxs: Array[TaxData]
 var type_to_modifier: Dictionary
 var overlord_to_claim: Dictionary
 
-var xalvorr_level: int = 0
-var virello_level: int = 0
-var kharzen_level: int = 0
-var calthex_level: int = 0
-var sirexil_level: int = 0
-
 
 #region init
 func _init(world_: WorldData) -> void:

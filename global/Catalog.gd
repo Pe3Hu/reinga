@@ -877,6 +877,26 @@ const half_to_shift = {
 	Bozo.Half.DOUBLE: 2
 }
 
+const blob_to_shift = {
+	Bozo.Blob.PLUS: 1,
+	Bozo.Blob.MINUS: -1,
+}
+
+const blob_to_header = {
+	Bozo.Blob.MINUS: "Curse",
+	Bozo.Blob.PLUS: "Bless",
+}
+
+const blob_to_flag = {
+	Bozo.Blob.MINUS: false,
+	Bozo.Blob.PLUS: true,
+}
+
+const blob_to_color = {
+	Bozo.Blob.MINUS: Color.WHITE,
+	Bozo.Blob.PLUS: Color.BLACK,
+}
+
 const WORST_TRIBUTE_SHIFT = -1
 const BEST_TRIBUTE_SHIFT = 1
 
@@ -1309,12 +1329,12 @@ const status_to_string = {
 
 const status_to_sign = {
 	Bozo.Status.ON: 1,
-	Bozo.Status.OFF: -1
+	Bozo.Status.OFF: -1,
 }
 
 const friend_to_sign = {
 	Bozo.Status.ON: 1,
-	Bozo.Status.OFF: -1
+	Bozo.Status.OFF: -1,
 }
 
 const status_to_next = {
@@ -1364,6 +1384,15 @@ const fruit_to_state = {
 #endregion
 
 #region overlord
+const OVERLORD_MAX_RANK: int = 6
+const OVERLORD_MIN_RANK: int = -6
+
+const CALTHEX_LAW_COUNT: int = 2
+
+const AMBER_SHIFT: int = 5
+const ATTITUDE_SHIFT: int = 1
+const FLAME_SHIFT: int = 6
+
 const overlords = [
 	Bozo.Overlord.CALTHEX,
 	Bozo.Overlord.KHARZEN,
@@ -1429,11 +1458,24 @@ const overlord_to_modifier = {
 	]
 }
 
-const level_to_modifier_to_range = {
-	0: {
-		Bozo.Modifier.SIN: [8, 10],#[1, 1]#
-		Bozo.Modifier.AMBER: [4, 6],#[1, 1]
-	}
+const modifier_to_overlord = {
+	Bozo.Modifier.MISS: Bozo.Overlord.XALVORR,
+	Bozo.Modifier.CRIT: Bozo.Overlord.XALVORR,
+	Bozo.Modifier.MEGACRIT: Bozo.Overlord.XALVORR,
+	Bozo.Modifier.ULTRACRIT: Bozo.Overlord.XALVORR,
+	Bozo.Modifier.SIN: Bozo.Overlord.VIRELLO,
+	Bozo.Modifier.AMBER: Bozo.Overlord.VIRELLO,
+	Bozo.Modifier.TRUST: Bozo.Overlord.KHARZEN,
+	Bozo.Modifier.BALLET: Bozo.Overlord.CALTHEX,
+	Bozo.Modifier.PUPPETRY: Bozo.Overlord.CALTHEX,
+	Bozo.Modifier.OPERA: Bozo.Overlord.CALTHEX,
+	Bozo.Modifier.HOPE: Bozo.Overlord.SIREXIL,
+	Bozo.Modifier.GENIUS: Bozo.Overlord.MARVONE,
+	Bozo.Modifier.EXILE: Bozo.Overlord.MARVONE,
+	Bozo.Modifier.LAYMAN: Bozo.Overlord.MARVONE,
+	Bozo.Modifier.LEADER: Bozo.Overlord.MARVONE,
+	Bozo.Modifier.PARENT: Bozo.Overlord.MARVONE,
+	Bozo.Modifier.CHILD: Bozo.Overlord.MARVONE,
 }
 
 const overlord_to_hue = {
@@ -1451,7 +1493,7 @@ var overlord_to_pallete = [
 	Color.from_hsv(0.0416, 0.8, 1.0),
 ]
 
-const overlord_to_decree = {
+const modifier_to_rank_to_value = {
 	Bozo.Modifier.MISS: [56, 42, 28, 19, 10, 7, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0],
 	Bozo.Modifier.CRIT: [1, 2, 3, 4, 5, 5, 6, 6, 9, 12, 15, 20, 25, 30, 25, 5],
 	Bozo.Modifier.MEGACRIT: [0, 0, 0, 0, 0, 1, 1, 3, 6, 10, 15, 20, 26, 30, 25, 15],
@@ -1459,7 +1501,12 @@ const overlord_to_decree = {
 	Bozo.Modifier.AMBER: [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8],
 	Bozo.Modifier.SIN: [10, 10, 9, 9, 8, 8, 7, 6, 6, 5, 5, 4, 4],
 	Bozo.Modifier.SPECTACLE: [-9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 15],
+	Bozo.Modifier.BALLET: [-25, -20, -15, -10, -5, 0, 5, 5, 10, 15, 20, 25, 30],
+	Bozo.Modifier.PUPPETRY: [-5, -4, -3, -2, -1, 0, 1, 1, 2, 3, 4, 5, 6],
+	Bozo.Modifier.OPERA: [-30, -24, -18, -12, -6, 0, 6, 6, 12, 18, 24, 30, 36],
 }
+
+var deal_scope: int = 1
 #endregion
 
 #region modifier
@@ -1507,30 +1554,9 @@ const modifier_to_string = {
 	#Bozo.Modifier.: "",
 }
 
-const level_modifier_to_percent = {
-	0: {
-		Bozo.Modifier.MISS: 3,
-		Bozo.Modifier.CRIT: 5,
-		Bozo.Modifier.MEGACRIT: 1,
-		Bozo.Modifier.ULTRACRIT: 0,
-		Bozo.Modifier.NONE: 91,
-	}
-}
+const TRUST_LIMIT: int = 2
+const HOPE_LIMIT: int = 5
 
-const level_modifier_to_shift = {
-	0: {
-		Bozo.Modifier.BALLET: 5,
-		Bozo.Modifier.PUPPETRY: 1,
-		Bozo.Modifier.OPERA: 6
-	}
-}
-
-const level_modifier_to_limit = {
-	0: {
-		Bozo.Modifier.TRUST: 2,
-		Bozo.Modifier.HOPE: 5,
-	}
-}
 
 const omen_to_percent = {
 	Bozo.Modifier.PARENT: 15,
@@ -1567,6 +1593,12 @@ const modifier_to_tooltip = {
 	Bozo.Modifier.OPERA: Bozo.Tooltip.MOD_OPERA,
 	Bozo.Modifier.TRUST: Bozo.Tooltip.MOD_TRUST,
 	Bozo.Modifier.HOPE: Bozo.Tooltip.MOD_HOPE,
+}
+
+const spectacle_to_modifier = {
+	Bozo.Spectacle.BALLET: Bozo.Modifier.BALLET,
+	Bozo.Spectacle.PUPPETRY: Bozo.Modifier.PUPPETRY,
+	Bozo.Spectacle.OPERA: Bozo.Modifier.OPERA,
 }
 #endregion
 

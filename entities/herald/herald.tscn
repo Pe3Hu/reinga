@@ -6,10 +6,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lmj4q"]
 shader = ExtResource("2_54vv2")
-shader_parameter/final_color = Color(0.297, 0.47789994, 0.9, 1)
+shader_parameter/final_color = Color(0.39499992, 1, 0.33999997, 1)
 shader_parameter/invert = true
 
-[node name="Herald" type="Control" unique_id=696336315]
+[node name="Herald" type="Control" unique_id=696336315 node_paths=PackedStringArray("decree", "background")]
 z_index = 200
 layout_mode = 3
 anchors_preset = 15
@@ -20,8 +20,11 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_54vv2")
+decree = NodePath("Decree")
+background = NodePath("Background")
 
-[node name="BackgroundRect" type="ColorRect" parent="." unique_id=1651165418]
+[node name="Background" type="ColorRect" parent="." unique_id=1651165418]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_lmj4q")
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 1
@@ -31,7 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Decree" parent="." unique_id=694435509 instance=ExtResource("3_v81oy")]
+[node name="Decree" parent="." unique_id=694435509 node_paths=PackedStringArray("herald") instance=ExtResource("3_v81oy")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,3 +47,4 @@ offset_right = 80.0
 offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
+herald = NodePath("..")

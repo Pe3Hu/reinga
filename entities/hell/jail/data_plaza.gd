@@ -51,7 +51,7 @@ func update_associations() -> void:
 	for _i in range(types.size() -1, -1, -1):
 		var faction_type = types[_i]
 		
-		if type_to_faction[faction_type].size() >= Scope.hope_limit + hope_shift:
+		if type_to_faction[faction_type].size() >= Catalog.HOPE_LIMIT + hope_shift:
 			for faction in type_to_faction[faction_type]:
 				faction.association = Bozo.Association.BROTHERHOOD
 		else:
@@ -62,7 +62,7 @@ func update_associations() -> void:
 	for _i in range(types.size() -1, -1, -1):
 		var fate_type = types[_i]
 		
-		if type_to_fate[fate_type].size() >= Scope.trust_limit:
+		if type_to_fate[fate_type].size() >= Catalog.TRUST_LIMIT:
 			for fate in type_to_fate[fate_type]:
 				fate.association = Bozo.Association.GUILD
 		else:
@@ -91,7 +91,7 @@ func apply_trust_logic() -> void:
 				if Catalog.trust_fates.has(neighbour.sinner.fate.type):
 					trust_counter += Catalog.relationship_to_sign[neighbour.sinner.fate.relationship]
 			
-			var is_trust = trust_counter >= Scope.trust_limit 
+			var is_trust = trust_counter >= Catalog.TRUST_LIMIT 
 			fate.sinner.dream.apply_guild(is_trust)
 			if is_trust:
 				fate.association = Bozo.Association.GUILD
@@ -109,8 +109,6 @@ func apply_hope_logic() -> void:
 				type_to_faction[faction.type] = []
 				
 			type_to_faction[faction.type].append(faction)
-	
-	pass
 
 func reset_associations() -> void:
 	for cage in jail.table.cages:

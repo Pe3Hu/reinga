@@ -40,6 +40,7 @@ func update_is_selected() -> void:
 	
 	is_selected = true
 
+#region active
 func active() -> void:
 	if !is_selected: return
 	is_selected = false
@@ -53,23 +54,19 @@ func active() -> void:
 			apply_attitude_flame()
 
 func apply_amber_shift() -> void:
-	var shift = Scope.amber_shift
+	var shift = platfrom.jail.hell.world.sanctuary.type_to_modifier[Bozo.Modifier.BALLET].value
 	var amber = platfrom.jail.hell.bank.type_to_amber[Bozo.Amber.INDOLENCE]
 	amber.next_value = amber.value + shift
 	platfrom.shifted_ambers.append(amber)
 
 func apply_attitude_shift() -> void:
-	var shift = Scope.attitude_shift
+	var shift = platfrom.jail.hell.world.sanctuary.type_to_modifier[Bozo.Modifier.PUPPETRY].value
 	var attitude = platfrom.jail.hell.nightmare.best_attitude
-	#var text = Catalog.trial_to_string[attitude.trial.type]
 	attitude.shifts.append(shift)
-	#attitude.progression.next_value = shift
-	#platfrom.shifted_progressions.append(attitude.progression)
-	#print(["attitude", text, shift])
-
 
 func apply_attitude_flame() -> void:
-	var shift = Scope.flame_shift
+	var shift = platfrom.jail.hell.world.sanctuary.type_to_modifier[Bozo.Modifier.OPERA].value
 	var flame = platfrom.jail.hell.nightmare.worst_flame
 	flame.progression.next_value = -shift
 	platfrom.shifted_progressions.append(flame.progression)
+#endregion

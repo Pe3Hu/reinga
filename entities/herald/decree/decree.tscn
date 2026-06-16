@@ -8,13 +8,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sb6v5"]
 
-[node name="Decree" type="PanelContainer" unique_id=694435509 node_paths=PackedStringArray("laws")]
+[node name="Decree" type="PanelContainer" unique_id=694435509 node_paths=PackedStringArray("laws", "accept_button")]
 custom_minimum_size = Vector2(320, 320)
 offset_right = 300.0
 offset_bottom = 300.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sb6v5")
 script = ExtResource("1_vb3oq")
 laws = [NodePath("Laws/Law1"), NodePath("Laws/Law2"), NodePath("Laws/Law3")]
+accept_button = NodePath("AcceptMargin/AcceptButton")
 
 [node name="HeaderMargin" type="MarginContainer" parent="." unique_id=248050482]
 layout_mode = 2
@@ -22,6 +23,7 @@ size_flags_vertical = 0
 theme_override_constants/margin_top = 32
 
 [node name="Header" type="RichTextLabel" parent="HeaderMargin" unique_id=23569512]
+unique_name_in_owner = true
 z_index = 5
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
@@ -41,6 +43,7 @@ theme_override_constants/margin_right = -16
 theme_override_constants/margin_bottom = -16
 
 [node name="Frame" parent="MarginContainer" unique_id=716478958 instance=ExtResource("2_rq6op")]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_sb6v5")
 region_rect = Rect2(0, 0, 128, 128)
@@ -74,7 +77,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = 20
 
-[node name="AcceptButton" parent="AcceptMargin" unique_id=250034607 instance=ExtResource("4_6cggk")]
+[node name="AcceptButton" parent="AcceptMargin" unique_id=250034607 node_paths=PackedStringArray("decree") instance=ExtResource("4_6cggk")]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Accept
 "
+decree = NodePath("../..")
