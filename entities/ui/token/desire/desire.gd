@@ -45,7 +45,7 @@ func dissolve():
 	if texture_rect.material and texture_rect.material is ShaderMaterial:
 		texture_rect.visible = true
 		var tween = create_tween()
-		var duration = randf_range(0.9, 1.1) * Catalog.DESIRE_DISSOLVE_DURATION
+		var duration = randf_range(0.9, 1.1) * Gear.desire_dissolves[Gear.tempo]
 		var angle = Helper.rng.randf_range(0.0, 360.0)
 		texture_rect.material.set_shader_parameter("direction", angle)
 		tween.tween_method(update_progress, -Catalog.DESIRE_PROGRESS_LIMIT, Catalog.DESIRE_PROGRESS_LIMIT, duration)

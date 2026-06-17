@@ -9,6 +9,7 @@ var data: HeraldData:
 		connect_signals()
 		data.test_decrees()
 
+@export var world: World
 @export var decree: Decree
 @export var background: ColorRect
 

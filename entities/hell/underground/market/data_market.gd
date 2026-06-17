@@ -27,9 +27,9 @@ func init_deals() -> void:
 	deals.shuffle()
 
 func add_deal(sin_type_: Variant) -> void:
-	var rank = hell.world.throne.type_to_overlord[Bozo.Overlord.VIRELLO].rank
-	var min_value: int = Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank]
-	var max_value: int = Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank]
+	var modifier = Bozo.Modifier.SIN
+	var min_value = Helper.get_modifier_rank_value(modifier) - Catalog.deal_scope
+	var max_value = Helper.get_modifier_rank_value(modifier) + Catalog.deal_scope
 	var in_value = randi_range(min_value, max_value)
 	var sin_data = SinData.new(sin_type_, in_value)
 	var amber_type = pull_ember_type()
@@ -37,8 +37,9 @@ func add_deal(sin_type_: Variant) -> void:
 	while amber_type == sin_type_:
 		amber_type = pull_ember_type()
 	
-	min_value = Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank]
-	max_value = Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank]
+	modifier = Bozo.Modifier.AMBER
+	min_value = Helper.get_modifier_rank_value(modifier) - Catalog.deal_scope
+	max_value = Helper.get_modifier_rank_value(modifier) + Catalog.deal_scope
 	var out_value = randi_range(min_value, max_value)
 	var amber_data = AmberData.new(amber_type, out_value)
 	var deal = DealData.new(self, sin_data, amber_data)
@@ -68,13 +69,15 @@ func refill_closed_deals() -> void:
 func create_new_deal(deal_: DealData) -> void:
 	deals.push_front(deal_)
 	
-	var rank = hell.world.throne.type_to_overlord[Bozo.Overlord.VIRELLO].rank
-	var min_value: int = Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank]
-	var max_value: int = Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank]
+	var modifier = Bozo.Modifier.SIN
+	#var rank = hell.world.throne.type_to_overlord[Bozo.Overlord.VIRELLO].rank
+	var min_value = Helper.get_modifier_rank_value(modifier) - Catalog.deal_scope #Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank] - Catalog.deal_scope
+	var max_value = Helper.get_modifier_rank_value(modifier) + Catalog.deal_scope#Catalog.modifier_to_rank_to_value[Bozo.Modifier.SIN][rank] + Catalog.deal_scope
 	deal_.sin_data.value = randi_range(min_value, max_value)
 	
-	min_value = Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank]
-	max_value = Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank]
+	modifier = Bozo.Modifier.AMBER
+	min_value = Helper.get_modifier_rank_value(modifier) - Catalog.deal_scope#Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank] - Catalog.deal_scope
+	max_value = Helper.get_modifier_rank_value(modifier) + Catalog.deal_scope#Catalog.modifier_to_rank_to_value[Bozo.Modifier.AMBER][rank] + Catalog.deal_scope
 	deal_.amber_data.value = randi_range(min_value, max_value)
 	
 	sin_options.clear()

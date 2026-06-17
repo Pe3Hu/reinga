@@ -29,6 +29,7 @@ func roll_omens() -> void:
 		var omen_type = options.pop_back()
 		var omen = OmenData.new(omen_type)
 		var subtype = roll_subtype(omen)
+		omen.doom = self
 		
 		if subtype != null:
 			omen.subtype = subtype

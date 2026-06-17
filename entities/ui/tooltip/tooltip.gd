@@ -29,7 +29,7 @@ var source_rect: Rect2
 
 
 func _ready():
-	%CloseTimer.wait_time = Catalog.TOOLTIP_DURATION
+	%CloseTimer.wait_time = Gear.tooltips[Gear.tempo]
 	header_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	header_label.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	descritipion_label.autowrap_mode = TextServer.AUTOWRAP_OFF

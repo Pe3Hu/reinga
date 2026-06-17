@@ -23,7 +23,7 @@ func animate_in() -> void:
 		visible = true
 		tween = create_tween()
 		get_tree().paused = true
-		tween.tween_property(bg.material, "shader_parameter/factor", 1, Catalog.TRANSITION_DURATION)\
+		tween.tween_property(bg.material, "shader_parameter/factor", 1, Gear.transitions[Gear.tempo])\
 		 .set_trans(Tween.TRANS_QUAD)\
 		 .set_ease(Tween.EASE_IN_OUT)
 		await tween.finished
@@ -35,7 +35,7 @@ func animate_out() -> void:
 	apply_layer()
 	
 	tween = create_tween()
-	tween.tween_property(bg.material, "shader_parameter/factor", 0.0, Catalog.TRANSITION_DURATION)\
+	tween.tween_property(bg.material, "shader_parameter/factor", 0.0, Gear.transitions[Gear.tempo])\
 	 .set_trans(Tween.TRANS_QUAD)\
 	 .set_ease(Tween.EASE_IN_OUT)
 	await tween.finished

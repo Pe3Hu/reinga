@@ -163,5 +163,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="SelectButton" parent="PanelContainer/VBox" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
+visible = false
 layout_mode = 2
+text = "Shackle"
 gate = NodePath("../../..")

@@ -1,9 +1,9 @@
 MarginContainer
+PanelContainer
+ColorRect
 VBoxContainer
 TextureRect
-PanelContainer
 HBoxContainer
-ColorRect
 GridContainer
 Control
 Node2D

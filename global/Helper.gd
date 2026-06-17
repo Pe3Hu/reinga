@@ -112,7 +112,13 @@ func get_xalvorr_percents() -> Dictionary:
 func get_modifier_rank_value(modifier_: Bozo.Modifier, rank_shift_: int = 0) -> int:
 	var overlord_type = Catalog.modifier_to_overlord[modifier_]
 	var overlord = Scope.sanctuary.world.throne.type_to_overlord[overlord_type]
-	var rank = overlord.rank + rank_shift_ + Catalog.OVERLORD_MAX_RANK
+	var rank = overlord.rank + Catalog.OVERLORD_MAX_RANK
+
+	match overlord.type:
+		Bozo.Overlord.CALTHEX:
+			rank += Scope.spectacle_to_factor[Catalog.modifier_to_spectacle[modifier_]]
+
+	rank += rank_shift_
 	var value = Catalog.modifier_to_rank_to_value[modifier_][rank]
 	return value
 
@@ -126,11 +132,11 @@ func get_spectacle_options(blob_: Bozo.Blob) -> Array:
 		
 		match blob_:
 			Bozo.Blob.PLUS:
-				if origin_factor < Scope.spectacle_to_factor[spectacle_type]:
+				if origin_factor > Scope.spectacle_to_factor[spectacle_type]:
 					origin_factor = Scope.spectacle_to_factor[spectacle_type]
 					spectacle_options = [spectacle_type]
 			Bozo.Blob.MINUS:
-				if origin_factor > Scope.spectacle_to_factor[spectacle_type]:
+				if origin_factor < Scope.spectacle_to_factor[spectacle_type]:
 					origin_factor = Scope.spectacle_to_factor[spectacle_type]
 					spectacle_options = [spectacle_type]
 	

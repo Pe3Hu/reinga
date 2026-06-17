@@ -10,36 +10,53 @@ var data: LawData:
 
 func connect_data() -> void:
 	visible = true
+	
+	%Modifier.visible = data.fate == Bozo.Fate.NONE
+	%Fate.visible = data.fate != Bozo.Fate.NONE
+	
 	update_labels()
 	update_icons()
 
 func update_icons() -> void:
 	if data.modifier == 0: return
-	var type_str = Catalog.modifier_to_string[data.modifier]
-	var path_str = "res://entities/sanctuary/modifier/images/"
-	var format_str = ".png"
+	var type_str: String = Catalog.modifier_to_string[data.modifier]
+	var path_str: String
+	var format_str: String = ".png"
 	
-	match data.decree.overlord.type:
-		Bozo.Overlord.VIRELLO:
-			path_str = "res://entities/ui/token/%s/" % type_str
-			format_str = " on%s" % format_str
-		Bozo.Overlord.KHARZEN:
-			path_str = "res://entities/ui/token/faction/images/"
-		Bozo.Overlord.SIREXIL:
-			path_str = "res://entities/ui/token/faction/images/"
+	if data.fate == Bozo.Fate.NONE:
+		path_str = "res://entities/sanctuary/modifier/images/"
+		
+		match data.decree.overlord.type:
+			Bozo.Overlord.VIRELLO:
+				path_str = "res://entities/ui/token/%s/" % type_str
+				format_str = " on%s" % format_str
+			Bozo.Overlord.KHARZEN:
+				path_str = "res://entities/ui/token/faction/images/"
+			Bozo.Overlord.SIREXIL:
+				path_str = "res://entities/ui/token/faction/images/"
+		
+		%ModifierIcon.texture = load("%s%s%s" % [path_str, type_str, format_str])
+		%ModifierIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
+		Helper.update_colors(%ModifierIcon, data.decree.overlord.type)
+		
+		type_str = Catalog.blob_to_string[data.blob]
+		path_str = "res://entities/herald/decree/law/images/law "
+		format_str = ".png"
+		%BlobIcon.texture = load("%s%s%s" % [path_str, type_str, format_str])
+		%BlobIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
+		Helper.update_colors(%BlobIcon, data.decree.overlord.type)
+	else:
+		path_str = "res://entities/ui/token/faction/images/"
+		
+		%FactionIcon.texture = load("%s%s%s" % [path_str, type_str, format_str])
+		%FactionIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
+		Helper.update_colors(%FactionIcon, data.decree.overlord.type)
+		Helper.update_colors(%PlusIcon, data.decree.overlord.type)
 	
-	%ModifierIcon.texture = load("%s%s%s" % [path_str, type_str, format_str])
-	%ModifierIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
-	Helper.update_colors(%ModifierIcon, data.decree.overlord.type)
-	
-	type_str = Catalog.blob_to_string[data.blob]
-	path_str = "res://entities/herald/decree/law/images/law "
-	format_str = ".png"
-	%BlobIcon.texture = load("%s%s%s" % [path_str, type_str, format_str])
-	%BlobIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
-	Helper.update_colors(%BlobIcon, data.decree.overlord.type)
-
 
 func update_labels() -> void:
-	%OldLabel.text = data.old_text
-	%NewLabel.text = data.new_text
+	if data.fate == Bozo.Fate.NONE:
+		%OldLabel.text = data.old_text
+		%NewLabel.text = data.new_text
+	else:
+		%FateLabel.text = data.fate_text

@@ -28,9 +28,9 @@ var guild_level: int = 1
 #var flame_shift: int = 6
 
 var spectacle_to_factor = {
-	Bozo.Spectacle.BALLET: 1,
-	Bozo.Spectacle.PUPPETRY: 1,
-	Bozo.Spectacle.OPERA: 1,
+	Bozo.Spectacle.BALLET: 0,
+	Bozo.Spectacle.PUPPETRY: 0,
+	Bozo.Spectacle.OPERA: 0,
 }
 #endregion
 

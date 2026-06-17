@@ -15,6 +15,5 @@ func _button_pressed() -> void:
 	var last_decree = decree.herald.data.release_last_decree()
 	
 	if last_decree:
-		pass
+		decree.herald.world.transition.data.next_layer = Bozo.Layer.HELL
 	#museum.data.fuse_active_exhibit()
-	#museum.world.transition.data.next_layer = Bozo.Layer.HELL

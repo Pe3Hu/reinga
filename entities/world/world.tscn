@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://sdu3bfosnkuv" path="res://entities/herald/herald.tscn" id="6_hl0m3"]
 [ext_resource type="PackedScene" uid="uid://dw3y53as422u5" path="res://entities/abyss/abyss.tscn" id="7_ftcbs"]
 [ext_resource type="PackedScene" uid="uid://5xk4pk33sdkv" path="res://entities/museum/museum.tscn" id="8_rxgam"]
+[ext_resource type="PackedScene" uid="uid://cbbqvpapvdnls" path="res://entities/menu/menu.tscn" id="9_e7bg0"]
 
 [node name="World" type="Node" unique_id=548530271 node_paths=PackedStringArray("inferno", "hell", "gate", "sanctuary", "abyss", "museum", "herald", "transition")]
 script = ExtResource("1_plka4")
@@ -26,7 +27,6 @@ z_index = -20
 world = NodePath("..")
 
 [node name="Hell" parent="." unique_id=1361899396 node_paths=PackedStringArray("world") instance=ExtResource("2_tytc4")]
-visible = false
 world = NodePath("..")
 
 [node name="Sanctuary" parent="." unique_id=550126807 node_paths=PackedStringArray("world") instance=ExtResource("4_db8ab")]
@@ -38,8 +38,9 @@ world = NodePath("..")
 visible = false
 world = NodePath("..")
 
-[node name="Herald" parent="." unique_id=696336315 instance=ExtResource("6_hl0m3")]
+[node name="Herald" parent="." unique_id=696336315 node_paths=PackedStringArray("world") instance=ExtResource("6_hl0m3")]
 visible = false
+world = NodePath("..")
 
 [node name="Abyss" parent="." unique_id=46915748 node_paths=PackedStringArray("world") instance=ExtResource("7_ftcbs")]
 visible = false
@@ -48,6 +49,9 @@ world = NodePath("..")
 [node name="Museum" parent="." unique_id=781677221 node_paths=PackedStringArray("world") instance=ExtResource("8_rxgam")]
 visible = false
 world = NodePath("..")
+
+[node name="Menu" parent="." unique_id=1689953168 instance=ExtResource("9_e7bg0")]
+visible = false
 
 [node name="Transition" parent="." unique_id=645520284 node_paths=PackedStringArray("world") instance=ExtResource("6_db8ab")]
 world = NodePath("..")

@@ -199,12 +199,22 @@ const ally_fates = [
 	Bozo.Fate.HERO
 ]
 
+const overlord_to_blob_to_fate = {
+	Bozo.Overlord.KHARZEN: {
+		Bozo.Blob.MINUS: Bozo.Fate.TRAITOR,
+		Bozo.Blob.PLUS: Bozo.Fate.FRIEND,
+	},
+	Bozo.Overlord.SIREXIL: {
+		Bozo.Blob.MINUS: Bozo.Fate.VILLAIN,
+		Bozo.Blob.PLUS: Bozo.Fate.HERO,
+	},
+}
+
 const factions = [
 	Bozo.Faction.ARTISAN,
 	Bozo.Faction.NOBILITY,
 	Bozo.Faction.RIFFRAFF,
 ]
-
 
 const faction_to_string = {
 	Bozo.Faction.NOBILITY: "nobility",
@@ -797,13 +807,6 @@ const DEFAULT_TRAIL_COUNT: int = 1500
 const DEFAULT_PRESSURE_COUNT: int = 10
 const DEFAULT_SPLASH_COUNT: int = 100
 const ERUPTION_OFFSET_L: float = 4
-
-const ERUPTION_DURATION: float = 0.4#0.8
-const TRAIL_DURATION: float =  0.4#
-const VOLCANO_BURST_DURATION: float =  0.4#0.8
-const DEAL_BURST_DURATION: float =  0.4#0.8
-const PRESSURE_DURATION: float =  0.8#0.8
-const TRAIL_INTERVAL: float = 0.012
 #endregion
 
 #region blob
@@ -907,10 +910,7 @@ const REPLETION_TICK = 0.25
 #region desire
 #const PRIMARY_DESIRE_COUNT: int = 2
 #const SECONDARY_DESIRE_COUNT: int = 1
-const DESIRE_DISSOLVE_DURATION: float = 0.5#1.2
-const SPASH_DURATION: float = 0.4#0.5
 const DESIRE_PROGRESS_LIMIT: float = 1.6
-const SPECTACLE_AMBER_DURATION: float = 0.8#0.5
 
 const desires = [
 	Bozo.Desire.SWORD,
@@ -1082,7 +1082,6 @@ const frame_to_patch = {
 #endregion
 
 #region transition
-const TRANSITION_DURATION: float = 0.1#1.5
 
 const layer_to_string = {
 	Bozo.Layer.HELL: "hell",
@@ -1095,8 +1094,6 @@ const layer_to_string = {
 #endregion
 
 #region catena
-const CATENA_DURATION_MIN: float = 0.4
-const CATENA_DURATION_MAX: float = 0.8
 const CATENA_Z_INDEX_DEFAULT: int = 1
 
 var active_to_color = {
@@ -1501,9 +1498,9 @@ const modifier_to_rank_to_value = {
 	Bozo.Modifier.AMBER: [2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8],
 	Bozo.Modifier.SIN: [10, 10, 9, 9, 8, 8, 7, 6, 6, 5, 5, 4, 4],
 	Bozo.Modifier.SPECTACLE: [-9, -7, -5, -3, -1, 1, 3, 5, 7, 9, 11, 13, 15],
-	Bozo.Modifier.BALLET: [-25, -20, -15, -10, -5, 0, 5, 5, 10, 15, 20, 25, 30],
-	Bozo.Modifier.PUPPETRY: [-5, -4, -3, -2, -1, 0, 1, 1, 2, 3, 4, 5, 6],
-	Bozo.Modifier.OPERA: [-30, -24, -18, -12, -6, 0, 6, 6, 12, 18, 24, 30, 36],
+	Bozo.Modifier.BALLET: [-25, -20, -15, -10, -5, 0, 5, 10, 15, 20, 25, 30, 35],
+	Bozo.Modifier.PUPPETRY: [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7],
+	Bozo.Modifier.OPERA: [-30, -24, -18, -12, -6, 0, 6, 12, 18, 24, 30, 36, 42],
 }
 
 var deal_scope: int = 1
@@ -1600,11 +1597,15 @@ const spectacle_to_modifier = {
 	Bozo.Spectacle.PUPPETRY: Bozo.Modifier.PUPPETRY,
 	Bozo.Spectacle.OPERA: Bozo.Modifier.OPERA,
 }
+
+const modifier_to_spectacle = {
+	Bozo.Modifier.BALLET: Bozo.Spectacle.BALLET,
+	Bozo.Modifier.PUPPETRY: Bozo.Spectacle.PUPPETRY,
+	Bozo.Modifier.OPERA: Bozo.Spectacle.OPERA,
+}
 #endregion
 
 #region tooltip
-const TOOLTIP_DURATION: float = 10.0
-
 const string_to_tooltip = {
 	"sin": Bozo.Tooltip.SIN,
 	"amber": Bozo.Tooltip.AMBER,
@@ -1692,7 +1693,7 @@ var tooltip_to_template = {
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essence]Essence[/meta][/ghost]",
 	Bozo.Tooltip.TRIAL: "[ghost][meta overlord]Overlord[/meta][/ghost] domain is formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.FLAME: "Raises [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire[/meta][/ghost]",
-	Bozo.Tooltip.CLAIM: "[ghost][meta overlord]Overlord's[/melayer_to_stringta][/ghost] requirements, for now",
+	Bozo.Tooltip.CLAIM: "[ghost][meta overlord]Overlord's[/meta][/ghost] requirements, for now",
 	Bozo.Tooltip.DESIRE: "Raises [ghost][meta flame]Flame[/meta][/ghost] when occupying [ghost][meta cage]Cage[/meta][/ghost], depends on [ghost][meta faction]Faction[/meta][/ghost]",
 	Bozo.Tooltip.FATE: "Forms [ghost][meta guild]Guild[/meta][/ghost], defines [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost]",
 	Bozo.Tooltip.SOUL: "Set of [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost], [ghost][meta oblivion]Oblivion[/meta][/ghost]",
@@ -1857,7 +1858,6 @@ const weather_to_next = {
 
 #region sacrifice
 const SACRIFICE_AMBER_COUNT: int = 2
-const SACRIFICE_AMBER_DURATION: float = 1.0 
 #endregion
 
 #region museum

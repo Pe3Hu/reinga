@@ -59,7 +59,7 @@ func apply_tween() -> void:
 	)
 
 	var gravity = 600.0
-	var duration = Catalog.SPASH_DURATION * time_scale
+	var duration = Gear.splashs[Gear.tempo] * time_scale
 
 	var start_pos = position
 

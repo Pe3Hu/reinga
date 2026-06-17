@@ -78,14 +78,13 @@ func update_vectors() -> void:
 
 func _process(delta_):
 	if !active: return
-	t += delta_ / Catalog.ERUPTION_DURATION
+	t += delta_ / Gear.eruptions[Gear.tempo]
 	var time = clamp(t, 0, 1)
 	trail_timer += delta_
 	global_position = bezier(start, control, end, time)
 	
-	if trail_timer >= Catalog.TRAIL_INTERVAL:
+	if trail_timer >= Gear.trail_intervals[Gear.tempo]:
 		spawn_trail()
-		
 
 	if time >= 1.0:
 		deactivate()
@@ -116,7 +115,7 @@ func spawn_trail() -> void:
 			func(value: float) -> void: sprite.modulate.a = value,
 			0.6,
 			0.0,
-			Catalog.TRAIL_DURATION
+			Gear.trails[Gear.tempo]
 		)
 		
 		fading_tween.finished.connect(func():

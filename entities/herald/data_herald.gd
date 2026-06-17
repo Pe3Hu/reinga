@@ -10,28 +10,34 @@ var decrees: Array[DecreeData]
 
 func _init(world_: WorldData) -> void:
 	world = world_
-	
-	
 
 func test_decrees() -> void:
 	var overlords = [
-		world.throne.calthex,
-		world.throne.calthex,
+		#world.throne.calthex,
+		#world.throne.calthex,
+		#world.throne.xalvorr,
+		#world.throne.virello,
+		#world.throne.calthex,
 		#world.throne.xalvorr,
 		#world.throne.xalvorr,
 		#world.throne.xalvorr,
 		#world.throne.virello,
-		#world.throne.xalvorr,
-		#world.throne.virello,
+		#world.throne.kharzen,
+		#world.throne.kharzen,
+		world.throne.sirexil,
 	]
 	
 	var blobs = [
-		Bozo.Blob.PLUS,
-		Bozo.Blob.PLUS,
+		#Bozo.Blob.PLUS,
+		#Bozo.Blob.MINUS,
+		#Bozo.Blob.PLUS,
+		#Bozo.Blob.MINUS,
+		#Bozo.Blob.MINUS,
 		#Bozo.Blob.PLUS,
 		#Bozo.Blob.PLUS,
 		#Bozo.Blob.PLUS,
 		#Bozo.Blob.MINUS,
+		Bozo.Blob.MINUS,
 	]
 	
 	for _i in overlords.size():
@@ -45,7 +51,7 @@ func add_decree(overlord_: OverlordData, blob_: Bozo.Blob) -> void:
 	var decree = DecreeData.new(self, overlord_, blob_)
 	decrees.append(decree)
 
-func reinit_decree(overlord_type_: Bozo.Overlord) -> void:
+func reinit_same_decrees(overlord_type_: Bozo.Overlord) -> void:
 	for decree in decrees:
 		if decree.overlord.type == overlord_type_:
 			decree.reinit_laws()

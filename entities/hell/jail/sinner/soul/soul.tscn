@@ -5,14 +5,22 @@
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="3_mnjxa"]
 [ext_resource type="PackedScene" uid="uid://6au38kwlubub" path="res://entities/hell/jail/sinner/doom/doom.tscn" id="4_p1p1s"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1p1s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "doom", "fear", "horror", "guilt", "repose")]
 custom_minimum_size = Vector2(156, 156)
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 script = ExtResource("1_rlesa")
-background = NodePath("Background")
+background = NodePath("MarginContainer/Background")
 doom = NodePath("Doom")
 fear = NodePath("TraitFear")
 horror = NodePath("TraitHorror")
@@ -22,10 +30,6 @@ repose = NodePath("TraitRepose")
 [node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
 layout_mode = 2
 target = NodePath("..")
-
-[node name="Background" type="ColorRect" parent="." unique_id=2105037464]
-layout_mode = 2
-color = Color(0, 0, 0, 0.5254902)
 
 [node name="TraitFear" parent="." unique_id=1493565861 instance=ExtResource("1_xf3uh")]
 layout_mode = 2
@@ -52,3 +56,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 soul = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=554196348]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -4
+
+[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=2105037464]
+layout_mode = 2
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=551246353]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p1p1s")

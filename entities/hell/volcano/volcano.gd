@@ -90,7 +90,7 @@ func flow_plaza_update() -> void:
 func burst_eruption():
 	if !flow: return
 	if flow.eruptions.is_empty(): return
-	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
+	var step = Gear.volcano_bursts[Gear.tempo] / float(flow.eruptions.size())
 	if flow.contribution:
 		apply_shake_effect()
 
@@ -108,7 +108,7 @@ func spawn_eruption(index_: int, timeout_: float) -> Eruption:
 #region shake
 func apply_shake_effect():
 	var camera_tween = get_tree().create_tween()
-	var time = Catalog.VOLCANO_BURST_DURATION + Catalog.ERUPTION_DURATION
+	var time = Gear.volcano_bursts[Gear.tempo] + Gear.eruptions[Gear.tempo]
 	camera_tween.tween_method(start_camera_shake, 5.0, 1.0, time)
 
 func start_camera_shake(intensity_: float):
@@ -141,7 +141,7 @@ func return_splash(splash_: Splash):
 	splash_pool.append(splash_)
 
 func burst_splash(progression_: Progression, count_: int, sign_: int = 1) -> void:
-	var step = (Catalog.DESIRE_DISSOLVE_DURATION - Catalog.SPASH_DURATION) / float(count_)
+	var step = (Gear.desire_dissolves[Gear.tempo] - Gear.splashs[Gear.tempo]) / float(count_)
 
 	for _i in range(count_):
 		await get_tree().create_timer(step).timeout
@@ -191,7 +191,7 @@ func deal_burst(deal_: Deal) -> void:
 	burst_deal_eruption()
 
 func burst_deal_eruption():
-	var step = Catalog.VOLCANO_BURST_DURATION / float(flow.eruptions.size())
+	var step = Gear.volcano_bursts[Gear.tempo] / float(flow.eruptions.size())
 	
 	for i in range(flow.eruptions.size() - 1, -1, -1):
 		var eruption = spawn_eruption(i, step * (i + 1))

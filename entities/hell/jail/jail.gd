@@ -98,7 +98,7 @@ func forget_cage() -> void:
 
 func _on_catena_timer_timeout() -> void:
 	if !data.table.active_catenas.is_empty():
-		catena_timer.wait_time = randf_range(Catalog.CATENA_DURATION_MIN, Catalog.CATENA_DURATION_MAX)
+		catena_timer.wait_time = randf_range(Gear.catena_mins[Gear.tempo], Gear.catena_maxs[Gear.tempo])
 		data.z_index_order += 1
 		
 		if data.z_index_order >= 10:

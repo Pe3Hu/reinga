@@ -68,7 +68,7 @@ func sort_icon_shift(token_: Token) -> void:
 	var best_contribution = contributions.back()
 	var best_token = best_contribution.get_token(token_.data.type)
 	sort_icon.global_position.y = best_token.global_position.y - 1
-	sort_icon.global_position.x = best_token.global_position.x + 70
+	sort_icon.global_position.x = best_token.global_position.x + 78
 	sort_icon.visible = true
 	
 	if token_ as TokenJudgment:

@@ -135,6 +135,7 @@ func sort_special_fate() -> void:
 
 func use_foreground() -> void:
 	var sinner: SinnerData
+	
 	if !foreground_sinners.is_empty():
 		sinner = foreground_sinners.pop_back()
 		actual.sinners.append(sinner)

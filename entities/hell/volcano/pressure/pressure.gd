@@ -22,7 +22,7 @@ func reset() -> void:
 	var offest = Vector2.from_angle(angle) * l
 	global_position = eruption.global_position + offest
 	texture = load("res://entities/hell/volcano/pressure/images/%s.png" % Catalog.modifier_to_string[data.type])
-	timer.wait_time = Catalog.PRESSURE_DURATION / data.limit_step
+	timer.wait_time = Gear.pressures[Gear.tempo] / data.limit_step
 	#z_index = 0
 	visible = true
 	modulate = Catalog.token_to_color[eruption.start_token.data.type]

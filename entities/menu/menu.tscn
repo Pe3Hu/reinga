@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://cbbqvpapvdnls"]
+
+[ext_resource type="Script" uid="uid://bty8o4efrri7s" path="res://entities/menu/menu.gd" id="1_ab5ca"]
+[ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/herald/shaders/main menu.gdshader" id="2_28b7d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtc7f"]
+shader = ExtResource("2_28b7d")
+
+[node name="Menu" type="Control" unique_id=1689953168]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ab5ca")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=269292110]
+material = SubResource("ShaderMaterial_vtc7f")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuMargin" type="MarginContainer" parent="." unique_id=148237221]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -350.0
+offset_bottom = 350.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBox" type="VBoxContainer" parent="MenuMargin" unique_id=1544438680]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 48
+
+[node name="Header" type="RichTextLabel" parent="MenuMargin/VBox" unique_id=1523691926]
+z_index = 5
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 64
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MenuMargin/VBox" unique_id=558187826]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="OldLabel2" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=71953289]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "Continue
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OldLabel5" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=2041294664]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "Options
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OldLabel6" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=2100687120]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 48)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "Exit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
