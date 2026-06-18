@@ -39,6 +39,31 @@ func refill_progress() -> void:
 	update_progress(-Catalog.DESIRE_PROGRESS_LIMIT)
 	pass
 
+func dissolve_payment() -> void:
+	if !dream:
+		return
+	
+	if !data or data.value == 0:
+		texture_rect.visible = false
+		dream.end_payment_dissolve(self)
+		return
+	
+	if !(texture_rect.material is ShaderMaterial):
+		texture_rect.visible = false
+		dream.end_payment_dissolve(self)
+		return
+	
+	texture_rect.visible = true
+	var tween = create_tween()
+	var duration = randf_range(0.9, 1.1) * Gear.desire_dissolves[Gear.tempo]
+	var angle = Helper.rng.randf_range(0.0, 360.0)
+	texture_rect.material.set_shader_parameter("direction", angle)
+	tween.tween_method(update_progress, -Catalog.DESIRE_PROGRESS_LIMIT, Catalog.DESIRE_PROGRESS_LIMIT, duration)
+	tween.tween_callback(func():
+		texture_rect.visible = false
+		dream.end_payment_dissolve(self)
+	)
+
 func dissolve():
 	if data.value == 0: return
 	
@@ -53,13 +78,13 @@ func dissolve():
 
 func end_dissolve(tween_: Tween) -> void:
 	match data.association:
-		Bozo.Association.NONE:
-			tween_.tween_callback(func():
-				dream.end_payment_dissolve(self)
-			)
 		Bozo.Association.GUILD:
 			tween_.tween_callback(func():
 				dream.end_dissolve_guild_tokens(self)
+			)
+		_:
+			tween_.tween_callback(func():
+				dream.end_payment_dissolve(self)
 			)
 
 func update_progress(value_: float):

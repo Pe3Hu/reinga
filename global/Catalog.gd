@@ -386,6 +386,11 @@ const association_to_string = {
 	Bozo.Association.BROTHERHOOD: "brotherhood",
 	Bozo.Association.GUILD: "guild",
 }
+
+const smoke_to_color = {
+	Bozo.Relationship.ENEMY: Color.WHITE,
+	Bozo.Relationship.ALLY: Color.BLACK,
+}
 #endregion
 
 #region trial
@@ -1420,7 +1425,7 @@ const overlord_to_string = {
 	Bozo.Overlord.VIRELLO: "virello",
 	Bozo.Overlord.XALVORR: "xalvorr",
 	Bozo.Overlord.SIREXIL: "sirexil",
-	Bozo.Overlord.MARVONE: "marvone"
+	Bozo.Overlord.MARVONE: "marvone",
 }
 
 const overlord_to_modifier = {
@@ -1678,7 +1683,12 @@ const string_to_tooltip = {
 	"trust (mod)": Bozo.Tooltip.MOD_TRUST,
 	"hope (mod)": Bozo.Tooltip.MOD_HOPE,
 
-
+	"calthex": Bozo.Tooltip.CALTHEX,
+	"kharzen": Bozo.Tooltip.KHARZEN,
+	"virello": Bozo.Tooltip.VIRELLO,
+	"xalvorr": Bozo.Tooltip.XALVORR,
+	"sirexil": Bozo.Tooltip.SIREXIL,
+	"marvone": Bozo.Tooltip.MARVONE,
 	#"": Bozo.Tooltip.,
 }
 
@@ -1688,7 +1698,7 @@ var tooltip_to_template = {
 	Bozo.Tooltip.ESSENCE: "Primal hell currency",
 	Bozo.Tooltip.MADNESS: "Makes the game more difficult",
 	Bozo.Tooltip.OBLIVION: "Sacrifices [ghost][meta sinner]Sinner[/meta][/ghost] to obtain [ghost][meta amber]Amber[/meta][/ghost]",
-	Bozo.Tooltip.TRIBUTE: "Changes [ghost][meta attitude]Attitude[/meta][/ghost]",
+	Bozo.Tooltip.TRIBUTE: "Changes %s [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.ATTITUIDE: "Shows relationship with [ghost][meta overlord]Overlord[/meta][/ghost]",
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essence]Essence[/meta][/ghost]",
 	Bozo.Tooltip.TRIAL: "[ghost][meta overlord]Overlord[/meta][/ghost] domain is formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
@@ -1753,6 +1763,13 @@ var tooltip_to_template = {
 	Bozo.Tooltip.MOD_BALLET: "Amount of [ghost][meta amber]Indolence[/meta][/ghost] produces when [ghost][meta ballet]Ballet[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_PUPPETRY: "Amount of change of mind for better [ghost][meta attitude]Attitude[/meta][/ghost] when [ghost][meta puppetry]Puppetry[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_OPERA: "Amount of heat extinguished from hottest [ghost][meta flame]Flame[/meta][/ghost] when [ghost][meta opera]Opera[/meta][/ghost] is finished",
+
+	Bozo.Tooltip.CALTHEX: "calthex",
+	Bozo.Tooltip.KHARZEN: "kharzen",
+	Bozo.Tooltip.VIRELLO: "virello",
+	Bozo.Tooltip.XALVORR: "xalvorr",
+	Bozo.Tooltip.SIREXIL: "sirexil",
+	Bozo.Tooltip.MARVONE: "marvone",
 }
 
 var tooltip_to_string = {
@@ -1826,6 +1843,13 @@ var tooltip_to_string = {
 	Bozo.Tooltip.MOD_OPERA: "opera (mod)",
 	Bozo.Tooltip.MOD_TRUST: "trust (mod)",
 	Bozo.Tooltip.MOD_HOPE: "hope (mod)",
+	
+	Bozo.Tooltip.CALTHEX: "calthex",
+	Bozo.Tooltip.KHARZEN: "kharzen",
+	Bozo.Tooltip.VIRELLO: "virello",
+	Bozo.Tooltip.XALVORR: "xalvorr",
+	Bozo.Tooltip.SIREXIL: "sirexil",
+	Bozo.Tooltip.MARVONE: "marvone",
 }
 
 const tooltip_to_suffix = {
@@ -1877,3 +1901,8 @@ const museum_omens = [
 	Bozo.Family.CHILD
 ]
 #endregion
+
+const tempo_to_string = {
+	Bozo.Tempo.FAST: "fast",
+	Bozo.Tempo.SLOW: "slow"
+}

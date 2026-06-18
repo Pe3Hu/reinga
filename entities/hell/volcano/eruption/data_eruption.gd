@@ -8,6 +8,7 @@ var pressure: PressureData
 var type: Bozo.Eruption
 var trait_data: TraitData
 var status: Bozo.Status = Bozo.Status.ON
+var disbursement: bool
 #var modifier: Bozo.Modifier = Bozo.Modifier.NONE
 
 

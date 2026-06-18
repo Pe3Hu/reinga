@@ -4,10 +4,6 @@ extends CustomButton
 @export var decree: Decree
 
 
-func update_visible() -> void:
-	super.update_visible()
-	#visible = museum.data.active_exhibits.size() > 0
-
 func _button_pressed() -> void:
 	super._button_pressed()
 	hide_me()
@@ -16,4 +12,3 @@ func _button_pressed() -> void:
 	
 	if last_decree:
 		decree.herald.world.transition.data.next_layer = Bozo.Layer.HELL
-	#museum.data.fuse_active_exhibit()

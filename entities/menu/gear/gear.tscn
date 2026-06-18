@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ca2xgecbhfesk"]
+
+[ext_resource type="Script" uid="uid://doy4woggo0wf0" path="res://entities/menu/gear/gear.gd" id="1_kg5iq"]
+[ext_resource type="PackedScene" uid="uid://dhqysajr1kh2a" path="res://entities/ui/button/gear/tempo button.tscn" id="2_qj07t"]
+[ext_resource type="Texture2D" uid="uid://buhswcj46cwrd" path="res://entities/ui/button/gear/images/slow off.png" id="3_xnup8"]
+[ext_resource type="Texture2D" uid="uid://bhhlnh2ksvl4g" path="res://entities/ui/button/gear/images/slow on.png" id="4_s5or0"]
+[ext_resource type="Texture2D" uid="uid://bs55elvcwr5o6" path="res://entities/ui/button/gear/images/fast off.png" id="5_f33x8"]
+[ext_resource type="Texture2D" uid="uid://btacmw3gn7unt" path="res://entities/ui/button/gear/images/fast on.png" id="6_lt4h0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qj07t"]
+
+[node name="Gear" type="PanelContainer" unique_id=1992584112 node_paths=PackedStringArray("buttons")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -32.0
+offset_right = 72.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qj07t")
+script = ExtResource("1_kg5iq")
+buttons = [NodePath("Buttons/Slow"), NodePath("Buttons/Fast")]
+
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=1124139551]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Slow" parent="Buttons" unique_id=1467335075 node_paths=PackedStringArray("gear") instance=ExtResource("2_qj07t")]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("3_xnup8")
+texture_disabled = ExtResource("4_s5or0")
+gear = NodePath("../..")
+type = 219
+status = 124
+
+[node name="Fast" parent="Buttons" unique_id=671915696 node_paths=PackedStringArray("gear") instance=ExtResource("2_qj07t")]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("5_f33x8")
+texture_disabled = ExtResource("6_lt4h0")
+gear = NodePath("../..")
+type = 220

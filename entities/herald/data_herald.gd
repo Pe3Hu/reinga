@@ -14,30 +14,15 @@ func _init(world_: WorldData) -> void:
 func test_decrees() -> void:
 	var overlords = [
 		#world.throne.calthex,
-		#world.throne.calthex,
 		#world.throne.xalvorr,
 		#world.throne.virello,
-		#world.throne.calthex,
-		#world.throne.xalvorr,
-		#world.throne.xalvorr,
-		#world.throne.xalvorr,
-		#world.throne.virello,
-		#world.throne.kharzen,
-		#world.throne.kharzen,
-		world.throne.sirexil,
+		world.throne.kharzen,
+		#world.throne.sirexil,
 	]
 	
 	var blobs = [
-		#Bozo.Blob.PLUS,
+		Bozo.Blob.PLUS,
 		#Bozo.Blob.MINUS,
-		#Bozo.Blob.PLUS,
-		#Bozo.Blob.MINUS,
-		#Bozo.Blob.MINUS,
-		#Bozo.Blob.PLUS,
-		#Bozo.Blob.PLUS,
-		#Bozo.Blob.PLUS,
-		#Bozo.Blob.MINUS,
-		Bozo.Blob.MINUS,
 	]
 	
 	for _i in overlords.size():

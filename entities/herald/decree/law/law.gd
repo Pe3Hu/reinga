@@ -19,6 +19,8 @@ func connect_data() -> void:
 
 func update_icons() -> void:
 	if data.modifier == 0: return
+	%Smoke.visible = data.decree.overlord.type == Bozo.Overlord.SIREXIL 
+	
 	var type_str: String = Catalog.modifier_to_string[data.modifier]
 	var path_str: String
 	var format_str: String = ".png"
@@ -52,7 +54,10 @@ func update_icons() -> void:
 		%FactionIcon.material.set_shader_parameter("mask_texture", load("%s%s%s" % [path_str, type_str, format_str]))
 		Helper.update_colors(%FactionIcon, data.decree.overlord.type)
 		Helper.update_colors(%PlusIcon, data.decree.overlord.type)
-	
+		
+		var relationship = Catalog.fate_to_relationship[data.fate]
+		var smoke_color: Color = Catalog.smoke_to_color[relationship]
+		%Smoke.material.set_shader_parameter("fire_color", smoke_color)
 
 func update_labels() -> void:
 	if data.fate == Bozo.Fate.NONE:

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dhqysajr1kh2a"]
+
+[ext_resource type="Script" uid="uid://f7px0fgxgy1q" path="res://entities/ui/button/gear/tempo.gd" id="3_yghoc"]
+
+[node name="TempoButton" type="TextureButton" unique_id=671915696]
+toggle_mode = true
+stretch_mode = 3
+script = ExtResource("3_yghoc")

@@ -62,7 +62,13 @@ func apply_association() -> void:
 	if data.association == Bozo.Association.GUILD:
 		if data.type == Bozo.Fate.TRAITOR: return
 		#apply_glitch()
-		label.text = "[tornado radius=4 freq=1.6]%s" % label.text
+		var base = Catalog.fate_to_string[data.type].capitalize()
+		var text = Helper.get_focused_text(base) if data.is_selected else Helper.get_unfocused_text(base)
+		label.text = "[tornado radius=4 freq=1.6]%s" % text
+	elif data.is_selected:
+		focus()
+	else:
+		unfocus()
 
 func apply_glitch() -> void:
 	for effect in label.get_effects():

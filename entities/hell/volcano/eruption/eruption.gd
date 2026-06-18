@@ -142,6 +142,8 @@ func deactivate() -> void:
 	if data.status == Bozo.Status.ON:
 		if data.type != Bozo.Eruption.BANK and data.type != Bozo.Eruption.MARKET:
 			volcano.single_splash(end_target.trial.tribute.progression)
+	elif data.status == Bozo.Status.OFF:
+		end_target.trial.tribute.data.calc_half()
 	
 	#for trail in trails:
 	#	trail.visible = false

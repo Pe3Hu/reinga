@@ -20,7 +20,7 @@ func resize_rect(size_: Vector2) -> void:
 	%FireBackground.size = size_ 
 	%FireBackground.position = -size_ / 2
 	
-	%VoidBackground.size = Vector2.ONE * max(size_.x, size_.y) * 1.25
+	%VoidBackground.size = Vector2.ONE * max(size_.x, size_.y)# * 1.25
 	%VoidBackground.position = -%VoidBackground.size * 0.5
 
 

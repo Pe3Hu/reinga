@@ -34,7 +34,6 @@ smoke = NodePath("Smoke")
 
 [node name="Smoke" type="ColorRect" parent="." index="0" unique_id=1223835843]
 unique_name_in_owner = true
-visible = false
 material = SubResource("ShaderMaterial_g1otg")
 layout_mode = 1
 anchors_preset = 15

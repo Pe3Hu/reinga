@@ -81,6 +81,13 @@ func get_colored_amber(type_: Bozo.Amber) -> String:
 	var result = "[color=%s]%s[/color]" % [amber_color, amber_text]
 	return result
 
+func get_colored_overlord(type_: Bozo.Overlord) -> String:
+	var hue = Catalog.overlord_to_hue[type_]
+	#var overlord_color = Color.from_hsv(hue, 1.0, 0.6).to_html(false)
+	var overlord_text = Catalog.overlord_to_string[type_]
+	var result = "[meta %s][overlord hue=%s]%s[/overlord][/meta]" % [overlord_text, hue, overlord_text.capitalize()]
+	return result
+
 
 func update_colors(node_, overlord_: Bozo.Overlord) -> void:
 	var hue = Catalog.overlord_to_hue[overlord_]

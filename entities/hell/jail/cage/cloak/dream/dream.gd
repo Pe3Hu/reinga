@@ -27,10 +27,37 @@ func apply_data_info() -> void:
 
 func _on_desires_changed() -> void:
 	refill_desires()
+	sync_desire_bindings()
+
+func sync_desire_bindings() -> void:
+	desires.clear()
+	if !data:
+		return
 	
-	for _i in desires.size():
-		var desire = desires[_i]
-		desire.data = data.desires[_i]
+	var primary_nodes: Array[TokenDesire] = []
+	for child in %PrimaryDesires.get_children():
+		primary_nodes.append(child)
+	primary_nodes.reverse()
+	
+	var data_i = 0
+	var primary_slots = data.type_to_count.get(data.primary_desire, 0)
+	for node_i in primary_slots:
+		if node_i >= primary_nodes.size() or data_i >= data.desires.size():
+			break
+		var token = primary_nodes[node_i]
+		token.dream = self
+		token.data = data.desires[data_i]
+		desires.append(token)
+		data_i += 1
+	
+	for child in %SecondaryDesires.get_children():
+		if data_i >= data.desires.size():
+			break
+		var token: TokenDesire = child
+		token.dream = self
+		token.data = data.desires[data_i]
+		desires.append(token)
+		data_i += 1
 
 func refill_desires() -> void:
 	refill_primary_desires()
@@ -39,6 +66,7 @@ func refill_desires() -> void:
 func refill_primary_desires() -> void:
 	while %PrimaryDesires.get_child_count() > data.type_to_count[data.primary_desire]:
 		var desire = %PrimaryDesires.get_child(0)
+		desires.erase(desire)
 		%PrimaryDesires.remove_child(desire)
 	
 	while %PrimaryDesires.get_child_count() < data.type_to_count[data.primary_desire]:
@@ -51,8 +79,9 @@ func add_primary() -> void:
 	desire.dream = self
 
 func refill_secondary_desires() -> void:
-	while %SecondaryDesires.get_child_count() > data.type_to_count[data.primary_desire]:
+	while %SecondaryDesires.get_child_count() > data.type_to_count[data.secondary_desire]:
 		var desire = %SecondaryDesires.get_child(0)
+		desires.erase(desire)
 		%SecondaryDesires.remove_child(desire)
 	
 	while %SecondaryDesires.get_child_count() < data.type_to_count[data.secondary_desire]:
@@ -66,23 +95,29 @@ func add_secondary() -> void:
 #endregion
 
 #region dissolve
-func start_dissolve_payment_tokens() -> void:
+func begin_payment_dissolve() -> int:
 	dissolves.clear()
-	cloak.cage.jail.hell.nightmare.dissolve_dreams.append(self)
-	#dissolves.append_array(desires)
 	
-	for desire in desires:
-		if desire.data.value > 0:
-			dissolves.append(desire)
+	if !data:
+		return 0
 	
+	var count = 0
 	for desire in desires:
-		desire.dissolve()
+		if !desire.texture_rect.visible:
+			continue
+		dissolves.append(desire)
+		desire.dissolve_payment()
+		count += 1
+	
+	return count
 
 func end_payment_dissolve(desire_: TokenDesire) -> void:
-	dissolves.erase(desire_)
+	if !dissolves.has(desire_):
+		return
 	
-	if dissolves.is_empty():
-		cloak.cage.jail.hell.nightmare.end_dream_dissolve_payment(self)
+	dissolves.erase(desire_)
+	cloak.cage.sinner.apply_phase_visiblity()
+	cloak.cage.jail.hell.nightmare.on_payment_desire_finished()
 
 func start_dissolve_guild_tokens() -> void:
 	for token in desires:

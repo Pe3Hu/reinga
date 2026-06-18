@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cigqd8v7giqr5"
-path="res://.godot/imported/weather sun.png-c4c5b3ef720841ac72c6e107d2578818.ctex"
+uid="uid://buhswcj46cwrd"
+path="res://.godot/imported/slow off.png-1c17851dbb3e6c37411bfcc5763db433.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/button/images/weather sun.png"
-dest_files=["res://.godot/imported/weather sun.png-c4c5b3ef720841ac72c6e107d2578818.ctex"]
+source_file="res://entities/ui/button/gear/images/slow off.png"
+dest_files=["res://.godot/imported/slow off.png-1c17851dbb3e6c37411bfcc5763db433.ctex"]
 
 [params]
 

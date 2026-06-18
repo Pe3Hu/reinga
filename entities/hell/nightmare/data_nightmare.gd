@@ -13,6 +13,8 @@ var worst_attitude: AttitudeData
 var best_flame: FlameData
 var worst_flame: FlameData
 
+var development_closed: bool = false
+
 
 #region init
 func _init(hell_: HellData) -> void:
@@ -212,6 +214,7 @@ func update_best_and_worst_attitude() -> void:
 #endregion
 
 func reset() -> void:
+	development_closed = false
 	best_tribute = null
 	worst_tribute = null
 	best_attitude = null

@@ -176,6 +176,11 @@ func build_tooltip_data(target: Control) -> TooltipData:
 			var side_type = Catalog.trait_to_cage[target.data.type]
 			var side_string = Catalog.cage_to_string[side_type].capitalize()
 			descritipion = descritipion % side_string
+			
+		Bozo.Tooltip.TRIBUTE:
+			var overlord_type = target.data.trial.overlord.type
+			var text_with_color = Helper.get_colored_overlord(overlord_type)
+			descritipion = descritipion % text_with_color
 	
 	data.descritipion = descritipion
 	return data

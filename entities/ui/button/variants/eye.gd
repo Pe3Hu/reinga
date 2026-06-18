@@ -49,12 +49,12 @@ func switch_status() -> void:
 
 func show_sanctuary() -> void:
 	hell.world.sanctuary.on_screen()
-	texture_normal = load("res://entities/ui/button/images/eye on.png")
+	texture_normal = load("res://entities/ui/button/variants/images/eye on.png")
 	#texture_hover = load("res://entities/ui/button/images/eye off.png")
 
 func hide_sanctuary() -> void:
 	hell.world.sanctuary.off_screen()
-	texture_normal = load("res://entities/ui/button/images/eye off.png")
+	texture_normal = load("res://entities/ui/button/variants/images/eye off.png")
 	#texture_hover = load("res://entities/ui/button/images/eye on.png")
 
 

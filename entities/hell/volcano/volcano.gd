@@ -18,6 +18,7 @@ var pressure_pool: Array[Sprite2D]
 @export var camera_2d: Camera2D
 
 var camera_shake_noise: FastNoiseLite = FastNoiseLite.new()
+var _disbursement_pending: int
 
 
 func _ready() -> void:
@@ -68,18 +69,43 @@ func return_eruption(eruption_: Eruption):
 	eruption_.visible = false
 	eruption_pool.append(eruption_)
 	
-	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_pool.size() == Catalog.DEFAULT_ERUPTION_COUNT:
-		hell.treasury.apply_phase_visiblity()
-		Scope.next_phase()
+	if Scope.phase == Bozo.Phase.DISBURSEMENT and eruption_.data.disbursement:
+		eruption_.data.disbursement = false
+		_disbursement_pending -= 1
+		
+		if _disbursement_pending == 0:
+			_finish_disbursement()
+
+func wait_eruption_pool_idle() -> void:
+	while eruption_pool.size() < Catalog.DEFAULT_ERUPTION_COUNT:
+		await get_tree().process_frame
 
 func flow_contribution_update():
-	if !hell.data.jail.table.active_cages.is_empty():
-		flow = hell.data.jail.table.active_cages.back().contribution.flow
-		flow.nightmare = hell.nightmare.data
-		flow.init_contribution_eruptions()
-		burst_eruption()
-	else:
-		pass
+	if hell.data.jail.table.active_cages.is_empty():
+		_finish_disbursement()
+		return
+	
+	flow = hell.data.jail.table.active_cages.back().contribution.flow
+	flow.nightmare = hell.nightmare.data
+	flow.init_contribution_eruptions()
+	
+	if flow.eruptions.is_empty():
+		_finish_disbursement()
+		return
+	
+	_disbursement_pending = flow.eruptions.size()
+	
+	for eruption_data in flow.eruptions:
+		eruption_data.disbursement = true
+	
+	burst_eruption()
+
+func _finish_disbursement() -> void:
+	if Scope.phase != Bozo.Phase.DISBURSEMENT: return
+	
+	_disbursement_pending = 0
+	hell.treasury.apply_phase_visiblity()
+	Cycle.complete_phase()
 
 func flow_plaza_update() -> void:
 	if !hell.data.jail.plaza.type_to_faction.keys().is_empty():
@@ -186,6 +212,11 @@ func deal_burst(deal_: Deal) -> void:
 	for _i in count:
 	#for _i in range(count-1, -1, -1):
 		var eruption_data = EruptionData.new(flow, type, Bozo.Eruption.BANK)
+		
+		if Scope.phase == Bozo.Phase.DISBURSEMENT and _disbursement_pending > 0:
+			eruption_data.disbursement = true
+			_disbursement_pending += 1
+		
 		flow.eruptions.append(eruption_data)
 	
 	burst_deal_eruption()

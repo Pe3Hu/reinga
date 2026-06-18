@@ -78,6 +78,10 @@ func _on_fruit_is_changed() -> void:
 	for index in data.index_to_fruit:
 		var path = "cell_state_%d" % index
 		var fruit = data.index_to_fruit[index]
+		
+		if !Catalog.fruit_to_state.has(fruit):
+			continue
+		
 		var state = Catalog.fruit_to_state[fruit]
 		cells.material.set_shader_parameter(path, state)
 

@@ -7,17 +7,17 @@ signal layer_changed
 
 var sanctuary: SanctuaryData
 
-var is_pause: bool# = true
+var is_game: bool = false
+
 var phase: Bozo.Phase = Bozo.Phase.ENDOWMENT
-var phase_timer: Timer
 var turn: int = 0
+
 var layer: Bozo.Layer = Bozo.Layer.HELL:
 	set(value_):
 		layer = value_
 		emit_signal("layer_changed")
 
 var weather: Bozo.Weather = Bozo.Weather.MOON
-var guild_level: int = 1
 
 #region plaza
 #var trust_limit: int = 2
@@ -32,19 +32,9 @@ var spectacle_to_factor = {
 	Bozo.Spectacle.PUPPETRY: 0,
 	Bozo.Spectacle.OPERA: 0,
 }
+
+var guild_level: int = 1
 #endregion
-
-
-func next_phase(auto_: bool = true) -> void:
-	if auto_:
-		update_phase()
-		phase_timer.start()
-
-func update_phase() -> void:
-	#print([turn, Catalog.phase_to_string[phase]])
-	phase = Catalog.phase_to_next[phase]
-	if phase == Bozo.Phase.REPLENISHMENT:
-		turn += 1
 
 func switch_weather() -> void:
 	Scope.weather = Catalog.weather_to_next[Scope.weather]

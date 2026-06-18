@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlw2limpqh3o0"
-path="res://.godot/imported/eye on.png-7fc9cf75078421af92f183a458a724ce.ctex"
+uid="uid://btacmw3gn7unt"
+path="res://.godot/imported/fast on.png-85d24b17803a66b0dae11a6b4f412ff2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/button/images/eye on.png"
-dest_files=["res://.godot/imported/eye on.png-7fc9cf75078421af92f183a458a724ce.ctex"]
+source_file="res://entities/ui/button/gear/images/fast on.png"
+dest_files=["res://.godot/imported/fast on.png-85d24b17803a66b0dae11a6b4f412ff2.ctex"]
 
 [params]
 

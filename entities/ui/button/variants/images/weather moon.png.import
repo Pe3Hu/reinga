@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doi0kl7mcvo7r"
-path="res://.godot/imported/eye off.png-183eb75bfc3fc62c4d1fb56137aefcac.ctex"
+uid="uid://diirx8rsnjtut"
+path="res://.godot/imported/weather moon.png-d848b41763efb0d18e0d5eea77450e5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/button/images/eye off.png"
-dest_files=["res://.godot/imported/eye off.png-183eb75bfc3fc62c4d1fb56137aefcac.ctex"]
+source_file="res://entities/ui/button/variants/images/weather moon.png"
+dest_files=["res://.godot/imported/weather moon.png-d848b41763efb0d18e0d5eea77450e5a.ctex"]
 
 [params]
 

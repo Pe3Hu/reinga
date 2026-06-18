@@ -2,11 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bty8o4efrri7s" path="res://entities/menu/menu.gd" id="1_ab5ca"]
 [ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/herald/shaders/main menu.gdshader" id="2_28b7d"]
+[ext_resource type="PackedScene" uid="uid://c1qgj0s0j0fm5" path="res://entities/ui/button/menu/start button.tscn" id="3_aud0f"]
+[ext_resource type="PackedScene" uid="uid://ca2xgecbhfesk" path="res://entities/menu/gear/gear.tscn" id="3_yttcm"]
+[ext_resource type="PackedScene" uid="uid://b318mwx0cgo1e" path="res://entities/ui/button/menu/continue button.tscn" id="4_yttcm"]
+[ext_resource type="PackedScene" uid="uid://bh1df8s6mxwx0" path="res://entities/ui/button/menu/settings button.tscn" id="5_tjnt2"]
+[ext_resource type="PackedScene" uid="uid://cgifar2dydupm" path="res://entities/ui/button/menu/exit button.tscn" id="6_3fnu5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtc7f"]
 shader = ExtResource("2_28b7d")
 
-[node name="Menu" type="Control" unique_id=1689953168]
+[node name="Menu" type="Control" unique_id=1689953168 node_paths=PackedStringArray("start", "unpause", "settings", "exit")]
+process_mode = 2
+z_index = 25
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +21,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ab5ca")
+start = NodePath("MenuMargin/VBox/Buttons/StartButton")
+unpause = NodePath("MenuMargin/VBox/Buttons/ContinueButton")
+settings = NodePath("MenuMargin/VBox/Buttons/SettingsButton")
+exit = NodePath("MenuMargin/VBox/Buttons/ExitButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=269292110]
 material = SubResource("ShaderMaterial_vtc7f")
@@ -23,6 +34,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1060639999]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -112.0
+offset_right = 150.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Animation" parent="TabContainer" unique_id=1992584112 instance=ExtResource("3_yttcm")]
+layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="MenuMargin" type="MarginContainer" parent="." unique_id=148237221]
 layout_mode = 1
@@ -59,50 +89,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="MenuMargin/VBox" unique_id=558187826]
+custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 16
+alignment = 1
 
-[node name="OldLabel2" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=71953289]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 48)
+[node name="StartButton" parent="MenuMargin/VBox/Buttons" unique_id=250034607 node_paths=PackedStringArray("menu") instance=ExtResource("3_aud0f")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "Continue
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 1
+menu = NodePath("../../../..")
 
-[node name="OldLabel5" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=2041294664]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 48)
+[node name="ContinueButton" parent="MenuMargin/VBox/Buttons" unique_id=1433455156 node_paths=PackedStringArray("menu") instance=ExtResource("4_yttcm")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "Options
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+menu = NodePath("../../../..")
 
-[node name="OldLabel6" type="RichTextLabel" parent="MenuMargin/VBox/Buttons" unique_id=2100687120]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 48)
+[node name="SettingsButton" parent="MenuMargin/VBox/Buttons" unique_id=742153792 node_paths=PackedStringArray("menu") instance=ExtResource("5_tjnt2")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/normal_font_size = 44
-bbcode_enabled = true
-text = "Exit
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 1
+menu = NodePath("../../../..")
+
+[node name="ExitButton" parent="MenuMargin/VBox/Buttons" unique_id=1687643464 node_paths=PackedStringArray("menu") instance=ExtResource("6_3fnu5")]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 1
+menu = NodePath("../../../..")

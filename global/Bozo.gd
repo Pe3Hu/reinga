@@ -252,6 +252,12 @@ enum Relationship {
 
 #217-218 faction
 
+enum Tempo {
+	NONE = 0,
+	SLOW = 219,
+	FAST = 220,
+}
+
 enum Modifier {
 	NONE = 0,
 	BATTLE = -9,
@@ -289,6 +295,8 @@ enum Eruption {
 	BANK = 224,
 	MARKET = 225
 }
+
+#230+
 
 enum Layer {
 	NONE = 0,
@@ -385,6 +393,13 @@ enum Tooltip {
 	MOD_HOPE = -225,
 	MOD_AMBER = -299,
 	MOD_SIN = -300,
+	
+	CALTHEX = 500,
+	KHARZEN = 501,
+	VIRELLO = 502,
+	XALVORR = 503,
+	SIREXIL = 504,
+	MARVONE = 505,
 }
 
 enum Frame {
@@ -417,4 +432,12 @@ enum Overlord {
 	XALVORR = 503,
 	SIREXIL = 504,
 	MARVONE = 505,
+}
+
+enum Interrupt {
+	NONE = 0,
+	GATE_RECRUIT = 510,      # INVESTMENT → не хватает грешников
+	HERALD_DECREE = 511,     # DEVELOPMENT → есть decrees
+	ABYSS_SACRIFICE = 512,   # будущее
+	MUSEUM_REALIZE = 513,    # будущее
 }

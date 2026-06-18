@@ -34,7 +34,6 @@ func reset() -> void:
 			world.gate.table.reset_all_actives()
 		Bozo.Layer.HELL: 
 			world.hell.jail.table.reset_all_actives()
-			Scope.next_phase()
 		Bozo.Layer.SANCTUARY:
 			pass
 		Bozo.Layer.HERALD:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://begp50pirv8xc"]
 
-[ext_resource type="Texture2D" uid="uid://diirx8rsnjtut" path="res://entities/ui/button/images/weather moon.png" id="2_kdljf"]
+[ext_resource type="Texture2D" uid="uid://diirx8rsnjtut" path="res://entities/ui/button/variants/images/weather moon.png" id="2_kdljf"]
 [ext_resource type="Script" uid="uid://dlf41s8wftjmt" path="res://entities/ui/button/variants/weather.gd" id="3_85ijv"]
 
 [node name="WeatherButton" type="TextureButton" unique_id=671915696]

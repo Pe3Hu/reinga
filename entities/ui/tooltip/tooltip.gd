@@ -114,7 +114,8 @@ func _get_meta_tooltip(meta) -> TooltipData:
 		Bozo.Tooltip.SPECTACLE:
 			if descritipion.contains(" %s,"):
 				descritipion = descritipion.replace(" %s,", " [i]something[/i],")
-	
+		Bozo.Tooltip.TRIBUTE:
+			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
 	
 	child_tooltip.descritipion = descritipion
 	return child_tooltip

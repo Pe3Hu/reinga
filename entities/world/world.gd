@@ -10,18 +10,27 @@ extends Node
 @export var museum: Museum
 @export var herald: Herald
 @export var transition: Transition
+@export var menu: MainMenu
 
 
 var data = WorldData.new()
 
 
-func _ready() -> void:
+func new_game() -> void:
+	menu.visible = false
+	Scope.is_game = true
+	data = WorldData.new()
 	connect_datas()
 	
+	inferno.apply_layer()
+	Cycle.start()
+
+func _ready() -> void:
+	Cycle.bind(hell)
+	new_game()
+	
 	#await get_tree().process_frame
-	transition.data.next_layer = Bozo.Layer.HERALD
-	#transition.apply_layer()
-	#inferno.apply_layer()
+	#transition.data.next_layer = Bozo.Layer.HERALD
 
 func connect_datas() -> void:
 	sanctuary.data = data.sanctuary
@@ -36,7 +45,7 @@ func _input(event) -> void:
 	if event is InputEventKey:
 		match event.keycode:
 			KEY_ESCAPE:
-				get_tree().quit()
+				switch_menu()
 			KEY_1:
 				transition.data.next_layer = Bozo.Layer.HELL
 			KEY_2:
@@ -45,3 +54,9 @@ func _input(event) -> void:
 				transition.data.next_layer = Bozo.Layer.ABYSS
 			KEY_Q:
 				data.tribunal.print_total_sinners()
+
+func switch_menu() -> void:
+	if !menu.visible:
+		menu.on_screen()
+	else:
+		menu.off_screen()

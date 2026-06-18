@@ -24,4 +24,4 @@ func connect_datas() -> void:
 		type_to_token[sin_data.type] = sin_token
 
 func update_colors() -> void:
-	Helper.update_colors(%Background, data.flame.trial.overlord)
+	Helper.update_colors(%Background, data.flame.trial.overlord.type)

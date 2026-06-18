@@ -58,8 +58,21 @@ func apply_on_screen() -> void:
 		node.on_screen()
 
 func apply_layer() -> void:
+	var from_layer = data.current_layer
 	apply_off_screen()
 	apply_on_screen()
 	data.reset()
+	
+	if data.current_layer == Bozo.Layer.HELL:
+		match from_layer:
+			Bozo.Layer.HERALD:
+				Cycle.resume(Bozo.Interrupt.HERALD_DECREE)
+			Bozo.Layer.GATE:
+				Cycle.resume(Bozo.Interrupt.GATE_RECRUIT)
+			Bozo.Layer.ABYSS:
+				Cycle.resume(Bozo.Interrupt.ABYSS_SACRIFICE)
+			Bozo.Layer.MUSEUM:
+				Cycle.resume(Bozo.Interrupt.MUSEUM_REALIZE)
+	
 	world.inferno.apply_layer()
 #endregion

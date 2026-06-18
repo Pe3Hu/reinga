@@ -14,6 +14,9 @@ var type_to_trial: Dictionary
 var dissolve_dreams: Array[Dream]
 var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
+var development_closed: bool
+var payment_active: bool
+var payment_pending: int
 
 
 func connect_datas() -> void:
@@ -24,8 +27,23 @@ func connect_datas() -> void:
 		type_to_trial[trial.data.type] = trial
 
 func awaken_dreams() -> void:
-	for cage in hell.jail.cages:
-		cage.cloak.dream.start_dissolve_payment_tokens()
+	if !Cycle.can_run_phase(Bozo.Phase.PAYMENT) or payment_active:
+		return
+	
+	payment_active = true
+	payment_pending = 0
+	dissolve_dreams.clear()
+	hell.jail.data.plaza.reset_associations()
+	
+	for sinner_i in hell.world.data.tribunal.actual.sinners.size():
+		var dream = hell.jail.cages[sinner_i].cloak.dream
+		dream.sync_desire_bindings()
+		dream.show_desires()
+		payment_pending += dream.begin_payment_dissolve()
+	
+	if payment_pending <= 0:
+		end_payment_phase()
+		return
 	
 	var desires: Dictionary
 	
@@ -39,14 +57,25 @@ func awaken_dreams() -> void:
 			var heat_value = desires[desire]
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
 
-func end_dream_dissolve_payment(dream_: Dream) -> void:
-	dissolve_dreams.erase(dream_)
-	dream_.cloak.cage.sinner.apply_phase_visiblity()
+func on_payment_desire_finished() -> void:
+	if !payment_active:
+		return
 	
-	if dissolve_dreams.is_empty():
-		hell.weather_button.switch_weather()
-		hell.jail.data.plaza.update_associations()
-		Scope.next_phase()
+	payment_pending -= 1
+	
+	if payment_pending <= 0:
+		end_payment_phase()
+
+func end_payment_phase() -> void:
+	if !Cycle.can_run_phase(Bozo.Phase.PAYMENT) or !payment_active:
+		return
+	
+	payment_active = false
+	payment_pending = 0
+	dissolve_dreams.clear()
+	hell.weather_button.switch_weather()
+	hell.jail.data.plaza.update_associations()
+	Cycle.complete_phase()
 
 func start_drain_tributes() -> void:
 	data.update_best_and_worst_tribute()
@@ -63,15 +92,36 @@ func end_tribute_drain(tribute_: Tribute) -> void:
 	drain_tributes.erase(tribute_)
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
-		Scope.next_phase()
+		end_development_phase()
 
 func end_attitude_repletion(attitude_: Attitude) -> void:
 	repletion_attitudes.erase(attitude_)
 	
 	if drain_tributes.is_empty() and repletion_attitudes.is_empty():
-		Scope.next_phase()
+		end_development_phase()
+
+func end_development_phase() -> void:
+	if development_closed or !Cycle.can_run_phase(Bozo.Phase.DEVELOPMENT):
+		return
+	
+	development_closed = true
+	
+	if hell.world.herald.data.decrees.is_empty():
+		Cycle.complete_phase()
+	else:
+		#Cycle.complete_phase()
+		Cycle.suspend(Bozo.Interrupt.HERALD_DECREE)
+		hell.world.transition.data.next_layer = Bozo.Layer.HERALD
+
+func abort_payment() -> void:
+	payment_active = false
+	payment_pending = 0
+	dissolve_dreams.clear()
 
 func reset() -> void:
+	development_closed = false
+	payment_active = false
+	payment_pending = 0
 	data.reset()
 	dissolve_dreams.clear()
 	drain_tributes.clear()

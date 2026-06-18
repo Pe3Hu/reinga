@@ -7,7 +7,7 @@ var data: HeraldData:
 		data = value_
 		
 		connect_signals()
-		data.test_decrees()
+		#data.test_decrees()
 
 @export var world: World
 @export var decree: Decree
@@ -23,17 +23,11 @@ func _on_decree_release() -> void:
 
 func off_screen() -> void:
 	visible = false
+	#Scope.next_phase()
 
 func on_screen():
 	visible = true
-	#world.inferno.apply_layer()
-	#unblur_all()
-	#data.init_sinners()
-	#await get_tree().process_frame
-	#update_sinner_datas()
-	#Scope.weather = Bozo.Weather.SUN
-	#weather_button.updaet_margin_offset()
-	#simulate_choice()
+	data.release_last_decree()
 
 
 func update_background() -> void:

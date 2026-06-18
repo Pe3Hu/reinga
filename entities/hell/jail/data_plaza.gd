@@ -79,22 +79,47 @@ func apply_guilds() -> void:
 	apply_trust_logic()
 	
 func apply_trust_logic() -> void:
+	var fate_type_to_count: Dictionary = {}
+	
+	for cage in jail.table.cages:
+		var fate_type = cage.sinner.fate.type
+		
+		if Catalog.trust_fates.has(fate_type):
+			continue
+		
+		if !fate_type_to_count.has(fate_type):
+			fate_type_to_count[fate_type] = 0
+		
+		fate_type_to_count[fate_type] += 1
+		
 	for cage in jail.table.cages:
 		var fate = cage.sinner.fate
 		
 		if Catalog.trust_fates.has(fate.type):
 			fate.sinner.dream.apply_guild()
 		else:
-			var trust_counter = 1
+			var trust_counter = fate_type_to_count.get(fate.type, 0)
 			
 			for neighbour in cage.neighbours:
-				if Catalog.trust_fates.has(neighbour.sinner.fate.type):
-					trust_counter += Catalog.relationship_to_sign[neighbour.sinner.fate.relationship]
+				var neighbour_fate = neighbour.sinner.fate.type
+				
+				if !Catalog.trust_fates.has(neighbour_fate):
+					continue
+				
+				var relationship = Catalog.fate_to_relationship.get(neighbour_fate, Bozo.Relationship.NONE)
+				
+				if relationship == Bozo.Relationship.NONE:
+					continue
+				
+				trust_counter += Catalog.relationship_to_sign[relationship]
 			
 			var is_trust = trust_counter >= Catalog.TRUST_LIMIT 
 			fate.sinner.dream.apply_guild(is_trust)
+			
 			if is_trust:
 				fate.association = Bozo.Association.GUILD
+			else:
+				fate.association = Bozo.Association.NONE
 
 func apply_brotherhoods() -> void:
 	apply_hope_logic()

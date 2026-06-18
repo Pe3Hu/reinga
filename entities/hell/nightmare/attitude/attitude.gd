@@ -38,12 +38,8 @@ func _on_type_changed() -> void:
 
 func _on_trial_type_changed() -> void:
 	if trial.data.type == 0: return
-	
-	Helper.update_colors(face_icon, trial.data.overlord)
-	Helper.update_colors(crown_icon, trial.data.overlord)
-	#face_icon.modulate = Catalog.trial_to_color[trial.data.type]
-	#crown_icon.modulate = Catalog.trial_to_color[trial.data.type]
-	#crown_icon.modulate.a = 0.7
+	Helper.update_colors(face_icon, trial.data.overlord.type)
+	Helper.update_colors(crown_icon, trial.data.overlord.type)
 
 func start_repletion() -> void:
 	var shift = Catalog.half_to_shift[trial.tribute.data.type]
@@ -87,3 +83,9 @@ func drain_bowl(bowl_: Bowl) -> void:
 	if data.ban_type == Bozo.Attitude.NONE:
 		data.type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
 		data.ban_type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
+		add_decree(bowl_)
+
+func add_decree(bowl_: Bowl) -> void:
+	var blob = bowl_.data.type
+	var overlord = trial.data.overlord
+	data.trial.nightmare.hell.world.herald.add_decree(overlord, blob)

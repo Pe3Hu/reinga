@@ -25,7 +25,5 @@ func connect_datas() -> void:
 
 func apply_type() -> void:
 	claim.apply_type()
-	Helper.update_colors(tribute.icon, data.overlord)
-	Helper.update_colors(flame.icon, data.overlord)
-	#tribute.icon.modulate = Catalog.trial_to_color[data.type]
-	#flame.icon.modulate = Catalog.trial_to_color[data.type]
+	Helper.update_colors(tribute.icon, data.overlord.type)
+	Helper.update_colors(flame.icon, data.overlord.type)

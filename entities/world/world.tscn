@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://5xk4pk33sdkv" path="res://entities/museum/museum.tscn" id="8_rxgam"]
 [ext_resource type="PackedScene" uid="uid://cbbqvpapvdnls" path="res://entities/menu/menu.tscn" id="9_e7bg0"]
 
-[node name="World" type="Node" unique_id=548530271 node_paths=PackedStringArray("inferno", "hell", "gate", "sanctuary", "abyss", "museum", "herald", "transition")]
+[node name="World" type="Node" unique_id=548530271 node_paths=PackedStringArray("inferno", "hell", "gate", "sanctuary", "abyss", "museum", "herald", "transition", "menu")]
 script = ExtResource("1_plka4")
 inferno = NodePath("Inferno")
 hell = NodePath("Hell")
@@ -21,6 +21,7 @@ abyss = NodePath("Abyss")
 museum = NodePath("Museum")
 herald = NodePath("Herald")
 transition = NodePath("Transition")
+menu = NodePath("Menu")
 
 [node name="Inferno" parent="." unique_id=1034484674 node_paths=PackedStringArray("world") instance=ExtResource("2_mrp82")]
 z_index = -20

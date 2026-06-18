@@ -85,12 +85,23 @@ func harvest() -> void:
 	emit_signal("fruit_is_changed")
 
 func undo_immature_cage(cage_: CageData) -> void:
-	if Scope.phase != Bozo.Phase.INVESTMENT:
-		cage_.fruit = cage_.previous_fruit#Bozo.Fruit.NONE
-		cage_.previous_fruit = Bozo.Fruit.NONE
-		index_to_fruit[cage_.index] = cage_.fruit
-		immatures.erase(cage_)
-		emit_signal("fruit_is_changed")
+	if Scope.phase == Bozo.Phase.INVESTMENT:
+		return
+	
+	if !immatures.has(cage_) and cage_.fruit != Bozo.Fruit.IMMATURE:
+		return
+	
+	var restore = cage_.previous_fruit
+	if restore == Bozo.Fruit.NONE:
+		restore = index_to_fruit.get(cage_.index, Bozo.Fruit.ROTTEN)
+		if restore == Bozo.Fruit.NONE:
+			restore = Bozo.Fruit.ROTTEN
+	
+	cage_.fruit = restore
+	cage_.previous_fruit = Bozo.Fruit.NONE
+	index_to_fruit[cage_.index] = cage_.fruit
+	immatures.erase(cage_)
+	emit_signal("fruit_is_changed")
 
 func detect_spectalces() -> void:
 	for spectacle in spectacles:

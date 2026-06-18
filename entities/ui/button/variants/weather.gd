@@ -74,13 +74,13 @@ func set_as_sun() -> void:
 	var parent = get_parent()
 	parent.add_theme_constant_override("margin_left", -64)
 	parent.add_theme_constant_override("margin_top", -64)
-	texture_normal = load("res://entities/ui/button/images/weather sun.png")
+	texture_normal = load("res://entities/ui/button/variants/images/weather sun.png")
 
 func set_as_moon() -> void:
 	var parent = get_parent()
 	parent.add_theme_constant_override("margin_left", -78)
 	parent.add_theme_constant_override("margin_top", -78)
-	texture_normal = load("res://entities/ui/button/images/weather moon.png")
+	texture_normal = load("res://entities/ui/button/variants/images/weather moon.png")
 
 
 func _input(event: InputEvent) -> void:

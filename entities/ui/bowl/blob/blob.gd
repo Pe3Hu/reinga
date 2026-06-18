@@ -20,8 +20,7 @@ func _on_visual_changed() -> void:
 	material.set_shader_parameter("mask_texture", load("res://entities/ui/bowl/blob/images/%s.png" % Catalog.blob_to_string[data.bowl.type]))
 	
 	if data.is_active and data.bowl.attitude.trial.type != 0:
-		Helper.update_colors(self, data.bowl.attitude.trial.overlord)
-		#modulate = Catalog.trial_to_color[data.bowl.attitude.trial.type]
+		Helper.update_colors(self, data.bowl.attitude.trial.overlord.type)
 		return
 	
 	Helper.update_colors(self, Bozo.Overlord.MARVONE)

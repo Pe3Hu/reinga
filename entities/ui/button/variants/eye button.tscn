@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rre501o3wx2s"]
 
-[ext_resource type="Texture2D" uid="uid://doi0kl7mcvo7r" path="res://entities/ui/button/images/eye off.png" id="1_8wfwi"]
-[ext_resource type="Texture2D" uid="uid://dlw2limpqh3o0" path="res://entities/ui/button/images/eye on.png" id="2_henas"]
+[ext_resource type="Texture2D" uid="uid://doi0kl7mcvo7r" path="res://entities/ui/button/variants/images/eye off.png" id="1_8wfwi"]
+[ext_resource type="Texture2D" uid="uid://dlw2limpqh3o0" path="res://entities/ui/button/variants/images/eye on.png" id="2_henas"]
 [ext_resource type="Script" uid="uid://f7pkrpj4x82w" path="res://entities/ui/button/variants/eye.gd" id="3_3npka"]
 
 [node name="EyeButton" type="TextureButton" unique_id=671915696]

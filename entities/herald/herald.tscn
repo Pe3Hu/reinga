@@ -10,7 +10,7 @@ shader_parameter/final_color = Color(0.39499992, 1, 0.33999997, 1)
 shader_parameter/invert = true
 
 [node name="Herald" type="Control" unique_id=696336315 node_paths=PackedStringArray("decree", "background")]
-z_index = 200
+z_index = 20
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
