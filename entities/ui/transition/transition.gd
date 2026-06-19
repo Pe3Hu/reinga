@@ -12,6 +12,7 @@ var data: TransitionData:
 @export var bg: ColorRect
 
 var tween: Tween
+var _pending_cycle_interrupt: Bozo.Interrupt = Bozo.Interrupt.NONE
 
 func _ready() -> void:
 	#data.current_layer = Scope.layer
@@ -40,6 +41,7 @@ func animate_out() -> void:
 	 .set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
 	get_tree().paused = false
+	_resume_cycle()
 	visible = false
 
 func no_animation() -> void:
@@ -63,16 +65,25 @@ func apply_layer() -> void:
 	apply_on_screen()
 	data.reset()
 	
+	_pending_cycle_interrupt = Bozo.Interrupt.NONE
 	if data.current_layer == Bozo.Layer.HELL:
 		match from_layer:
 			Bozo.Layer.HERALD:
-				Cycle.resume(Bozo.Interrupt.HERALD_DECREE)
+				_pending_cycle_interrupt = Bozo.Interrupt.HERALD_DECREE
 			Bozo.Layer.GATE:
-				Cycle.resume(Bozo.Interrupt.GATE_RECRUIT)
+				_pending_cycle_interrupt = Bozo.Interrupt.GATE_RECRUIT
 			Bozo.Layer.ABYSS:
-				Cycle.resume(Bozo.Interrupt.ABYSS_SACRIFICE)
+				_pending_cycle_interrupt = Bozo.Interrupt.ABYSS_SACRIFICE
 			Bozo.Layer.MUSEUM:
-				Cycle.resume(Bozo.Interrupt.MUSEUM_REALIZE)
+				_pending_cycle_interrupt = Bozo.Interrupt.MUSEUM_REALIZE
 	
 	world.inferno.apply_layer()
+
+func _resume_cycle() -> void:
+	if _pending_cycle_interrupt == Bozo.Interrupt.NONE:
+		return
+	
+	var interrupt = _pending_cycle_interrupt
+	_pending_cycle_interrupt = Bozo.Interrupt.NONE
+	Cycle.resume(interrupt)
 #endregion

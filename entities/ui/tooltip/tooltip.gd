@@ -108,14 +108,23 @@ func _get_meta_tooltip(meta) -> TooltipData:
 	
 	match tooltip_type:
 		Bozo.Tooltip.SIN:
-			descritipion = descritipion + "[ghost][meta essense]Essense[/meta][/ghost]"
+			descritipion = descritipion + "[ghost][meta essence]Essence[/meta][/ghost]"
 		Bozo.Tooltip.AMBER:
-			descritipion = descritipion.replace("[meta essense]%s[/meta]", "[ghost][meta essense]Essense[/meta][/ghost]")
+			descritipion = descritipion.replace("[meta essence]%s[/meta]", "[ghost][meta essence]Essence[/meta][/ghost]")
 		Bozo.Tooltip.SPECTACLE:
 			if descritipion.contains(" %s,"):
 				descritipion = descritipion.replace(" %s,", " [i]something[/i],")
 		Bozo.Tooltip.TRIBUTE:
 			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
+		Bozo.Tooltip.ATTITUIDE:
+			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
+		Bozo.Tooltip.CLAIM:
+			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
+		Bozo.Tooltip.FLAME:
+			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
+		Bozo.Tooltip.TRIAL:
+				descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
+		
 	
 	child_tooltip.descritipion = descritipion
 	return child_tooltip

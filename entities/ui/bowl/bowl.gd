@@ -15,9 +15,10 @@ var data: BowlData:
 
 
 func connect_datas() -> void:
-	for i in blobs.size():
-		if i < data.blobs.size():
-			blobs[i].data = data.blobs[i]
+	for _i in blobs.size():
+		var blob =  blobs[_i]
+		var data_blob = data.blobs[_i]
+		blob.data = data_blob
 
 func apply_data_info() -> void:
 	data.side_changed.connect(_on_side_changed)

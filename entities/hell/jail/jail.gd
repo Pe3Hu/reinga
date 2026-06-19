@@ -41,28 +41,46 @@ func add_cage(data_: CageData) -> void:
 #endregion
 
 func update_sinner_datas() -> void:
-	apply_phase_visiblity()
+	sync_cage_sinners()
+	ensure_cages_visible()
+	if Scope.phase != Bozo.Phase.REPLENISHMENT:
+		apply_cages_visibility()
+
+func sync_cage_sinners() -> void:
+	var sinners = hell.world.data.tribunal.actual.sinners
 	
-	for _i in hell.world.data.tribunal.actual.sinners.size():
-		var sinner_data = hell.world.data.tribunal.actual.sinners[_i]
+	for _i in sinners.size():
+		var sinner_data = sinners[_i]
 		var cage = cages[_i]
 		cage.data.sinner = sinner_data
 		cage.sinner.data = sinner_data
 		cage.cloak.dream.data = sinner_data.dream
 	
+	for _i in range(sinners.size(), cages.size()):
+		var cage = cages[_i]
+		cage.sinner.data = null
+		cage.cloak.dream.data = null
+		cage.cloak.dream.reset_all_desire_tokens()
+	
 	update_status_omens()
 
 func update_status_omens() -> void:
 	for cage in cages:
+		if cage.sinner.data == null:
+			continue
 		for omen_data in cage.sinner.soul.doom.data.omens:
 			omen_data.update_status()
 
+func ensure_cages_visible() -> void:
+	%Cages.visible = Scope.phase != Bozo.Phase.DISBURSEMENT
+
+func apply_cages_visibility() -> void:
+	for cage in cages:
+		cage.apply_cage_visibility()
+
 func apply_phase_visiblity() -> void:
-	%Cages.visible = true
-	
-	match Scope.phase:
-		Bozo.Phase.DISBURSEMENT:
-			%Cages.visible = false
+	ensure_cages_visible()
+	apply_cages_visibility()
 
 func get_active_cage() ->  Variant:
 	if data.table.active_cages.is_empty(): return null
@@ -79,7 +97,7 @@ func reset() -> void:
 	data.reset_traits()
 	
 	for cage in cages:
-		cage.sinner.apply_phase_visiblity()
+		cage.apply_cage_visibility()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -126,11 +144,36 @@ func get_trait_token(token_data_: TokenData) -> Variant:
 	
 	return null
 
-func dissolve_guilds() -> void:
+func apply_sun_layout_all() -> void:
 	for cage in cages:
-		#cage.sinner.visible = true
+		cage.apply_sun_layout()
+
+func apply_moon_layout_all(show_desires_: bool = true) -> void:
+	for cage in cages:
+		if cage.sinner.data != null or cage.data.sinner != null:
+			cage.apply_moon_layout(show_desires_)
+
+func dissolve_guilds() -> void:
+	var pending = 0
+	
+	for cage in cages:
+		if cage.sinner.data == null:
+			cage.apply_sun_layout()
+			continue
+		if cage.sinner.fate.data.association != Bozo.Association.GUILD:
+			cage.apply_sun_layout()
+			continue
+		
+		pending += cage.cloak.dream.prepare_guild_dissolve()
+		cage.apply_moon_layout(false)
+	
+	hell.nightmare.begin_guild_dissolves(pending)
+	
+	for cage in cages:
+		if cage.sinner.data == null:
+			continue
 		if cage.sinner.fate.data.association == Bozo.Association.GUILD:
-			cage.cloak.dream.start_dissolve_guild_tokens()
+			cage.cloak.dream.start_guild_dissolve()
 
 func update_visiblity_omens() -> void:
 	var is_cage_selected = !data.table.active_cages.is_empty()

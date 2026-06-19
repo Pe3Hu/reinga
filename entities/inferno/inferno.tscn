@@ -104,6 +104,7 @@ color_ramp = SubResource("GradientTexture1D_hb8tl")
 color_initial_ramp = SubResource("GradientTexture1D_t7edp")
 
 [node name="Inferno" type="Node2D" unique_id=1034484674]
+process_mode = 3
 script = ExtResource("1_6fu1w")
 
 [node name="VoidBackground" type="ColorRect" parent="." unique_id=742603730]

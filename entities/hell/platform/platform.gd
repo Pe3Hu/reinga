@@ -63,7 +63,7 @@ func apply_performances() -> void:
 func update_ambers() -> void:
 	for amber_data in data.shifted_ambers:
 		var tween = create_tween()
-		tween.tween_property(amber_data, "value", amber_data.next_value, Catalog.SPECTACLE_AMBER_DURATION)
+		tween.tween_property(amber_data, "value", amber_data.next_value, Gear.spectacle_ambers[Gear.tempo])
 
 func update_progressions() -> void:
 	for progression_data in data.shifted_progressions:

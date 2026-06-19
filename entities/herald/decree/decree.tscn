@@ -14,13 +14,13 @@ offset_right = 300.0
 offset_bottom = 300.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sb6v5")
 script = ExtResource("1_vb3oq")
-laws = [NodePath("Laws/Law1"), NodePath("Laws/Law2"), NodePath("Laws/Law3")]
+laws = [NodePath("Laws/Law1"), NodePath("Laws/Law2"), NodePath("Laws/Law3"), NodePath("Laws/Law4")]
 accept_button = NodePath("AcceptMargin/AcceptButton")
 
 [node name="HeaderMargin" type="MarginContainer" parent="." unique_id=248050482]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 14
 
 [node name="Header" type="RichTextLabel" parent="HeaderMargin" unique_id=23569512]
 unique_name_in_owner = true
@@ -71,6 +71,10 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="Law4" parent="Laws" unique_id=103961392 instance=ExtResource("4_rq6op")]
+visible = false
+layout_mode = 2
+
 [node name="AcceptMargin" type="MarginContainer" parent="." unique_id=200685645]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -83,3 +87,10 @@ layout_mode = 2
 text = "Accept
 "
 decree = NodePath("../..")
+
+[node name="AcceptTimer" type="Timer" parent="." unique_id=1990333042]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="AcceptTimer" to="." method="_on_accept_timer_timeout"]

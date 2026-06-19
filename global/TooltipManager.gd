@@ -176,14 +176,23 @@ func build_tooltip_data(target: Control) -> TooltipData:
 			var side_type = Catalog.trait_to_cage[target.data.type]
 			var side_string = Catalog.cage_to_string[side_type].capitalize()
 			descritipion = descritipion % side_string
-			
 		Bozo.Tooltip.TRIBUTE:
-			var overlord_type = target.data.trial.overlord.type
-			var text_with_color = Helper.get_colored_overlord(overlord_type)
-			descritipion = descritipion % text_with_color
+			descritipion = apply_overlord(target.data.trial.overlord.type, descritipion)
+		Bozo.Tooltip.ATTITUIDE:
+			descritipion = apply_overlord(target.data.trial.overlord.type, descritipion)
+		Bozo.Tooltip.CLAIM:
+			descritipion = apply_overlord(target.data.trial.overlord.type, descritipion)
+		Bozo.Tooltip.FLAME:
+			descritipion = apply_overlord(target.data.trial.overlord.type, descritipion)
+		Bozo.Tooltip.TRIAL:
+			descritipion = apply_overlord(target.data.overlord.type, descritipion)
 	
 	data.descritipion = descritipion
 	return data
 
 func get_template(type_: Bozo.Tooltip) -> String:
 	return Catalog.tooltip_to_template.get(type_ , "Unknown tooltip type")#, "Unknown tooltip type: %s" % type)
+
+func apply_overlord(overlord_: Bozo.Overlord, descritipion_: String) -> String:
+	var text_with_color = Helper.get_colored_overlord(overlord_)
+	return descritipion_ % text_with_color

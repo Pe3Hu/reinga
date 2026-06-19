@@ -15,6 +15,8 @@ var worst_flame: FlameData
 
 var development_closed: bool = false
 
+var privilege_attitudes: Array[AttitudeData]
+
 
 #region init
 func _init(hell_: HellData) -> void:

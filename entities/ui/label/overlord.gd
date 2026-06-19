@@ -19,12 +19,14 @@ func _process_custom_fx(char_fx):
 	var hue = char_fx.env.get("hue", 0.0)
 	
 	# Вычисляем циклическое изменение насыщенности
-	# sin() колеблется от -1 до 1, умножаем на половину диапазона
 	var cycle = sin(char_fx.elapsed_time * animation_speed) * (saturation_range / 2.0)
-	var new_saturation = s / 2.0 + cycle  # центр колебания в середине
+	var new_saturation = s / 2.0 + cycle
 	
 	# Закрепляем значение в допустимом диапазоне
 	new_saturation = clamp(new_saturation, 0.0, 1.0)
 	
 	# Создаём цвет с модулированной насыщенностью
 	char_fx.color = Color.from_hsv(hue, new_saturation, v)
+	
+	# Обязательно возвращаем true для успешной обработки
+	return true

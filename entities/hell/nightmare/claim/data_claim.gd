@@ -87,3 +87,11 @@ func refill() -> void:
 		claim_sin.value += flame_sin.value
 	
 	trial.tribute.calc_half()
+
+func apply_privilege() -> void:
+	reset()
+	refill()
+
+func reset() -> void:
+	for token in sins:
+		token.value = 0

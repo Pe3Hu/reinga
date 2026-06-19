@@ -34,10 +34,4 @@ func _on_is_fused() -> void:
 	soul.doom.connect_datas()
 
 func apply_phase_visiblity() -> void:
-	visible = true
-	
-	match Scope.phase:
-		Bozo.Phase.REPLENISHMENT:
-			visible = false
-		Bozo.Phase.INVESTMENT:
-			visible = false
+	cage.apply_cage_visibility()

@@ -7,17 +7,9 @@ var data: DecreeData:
 		data = value_
 		connect_datas()
 
-#@export var law_scene: PackedScene
-
 @export var herald: Herald
 @export var laws: Array[Law]
 @export var accept_button: CustomButton
-
-
-#func add_law(law_data: LawData) -> void:
-	#var law = law_scene.instantiate()
-	#%Laws.add_child(law)
-	#law.data = law_data
 
 
 func connect_datas() -> void:
@@ -32,7 +24,19 @@ func connect_datas() -> void:
 		var law = laws[_i]
 		var law_data = data.laws[_i]
 		law.data = law_data
+	
+	simulate_accept()
 
 func reset_laws() -> void:
 	for law in laws:
 		law.visible = false
+
+func simulate_accept() -> void:
+	if !data.is_skip: return
+	
+	var duration = Gear.simulates[Gear.tempo] * 0.25
+	%AcceptTimer.wait_time = duration
+	%AcceptTimer.start()
+
+func _on_accept_timer_timeout() -> void:
+	accept_button._button_pressed()

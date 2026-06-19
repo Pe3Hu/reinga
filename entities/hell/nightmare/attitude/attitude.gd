@@ -81,11 +81,64 @@ func drain_bowl(bowl_: Bowl) -> void:
 		bowl.reset()
 	
 	if data.ban_type == Bozo.Attitude.NONE:
+		data.privilege_type = data.type
 		data.type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
 		data.ban_type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
 		add_decree(bowl_)
+		
+		if data.type == Bozo.Attitude.INDIFFERENCE and (data.privilege_type == Bozo.Attitude.RAPTURE or data.privilege_type == Bozo.Attitude.SCORN):
+			data.trial.nightmare.privilege_attitudes.append(data)
+		else:
+			data.privilege_type = Bozo.Attitude.NONE
 
 func add_decree(bowl_: Bowl) -> void:
 	var blob = bowl_.data.type
 	var overlord = trial.data.overlord
 	data.trial.nightmare.hell.world.herald.add_decree(overlord, blob)
+
+func apply_privilege() -> void:
+	#var flame_shifts: Array[int]
+	var progression = trial.flame.progression
+	#var total_shift = 0
+	var flame_shift = progression.data.current_value
+	var next_level = data.trial.flame.level
+	
+	if data.privilege_type == Bozo.Attitude.SCORN: 
+		next_level = max(1, data.trial.flame.level - 1)
+		flame_shift += Catalog.flame_to_heat[next_level]
+	
+	var duration = await trial.nightmare.hell.volcano.burst_splash(progression, flame_shift, -1)
+	
+	await get_tree().create_timer(duration).timeout
+	trial.claim.data.apply_privilege()
+
+#func tween_apply_privilege(data.privilege_type: Bozo.Attitude) -> void:
+	#var flame_shifts: Array[int]
+	#var progression = data.trial.flame.progression
+	#var total_shift = 0
+	#var flame_shift = -progression.current_value
+	#flame_shifts.append(flame_shift)
+	#
+	#if data.privilege_type == Bozo.Attitude.SCORN:
+		#var previous_level = min(1, data.trial.flame.level - 1)
+		#flame_shift = -Catalog.flame_to_heat[previous_level]
+		#flame_shifts.append(flame_shift)
+	#
+	#for shift in flame_shifts:
+		#total_shift += abs(shift)
+	#
+	#var durations = []
+	#
+	#for shift in flame_shifts: 
+		#var duration = Gear.privileges[Gear.tempo] * abs(shift) / total_shift *5
+		#durations.append(duration)
+	#
+	#var tween = create_tween()
+	#tween.tween_property(progression, "current_value", 0, durations.front())
+	#await tween.finished
+	#data.trial.flame.level -= 1
+	##current_value = limit_value + current_value
+	#
+	#if durations.size() > 1:
+		#tween = create_tween()
+		#tween.tween_property(progression, "current_value", progression.limit_value + flame_shifts.back(), durations.back())

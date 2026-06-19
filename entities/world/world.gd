@@ -26,7 +26,7 @@ func new_game() -> void:
 	Cycle.start()
 
 func _ready() -> void:
-	Cycle.bind(hell)
+	Cycle.hell = hell
 	new_game()
 	
 	#await get_tree().process_frame

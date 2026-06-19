@@ -36,3 +36,9 @@ func update() -> void:
 			if current_value >= limit_value:
 				current_value -= limit_value
 				boss.level += 1
+			if current_value < 0:
+				if boss.level > 1:
+					boss.level -= 1
+					current_value += limit_value
+				else:
+					current_value = 0

@@ -5,20 +5,21 @@ extends PanelContainer
 var data: DreamData:
 	set(value_):
 		data = value_
-		apply_data_info()
+		apply__jnfo()
 
 @export var desire_scene: PackedScene
 
 @export var cloak: Cloak
-#@export var primary_tokens: Array[TokenDesire]
-#@export var secondary_token: TokenDesire
+@export var primary_tokens: Array[TokenDesire]
+@export var secondary_tokens: Array[TokenDesire]
 @export var desires: Array[TokenDesire]
 
 var dissolves: Array[TokenDesire]
+var guild_dissolves: Array[TokenDesire]
 
 
 #region init
-func apply_data_info() -> void:
+func apply__jnfo() -> void:
 	if !data: return
 	if! data.desire_changed.is_connected(_on_desires_changed):
 		data.desire_changed.connect(_on_desires_changed)
@@ -31,33 +32,38 @@ func _on_desires_changed() -> void:
 
 func sync_desire_bindings() -> void:
 	desires.clear()
-	if !data:
-		return
+	if !data: return
 	
-	var primary_nodes: Array[TokenDesire] = []
+	primary_tokens.clear()
+	secondary_tokens.clear()
+	
 	for child in %PrimaryDesires.get_children():
-		primary_nodes.append(child)
-	primary_nodes.reverse()
-	
-	var data_i = 0
-	var primary_slots = data.type_to_count.get(data.primary_desire, 0)
-	for node_i in primary_slots:
-		if node_i >= primary_nodes.size() or data_i >= data.desires.size():
-			break
-		var token = primary_nodes[node_i]
-		token.dream = self
-		token.data = data.desires[data_i]
-		desires.append(token)
-		data_i += 1
+		primary_tokens.append(child)
 	
 	for child in %SecondaryDesires.get_children():
-		if data_i >= data.desires.size():
-			break
-		var token: TokenDesire = child
+		secondary_tokens.append(child)
+	
+	primary_tokens.reverse()
+	
+	var _j = 0
+	var primary_slots = data.type_to_count.get(data.primary_desire, 0)
+	var secondary_slots = data.type_to_count.get(data.secondary_desire, 0)
+	
+	for _i in primary_slots:
+		if _i >= primary_tokens.size() or _j >= data.desires.size(): break
+		var token = primary_tokens[_i]
 		token.dream = self
-		token.data = data.desires[data_i]
+		token.data = data.desires[_j]
 		desires.append(token)
-		data_i += 1
+		_j += 1
+	
+	for _i in secondary_slots:
+		if _j >= data.desires.size(): break
+		var token = secondary_tokens[_i]
+		token.dream = self
+		token.data = data.desires[_j]
+		desires.append(token)
+		_j += 1
 
 func refill_desires() -> void:
 	refill_primary_desires()
@@ -94,38 +100,66 @@ func add_secondary() -> void:
 	desire.dream = self
 #endregion
 
+func ensure_desires() -> void:
+	if !data: return
+	if desires.is_empty() or %PrimaryDesires.get_child_count() == 0:
+		_on_desires_changed()
+	else:
+		sync_desire_bindings()
+
 #region dissolve
-func begin_payment_dissolve() -> int:
+func count_payment_dissolve() -> int:
+	ensure_desires()
 	dissolves.clear()
 	
 	if !data:
 		return 0
 	
-	var count = 0
 	for desire in desires:
-		if !desire.texture_rect.visible:
+		if !desire.data:
 			continue
+		if !desire.dream:
+			desire.dream = self
 		dissolves.append(desire)
-		desire.dissolve_payment()
-		count += 1
 	
-	return count
+	return dissolves.size()
+
+func start_payment_dissolve() -> void:
+	for desire in dissolves:
+		if !desire.dream:
+			desire.dream = self
+		
+		desire.payment_dissolve()
 
 func end_payment_dissolve(desire_: TokenDesire) -> void:
-	if !dissolves.has(desire_):
-		return
+	if !dissolves.has(desire_): return
 	
 	dissolves.erase(desire_)
-	cloak.cage.sinner.apply_phase_visiblity()
+	cloak.cage.apply_sun_layout()
 	cloak.cage.jail.hell.nightmare.on_payment_desire_finished()
 
-func start_dissolve_guild_tokens() -> void:
-	for token in desires:
-		if token.data.association == Bozo.Association.GUILD:
-			token.dissolve()
+func prepare_guild_dissolve() -> int:
+	ensure_desires()
+	guild_dissolves.clear()
+	reset_all_desire_tokens()
+	
+	if !data: return 0
+	
+	for token in _all_desire_tokens():
+		if token.data and token.data.association == Bozo.Association.GUILD:
+			if !token.dream:
+				token.dream = self
+			
+			guild_dissolves.append(token)
+	
+	return guild_dissolves.size()
 
-func end_dissolve_guild_tokens(desire_: TokenDesire) -> void:
-	#desire_.texture_rect.visible = false
+func start_guild_dissolve() -> void:
+	for token in guild_dissolves:
+		token.refill_progress()
+		token.dissolve()
+
+func end_guild_dissolve(desire_: TokenDesire) -> void:
 	var trial_type: Bozo.Trial = Catalog.desire_to_trial[desire_.data.type]
 	var trial = cloak.cage.jail.hell.nightmare.type_to_trial[trial_type]
 	var _sign = -1
@@ -134,12 +168,30 @@ func end_dissolve_guild_tokens(desire_: TokenDesire) -> void:
 		_sign *= -1
 	
 	cloak.cage.jail.hell.volcano.burst_splash(trial.flame.progression, 1, _sign)
+	#desire_.texture_rect.visible = false
+	cloak.cage.apply_sun_layout()
+	cloak.cage.jail.hell.nightmare.on_guild_dissolve_finished()
 #endregion
 
 func show_desires() -> void:
+	ensure_desires()
 	for desire in desires:
 		desire.refill_progress()
 
 func reset_desires() -> void:
 	for desire in desires:
 		desire.reset()
+
+func reset_all_desire_tokens() -> void:
+	for token in _all_desire_tokens():
+		token.reset()
+
+func _all_desire_tokens() -> Array[TokenDesire]:
+	var tokens: Array[TokenDesire] = []
+	for child in %PrimaryDesires.get_children():
+		if child is TokenDesire:
+			tokens.append(child)
+	for child in %SecondaryDesires.get_children():
+		if child is TokenDesire:
+			tokens.append(child)
+	return tokens

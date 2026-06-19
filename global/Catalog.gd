@@ -984,6 +984,7 @@ const phases = [
 	Bozo.Phase.APPRAISEMENT,
 	Bozo.Phase.DISBURSEMENT,
 	Bozo.Phase.DEVELOPMENT,
+	Bozo.Phase.PREFERMENT,
 	Bozo.Phase.INVESTMENT,
 ]
 
@@ -993,7 +994,8 @@ const phase_to_next = {
 	Bozo.Phase.PAYMENT: Bozo.Phase.APPRAISEMENT,
 	Bozo.Phase.APPRAISEMENT: Bozo.Phase.DISBURSEMENT,
 	Bozo.Phase.DISBURSEMENT: Bozo.Phase.DEVELOPMENT,
-	Bozo.Phase.DEVELOPMENT: Bozo.Phase.INVESTMENT,
+	Bozo.Phase.DEVELOPMENT: Bozo.Phase.PREFERMENT,
+	Bozo.Phase.PREFERMENT: Bozo.Phase.INVESTMENT,
 	Bozo.Phase.INVESTMENT: Bozo.Phase.REPLENISHMENT
 }
 
@@ -1003,6 +1005,7 @@ const phase_to_string = {
 	Bozo.Phase.APPRAISEMENT: "APPRAISEMENT",
 	Bozo.Phase.DISBURSEMENT: "DISBURSEMENT",
 	Bozo.Phase.DEVELOPMENT: "DEVELOPMENT",
+	Bozo.Phase.PREFERMENT: "PREFERMENT",
 	Bozo.Phase.INVESTMENT: "INVESTMENT",
 	Bozo.Phase.REPLENISHMENT: "REPLENISHMENT"
 }
@@ -1699,11 +1702,11 @@ var tooltip_to_template = {
 	Bozo.Tooltip.MADNESS: "Makes the game more difficult",
 	Bozo.Tooltip.OBLIVION: "Sacrifices [ghost][meta sinner]Sinner[/meta][/ghost] to obtain [ghost][meta amber]Amber[/meta][/ghost]",
 	Bozo.Tooltip.TRIBUTE: "Changes %s [ghost][meta attitude]Attitude[/meta][/ghost]",
-	Bozo.Tooltip.ATTITUIDE: "Shows relationship with [ghost][meta overlord]Overlord[/meta][/ghost]",
+	Bozo.Tooltip.ATTITUIDE: "Shows relationship with %s",
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essence]Essence[/meta][/ghost]",
-	Bozo.Tooltip.TRIAL: "[ghost][meta overlord]Overlord[/meta][/ghost] domain is formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
-	Bozo.Tooltip.FLAME: "Raises [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire[/meta][/ghost]",
-	Bozo.Tooltip.CLAIM: "[ghost][meta overlord]Overlord's[/meta][/ghost] requirements, for now",
+	Bozo.Tooltip.TRIAL: "%s domain, formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
+	Bozo.Tooltip.FLAME: "Raises %s [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire[/meta][/ghost]",
+	Bozo.Tooltip.CLAIM: "%s [ghost][meta sin]Sin's[/meta][/ghost] requirements, for now",
 	Bozo.Tooltip.DESIRE: "Raises [ghost][meta flame]Flame[/meta][/ghost] when occupying [ghost][meta cage]Cage[/meta][/ghost], depends on [ghost][meta faction]Faction[/meta][/ghost]",
 	Bozo.Tooltip.FATE: "Forms [ghost][meta guild]Guild[/meta][/ghost], defines [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost]",
 	Bozo.Tooltip.SOUL: "Set of [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost], [ghost][meta oblivion]Oblivion[/meta][/ghost]",
@@ -1713,7 +1716,7 @@ var tooltip_to_template = {
 	Bozo.Tooltip.CLOAK: "Shows [ghost][meta desire]Desires[/meta][/ghost] as backside",
 	Bozo.Tooltip.BANK: "Stores [ghost][meta amber]Amber[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost]",
 	Bozo.Tooltip.MARKET: "List of [ghost][meta deal]Deals[/meta][/ghost], wrapped at [ghost][meta eclipse]Eclipse[/meta][/ghost]",
-	Bozo.Tooltip.CONTRIBUTION: "Produces [ghost][meta amber]Amber[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost], depends on [ghost][meta torture]Torture[/meta][/ghost]",
+	Bozo.Tooltip.CONTRIBUTION: "Produces [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost], depends on [ghost][meta torture]Torture[/meta][/ghost]",
 	Bozo.Tooltip.PLATFORM: "Chronicle of previous [ghost][meta torture]Tortures[/meta][/ghost], organizes [ghost][meta spectacle]Spectacles[/meta][/ghost]",
 	Bozo.Tooltip.SPECTACLE: "[ghost][meta trigger]Triggers[/meta][/ghost], if [ghost][meta catena]Chain[/meta][/ghost] is finished",
 	Bozo.Tooltip.OMEN: "%s, produces [ghost][meta sin]Sin[/meta][/ghost] when [ghost][meta trigger]Triggered[/meta][/ghost]",
@@ -1902,7 +1905,9 @@ const museum_omens = [
 ]
 #endregion
 
+#region gear
 const tempo_to_string = {
 	Bozo.Tempo.FAST: "fast",
 	Bozo.Tempo.SLOW: "slow"
 }
+#endregion

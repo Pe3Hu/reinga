@@ -24,6 +24,10 @@ var data: HellData:
 func _ready():
 	update_size()
 
+func update_size() -> void:
+	var viewport_size = get_viewport_rect().size
+	position = viewport_size / 2
+	%UI.position = -%UI.size / 2
 
 func connect_datas() -> void:
 	nightmare.data = data.nightmare
@@ -31,18 +35,7 @@ func connect_datas() -> void:
 	treasury.data = data.treasury
 	bank.data = data.bank
 	market.data = data.market
-	#shelter.data = data.shelter
 	platform.data = data.jail.platform
-
-func update_size() -> void:
-	var viewport_size = get_viewport_rect().size
-	position = viewport_size / 2
-	%UI.position = -%UI.size / 2
-
-func simulate_choice() -> void:
-	var contribution = treasury.contributions.back()
-	jail.data.table._on_cage_gate_selected(contribution.cage.data)
-	bank.lock()
 
 func reset() -> void:
 	nightmare.reset()
@@ -53,10 +46,18 @@ func reset() -> void:
 
 func off_screen() -> void:
 	nightmare.abort_payment()
+	nightmare.abort_guild()
 	visible = false
 
 func on_screen():
 	visible = true
 	bank.data.emit_signal("sacrifice_received")
-	Scope.weather = Bozo.Weather.MOON
-	weather_button.switch_weather()
+	#Scope.weather = Bozo.Weather.MOON
+	#weather_button.switch_weather()
+
+func simulate_choice() -> void:
+	var duration = Gear.simulates[Gear.tempo] * 2
+	await get_tree().create_timer(duration).timeout
+	var contribution = treasury.contributions.back()
+	jail.data.table._on_cage_gate_selected(contribution.cage.data)
+	bank.lock_button._button_pressed()

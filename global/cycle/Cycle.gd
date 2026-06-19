@@ -1,19 +1,17 @@
 extends Node
 
 
-
-var hell: Hell
+var hell: Hell:
+	set(value_):
+		hell = value_
+	
+		init_phases()
 var active: bool
 var suspended: bool
 var interrupt: Bozo.Interrupt = Bozo.Interrupt.NONE
 var generation: int
 
-var _phases: Dictionary
-
-
-func bind(hell_: Hell) -> void:
-	hell = hell_
-	_register_phases()
+var type_to_phase: Dictionary
 
 
 func start() -> void:
@@ -27,13 +25,11 @@ func start() -> void:
 	Scope.phase = Bozo.Phase.ENDOWMENT
 	_enter_current()
 
-
 func can_run_phase(phase_type: Bozo.Phase) -> bool:
 	return active \
 		and !suspended \
 		and Scope.layer == Bozo.Layer.HELL \
 		and Scope.phase == phase_type
-
 
 func complete_phase() -> void:
 	if !active or suspended:
@@ -44,16 +40,14 @@ func complete_phase() -> void:
 	
 	_finish_current()
 
-
 func suspend(interrupt_: Bozo.Interrupt) -> void:
 	if suspended:
 		return
 	
 	suspended = true
 	interrupt = interrupt_
-	_get_phase(Scope.phase).exit()
+	get_phase(Scope.phase).exit()
 	hell.nightmare.abort_payment()
-
 
 func resume(interrupt_: Bozo.Interrupt) -> void:
 	if !suspended:
@@ -80,32 +74,27 @@ func resume(interrupt_: Bozo.Interrupt) -> void:
 		_:
 			push_warning("HellCycle resume unknown interrupt %s" % interrupt_)
 
-
-func _register_phases() -> void:
-	_phases = {
+func init_phases() -> void:
+	type_to_phase = {
 		Bozo.Phase.ENDOWMENT: Endowment.new(),
 		Bozo.Phase.REPLENISHMENT: Replenishment.new(),
 		Bozo.Phase.PAYMENT: Payment.new(),
 		Bozo.Phase.APPRAISEMENT: Appraisement.new(),
 		Bozo.Phase.DISBURSEMENT: Disbursement.new(),
 		Bozo.Phase.DEVELOPMENT: Development.new(),
+		Bozo.Phase.PREFERMENT: Preferment.new(),
 		Bozo.Phase.INVESTMENT: Investment.new(),
 	}
 
-
-func _get_phase(phase_type: Bozo.Phase) -> Phase:
-	return _phases.get(phase_type, _phases[Bozo.Phase.ENDOWMENT])
-
+func get_phase(phase_type_: Bozo.Phase) -> Phase:
+	return type_to_phase.get(phase_type_, type_to_phase[Bozo.Phase.ENDOWMENT])
 
 func _enter_current() -> void:
-	if !active or suspended:
-		return
-	
-	if Scope.layer != Bozo.Layer.HELL:
-		return
+	if !active or suspended: return
+	if Scope.layer != Bozo.Layer.HELL: return
 	
 	generation += 1
-	var phase := _get_phase(Scope.phase)
+	var phase = get_phase(Scope.phase)
 	phase.enter()
 	
 	if suspended: return
@@ -113,21 +102,18 @@ func _enter_current() -> void:
 	if !phase.is_async():
 		_finish_current()
 
-
 func _finish_current() -> void:
-	var phase := _get_phase(Scope.phase)
+	var phase = get_phase(Scope.phase)
 	phase.exit()
 	_advance()
 	
-	if suspended:
-		return
+	if suspended: return
 	
 	_enter_current()
 
-
 func _advance() -> void:
-	print([Scope.turn, Catalog.phase_to_string[Scope.phase]])
 	Scope.phase = Catalog.phase_to_next[Scope.phase]
+	print([Scope.turn, Catalog.phase_to_string[Scope.phase]])
 	
 	if Scope.phase == Bozo.Phase.REPLENISHMENT:
 		Scope.turn += 1

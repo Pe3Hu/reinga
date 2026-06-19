@@ -22,6 +22,9 @@ const desire_dissolves: Array[float] = [0.5, 1.2]
 const splashs: Array[float] = [0.4, 0.5]
 const spectacle_ambers: Array[float] = [0.8, 0.5]
 
+const simulates: Array[float] = [0.4, 1]
+const privileges: Array[float] = [0.5, 1]
+
 
 #const TOOLTIP_DURATION: float = 10.0
 #const SACRIFICE_AMBER_DURATION: float = 1.0 

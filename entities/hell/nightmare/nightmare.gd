@@ -11,12 +11,18 @@ var data: NightmareData:
 @export var trials: Array[Trial]
 var type_to_trial: Dictionary
 
-var dissolve_dreams: Array[Dream]
+
 var drain_tributes: Array[Tribute]
 var repletion_attitudes: Array[Attitude]
 var development_closed: bool
+
+var payment_dreams: Array[Dream] 
 var payment_active: bool
 var payment_pending: int
+
+var guild_dreams: Array[Dream]
+var guild_pending: int
+
 
 
 func connect_datas() -> void:
@@ -27,23 +33,47 @@ func connect_datas() -> void:
 		type_to_trial[trial.data.type] = trial
 
 func awaken_dreams() -> void:
-	if !Cycle.can_run_phase(Bozo.Phase.PAYMENT) or payment_active:
+	if !Cycle.can_run_phase(Bozo.Phase.PAYMENT):
 		return
+	
+	if payment_active:
+		abort_payment()
 	
 	payment_active = true
 	payment_pending = 0
-	dissolve_dreams.clear()
+	guild_dreams.clear()
+	payment_dreams.clear()
 	hell.jail.data.plaza.reset_associations()
 	
 	for sinner_i in hell.world.data.tribunal.actual.sinners.size():
-		var dream = hell.jail.cages[sinner_i].cloak.dream
-		dream.sync_desire_bindings()
+		var cage = hell.jail.cages[sinner_i]
+		var dream = cage.cloak.dream
+		cage.apply_moon_layout(false)
+		dream.ensure_desires()
+		dream.reset_all_desire_tokens()
 		dream.show_desires()
-		payment_pending += dream.begin_payment_dissolve()
+		var count = dream.count_payment_dissolve()
+		
+		if count > 0:
+			payment_dreams.append(dream)
+		
+		payment_pending += count
 	
 	if payment_pending <= 0:
 		end_payment_phase()
 		return
+	
+	_run_payment_dissolves()
+
+func _run_payment_dissolves() -> void:
+	if !payment_active or !Cycle.can_run_phase(Bozo.Phase.PAYMENT):
+		abort_payment()
+		return
+	
+	for dream in payment_dreams:
+		dream.start_payment_dissolve()
+	
+	payment_dreams.clear()
 	
 	var desires: Dictionary
 	
@@ -58,9 +88,7 @@ func awaken_dreams() -> void:
 			hell.volcano.burst_splash(trial.flame.progression, heat_value)
 
 func on_payment_desire_finished() -> void:
-	if !payment_active:
-		return
-	
+	if !payment_active: return
 	payment_pending -= 1
 	
 	if payment_pending <= 0:
@@ -72,10 +100,24 @@ func end_payment_phase() -> void:
 	
 	payment_active = false
 	payment_pending = 0
-	dissolve_dreams.clear()
-	hell.weather_button.switch_weather()
+	guild_dreams.clear()
 	hell.jail.data.plaza.update_associations()
 	Cycle.complete_phase()
+
+func begin_guild_dissolves(pending_: int) -> void:
+	guild_pending = pending_
+	
+	if guild_pending <= 0:
+		hell.jail.apply_sun_layout_all()
+
+func on_guild_dissolve_finished() -> void:
+	if guild_pending <= 0:
+		return
+	
+	guild_pending -= 1
+	
+	if guild_pending <= 0:
+		hell.jail.apply_sun_layout_all()
 
 func start_drain_tributes() -> void:
 	data.update_best_and_worst_tribute()
@@ -116,14 +158,19 @@ func end_development_phase() -> void:
 func abort_payment() -> void:
 	payment_active = false
 	payment_pending = 0
-	dissolve_dreams.clear()
+	payment_dreams.clear()
+
+func abort_guild() -> void:
+	guild_pending = 0
+	guild_dreams.clear()
 
 func reset() -> void:
 	development_closed = false
-	payment_active = false
-	payment_pending = 0
+	
+	abort_payment()
+	abort_guild()
+	
 	data.reset()
-	dissolve_dreams.clear()
 	drain_tributes.clear()
 	repletion_attitudes.clear()
 	data.refill_claims()
@@ -139,3 +186,15 @@ func get_progression(data_: ProgressionData) -> Progression:
 func apply_attitude_shifts() -> void:
 	for trial in trials:
 		trial.attitude.apply_shifts()
+
+func apply_attitude_privileges() -> void:
+	var duration: float = 0
+	if !data.privilege_attitudes.is_empty():
+		duration =  Gear.splashs[Gear.tempo]
+		
+		for trial in trials:
+			if data.privilege_attitudes.has(trial.attitude.data):
+				trial.attitude.apply_privilege()
+	
+		await get_tree().create_timer(duration).timeout
+	Cycle._finish_current()

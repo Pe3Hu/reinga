@@ -53,7 +53,6 @@ func apply_performances() -> void:
 	for spectacle in spectacles:
 		spectacle.active()
 	
-	pass
 	harvest()
 
 func harvest() -> void:

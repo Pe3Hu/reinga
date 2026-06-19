@@ -86,7 +86,7 @@ func on_screen():
 	update_sinner_datas()
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
-	#simulate_choice()
+	simulate_choice()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -102,10 +102,13 @@ func forget_catenas() -> void:
 		unblur_all()
 
 func simulate_choice() -> void:
-	await get_tree().create_timer(0.3).timeout
+	var duration = Gear.simulates[Gear.tempo] * 0.5
+	await get_tree().create_timer(duration).timeout
 	var catena = data.table.catenas.back()
-	catena.is_selected = true
-	select_button._on_pressed()
+	data.table._on_cage_gate_selected(catena.cages.front())
+	await get_tree().create_timer(duration).timeout
+	data.table._on_cage_gate_selected(catena.cages.back())
+	select_button._button_pressed()
 
 func apply_weather() -> void:
 	for cage in cages:

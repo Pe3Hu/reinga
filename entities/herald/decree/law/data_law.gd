@@ -69,7 +69,8 @@ func init_texts() -> void:
 
 func apply() -> void:
 	if fate != Bozo.Fate.NONE:
-		decree.herald.world.tribunal.add_sinner(fate)
+		pass
+		#decree.herald.world.tribunal.add_sinner(fate)
 	else:
 		var sanctuary_modifier = decree.herald.world.sanctuary.type_to_modifier[modifier]
 		sanctuary_modifier.value = new_value

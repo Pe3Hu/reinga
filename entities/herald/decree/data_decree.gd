@@ -11,6 +11,8 @@ var laws: Array[LawData]
 var rank_shift: int
 var header_text: String
 
+var is_skip: bool = true
+
 
 func _init(herald_: HeraldData, overlord_: OverlordData, blob_: Bozo.Blob) -> void:
 	herald = herald_

@@ -20,7 +20,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_rlesa")
-background = NodePath("MarginContainer/Background")
+background = NodePath("TooltipInteract/MarginContainer/Background")
 doom = NodePath("Doom")
 fear = NodePath("TraitFear")
 horror = NodePath("TraitHorror")
@@ -31,43 +31,50 @@ repose = NodePath("TraitRepose")
 layout_mode = 2
 target = NodePath("..")
 
-[node name="TraitFear" parent="." unique_id=1493565861 instance=ExtResource("1_xf3uh")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="TraitHorror" parent="." unique_id=1900910593 instance=ExtResource("1_xf3uh")]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-
-[node name="TraitGuilt" parent="." unique_id=147113289 instance=ExtResource("1_xf3uh")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="TraitRepose" parent="." unique_id=578949780 instance=ExtResource("1_xf3uh")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-
-[node name="Doom" parent="." unique_id=38386690 node_paths=PackedStringArray("soul") instance=ExtResource("4_p1p1s")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-soul = NodePath("..")
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=554196348]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="TooltipInteract" unique_id=554196348]
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 140.0
 theme_override_constants/margin_left = -4
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -4
 theme_override_constants/margin_bottom = -4
 
-[node name="Background" type="ColorRect" parent="MarginContainer" unique_id=2105037464]
+[node name="Background" type="ColorRect" parent="TooltipInteract/MarginContainer" unique_id=2105037464]
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=551246353]
+[node name="PanelContainer" type="PanelContainer" parent="TooltipInteract/MarginContainer" unique_id=551246353]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p1p1s")
+
+[node name="TraitFear" parent="." unique_id=1493565861 instance=ExtResource("1_xf3uh")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="TraitHorror" parent="." unique_id=1900910593 instance=ExtResource("1_xf3uh")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="TraitGuilt" parent="." unique_id=147113289 instance=ExtResource("1_xf3uh")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="TraitRepose" parent="." unique_id=578949780 instance=ExtResource("1_xf3uh")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Doom" parent="." unique_id=38386690 node_paths=PackedStringArray("soul") instance=ExtResource("4_p1p1s")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+soul = NodePath("..")

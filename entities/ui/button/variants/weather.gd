@@ -17,13 +17,11 @@ func _ready() -> void:
 	mouse_entered.connect(_button_enter)
 	mouse_exited.connect(_button_exit)
 	pressed.connect(_button_pressed)
-
+	
 	call_deferred("_init_pivot")
-
 
 func _init_pivot() -> void:
 	pivot_offset = size / 2.0
-
 
 func _button_enter() -> void:
 	create_tween().tween_property(self, "scale", hover_scale, 0.1)\
@@ -45,10 +43,11 @@ func _button_pressed() -> void:
 func switch_weather() -> void:
 	if !is_main_button(): return
 	Scope.switch_weather()
-	updaet_margin_offset()
 	apply_weather()
 
 func apply_weather() -> void:
+	updaet_margin_offset()
+	
 	match Scope.layer:
 		Bozo.Layer.HELL:
 			if hell:

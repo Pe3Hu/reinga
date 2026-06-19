@@ -86,14 +86,38 @@ func _check_mouse_position() -> void:
 	elif !is_inside and torture_frame.visible:
 		torture_frame.visible = false
 
-func apply_weather() -> void:
-	if Scope.weather == Bozo.Weather.MOON:
+func apply_cage_visibility() -> void:
+	match Scope.phase:
+		Bozo.Phase.INVESTMENT:
+			sinner.visible = false
+			cloak.visible = false
+		Bozo.Phase.PAYMENT:
+			apply_moon_layout(false)
+		Bozo.Phase.APPRAISEMENT:
+			apply_sun_layout()
+		_:
+			_apply_scope_weather()
+
+func apply_moon_layout(show_desires_: bool = true) -> void:
+	sinner.visible = false
+	cloak.visible = true
+	if show_desires_ and cloak.dream.data:
 		cloak.dream.show_desires()
+
+func apply_sun_layout() -> void:
+	sinner.visible = true
+	cloak.visible = false
+	if cloak.dream:
+		cloak.dream.reset_all_desire_tokens()
+
+func _apply_scope_weather() -> void:
+	if Scope.weather == Bozo.Weather.MOON:
+		apply_moon_layout()
 	else:
-		cloak.dream.reset_desires()
-	
-	sinner.visible = Scope.weather == Bozo.Weather.SUN
-	cloak.visible = Scope.weather == Bozo.Weather.MOON
+		apply_sun_layout()
+
+func apply_weather() -> void:
+	_apply_scope_weather()
 
 func show_background(flag_: bool) -> void:
 	active_background.visible = flag_

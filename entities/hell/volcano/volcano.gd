@@ -166,13 +166,16 @@ func add_splash() -> Splash:
 func return_splash(splash_: Splash):
 	splash_pool.append(splash_)
 
-func burst_splash(progression_: Progression, count_: int, sign_: int = 1) -> void:
-	var step = (Gear.desire_dissolves[Gear.tempo] - Gear.splashs[Gear.tempo]) / float(count_)
-
+func burst_splash(progression_: Progression, count_: int, sign_: int = 1) -> float:
+	var duration = Gear.splashs[Gear.tempo]#Gear.desire_dissolves[Gear.tempo] - Gear.splashs[Gear.tempo]
+	var step = duration / float(count_)
+	
 	for _i in range(count_):
 		await get_tree().create_timer(step).timeout
 		var splash = get_splash()
 		splash.reset(progression_, sign_)
+	
+	return duration
 
 func single_splash(progression_: Progression) -> void:
 	var splash = get_splash()

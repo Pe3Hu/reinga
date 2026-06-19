@@ -13,6 +13,7 @@ var type: Bozo.Attitude = Bozo.Attitude.INDIFFERENCE:
 		type = value_
 		emit_signal("type_changed")
 var ban_type: Bozo.Attitude
+var privilege_type: Bozo.Attitude
 
 
 #region init
