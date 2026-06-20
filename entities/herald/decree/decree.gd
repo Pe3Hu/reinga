@@ -32,6 +32,7 @@ func reset_laws() -> void:
 		law.visible = false
 
 func simulate_accept() -> void:
+	if true: return
 	if !data.is_skip: return
 	
 	var duration = Gear.simulates[Gear.tempo] * 0.25

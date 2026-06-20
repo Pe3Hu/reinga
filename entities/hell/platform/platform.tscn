@@ -79,7 +79,7 @@ patch_margin_left = 66
 patch_margin_top = 66
 patch_margin_right = 66
 patch_margin_bottom = 66
-type = 339
+type = 528
 
 [node name="FrameMargin" type="MarginContainer" parent="Frame" unique_id=1234764770]
 layout_mode = 1

@@ -13,9 +13,7 @@ var data: AttitudeData:
 @export var crown_icon: TextureRect
 @export var face_icon: TextureRect
 
-
 @export var bowls: Array[Bowl]
-
 
 
 func connect_datas() -> void:
@@ -111,34 +109,3 @@ func apply_privilege() -> void:
 	
 	await get_tree().create_timer(duration).timeout
 	trial.claim.data.apply_privilege()
-
-#func tween_apply_privilege(data.privilege_type: Bozo.Attitude) -> void:
-	#var flame_shifts: Array[int]
-	#var progression = data.trial.flame.progression
-	#var total_shift = 0
-	#var flame_shift = -progression.current_value
-	#flame_shifts.append(flame_shift)
-	#
-	#if data.privilege_type == Bozo.Attitude.SCORN:
-		#var previous_level = min(1, data.trial.flame.level - 1)
-		#flame_shift = -Catalog.flame_to_heat[previous_level]
-		#flame_shifts.append(flame_shift)
-	#
-	#for shift in flame_shifts:
-		#total_shift += abs(shift)
-	#
-	#var durations = []
-	#
-	#for shift in flame_shifts: 
-		#var duration = Gear.privileges[Gear.tempo] * abs(shift) / total_shift *5
-		#durations.append(duration)
-	#
-	#var tween = create_tween()
-	#tween.tween_property(progression, "current_value", 0, durations.front())
-	#await tween.finished
-	#data.trial.flame.level -= 1
-	##current_value = limit_value + current_value
-	#
-	#if durations.size() > 1:
-		#tween = create_tween()
-		#tween.tween_property(progression, "current_value", progression.limit_value + flame_shifts.back(), durations.back())

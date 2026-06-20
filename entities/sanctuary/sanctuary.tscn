@@ -24,8 +24,8 @@ shader_parameter/head_color = Color(1, 0.8, 0.8, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kw3pa"]
 
 [node name="Sanctuary" type="Control" unique_id=550126807 node_paths=PackedStringArray("miss", "crit", "megacrit", "ultracrit", "sin", "amber", "genius", "exile", "layman", "leader", "parent", "child", "ballet", "puppetry", "opera", "trust", "hope", "taxs")]
-clip_contents = true
 custom_minimum_size = Vector2(574, 458)
+clip_contents = true
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -101,7 +101,7 @@ patch_margin_left = 60
 patch_margin_top = 60
 patch_margin_right = 60
 patch_margin_bottom = 60
-type = 340
+type = 529
 
 [node name="Modifiers" type="PanelContainer" parent="PanelContainer" unique_id=1378584004]
 layout_mode = 2

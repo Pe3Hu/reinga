@@ -20,3 +20,4 @@ var association: Bozo.Association = Bozo.Association.NONE:
 func _init(type_: Bozo.Desire, value_: int = 1) -> void:
 	type = type_
 	value = value_
+	tooltip = Catalog.desire_to_tooltip[type]

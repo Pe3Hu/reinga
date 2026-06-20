@@ -10,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qs6pt"]
 shader = ExtResource("3_u7pk5")
-shader_parameter/effect_filling = 0.999999977648
+shader_parameter/effect_filling = 1.0
 shader_parameter/angle = 0.0
 shader_parameter/keep_saturation = 0.0
 shader_parameter/keep_luminance = 0.0

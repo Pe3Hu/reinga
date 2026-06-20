@@ -69,7 +69,7 @@ patch_margin_left = 12
 patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
-type = 337
+type = 527
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=1743495520]
 layout_mode = 2

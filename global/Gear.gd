@@ -16,7 +16,7 @@ const trail_intervals: Array[float] = [0.012, 0.012]
 const catena_mins: Array[float] = [0.4, 0.4]
 const catena_maxs: Array[float] = [0.8, 0.8]
 
-const transitions: Array[float] = [0.1, 1.5]
+const transitions: Array[float] = [0.2, 1.1]
 
 const desire_dissolves: Array[float] = [0.5, 1.2]
 const splashs: Array[float] = [0.4, 0.5]

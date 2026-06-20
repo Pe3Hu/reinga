@@ -4,6 +4,7 @@ extends Resource
 
 var decree: DecreeData
 var modifier: Bozo.Modifier
+var tooltip: Bozo.Tooltip = Bozo.Tooltip.VILLAIN
 
 var old_value: int
 var new_value: int
@@ -24,6 +25,7 @@ func _init(decree_: DecreeData, modifier_: Bozo.Modifier, fate_: Bozo.Fate = Boz
 	
 	init_values()
 	init_texts()
+	init_tooltips()
 
 func init_values() -> void:
 	if fate != Bozo.Fate.NONE: return
@@ -65,12 +67,17 @@ func init_texts() -> void:
 		
 		if modifier == Bozo.Modifier.TRUST:
 			fate_text = "[tornado radius=4 freq=1.6]%s" % fate_text
+
+func init_tooltips() -> void:
+	if fate:
+		tooltip = Catalog.fate_to_tooltip[fate]
+	else:
+		tooltip = Catalog.modifier_to_tooltip[modifier]
 #endregion
 
 func apply() -> void:
 	if fate != Bozo.Fate.NONE:
-		pass
-		#decree.herald.world.tribunal.add_sinner(fate)
+		decree.herald.world.tribunal.add_sinner(fate)
 	else:
 		var sanctuary_modifier = decree.herald.world.sanctuary.type_to_modifier[modifier]
 		sanctuary_modifier.value = new_value

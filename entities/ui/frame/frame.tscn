@@ -16,4 +16,3 @@ patch_margin_bottom = 34
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 script = ExtResource("2_2mlff")
-type = 332

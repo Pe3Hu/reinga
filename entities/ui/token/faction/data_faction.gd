@@ -9,6 +9,7 @@ var tooltip: Bozo.Tooltip = Bozo.Tooltip.FACTION
 var type: Bozo.Faction:
 	set(value_):
 		type = value_
+		tooltip = Catalog.faction_to_tooltip[type]
 		emit_signal("type_changed")
 
 var association: Bozo.Association:

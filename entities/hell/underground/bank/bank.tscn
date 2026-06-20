@@ -36,6 +36,7 @@ target = NodePath("../../..")
 [node name="Frame" parent="VBoxContainer/PanelContainer" unique_id=716478958 instance=ExtResource("2_bvxrg")]
 layout_mode = 2
 draw_center = false
+type = 524
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1704929901]
 layout_mode = 2

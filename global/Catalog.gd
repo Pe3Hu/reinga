@@ -185,8 +185,8 @@ const hope_fates = [
 ]
 
 const special_factions = [
-	Bozo.Faction.TRUST,
-	Bozo.Faction.HOPE
+	Bozo.Faction.COVENANT,
+	Bozo.Faction.LEGEND
 ]
 
 const enemy_fates = [
@@ -220,18 +220,26 @@ const faction_to_string = {
 	Bozo.Faction.NOBILITY: "nobility",
 	Bozo.Faction.ARTISAN: "artisan",
 	Bozo.Faction.RIFFRAFF: "riffraff",
-	Bozo.Faction.HOPE: "hope",
-	Bozo.Faction.TRUST: "trust",
+	Bozo.Faction.LEGEND: "legend",
+	Bozo.Faction.COVENANT: "covenant",
 	#Bozo.Faction.ALLY: "ally",
 	#Bozo.Faction.ENEMY: "enemy",
+}
+
+const faction_to_tooltip = {
+	Bozo.Faction.NOBILITY: Bozo.Tooltip.NOBILITY,
+	Bozo.Faction.ARTISAN: Bozo.Tooltip.ARTISAN,
+	Bozo.Faction.RIFFRAFF: Bozo.Tooltip.RIFFRAFF,
+	Bozo.Faction.LEGEND: Bozo.Tooltip.LEGEND,
+	Bozo.Faction.COVENANT: Bozo.Tooltip.COVENANT,
 }
 
 const faction_to_direction = {
 	Bozo.Faction.ARTISAN: 1,
 	Bozo.Faction.NOBILITY: 2,
 	Bozo.Faction.RIFFRAFF: 3,
-	Bozo.Faction.TRUST: 0,
-	Bozo.Faction.HOPE: 0,
+	Bozo.Faction.COVENANT: 0,
+	Bozo.Faction.LEGEND: 0,
 }
 
 const faction_to_fate = {
@@ -274,10 +282,10 @@ const fate_to_faction = {
 	Bozo.Fate.SHARPIE: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.DRUNKARD: Bozo.Faction.RIFFRAFF,
 	Bozo.Fate.COURTESAN: Bozo.Faction.RIFFRAFF,
-	Bozo.Fate.FRIEND: Bozo.Faction.TRUST,
-	Bozo.Fate.TRAITOR: Bozo.Faction.TRUST,
-	Bozo.Fate.HERO: Bozo.Faction.HOPE,
-	Bozo.Fate.VILLAIN: Bozo.Faction.HOPE,
+	Bozo.Fate.FRIEND: Bozo.Faction.COVENANT,
+	Bozo.Fate.TRAITOR: Bozo.Faction.COVENANT,
+	Bozo.Fate.HERO: Bozo.Faction.LEGEND,
+	Bozo.Fate.VILLAIN: Bozo.Faction.LEGEND,
 }
 
 const fate_to_string = {
@@ -356,8 +364,8 @@ const faction_to_color = {
 	Bozo.Faction.NOBILITY: Color.AQUA,
 	Bozo.Faction.ARTISAN: Color.LIME,#Color.OLIVE,
 	Bozo.Faction.RIFFRAFF: Color.CRIMSON,#Color.PURPLE,
-	Bozo.Faction.TRUST: Color.GRAY,
-	Bozo.Faction.HOPE: Color.GRAY,
+	Bozo.Faction.COVENANT: Color.GRAY,
+	Bozo.Faction.LEGEND: Color.GRAY,
 }
 
 const relationship_to_color = {
@@ -377,9 +385,17 @@ const fate_to_relationship = {
 	Bozo.Fate.VILLAIN: Bozo.Relationship.ENEMY,
 }
 
+const fate_to_tooltip = {
+	Bozo.Fate.FRIEND: Bozo.Tooltip.FRIEND,
+	Bozo.Fate.HERO: Bozo.Tooltip.HERO,
+	Bozo.Fate.TRAITOR: Bozo.Tooltip.TRAITOR,
+	Bozo.Fate.VILLAIN: Bozo.Tooltip.VILLAIN,
+}
+
+
 const faction_to_association = {
-	Bozo.Faction.HOPE: Bozo.Association.BROTHERHOOD,
-	Bozo.Faction.TRUST: Bozo.Association.GUILD
+	Bozo.Faction.LEGEND: Bozo.Association.BROTHERHOOD,
+	Bozo.Faction.COVENANT: Bozo.Association.GUILD
 }
 
 const association_to_string = {
@@ -489,14 +505,14 @@ const faction_to_trial = {
 		Bozo.Trial.AUCTION: 1,
 		Bozo.Trial.MASQUERADE: 1,
 	},
-	Bozo.Faction.TRUST: {
+	Bozo.Faction.COVENANT: {
 		Bozo.Trial.THEATER: 1,
 		Bozo.Trial.BATTLE: 1,
 		Bozo.Trial.FEAST: 1,
 		Bozo.Trial.AUCTION: 1,
 		Bozo.Trial.MASQUERADE: 1,
 	},
-	Bozo.Faction.HOPE: {
+	Bozo.Faction.LEGEND: {
 		Bozo.Trial.THEATER: 1,
 		Bozo.Trial.BATTLE: 1,
 		Bozo.Trial.FEAST: 1,
@@ -957,6 +973,14 @@ const desire_to_angle = {
 	Bozo.Desire.SCROLL: 180,
 }
 
+const desire_to_tooltip = {
+	Bozo.Desire.SWORD: Bozo.Tooltip.SWORD,
+	Bozo.Desire.COIN: Bozo.Tooltip.COIN,
+	Bozo.Desire.WINE: Bozo.Tooltip.WINE,
+	Bozo.Desire.MASK: Bozo.Tooltip.MASK,
+	Bozo.Desire.SCROLL: Bozo.Tooltip.SCROLL,
+}
+
 const desire_to_color = {
 	Bozo.Desire.SWORD: Color(0.812, 0.157, 0.157),
 	Bozo.Desire.COIN: Color(0.941, 0.859, 0.137),
@@ -1042,12 +1066,8 @@ const frame_to_string = {
 	Bozo.Frame.TRIAL: "trial",
 	Bozo.Frame.CAGE: "cage",
 	Bozo.Frame.HELL: "hell",
-	Bozo.Frame.JAIL: "jail",
 	Bozo.Frame.BANK: "bank",
-	Bozo.Frame.SHELTER: "shelter",
-	Bozo.Frame.TREASURY: "treasury",
 	Bozo.Frame.MARKET: "market",
-	Bozo.Frame.MODIFIER: "modifier",
 	Bozo.Frame.CONTRIBUTION: "contribution",
 	Bozo.Frame.DEAL: "deal",
 	Bozo.Frame.PLATFORM: "platform",
@@ -1062,7 +1082,6 @@ const frame_to_region = {
 	Bozo.Frame.CAGE: 84,
 	Bozo.Frame.HELL: 200,
 	Bozo.Frame.BANK: 72,
-	Bozo.Frame.SHELTER: 128,
 	Bozo.Frame.MARKET: 128,
 	Bozo.Frame.CONTRIBUTION: 36,
 	Bozo.Frame.DEAL: 36,
@@ -1078,7 +1097,6 @@ const frame_to_patch = {
 	Bozo.Frame.CAGE: 21,
 	Bozo.Frame.HELL: 68,
 	Bozo.Frame.BANK: 34,#not 44,
-	Bozo.Frame.SHELTER: 48,
 	Bozo.Frame.MARKET: 60,
 	Bozo.Frame.CONTRIBUTION: 12,
 	Bozo.Frame.DEAL: 12,
@@ -1667,6 +1685,9 @@ const string_to_tooltip = {
 	"judgment": Bozo.Tooltip.JUDGMENT,
 	"useful": Bozo.Tooltip.USEFUL,
 	"tax": Bozo.Tooltip.TAX,
+	"trial": Bozo.Tooltip.TRIAL,
+	"trust": Bozo.Tooltip.TRUST,
+	"hope": Bozo.Tooltip.HOPE,
 	
 	"miss (mod)": Bozo.Tooltip.MOD_MISS,
 	"crit (mod)": Bozo.Tooltip.MOD_CRIT,
@@ -1692,6 +1713,23 @@ const string_to_tooltip = {
 	"xalvorr": Bozo.Tooltip.XALVORR,
 	"sirexil": Bozo.Tooltip.SIREXIL,
 	"marvone": Bozo.Tooltip.MARVONE,
+	
+	"scroll": Bozo.Tooltip.SCROLL,
+	"sword": Bozo.Tooltip.SWORD,
+	"coin": Bozo.Tooltip.COIN,
+	"wine": Bozo.Tooltip.WINE,
+	"mask": Bozo.Tooltip.MASK,
+	
+	"artisan": Bozo.Tooltip.ARTISAN,
+	"riffraff": Bozo.Tooltip.RIFFRAFF,
+	"nobility": Bozo.Tooltip.NOBILITY,
+	"covenant": Bozo.Tooltip.COVENANT,
+	"legend": Bozo.Tooltip.LEGEND,
+	
+	"hero": Bozo.Tooltip.HERO,
+	"villain": Bozo.Tooltip.VILLAIN,
+	"friend": Bozo.Tooltip.FRIEND,
+	"traitor": Bozo.Tooltip.TRAITOR,
 	#"": Bozo.Tooltip.,
 }
 
@@ -1699,24 +1737,24 @@ var tooltip_to_template = {
 	Bozo.Tooltip.SIN: "[ghost][meta transient]Transient[/meta][/ghost] [meta essence]%s[/meta]",
 	Bozo.Tooltip.AMBER: "[ghost][meta permanent]Permanent[/meta][/ghost] [meta essence]%s[/meta], can complement [ghost][meta contribution]Contribution[/meta][/ghost]",
 	Bozo.Tooltip.ESSENCE: "Primal hell currency",
-	Bozo.Tooltip.MADNESS: "Makes the game more difficult",
+	Bozo.Tooltip.MADNESS: "Grants [ghost][meta omen]Omen[/meta][/ghost] at the expense of increase in [ghost][meta desire]Desire's[/meta][/ghost]",
 	Bozo.Tooltip.OBLIVION: "Sacrifices [ghost][meta sinner]Sinner[/meta][/ghost] to obtain [ghost][meta amber]Amber[/meta][/ghost]",
 	Bozo.Tooltip.TRIBUTE: "Changes %s [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.ATTITUIDE: "Shows relationship with %s",
 	Bozo.Tooltip.OVERLORD: "Uses [ghost][meta trial]Trial[/meta][/ghost] to collect [ghost][meta essence]Essence[/meta][/ghost]",
 	Bozo.Tooltip.TRIAL: "%s domain, formed from [ghost][meta claim]Claim[/meta][/ghost], [ghost][meta flame]Flame[/meta][/ghost] and [ghost][meta attitude]Attitude[/meta][/ghost]",
-	Bozo.Tooltip.FLAME: "Raises %s [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire[/meta][/ghost]",
+	Bozo.Tooltip.FLAME: "Raises %s [ghost][meta claim]Claim[/meta][/ghost] size, grows from [ghost][meta desire]Desire's[/meta][/ghost]",
 	Bozo.Tooltip.CLAIM: "%s [ghost][meta sin]Sin's[/meta][/ghost] requirements, for now",
 	Bozo.Tooltip.DESIRE: "Raises [ghost][meta flame]Flame[/meta][/ghost] when occupying [ghost][meta cage]Cage[/meta][/ghost], depends on [ghost][meta faction]Faction[/meta][/ghost]",
-	Bozo.Tooltip.FATE: "Forms [ghost][meta guild]Guild[/meta][/ghost], defines [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost]",
-	Bozo.Tooltip.SOUL: "Set of [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost], [ghost][meta oblivion]Oblivion[/meta][/ghost]",
-	Bozo.Tooltip.FACTION: "Forms [ghost][meta brotherhood]Brotherhood[/meta][/ghost], defines [ghost][meta desire]Desire[/meta][/ghost]",
+	Bozo.Tooltip.FATE: "Forms [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado], defines [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost]",
+	Bozo.Tooltip.SOUL: "Set of [ghost][meta sin]Sin's[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost], [ghost][meta oblivion]Oblivion[/meta][/ghost]",
+	Bozo.Tooltip.FACTION: "Forms [brotherhood][meta brotherhood]Brotherhood[/meta][/brotherhood], defines [ghost][meta desire]Desire[/meta][/ghost]",
 	Bozo.Tooltip.CAGE: "Contains [ghost][meta sinner]Sinner[/meta][/ghost] and [ghost][meta cloak]Cloak[/meta][/ghost]",
 	Bozo.Tooltip.SINNER: "Shows [ghost][meta fate]Fate[/meta][/ghost], [ghost][meta faction]Faction[/meta][/ghost] and [ghost][meta soul]Soul[/meta][/ghost] as frontside",
 	Bozo.Tooltip.CLOAK: "Shows [ghost][meta desire]Desires[/meta][/ghost] as backside",
 	Bozo.Tooltip.BANK: "Stores [ghost][meta amber]Amber[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost]",
 	Bozo.Tooltip.MARKET: "List of [ghost][meta deal]Deals[/meta][/ghost], wrapped at [ghost][meta eclipse]Eclipse[/meta][/ghost]",
-	Bozo.Tooltip.CONTRIBUTION: "Produces [ghost][meta sin]Sin[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost], depends on [ghost][meta torture]Torture[/meta][/ghost]",
+	Bozo.Tooltip.CONTRIBUTION: "Produces [ghost][meta sin]Sin's[/meta][/ghost], [ghost][meta madness]Madness[/meta][/ghost] and [ghost][meta oblivion]Oblivion[/meta][/ghost], depends on [ghost][meta torture]Torture[/meta][/ghost]",
 	Bozo.Tooltip.PLATFORM: "Chronicle of previous [ghost][meta torture]Tortures[/meta][/ghost], organizes [ghost][meta spectacle]Spectacles[/meta][/ghost]",
 	Bozo.Tooltip.SPECTACLE: "[ghost][meta trigger]Triggers[/meta][/ghost], if [ghost][meta catena]Chain[/meta][/ghost] is finished",
 	Bozo.Tooltip.OMEN: "%s, produces [ghost][meta sin]Sin[/meta][/ghost] when [ghost][meta trigger]Triggered[/meta][/ghost]",
@@ -1741,14 +1779,17 @@ var tooltip_to_template = {
 	Bozo.Tooltip.PERMANENT: "Will remain after [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.TRANSIENT: "Will disappear at [ghost][meta eclipse]Eclipse[/meta][/ghost]",
 	Bozo.Tooltip.ECLIPSE: "The end of the turn",
-	Bozo.Tooltip.GUILD: "Coalition of [ghost][meta sinner]Sinner[/meta][/ghost] based on [ghost][meta fate]Fate[/meta][/ghost]",
-	Bozo.Tooltip.BROTHERHOOD: "Coalition of [ghost][meta sinner]Sinner[/meta][/ghost] based on [ghost][meta faction]Faction[/meta][ghost]",
+	Bozo.Tooltip.GUILD: "Coalition of [ghost][meta sinner]Sinner[/meta][/ghost] based on [ghost][meta fate]Fate[/meta][/ghost], depends on [ghost][meta trust]Trust[/meta][/ghost]",
+	Bozo.Tooltip.BROTHERHOOD: "Coalition of [ghost][meta sinner]Sinner[/meta][/ghost] based on [ghost][meta faction]Faction[/meta][ghost], depends on [ghost][meta hope]Hope[/meta][/ghost]",
 	Bozo.Tooltip.FAMILY: "NE: [ghost][meta parent]Parent[/meta][/ghost]\nSE: [ghost][meta child]Child[/meta][/ghost]\nSW: [ghost][meta parent]Parent[/meta][/ghost]\nNW: [ghost][meta child]Child[/meta][/ghost]",
 	Bozo.Tooltip.DESTINY: "NE: [ghost][meta layman]Layman[/meta][/ghost]\nSE: [ghost][meta genius]Genius[/meta][/ghost]\nSW: [ghost][meta exile]Exile[/meta][/ghost]\nNW: [ghost][meta leader]Leader[/meta][/ghost]",
-	Bozo.Tooltip.JUDGMENT: "Amount of [ghost][meta useful]Useful[/meta][/ghost] [ghost][meta sin]Sin[/meta][/ghost] released upon [ghost][meta torture]Torture[/meta][/ghost]",
+	Bozo.Tooltip.JUDGMENT: "Amount of [ghost][meta useful]Useful[/meta][/ghost] [ghost][meta sin]Sin's[/meta][/ghost] released upon [ghost][meta torture]Torture[/meta][/ghost]",
 	Bozo.Tooltip.USEFUL: "Can be used for [ghost][meta tribute]Tribute[/meta][/ghost] or [ghost][meta deal]Deals[/meta][/ghost]",
-	Bozo.Tooltip.TAX: "Amount of [ghost][meta sin]Sins[/meta][/ghost] that will be added to [ghost][meta claim]Claim[/meta][/ghost] after [ghost][meta eclipse]Eclipse[/meta][/ghost], determined by [ghost][meta flame]Flame[/meta][/ghost]",
-	
+	Bozo.Tooltip.TAX: "Amount of [ghost][meta sin]Sin's[/meta][/ghost] that will be added to [ghost][meta claim]Claim[/meta][/ghost] after [ghost][meta eclipse]Eclipse[/meta][/ghost], determined by [ghost][meta flame]Flame[/meta][/ghost]",
+	Bozo.Tooltip.LUCK: "Parameter controlling multiplier for [ghost][meta essence]Essence[/meta][/ghost] received",
+	Bozo.Tooltip.HOPE: "Criterion for forming [brotherhood][meta brotherhood]Brotherhood[/meta][/brotherhood]",
+	Bozo.Tooltip.TRUST: "Criterion for forming [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado]",
+
 	Bozo.Tooltip.MOD_MISS: "Chance to get 0 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_CRIT: "Chance to get x2 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_MEGACRIT: "Chance to get x3 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
@@ -1759,20 +1800,37 @@ var tooltip_to_template = {
 	Bozo.Tooltip.MOD_EXILE: "Chance to occupy [ghost][meta cage]Cage[/meta][/ghost] surrounded by 2 [ghost][meta neighbor]Neighbors[/meta][/ghost]",
 	Bozo.Tooltip.MOD_CHILD: "Chance to have 1 [ghost][meta neighbor]Neighbor[/meta][/ghost] with same [ghost][meta fate]Fate[/meta][/ghost]",
 	Bozo.Tooltip.MOD_PARENT: "Chance to have 2 [ghost][meta neighbor]Neighbors[/meta][/ghost] with same [ghost][meta faction]Faction[/meta][/ghost]",
-	Bozo.Tooltip.MOD_HOPE: "Amount of same [ghost][meta faction]Factions[/meta][/ghost] required to form [ghost][meta brotherhood]Brotherhood[/meta][/ghost]",
-	Bozo.Tooltip.MOD_TRUST: "Amount of same [ghost][meta fate]Fates[/meta][/ghost] required to form [ghost][meta guild]Guild[/meta][/ghost]",
+	Bozo.Tooltip.MOD_HOPE: "Amount of same [ghost][meta faction]Factions[/meta][/ghost] required to form [brotherhood][meta brotherhood]Brotherhood[/meta][/brotherhood]",
+	Bozo.Tooltip.MOD_TRUST: "Amount of same [ghost][meta fate]Fates[/meta][/ghost] required to form [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado]",
 	Bozo.Tooltip.MOD_SIN: "Min and max amount of [ghost][meta sin]Sin[/meta][/ghost] required to conclude [ghost][meta deal]Deal[/meta][/ghost]",
 	Bozo.Tooltip.MOD_AMBER: "Min and max amount of [ghost][meta amber]Amber[/meta][/ghost] received upon conclusion of [ghost][meta deal]Deal[/meta][/ghost]",
 	Bozo.Tooltip.MOD_BALLET: "Amount of [ghost][meta amber]Indolence[/meta][/ghost] produces when [ghost][meta ballet]Ballet[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_PUPPETRY: "Amount of change of mind for better [ghost][meta attitude]Attitude[/meta][/ghost] when [ghost][meta puppetry]Puppetry[/meta][/ghost] is finished",
 	Bozo.Tooltip.MOD_OPERA: "Amount of heat extinguished from hottest [ghost][meta flame]Flame[/meta][/ghost] when [ghost][meta opera]Opera[/meta][/ghost] is finished",
 
-	Bozo.Tooltip.CALTHEX: "calthex",
-	Bozo.Tooltip.KHARZEN: "kharzen",
-	Bozo.Tooltip.VIRELLO: "virello",
-	Bozo.Tooltip.XALVORR: "xalvorr",
-	Bozo.Tooltip.SIREXIL: "sirexil",
-	Bozo.Tooltip.MARVONE: "marvone",
+	Bozo.Tooltip.CALTHEX: "Lord of shadows and deception, affects [ghost][meta spectacle]Spectacle[/meta][/ghost]",
+	Bozo.Tooltip.KHARZEN: "Lord of metal and despair, affects [ghost][meta trust]Trust[/meta][/ghost]",
+	Bozo.Tooltip.VIRELLO: "Lord of art and excitement, affects [ghost][meta deal]Deal[/meta][/ghost]",
+	Bozo.Tooltip.XALVORR: "Lord of void and disgust, affects [ghost][meta luck]Luck[/meta][/ghost]",
+	Bozo.Tooltip.SIREXIL: "Lord of reflections and shame, affects [ghost][meta hope]Hope[/meta][/ghost]",
+	Bozo.Tooltip.MARVONE: "Lord of silence and inaction, affects [ghost][meta oblivion]Oblivion[/meta][/ghost]",
+	
+	Bozo.Tooltip.SCROLL: "[ghost][meta desire]Desire[/meta][/ghost] born of %s",
+	Bozo.Tooltip.SWORD: "[ghost][meta desire]Desire[/meta][/ghost] born of %s",
+	Bozo.Tooltip.COIN: "[ghost][meta desire]Desire[/meta][/ghost] born of %s",
+	Bozo.Tooltip.WINE: "[ghost][meta desire]Desire[/meta][/ghost] born of %s",
+	Bozo.Tooltip.MASK: "[ghost][meta desire]Desire[/meta][/ghost] born of %s",
+	
+	Bozo.Tooltip.ARTISAN: "Neutral [ghost][meta faction]Faction[/meta][/ghost] than includes:\nActor\nBlacksmith\nCook\nMonger\nTailor",
+	Bozo.Tooltip.RIFFRAFF: "Neutral [ghost][meta faction]Faction[/meta][/ghost] than includes:\nCourtesan\nDrunkard\nExecutioner\nSharpie\nThief",
+	Bozo.Tooltip.NOBILITY: "Neutral [ghost][meta faction]Faction[/meta][/ghost] than includes:\nAdulterer\nCollector\nDuelist\nGourmet\nHeir",
+	Bozo.Tooltip.COVENANT: "[ghost][meta trust]Trust[/meta][/ghost] [ghost][meta faction]Faction[/meta][/ghost] than includes:\nFriend\nTraitor",
+	Bozo.Tooltip.LEGEND: "[ghost][meta hope]Hope[/meta] [ghost][meta faction]Faction[/meta][/ghost] than includes:\nHero\nVillain",
+	
+	Bozo.Tooltip.HERO: "Lowers [ghost][meta hope (mod)]Hope limit[/meta][/ghost] for everyone",
+	Bozo.Tooltip.VILLAIN: "Increases [ghost][meta hope (mod)]Hope limit[/meta][/ghost] for everyone",
+	Bozo.Tooltip.FRIEND: "Lowers [ghost][meta trust (mod)]Trust limit[/meta][/ghost] for [ghost][meta neighbor]Neighbors[/meta][/ghost]",
+	Bozo.Tooltip.TRAITOR: "Increases [ghost][meta trust (mod)]Trust limit[/meta][/ghost] for [ghost][meta neighbor]Neighbors[/meta][/ghost]",
 }
 
 var tooltip_to_string = {
@@ -1828,6 +1886,8 @@ var tooltip_to_string = {
 	Bozo.Tooltip.JUDGMENT: "judgment",
 	Bozo.Tooltip.USEFUL: "useful",
 	Bozo.Tooltip.TAX: "tax",
+	Bozo.Tooltip.TRUST: "trust",
+	Bozo.Tooltip.HOPE: "hope",
 	
 	Bozo.Tooltip.MOD_MISS: "miss (mod)",
 	Bozo.Tooltip.MOD_CRIT: "crit (mod)",
@@ -1853,6 +1913,23 @@ var tooltip_to_string = {
 	Bozo.Tooltip.XALVORR: "xalvorr",
 	Bozo.Tooltip.SIREXIL: "sirexil",
 	Bozo.Tooltip.MARVONE: "marvone",
+	
+	Bozo.Tooltip.SCROLL: "scroll",
+	Bozo.Tooltip.SWORD: "sword",
+	Bozo.Tooltip.COIN: "coin",
+	Bozo.Tooltip.WINE: "wine",
+	Bozo.Tooltip.MASK: "mask",
+	
+	Bozo.Tooltip.ARTISAN: "artisan",
+	Bozo.Tooltip.RIFFRAFF: "riffraff",
+	Bozo.Tooltip.NOBILITY: "nobility",
+	Bozo.Tooltip.COVENANT: "covenant",
+	Bozo.Tooltip.LEGEND: "legend",
+	
+	Bozo.Tooltip.HERO: "hero",
+	Bozo.Tooltip.VILLAIN: "villain",
+	Bozo.Tooltip.FRIEND: "friend",
+	Bozo.Tooltip.TRAITOR: "traitor",
 }
 
 const tooltip_to_suffix = {

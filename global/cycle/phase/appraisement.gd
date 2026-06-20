@@ -17,9 +17,3 @@ func enter() -> void:
 	Cycle.hell.jail.dissolve_guilds()
 	Cycle.hell.volcano.flow_plaza_update()
 	Cycle.hell.simulate_choice()
-
-#func enter() -> void:
-	#var Cycle.hell := Cycle.Cycle.hell
-	#Cycle.hell.treasury.appraisement_preparation()
-	#Cycle.hell.jail.dissolve_guilds()
-	#Cycle.hell.volcano.flow_plaza_update()

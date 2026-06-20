@@ -44,10 +44,6 @@ func init_desires() -> void:
 	var secondary_data = DesireData.new(secondary_desire)
 	desires.append(secondary_data)
 	
-	if Catalog.special_fates.has(sinner.fate.type):
-		primary_data.value = 0
-		secondary_data.value = 0
-	
 	for desire in desires:
 		desire.dream = self
 		

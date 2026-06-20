@@ -51,7 +51,7 @@ patch_margin_left = 62
 patch_margin_top = 62
 patch_margin_right = 62
 patch_margin_bottom = 62
-type = 342
+type = 531
 
 [node name="Laws" type="VBoxContainer" parent="." unique_id=1690044891]
 unique_name_in_owner = true

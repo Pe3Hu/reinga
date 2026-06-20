@@ -186,6 +186,17 @@ func build_tooltip_data(target: Control) -> TooltipData:
 			descritipion = apply_overlord(target.data.trial.overlord.type, descritipion)
 		Bozo.Tooltip.TRIAL:
 			descritipion = apply_overlord(target.data.overlord.type, descritipion)
+		Bozo.Tooltip.SCROLL:
+			descritipion = apply_desire(target.data.type, descritipion)
+		Bozo.Tooltip.COIN:
+			descritipion = apply_desire(target.data.type, descritipion)
+		Bozo.Tooltip.SWORD:
+			descritipion = apply_desire(target.data.type, descritipion)
+		Bozo.Tooltip.WINE:
+			descritipion = apply_desire(target.data.type, descritipion)
+		Bozo.Tooltip.MASK:
+			descritipion = apply_desire(target.data.type, descritipion)
+	
 	
 	data.descritipion = descritipion
 	return data
@@ -195,4 +206,9 @@ func get_template(type_: Bozo.Tooltip) -> String:
 
 func apply_overlord(overlord_: Bozo.Overlord, descritipion_: String) -> String:
 	var text_with_color = Helper.get_colored_overlord(overlord_)
+	return descritipion_ % text_with_color
+
+func apply_desire(desire_: Bozo.Desire, descritipion_: String) -> String:
+	var trial_type = Catalog.desire_to_trial[desire_]
+	var text_with_color = Helper.get_colored_trial(trial_type)
 	return descritipion_ % text_with_color

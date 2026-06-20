@@ -123,8 +123,7 @@ func _get_meta_tooltip(meta) -> TooltipData:
 		Bozo.Tooltip.FLAME:
 			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
 		Bozo.Tooltip.TRIAL:
-				descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
-		
+			descritipion = descritipion.replace("%s", "[ghost][meta overlord]Overlord[/meta][/ghost]")
 	
 	child_tooltip.descritipion = descritipion
 	return child_tooltip
@@ -198,6 +197,16 @@ func update_size_to_fit_text():
 	if data.type == Bozo.Tooltip.FAMILY or data.type == Bozo.Tooltip.DESTINY:
 		size.y += text_size.y * 3 
 		descritipion_label.custom_minimum_size.y += text_size.y * 3
+	
+	if data.type == Bozo.Tooltip.LEGEND or data.type == Bozo.Tooltip.COVENANT:
+		size.x = 200
+		size.y += text_size.y * 2 
+		descritipion_label.custom_minimum_size.y += text_size.y * 2
+	
+	if data.type == Bozo.Tooltip.ARTISAN or data.type == Bozo.Tooltip.NOBILITY or data.type == Bozo.Tooltip.RIFFRAFF:
+		size.x = 200
+		size.y += text_size.y * 5 
+		descritipion_label.custom_minimum_size.y += text_size.y * 5
 	
 	# Высоту можно получить через get_content_height()
 	#size.y = label.get_content_height()

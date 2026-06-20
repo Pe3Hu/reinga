@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://k45djv3sp1cg" path="res://entities/ui/button/images/tooltip normal.png" id="4_3u3o7"]
 [ext_resource type="Texture2D" uid="uid://dgjcas8dbnytt" path="res://entities/ui/button/images/tooltip hover.png" id="5_2onvb"]
 [ext_resource type="Script" uid="uid://doqov1em3juqo" path="res://entities/ui/label/overlord.gd" id="6_1wfmq"]
+[ext_resource type="Script" uid="uid://o1kap46nm431" path="res://entities/ui/label/brotherhood.gd" id="7_rssou"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f81pm"]
 bg_color = Color(0.16, 0.16, 0.16, 0.8980392)
@@ -24,14 +25,22 @@ metadata/_custom_type_script = "uid://roq4lan4ctto"
 script = ExtResource("6_1wfmq")
 metadata/_custom_type_script = "uid://doqov1em3juqo"
 
+[sub_resource type="RichTextEffect" id="RichTextEffect_1wfmq"]
+script = ExtResource("7_rssou")
+metadata/_custom_type_script = "uid://o1kap46nm431"
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_wnfyf"]
 color = Color(1, 1, 1, 1)
 grow_begin = 2.0
 grow_end = 2.0
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_1wfmq"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_ton0q"]
 script = ExtResource("6_1wfmq")
 metadata/_custom_type_script = "uid://doqov1em3juqo"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3qeyk"]
+script = ExtResource("7_rssou")
+metadata/_custom_type_script = "uid://o1kap46nm431"
 
 [node name="Tooltip" type="PanelContainer" unique_id=141108707 node_paths=PackedStringArray("header_label", "descritipion_label", "close_button")]
 theme_override_styles/panel = SubResource("StyleBoxFlat_f81pm")
@@ -48,7 +57,7 @@ patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
 patch_margin_bottom = 6
-type = 299
+type = 520
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1985010751]
 custom_minimum_size = Vector2(80, 0)
@@ -77,7 +86,7 @@ text = "Test
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7"), SubResource("RichTextEffect_rssou")]
+custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7"), SubResource("RichTextEffect_rssou"), SubResource("RichTextEffect_1wfmq")]
 meta_underlined = false
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/Labels" unique_id=1381856893]
@@ -99,7 +108,7 @@ text = "test long text
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
-custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7"), SubResource("RichTextEffect_1wfmq")]
+custom_effects = [SubResource("RichTextEffect_a3sp5"), SubResource("RichTextEffect_3u3o7"), SubResource("RichTextEffect_ton0q"), SubResource("RichTextEffect_3qeyk")]
 meta_underlined = false
 
 [node name="CloseButton" type="TextureButton" parent="MarginContainer" unique_id=929539297]

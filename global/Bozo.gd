@@ -55,8 +55,8 @@ enum Faction {
 	NOBILITY = 14,
 	ARTISAN = 15,
 	RIFFRAFF = 16,
-	TRUST = 217,#ALLY = 217,
-	HOPE = 218,#ENEMY = 218,
+	COVENANT = 217,#ALLY = 217,#TRUST
+	LEGEND = 218,#ENEMY = 218,#HOPE
 }
 
 enum Gyre {
@@ -165,7 +165,7 @@ enum Desire {
 	COIN = 101,
 	WINE = 102,
 	MASK = 103,
-	SCROLL = 104
+	SCROLL = 104,
 }
 
 enum Progression {
@@ -371,6 +371,9 @@ enum Tooltip {
 	TAX =  332,
 	SACRIFICE = 333,
 	EXHIBIT = 334,
+	LUCK = 335,
+	HOPE = 336,
+	TRUST = 337,
 	
 	MOD_BATTLE = -9,
 	MOD_AUCTION = -10,
@@ -401,28 +404,23 @@ enum Tooltip {
 	XALVORR = 503,
 	SIREXIL = 504,
 	MARVONE = 505,
-}
-
-enum Frame {
-	NONE = 0,
-	TOOLTIP = 299,
-	TRIAL = 301,
-	CAGE = 312,
-	SINNER = 313,
-	CLOAK = 314,
-	HELL = 330,
-	JAIL = 331,
-	BANK = 332,
-	SHELTER = 333,
-	TREASURY = 334,
-	MARKET = 335,
-	MODIFIER = 336,
-	CONTRIBUTION = 337,
-	DEAL = 338,
-	PLATFORM = 339,
-	SANCTUARY = 340,
-	TORTURE = 341,
-	HERALD = 342
+	
+	SWORD = 100,
+	COIN = 101,
+	WINE = 102,
+	MASK = 103,
+	SCROLL = 104,
+	
+	NOBILITY = 14,
+	ARTISAN = 15,
+	RIFFRAFF = 16,
+	COVENANT = 217,
+	LEGEND = 218,#
+	
+	FRIEND = 145,
+	TRAITOR = 146,
+	HERO = 147,
+	VILLAIN = 148,
 }
 
 enum Overlord {
@@ -441,4 +439,20 @@ enum Interrupt {
 	HERALD_DECREE = 511,     # DEVELOPMENT → есть decrees
 	ABYSS_SACRIFICE = 512,   # будущее
 	MUSEUM_REALIZE = 513,    # будущее
+}
+
+enum Frame {
+	NONE = 0,
+	TOOLTIP = 520,
+	TRIAL = 521,
+	CAGE = 522,
+	HELL = 523,
+	BANK = 524,
+	MARKET = 525,
+	DEAL = 526,
+	CONTRIBUTION = 527,
+	PLATFORM = 528,
+	SANCTUARY = 529,
+	TORTURE = 530,
+	HERALD = 531,
 }

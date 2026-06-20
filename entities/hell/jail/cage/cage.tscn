@@ -48,7 +48,8 @@ visible = false
 material = SubResource("ShaderMaterial_ubheq")
 layout_mode = 2
 
-[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("2_hlo7k")]
+[node name="CageFrame" parent="." unique_id=716478958 instance=ExtResource("2_hlo7k")]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("3_vmsct")
 region_rect = Rect2(0, 0, 84, 84)
@@ -56,7 +57,7 @@ patch_margin_left = 21
 patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
-type = 312
+type = 522
 
 [node name="TortureFrame" parent="." unique_id=1387167416 instance=ExtResource("2_hlo7k")]
 unique_name_in_owner = true
@@ -69,7 +70,7 @@ patch_margin_left = 21
 patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
-type = 341
+type = 530
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=754715822]
 layout_mode = 2

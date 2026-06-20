@@ -46,10 +46,9 @@ func _init(sinner_: SinnerData, type_: Bozo.Fate) -> void:
 func apply_special() -> void:
 	if !Catalog.special_fates.has(type): return
 	relationship = Catalog.fate_to_relationship[type]
-	
-	match faction.type:
-		Bozo.Faction.TRUST:
-			association = Catalog.faction_to_association[faction.type]
-		Bozo.Faction.HOPE:
-			faction.association = Catalog.faction_to_association[faction.type]
+	#match faction.type:
+		#Bozo.Faction.TRUST:
+			#association = Catalog.faction_to_association[faction.type]
+		#Bozo.Faction.HOPE:
+			#faction.association = Catalog.faction_to_association[faction.type]
 #endregion

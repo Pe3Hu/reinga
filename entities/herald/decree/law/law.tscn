@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="1_40wr4"]
 [ext_resource type="Script" uid="uid://kfbyw66sed8x" path="res://entities/herald/decree/law/law.gd" id="1_g2rqh"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_7fcdd"]
 [ext_resource type="Texture2D" uid="uid://bctp3bam0o4sm" path="res://entities/sanctuary/modifier/images/ultracrit.png" id="2_coeog"]
 [ext_resource type="Texture2D" uid="uid://bxe18creswl1" path="res://entities/ui/token/faction/images/hope.png" id="3_d7vwt"]
 [ext_resource type="Texture2D" uid="uid://byf4vvt7pcyq6" path="res://entities/herald/decree/law/images/law plus.png" id="5_d7vwt"]
@@ -53,6 +54,10 @@ offset_right = 160.0
 offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jpuff")
 script = ExtResource("1_g2rqh")
+
+[node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_7fcdd")]
+layout_mode = 2
+target = NodePath("..")
 
 [node name="Modifier" type="HBoxContainer" parent="." unique_id=1123844328]
 unique_name_in_owner = true

@@ -88,6 +88,14 @@ func get_colored_overlord(type_: Bozo.Overlord) -> String:
 	var result = "[meta %s][overlord hue=%s]%s[/overlord][/meta]" % [overlord_text, hue, overlord_text.capitalize()]
 	return result
 
+func get_colored_trial(type_: Bozo.Trial) -> String:
+	var trial_text = Catalog.trial_to_string[type_]
+	var overlord_type = Catalog.trial_to_overlord[type_]
+	var hue = Catalog.overlord_to_hue[overlord_type]
+	#var overlord_text = Catalog.overlord_to_string[type_]
+	var result = "[meta trial][overlord hue=%s]%s[/overlord][/meta]" % [hue, trial_text.capitalize()]
+	return result
+
 
 func update_colors(node_, overlord_: Bozo.Overlord) -> void:
 	var hue = Catalog.overlord_to_hue[overlord_]
