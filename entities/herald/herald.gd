@@ -23,12 +23,10 @@ func _on_decree_release() -> void:
 
 func off_screen() -> void:
 	visible = false
-	#Scope.next_phase()
 
 func on_screen():
 	visible = true
 	data.release_last_decree()
-
 
 func update_background() -> void:
 	var hue = Catalog.overlord_to_hue[decree.data.overlord.type]

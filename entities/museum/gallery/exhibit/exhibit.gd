@@ -5,10 +5,11 @@ extends Control
 var data: ExhibitData:
 	set(value_):
 		data = value_
+		
 		connect_datas()
 		connect_signals()
 
-var museum: Museum
+var gallery: Gallery
 
 var cage: Cage:
 	set(value_):
@@ -34,8 +35,7 @@ func connect_signals() -> void:
 	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
 		data.is_selected_changed.connect(_on_is_selected_changed)
 		data.is_updated.connect(_on_is_updated)
-		#data.z_index_changed.connect(_on_z_index_changed)
-
+		
 		reset_margin()
 
 func reset_margin() -> void:
@@ -50,19 +50,18 @@ func _on_is_selected_changed() -> void:
 	%Domain.visible = data.is_selected
 	
 	if data.is_selected:
-		museum.hide_all_exhibits()
+		gallery.hide_all_exhibits()
 		visible = data.is_selected
 		cage.sinner.visible = data.is_selected
 		
-		if data.is_selected:
-			cage.show_background(data.is_selected)
-			Helper.update_colors(cage.active_background, get_overloard())
+		#if data.is_selected:
+		cage.show_background(data.is_selected)
+		Helper.update_colors(cage.active_background, get_overloard())
 	
-	museum.realize_button.update_visible()
+	gallery.realize_button.update_visible()
 
 func _on_is_updated() -> void:
 	connect_datas()
-
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -89,4 +88,4 @@ func _check_mouse_position() -> void:
 func _on_pressed() -> void:
 	torture_frame.visible = false
 	TooltipManager.clear()
-	museum.data._on_exhibit_selected(data)
+	gallery.data._on_exhibit_selected(data)

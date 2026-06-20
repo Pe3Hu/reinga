@@ -7,7 +7,7 @@ extends TextureButton
 @export var hell: Hell
 @export var gate: Gate
 @export var abyss: Abyss
-@export var museum: Museum
+@export var gallery: Gallery
 
 var released_flag: bool = false
 
@@ -42,6 +42,8 @@ func _button_pressed() -> void:
 
 func switch_weather() -> void:
 	if !is_main_button(): return
+	if gallery != null:
+		pass
 	Scope.switch_weather()
 	apply_weather()
 
@@ -59,8 +61,8 @@ func apply_weather() -> void:
 			if abyss:
 				abyss.apply_weather()
 		Bozo.Layer.MUSEUM:
-			if museum:
-				museum.apply_weather()
+			if gallery:
+				gallery.apply_weather()
 
 func updaet_margin_offset() -> void:
 	match Scope.weather:
@@ -80,7 +82,6 @@ func set_as_moon() -> void:
 	parent.add_theme_constant_override("margin_left", -78)
 	parent.add_theme_constant_override("margin_top", -78)
 	texture_normal = load("res://entities/ui/button/variants/images/weather moon.png")
-
 
 func _input(event: InputEvent) -> void:
 	if !is_main_button(): return
@@ -103,5 +104,5 @@ func is_main_button() -> bool:
 		Bozo.Layer.ABYSS:
 			return abyss != null
 		Bozo.Layer.MUSEUM:
-			return museum != null
+			return gallery != null
 	return false

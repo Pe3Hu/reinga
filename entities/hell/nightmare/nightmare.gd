@@ -148,12 +148,19 @@ func end_development_phase() -> void:
 	
 	development_closed = true
 	
-	if hell.world.herald.data.decrees.is_empty():
+	#if hell.world.herald.data.decrees.is_empty():
+		#Cycle.complete_phase()
+	#else:
+		##Cycle.complete_phase()
+		#Cycle.suspend(Bozo.Interrupt.HERALD_DECREE)
+		#hell.world.transition.data.next_layer = Bozo.Layer.HERALD
+		
+	if hell.world.museum.data.gallerys.is_empty():
 		Cycle.complete_phase()
 	else:
 		#Cycle.complete_phase()
-		Cycle.suspend(Bozo.Interrupt.HERALD_DECREE)
-		hell.world.transition.data.next_layer = Bozo.Layer.HERALD
+		Cycle.suspend(Bozo.Interrupt.MUSEUM_REALIZE)
+		hell.world.transition.data.next_layer = Bozo.Layer.MUSEUM
 
 func abort_payment() -> void:
 	payment_active = false
@@ -197,4 +204,5 @@ func apply_attitude_privileges() -> void:
 				trial.attitude.apply_privilege()
 	
 		await get_tree().create_timer(duration).timeout
+	
 	Cycle._finish_current()

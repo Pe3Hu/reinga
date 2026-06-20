@@ -8,11 +8,12 @@ extends PanelContainer
 
 
 func _ready() -> void:
-	%Slow.status = Bozo.Status.ON
+	apply_gear_tempo()
+
+func apply_gear_tempo() -> void:
+	buttons[Gear.tempo].status = Bozo.Status.ON
 
 func off_buttons(button_: TempoButton) -> void:
 	for button in buttons:
 		if button != button_:
 			button.status = Bozo.Status.OFF
-		
-			pass

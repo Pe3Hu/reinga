@@ -5,7 +5,7 @@ extends TypeData
 signal is_updated
 signal is_selected_changed
 
-var museum: MuseumData
+var gallery: GalleryData
 var cage: CageData
 var sinner: SinnerData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.SACRIFICE
@@ -20,15 +20,15 @@ var is_selected: bool = false:
 			is_selected = value_
 			
 			if is_selected:
-				museum.active_exhibits.append(self)
+				gallery.active_exhibits.append(self)
 			else:
-				museum.active_exhibits.erase(self)
+				gallery.active_exhibits.erase(self)
 			
 			emit_signal("is_selected_changed")
 
 
-func _init(museum_: MuseumData, cage_: CageData, sinner_: SinnerData, windrose_: Bozo.Windrose) -> void:
-	museum = museum_
+func _init(gallery_: GalleryData, cage_: CageData, sinner_: SinnerData, windrose_: Bozo.Windrose) -> void:
+	gallery = gallery_
 	cage = cage_
 	sinner = sinner_
 	windrose = windrose_
@@ -40,10 +40,10 @@ func _init(museum_: MuseumData, cage_: CageData, sinner_: SinnerData, windrose_:
 func roll_omen() -> void:
 	var omen_subtype: Variant
 	
-	if !museum.omen_options.is_empty():
-		omen_subtype = museum.omen_options.pop_back()
+	if !gallery.omen_options.is_empty():
+		omen_subtype = gallery.omen_options.pop_back()
 	else:
-		omen_subtype = Catalog.museum_omens.pick_random()
+		omen_subtype = Catalog.gallery_omens.pick_random()
 	
 	var omen_type = Catalog.subtype_to_omen[omen_subtype]
 	omen = OmenData.new(omen_type)
@@ -51,8 +51,8 @@ func roll_omen() -> void:
 	
 	var sin_type: Bozo.Sin
 	
-	if !museum.sin_options.is_empty():
-		sin_type = museum.sin_options.pop_back()
+	if !gallery.sin_options.is_empty():
+		sin_type = gallery.sin_options.pop_back()
 	else:
 		sin_type = Catalog.sins.pick_random()
 	
@@ -69,8 +69,8 @@ func roll_desire() -> void:
 	
 	desire = DesireData.new(desire_type)
 
-func update_is_selected() -> void:
-	is_selected = true
+#func update_is_selected() -> void:
+	#is_selected = true
 
 func fuse_with_sinner() -> void:
 	sinner.dream.fuse_desire(desire)

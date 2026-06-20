@@ -1985,6 +1985,13 @@ const museum_omens = [
 #region gear
 const tempo_to_string = {
 	Bozo.Tempo.FAST: "fast",
-	Bozo.Tempo.SLOW: "slow"
+	Bozo.Tempo.SLOW: "slow",
 }
+
+const tempo_to_int = {
+	Bozo.Tempo.FAST: 0,
+	Bozo.Tempo.SLOW: 1,
+}
+
+
 #endregion

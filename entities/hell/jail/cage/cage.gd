@@ -11,7 +11,7 @@ var data: CageData:
 var jail: Jail
 var gate: Gate
 var abyss: Abyss
-var museum: Museum
+@export var gallery: Gallery
 var contribution: Contribution
 
 @export var active_background: ColorRect
@@ -52,7 +52,7 @@ func _can_select() -> bool:
 	return false
 
 func _on_pressed() -> void:
-	if museum != null: return
+	if gallery != null: return
 	
 	if jail:
 		jail.hell.eye_button.hide_sanctuary()
@@ -76,7 +76,7 @@ func _on_pressed() -> void:
 
 func _check_mouse_position() -> void:
 	if active_background.visible: return
-	if museum != null: return
+	if gallery != null: return
 	var local_mouse_pos := get_local_mouse_position()
 	var is_inside := Rect2(Vector2.ZERO, size).has_point(local_mouse_pos)
 	if is_inside == torture_frame.visible: return
@@ -101,14 +101,21 @@ func apply_cage_visibility() -> void:
 func apply_moon_layout(show_desires_: bool = true) -> void:
 	sinner.visible = false
 	cloak.visible = true
+	
 	if show_desires_ and cloak.dream.data:
 		cloak.dream.show_desires()
 
 func apply_sun_layout() -> void:
+	if gallery != null:
+		pass
 	sinner.visible = true
 	cloak.visible = false
+	
 	if cloak.dream:
-		cloak.dream.reset_all_desire_tokens()
+			cloak.dream.reset_all_desire_tokens()
+	
+	if gallery != null:
+		pass
 
 func _apply_scope_weather() -> void:
 	if Scope.weather == Bozo.Weather.MOON:

@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func _button_pressed() -> void:
 	status = Bozo.Status.ON
+	Gear.tempo = Catalog.tempo_to_int[type]
 
 func switch_status() -> void:
 	status = Catalog.status_to_next[status]

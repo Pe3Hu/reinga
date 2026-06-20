@@ -70,7 +70,11 @@ func resume(interrupt_: Bozo.Interrupt) -> void:
 		Bozo.Interrupt.ABYSS_SACRIFICE:
 			push_warning("HellCycle resume ABYSS_SACRIFICE is not implemented")
 		Bozo.Interrupt.MUSEUM_REALIZE:
-			push_warning("HellCycle resume MUSEUM_REALIZE is not implemented")
+			if Scope.phase != Bozo.Phase.DEVELOPMENT:
+				push_warning("HellCycle resume MUSEUM_REALIZE at phase %s" % Catalog.phase_to_string[Scope.phase])
+			#push_warning("HellCycle resume MUSEUM_REALIZE is not implemented")
+			_advance()
+			_enter_current()
 		_:
 			push_warning("HellCycle resume unknown interrupt %s" % interrupt_)
 

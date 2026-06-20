@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qj07t")
 script = ExtResource("1_kg5iq")
-buttons = [NodePath("Buttons/Slow"), NodePath("Buttons/Fast")]
+buttons = [NodePath("Buttons/Fast"), NodePath("Buttons/Slow")]
 
 [node name="Buttons" type="HBoxContainer" parent="." unique_id=1124139551]
 layout_mode = 2
@@ -33,12 +33,10 @@ alignment = 1
 [node name="Slow" parent="Buttons" unique_id=1467335075 node_paths=PackedStringArray("gear") instance=ExtResource("2_qj07t")]
 unique_name_in_owner = true
 layout_mode = 2
-disabled = true
 texture_normal = ExtResource("3_xnup8")
 texture_disabled = ExtResource("4_s5or0")
 gear = NodePath("../..")
 type = 219
-status = 124
 
 [node name="Fast" parent="Buttons" unique_id=671915696 node_paths=PackedStringArray("gear") instance=ExtResource("2_qj07t")]
 unique_name_in_owner = true

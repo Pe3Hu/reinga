@@ -2,12 +2,8 @@
 
 [ext_resource type="Script" uid="uid://0ixjckx1w81y" path="res://entities/museum/museum.gd" id="1_cfji4"]
 [ext_resource type="Shader" uid="uid://dseuxqgyk7nux" path="res://entities/museum/shaders/museum background.gdshader" id="2_50dyn"]
-[ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_ldxvg"]
 [ext_resource type="Shader" uid="uid://dxu47ni1qwdeb" path="res://entities/museum/shaders/museum flame.gdshader" id="3_7dwi8"]
-[ext_resource type="PackedScene" uid="uid://kbrwsjgxtiny" path="res://entities/museum/exhibit/exhibit.tscn" id="3_vx6pv"]
-[ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="4_c3cs4"]
-[ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/gate/shader/gate blur.gdshader" id="5_ldxvg"]
-[ext_resource type="PackedScene" uid="uid://c7sjb2v115om3" path="res://entities/ui/button/variants/realize button.tscn" id="6_vx6pv"]
+[ext_resource type="PackedScene" uid="uid://ct2mf7m60yhce" path="res://entities/museum/gallery/gallery.tscn" id="6_c3cs4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aqjcu"]
 shader = ExtResource("2_50dyn")
@@ -38,18 +34,7 @@ shader_parameter/vignette_radius = 0.25
 shader_parameter/vignette_falloff = 0.25
 shader_parameter/noise_influence = 1.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5ukn"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1r5fc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hwiff"]
-shader = ExtResource("5_ldxvg")
-shader_parameter/selected_row = 0
-shader_parameter/selected_col = 0
-shader_parameter/blur_strength = 0.8
-shader_parameter/blur_amount = 1.0
-
-[node name="Museum" type="Control" unique_id=781677221 node_paths=PackedStringArray("realize_button", "weather_button")]
+[node name="Museum" type="Control" unique_id=781677221 node_paths=PackedStringArray("gallery")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,10 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cfji4")
-cage_scene = ExtResource("2_ldxvg")
-exhibit_scene = ExtResource("3_vx6pv")
-realize_button = NodePath("PanelContainer/VBox/ButtonMargin/RealizeButton")
-weather_button = NodePath("PanelContainer/VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
+gallery = NodePath("Gallery")
 
 [node name="Background" type="ColorRect" parent="." unique_id=676898276]
 unique_name_in_owner = true
@@ -82,96 +64,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=575360870]
-custom_minimum_size = Vector2(650, 561)
+[node name="Gallery" parent="." unique_id=1965271667 node_paths=PackedStringArray("museum") instance=ExtResource("6_c3cs4")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -56.0
-offset_right = 200.0
-offset_bottom = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_s5ukn")
-
-[node name="VBox" type="VBoxContainer" parent="PanelContainer" unique_id=1730783382]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 100
-alignment = 1
-
-[node name="HeaderMargin" type="MarginContainer" parent="PanelContainer/VBox" unique_id=2020236071]
-custom_minimum_size = Vector2(400, 80)
-layout_mode = 2
-
-[node name="Header" type="RichTextLabel" parent="PanelContainer/VBox/HeaderMargin" unique_id=458192635]
-z_index = 5
-custom_minimum_size = Vector2(400, 80)
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/normal_font_size = 64
-text = "Forge Omen"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel" type="PanelContainer" parent="PanelContainer/VBox" unique_id=599082035]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_1r5fc")
-
-[node name="NWMargin" type="MarginContainer" parent="PanelContainer/VBox/Panel" unique_id=436294802]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_constants/margin_left = -60
-theme_override_constants/margin_top = -60
-
-[node name="WeatherMargin" type="MarginContainer" parent="PanelContainer/VBox/Panel/NWMargin" unique_id=910993033]
-layout_mode = 2
-theme_override_constants/margin_left = -64
-theme_override_constants/margin_top = -64
-
-[node name="WeatherButton" parent="PanelContainer/VBox/Panel/NWMargin/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("museum") instance=ExtResource("4_c3cs4")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-museum = NodePath("../../../../../..")
-
-[node name="Exhibits" type="Control" parent="PanelContainer/VBox/Panel" unique_id=1330277687]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="Cages" type="GridContainer" parent="PanelContainer/VBox/Panel" unique_id=813544286]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 16
-columns = 3
-
-[node name="Blur" type="ColorRect" parent="PanelContainer/VBox/Panel" unique_id=2127609053]
-unique_name_in_owner = true
-z_index = 105
-material = SubResource("ShaderMaterial_hwiff")
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ButtonMargin" type="MarginContainer" parent="PanelContainer/VBox" unique_id=405922438]
-layout_mode = 2
-
-[node name="RealizeButton" parent="PanelContainer/VBox/ButtonMargin" unique_id=250034607 node_paths=PackedStringArray("museum") instance=ExtResource("6_vx6pv")]
-visible = false
-layout_mode = 2
-museum = NodePath("../../../..")
+offset_left = -325.0
+offset_top = -280.5
+offset_right = 325.0
+offset_bottom = 280.5
+museum = NodePath("..")

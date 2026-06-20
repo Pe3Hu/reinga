@@ -33,7 +33,6 @@ func _on_type_changed() -> void:
 	face_icon.material.set_shader_parameter("mask_texture", load("res://entities/hell/nightmare/attitude/images/face/%s.png" % Catalog.attitude_to_string[data.type]))
 	crown_icon.material.set_shader_parameter("mask_texture", load("res://entities/hell/nightmare/attitude/images/crown/%s.png" % Catalog.attitude_to_string[data.type]))
 
-
 func _on_trial_type_changed() -> void:
 	if trial.data.type == 0: return
 	Helper.update_colors(face_icon, trial.data.overlord.type)
@@ -82,7 +81,7 @@ func drain_bowl(bowl_: Bowl) -> void:
 		data.privilege_type = data.type
 		data.type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
 		data.ban_type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
-		add_decree(bowl_)
+		add_gallery(bowl_)
 		
 		if data.type == Bozo.Attitude.INDIFFERENCE and (data.privilege_type == Bozo.Attitude.RAPTURE or data.privilege_type == Bozo.Attitude.SCORN):
 			data.trial.nightmare.privilege_attitudes.append(data)
@@ -93,6 +92,11 @@ func add_decree(bowl_: Bowl) -> void:
 	var blob = bowl_.data.type
 	var overlord = trial.data.overlord
 	data.trial.nightmare.hell.world.herald.add_decree(overlord, blob)
+
+func add_gallery(bowl_: Bowl) -> void:
+	var blob = bowl_.data.type
+	var overlord = trial.data.overlord
+	data.trial.nightmare.hell.world.museum.add_gallery(overlord, blob)
 
 func apply_privilege() -> void:
 	#var flame_shifts: Array[int]

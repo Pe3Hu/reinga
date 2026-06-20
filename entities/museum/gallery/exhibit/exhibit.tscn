@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kbrwsjgxtiny"]
 
-[ext_resource type="Script" uid="uid://bu3uh43emjgh1" path="res://entities/museum/exhibit/exhibit.gd" id="1_o17vr"]
+[ext_resource type="Script" uid="uid://bu3uh43emjgh1" path="res://entities/museum/gallery/exhibit/exhibit.gd" id="1_o17vr"]
 [ext_resource type="Shader" uid="uid://f0xra3senpov" path="res://entities/herald/overlord/shaders/domain.gdshader" id="2_3tj7e"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_224m1"]
 [ext_resource type="PackedScene" uid="uid://fudc0xn76lhs" path="res://entities/ui/token/omen/omen.tscn" id="2_nay5h"]
@@ -83,7 +83,7 @@ patch_margin_left = 21
 patch_margin_top = 21
 patch_margin_right = 21
 patch_margin_bottom = 21
-type = 341
+type = 530
 
 [node name="Grid" type="GridContainer" parent="Background/Margin/Panel" unique_id=2006794246]
 unique_name_in_owner = true

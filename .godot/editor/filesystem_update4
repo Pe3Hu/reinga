@@ -1,19 +1,28 @@
-res://entities/ui/tooltip/tooltip.tscn
-res://entities/herald/shaders/herald.gdshader
+res://entities/museum/museum.tscn
 res://entities/ui/token/faction/shaders/faction smoke.gdshader
-res://entities/ui/label/brotherhood.gd
-res://entities/ui/tooltip/data_tooltip.gd
-res://global/Catalog.gd
-res://global/Bozo.gd
-res://entities/ui/token/desire/data_desire.gd
-res://entities/ui/token/desire/desire.tscn
-res://entities/ui/tooltip/tooltip.gd
-res://global/TooltipManager.gd
-res://global/Helper.gd
-res://entities/ui/token/faction/data_faction.gd
-res://entities/hell/jail/data_plaza.gd
-res://entities/herald/decree/decree.gd
-res://global/Gear.gd
+res://entities/herald/shaders/herald.gdshader
+res://entities/museum/gallery/gallery.tscn
+res://entities/museum/shaders/museum flame.gdshader
 res://entities/herald/decree/law/law.tscn
-res://entities/herald/decree/law/data_law.gd
-res://global/cycle/phase/appraisement.gd
+res://entities/museum/gallery/gallery.gd
+res://entities/museum/gallery/data_gallery.gd
+res://entities/herald/decree/data_decree.gd
+res://entities/abyss/sacrifice/data_exhibit.gd
+res://entities/museum/data_museum.gd
+res://entities/hell/nightmare/attitude/attitude.gd
+res://entities/museum/museum.gd
+res://entities/hell/nightmare/nightmare.gd
+res://entities/hell/jail/cage/cage.gd
+res://entities/museum/gallery/exhibit/exhibit.tscn
+res://entities/museum/gallery/exhibit/exhibit.gd
+res://entities/ui/button/variants/realize.gd
+res://entities/ui/button/variants/accept.gd
+res://entities/world/world.tscn
+res://global/cycle/Cycle.gd
+res://entities/herald/herald.gd
+res://entities/ui/button/gear/tempo button.tscn
+res://global/Catalog.gd
+res://entities/menu/gear/gear.gd
+res://entities/ui/button/gear/tempo.gd
+res://entities/menu/gear/gear.tscn
+res://entities/ui/button/variants/weather.gd

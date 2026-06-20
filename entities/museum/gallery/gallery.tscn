@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://ct2mf7m60yhce"]
+
+[ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="1_gjdwk"]
+[ext_resource type="Script" uid="uid://boxtcs13wo2yw" path="res://entities/museum/gallery/gallery.gd" id="1_ksamw"]
+[ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_0mv7o"]
+[ext_resource type="PackedScene" uid="uid://c7sjb2v115om3" path="res://entities/ui/button/variants/realize button.tscn" id="3_hksj5"]
+[ext_resource type="PackedScene" uid="uid://kbrwsjgxtiny" path="res://entities/museum/gallery/exhibit/exhibit.tscn" id="3_sy63b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5ukn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1r5fc"]
+
+[node name="Gallery" type="PanelContainer" unique_id=1965271667 node_paths=PackedStringArray("realize_button", "weather_button", "cages")]
+custom_minimum_size = Vector2(650, 561)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -56.0
+offset_right = 200.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_s5ukn")
+script = ExtResource("1_ksamw")
+cage_scene = ExtResource("2_0mv7o")
+exhibit_scene = ExtResource("3_sy63b")
+realize_button = NodePath("VBox/ButtonMargin/RealizeButton")
+weather_button = NodePath("VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
+cages = [NodePath("VBox/Panel/Cages/Cage1"), NodePath("VBox/Panel/Cages/Cage2"), NodePath("VBox/Panel/Cages/Cage3")]
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=1137485958]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="HeaderMargin" type="MarginContainer" parent="VBox" unique_id=742420440]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+
+[node name="Header" type="RichTextLabel" parent="VBox/HeaderMargin" unique_id=1792940377]
+z_index = 5
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/normal_font_size = 64
+text = "Forge Omen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="VBox" unique_id=765073102]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1r5fc")
+
+[node name="NWMargin" type="MarginContainer" parent="VBox/Panel" unique_id=206848583]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = -60
+theme_override_constants/margin_top = -60
+
+[node name="WeatherMargin" type="MarginContainer" parent="VBox/Panel/NWMargin" unique_id=1341990684]
+layout_mode = 2
+theme_override_constants/margin_left = -64
+theme_override_constants/margin_top = -64
+
+[node name="WeatherButton" parent="VBox/Panel/NWMargin/WeatherMargin" unique_id=671915696 node_paths=PackedStringArray("gallery") instance=ExtResource("1_gjdwk")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+gallery = NodePath("../../../../..")
+
+[node name="Exhibits" type="Control" parent="VBox/Panel" unique_id=1413068064]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Cages" type="GridContainer" parent="VBox/Panel" unique_id=1202312569]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="Cage1" parent="VBox/Panel/Cages" unique_id=1525665167 node_paths=PackedStringArray("gallery") instance=ExtResource("2_0mv7o")]
+unique_name_in_owner = true
+layout_mode = 2
+gallery = NodePath("../../../..")
+
+[node name="Cage2" parent="VBox/Panel/Cages" unique_id=1782112099 node_paths=PackedStringArray("gallery") instance=ExtResource("2_0mv7o")]
+unique_name_in_owner = true
+layout_mode = 2
+gallery = NodePath("../../../..")
+
+[node name="Cage3" parent="VBox/Panel/Cages" unique_id=525374794 node_paths=PackedStringArray("gallery") instance=ExtResource("2_0mv7o")]
+unique_name_in_owner = true
+layout_mode = 2
+gallery = NodePath("../../../..")
+
+[node name="ButtonMargin" type="MarginContainer" parent="VBox" unique_id=867933364]
+layout_mode = 2
+
+[node name="RealizeButton" parent="VBox/ButtonMargin" unique_id=250034607 node_paths=PackedStringArray("gallery") instance=ExtResource("3_hksj5")]
+visible = false
+layout_mode = 2
+gallery = NodePath("../../..")
