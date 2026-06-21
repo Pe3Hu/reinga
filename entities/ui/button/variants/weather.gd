@@ -106,3 +106,6 @@ func is_main_button() -> bool:
 		Bozo.Layer.MUSEUM:
 			return gallery != null
 	return false
+
+func is_mouse_inside() -> bool:
+	return get_global_rect().has_point(get_global_mouse_position())

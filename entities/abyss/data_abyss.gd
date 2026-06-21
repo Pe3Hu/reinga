@@ -31,7 +31,7 @@ func add_sacrifice(catena_: CatenaData) -> void:
 
 func init_sinners() -> void:
 	sinners.clear()
-	var sinner_options = tribunal.get_all_sinners()
+	var sinner_options = tribunal.get_sinners_for_abyss()
 	sinner_options.shuffle()
 	
 	while sinners.size() < Catalog.GATE_FATE_SIZE:

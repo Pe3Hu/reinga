@@ -3,7 +3,7 @@ class_name Preferment
 
 
 func get_type() -> Bozo.Phase:
-	return Bozo.Phase.INVESTMENT
+	return Bozo.Phase.PREFERMENT
 
 func is_async() -> bool:
 	return true

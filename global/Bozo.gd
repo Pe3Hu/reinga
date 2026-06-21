@@ -308,6 +308,7 @@ enum Layer {
 	HERALD = 253,
 	ABYSS = 254,
 	MUSEUM = 255,
+	ASCENSION = 256,
 }
 
 enum Tooltip {
@@ -455,4 +456,7 @@ enum Frame {
 	SANCTUARY = 529,
 	TORTURE = 530,
 	HERALD = 531,
+	MUSEUM = 532,
+	MENU = 533,
+	ASCENSION = 534,
 }

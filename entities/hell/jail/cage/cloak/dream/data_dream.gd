@@ -84,3 +84,24 @@ func fuse_desire(desire_: DesireData) -> void:
 		sinner.dream.desires.push_back(desire_)
 	
 	type_to_count[desire_.type] += 1
+
+func on_overlord_duty(overlord_: OverlordData) -> bool:
+	var desire_trials = [
+		Catalog.desire_to_trial[primary_desire],
+		Catalog.desire_to_trial[secondary_desire]
+	]
+	
+	var overlord_trial = Catalog.overlord_to_trial[overlord_.type]
+	return desire_trials.has(overlord_trial)
+
+func get_not_overlord_desire(overlord_: OverlordData) -> Bozo.Desire:
+	if !on_overlord_duty(overlord_): return Bozo.Desire.NONE
+	
+	var desire_trials = [
+		Catalog.desire_to_trial[primary_desire],
+		Catalog.desire_to_trial[secondary_desire]
+	]
+	
+	var overlord_trial = Catalog.overlord_to_trial[overlord_.type]
+	desire_trials.erase(overlord_trial)
+	return desire_trials.back()

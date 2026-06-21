@@ -51,7 +51,7 @@ func _on_is_selected_changed() -> void:
 	visible = data.is_selected
 	
 	if gate:
-		gate.select_button.visible = data.is_selected
+		gate.shackle_button.visible = data.is_selected
 	
 	if data.is_selected:
 		focus_on_cages()

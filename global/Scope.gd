@@ -38,3 +38,16 @@ var guild_level: int = 1
 
 func switch_weather() -> void:
 	Scope.weather = Catalog.weather_to_next[Scope.weather]
+
+func reset() -> void:
+	spectacle_to_factor = {
+		Bozo.Spectacle.BALLET: 0,
+		Bozo.Spectacle.PUPPETRY: 0,
+		Bozo.Spectacle.OPERA: 0,
+	}
+	
+	turn = 0
+	phase = Bozo.Phase.ENDOWMENT
+	layer = Bozo.Layer.HELL
+	weather = Bozo.Weather.MOON
+	guild_level = 1

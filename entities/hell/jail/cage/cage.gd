@@ -6,7 +6,7 @@ class_name Cage
 var data: CageData:
 	set(value_):
 		data = value_
-		apply_data()
+		connect_datas()
 
 var jail: Jail
 var gate: Gate
@@ -21,8 +21,8 @@ var contribution: Contribution
 @export var torture_frame: Frame
 
 
-func apply_data() -> void:
-	sinner.data = data.sinner
+func connect_datas() -> void:
+	sinner.data = data.sinner if data else null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -106,16 +106,11 @@ func apply_moon_layout(show_desires_: bool = true) -> void:
 		cloak.dream.show_desires()
 
 func apply_sun_layout() -> void:
-	if gallery != null:
-		pass
-	sinner.visible = true
 	cloak.visible = false
+	sinner.visible = true
 	
 	if cloak.dream:
 			cloak.dream.reset_all_desire_tokens()
-	
-	if gallery != null:
-		pass
 
 func _apply_scope_weather() -> void:
 	if Scope.weather == Bozo.Weather.MOON:

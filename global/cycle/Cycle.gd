@@ -23,6 +23,7 @@ func start() -> void:
 	suspended = false
 	interrupt = Bozo.Interrupt.NONE
 	Scope.phase = Bozo.Phase.ENDOWMENT
+	generation  = 0
 	_enter_current()
 
 func can_run_phase(phase_type: Bozo.Phase) -> bool:
@@ -58,7 +59,7 @@ func resume(interrupt_: Bozo.Interrupt) -> void:
 	
 	match interrupt_:
 		Bozo.Interrupt.GATE_RECRUIT:
-			if Scope.phase != Bozo.Phase.INVESTMENT:
+			if Scope.phase != Bozo.Phase.PREFERMENT:
 				push_warning("HellCycle resume GATE_RECRUIT at phase %s" % Catalog.phase_to_string[Scope.phase])
 			_advance()
 			_enter_current()

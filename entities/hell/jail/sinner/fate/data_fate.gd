@@ -17,14 +17,17 @@ var type: Bozo.Fate:
 
 var is_selected: bool = false:
 	set(value_):
-		if is_selected != value_:
-			is_selected = value_
-			
-			if sinner.cage.table.jail:
-				sinner.cage.contribution.candle.is_selected = value_
-				sinner.cage.table.jail.update_traits()
-			
-			emit_signal("is_selected_changed")
+		if is_selected == value_:
+			return
+		is_selected = value_
+		
+		var cage = sinner.cage if sinner else null
+		if cage != null and cage.table != null and cage.table.jail != null:
+			if cage.contribution != null and cage.contribution.candle != null:
+				cage.contribution.candle.is_selected = value_
+			cage.table.jail.update_traits()
+		
+		emit_signal("is_selected_changed")
 
 var association: Bozo.Association:
 	set(value_):

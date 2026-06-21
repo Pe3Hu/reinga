@@ -5,8 +5,8 @@ extends MarginContainer
 var data: SoulData:
 	set(value_):
 		data = value_
-		connect_datas()
-
+		if data != null:
+			connect_datas()
 
 @export var sinner: Sinner
 @export var background: ColorRect
@@ -16,23 +16,23 @@ var data: SoulData:
 @export var guilt: Trait
 @export var repose: Trait
 
-var traits: Array[Trait]
-
+@export var traits: Array[Trait]
 
 
 #region init
-func _ready() -> void:
-	traits = [
-		fear,
-		horror,
-		guilt,
-		repose
-	]
-
 func connect_datas() -> void:
+	if data == null:
+		return
 	fear.data = data.fear
 	horror.data = data.horror
 	guilt.data = data.guilt
 	repose.data = data.repose
 	doom.data = data.doom
 #endregion
+
+func show_all() -> void:
+	doom.apply_select_visiblity()
+	
+	for _trait in traits:
+		if _trait.data:
+			_trait.data.is_selected = true

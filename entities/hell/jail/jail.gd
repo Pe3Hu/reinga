@@ -53,11 +53,13 @@ func sync_cage_sinners() -> void:
 		var sinner_data = sinners[_i]
 		var cage = cages[_i]
 		cage.data.sinner = sinner_data
+		sinner_data.cage = cage.data
 		cage.sinner.data = sinner_data
 		cage.cloak.dream.data = sinner_data.dream
 	
 	for _i in range(sinners.size(), cages.size()):
 		var cage = cages[_i]
+		cage.data.sinner = null
 		cage.sinner.data = null
 		cage.cloak.dream.data = null
 		cage.cloak.dream.reset_all_desire_tokens()
@@ -69,7 +71,7 @@ func update_status_omens() -> void:
 		if cage.sinner.data == null:
 			continue
 		for omen_data in cage.sinner.soul.doom.data.omens:
-			omen_data.update_status()
+			omen_data.update_status(cage.data)
 
 func ensure_cages_visible() -> void:
 	%Cages.visible = Scope.phase != Bozo.Phase.DISBURSEMENT

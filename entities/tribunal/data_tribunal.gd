@@ -8,10 +8,13 @@ var actual: GyreData = GyreData.new(self, Bozo.Gyre.ACTUAL)
 var bygone: GyreData = GyreData.new(self, Bozo.Gyre.BYGONE)
 var gyres: Array[GyreData]
 var foreground_sinners: Array[SinnerData]
+var reserved_sinners: Array[SinnerData]
 
 var left_indexs: Array[int]
 var right_indexs: Array[int]
 var special_to_index: Dictionary
+
+var enhancement_to_sinner: Dictionary
 
 
 #region init
@@ -53,13 +56,18 @@ func init_fates() -> void:
 				add_sinner(fate)
 	
 	hereafter.sinners.shuffle()
-	#for _i in 2:
-	#	add_sinner(Bozo.Fate.VILLAIN)
 
 func add_sinner(fate_: Bozo.Fate) -> void:
 	var sinner = SinnerData.new(fate_)
 	hereafter.sinners.append(sinner)
 	sinner.gyre = hereafter
+	
+	var enhancement = sinner.soul.doom.omens.size()
+	
+	if !enhancement_to_sinner.has(enhancement):
+		enhancement_to_sinner[enhancement] = []
+	
+	enhancement_to_sinner[enhancement].append(sinner)
 #endregion
 
 #region refill
@@ -70,6 +78,7 @@ func refill_actual() -> void:
 	while actual.sinners.size() < Catalog.GYRE_ACTUAL_SINNER_SIZE:
 		use_foreground()
 	
+	merge_foreground_to_hereafter()
 	actual.sinners.shuffle()
 	apply_special_rules()
 
@@ -134,20 +143,38 @@ func sort_special_fate() -> void:
 	actual.sinners.sort_custom(func (a, b): return special_to_index[a] < special_to_index[b])
 
 func use_foreground() -> void:
-	var sinner: SinnerData
-	
-	if !foreground_sinners.is_empty():
-		sinner = foreground_sinners.pop_back()
-		actual.sinners.append(sinner)
-	else:
-		sinner = hereafter.transfer_sinner()
+	var sinner = hereafter.transfer_sinner()
 	
 	if sinner == null:
 		pass
+
+func add_gate_sinner(sinner_: SinnerData) -> void:
+	foreground_sinners.append(sinner_)
+	
+	#sinner_.gyre = hereafter
+	
+	var enhancement = sinner_.soul.doom.omens.size()
+	
+	if !enhancement_to_sinner.has(enhancement):
+		enhancement_to_sinner[enhancement] = []
+	
+	enhancement_to_sinner[enhancement].append(sinner_)
 #endregion
 
+func merge_foreground_to_hereafter() -> void:
+	if foreground_sinners.is_empty(): return
+	
+	for sinner in foreground_sinners:
+		sinner.gyre = hereafter
+	
+	hereafter.sinners.append_array(foreground_sinners)
+	foreground_sinners.clear()
+
+func count_draw_pile() -> int:
+	return hereafter.sinners.size() + foreground_sinners.size()
+
 func is_enough() -> bool:
-	return hereafter.sinners.size() >= Catalog.GYRE_ACTUAL_SINNER_SIZE
+	return count_draw_pile() >= Catalog.GYRE_ACTUAL_SINNER_SIZE
 
 func print_total_sinners() -> void:
 	var count = foreground_sinners.size()
@@ -157,8 +184,82 @@ func print_total_sinners() -> void:
 	
 	print(count)
 
-func get_all_sinners() -> Array[SinnerData]:
+func count_available_for_gallery() -> int:
+	var count = 0
+	
+	for gyre in gyres:
+		for sinner in gyre.sinners:
+			if is_available_for_gallery(sinner):
+				count += 1
+	
+	return count
+
+func get_unreserved_sinners(log_: bool = false) -> Array[SinnerData]:
 	var sinners: Array[SinnerData]
+	
+	for gyre in gyres:
+		sinners.append_array(gyre.sinners)
+	
+	sinners = sinners.filter(func (a): return is_available_for_gallery(a))
+	if log_:
+		print(["any", sinners.size()])
+	return sinners
+
+func is_available_for_gallery(sinner_: SinnerData) -> bool:
+	return !reserved_sinners.has(sinner_) \
+		and sinner_.soul.doom.omens.size() < Catalog.DOOM_OMEN_LIMIT
+
+func reserve_sinner(sinner_: SinnerData) -> void:
+	if !reserved_sinners.has(sinner_):
+		reserved_sinners.append(sinner_)
+
+func get_min_enhancemented_sinners(shift_: int = 0, log_: bool = false) -> Array[SinnerData]:
+	var sinners: Array[SinnerData]
+	if enhancement_to_sinner.is_empty():
+		return sinners
+	
+	var min_enhancemented = enhancement_to_sinner.keys().min() + shift_
+	
+	if min_enhancemented >= Catalog.DOOM_OMEN_LIMIT:
+		return sinners
+	
+	if !enhancement_to_sinner.has(min_enhancemented):
+		return sinners
+	
+	sinners.append_array(enhancement_to_sinner[min_enhancemented])
+	sinners = sinners.filter(func (a): return is_available_for_gallery(a))
+	if log_:
+		print(["min", min_enhancemented, sinners.size()])
+	return sinners
+
+func get_max_enhancemented_sinners(shift_: int = 0) -> Array[SinnerData]:
+	var sinners: Array[SinnerData]
+	var eligible_keys: Array = enhancement_to_sinner.keys().filter(
+		func (a): return a < Catalog.DOOM_OMEN_LIMIT
+	)
+	
+	if eligible_keys.is_empty():
+		return sinners
+	
+	var max_enhancemented = eligible_keys.max() - shift_
+	
+	if max_enhancemented < 0 or !enhancement_to_sinner.has(max_enhancemented):
+		return sinners
+	
+	sinners.append_array(enhancement_to_sinner[max_enhancemented])
+	sinners = sinners.filter(func (a): return is_available_for_gallery(a))
+	print(["max", max_enhancemented, sinners.size()])
+	return sinners
+
+func get_min_enhancemented_index() -> int:
+	return enhancement_to_sinner.keys().min()
+
+func investment() -> void:
+	actual.clear()
+
+func get_sinners_for_abyss() -> Array[SinnerData]:
+	var sinners: Array[SinnerData]
+	sinners.append_array(foreground_sinners)
 	
 	for gyre in gyres:
 		sinners.append_array(gyre.sinners)

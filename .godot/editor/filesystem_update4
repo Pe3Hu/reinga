@@ -1,28 +1,24 @@
-res://entities/museum/museum.tscn
+res://entities/ascension/ascension.tscn
 res://entities/ui/token/faction/shaders/faction smoke.gdshader
-res://entities/herald/shaders/herald.gdshader
-res://entities/museum/gallery/gallery.tscn
+res://entities/herald/shaders/torture.gdshader
 res://entities/museum/shaders/museum flame.gdshader
-res://entities/herald/decree/law/law.tscn
-res://entities/museum/gallery/gallery.gd
-res://entities/museum/gallery/data_gallery.gd
-res://entities/herald/decree/data_decree.gd
-res://entities/abyss/sacrifice/data_exhibit.gd
-res://entities/museum/data_museum.gd
-res://entities/hell/nightmare/attitude/attitude.gd
-res://entities/museum/museum.gd
-res://entities/hell/nightmare/nightmare.gd
-res://entities/hell/jail/cage/cage.gd
-res://entities/museum/gallery/exhibit/exhibit.tscn
-res://entities/museum/gallery/exhibit/exhibit.gd
-res://entities/ui/button/variants/realize.gd
-res://entities/ui/button/variants/accept.gd
+res://entities/herald/shaders/herald.gdshader
 res://entities/world/world.tscn
-res://global/cycle/Cycle.gd
-res://entities/herald/herald.gd
-res://entities/ui/button/gear/tempo button.tscn
+res://entities/world/world.gd
+res://global/Bozo.gd
+res://entities/ascension/ascension.gd
+res://entities/ui/transition/transition.gd
+res://entities/ui/button/variants/rebirth.gd
+res://entities/ui/button/variants/shackle.gd
+res://entities/ui/button/variants/rebirth button.tscn
+res://entities/abyss/data_abyss.gd
+res://entities/tribunal/data_tribunal.gd
 res://global/Catalog.gd
-res://entities/menu/gear/gear.gd
-res://entities/ui/button/gear/tempo.gd
-res://entities/menu/gear/gear.tscn
-res://entities/ui/button/variants/weather.gd
+res://entities/menu/menu.tscn
+res://entities/herald/shaders/herald background.gdshader
+res://entities/ascension/ascension background.gdshader
+res://entities/world/data_world.gd
+res://global/Scope.gd
+res://entities/ui/button/menu/start.gd
+res://global/cycle/Cycle.gd
+res://entities/menu/menu.gd

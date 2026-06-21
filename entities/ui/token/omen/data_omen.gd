@@ -28,6 +28,7 @@ var status: Bozo.Status = Bozo.Status.ON:
 			emit_signal("status_changed")
 
 
+#region init
 func _init(type_: Bozo.Omen) -> void:
 	type = type_
 
@@ -35,14 +36,19 @@ func roll_token() -> void:
 	var value = Helper.get_omen_value_based_on_level(subtype)
 	var sin_type = Catalog.sins.pick_random()
 	token = SinData.new(sin_type, value)
+#endregion
 
-func update_status() -> void:
+func update_status(cage_: CageData = null) -> void:
+	var cage = cage_ if cage_ else doom.soul.sinner.cage
+	if cage == null:
+		push_warning("OmenData.update_status: sinner has no cage")
+		return
+	
 	match type:
 		Bozo.Omen.DESTINY:
-			status = doom.soul.sinner.cage.get_destiny_status(subtype)
+			status = cage.get_destiny_status(subtype)
 		Bozo.Omen.FAMILY:
-			status = doom.soul.sinner.cage.get_family_status(subtype)
+			status = cage.get_family_status(subtype)
 	
-	if status == Bozo.Status.ON:
-		doom.soul.sinner.cage.table.jail.hell.treasury.omens.append(self)
-		
+	if status == Bozo.Status.ON and cage.table.jail:
+		cage.table.jail.hell.treasury.omens.append(self)

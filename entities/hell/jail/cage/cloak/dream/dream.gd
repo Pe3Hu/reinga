@@ -5,7 +5,8 @@ extends PanelContainer
 var data: DreamData:
 	set(value_):
 		data = value_
-		apply__jnfo()
+		
+		connect_signals()
 
 @export var desire_scene: PackedScene
 
@@ -19,7 +20,7 @@ var guild_dissolves: Array[TokenDesire]
 
 
 #region init
-func apply__jnfo() -> void:
+func connect_signals() -> void:
 	if !data: return
 	if! data.desire_changed.is_connected(_on_desires_changed):
 		data.desire_changed.connect(_on_desires_changed)
@@ -27,12 +28,12 @@ func apply__jnfo() -> void:
 		#cloak.visible = true
 
 func _on_desires_changed() -> void:
-	refill_desires()
 	sync_desire_bindings()
 
 func sync_desire_bindings() -> void:
 	desires.clear()
 	if !data: return
+	refill_desires()
 	
 	primary_tokens.clear()
 	secondary_tokens.clear()
@@ -102,10 +103,10 @@ func add_secondary() -> void:
 
 func ensure_desires() -> void:
 	if !data: return
-	if desires.is_empty() or %PrimaryDesires.get_child_count() == 0:
-		_on_desires_changed()
-	else:
-		sync_desire_bindings()
+	#if desires.is_empty() or %PrimaryDesires.get_child_count() == 0:
+		#_on_desires_changed()
+	#else:
+	sync_desire_bindings()
 
 #region dissolve
 func count_payment_dissolve() -> int:
@@ -175,6 +176,7 @@ func end_guild_dissolve(desire_: TokenDesire) -> void:
 
 func show_desires() -> void:
 	ensure_desires()
+	
 	for desire in desires:
 		desire.refill_progress()
 

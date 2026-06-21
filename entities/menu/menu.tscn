@@ -1,17 +1,31 @@
 [gd_scene format=3 uid="uid://cbbqvpapvdnls"]
 
 [ext_resource type="Script" uid="uid://bty8o4efrri7s" path="res://entities/menu/menu.gd" id="1_ab5ca"]
-[ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/herald/shaders/main menu.gdshader" id="2_28b7d"]
+[ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/menu/main menu.gdshader" id="2_28b7d"]
 [ext_resource type="PackedScene" uid="uid://c1qgj0s0j0fm5" path="res://entities/ui/button/menu/start button.tscn" id="3_aud0f"]
 [ext_resource type="PackedScene" uid="uid://ca2xgecbhfesk" path="res://entities/menu/gear/gear.tscn" id="3_yttcm"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="4_3fnu5"]
 [ext_resource type="PackedScene" uid="uid://b318mwx0cgo1e" path="res://entities/ui/button/menu/continue button.tscn" id="4_yttcm"]
+[ext_resource type="Texture2D" uid="uid://cyskwyb1ekuru" path="res://entities/ui/frame/images/menu.png" id="5_puy48"]
 [ext_resource type="PackedScene" uid="uid://bh1df8s6mxwx0" path="res://entities/ui/button/menu/settings button.tscn" id="5_tjnt2"]
 [ext_resource type="PackedScene" uid="uid://cgifar2dydupm" path="res://entities/ui/button/menu/exit button.tscn" id="6_3fnu5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vtc7f"]
 shader = ExtResource("2_28b7d")
 
-[node name="Menu" type="Control" unique_id=1689953168 node_paths=PackedStringArray("start", "unpause", "settings", "exit")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60rxr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60rxr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Menu" type="Control" unique_id=1689953168 node_paths=PackedStringArray("start", "unpause", "settings", "exit", "setting_tabs", "menu_panel")]
 process_mode = 2
 z_index = 25
 layout_mode = 3
@@ -21,10 +35,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ab5ca")
-start = NodePath("MenuMargin/VBox/Buttons/StartButton")
-unpause = NodePath("MenuMargin/VBox/Buttons/ContinueButton")
-settings = NodePath("MenuMargin/VBox/Buttons/SettingsButton")
-exit = NodePath("MenuMargin/VBox/Buttons/ExitButton")
+start = NodePath("MenuMargin/PanelContainer/VBox/PanelContainer/Buttons/StartButton")
+unpause = NodePath("MenuMargin/PanelContainer/VBox/PanelContainer/Buttons/ContinueButton")
+settings = NodePath("MenuMargin/PanelContainer/VBox/PanelContainer/Buttons/SettingsButton")
+exit = NodePath("MenuMargin/PanelContainer/VBox/PanelContainer/Buttons/ExitButton")
+setting_tabs = NodePath("SettingTabs")
+menu_panel = NodePath("MenuMargin")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=269292110]
 material = SubResource("ShaderMaterial_vtc7f")
@@ -35,7 +51,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="." unique_id=1060639999]
+[node name="SettingTabs" type="TabContainer" parent="." unique_id=1060639999]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,45 +67,88 @@ grow_horizontal = 2
 grow_vertical = 2
 current_tab = 0
 
-[node name="Animation" parent="TabContainer" unique_id=1992584112 instance=ExtResource("3_yttcm")]
+[node name="Animation" parent="SettingTabs" unique_id=1992584112 instance=ExtResource("3_yttcm")]
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="MenuMargin" type="MarginContainer" parent="." unique_id=148237221]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -700.0
+offset_left = -350.0
 offset_top = -350.0
+offset_right = 350.0
 offset_bottom = 350.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="VBox" type="VBoxContainer" parent="MenuMargin" unique_id=1544438680]
+[node name="PanelContainer" type="PanelContainer" parent="MenuMargin" unique_id=890131028]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+
+[node name="FrameMargin" type="MarginContainer" parent="MenuMargin/PanelContainer" unique_id=1169534689]
+layout_mode = 2
+theme_override_constants/margin_left = -60
+theme_override_constants/margin_top = -60
+theme_override_constants/margin_right = -60
+theme_override_constants/margin_bottom = -60
+
+[node name="Frame" parent="MenuMargin/PanelContainer/FrameMargin" unique_id=716478958 instance=ExtResource("4_3fnu5")]
+layout_mode = 2
+texture = ExtResource("5_puy48")
+region_rect = Rect2(0, 0, 160, 160)
+patch_margin_left = 78
+patch_margin_top = 78
+patch_margin_right = 78
+patch_margin_bottom = 78
+type = 533
+
+[node name="VBox" type="VBoxContainer" parent="MenuMargin/PanelContainer" unique_id=1544438680]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 48
 
-[node name="Header" type="RichTextLabel" parent="MenuMargin/VBox" unique_id=1523691926]
+[node name="Header" type="RichTextLabel" parent="MenuMargin/PanelContainer/VBox" unique_id=1523691926]
 z_index = 5
-custom_minimum_size = Vector2(300, 80)
+custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/normal_font_size = 64
-text = "Main Menu"
+text = "Daemon's Crux
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="MenuMargin/VBox" unique_id=558187826]
+[node name="PanelContainer" type="PanelContainer" parent="MenuMargin/PanelContainer/VBox" unique_id=2063912887]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60rxr")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuMargin/PanelContainer/VBox/PanelContainer" unique_id=1966937233]
+layout_mode = 2
+theme_override_constants/margin_left = -16
+theme_override_constants/margin_top = -16
+theme_override_constants/margin_right = -16
+theme_override_constants/margin_bottom = -16
+
+[node name="PanelContainer" type="PanelContainer" parent="MenuMargin/PanelContainer/VBox/PanelContainer/MarginContainer" unique_id=1732078637]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60rxr")
+
+[node name="Buttons" type="VBoxContainer" parent="MenuMargin/PanelContainer/VBox/PanelContainer" unique_id=558187826]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -96,22 +156,22 @@ size_flags_vertical = 4
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="StartButton" parent="MenuMargin/VBox/Buttons" unique_id=250034607 node_paths=PackedStringArray("menu") instance=ExtResource("3_aud0f")]
+[node name="StartButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=250034607 node_paths=PackedStringArray("menu") instance=ExtResource("3_aud0f")]
 layout_mode = 2
 size_flags_horizontal = 1
-menu = NodePath("../../../..")
+menu = NodePath("../../../../../..")
 
-[node name="ContinueButton" parent="MenuMargin/VBox/Buttons" unique_id=1433455156 node_paths=PackedStringArray("menu") instance=ExtResource("4_yttcm")]
+[node name="ContinueButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=1433455156 node_paths=PackedStringArray("menu") instance=ExtResource("4_yttcm")]
 layout_mode = 2
-menu = NodePath("../../../..")
+menu = NodePath("../../../../../..")
 
-[node name="SettingsButton" parent="MenuMargin/VBox/Buttons" unique_id=742153792 node_paths=PackedStringArray("menu") instance=ExtResource("5_tjnt2")]
+[node name="SettingsButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=742153792 node_paths=PackedStringArray("menu") instance=ExtResource("5_tjnt2")]
 layout_mode = 2
 size_flags_horizontal = 1
-menu = NodePath("../../../..")
+menu = NodePath("../../../../../..")
 
-[node name="ExitButton" parent="MenuMargin/VBox/Buttons" unique_id=1687643464 node_paths=PackedStringArray("menu") instance=ExtResource("6_3fnu5")]
+[node name="ExitButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=1687643464 node_paths=PackedStringArray("menu") instance=ExtResource("6_3fnu5")]
 process_mode = 2
 layout_mode = 2
 size_flags_horizontal = 1
-menu = NodePath("../../../..")
+menu = NodePath("../../../../../..")

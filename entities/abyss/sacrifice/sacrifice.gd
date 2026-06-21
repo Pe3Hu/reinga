@@ -5,7 +5,7 @@ extends Control
 var data: SacrificeData:
 	set(value_):
 		data = value_
-		#connect_datas()
+		connect_datas()
 		connect_signals()
 
 var abyss: Abyss
@@ -21,6 +21,8 @@ func connect_datas() -> void:
 		amber.data = amber_data
 
 func connect_signals() -> void:
+	if data == null:
+		return
 	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
 		data.is_selected_changed.connect(_on_is_selected_changed)
 		data.is_updated.connect(_on_is_updated)

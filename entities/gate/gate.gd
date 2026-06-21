@@ -12,7 +12,7 @@ var data: GateData:
 @export var catena_scene: PackedScene
 
 @export var world: World
-@export var select_button: Button
+@export var shackle_button: Button
 @export var weather_button: TextureButton
 
 var cages: Array[Cage]
@@ -66,8 +66,6 @@ func update_sinner_datas() -> void:
 		
 		if cage.data.sinner != sinner_data:
 			cage.data.sinner = sinner_data
-		
-		if cage.sinner.data != sinner_data:
 			cage.sinner.data = sinner_data
 		
 		if cage.cloak.dream.data != sinner_data.dream:
@@ -75,6 +73,7 @@ func update_sinner_datas() -> void:
 		
 		cage.sinner.visible = true
 		cage.passive_background.z_index = 1
+		cage.sinner.soul.show_all()
 
 func off_screen() -> void:
 	visible = false
@@ -86,13 +85,14 @@ func on_screen():
 	update_sinner_datas()
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
-	#simulate_choice()
+	simulate_choice()
+	print("GATE")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			if not %Panel.get_global_rect().has_point(get_global_mouse_position()):
-				if !select_button.is_mouse_inside():
+				if !shackle_button.is_mouse_inside():
 					forget_catenas()
 
 func forget_catenas() -> void:
@@ -108,7 +108,7 @@ func simulate_choice() -> void:
 	data.table._on_cage_gate_selected(catena.cages.front())
 	await get_tree().create_timer(duration).timeout
 	data.table._on_cage_gate_selected(catena.cages.back())
-	select_button._button_pressed()
+	shackle_button._button_pressed()
 
 func apply_weather() -> void:
 	for cage in cages:

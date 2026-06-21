@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_22103"]
 [ext_resource type="PackedScene" uid="uid://bgiycfwaus1np" path="res://entities/hell/jail/catena/catena.tscn" id="3_4f2db"]
 [ext_resource type="Shader" uid="uid://dtls52o22wx7p" path="res://entities/gate/shader/portal.gdshader" id="4_gmdhp"]
-[ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/herald/shaders/halo.gdshader" id="4_xft3k"]
+[ext_resource type="Shader" uid="uid://uo7sbyi62gti" path="res://entities/gate/shader/halo.gdshader" id="4_xft3k"]
 [ext_resource type="Shader" uid="uid://fb4sqfb8dv6m" path="res://entities/gate/shader/gate blur.gdshader" id="5_dans4"]
 [ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="6_t1wnq"]
-[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/variants/select button.tscn" id="6_ttr3x"]
+[ext_resource type="PackedScene" uid="uid://bltmo2pppbjre" path="res://entities/ui/button/variants/shackle button.tscn" id="6_ttr3x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1c2el"]
 shader = ExtResource("4_xft3k")
@@ -48,7 +48,7 @@ shader_parameter/selected_col = 0
 shader_parameter/blur_strength = 0.8
 shader_parameter/blur_amount = 1.0
 
-[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("select_button", "weather_button")]
+[node name="Gate" type="Control" unique_id=417570486 node_paths=PackedStringArray("shackle_button", "weather_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +58,7 @@ grow_vertical = 2
 script = ExtResource("1_73phx")
 cage_scene = ExtResource("2_22103")
 catena_scene = ExtResource("3_4f2db")
-select_button = NodePath("PanelContainer/VBox/SelectButton")
+shackle_button = NodePath("PanelContainer/VBox/ShackleButton")
 weather_button = NodePath("PanelContainer/VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
 
 [node name="Halo" type="ColorRect" parent="." unique_id=1735828971]
@@ -162,8 +162,7 @@ material = SubResource("ShaderMaterial_ttr3x")
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SelectButton" parent="PanelContainer/VBox" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
+[node name="ShackleButton" parent="PanelContainer/VBox" unique_id=250034607 node_paths=PackedStringArray("gate") instance=ExtResource("6_ttr3x")]
 visible = false
 layout_mode = 2
-text = "Shackle"
 gate = NodePath("../../..")

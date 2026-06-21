@@ -17,14 +17,15 @@ func connect_signals() -> void:
 		data.gallery_is_released.connect(_on_gallery_release)
 
 func _on_gallery_release() -> void:
-	gallery.data = data.gallerys.pop_back()
+	gallery.data = data.released_gallery
 
 func off_screen() -> void:
 	visible = false
+	data.end_session()
 
 func on_screen():
 	visible = true
-	#%Cages.visible =  true
-	data.release_last_gallery()
+	if data.begin_session():
+		world.transition.data.next_layer = Bozo.Layer.HELL
 	#world.inferno.apply_layer()
 	#simulate_choice()

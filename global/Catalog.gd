@@ -1074,6 +1074,9 @@ const frame_to_string = {
 	Bozo.Frame.SANCTUARY: "sanctuary",
 	Bozo.Frame.TORTURE: "torture",
 	Bozo.Frame.HERALD: "herald",
+	Bozo.Frame.MUSEUM: "museum",
+	Bozo.Frame.MENU: "menu",
+	Bozo.Frame.ASCENSION: "ascension",
 }
 
 const frame_to_region = {
@@ -1089,6 +1092,9 @@ const frame_to_region = {
 	Bozo.Frame.SANCTUARY: 124,
 	Bozo.Frame.TORTURE: 84,
 	Bozo.Frame.HERALD: 128,
+	Bozo.Frame.MUSEUM: 120,
+	Bozo.Frame.MENU: 160,
+	Bozo.Frame.ASCENSION: 144,
 }
 
 const frame_to_patch = {
@@ -1104,8 +1110,11 @@ const frame_to_patch = {
 	Bozo.Frame.SANCTUARY: 60,
 	Bozo.Frame.TORTURE: 21,
 	Bozo.Frame.HERALD: 62,
+	Bozo.Frame.MUSEUM: 58,
+	Bozo.Frame.MENU: 78,
+	Bozo.Frame.ASCENSION: 70,
 }
-#endregion
+#endregioascensionn
 
 #region transition
 
@@ -1116,6 +1125,7 @@ const layer_to_string = {
 	Bozo.Layer.SANCTUARY: "sanctuary",
 	Bozo.Layer.MUSEUM: "museum",
 	Bozo.Layer.HERALD: "herald",
+	Bozo.Layer.ASCENSION: "ascension",
 }
 #endregion
 
@@ -1129,6 +1139,8 @@ var active_to_color = {
 #endregion
 
 #region omen
+const DOOM_OMEN_LIMIT = 2
+
 const omens = [
 	Bozo.Omen.FAMILY,
 	Bozo.Omen.DESTINY
@@ -1315,25 +1327,34 @@ const omen_to_omen = {
 	],
 	Bozo.Destiny.LAYMAN: [
 		Bozo.Family.PARENT,
-		Bozo.Family.MOTHER,
-		Bozo.Family.FATHER
+		#Bozo.Family.MOTHER,
+		#Bozo.Family.FATHER
 	],
 	Bozo.Destiny.GENIUS: [
 		Bozo.Family.CHILD,
-		Bozo.Family.SON,
-		Bozo.Family.DAUGHTER
+		#Bozo.Family.SON,
+		#Bozo.Family.DAUGHTER
 	],
 	Bozo.Destiny.EXILE: [
 		Bozo.Family.PARENT,
-		Bozo.Family.MOTHER,
-		Bozo.Family.FATHER
+		#Bozo.Family.MOTHER,
+		#Bozo.Family.FATHER
 	],
 	Bozo.Destiny.LEADER: [
 		Bozo.Family.CHILD,
-		Bozo.Family.SON,
-		Bozo.Family.DAUGHTER
+		#Bozo.Family.SON,
+		#Bozo.Family.DAUGHTER
 	],
 }
+
+const doom_omens = [
+	Bozo.Destiny.GENIUS,
+	Bozo.Destiny.EXILE,
+	Bozo.Destiny.LAYMAN,
+	Bozo.Destiny.LEADER,
+	Bozo.Family.PARENT,
+	Bozo.Family.CHILD,
+]
 
 const bool_to_status = {
 	true: Bozo.Status.ON,

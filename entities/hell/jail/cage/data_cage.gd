@@ -2,14 +2,14 @@ class_name CageData
 extends Resource
 
 
-@warning_ignore("unused_signal")
-signal is_fused
-
 var table: TableData
 var sinner: SinnerData:
 	set(value_):
+		if sinner:
+			sinner.cage = null
 		sinner = value_
-		sinner.cage = self
+		if sinner:
+			sinner.cage = self
 
 var col: CatenaData
 var row: CatenaData

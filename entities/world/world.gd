@@ -2,6 +2,9 @@ class_name World
 extends Node
 
 
+
+var data = WorldData.new()
+
 @export var inferno: Inferno
 @export var hell: Hell
 @export var gate: Gate
@@ -11,9 +14,7 @@ extends Node
 @export var herald: Herald
 @export var transition: Transition
 @export var menu: MainMenu
-
-
-var data = WorldData.new()
+@export var ascension: Ascension
 
 
 func new_game() -> void:
@@ -52,6 +53,8 @@ func _input(event) -> void:
 				transition.data.next_layer = Bozo.Layer.GATE
 			KEY_3:
 				transition.data.next_layer = Bozo.Layer.ABYSS
+			KEY_4:
+				transition.data.next_layer = Bozo.Layer.ASCENSION
 			KEY_Q:
 				data.tribunal.print_total_sinners()
 

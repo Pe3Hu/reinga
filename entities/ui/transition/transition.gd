@@ -14,6 +14,7 @@ var data: TransitionData:
 var tween: Tween
 var _pending_cycle_interrupt: Bozo.Interrupt = Bozo.Interrupt.NONE
 
+
 func _ready() -> void:
 	#data.current_layer = Scope.layer
 	bg.material.set_shader_parameter("node_resolution", bg.size)
@@ -55,6 +56,8 @@ func apply_off_screen() -> void:
 		node.off_screen()
 
 func apply_on_screen() -> void:
+	if !Scope.is_game: return
+	
 	if data.next_layer != Bozo.Layer.NONE:
 		var node = world.get(Catalog.layer_to_string[data.next_layer])
 		node.on_screen()

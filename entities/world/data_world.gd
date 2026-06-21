@@ -11,3 +11,7 @@ var abyss: AbyssData = AbyssData.new(self)
 var museum: MuseumData = MuseumData.new(self)
 var transition: TransitionData = TransitionData.new(self)
 var herald: HeraldData = HeraldData.new(self)
+
+
+func _init() -> void:
+	Scope.reset()

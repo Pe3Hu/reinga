@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://dcc6xmn2b7qua" path="res://entities/ui/button/variants/sacrifice.gd" id="3_7tq83"]
 
 [node name="SacrificeButton" type="Button" unique_id=250034607]
-custom_minimum_size = Vector2(48, 24)
+custom_minimum_size = Vector2(120, 64)
+custom_maximum_size = Vector2(120, 64)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

@@ -21,10 +21,20 @@ var cage: Cage:
 
 
 func connect_datas() -> void:
+	if data == null:
+		return
 	omen.data = data.omen
 	desire.data = data.desire
 	desire.refill_progress()
 	Helper.update_colors(%Domain, get_overloard())
+	bind_cage_from_data()
+
+func bind_cage_from_data() -> void:
+	if gallery == null or data == null:
+		return
+	var cage_node = gallery.find_cage_node(data.cage)
+	if cage_node:
+		cage = cage_node
 
 func get_overloard() -> Bozo.Overlord:
 	var trial_type = Catalog.desire_to_trial[desire.data.type]
@@ -32,14 +42,20 @@ func get_overloard() -> Bozo.Overlord:
 	return overlord_type
 
 func connect_signals() -> void:
+	if data == null:
+		return
 	if !data.is_selected_changed.is_connected(_on_is_selected_changed):
 		data.is_selected_changed.connect(_on_is_selected_changed)
 		data.is_updated.connect(_on_is_updated)
-		
-		reset_margin()
+	
+	reset_margin()
 
 func reset_margin() -> void:
-	position.x = (Catalog.CAGE_SIZE.x + Catalog.CAGE_OFFSET.x) * (Catalog.JAIL_CAGE_GRID.x - data.cage.coord.x - 1) 
+	if data == null:
+		return
+	
+	var slot_index = gallery.get_cage_slot_index(data.cage) if gallery else data.cage.coord.x
+	position.x = (Catalog.CAGE_SIZE.x + Catalog.CAGE_OFFSET.x) * slot_index
 	%Background.size = Vector2(Catalog.CAGE_SIZE.x, Catalog.CAGE_SIZE.y)
 	
 	var anchors = Catalog.windrose_to_anchor[data.windrose]
@@ -51,14 +67,14 @@ func _on_is_selected_changed() -> void:
 	
 	if data.is_selected:
 		gallery.hide_all_exhibits()
-		visible = data.is_selected
-		cage.sinner.visible = data.is_selected
-		
-		#if data.is_selected:
-		cage.show_background(data.is_selected)
+		visible = true
+		cage.sinner.visible = true
+		cage.show_background(true)
 		Helper.update_colors(cage.active_background, get_overloard())
+	elif gallery.data.active_exhibits.is_empty():
+		gallery.show_all_exhibits()
 	
-	gallery.realize_button.update_visible()
+	gallery.forge_button.update_visible()
 
 func _on_is_updated() -> void:
 	connect_datas()

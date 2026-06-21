@@ -3,46 +3,57 @@
 [ext_resource type="PackedScene" uid="uid://begp50pirv8xc" path="res://entities/ui/button/variants/weather button.tscn" id="1_gjdwk"]
 [ext_resource type="Script" uid="uid://boxtcs13wo2yw" path="res://entities/museum/gallery/gallery.gd" id="1_ksamw"]
 [ext_resource type="PackedScene" uid="uid://bjlm6t5oqacjy" path="res://entities/hell/jail/cage/cage.tscn" id="2_0mv7o"]
-[ext_resource type="PackedScene" uid="uid://c7sjb2v115om3" path="res://entities/ui/button/variants/realize button.tscn" id="3_hksj5"]
+[ext_resource type="PackedScene" uid="uid://c7sjb2v115om3" path="res://entities/ui/button/variants/forge button.tscn" id="3_hksj5"]
 [ext_resource type="PackedScene" uid="uid://kbrwsjgxtiny" path="res://entities/museum/gallery/exhibit/exhibit.tscn" id="3_sy63b"]
+[ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="4_0mv7o"]
+[ext_resource type="Texture2D" uid="uid://c45sy06aj6o0j" path="res://entities/ui/frame/images/museum.png" id="5_sy63b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5ukn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1r5fc"]
 
-[node name="Gallery" type="PanelContainer" unique_id=1965271667 node_paths=PackedStringArray("realize_button", "weather_button", "cages")]
-custom_minimum_size = Vector2(650, 561)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[node name="Gallery" type="PanelContainer" unique_id=1965271667 node_paths=PackedStringArray("forge_button", "weather_button", "cages")]
+custom_minimum_size = Vector2(650, 600)
+custom_maximum_size = Vector2(750, 700)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -56.0
-offset_right = 200.0
-offset_bottom = 56.0
+offset_left = -325.0
+offset_top = -287.0
+offset_right = 325.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_s5ukn")
 script = ExtResource("1_ksamw")
 cage_scene = ExtResource("2_0mv7o")
 exhibit_scene = ExtResource("3_sy63b")
-realize_button = NodePath("VBox/ButtonMargin/RealizeButton")
+forge_button = NodePath("VBox/ButtonPanel/ForgeButton")
 weather_button = NodePath("VBox/Panel/NWMargin/WeatherMargin/WeatherButton")
 cages = [NodePath("VBox/Panel/Cages/Cage1"), NodePath("VBox/Panel/Cages/Cage2"), NodePath("VBox/Panel/Cages/Cage3")]
+
+[node name="Frame" parent="." unique_id=716478958 instance=ExtResource("4_0mv7o")]
+layout_mode = 2
+texture = ExtResource("5_sy63b")
+region_rect = Rect2(0, 0, 120, 120)
+patch_margin_left = 58
+patch_margin_top = 58
+patch_margin_right = 58
+patch_margin_bottom = 58
+type = 532
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1137485958]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_constants/separation = 100
+size_flags_vertical = 4
+theme_override_constants/separation = 80
 alignment = 1
 
-[node name="HeaderMargin" type="MarginContainer" parent="VBox" unique_id=742420440]
-custom_minimum_size = Vector2(400, 80)
-layout_mode = 2
-
-[node name="Header" type="RichTextLabel" parent="VBox/HeaderMargin" unique_id=1792940377]
+[node name="Header" type="RichTextLabel" parent="VBox" unique_id=1792940377]
 z_index = 5
 custom_minimum_size = Vector2(400, 80)
 layout_mode = 2
@@ -108,10 +119,21 @@ unique_name_in_owner = true
 layout_mode = 2
 gallery = NodePath("../../../..")
 
-[node name="ButtonMargin" type="MarginContainer" parent="VBox" unique_id=867933364]
+[node name="ButtonPanel" type="PanelContainer" parent="VBox" unique_id=945877851]
+custom_minimum_size = Vector2(120, 64)
+custom_maximum_size = Vector2(120, 64)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
 
-[node name="RealizeButton" parent="VBox/ButtonMargin" unique_id=250034607 node_paths=PackedStringArray("gallery") instance=ExtResource("3_hksj5")]
+[node name="ForgeButton" parent="VBox/ButtonPanel" unique_id=250034607 node_paths=PackedStringArray("gallery") instance=ExtResource("3_hksj5")]
 visible = false
 layout_mode = 2
 gallery = NodePath("../../..")
+
+[node name="ForgeTimer" type="Timer" parent="." unique_id=2097736016]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="ForgeTimer" to="." method="_on_forge_timer_timeout"]

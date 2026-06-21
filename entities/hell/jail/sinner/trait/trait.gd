@@ -71,15 +71,22 @@ func update_tooltipe_size() -> void:
 #endregion
 
 func connect_signals() -> void:
-	if data:
-		if data.type_changed.is_connected(_on_type_changed):
-			data.type_changed.disconnect(_on_type_changed)
-			data.is_selected_changed.disconnect(_on_is_selected)
-		
-		data.type_changed.connect(_on_type_changed)
-		data.is_selected_changed.connect(_on_is_selected)
+	if data == null:
+		return
+	if data.type_changed.is_connected(_on_type_changed):
+		data.type_changed.disconnect(_on_type_changed)
+		data.is_selected_changed.disconnect(_on_is_selected)
 	
-		call_deferred("init_tokens")
+	data.type_changed.connect(_on_type_changed)
+	data.is_selected_changed.connect(_on_is_selected)
+	
+	call_deferred("_sync_from_data")
+
+func _sync_from_data() -> void:
+	if data == null:
+		return
+	init_tokens()
+	_on_is_selected()
 
 func test_max_token_count() -> void:
 	if !data.sins.is_empty():

@@ -13,15 +13,15 @@ var data: DoomData:
 
 @export var omens: Array[TokenOmen]
 
+
 func connect_datas() -> void:
-	family.reset()
-	destiny.reset()
+	if data == null:
+		family.data = null
+		destiny.data = null
+		return
 	
-	if data.family:
-		family.data = data.family
-	if data.destiny:
-		destiny.data = data.destiny
-	
+	family.data = data.family
+	destiny.data = data.destiny
 	rearrange_omens()
 
 func rearrange_omens() -> void:
@@ -49,11 +49,15 @@ func rearrange_omens() -> void:
 		windroses.append(windrose)
 
 func apply_select_visiblity(is_cage_selected_: bool = false) -> void:
-	for omen in omens:
-		if omen.data:
-			var flag = true
-			
-			if is_cage_selected_:
-				flag = Catalog.status_to_bool[omen.data.status]
-			
-			omen.visible = flag
+	if data.omens.is_empty():
+		for omen in omens:
+			omen.visible = false
+	else:
+		for omen in omens:
+			if omen.data:
+				var flag = true
+				
+				if is_cage_selected_:
+					flag = Catalog.status_to_bool[omen.data.status]
+				
+				omen.visible = flag

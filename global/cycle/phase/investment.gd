@@ -11,5 +11,5 @@ func is_async() -> bool:
 func enter() -> void:
 	Cycle.hell.weather_button.switch_weather()
 	Cycle.hell.reset()
-	Cycle.hell.world.data.tribunal.actual.clear()
+	Cycle.hell.world.data.tribunal.investment() 
 	Cycle.hell.nightmare.apply_attitude_privileges()

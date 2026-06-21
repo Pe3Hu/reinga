@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b5j0hjjauwolx"]
 
 [ext_resource type="Script" uid="uid://be5r56u7b3uyx" path="res://entities/sanctuary/sanctuary.gd" id="1_8k0x1"]
-[ext_resource type="Shader" uid="uid://drrkwexw4qnet" path="res://entities/herald/shaders/white room.gdshader" id="2_3m33d"]
+[ext_resource type="Shader" uid="uid://drrkwexw4qnet" path="res://entities/sanctuary/sanctuary background.gdshader" id="2_3m33d"]
 [ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="2_svdwa"]
 [ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="3_svdwa"]
 [ext_resource type="Texture2D" uid="uid://b4tk8mqujterh" path="res://entities/ui/frame/images/sanctuary.png" id="4_ajpus"]

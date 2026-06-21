@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float inverse_speed = 15.0;
-uniform float intensity = 0.3;
+uniform float intensity = 0.5;
 
 void fragment() {
     vec2 fragCoord = FRAGCOORD.xy;

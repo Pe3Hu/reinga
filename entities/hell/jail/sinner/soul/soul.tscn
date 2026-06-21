@@ -13,25 +13,27 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "doom", "fear", "horror", "guilt", "repose")]
+[node name="Soul" type="MarginContainer" unique_id=1263324762 node_paths=PackedStringArray("background", "doom", "fear", "horror", "guilt", "repose", "traits")]
 custom_minimum_size = Vector2(156, 156)
+custom_maximum_size = Vector2(156, 156)
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_rlesa")
-background = NodePath("TooltipInteract/MarginContainer/Background")
+background = NodePath("TooltipInteract/BorderMargin/Background")
 doom = NodePath("Doom")
 fear = NodePath("TraitFear")
 horror = NodePath("TraitHorror")
 guilt = NodePath("TraitGuilt")
 repose = NodePath("TraitRepose")
+traits = [NodePath("TraitFear"), NodePath("TraitHorror"), NodePath("TraitGuilt"), NodePath("TraitRepose")]
 
 [node name="TooltipInteract" parent="." unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("3_mnjxa")]
 layout_mode = 2
 target = NodePath("..")
 
-[node name="MarginContainer" type="MarginContainer" parent="TooltipInteract" unique_id=554196348]
+[node name="BorderMargin" type="MarginContainer" parent="TooltipInteract" unique_id=554196348]
 layout_mode = 0
 offset_right = 140.0
 offset_bottom = 140.0
@@ -40,11 +42,11 @@ theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -4
 theme_override_constants/margin_bottom = -4
 
-[node name="Background" type="ColorRect" parent="TooltipInteract/MarginContainer" unique_id=2105037464]
+[node name="Background" type="ColorRect" parent="TooltipInteract/BorderMargin" unique_id=2105037464]
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
-[node name="PanelContainer" type="PanelContainer" parent="TooltipInteract/MarginContainer" unique_id=551246353]
+[node name="BorderPanel" type="PanelContainer" parent="TooltipInteract/BorderMargin" unique_id=551246353]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_p1p1s")
 
