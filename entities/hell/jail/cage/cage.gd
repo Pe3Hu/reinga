@@ -86,7 +86,15 @@ func _check_mouse_position() -> void:
 	elif !is_inside and torture_frame.visible:
 		torture_frame.visible = false
 
-func apply_cage_visibility() -> void:
+func apply_cage_visibility(is_madness_: bool = false) -> void:
+	if is_madness_:
+		#apply_moon_layout()
+		active_background.visible = false
+		passive_background.visible = false
+		sinner.visible = false
+		cloak.visible = false
+		return
+	
 	match Scope.phase:
 		Bozo.Phase.INVESTMENT:
 			sinner.visible = false

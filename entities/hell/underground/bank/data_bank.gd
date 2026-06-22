@@ -41,6 +41,7 @@ func add_posture(type_: Bozo.Posture) -> void:
 	var posture = PostureData.new(type_, default_value)
 	postures.append(posture)
 	type_to_posture[type_] = posture
+	posture.value = get_rank_posture_value(posture.type)
 #endregion
 
 func get_sacrifice_ambers() -> Array[AmberData]:
@@ -55,3 +56,24 @@ func get_sacrifice_ambers() -> Array[AmberData]:
 
 func reset_sacrifice() -> void:
 	sacrifice = null
+
+func activate_posture(posture_: PostureData) -> void:
+	Scope.posture_to_factor[posture_.type] += 1
+	Scope.equalize_posture_factors()
+	type_to_posture[posture_.type].value += get_rank_posture_value(posture_.type)
+	
+	match posture_.type:
+		Bozo.Posture.MADNESS:
+			hell.jail.apply_madness()
+		Bozo.Posture.OBLIVION:
+			hell.world.abyss.counter += 1
+
+func get_rank_posture_value(type_: Bozo.Posture) -> int:
+	var value: int = 7
+	
+	if type_ == Bozo.Posture.OBLIVION:
+		var overlord = hell.world.throne.marvone
+		var rank = overlord.rank + Scope.posture_to_factor[type_]
+		value = 2 * rank + 5
+	
+	return value

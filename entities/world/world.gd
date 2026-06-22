@@ -43,10 +43,10 @@ func connect_datas() -> void:
 	transition.data = data.transition
 
 func _input(event) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and not event.pressed:
 		match event.keycode:
-			KEY_ESCAPE:
-				switch_menu()
+			KEY_SPACE:
+				pass
 			KEY_1:
 				transition.data.next_layer = Bozo.Layer.HELL
 			KEY_2:
@@ -59,6 +59,10 @@ func _input(event) -> void:
 				data.tribunal.print_total_sinners()
 
 func switch_menu() -> void:
+	if menu.is_echo:
+		menu.is_echo = false
+		return
+	
 	if !menu.visible:
 		menu.on_screen()
 	else:

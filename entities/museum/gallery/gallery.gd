@@ -31,6 +31,7 @@ func connect_datas() -> void:
 	connect_cages()
 	connect_sinners()
 	connect_exhibits()
+	apply_blob()
 	
 	simulate_forge()
 
@@ -153,7 +154,6 @@ func simulate_forge() -> void:
 	%ForgeTimer.wait_time = duration
 	%ForgeTimer.start()
 
-
 func _on_forge_timer_timeout() -> void:
 	if data == null or !data.is_prepared or data.exhibits.is_empty():
 		%ForgeTimer.stop()
@@ -166,3 +166,9 @@ func simulate_choice() -> void:
 	if data == null or data.exhibits.is_empty(): return
 	var exhibit = data.exhibits.back()
 	data._on_exhibit_selected(exhibit)
+
+func apply_blob() -> void:
+	museum.apply_blob()
+	
+	var text = Catalog.blob_to_forge[data.blob]
+	%Header.text = text + " Omen"

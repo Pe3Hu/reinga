@@ -33,6 +33,11 @@ var spectacle_to_factor = {
 	Bozo.Spectacle.OPERA: 0,
 }
 
+var posture_to_factor = {
+	Bozo.Posture.MADNESS: 0,
+	Bozo.Posture.OBLIVION: 0,
+}
+
 var guild_level: int = 1
 #endregion
 
@@ -46,8 +51,22 @@ func reset() -> void:
 		Bozo.Spectacle.OPERA: 0,
 	}
 	
+	posture_to_factor = {
+		Bozo.Posture.MADNESS: 0,
+		Bozo.Posture.OBLIVION: 0,
+	}
+	
 	turn = 0
 	phase = Bozo.Phase.ENDOWMENT
 	layer = Bozo.Layer.HELL
 	weather = Bozo.Weather.MOON
 	guild_level = 1
+
+func equalize_posture_factors() -> void:
+	var rank_shift = min(posture_to_factor[Bozo.Posture.MADNESS], posture_to_factor[Bozo.Posture.OBLIVION])
+	
+	if rank_shift > 0:
+		for posture in posture_to_factor:
+			posture_to_factor[posture] -= rank_shift
+		
+		sanctuary.world.throne.marvone.rank += rank_shift

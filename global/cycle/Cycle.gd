@@ -69,7 +69,11 @@ func resume(interrupt_: Bozo.Interrupt) -> void:
 			_advance()
 			_enter_current()
 		Bozo.Interrupt.ABYSS_SACRIFICE:
-			push_warning("HellCycle resume ABYSS_SACRIFICE is not implemented")
+			#push_warning("HellCycle resume ABYSS_SACRIFICE is not implemented")
+			
+			Cycle.prepare_new_turn()
+			_advance()
+			_enter_current()
 		Bozo.Interrupt.MUSEUM_REALIZE:
 			if Scope.phase != Bozo.Phase.DEVELOPMENT:
 				push_warning("HellCycle resume MUSEUM_REALIZE at phase %s" % Catalog.phase_to_string[Scope.phase])
@@ -118,7 +122,11 @@ func _finish_current() -> void:
 
 func _advance() -> void:
 	Scope.phase = Catalog.phase_to_next[Scope.phase]
-	print([Scope.turn, Catalog.phase_to_string[Scope.phase]])
+	#print([Scope.turn, Catalog.phase_to_string[Scope.phase]])
 	
 	if Scope.phase == Bozo.Phase.REPLENISHMENT:
 		Scope.turn += 1
+
+func prepare_new_turn() -> void:
+	hell.world.data.tribunal.refill_actual()
+	hell.jail.update_sinner_datas()

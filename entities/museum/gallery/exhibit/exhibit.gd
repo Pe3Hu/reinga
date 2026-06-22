@@ -80,6 +80,7 @@ func _on_is_updated() -> void:
 	connect_datas()
 
 func _input(event: InputEvent) -> void:
+	if Scope.layer != Bozo.Layer.MUSEUM: return
 	if event is InputEventMouseMotion:
 		_check_mouse_position()
 

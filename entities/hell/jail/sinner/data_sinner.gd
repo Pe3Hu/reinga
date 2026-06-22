@@ -4,6 +4,8 @@ extends Resource
 
 @warning_ignore("unused_signal")
 signal is_fused
+@warning_ignore("unused_signal")
+signal is_madness
 
 var fate: FateData
 var gyre: GyreData

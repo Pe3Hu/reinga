@@ -7,12 +7,14 @@
 
 [node name="Dream" type="PanelContainer" unique_id=384642275 node_paths=PackedStringArray("desires")]
 custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(128, 128)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_lmmrw")
 script = ExtResource("1_wsku3")
 desire_scene = ExtResource("2_e5v2l")
 desires = [NodePath("VBoxContainer/PrimaryDesires/Primary1"), NodePath("VBoxContainer/PrimaryDesires/Primary2"), NodePath("VBoxContainer/SecondaryDesires/Secondary1")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1804014529]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1

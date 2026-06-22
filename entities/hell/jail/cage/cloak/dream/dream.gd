@@ -79,11 +79,13 @@ func refill_primary_desires() -> void:
 	while %PrimaryDesires.get_child_count() < data.type_to_count[data.primary_desire]:
 		add_primary()
 
-func add_primary() -> void:
+func add_primary() -> TokenDesire:
 	var desire = desire_scene.instantiate()
 	%PrimaryDesires.add_child(desire)
 	desires.push_front(desire)
 	desire.dream = self
+	primary_tokens.append(desire)
+	return desire
 
 func refill_secondary_desires() -> void:
 	while %SecondaryDesires.get_child_count() > data.type_to_count[data.secondary_desire]:
@@ -94,11 +96,13 @@ func refill_secondary_desires() -> void:
 	while %SecondaryDesires.get_child_count() < data.type_to_count[data.secondary_desire]:
 		add_secondary()
 
-func add_secondary() -> void:
+func add_secondary() -> TokenDesire:
 	var desire = desire_scene.instantiate()
 	%SecondaryDesires.add_child(desire)
 	desires.push_back(desire)
 	desire.dream = self
+	secondary_tokens.append(desire)
+	return desire
 #endregion
 
 func ensure_desires() -> void:
@@ -113,8 +117,7 @@ func count_payment_dissolve() -> int:
 	ensure_desires()
 	dissolves.clear()
 	
-	if !data:
-		return 0
+	if !data: return 0
 	
 	for desire in desires:
 		if !desire.data:
@@ -197,3 +200,19 @@ func _all_desire_tokens() -> Array[TokenDesire]:
 		if child is TokenDesire:
 			tokens.append(child)
 	return tokens
+
+func add_madness_desire() -> void:
+	var token_data = data.add_madness_desire()
+	
+	sync_desire_bindings()
+	show_desires()
+	
+	var madness_desire: TokenDesire
+	
+	for desire in desires:
+		if desire.data == token_data:
+			madness_desire = desire
+			break
+	
+	madness_desire.appear()
+	await get_tree().process_frame

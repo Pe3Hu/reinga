@@ -43,6 +43,7 @@ func add_cage(data_: CageData) -> void:
 func update_sinner_datas() -> void:
 	sync_cage_sinners()
 	ensure_cages_visible()
+	
 	if Scope.phase != Bozo.Phase.REPLENISHMENT:
 		apply_cages_visibility()
 
@@ -73,16 +74,20 @@ func update_status_omens() -> void:
 		for omen_data in cage.sinner.soul.doom.data.omens:
 			omen_data.update_status(cage.data)
 
-func ensure_cages_visible() -> void:
+func ensure_cages_visible(is_madness_: bool = false) -> void:
+	if is_madness_:
+		%Cages.visible = true
+		return
+	
 	%Cages.visible = Scope.phase != Bozo.Phase.DISBURSEMENT
 
-func apply_cages_visibility() -> void:
+func apply_cages_visibility(is_madness_: bool = false) -> void:
 	for cage in cages:
-		cage.apply_cage_visibility()
+		cage.apply_cage_visibility(is_madness_)
 
-func apply_phase_visiblity() -> void:
-	ensure_cages_visible()
-	apply_cages_visibility()
+func apply_phase_visiblity(is_madness_: bool = false) -> void:
+	ensure_cages_visible(is_madness_)
+	apply_cages_visibility(is_madness_)
 
 func get_active_cage() ->  Variant:
 	if data.table.active_cages.is_empty(): return null
@@ -97,6 +102,7 @@ func reset() -> void:
 	data.table.reset_all_actives()
 	data.plaza.reset_associations()
 	data.reset_traits()
+	data.madness_sinners.clear()
 	
 	for cage in cages:
 		cage.apply_cage_visibility()
@@ -186,3 +192,10 @@ func update_visiblity_omens() -> void:
 func apply_weather() -> void:
 	for cage in cages:
 		cage.apply_weather()
+
+func apply_madness_visibility() -> void:
+	%Cages.visible = false
+	
+	for cage in cages:
+		cage.active_background.visible = false
+		cage.passive_background.visible = true

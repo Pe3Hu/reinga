@@ -86,7 +86,6 @@ func on_screen():
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
 	simulate_choice()
-	print("GATE")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:

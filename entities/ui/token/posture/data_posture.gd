@@ -13,6 +13,7 @@ var type: Bozo.Posture:
 				tooltip = Bozo.Tooltip.MADNESS
 			Bozo.Posture.OBLIVION:
 				tooltip = Bozo.Tooltip.OBLIVION
+		
 		emit_signal("type_changed")
 
 

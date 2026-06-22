@@ -25,7 +25,13 @@ func off_screen() -> void:
 
 func on_screen():
 	visible = true
+	
 	if data.begin_session():
 		world.transition.data.next_layer = Bozo.Layer.HELL
+	
 	#world.inferno.apply_layer()
 	#simulate_choice()
+
+func apply_blob() -> void:
+	var intensity = Catalog.blob_to_intensity[gallery.data.blob]
+	%Background.material.set_shader_parameter("intensity", intensity)

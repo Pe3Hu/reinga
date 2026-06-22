@@ -42,8 +42,6 @@ func _button_pressed() -> void:
 
 func switch_weather() -> void:
 	if !is_main_button(): return
-	if gallery != null:
-		pass
 	Scope.switch_weather()
 	apply_weather()
 

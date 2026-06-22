@@ -16,6 +16,7 @@ var secondary_desire: Bozo.Desire:
 	set(value_):
 		secondary_desire = value_
 		emit_signal("desire_changed")
+var madness_desire: Bozo.Desire
 
 var type_to_count: Dictionary
 
@@ -29,7 +30,7 @@ func _init(sinner_: SinnerData) -> void:
 func init_desires() -> void:
 	var trial = Helper.get_random_key(Catalog.faction_to_trial[sinner.fate.faction.type])
 	
-	var primary_data = DesireData.new( Catalog.trial_to_desire[trial])
+	var primary_data = DesireData.new(Catalog.trial_to_desire[trial])
 	primary_desire = primary_data.type
 	desires.append(primary_data)
 	
@@ -105,3 +106,26 @@ func get_not_overlord_desire(overlord_: OverlordData) -> Bozo.Desire:
 	var overlord_trial = Catalog.overlord_to_trial[overlord_.type]
 	desire_trials.erase(overlord_trial)
 	return desire_trials.back()
+
+func add_madness_desire() -> DesireData:
+	var max_count = 10
+	var options: Array[Bozo.Desire]
+	
+	for desire in type_to_count:
+		if type_to_count[desire] == max_count:
+			options.append(desire)
+		if type_to_count[desire] < max_count:
+			options = [desire]
+			max_count = type_to_count[desire]
+	
+	madness_desire = options.pick_random()
+	var desire_data = DesireData.new(madness_desire)
+	desire_data.dream = self
+	
+	if madness_desire == primary_desire:
+		desires.push_front(desire_data)
+	else:
+		desires.push_back(desire_data)
+	
+	type_to_count[madness_desire] += 1
+	return desire_data

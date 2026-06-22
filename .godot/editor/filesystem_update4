@@ -1,24 +1,30 @@
-res://entities/ascension/ascension.tscn
-res://entities/ui/token/faction/shaders/faction smoke.gdshader
-res://entities/herald/shaders/torture.gdshader
-res://entities/museum/shaders/museum flame.gdshader
+res://entities/hell/jail/sinner/sinner.gd
+res://entities/museum/gallery/gallery.gd
+res://entities/hell/jail/cage/cloak/dream/dream.tscn
 res://entities/herald/shaders/herald.gdshader
-res://entities/world/world.tscn
-res://entities/world/world.gd
-res://global/Bozo.gd
-res://entities/ascension/ascension.gd
-res://entities/ui/transition/transition.gd
-res://entities/ui/button/variants/rebirth.gd
-res://entities/ui/button/variants/shackle.gd
-res://entities/ui/button/variants/rebirth button.tscn
-res://entities/abyss/data_abyss.gd
-res://entities/tribunal/data_tribunal.gd
-res://global/Catalog.gd
-res://entities/menu/menu.tscn
-res://entities/herald/shaders/herald background.gdshader
+res://entities/ui/token/faction/shaders/faction smoke.gdshader
+res://entities/museum/shaders/museum flame.gdshader
+res://entities/herald/shaders/torture.gdshader
 res://entities/ascension/ascension background.gdshader
-res://entities/world/data_world.gd
-res://global/Scope.gd
-res://entities/ui/button/menu/start.gd
-res://global/cycle/Cycle.gd
+res://entities/museum/shaders/museum background.gdshader
+res://entities/herald/shaders/omen 1 full size.gdshader
+res://entities/herald/shaders/godray.gdshader
+res://entities/sanctuary/shader/matrix.gdshader
 res://entities/menu/menu.gd
+res://entities/world/world.gd
+res://entities/ui/button/menu/continue.gd
+res://entities/hell/jail/cage/cloak/dream/data_dream.gd
+res://entities/hell/jail/cage/cloak/dream/dream.gd
+res://entities/hell/jail/data_jail.gd
+res://entities/hell/jail/jail.gd
+res://global/Gear.gd
+res://entities/hell/underground/bank/data_bank.gd
+res://entities/abyss/data_abyss.gd
+res://global/cycle/phase/replenishment.gd
+res://entities/hell/hell.gd
+res://entities/abyss/abyss.tscn
+res://entities/abyss/abyss.gd
+res://entities/hell/underground/bank/bank.gd
+res://entities/ui/button/variants/sacrifice.gd
+res://entities/ui/transition/transition.gd
+res://global/cycle/Cycle.gd

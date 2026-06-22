@@ -76,11 +76,14 @@ layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="Sin1" parent="VBox/MarginSins/Sins" unique_id=1672584037 instance=ExtResource("1_eejge")]
+[node name="Sin1" parent="VBox/MarginSins/Sins" unique_id=1672584037 node_paths=PackedStringArray("claim") instance=ExtResource("1_eejge")]
 layout_mode = 2
+claim = NodePath("../../../..")
 
-[node name="Sin2" parent="VBox/MarginSins/Sins" unique_id=2074934885 instance=ExtResource("1_eejge")]
+[node name="Sin2" parent="VBox/MarginSins/Sins" unique_id=2074934885 node_paths=PackedStringArray("claim") instance=ExtResource("1_eejge")]
 layout_mode = 2
+claim = NodePath("../../../..")
 
-[node name="Sin3" parent="VBox/MarginSins/Sins" unique_id=992287235 instance=ExtResource("1_eejge")]
+[node name="Sin3" parent="VBox/MarginSins/Sins" unique_id=992287235 node_paths=PackedStringArray("claim") instance=ExtResource("1_eejge")]
 layout_mode = 2
+claim = NodePath("../../../..")

@@ -12,6 +12,11 @@ extends Control
 @export var setting_tabs: TabContainer
 @export var menu_panel: MarginContainer
 
+var is_echo: bool = false
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func off_screen() -> void:
 	get_tree().paused = false
@@ -22,3 +27,12 @@ func on_screen():
 	visible = true
 	start.visible = !Scope.is_game
 	unpause.visible = Scope.is_game
+
+func _input(event) -> void:
+	if event is InputEventKey and not event.pressed:
+		match event.keycode:
+			KEY_ESCAPE:
+	#if get_tree().paused:
+				#is_echo = true
+				#off_screen()
+				world.switch_menu()

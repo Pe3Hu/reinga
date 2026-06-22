@@ -836,6 +836,16 @@ const blob_to_string = {
 	Bozo.Blob.MINUS: "minus"
 }
 
+const blob_to_forge = {
+	Bozo.Blob.PLUS: "Bless",
+	Bozo.Blob.MINUS: "Curse"
+}
+
+const blob_to_intensity = {
+	Bozo.Blob.PLUS: 0.3,
+	Bozo.Blob.MINUS: 0.1
+}
+
 const blob_default_color = Color.LIGHT_SLATE_GRAY
 #endregion
 

@@ -45,8 +45,7 @@ func _on_sacrifice_received() -> void:
 	tween.set_parallel(true)
 	
 	for amber_data in amber_datas:
-		var sacrifice_time = randf_range(0.8, 1.2) * Catalog.SPECTACLE_AMBER_DURATION
+		var sacrifice_time = randf_range(0.8, 1.2) * Gear.spectacle_ambers[Gear.tempo]
 		tween.tween_property(amber_data, "value", amber_data.next_value, sacrifice_time)
 	
 	tween.tween_callback(data.reset_sacrifice)
-	

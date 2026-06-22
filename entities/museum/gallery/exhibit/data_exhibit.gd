@@ -69,10 +69,12 @@ func roll_omen_sin() -> void:
 		sin_type = Catalog.sins.pick_random()
 	
 	omen.token.type = sin_type
+	
+	if gallery.blob == Bozo.Blob.MINUS:
+		omen.token.value *= -1
 
 func roll_from_doom() -> void:
-	if sinner.soul.doom.omens.is_empty():
-		return
+	if sinner.soul.doom.omens.is_empty(): return
 	if sinner.soul.doom.omens.size() >= Catalog.DOOM_OMEN_LIMIT:
 		push_error("ExhibitData.roll_from_doom: sinner doom is full for gallery")
 		return

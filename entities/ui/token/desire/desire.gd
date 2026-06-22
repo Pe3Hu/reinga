@@ -21,6 +21,7 @@ func connect_signals() -> void:
 func _on_type_changed() -> void:
 	if data.type == 0: return
 	texture_rect.texture = load("res://entities/ui/token/desire/images/%s.png" % Catalog.desire_to_string[data.type])
+	
 	if texture_rect.material and texture_rect.material is ShaderMaterial:
 		var trial_type = Catalog.desire_to_trial[data.type]
 		visible = true
@@ -82,3 +83,15 @@ func end_dissolve(tween_: Tween) -> void:
 func update_progress(value_: float):
 	if texture_rect.material:
 		texture_rect.material.set_shader_parameter("progress", value_)
+
+func appear() -> void:
+	if data.value == 0: return
+	
+	if texture_rect.material and texture_rect.material is ShaderMaterial:
+		texture_rect.visible = true
+		var tween = create_tween()
+		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		var duration = randf_range(0.9, 1.1) * Gear.desire_dissolves[Gear.tempo]
+		var angle = Helper.rng.randf_range(0.0, 360.0)
+		texture_rect.material.set_shader_parameter("direction", angle)
+		tween.tween_method(update_progress, Catalog.DESIRE_PROGRESS_LIMIT, -Catalog.DESIRE_PROGRESS_LIMIT, duration)

@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform float time_scale = 0.2;
+uniform float intensity = 0.1;
 
 void fragment() {
     vec2 fragCoord = FRAGCOORD.xy;
@@ -14,7 +15,8 @@ void fragment() {
         uv.y += 0.6 / i * cos(i * 1.5 * uv.x + iTime);
     }
 
-    float val = 0.1 / abs(sin(iTime - uv.y - uv.x));
+    float val = intensity / abs(sin(iTime - uv.y - uv.x));
+
 
     COLOR = vec4(vec3(val), 1.0);
 }

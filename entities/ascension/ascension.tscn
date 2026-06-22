@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://j136fhuqac28" path="res://entities/ascension/ascension.gd" id="1_nc4p5"]
 [ext_resource type="Shader" uid="uid://bch7v8o3xq68d" path="res://entities/ascension/ascension background.gdshader" id="2_wxop1"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="3_lwqh8"]
-[ext_resource type="Texture2D" uid="uid://xfmpvxgvlamk" path="res://entities/ui/frame/images/ASCENSION.png" id="4_s3541"]
+[ext_resource type="Shader" uid="uid://byekugw8o1f27" path="res://entities/sanctuary/shader/matrix.gdshader" id="3_t35ps"]
+[ext_resource type="Texture2D" uid="uid://cbrchm50fy3gj" path="res://entities/sanctuary/images/runes17x18.png" id="4_1g0cq"]
+[ext_resource type="Texture2D" uid="uid://xfmpvxgvlamk" path="res://entities/ui/frame/images/ascension.png" id="4_s3541"]
 [ext_resource type="PackedScene" uid="uid://bnutpuwy7sov6" path="res://entities/ui/button/variants/rebirth button.tscn" id="5_54jg3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
@@ -12,6 +14,13 @@ shader_parameter/final_color = Color(0.297, 0.36735007, 0.9, 1)
 shader_parameter/y_offset = 0.5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+shader = ExtResource("3_t35ps")
+shader_parameter/chars = ExtResource("4_1g0cq")
+shader_parameter/columns = 60.0
+shader_parameter/trail_color = Color(0.09900001, 0.112350166, 0.9, 1)
+shader_parameter/head_color = Color(0.8, 0.8333333, 1, 1)
 
 [node name="Ascension" type="Control" unique_id=450045956 node_paths=PackedStringArray("rebirth_button")]
 z_index = 500
@@ -55,6 +64,18 @@ theme_override_constants/margin_left = -80
 theme_override_constants/margin_top = -80
 theme_override_constants/margin_right = -80
 theme_override_constants/margin_bottom = -80
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/FrameMargin" unique_id=633250181]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Matrix" type="ColorRect" parent="PanelContainer/FrameMargin/MarginContainer" unique_id=1743683357]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_60rxr")
+layout_mode = 2
 
 [node name="Frame" parent="PanelContainer/FrameMargin" unique_id=716478958 instance=ExtResource("3_lwqh8")]
 layout_mode = 2

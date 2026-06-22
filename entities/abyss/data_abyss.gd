@@ -11,6 +11,8 @@ var active_sacrifices: Array[SacrificeData]
 
 var sinners: Array[SinnerData]
 
+var counter: int = 0
+
 
 #region init
 func _init(world_: WorldData) -> void:

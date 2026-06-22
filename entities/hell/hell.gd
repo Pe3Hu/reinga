@@ -48,6 +48,11 @@ func off_screen() -> void:
 	nightmare.abort_payment()
 	nightmare.abort_guild()
 	visible = false
+	
+	if world.transition.data.next_layer == Bozo.Layer.MUSEUM:
+		jail.apply_madness_visibility()
+	if world.transition.data.next_layer == Bozo.Layer.HERALD:
+		jail.apply_madness_visibility()
 
 func on_screen():
 	visible = true
@@ -58,6 +63,6 @@ func on_screen():
 func simulate_choice() -> void:
 	var duration = Gear.simulates[Gear.tempo] * 2
 	await get_tree().create_timer(duration).timeout
-	var contribution = treasury.contributions.back()
+	var contribution = treasury.contributions.front()
 	jail.data.table._on_cage_gate_selected(contribution.cage.data)
 	bank.lock_button._button_pressed()

@@ -132,10 +132,10 @@ func deactivate() -> void:
 	if end_token:
 		var value = -1
 		
-		if end_target as Bank:
+		if (end_target as Bank) and (end_token as TokenAmber):
 			value = 1
-			if start_token as TokenAmber:
-				pass
+			#if start_token as TokenAmber:
+				#pass
 		
 		end_token.data.value += value * Catalog.status_to_sign[data.status]
 	

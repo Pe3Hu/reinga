@@ -69,6 +69,7 @@ func apply_layer() -> void:
 	data.reset()
 	
 	_pending_cycle_interrupt = Bozo.Interrupt.NONE
+	
 	if data.current_layer == Bozo.Layer.HELL:
 		match from_layer:
 			Bozo.Layer.HERALD:

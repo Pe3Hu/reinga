@@ -6,9 +6,8 @@ var world: WorldData
 var nightmare: NightmareData
 var jail: JailData
 var treasury: TreasuryData
-var market
-
-var bank: BankData = BankData.new(self)
+var market: MarketData
+var bank: BankData
 
 
 func _init(world_: WorldData) -> void:
@@ -17,3 +16,4 @@ func _init(world_: WorldData) -> void:
 	jail = JailData.new(self)
 	treasury = TreasuryData.new(self)
 	market = MarketData.new(self)
+	bank = BankData.new(self)

@@ -19,7 +19,15 @@ func _on_type_changed() -> void:
 
 func click_event() -> void:
 	super.click_event()
+	
 	if contribution != null:
 		contribution.treasury.reoder(data.type)
 		await get_tree().process_frame
 		contribution.treasury.sort_icon_shift(self)
+
+func _on_value_changed():
+	super._on_value_changed()
+	
+	if bank and data.value == 0:
+		bank.data.activate_posture(data)
+	
