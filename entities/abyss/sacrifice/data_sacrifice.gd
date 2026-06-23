@@ -44,12 +44,20 @@ func init_ambers() -> void:
 	ambers.clear()
 	
 	for cage in catena.cages:
-		for _trait in cage.sinner.soul.traits:
+		var sinner = _get_cage_sinner(cage)
+		if sinner == null:
+			continue
+		
+		for _trait in sinner.soul.traits:
 			for _sin in _trait.sins:
 				add_sin(_sin)
 		
-		for omen in cage.sinner.soul.doom.omens:
+		for omen in sinner.soul.doom.omens:
 			add_sin(omen.token)
+	
+	if sins.size() < Catalog.SACRIFICE_AMBER_COUNT:
+		emit_signal("is_updated")
+		return
 	
 	sins.sort_custom(func (a, b): return a.value > b.value)
 	
@@ -60,6 +68,13 @@ func init_ambers() -> void:
 		ambers.append(amber)
 	
 	emit_signal("is_updated")
+
+func _get_cage_sinner(cage_: CageData) -> SinnerData:
+	if cage_.sinner != null:
+		return cage_.sinner
+	if cage_.index < abyss.sinners.size():
+		return abyss.sinners[cage_.index]
+	return null
 
 func add_sin(sin_: SinData) -> void:
 	var sin_data: SinData

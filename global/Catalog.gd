@@ -1719,6 +1719,10 @@ const string_to_tooltip = {
 	"trial": Bozo.Tooltip.TRIAL,
 	"trust": Bozo.Tooltip.TRUST,
 	"hope": Bozo.Tooltip.HOPE,
+	"bless (seal)": Bozo.Tooltip.BLESS_SEAL,
+	"curse (seal)": Bozo.Tooltip.CURSE_SEAL,
+	"ascension": Bozo.Tooltip.ASCENSION,
+	"downfall": Bozo.Tooltip.DOWNFALL,
 	
 	"miss (mod)": Bozo.Tooltip.MOD_MISS,
 	"crit (mod)": Bozo.Tooltip.MOD_CRIT,
@@ -1820,6 +1824,10 @@ var tooltip_to_template = {
 	Bozo.Tooltip.LUCK: "Parameter controlling multiplier for [ghost][meta essence]Essence[/meta][/ghost] received",
 	Bozo.Tooltip.HOPE: "Criterion for forming [brotherhood][meta brotherhood]Brotherhood[/meta][/brotherhood]",
 	Bozo.Tooltip.TRUST: "Criterion for forming [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado]",
+	Bozo.Tooltip.BLESS_SEAL: "bless (seal)",
+	Bozo.Tooltip.CURSE_SEAL: "curse (seal)",
+	Bozo.Tooltip.ASCENSION: "ascension",
+	Bozo.Tooltip.DOWNFALL: "downfall",
 
 	Bozo.Tooltip.MOD_MISS: "Chance to get 0 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_CRIT: "Chance to get x2 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
@@ -1919,6 +1927,10 @@ var tooltip_to_string = {
 	Bozo.Tooltip.TAX: "tax",
 	Bozo.Tooltip.TRUST: "trust",
 	Bozo.Tooltip.HOPE: "hope",
+	Bozo.Tooltip.BLESS_SEAL: "bless (seal)",
+	Bozo.Tooltip.CURSE_SEAL: "curse (seal)",
+	Bozo.Tooltip.ASCENSION: "ascension",
+	Bozo.Tooltip.DOWNFALL: "downfall",
 	
 	Bozo.Tooltip.MOD_MISS: "miss (mod)",
 	Bozo.Tooltip.MOD_CRIT: "crit (mod)",
@@ -2025,4 +2037,11 @@ const tempo_to_int = {
 }
 
 
+#endregion
+
+#region crown
+const seals = [
+	Bozo.Seal.BLESS,
+	Bozo.Seal.CURSE
+]
 #endregion

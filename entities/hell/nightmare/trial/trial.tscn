@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ctj1b2idjftmp" path="res://entities/hell/nightmare/claim/claim.tscn" id="4_no32l"]
 [ext_resource type="PackedScene" uid="uid://bfseoli4hdx47" path="res://entities/hell/nightmare/flame/flame.tscn" id="6_no32l"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="7_51ln6"]
+[ext_resource type="PackedScene" uid="uid://b1o30aoykkuvy" path="res://entities/hell/nightmare/crown/crown.tscn" id="9_41a0h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51ln6"]
 
@@ -80,3 +81,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 trial = NodePath("../../..")
+
+[node name="Crown" parent="." unique_id=954793718 instance=ExtResource("9_41a0h")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8

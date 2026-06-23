@@ -35,4 +35,5 @@ func show_all() -> void:
 	
 	for _trait in traits:
 		if _trait.data:
+			_trait.visible = true
 			_trait.data.is_selected = true

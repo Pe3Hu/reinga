@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b1o30aoykkuvy"]
+
+[ext_resource type="Script" uid="uid://cifyrlf75874s" path="res://entities/hell/nightmare/crown/crown.gd" id="1_alxus"]
+[ext_resource type="PackedScene" uid="uid://b6l3ff6018w6d" path="res://entities/hell/nightmare/crown/seal/seal.tscn" id="2_3cdl5"]
+
+[node name="Crown" type="MarginContainer" unique_id=954793718]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = -16
+theme_override_constants/margin_top = -36
+theme_override_constants/margin_right = -16
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_alxus")
+
+[node name="Seal" parent="." unique_id=679640553 instance=ExtResource("2_3cdl5")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Seal2" parent="." unique_id=1476703526 instance=ExtResource("2_3cdl5")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Seal3" parent="." unique_id=1984780187 instance=ExtResource("2_3cdl5")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

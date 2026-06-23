@@ -17,6 +17,16 @@ var data: BankData:
 
 var type_to_token: Dictionary
 
+var active_safe: Safe:
+	set(value_):
+		if active_safe:
+			active_safe.deactivate()
+		
+		active_safe = value_
+		
+		if active_safe != null:
+			active_safe.activate()
+
 
 func connect_datas() -> void:
 	for _i in ambers.size():
@@ -49,3 +59,8 @@ func _on_sacrifice_received() -> void:
 		tween.tween_property(amber_data, "value", amber_data.next_value, sacrifice_time)
 	
 	tween.tween_callback(data.reset_sacrifice)
+
+func forget_safe() -> void:
+	if active_safe == null: return
+	active_safe.deactivate()
+	active_safe = null

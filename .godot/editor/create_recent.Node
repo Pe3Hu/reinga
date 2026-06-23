@@ -1,8 +1,8 @@
-ColorRect
 MarginContainer
+ColorRect
+PanelContainer
 RichTextLabel
 VBoxContainer
-PanelContainer
 Timer
 HBoxContainer
 TabContainer

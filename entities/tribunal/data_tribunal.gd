@@ -159,6 +159,31 @@ func add_gate_sinner(sinner_: SinnerData) -> void:
 		enhancement_to_sinner[enhancement] = []
 	
 	enhancement_to_sinner[enhancement].append(sinner_)
+
+func remove_sinner(sinner_: SinnerData) -> void:
+	_remove_from_enhancement_index(sinner_)
+	reserved_sinners.erase(sinner_)
+	
+	if foreground_sinners.has(sinner_):
+		foreground_sinners.erase(sinner_)
+		return
+	
+	for gyre in gyres:
+		if gyre.sinners.has(sinner_):
+			gyre.sinners.erase(sinner_)
+			sinner_.gyre = null
+			return
+
+func _remove_from_enhancement_index(sinner_: SinnerData) -> void:
+	var enhancement = sinner_.soul.doom.omens.size()
+	
+	if !enhancement_to_sinner.has(enhancement):
+		return
+	
+	enhancement_to_sinner[enhancement].erase(sinner_)
+	
+	if enhancement_to_sinner[enhancement].is_empty():
+		enhancement_to_sinner.erase(enhancement)
 #endregion
 
 func merge_foreground_to_hereafter() -> void:
@@ -260,8 +285,10 @@ func investment() -> void:
 func get_sinners_for_abyss() -> Array[SinnerData]:
 	var sinners: Array[SinnerData]
 	sinners.append_array(foreground_sinners)
+	sinners.append_array(hereafter.sinners)
+	sinners.append_array(bygone.sinners)
 	
-	for gyre in gyres:
-		sinners.append_array(gyre.sinners)
+	if !actual.sinners.is_empty():
+		sinners.append_array(actual.sinners)
 	
 	return sinners

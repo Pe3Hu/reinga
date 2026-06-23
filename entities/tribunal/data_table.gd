@@ -135,7 +135,8 @@ func unselect_cage() -> void:
 		if cage.table.jail:
 			cage.table.jail.platform.undo_immature_cage(cage)
 		
-		cage.sinner.fate.is_selected = false
+		if cage.sinner:
+			cage.sinner.fate.is_selected = false
 
 func detect_catena() -> void:
 	if museum != null: return

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b6l3ff6018w6d"]
+
+[ext_resource type="Script" uid="uid://btyfa73bar15k" path="res://entities/hell/nightmare/crown/seal/seal.gd" id="1_owgkq"]
+[ext_resource type="Shader" uid="uid://c1l5511gt1xi6" path="res://entities/hell/nightmare/crown/seal/seal.gdshader" id="2_kvf8j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvf8j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_owgkq"]
+shader = ExtResource("2_kvf8j")
+shader_parameter/speed = 0.4
+shader_parameter/pixelSize = 0.015
+shader_parameter/alpha = 0.95
+shader_parameter/flickerStrength = 0.15
+shader_parameter/toColor = Color(0.16, 0.03421333, 0.017600002, 1)
+shader_parameter/fromColor = Color(0.9, 0.2, 0.1, 1)
+shader_parameter/hueShift = 0.0
+shader_parameter/saturationFactor = 1.0
+shader_parameter/particleCount = 120.0
+shader_parameter/brightness = 0.001
+shader_parameter/fireShift = 1.2
+shader_parameter/fireShiftFrequency = 10.0
+shader_parameter/size = Vector2(0.05, 2)
+shader_parameter/glow = Vector2(0.001, 0.04)
+shader_parameter/aspectRatio = 1.0
+shader_parameter/posOffset = Vector2(0, -0.9)
+
+[node name="Seal" type="PanelContainer" unique_id=679640553]
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kvf8j")
+script = ExtResource("1_owgkq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1844835695]
+material = SubResource("ShaderMaterial_owgkq")
+layout_mode = 2

@@ -297,6 +297,12 @@ enum Eruption {
 	MARKET = 225
 }
 
+enum Seal {
+	NONE = 0,
+	BLESS = 226,
+	CURSE = 227,
+}
+
 #230+
 
 enum Layer {
@@ -375,6 +381,10 @@ enum Tooltip {
 	LUCK = 335,
 	HOPE = 336,
 	TRUST = 337,
+	BLESS_SEAL = 338,
+	CURSE_SEAL = 339,
+	DOWNFALL = 340,
+	ASCENSION = 341,
 	
 	MOD_BATTLE = -9,
 	MOD_AUCTION = -10,

@@ -32,6 +32,8 @@ func reset() -> void:
 	match current_layer:
 		Bozo.Layer.GATE: 
 			world.gate.table.reset_all_actives()
+		Bozo.Layer.ABYSS:
+			world.abyss.table.reset_all_actives()
 		Bozo.Layer.HELL: 
 			world.hell.jail.table.reset_all_actives()
 		Bozo.Layer.SANCTUARY:

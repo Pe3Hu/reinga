@@ -73,17 +73,26 @@ func unblur_col(index_: int) -> void:
 #endregion
 
 func update_sinner_datas() -> void:
-	%Cages.visible =  true
+	%Cages.visible = true
 	
-	for _i in data.sinners.size():
-		var sinner_data = data.sinners[_i]
+	for _i in cages.size():
+		var sinner_data = data.sinners[_i] if _i < data.sinners.size() else null
 		var cage = cages[_i]
+		
 		cage.data.sinner = sinner_data
 		cage.sinner.data = sinner_data
-		cage.cloak.dream.data = sinner_data.dream
 		
+		if sinner_data == null:
+			cage.sinner.visible = false
+			continue
+		
+		if cage.cloak.dream.data != sinner_data.dream:
+			cage.cloak.dream.data = sinner_data.dream
+		
+		cage.apply_sun_layout()
 		cage.sinner.visible = true
 		cage.passive_background.z_index = 1
+		cage.sinner.soul.show_all()
 	
 	data.update_sacrifice_ambers()
 
@@ -93,11 +102,13 @@ func off_screen() -> void:
 func on_screen():
 	visible = true
 	world.inferno.apply_layer()
+	data.table.reset_all_actives()
 	unblur_all()
+	show_all_sacrifices()
 	data.init_sinners()
-	update_sinner_datas()
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
+	update_sinner_datas()
 	#simulate_choice()
 
 func _input(event: InputEvent) -> void:

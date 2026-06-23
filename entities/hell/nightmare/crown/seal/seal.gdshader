@@ -5,8 +5,8 @@ uniform float pixelSize = 0.015;
 uniform float alpha = 0.95;
 uniform float flickerStrength = 0.15;
 
-uniform vec3 toColor = vec3(0.4, 0.35, 0.2);
-uniform vec3 fromColor = vec3(0.9, 0.2, 0.1);
+uniform vec3 toColor: source_color = vec3(0.0, 0.0, 0.0);
+uniform vec3 fromColor: source_color = vec3(0.9, 0.2, 0.1);
 
 uniform float hueShift = 0.0;
 uniform float saturationFactor = 1.0;

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://x5l4xi0l4hrh"]
+
+[ext_resource type="Script" uid="uid://cqxpe1c87k6w2" path="res://entities/hell/underground/bank/safe/safe.gd" id="1_vg7ej"]
+[ext_resource type="Shader" uid="uid://b4oa3mk5fctpv" path="res://entities/herald/shaders/torture.gdshader" id="2_8xmyp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m3u83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bw7ay"]
+shader = ExtResource("2_8xmyp")
+shader_parameter/inverse_speed = 15.0
+shader_parameter/intensity = 0.5
+
+[node name="Safe" type="PanelContainer" unique_id=1900846436]
+custom_minimum_size = Vector2(48, 48)
+custom_maximum_size = Vector2(48, 48)
+propagate_maximum_size = false
+offset_right = 48.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_m3u83")
+script = ExtResource("1_vg7ej")
+
+[node name="PassiveBackground" type="ColorRect" parent="." unique_id=210801122]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0, 0, 0, 0.5254902)
+
+[node name="ActiveBackground" type="ColorRect" parent="." unique_id=1102339380]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_bw7ay")
+layout_mode = 2

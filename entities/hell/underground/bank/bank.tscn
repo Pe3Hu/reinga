@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="2_bvxrg"]
 [ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_ipowr"]
 [ext_resource type="PackedScene" uid="uid://b5vhgobnhlxsd" path="res://entities/ui/token/posture/posture.tscn" id="4_2q8u8"]
+[ext_resource type="PackedScene" uid="uid://x5l4xi0l4hrh" path="res://entities/hell/underground/bank/safe/safe.tscn" id="4_m3u83"]
 [ext_resource type="PackedScene" uid="uid://bumjsoptu327e" path="res://entities/ui/button/variants/lock button.tscn" id="6_ipowr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3vq1a"]
@@ -12,13 +13,14 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ipowr"]
 
 [node name="Bank" type="PanelContainer" unique_id=388645775 node_paths=PackedStringArray("ambers", "postures", "lock_button")]
-custom_minimum_size = Vector2(144, 195)
+custom_minimum_size = Vector2(184, 231)
+custom_maximum_size = Vector2(184, 231)
 offset_right = 96.0
 offset_bottom = 24.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3vq1a")
 script = ExtResource("1_s3piu")
-ambers = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Anger"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Envy"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Greed"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Gluttony"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Lust"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers/Pride"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Indolence")]
-postures = [NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Madness"), NodePath("VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer/Oblivion")]
+ambers = [NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe1/Anger"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe2/Envy"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe3/Greed"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe4/Gluttony"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe5/Lust"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe6/Pride"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe7/Indolence")]
+postures = [NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe9/Madness"), NodePath("VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe8/Oblivion")]
 lock_button = NodePath("VBoxContainer/LockButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=574513681]
@@ -38,18 +40,20 @@ layout_mode = 2
 draw_center = false
 type = 524
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1704929901]
+[node name="BackgoundMargin" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1704929901]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/PanelContainer/MarginContainer2" unique_id=228137294]
+[node name="Backgound" type="ColorRect" parent="VBoxContainer/PanelContainer/BackgoundMargin" unique_id=228137294]
+visible = false
 layout_mode = 2
 color = Color(0, 0, 0, 0.5254902)
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1645152643]
+[node name="SafeMargin" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1645152643]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -58,66 +62,130 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1917045613]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/SafeMargin" unique_id=1917045613]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Ambers" type="GridContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=2061813984]
+[node name="Ambers" type="GridContainer" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer" unique_id=2061813984]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
 columns = 2
 
-[node name="Anger" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=1672584037 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
-visible = true
+[node name="Safe1" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=1900846436 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
 layout_mode = 2
-bank = NodePath("../../../../../..")
+amber = NodePath("Anger")
 
-[node name="Envy" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=2011394348 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
+[node name="Anger" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe1" unique_id=1672584037 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
 visible = true
-layout_mode = 2
-bank = NodePath("../../../../../..")
-
-[node name="Greed" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=1303019151 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
-visible = true
-layout_mode = 2
-bank = NodePath("../../../../../..")
-
-[node name="Gluttony" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=1377352268 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
-visible = true
-layout_mode = 2
-bank = NodePath("../../../../../..")
-
-[node name="Lust" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=386423178 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
-visible = true
-layout_mode = 2
-bank = NodePath("../../../../../..")
-
-[node name="Pride" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Ambers" unique_id=1059953365 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
-visible = true
-layout_mode = 2
-bank = NodePath("../../../../../..")
-
-[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1944377778]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
 
-[node name="Indolence" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer" unique_id=1763473416 node_paths=PackedStringArray("bank") instance=ExtResource("2_3vq1a")]
+[node name="Safe2" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=822747695 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Envy")
+
+[node name="Envy" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe2" unique_id=2011394348 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
 visible = true
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-bank = NodePath("../../../../../..")
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
 
-[node name="Oblivion" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer" unique_id=392952052 node_paths=PackedStringArray("bank") instance=ExtResource("4_2q8u8")]
+[node name="Safe3" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=1470069484 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Greed")
+
+[node name="Greed" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe3" unique_id=1303019151 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
 visible = true
 layout_mode = 2
-bank = NodePath("../../../../../..")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
 
-[node name="Madness" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer" unique_id=459988574 node_paths=PackedStringArray("bank") instance=ExtResource("4_2q8u8")]
+[node name="Safe4" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=2099657518 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Gluttony")
+
+[node name="Gluttony" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe4" unique_id=1377352268 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
 visible = true
 layout_mode = 2
-bank = NodePath("../../../../../..")
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
+
+[node name="Safe5" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=816354967 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Lust")
+
+[node name="Lust" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe5" unique_id=386423178 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
+
+[node name="Safe6" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers" unique_id=129020773 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Pride")
+
+[node name="Pride" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/Ambers/Safe6" unique_id=1059953365 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer" unique_id=1944377778]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Safe7" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer" unique_id=699456793 node_paths=PackedStringArray("amber") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+amber = NodePath("Indolence")
+
+[node name="Indolence" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe7" unique_id=1763473416 node_paths=PackedStringArray("bank", "safe") instance=ExtResource("2_3vq1a")]
+visible = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+safe = NodePath("..")
+
+[node name="Safe8" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer" unique_id=598040722 node_paths=PackedStringArray("oblivion") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+oblivion = NodePath("Oblivion")
+
+[node name="Oblivion" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe8" unique_id=392952052 node_paths=PackedStringArray("bank") instance=ExtResource("4_2q8u8")]
+visible = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
+
+[node name="Safe9" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer" unique_id=1836226641 node_paths=PackedStringArray("madness") instance=ExtResource("4_m3u83")]
+layout_mode = 2
+madness = NodePath("Madness")
+
+[node name="Madness" parent="VBoxContainer/PanelContainer/SafeMargin/HBoxContainer/HBoxContainer/Safe9" unique_id=459988574 node_paths=PackedStringArray("bank") instance=ExtResource("4_2q8u8")]
+visible = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+bank = NodePath("../../../../../../..")
 
 [node name="LockButton" parent="VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("bank") instance=ExtResource("6_ipowr")]
 layout_mode = 2

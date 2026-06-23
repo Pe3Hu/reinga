@@ -11,7 +11,6 @@ func update_visible() -> void:
 func _button_pressed() -> void:
 	super._button_pressed()
 	abyss.world.hell.bank.data.sacrifice = abyss.data.table.active_catenas.back().sacrifice
+	abyss.data.refill_tribunal()
 	hide_me()
-	#abyss.data.refill_tribunal()
-	#Scope.phase = Bozo.Phase.ENDOWMENT
 	abyss.world.transition.data.next_layer = Bozo.Layer.HELL
