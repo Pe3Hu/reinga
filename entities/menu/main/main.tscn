@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbbqvpapvdnls"]
 
-[ext_resource type="Script" uid="uid://bty8o4efrri7s" path="res://entities/menu/menu.gd" id="1_ab5ca"]
-[ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/menu/main menu.gdshader" id="2_28b7d"]
+[ext_resource type="Script" uid="uid://bty8o4efrri7s" path="res://entities/menu/main/main.gd" id="1_ab5ca"]
+[ext_resource type="Shader" uid="uid://d07l1gp8uscbn" path="res://entities/menu/main/main menu.gdshader" id="2_28b7d"]
 [ext_resource type="PackedScene" uid="uid://c1qgj0s0j0fm5" path="res://entities/ui/button/menu/start button.tscn" id="3_aud0f"]
 [ext_resource type="PackedScene" uid="uid://ca2xgecbhfesk" path="res://entities/menu/gear/gear.tscn" id="3_yttcm"]
 [ext_resource type="PackedScene" uid="uid://bpkxkfb4retgb" path="res://entities/ui/frame/frame.tscn" id="4_3fnu5"]
@@ -25,7 +25,7 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 
-[node name="Menu" type="Control" unique_id=1689953168 node_paths=PackedStringArray("start", "unpause", "settings", "exit", "setting_tabs", "menu_panel")]
+[node name="MainMenu" type="Control" unique_id=1689953168 node_paths=PackedStringArray("start", "unpause", "settings", "exit", "setting_tabs", "menu_panel")]
 process_mode = 2
 z_index = 25
 layout_mode = 3
@@ -162,6 +162,7 @@ size_flags_horizontal = 1
 menu = NodePath("../../../../../..")
 
 [node name="ContinueButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=1433455156 node_paths=PackedStringArray("menu") instance=ExtResource("4_yttcm")]
+visible = false
 layout_mode = 2
 menu = NodePath("../../../../../..")
 

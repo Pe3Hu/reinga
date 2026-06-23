@@ -87,9 +87,11 @@ func flow_contribution_update():
 	
 	flow = hell.data.jail.table.active_cages.back().contribution.flow
 	flow.nightmare = hell.nightmare.data
+	flow.bank = hell.bank
 	flow.init_contribution_eruptions()
 	
 	if flow.eruptions.is_empty():
+		hell.bank.forget_safe()
 		_finish_disbursement()
 		return
 	
@@ -98,7 +100,24 @@ func flow_contribution_update():
 	for eruption_data in flow.eruptions:
 		eruption_data.disbursement = true
 	
+	schedule_forget_safe()
 	burst_eruption()
+
+func schedule_forget_safe() -> void:
+	if hell.bank.active_safe == null:
+		return
+	
+	var last_safe_index = -1
+	for i in flow.eruptions.size():
+		if flow.eruptions[i].from_safe:
+			last_safe_index = maxi(last_safe_index, i)
+	
+	var delay = 0.0
+	if last_safe_index >= 0:
+		var step = Gear.volcano_bursts[Gear.tempo] / float(flow.eruptions.size())
+		delay = step * float(last_safe_index + 1) + Gear.eruptions[Gear.tempo]
+	
+	get_tree().create_timer(delay).timeout.connect(hell.bank.forget_safe, CONNECT_ONE_SHOT)
 
 func _finish_disbursement() -> void:
 	if Scope.phase != Bozo.Phase.DISBURSEMENT: return

@@ -5,4 +5,4 @@ extends CustomButton
 
 
 func _button_pressed() -> void:
-	menu.off_screen()
+	menu.world.switch_menu()

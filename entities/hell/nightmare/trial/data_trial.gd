@@ -9,6 +9,7 @@ var tribute: TributeData
 var attitude: AttitudeData
 var flame: FlameData
 var claim: ClaimData
+var crown: CrownData
 var tooltip: Bozo.Tooltip = Bozo.Tooltip.TRIAL
 var overlord: OverlordData
 var type: Bozo.Trial:
@@ -26,3 +27,4 @@ func _init(nightmare_: NightmareData, type_: Bozo.Trial) -> void:
 	attitude = AttitudeData.new(self)
 	flame = FlameData.new(self)
 	tribute = TributeData.new(self)
+	crown = CrownData.new(self)

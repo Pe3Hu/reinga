@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xfmpvxgvlamk"
-path="res://.godot/imported/ascension.png-0034b83ed91a3a893975ce853449fbf6.ctex"
+path="res://.godot/imported/exodus.png-4a6857c32e88148681dc1025e68dd043.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/ui/frame/images/ascension.png"
-dest_files=["res://.godot/imported/ascension.png-0034b83ed91a3a893975ce853449fbf6.ctex"]
+source_file="res://entities/ui/frame/images/exodus.png"
+dest_files=["res://.godot/imported/exodus.png-4a6857c32e88148681dc1025e68dd043.ctex"]
 
 [params]
 

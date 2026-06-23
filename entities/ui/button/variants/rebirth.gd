@@ -1,11 +1,12 @@
 extends CustomButton
 
 
-@export var ascension: Ascension
+@export var exodus: Exodus
 
 
 func _button_pressed() -> void:
 	super._button_pressed()
 	
+	Cycle.stop()
 	Scope.is_game = false
-	ascension.world.transition.data.next_layer = Bozo.Layer.HELL
+	exodus.world.transition.data.next_layer = Bozo.Layer.MENU

@@ -69,11 +69,11 @@ func activate_posture(posture_: PostureData) -> void:
 			hell.world.abyss.counter += 1
 
 func get_rank_posture_value(type_: Bozo.Posture) -> int:
-	var value: int = 7
+	var value: int = 10
 	
 	if type_ == Bozo.Posture.OBLIVION:
 		var overlord = hell.world.throne.marvone
 		var rank = overlord.rank + Scope.posture_to_factor[type_]
-		value = 2 * rank + 5
+		value = 2 * rank + 9
 	
 	return value

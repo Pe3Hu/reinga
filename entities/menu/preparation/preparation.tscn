@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b7tvyri5lnckr"]
+
+[ext_resource type="Script" uid="uid://cl0ggmug12t6d" path="res://entities/menu/preparation/preparation.gd" id="1_dcu3r"]
+
+[node name="PreparationMenu" type="Control" unique_id=926697744]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_dcu3r")

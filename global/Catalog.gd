@@ -392,7 +392,6 @@ const fate_to_tooltip = {
 	Bozo.Fate.VILLAIN: Bozo.Tooltip.VILLAIN,
 }
 
-
 const faction_to_association = {
 	Bozo.Faction.LEGEND: Bozo.Association.BROTHERHOOD,
 	Bozo.Faction.COVENANT: Bozo.Association.GUILD
@@ -874,6 +873,34 @@ const attitude_to_baggage = {
 	Bozo.Attitude.SCORN: -5,
 }
 
+const attitude_to_seal = {
+	Bozo.Attitude.RAPTURE: Bozo.Seal.BLESS,
+	Bozo.Attitude.SCORN: Bozo.Seal.CURSE
+}
+
+const attitude_to_attitude_to_drain = {
+	Bozo.Attitude.RAPTURE: {
+		Bozo.Attitude.INDIFFERENCE: [Bozo.Drain.GALLERY, Bozo.Drain.DECREE],
+		Bozo.Attitude.FAVOR: [Bozo.Drain.DECREE],
+	},
+	Bozo.Attitude.FAVOR: {
+		Bozo.Attitude.RAPTURE: [Bozo.Drain.DECREE],
+		Bozo.Attitude.INDIFFERENCE: [Bozo.Drain.GALLERY],
+	},
+	Bozo.Attitude.INDIFFERENCE: {
+		Bozo.Attitude.FAVOR: [Bozo.Drain.GALLERY],
+		Bozo.Attitude.DISFAVOR: [Bozo.Drain.GALLERY]
+	},
+	Bozo.Attitude.DISFAVOR: {
+		 Bozo.Attitude.INDIFFERENCE: [Bozo.Drain.GALLERY],
+		 Bozo.Attitude.SCORN: [Bozo.Drain.DECREE],
+	},
+	Bozo.Attitude.SCORN: {
+		Bozo.Attitude.DISFAVOR: [Bozo.Drain.DECREE],
+		Bozo.Attitude.INDIFFERENCE: [Bozo.Drain.GALLERY, Bozo.Drain.DECREE],
+	}
+}
+
 const attitude_to_blob_to_attitude = {
 	Bozo.Attitude.RAPTURE: {
 		Bozo.Blob.PLUS: Bozo.Attitude.INDIFFERENCE,
@@ -1086,7 +1113,7 @@ const frame_to_string = {
 	Bozo.Frame.HERALD: "herald",
 	Bozo.Frame.MUSEUM: "museum",
 	Bozo.Frame.MENU: "menu",
-	Bozo.Frame.ASCENSION: "ascension",
+	Bozo.Frame.EXODUS: "exodus",
 }
 
 const frame_to_region = {
@@ -1104,7 +1131,7 @@ const frame_to_region = {
 	Bozo.Frame.HERALD: 128,
 	Bozo.Frame.MUSEUM: 120,
 	Bozo.Frame.MENU: 160,
-	Bozo.Frame.ASCENSION: 144,
+	Bozo.Frame.EXODUS: 144,
 }
 
 const frame_to_patch = {
@@ -1122,20 +1149,21 @@ const frame_to_patch = {
 	Bozo.Frame.HERALD: 62,
 	Bozo.Frame.MUSEUM: 58,
 	Bozo.Frame.MENU: 78,
-	Bozo.Frame.ASCENSION: 70,
+	Bozo.Frame.EXODUS: 70,
 }
-#endregioascensionn
+#endregion
 
 #region transition
 
 const layer_to_string = {
+	Bozo.Layer.MENU: "main_menu",
 	Bozo.Layer.HELL: "hell",
 	Bozo.Layer.GATE: "gate",
 	Bozo.Layer.ABYSS: "abyss",
 	Bozo.Layer.SANCTUARY: "sanctuary",
 	Bozo.Layer.MUSEUM: "museum",
 	Bozo.Layer.HERALD: "herald",
-	Bozo.Layer.ASCENSION: "ascension",
+	Bozo.Layer.EXODUS: "exodus",
 }
 #endregion
 
@@ -1533,11 +1561,11 @@ const modifier_to_overlord = {
 }
 
 const overlord_to_hue = {
-	Bozo.Overlord.CALTHEX: 0.75,
-	Bozo.Overlord.KHARZEN: 0.95,
 	Bozo.Overlord.VIRELLO: 0.15,
 	Bozo.Overlord.XALVORR: 0.35,
 	Bozo.Overlord.SIREXIL: 0.55,
+	Bozo.Overlord.CALTHEX: 0.75,
+	Bozo.Overlord.KHARZEN: 0.95,
 	Bozo.Overlord.MARVONE: 0.0,
 }
 
@@ -1772,7 +1800,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.SIN: "[ghost][meta transient]Transient[/meta][/ghost] [meta essence]%s[/meta]",
 	Bozo.Tooltip.AMBER: "[ghost][meta permanent]Permanent[/meta][/ghost] [meta essence]%s[/meta], can complement [ghost][meta contribution]Contribution[/meta][/ghost]",
 	Bozo.Tooltip.ESSENCE: "Primal hell currency",
-	Bozo.Tooltip.MADNESS: "Grants [ghost][meta omen]Omen[/meta][/ghost] at the expense of increase in [ghost][meta desire]Desire's[/meta][/ghost]",
+	Bozo.Tooltip.MADNESS: "Increases random [ghost][meta desire]Desire[/meta][/ghost] and amount of [ghost][meta amber]Amber[/meta][/ghost] required for [ghost][meta ascension]Ascension[/meta][/ghost]",
+	#Bozo.TooltipBozo.Tooltip.MADNESS: ".MADNESS: "Grants [ghost][meta omen]Omen[/meta][/ghost] at the expense of increase in [ghost][meta desire]Desire's[/meta][/ghost]",
 	Bozo.Tooltip.OBLIVION: "Sacrifices [ghost][meta sinner]Sinner[/meta][/ghost] to obtain [ghost][meta amber]Amber[/meta][/ghost]",
 	Bozo.Tooltip.TRIBUTE: "Changes %s [ghost][meta attitude]Attitude[/meta][/ghost]",
 	Bozo.Tooltip.ATTITUIDE: "Shows relationship with %s",
@@ -1824,11 +1853,11 @@ var tooltip_to_template = {
 	Bozo.Tooltip.LUCK: "Parameter controlling multiplier for [ghost][meta essence]Essence[/meta][/ghost] received",
 	Bozo.Tooltip.HOPE: "Criterion for forming [brotherhood][meta brotherhood]Brotherhood[/meta][/brotherhood]",
 	Bozo.Tooltip.TRUST: "Criterion for forming [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado]",
-	Bozo.Tooltip.BLESS_SEAL: "bless (seal)",
-	Bozo.Tooltip.CURSE_SEAL: "curse (seal)",
-	Bozo.Tooltip.ASCENSION: "ascension",
-	Bozo.Tooltip.DOWNFALL: "downfall",
-
+	Bozo.Tooltip.BLESS_SEAL: "Reward for bringing [ghost][meta attitude]Attitude[/meta][/ghost] to the maximum, can be used for [ghost][meta ascension]Ascension[/meta][/ghost]",
+	Bozo.Tooltip.CURSE_SEAL: "Penalty for letting [ghost][meta attitude]Attitude[/meta][/ghost] drop to the minimum, will be used for [ghost][meta downfall]Downfall[/meta][/ghost]",
+	Bozo.Tooltip.ASCENSION: "This is the end, good one. Triggered from:\nThere are at least 3 [ghost][meta trial]Trial's[/meta][/ghost] with 3 [ghost][meta bless (seal)]Bless Seal[/meta][/ghost]\nOr accumulate 100 [ghost][meta amber]Amber[/meta][/ghost]",
+	Bozo.Tooltip.DOWNFALL: "This is the end, bad one. Triggered from:\nThere are at least 3 [ghost][meta trial]Trial's[/meta][/ghost] with 3 [ghost][meta curse (seal)]Curse Seal[/meta][/ghost]",
+	
 	Bozo.Tooltip.MOD_MISS: "Chance to get 0 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_CRIT: "Chance to get x2 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_MEGACRIT: "Chance to get x3 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
@@ -1992,7 +2021,9 @@ const tooltip_to_suffix = {
 	Bozo.Tooltip.MOD_AMBER: ", scope",
 	Bozo.Tooltip.MOD_BALLET: ", shift",
 	Bozo.Tooltip.MOD_PUPPETRY: ", shift",
-	Bozo.Tooltip.MOD_OPERA: ", shift"
+	Bozo.Tooltip.MOD_OPERA: ", shift",
+	Bozo.Tooltip.BLESS_SEAL: ", seal",
+	Bozo.Tooltip.CURSE_SEAL: ", seal",
 }
 #endregion
 
@@ -2040,8 +2071,24 @@ const tempo_to_int = {
 #endregion
 
 #region crown
+const SEAL_LIMIT: int = 3
+
+const DOWNFALL_TRIAL_COUNT: int = 3
+const ASCENSION_TRIAL_COUNT: int = 3
+const ASCENSION_AMBER_COUNT: int = 25#100
+
 const seals = [
 	Bozo.Seal.BLESS,
 	Bozo.Seal.CURSE
 ]
+
+const seal_to_tooltip = {
+	Bozo.Seal.BLESS: Bozo.Tooltip.BLESS_SEAL,
+	Bozo.Seal.CURSE: Bozo.Tooltip.CURSE_SEAL
+}
+
+const exodus_to_string = {
+	Bozo.Exodus.ASCENSION: "ascension",
+	Bozo.Exodus.DOWNFALL: "downfall",
+}
 #endregion

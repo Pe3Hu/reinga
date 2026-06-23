@@ -1,19 +1,19 @@
-[gd_scene format=3 uid="uid://b6l3ff6018w6d"]
+[gd_scene format=3 uid="uid://b1o30aoykkuvy"]
 
-[ext_resource type="Script" uid="uid://btyfa73bar15k" path="res://entities/hell/nightmare/crown/seal/seal.gd" id="1_owgkq"]
-[ext_resource type="Shader" uid="uid://c1l5511gt1xi6" path="res://entities/hell/nightmare/crown/seal/seal.gdshader" id="2_kvf8j"]
+[ext_resource type="Script" uid="uid://cifyrlf75874s" path="res://entities/hell/nightmare/crown/seal/seal.gd" id="1_owgkq"]
+[ext_resource type="Shader" uid="uid://c1l5511gt1xi6" path="res://entities/hell/nightmare/crown/seal/earring.gdshader" id="2_3cdl5"]
+[ext_resource type="PackedScene" uid="uid://dwuuh3cev1gfk" path="res://entities/ui/tooltip/interact/tooltip_Interact.tscn" id="2_kg1lr"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvf8j"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_owgkq"]
-shader = ExtResource("2_kvf8j")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc5iu"]
+resource_local_to_scene = true
+shader = ExtResource("2_3cdl5")
 shader_parameter/speed = 0.4
 shader_parameter/pixelSize = 0.015
 shader_parameter/alpha = 0.95
 shader_parameter/flickerStrength = 0.15
-shader_parameter/toColor = Color(0.16, 0.03421333, 0.017600002, 1)
-shader_parameter/fromColor = Color(0.9, 0.2, 0.1, 1)
-shader_parameter/hueShift = 0.0
+shader_parameter/to_color = Color(0, 0, 0, 1)
+shader_parameter/from_color = Color(0.9, 0.2, 0.1, 1)
+shader_parameter/hue_shift = 0.0
 shader_parameter/saturationFactor = 1.0
 shader_parameter/particleCount = 120.0
 shader_parameter/brightness = 0.001
@@ -24,13 +24,51 @@ shader_parameter/glow = Vector2(0.001, 0.04)
 shader_parameter/aspectRatio = 1.0
 shader_parameter/posOffset = Vector2(0, -0.9)
 
-[node name="Seal" type="PanelContainer" unique_id=679640553]
-custom_minimum_size = Vector2(48, 48)
-offset_right = 48.0
-offset_bottom = 48.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_kvf8j")
+[node name="Seal" type="MarginContainer" unique_id=954793718 node_paths=PackedStringArray("earrings")]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = -16
+theme_override_constants/margin_top = -36
+theme_override_constants/margin_right = -16
+theme_override_constants/margin_bottom = 4
 script = ExtResource("1_owgkq")
+earrings = [NodePath("Earring1"), NodePath("Earring2"), NodePath("Earring3")]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1844835695]
-material = SubResource("ShaderMaterial_owgkq")
+[node name="PanelContainer" type="MarginContainer" parent="." unique_id=1947044619]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = -8
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = -8
+theme_override_constants/margin_bottom = -24
+
+[node name="TooltipInteract" parent="PanelContainer" unique_id=1790257899 node_paths=PackedStringArray("target") instance=ExtResource("2_kg1lr")]
+layout_mode = 2
+target = NodePath("../..")
+
+[node name="Earring1" type="ColorRect" parent="." unique_id=1123965917]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yc5iu")
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Earring2" type="ColorRect" parent="." unique_id=2034419966]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yc5iu")
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Earring3" type="ColorRect" parent="." unique_id=192794888]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yc5iu")
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

@@ -5,9 +5,13 @@ extends Resource
 var contribution: ContributionData
 var nightmare: NightmareData
 var plaza: PlazaData
+var bank: Bank
 var eruptions: Array[EruptionData]
 
 var sin_to_available: Dictionary
+var amber_available: int
+var amber_sin_type: Bozo.Sin
+var amber_is_indolence: bool
 var sin_to_demand: Dictionary
 var sin_to_trial_to_weight: Dictionary
 var sin_to_supply: Dictionary
@@ -27,23 +31,143 @@ func init_contribution_eruptions() -> void:
 		sin_to_supply[_sin.type] = 0
 		sin_to_trial_to_weight[_sin.type] = {}
 	
+	init_amber_available()
 	recalc_sin_to_trial_to_weight()
+	if amber_is_indolence:
+		recalc_indolence_claim_weights()
 	spread_available()
 	init_minus_contribution_eruptions()
 
+func init_amber_available() -> void:
+	amber_available = 0
+	amber_sin_type = Bozo.Sin.NONE
+	amber_is_indolence = false
+	
+	if bank == null or bank.active_safe == null:
+		return
+	
+	var amber_data = bank.active_safe.amber.data
+	if amber_data.value <= 0:
+		return
+	
+	if amber_data.type == Bozo.Amber.INDOLENCE:
+		amber_is_indolence = true
+		amber_available = amber_data.value
+		return
+	
+	if !Catalog.amber_to_sin.has(amber_data.type):
+		return
+	
+	amber_available = amber_data.value
+	amber_sin_type = Catalog.amber_to_sin[amber_data.type]
+
+func recalc_indolence_claim_weights() -> void:
+	for trial in nightmare.trials:
+		for _sin in trial.claim.sins:
+			if _sin.value <= 0:
+				continue
+			
+			if !sin_to_trial_to_weight.has(_sin.type):
+				sin_to_trial_to_weight[_sin.type] = {}
+			
+			sin_to_trial_to_weight[_sin.type][trial.type] = _sin.value
+
+func has_indolence_targets() -> bool:
+	for sin_type in sin_to_trial_to_weight:
+		for trial in sin_to_trial_to_weight[sin_type]:
+			if sin_to_trial_to_weight[sin_type][trial] > 0:
+				return true
+	return false
+
+func pick_indolence_target() -> Dictionary:
+	var options: Array[Dictionary] = []
+	
+	for sin_type in sin_to_trial_to_weight:
+		for trial in sin_to_trial_to_weight[sin_type]:
+			if sin_to_trial_to_weight[sin_type][trial] > 0:
+				options.append({sin_type = sin_type, trial = trial})
+	
+	if options.is_empty():
+		return {}
+	
+	return options.pick_random()
+
+func pick_spread_source() -> Dictionary:
+	var can_amber = amber_available > 0
+	
+	if amber_is_indolence:
+		can_amber = can_amber and has_indolence_targets()
+	else:
+		can_amber = (
+			can_amber
+			and sin_to_trial_to_weight.has(amber_sin_type)
+			and !sin_to_trial_to_weight[amber_sin_type].is_empty()
+		)
+	var can_contribution = !sin_to_available.is_empty()
+	
+	if !can_amber and !can_contribution:
+		return {}
+	
+	if can_amber and !can_contribution:
+		if amber_is_indolence:
+			return {from_safe = true}
+		return {from_safe = true, sin_type = amber_sin_type}
+	
+	if can_contribution and !can_amber:
+		return {from_safe = false, sin_type = Helper.get_random_key(sin_to_available)}
+	
+	var weights = {
+		amber = float(amber_available),
+		contribution = 0.0,
+	}
+	
+	for sin_type in sin_to_available:
+		weights.contribution += sin_to_available[sin_type]
+	
+	if Helper.get_random_key(weights) == "amber":
+		if amber_is_indolence:
+			return {from_safe = true}
+		return {from_safe = true, sin_type = amber_sin_type}
+	
+	return {from_safe = false, sin_type = Helper.get_random_key(sin_to_available)}
+
 func spread_available() -> void:
-	while sin_to_available:
-		var sin_type = Helper.get_random_key(sin_to_available)
+	while sin_to_available or amber_available > 0:
+		var source = pick_spread_source()
 		
-		if sin_type == null:
-			sin_to_available.clear()
+		if source.is_empty():
 			break
 		
-		if !sin_to_trial_to_weight.has(sin_type):
-			sin_to_available.erase(sin_type)
-			continue
+		var from_safe: bool = source.from_safe
+		var sin_type = source.get("sin_type")
+		var trial = null
 		
-		var trial = Helper.get_random_key(sin_to_trial_to_weight[sin_type])
+		if from_safe and amber_is_indolence:
+			var target = pick_indolence_target()
+			if target.is_empty():
+				amber_available = 0
+				continue
+			sin_type = target.sin_type
+			trial = target.trial
+		elif sin_type == null:
+			sin_to_available.clear()
+			amber_available = 0
+			break
+		
+		if !from_safe or !amber_is_indolence:
+			if sin_type == null:
+				sin_to_available.clear()
+				amber_available = 0
+				break
+			
+			if !sin_to_trial_to_weight.has(sin_type):
+				if from_safe:
+					amber_available = 0
+				else:
+					sin_to_available.erase(sin_type)
+				continue
+			
+			trial = Helper.get_random_key(sin_to_trial_to_weight[sin_type])
 		
 		if trial != null:
 			var modifier = Helper.get_random_key(modifier_weights)
@@ -53,18 +177,23 @@ func spread_available() -> void:
 			if modifier == Bozo.Modifier.NONE:
 				amount = randi_range(1, sin_to_trial_to_weight[sin_type][trial])
 			
-			if modifier != Bozo.Modifier.MISS:
-				amount = min(sin_to_available[sin_type], amount * factor)
-			
-			sin_to_available[sin_type] -= amount
-			sin_to_supply[sin_type] += amount
+			if from_safe:
+				if modifier != Bozo.Modifier.MISS:
+					amount = min(amber_available, amount * factor)
+				amber_available -= amount
+			else:
+				if modifier != Bozo.Modifier.MISS:
+					amount = min(sin_to_available[sin_type], amount * factor)
+				sin_to_available[sin_type] -= amount
+				sin_to_supply[sin_type] += amount
 			
 			for _i in amount:
 				var eruption_type = Catalog.trial_to_eruption[trial]
 				var eruption = EruptionData.new(self, sin_type, eruption_type, modifier)
+				eruption.from_safe = from_safe
 				eruptions.append(eruption)
 			
-			if sin_to_available[sin_type] == 0:
+			if !from_safe and sin_to_available[sin_type] == 0:
 				sin_to_available.erase(sin_type)
 			
 			sin_to_trial_to_weight[sin_type][trial] -= amount
@@ -74,6 +203,8 @@ func spread_available() -> void:
 			
 			if sin_to_trial_to_weight[sin_type].keys().is_empty():
 				sin_to_trial_to_weight.erase(sin_type)
+		elif from_safe:
+			amber_available = 0
 		else:
 			sin_to_available.erase(sin_type)
 	

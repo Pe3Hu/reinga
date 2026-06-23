@@ -8,16 +8,22 @@ signal layer_changed
 var sanctuary: SanctuaryData
 
 var is_game: bool = false
+var is_skip: bool = true
 
 var phase: Bozo.Phase = Bozo.Phase.ENDOWMENT
 var turn: int = 0
+var essence: int = 0
 
-var layer: Bozo.Layer = Bozo.Layer.HELL:
+var layer: Bozo.Layer = Bozo.Layer.MENU:
 	set(value_):
 		layer = value_
 		emit_signal("layer_changed")
 
 var weather: Bozo.Weather = Bozo.Weather.MOON
+var exodus: Bozo.Exodus = Bozo.Exodus.NONE:
+	set(value_):
+		exodus = value_
+		apply_exodus()
 
 #region plaza
 #var trust_limit: int = 2
@@ -57,9 +63,11 @@ func reset() -> void:
 	}
 	
 	turn = 0
+	essence = 0
 	phase = Bozo.Phase.ENDOWMENT
-	layer = Bozo.Layer.HELL
+	layer = Bozo.Layer.MENU
 	weather = Bozo.Weather.MOON
+	exodus = Bozo.Exodus.NONE
 	guild_level = 1
 
 func equalize_posture_factors() -> void:
@@ -70,3 +78,8 @@ func equalize_posture_factors() -> void:
 			posture_to_factor[posture] -= rank_shift
 		
 		sanctuary.world.throne.marvone.rank += rank_shift
+
+func apply_exodus() -> void:
+	if exodus == 0: return
+	Cycle.stop()
+	sanctuary.world.transition.next_layer = Bozo.Layer.EXODUS

@@ -188,5 +188,6 @@ size_flags_vertical = 4
 bank = NodePath("../../../../../../..")
 
 [node name="LockButton" parent="VBoxContainer" unique_id=250034607 node_paths=PackedStringArray("bank") instance=ExtResource("6_ipowr")]
+visible = false
 layout_mode = 2
 bank = NodePath("../..")

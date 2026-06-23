@@ -26,5 +26,14 @@ func calc_half() -> void:
 	for token in trial.claim.sins:
 		new_value += token.value
 	
-	progression.limit_value = floor(new_value*0.5)
+	progression.limit_value = floor(new_value * 0.5)
 #endregion
+
+func raise_essence() -> void:
+	var essence_shift = progression.current_value - progression.limit_value
+	
+	if progression.current_value >= progression.limit_value * 2:
+		essence_shift *= 2
+	
+	if essence_shift > 0:
+		Scope.essence += essence_shift

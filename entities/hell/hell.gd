@@ -61,8 +61,9 @@ func on_screen():
 	#weather_button.switch_weather()
 
 func simulate_choice() -> void:
+	if !Scope.is_skip: return
 	var duration = Gear.simulates[Gear.tempo] * 2
 	await get_tree().create_timer(duration).timeout
-	var contribution = treasury.contributions.front()
+	var contribution = treasury.contributions.back()
 	jail.data.table._on_cage_gate_selected(contribution.cage.data)
 	bank.lock_button._button_pressed()

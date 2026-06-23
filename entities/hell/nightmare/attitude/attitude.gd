@@ -80,10 +80,19 @@ func drain_bowl(bowl_: Bowl) -> void:
 	if data.ban_type == Bozo.Attitude.NONE:
 		data.privilege_type = data.type
 		data.type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
-		data.ban_type = Catalog.attitude_to_blob_to_attitude[data.type][bowl_.data.type]
-		add_gallery(bowl_)
+		data.ban_type = data.type
+		
+		var drain_types = Catalog.attitude_to_attitude_to_drain[data.privilege_type][data.type]
+		
+		for drain_type in drain_types:
+			match drain_type:
+				Bozo.Drain.GALLERY:
+					add_gallery(bowl_)
+				Bozo.Drain.DECREE:
+					add_decree(bowl_)
 		
 		if data.type == Bozo.Attitude.INDIFFERENCE and (data.privilege_type == Bozo.Attitude.RAPTURE or data.privilege_type == Bozo.Attitude.SCORN):
+			data.trial.crown.apply_attutide_drain(data.privilege_type)
 			data.trial.nightmare.privilege_attitudes.append(data)
 		else:
 			data.privilege_type = Bozo.Attitude.NONE

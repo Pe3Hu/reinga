@@ -35,9 +35,9 @@ func _ready():
 	descritipion_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	descritipion_label.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
-func setup(d: TooltipData, p: Tooltip):
-	data = d
-	parent = p
+func setup(data_: TooltipData, tooltip_: Tooltip):
+	data = data_
+	parent = tooltip_
 	%CloseTimer.start()
 
 	header_label.text = _apply_template(data.header)
@@ -54,20 +54,19 @@ func setup(d: TooltipData, p: Tooltip):
 
 	_fade(1.0)
 
-
 func _apply_template(text: String) -> String:
 	var regex := RegEx.new()
 	regex.compile("\\[meta (.*?)\\](.*?)\\[/meta\\]")
 
 	var matches = regex.search_all(text)
-	var result := text
+	var result = text
 
-	for m in matches:
-		var key = m.get_string(1)
-		var label_text = m.get_string(2)
+	for _m in matches:
+		var key = _m.get_string(1)
+		var label_text = _m.get_string(2)
 
 		var replacement = "[url=%s]%s[/url]" % [key, label_text]
-		result = result.replace(m.get_string(0), replacement)
+		result = result.replace(_m.get_string(0), replacement)
 
 	return result
 
@@ -81,7 +80,6 @@ func _on_meta_hover(meta):
 	meta_timer = get_tree().create_timer(META_DELAY)
 	meta_timer.timeout.connect(_spawn_pending_meta)
 
-
 func _spawn_pending_meta():
 	if pending_meta == null: return
 	var mouse := get_viewport().get_mouse_position()
@@ -90,7 +88,6 @@ func _spawn_pending_meta():
 	child = TooltipManager.show_child(self, data_, mouse)
 	%CloseTimer.stop()
 	%CloseTimer.start()
-
 
 func _on_meta_exit(_meta):
 	pending_meta = null
@@ -207,6 +204,16 @@ func update_size_to_fit_text():
 		size.x = 200
 		size.y += text_size.y * 5 
 		descritipion_label.custom_minimum_size.y += text_size.y * 5
+	
+	if data.type == Bozo.Tooltip.DOWNFALL:
+		size.x = 300
+		size.y += text_size.y * 1 
+		descritipion_label.custom_minimum_size.y += text_size.y * 1
+	
+	if data.type == Bozo.Tooltip.ASCENSION:
+		size.x = 300
+		size.y += text_size.y * 2 
+		descritipion_label.custom_minimum_size.y += text_size.y * 2
 	
 	# Высоту можно получить через get_content_height()
 	#size.y = label.get_content_height()

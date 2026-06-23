@@ -1,12 +1,12 @@
 MarginContainer
-ColorRect
 PanelContainer
+Control
+ColorRect
 RichTextLabel
 VBoxContainer
 Timer
 HBoxContainer
 TabContainer
-Control
 TextureRect
 GridContainer
 Node2D

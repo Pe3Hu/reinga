@@ -6,6 +6,7 @@ extends PanelContainer
 var data: TrialData:
 	set(value_):
 		data = value_
+		
 		connect_datas()
 		apply_type()
 
@@ -15,6 +16,8 @@ var data: TrialData:
 @export var tribute : Tribute
 @export var flame: Flame
 @export var claim: Claim
+@export var bless_seal: Seal
+@export var curse_seal: Seal
 
 
 func connect_datas() -> void:
@@ -22,6 +25,8 @@ func connect_datas() -> void:
 	tribute.data = data.tribute
 	flame.data = data.flame
 	claim.data = data.claim
+	bless_seal.data = data.crown.type_to_seal[Bozo.Seal.BLESS]
+	curse_seal.data = data.crown.type_to_seal[Bozo.Seal.CURSE]
 
 func apply_type() -> void:
 	claim.apply_type()

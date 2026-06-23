@@ -5,10 +5,10 @@ uniform float pixelSize = 0.015;
 uniform float alpha = 0.95;
 uniform float flickerStrength = 0.15;
 
-uniform vec3 toColor: source_color = vec3(0.0, 0.0, 0.0);
-uniform vec3 fromColor: source_color = vec3(0.9, 0.2, 0.1);
+uniform vec3 to_color: source_color = vec3(0.0, 0.0, 0.0);
+uniform vec3 from_color: source_color = vec3(0.9, 0.2, 0.1);
 
-uniform float hueShift = 0.0;
+uniform float hue_shift = 0.0;
 uniform float saturationFactor = 1.0;
 
 uniform float particleCount = 120.0;
@@ -62,7 +62,7 @@ vec3 Simulate(vec2 uv, float t) {
 
         vec2 off = vec2(seed * size.x, 0.0);
 
-        res += mix(fromColor * abs(seed), toColor, ct)
+        res += mix(from_color * abs(seed), to_color, ct)
             * smoothstep(glow.x, glow.y,
                 cb / length(uv - off - (dir * ct))
             );
@@ -86,7 +86,7 @@ void fragment() {
     // ===== FIXED HUE MIX =====
     vec3 hsv = rgb_to_hsv(fire_color);
 
-    hsv.x += hueShift;
+    hsv.x += hue_shift;
     hsv.x = hsv.x - floor(hsv.x); // стабильный wrap 0..1
 
     hsv.y *= saturationFactor;

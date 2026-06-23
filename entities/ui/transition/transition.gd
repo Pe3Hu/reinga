@@ -5,6 +5,8 @@ extends CanvasLayer
 
 var data: TransitionData:
 	set(value_):
+		if data and data.next_layer_changed.is_connected(animate_in):
+			data.next_layer_changed.disconnect(animate_in)
 		data = value_
 		data.next_layer_changed.connect(animate_in)
 
@@ -41,12 +43,20 @@ func animate_out() -> void:
 	 .set_trans(Tween.TRANS_QUAD)\
 	 .set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
-	get_tree().paused = false
+	_set_pause_after_transition()
 	_resume_cycle()
+	_start_pending_game()
 	visible = false
 
 func no_animation() -> void:
-	apply_on_screen()
+	apply_layer()
+	_set_pause_after_transition()
+	_resume_cycle()
+	_start_pending_game()
+
+
+func _set_pause_after_transition() -> void:
+	get_tree().paused = data.current_layer == Bozo.Layer.MENU
 #endregion
 
 #region apply
@@ -56,11 +66,14 @@ func apply_off_screen() -> void:
 		node.off_screen()
 
 func apply_on_screen() -> void:
-	if !Scope.is_game: return
+	if data.next_layer == Bozo.Layer.NONE:
+		return
 	
-	if data.next_layer != Bozo.Layer.NONE:
-		var node = world.get(Catalog.layer_to_string[data.next_layer])
-		node.on_screen()
+	if !Scope.is_game and data.next_layer != Bozo.Layer.MENU:
+		return
+	
+	var node = world.get(Catalog.layer_to_string[data.next_layer])
+	node.on_screen()
 
 func apply_layer() -> void:
 	var from_layer = data.current_layer
@@ -90,4 +103,12 @@ func _resume_cycle() -> void:
 	var interrupt = _pending_cycle_interrupt
 	_pending_cycle_interrupt = Bozo.Interrupt.NONE
 	Cycle.resume(interrupt)
+
+
+func _start_pending_game() -> void:
+	if !world.pending_new_game:
+		return
+	
+	world.pending_new_game = false
+	Cycle.start()
 #endregion

@@ -13,4 +13,8 @@ func _button_pressed() -> void:
 	abyss.world.hell.bank.data.sacrifice = abyss.data.table.active_catenas.back().sacrifice
 	abyss.data.refill_tribunal()
 	hide_me()
-	abyss.world.transition.data.next_layer = Bozo.Layer.HELL
+	
+	if Scope.exodus == 0:
+		abyss.world.transition.data.next_layer = Bozo.Layer.HELL
+	else:
+		abyss.unblur_all()

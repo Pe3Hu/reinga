@@ -25,14 +25,21 @@ func connect_datas() -> void:
 	init_sacrifices()
 
 func init_cages() -> void:
+	cages.clear()
+	Helper.clear_children(%Cages)
+	
 	for cage_data in data.table.cages:
 		add_cage(cage_data)
 
 func init_catenas() -> void:
+	Helper.clear_children(%Catenas)
+	
 	for catena_data in data.table.catenas:
 		add_catena(catena_data)
 
 func init_sacrifices() -> void:
+	Helper.clear_children(%Sacrifices)
+	
 	for sacrifice_data in data.sacrifices:
 		add_sacrifice(sacrifice_data)
 
@@ -109,7 +116,7 @@ func on_screen():
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
 	update_sinner_datas()
-	#simulate_choice()
+	simulate_choice()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -126,10 +133,11 @@ func forget_catenas() -> void:
 		show_all_sacrifices()
 
 func simulate_choice() -> void:
+	if !Scope.is_skip: return
 	await get_tree().create_timer(0.3).timeout
 	var catena = data.table.catenas.back()
 	catena.is_selected = true
-	sacrifice_button._on_pressed()
+	sacrifice_button._button_pressed()
 
 func apply_weather() -> void:
 	for cage in cages:

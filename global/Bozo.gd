@@ -259,6 +259,12 @@ enum Tempo {
 	FAST = 220,
 }
 
+enum Drain {
+	NONE = 0,
+	GALLERY = 221,
+	DECREE = 222,
+}
+
 enum Modifier {
 	NONE = 0,
 	BATTLE = -9,
@@ -303,6 +309,12 @@ enum Seal {
 	CURSE = 227,
 }
 
+enum Exodus {
+	NONE = 0,
+	ASCENSION = 228,
+	DOWNFALL = 229,
+}
+
 #230+
 
 enum Layer {
@@ -314,7 +326,7 @@ enum Layer {
 	HERALD = 253,
 	ABYSS = 254,
 	MUSEUM = 255,
-	ASCENSION = 256,
+	EXODUS = 256,
 }
 
 enum Tooltip {
@@ -468,5 +480,5 @@ enum Frame {
 	HERALD = 531,
 	MUSEUM = 532,
 	MENU = 533,
-	ASCENSION = 534,
+	EXODUS = 534,
 }

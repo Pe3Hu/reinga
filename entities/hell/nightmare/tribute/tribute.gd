@@ -20,6 +20,7 @@ func apply_data_info() -> void:
 
 func start_drain() -> void:
 	trial.nightmare.drain_tributes.append(self)
+	data.raise_essence()
 	var duration = progression.data.current_value * Catalog.DRAIN_TICK
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)

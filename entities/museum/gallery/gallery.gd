@@ -36,16 +36,11 @@ func connect_datas() -> void:
 	simulate_forge()
 
 func connect_cages() -> void:
-	if cages.is_empty():
-		for cage_data in data.museum.table.cages:
-			add_cage(cage_data)
-	else:
-		for _i in data.museum.table.cages.size():
-			var cage_data = data.museum.table.cages[_i]
-			var cage = cages[_i]
-			cage.data = cage_data
-			cage.active_background.material = ShaderMaterial.new()
-			cage.active_background.material.shader = load("uid://f0xra3senpov")
+	cages.clear()
+	Helper.clear_children(%Cages)
+	
+	for cage_data in data.museum.table.cages:
+		add_cage(cage_data)
 
 func reset() -> void:
 	if data == null:
@@ -66,15 +61,11 @@ func add_cage(data_: CageData) -> void:
 	cage.active_background.material.shader = load("uid://f0xra3senpov")
 
 func connect_exhibits() -> void:
-	if exhibits.is_empty():
-		for exhibit_data in data.exhibits:
-			add_exhibit(exhibit_data)
-	else:
-		for _i in data.exhibits.size():
-			var exhibit_data = data.exhibits[_i]
-			var exhibit = exhibits[_i]
-			exhibit.gallery = self
-			exhibit.data = exhibit_data
+	exhibits.clear()
+	Helper.clear_children(%Exhibits)
+	
+	for exhibit_data in data.exhibits:
+		add_exhibit(exhibit_data)
 
 func add_exhibit(data_: ExhibitData) -> void:
 	var exhibit = exhibit_scene.instantiate()
@@ -147,8 +138,7 @@ func stop_simulate_forge() -> void:
 	%ForgeTimer.stop()
 
 func simulate_forge() -> void:
-	#if true: return
-	#if !data.is_skip: return
+	if !Scope.is_skip: return
 	
 	var duration = Gear.simulates[Gear.tempo] * 0.25
 	%ForgeTimer.wait_time = duration

@@ -20,10 +20,14 @@ var cages: Array[Cage]
 #region init
 func init_cages() -> void:
 	cages.clear()
+	Helper.clear_children(%Cages)
+	
 	for cage_data in data.table.cages:
 		add_cage(cage_data)
 
 func init_catenas() -> void:
+	Helper.clear_children(%Catenas)
+	
 	for catena_data in data.table.catenas:
 		add_catena(catena_data)
 

@@ -26,6 +26,15 @@ func start() -> void:
 	generation  = 0
 	_enter_current()
 
+
+func stop() -> void:
+	active = false
+	suspended = false
+	interrupt = Bozo.Interrupt.NONE
+	
+	if hell != null:
+		hell.nightmare.abort_payment()
+
 func can_run_phase(phase_type: Bozo.Phase) -> bool:
 	return active \
 		and !suspended \

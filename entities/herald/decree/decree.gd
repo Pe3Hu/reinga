@@ -32,8 +32,7 @@ func reset_laws() -> void:
 		law.visible = false
 
 func simulate_accept() -> void:
-	if true: return
-	if !data.is_skip: return
+	if !Scope.is_skip: return
 	
 	var duration = Gear.simulates[Gear.tempo] * 0.25
 	%AcceptTimer.wait_time = duration

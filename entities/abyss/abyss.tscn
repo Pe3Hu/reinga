@@ -130,6 +130,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxEmpty_76f0c")
 
 [node name="SacrificeButton" parent="PanelContainer/VBox/PanelContainer" unique_id=250034607 node_paths=PackedStringArray("abyss") instance=ExtResource("7_76f0c")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 8
 abyss = NodePath("../../../..")

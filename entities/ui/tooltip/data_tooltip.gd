@@ -11,6 +11,7 @@ extends Resource
 		
 		if Catalog.tooltip_to_suffix.has(type):
 			text = text.replace(" (mod)", "")
+			text = text.replace(" (seal)", "")
 			var suffix = Catalog.tooltip_to_suffix[type]
 			text += suffix
 		

@@ -17,6 +17,9 @@ var contributions: Array[Contribution]
 
 #region init
 func init_contributions() -> void:
+	contributions.clear()
+	Helper.clear_children(%Contributions)
+	
 	for data_contribution in data.contributions:
 		add_contribution(data_contribution)
 

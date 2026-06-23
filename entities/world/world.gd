@@ -4,6 +4,7 @@ extends Node
 
 
 var data = WorldData.new()
+var pending_new_game: bool = false
 
 @export var inferno: Inferno
 @export var hell: Hell
@@ -13,25 +14,26 @@ var data = WorldData.new()
 @export var museum: Museum
 @export var herald: Herald
 @export var transition: Transition
-@export var menu: MainMenu
-@export var ascension: Ascension
+@export var main_menu: MainMenu
+@export var preparation_menu: PreparationMenu
+@export var exodus: Exodus
 
 
 func new_game() -> void:
-	menu.visible = false
+	Cycle.stop()
 	Scope.is_game = true
+	pending_new_game = true
+	
 	data = WorldData.new()
 	connect_datas()
 	
-	inferno.apply_layer()
-	Cycle.start()
+	transition.data.current_layer = Bozo.Layer.MENU
+	transition.data.next_layer = Bozo.Layer.HELL
 
 func _ready() -> void:
+	get_tree().paused = true
 	Cycle.hell = hell
-	new_game()
 	
-	#await get_tree().process_frame
-	#transition.data.next_layer = Bozo.Layer.HERALD
 
 func connect_datas() -> void:
 	sanctuary.data = data.sanctuary
@@ -47,23 +49,24 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_SPACE:
 				pass
-			KEY_1:
-				transition.data.next_layer = Bozo.Layer.HELL
-			KEY_2:
-				transition.data.next_layer = Bozo.Layer.GATE
-			KEY_3:
-				transition.data.next_layer = Bozo.Layer.ABYSS
+			#KEY_1:
+				#transition.data.next_layer = Bozo.Layer.HELL
+			#KEY_2:
+				#transition.data.next_layer = Bozo.Layer.GATE
+			#KEY_3:
+				#transition.data.next_layer = Bozo.Layer.ABYSS
 			KEY_4:
-				transition.data.next_layer = Bozo.Layer.ASCENSION
-			KEY_Q:
-				data.tribunal.print_total_sinners()
+				transition.data.next_layer = Bozo.Layer.EXODUS
+			#KEY_Q:
+			#	data.tribunal.print_total_sinners()
 
 func switch_menu() -> void:
-	if menu.is_echo:
-		menu.is_echo = false
+	if main_menu.is_echo:
+		main_menu.is_echo = false
 		return
 	
-	if !menu.visible:
-		menu.on_screen()
+	if !main_menu.visible:
+		main_menu.on_screen()
 	else:
-		menu.off_screen()
+		main_menu.off_screen()
+		get_tree().paused = false

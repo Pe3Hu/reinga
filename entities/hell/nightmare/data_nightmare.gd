@@ -17,6 +17,9 @@ var development_closed: bool = false
 
 var privilege_attitudes: Array[AttitudeData]
 
+var bless_trials: Array[TrialData]
+var curse_trials: Array[TrialData]
+
 
 #region init
 func _init(hell_: HellData) -> void:
@@ -227,3 +230,20 @@ func reset() -> void:
 func refill_claims() -> void:
 	for trail in trials:
 		trail.claim.refill()
+
+func check_end_game(seal_: SealData) -> void:
+	match seal_.type:
+		Bozo.Seal.BLESS:
+			if bless_trials.has(seal_.crown.trial): return
+			bless_trials.append(seal_.crown.trial)
+		Bozo.Seal.CURSE:
+			if curse_trials.has(seal_.crown.trial): return
+			curse_trials.append(seal_.crown.trial)
+	
+	if Catalog.ASCENSION_TRIAL_COUNT <= bless_trials.size():
+		Scope.exodus = Bozo.Exodus.ASCENSION
+		return
+	
+	if Catalog.DOWNFALL_TRIAL_COUNT <= curse_trials.size():
+		Scope.exodus = Bozo.Exodus.DOWNFALL
+		return

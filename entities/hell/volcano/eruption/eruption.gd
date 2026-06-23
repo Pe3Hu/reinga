@@ -28,6 +28,12 @@ func reset(data_: EruptionData, timeout_: float):
 
 
 func update_start_token() -> void:
+	if data.from_safe:
+		var safe = volcano.hell.bank.active_safe
+		if safe:
+			start_token = safe.amber
+		return
+	
 	var cage = volcano.hell.jail.get_active_cage()
 	if cage:
 		start_token = cage.contribution.get_token(data.token)
@@ -46,13 +52,14 @@ func update_end_token() -> void:
 	else:
 		end_target = volcano.hell.nightmare.type_to_trial[data.type].claim
 	
-	
-	if start_token:
-		end_token = end_target.type_to_token[start_token.data.type]
-	else:
+	if !start_token:
 		active = true
 		deactivate()
 		print("eruption start_token bug")
+		return
+	
+	var token_type = data.token if data.from_safe else start_token.data.type
+	end_token = end_target.type_to_token[token_type]
 
 func reset_timer(timeout_: float) -> void:
 	if !start_token: return

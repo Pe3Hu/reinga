@@ -5,6 +5,7 @@ extends Control
 var data: GateData:
 	set(value_):
 		data = value_
+		
 		init_cages()
 		init_catenas()
 
@@ -20,10 +21,15 @@ var cages: Array[Cage]
 
 #region init
 func init_cages() -> void:
+	cages.clear()
+	Helper.clear_children(%Cages)
+	
 	for cage_data in data.table.cages:
 		add_cage(cage_data)
 
 func init_catenas() -> void:
+	Helper.clear_children(%Catenas)
+	
 	for catena_data in data.table.catenas:
 		add_catena(catena_data)
 
@@ -85,7 +91,7 @@ func on_screen():
 	update_sinner_datas()
 	Scope.weather = Bozo.Weather.SUN
 	weather_button.updaet_margin_offset()
-	#simulate_choice()
+	simulate_choice()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -101,6 +107,7 @@ func forget_catenas() -> void:
 		unblur_all()
 
 func simulate_choice() -> void:
+	if !Scope.is_skip: return
 	var duration = Gear.simulates[Gear.tempo] * 0.5
 	await get_tree().create_timer(duration).timeout
 	var catena = data.table.catenas.back()

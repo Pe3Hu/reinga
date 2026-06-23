@@ -1,26 +1,21 @@
-res://entities/abyss/abyss.tscn
-res://entities/ui/token/faction/shaders/faction smoke.gdshader
+res://entities/exodus/exodus.tscn
+res://entities/hell/nightmare/crown/seal/earring.gdshader
 res://entities/herald/shaders/torture.gdshader
+res://entities/exodus/exodus background.gdshader
+res://entities/sanctuary/shader/matrix.gdshader
 res://entities/herald/shaders/herald.gdshader
+res://entities/ui/token/faction/shaders/faction smoke.gdshader
 res://entities/museum/shaders/museum flame.gdshader
-res://entities/ascension/ascension background.gdshader
 res://entities/museum/shaders/museum background.gdshader
 res://entities/herald/shaders/omen 1 full size.gdshader
 res://entities/herald/shaders/godray.gdshader
-res://entities/sanctuary/shader/matrix.gdshader
-res://entities/ui/button/variants/lock button.tscn
-res://entities/hell/underground/bank/safe/safe.tscn
-res://entities/hell/underground/bank/safe/safe.gd
-res://entities/hell/underground/bank/bank.tscn
-res://entities/ui/token/amber/amber.gd
-res://entities/hell/underground/bank/bank.gd
-res://global/Bozo.gd
 res://global/Catalog.gd
-res://entities/hell/nightmare/trial/trial.tscn
-res://entities/hell/nightmare/crown/seal/seal.tscn
-res://entities/hell/nightmare/crown/seal/seal.gd
-res://entities/hell/nightmare/crown/seal/data_seal.gd
-res://entities/hell/nightmare/crown/data_crown.gd
-res://entities/hell/nightmare/crown/seal/seal.gdshader
-res://entities/hell/nightmare/crown/crown.tscn
-res://entities/hell/nightmare/crown/crown.gd
+res://global/Gear.gd
+res://entities/world/world.gd
+res://global/cycle/phase/appraisement.gd
+res://global/Scope.gd
+res://entities/abyss/abyss.gd
+res://entities/hell/hell.gd
+res://entities/herald/decree/decree.gd
+res://entities/museum/gallery/gallery.gd
+res://entities/gate/gate.gd
