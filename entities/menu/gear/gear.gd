@@ -3,7 +3,6 @@ class_name GearTab
 extends PanelContainer
 
 
-
 @export var buttons: Array[TempoButton]
 
 

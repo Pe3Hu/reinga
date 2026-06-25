@@ -55,8 +55,8 @@ func _input(event) -> void:
 				#transition.data.next_layer = Bozo.Layer.GATE
 			#KEY_3:
 				#transition.data.next_layer = Bozo.Layer.ABYSS
-			KEY_4:
-				transition.data.next_layer = Bozo.Layer.EXODUS
+			#KEY_4:
+			#	transition.data.next_layer = Bozo.Layer.EXODUS
 			#KEY_Q:
 			#	data.tribunal.print_total_sinners()
 

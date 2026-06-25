@@ -1,6 +1,6 @@
 extends Node
 
-var tempo: int = 0
+var tempo: int = 1
 
 const tooltips: Array[float] = [10.0, 10.0]
 const amber_sacrifices: Array[float] = [1.0, 1.0]

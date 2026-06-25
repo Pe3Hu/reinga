@@ -15,5 +15,6 @@ func on_screen():
 	update_texts()
 
 func update_texts() -> void:
-	%Body.text = "Earned Essence: %d" % Scope.essence
+	%Body.text = "Earned Essence: %d on %d turn" % [Scope.essence, Scope.turn]
 	%Header.text = "Congratulation with %s" % Catalog.exodus_to_string[Scope.exodus].capitalize()
+	

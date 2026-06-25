@@ -8,7 +8,7 @@ signal layer_changed
 var sanctuary: SanctuaryData
 
 var is_game: bool = false
-var is_skip: bool = true
+var is_skip: bool = false
 
 var phase: Bozo.Phase = Bozo.Phase.ENDOWMENT
 var turn: int = 0

@@ -1,21 +1,23 @@
-res://entities/exodus/exodus.tscn
+res://entities/menu/main/main.tscn
 res://entities/hell/nightmare/crown/seal/earring.gdshader
 res://entities/herald/shaders/torture.gdshader
 res://entities/exodus/exodus background.gdshader
 res://entities/sanctuary/shader/matrix.gdshader
-res://entities/herald/shaders/herald.gdshader
 res://entities/ui/token/faction/shaders/faction smoke.gdshader
+res://entities/herald/shaders/herald.gdshader
 res://entities/museum/shaders/museum flame.gdshader
 res://entities/museum/shaders/museum background.gdshader
 res://entities/herald/shaders/omen 1 full size.gdshader
 res://entities/herald/shaders/godray.gdshader
+res://entities/menu/main/main.gd
+res://entities/ui/button/menu/settings.gd
 res://global/Catalog.gd
 res://global/Gear.gd
-res://entities/world/world.gd
-res://global/cycle/phase/appraisement.gd
-res://global/Scope.gd
 res://entities/abyss/abyss.gd
-res://entities/hell/hell.gd
-res://entities/herald/decree/decree.gd
-res://entities/museum/gallery/gallery.gd
 res://entities/gate/gate.gd
+res://entities/exodus/exodus.tscn
+res://entities/exodus/exodus.gd
+res://entities/hell/hell.tscn
+res://global/Scope.gd
+res://entities/hell/hell.gd
+res://entities/world/world.gd

@@ -34,3 +34,14 @@ func _input(event) -> void:
 			KEY_ESCAPE:
 				if Scope.is_game:
 					world.switch_menu()
+			KEY_SPACE:
+				if Scope.is_game:
+					hide_settings()
+
+func show_settings() -> void:
+	menu_panel.visible = false
+	setting_tabs.visible = true
+
+func hide_settings() -> void:
+	menu_panel.visible = true
+	setting_tabs.visible = false

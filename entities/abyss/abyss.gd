@@ -133,6 +133,7 @@ func forget_catenas() -> void:
 		show_all_sacrifices()
 
 func simulate_choice() -> void:
+	if true: return
 	if !Scope.is_skip: return
 	await get_tree().create_timer(0.3).timeout
 	var catena = data.table.catenas.back()

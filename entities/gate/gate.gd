@@ -107,7 +107,9 @@ func forget_catenas() -> void:
 		unblur_all()
 
 func simulate_choice() -> void:
+	if true: return
 	if !Scope.is_skip: return
+	
 	var duration = Gear.simulates[Gear.tempo] * 0.5
 	await get_tree().create_timer(duration).timeout
 	var catena = data.table.catenas.back()

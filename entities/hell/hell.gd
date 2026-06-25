@@ -61,6 +61,7 @@ func on_screen():
 	#weather_button.switch_weather()
 
 func simulate_choice() -> void:
+	if true: return
 	if !Scope.is_skip: return
 	var duration = Gear.simulates[Gear.tempo] * 2
 	await get_tree().create_timer(duration).timeout

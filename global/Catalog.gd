@@ -1855,8 +1855,8 @@ var tooltip_to_template = {
 	Bozo.Tooltip.TRUST: "Criterion for forming [tornado radius=2 freq=1.6][meta guild]Guild[/meta][/tornado]",
 	Bozo.Tooltip.BLESS_SEAL: "Reward for bringing [ghost][meta attitude]Attitude[/meta][/ghost] to the maximum, can be used for [ghost][meta ascension]Ascension[/meta][/ghost]",
 	Bozo.Tooltip.CURSE_SEAL: "Penalty for letting [ghost][meta attitude]Attitude[/meta][/ghost] drop to the minimum, will be used for [ghost][meta downfall]Downfall[/meta][/ghost]",
-	Bozo.Tooltip.ASCENSION: "This is the end, good one. Triggered from:\nThere are at least 3 [ghost][meta trial]Trial's[/meta][/ghost] with 3 [ghost][meta bless (seal)]Bless Seal[/meta][/ghost]\nOr accumulate 100 [ghost][meta amber]Amber[/meta][/ghost]",
-	Bozo.Tooltip.DOWNFALL: "This is the end, bad one. Triggered from:\nThere are at least 3 [ghost][meta trial]Trial's[/meta][/ghost] with 3 [ghost][meta curse (seal)]Curse Seal[/meta][/ghost]",
+	Bozo.Tooltip.ASCENSION: "This is the end, good one. Triggered from:\nThere are at least 2 [ghost][meta trial]Trial's[/meta][/ghost] with 2 [ghost][meta bless (seal)]Bless Seal[/meta][/ghost]\nOr accumulate 100 [ghost][meta amber]Amber[/meta][/ghost]",
+	Bozo.Tooltip.DOWNFALL: "This is the end, bad one. Triggered from:\nThere are at least 2 [ghost][meta trial]Trial's[/meta][/ghost] with 2 [ghost][meta curse (seal)]Curse Seal[/meta][/ghost]",
 	
 	Bozo.Tooltip.MOD_MISS: "Chance to get 0 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
 	Bozo.Tooltip.MOD_CRIT: "Chance to get x2 [ghost][meta essence]Essence[/meta][/ghost] when [ghost][meta torture]Tortured[/meta][/ghost]",
@@ -2071,11 +2071,11 @@ const tempo_to_int = {
 #endregion
 
 #region crown
-const SEAL_LIMIT: int = 3
+const SEAL_LIMIT: int = 2
 
-const DOWNFALL_TRIAL_COUNT: int = 3
-const ASCENSION_TRIAL_COUNT: int = 3
-const ASCENSION_AMBER_COUNT: int = 25#100
+const DOWNFALL_TRIAL_COUNT: int = 2
+const ASCENSION_TRIAL_COUNT: int = 2
+const ASCENSION_AMBER_COUNT: int = 100
 
 const seals = [
 	Bozo.Seal.BLESS,

@@ -167,6 +167,7 @@ layout_mode = 2
 menu = NodePath("../../../../../..")
 
 [node name="SettingsButton" parent="MenuMargin/PanelContainer/VBox/PanelContainer/Buttons" unique_id=742153792 node_paths=PackedStringArray("menu") instance=ExtResource("5_tjnt2")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 1
 menu = NodePath("../../../../../..")
